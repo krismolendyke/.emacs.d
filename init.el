@@ -1,28 +1,7 @@
-;; Turn off bars A.S.A.P.
+;; Turn off bars A.S.A.P.  See appearance.el.
 ;(if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
 (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
 (if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
-
-;; Theming
-(load-theme 'wombat t)
-(set-frame-font "-apple-Consolas-medium-normal-normal-*-18-*-*-*-m-0-fontset-auto1")
-
-;; Maximize the height of the window based on the current screen resolution.
-(defun get-max-rows (pixel-height)
-  "Return the maximum number of rows that will fit with this screen.
-Given a screen pixel height at the current frame character height, calculate
-the maximum number of rows that will fit with that height."
-  (if (window-system)
-      (/ pixel-height (frame-char-height))))
-
-(defun set-frame-height-to-max ()
-  "Set the selected frame height to the maximum that will fit the current
-screen resolution."
-  (if (window-system)
-      (set-frame-height (selected-frame)
-			(get-max-rows (- (display-pixel-height) 44)))))
-
-(set-frame-height-to-max)
 
 ;; Set path to .emacs.d
 (setq dotfiles-dir (file-name-directory
@@ -38,6 +17,9 @@ screen resolution."
 ;; Emacs custom settings are in a separate file.
 (setq custom-file (expand-file-name "custom.el" dotfiles-dir))
 (load custom-file)
+
+;; Theme, font, frame attributes, etc.
+(require 'appearance)
 
 ;; Kris
 (transient-mark-mode t)
