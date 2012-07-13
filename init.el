@@ -10,13 +10,13 @@
 ;; Maximize the height of the window based on the current screen resolution.
 (defun get-max-rows (pixel-height)
   "Return the maximum number of rows that will fit with this screen.
-Given a screen pixel height at the current frame character height, calculate 
+Given a screen pixel height at the current frame character height, calculate
 the maximum number of rows that will fit with that height."
   (if (window-system)
       (/ pixel-height (frame-char-height))))
 
 (defun set-frame-height-to-max ()
-  "Set the selected frame height to the maximum that will fit the current 
+  "Set the selected frame height to the maximum that will fit the current
 screen resolution."
   (if (window-system)
       (set-frame-height (selected-frame)
@@ -24,8 +24,16 @@ screen resolution."
 
 (set-frame-height-to-max)
 
-;; Load path
-(add-to-list 'load-path "~/Library/Emacs/site-lisp")
+;; Set path to .emacs.d
+(setq dotfiles-dir (file-name-directory
+                    (or (buffer-file-name) load-file-name)))
+
+;; Set path to dependencies
+(setq site-lisp-dir (expand-file-name "site-lisp" dotfiles-dir))
+
+;; Set up load path
+(add-to-list 'load-path dotfiles-dir)
+(add-to-list 'load-path site-lisp-dir)
 
 ;; Kris
 (transient-mark-mode t)
