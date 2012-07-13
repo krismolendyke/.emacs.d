@@ -24,23 +24,6 @@
 ;; Kris's defaults.
 (require 'kris-defaults)
 
-;; paredit
-(autoload 'paredit-mode "paredit" nil t)
-
-(dolist (hook '(emacs-lisp-mode-hook
-                lisp-mode-hook
-                slime-repl-mode-hook))
-  (add-hook hook #'(lambda nil (paredit-mode 1))))
-
-(eval-after-load "paredit"
-  '(progn
-     (define-key paredit-mode-map [?\)] 'paredit-close-parenthesis)
-     (define-key paredit-mode-map [(meta ?\))]
-                 'paredit-close-parenthesis-and-newline)))
-
-;; SLIME!
-(setq inferior-lisp-program "/usr/local/bin/sbcl")
-(add-to-list 'load-path "~/Code/slime/")
-(add-to-list 'load-path "~/Code/slime/contrib/")
-(require 'slime-autoloads)
-(slime-setup '(slime-fancy))
+;; Setup extensions.
+(require 'setup-paredit)
+(require 'setup-slime)
