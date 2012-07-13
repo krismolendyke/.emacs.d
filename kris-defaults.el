@@ -8,15 +8,21 @@
 
 (ido-mode t)
 
+;; Tabs... *hisssss*
+(set-default 'indent-tabs-mode nil)
+
+;; Kill trailing whitespace on save.
+(add-hook 'before-save-hook 'delete-trailing-whitespace)
+
 ;; Quit all that damn racket!
 (setq ring-bell-function 'ignore)
 
 ;; Set HyperSpec root in Dropbox.
 (setq common-lisp-hyperspec-root
       "file:///Users/kris/Desktop/Dropbox/Documents/HyperSpec/")
-(load "newcomment") 
+(load "newcomment")
 
-;; Make sure syntax highlight is enabled.
+;; Make sure syntax highlighting is enabled.
 (global-font-lock-mode t)
 
 ;; y is the new yes.  n is the new no.
