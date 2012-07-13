@@ -1,9 +1,9 @@
-;; Turn off bars A.S.A.P.  See appearance.el.
+;; Turn off bars A.S.A.P.  See appearance.el for more.
 ;(if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
 (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
 (if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
 
-;; Set path to .emacs.d
+;; Set path to .emacs.d.
 (setq dotfiles-dir (file-name-directory
                     (or (buffer-file-name) load-file-name)))
 
@@ -21,15 +21,8 @@
 ;; Theme, font, frame attributes, etc.
 (require 'appearance)
 
-;; Kris
-(transient-mark-mode t)
-(column-number-mode t)
-(show-paren-mode t)
-(ido-mode t)
-(setq ring-bell-function 'ignore)
-(setq common-lisp-hyperspec-root
-      "file:///Users/kris/Desktop/Dropbox/Documents/HyperSpec/")
-(load "newcomment")
+;; Kris's defaults.
+(require 'kris-defaults)
 
 ;; paredit
 (autoload 'paredit-mode "paredit" nil t)
