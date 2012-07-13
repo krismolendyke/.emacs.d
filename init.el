@@ -28,12 +28,16 @@ screen resolution."
 (setq dotfiles-dir (file-name-directory
                     (or (buffer-file-name) load-file-name)))
 
-;; Set path to dependencies
+;; Set path to dependencies.
 (setq site-lisp-dir (expand-file-name "site-lisp" dotfiles-dir))
 
-;; Set up load path
+;; Set up load path.
 (add-to-list 'load-path dotfiles-dir)
 (add-to-list 'load-path site-lisp-dir)
+
+;; Emacs custom settings are in a separate file.
+(setq custom-file (expand-file-name "custom.el" dotfiles-dir))
+(load custom-file)
 
 ;; Kris
 (transient-mark-mode t)
@@ -65,17 +69,3 @@ screen resolution."
 (add-to-list 'load-path "~/Code/slime/contrib/")
 (require 'slime-autoloads)
 (slime-setup '(slime-fancy))
-
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(inhibit-startup-screen t)
- '(initial-scratch-message))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
