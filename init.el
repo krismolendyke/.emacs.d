@@ -1,3 +1,29 @@
+;; Turn off bars A.S.A.P.
+;(if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
+(if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
+(if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
+
+;; Theming
+(load-theme 'wombat t)
+(set-frame-font "-apple-Consolas-medium-normal-normal-*-18-*-*-*-m-0-fontset-auto1")
+
+;; Maximize the height of the window based on the current screen resolution.
+(defun get-max-rows (pixel-height)
+  "Return the maximum number of rows that will fit with this screen.
+Given a screen pixel height at the current frame character height, calculate 
+the maximum number of rows that will fit with that height."
+  (if (window-system)
+      (/ pixel-height (frame-char-height))))
+
+(defun set-frame-height-to-max ()
+  "Set the selected frame height to the maximum that will fit the current 
+screen resolution."
+  (if (window-system)
+      (set-frame-height (selected-frame)
+			(get-max-rows (- (display-pixel-height) 44)))))
+
+(set-frame-height-to-max)
+
 ;; Load path
 (add-to-list 'load-path "~/Library/Emacs/site-lisp")
 
@@ -6,26 +32,10 @@
 (column-number-mode t)
 (show-paren-mode t)
 (ido-mode t)
+(setq ring-bell-function 'ignore)
 (setq common-lisp-hyperspec-root
       "file:///Users/kris/Desktop/Dropbox/Documents/HyperSpec/")
 (load "newcomment")
-
-;; Stylin'
-(load-theme 'wombat t)
-(set-frame-font "-apple-Consolas-medium-normal-normal-*-18-*-*-*-m-0-fontset-auto1")
-
-(defun get-max-rows (pixel-height)
-  "Return the maximum number of rows that will fit in the given screen pixel heightat the current frame character height."
-  (if (window-system)
-      (/ pixel-height (frame-char-height))))
-
-(defun set-frame-height-to-max ()
-  "Set the selected frame height to the maximum that will fit the current screen resolution."
-  (if (window-system)
-      (set-frame-height (selected-frame)
-			(get-max-rows (- (display-pixel-height) 100)))))
-
-(set-frame-height-to-max)
 
 ;; paredit
 (autoload 'paredit-mode "paredit" nil t)
