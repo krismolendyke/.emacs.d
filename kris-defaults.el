@@ -6,13 +6,14 @@
 (column-number-mode t)
 (show-paren-mode t)
 
-(ido-mode t)
-
 ;; Tabs... *hisssss*
 (set-default 'indent-tabs-mode nil)
 
 ;; Kill trailing whitespace on save.
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
+
+;; Give a man a hand.
+(add-hook 'emacs-lisp-mode-hook 'turn-on-eldoc-mode)
 
 ;; Quit all that damn racket!
 (setq ring-bell-function 'ignore)
