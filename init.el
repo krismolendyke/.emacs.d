@@ -32,6 +32,7 @@
 (require 'kris-defaults)
 
 ;; Setup extensions.
+(require 'setup-hyperspec)
 (require 'setup-paredit)
 (require 'setup-slime)
 
