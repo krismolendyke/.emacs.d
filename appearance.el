@@ -1,5 +1,5 @@
-;(load-theme 'wombat t)
-(load-theme 'whiteboard t)
+(load-theme 'wombat t)
+;(load-theme 'whiteboard t)
 (set-frame-font "-apple-Consolas-medium-normal-normal-*-18-*-*-*-m-0-fontset-auto1")
 
 (defun get-max-rows (pixel-height)
