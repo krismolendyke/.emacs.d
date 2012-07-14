@@ -33,8 +33,7 @@
 
 ;; Setup extensions.
 (require 'setup-hyperspec)
+(require 'setup-ido)
 (require 'setup-paredit)
 (require 'setup-slime)
-
-(require 'smex)
-(smex-initialize)
+(require 'setup-smex)
