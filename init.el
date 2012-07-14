@@ -1,7 +1,9 @@
 ;; Turn off bars A.S.A.P.  See appearance.el for more.
-;(if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
 (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
 (if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
+
+;; Only turn off the menu bar in the terminal.
+(if (and (not (window-system)) (fboundp 'menu-bar-mode)) (menu-bar-mode -1))
 
 ;; Set path to .emacs.d.
 (setq dotfiles-dir (file-name-directory
