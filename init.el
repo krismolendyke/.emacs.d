@@ -16,6 +16,11 @@
 (add-to-list 'load-path dotfiles-dir)
 (add-to-list 'load-path site-lisp-dir)
 
+;; Add external projects to load path.
+(dolist (project (directory-files site-lisp-dir t "\\w+"))
+  (when (file-directory-p project)
+    (add-to-list 'load-path project)))
+
 ;; Emacs custom settings are in a separate file.
 (setq custom-file (expand-file-name "custom.el" dotfiles-dir))
 (load custom-file)
@@ -29,3 +34,6 @@
 ;; Setup extensions.
 (require 'setup-paredit)
 (require 'setup-slime)
+
+(require 'smex)
+(smex-initialize)
