@@ -35,6 +35,12 @@
 (if (equal system-type 'darwin) (require 'osx))
 
 ;; Setup extensions.
+
+;; It's electric.
+(dolist (hook '(emacs-lisp-mode-hook
+                lisp-mode-hook))
+  (add-hook hook #'(lambda () (electric-indent-mode 1))))
+
 (require 'setup-hyperspec)
 (require 'setup-ido)
 (require 'setup-paredit)
