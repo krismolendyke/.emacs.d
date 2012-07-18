@@ -12,6 +12,12 @@
 ;; Tabs... *hisssss*
 (set-default 'indent-tabs-mode nil)
 
+;; Nag, nag, nag, nag...
+(put 'downcase-region 'disabled nil)
+(put 'upcase-region 'disabled nil)
+(put 'narrow-to-region 'disabled nil)
+(put 'narrow-to-page 'disabled nil)
+
 ;; Kill trailing whitespace on save.
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
