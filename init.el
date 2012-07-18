@@ -31,6 +31,9 @@
 ;; Kris's defaults.
 (require 'kris-defaults)
 
+;; I spend most of my time in OS X.
+(if (equal system-type 'darwin) (require 'osx))
+
 ;; Setup extensions.
 (require 'setup-hyperspec)
 (require 'setup-ido)
