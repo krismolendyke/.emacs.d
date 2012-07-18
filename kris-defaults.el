@@ -9,6 +9,9 @@
 (column-number-mode t)
 (show-paren-mode t)
 
+;; Automatically reload buffers when files change on disk.
+(global-auto-revert-mode 1)
+
 ;; Tabs... *hisssss*
 (set-default 'indent-tabs-mode nil)
 
