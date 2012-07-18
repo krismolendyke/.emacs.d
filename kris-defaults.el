@@ -1,6 +1,9 @@
 ;; Show the active region.
 (transient-mark-mode t)
 
+;; What's going on here?
+(setq echo-keystrokes 0.1)
+
 ;; Where am I?
 (line-number-mode t)
 (column-number-mode t)
