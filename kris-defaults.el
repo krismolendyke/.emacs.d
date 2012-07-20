@@ -25,9 +25,6 @@
 ;; Kill trailing whitespace on save.
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
-;; Dvorak C-x help.  Plus, I hate C-z minimizing the window on OS X.
-(global-set-key (kbd "C-z") ctl-x-map)
-
 ;; Give a man a hand.
 (add-hook 'emacs-lisp-mode-hook 'turn-on-eldoc-mode)
 
