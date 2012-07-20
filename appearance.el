@@ -4,7 +4,9 @@
 ;; Consolas on OS X, please!
 (if (equal system-type 'darwin)
     (set-frame-font
-     "-apple-Consolas-medium-normal-normal-*-18-*-*-*-m-0-fontset-auto1"))
+     "-apple-Consolas-medium-normal-normal-*-18-*-*-*-m-0-fontset-auto1")
+  (fset-frame-font
+   "-apple-Inconsolata-medium-normal-normal-*-18-*-*-*-m-0-fontset-auto1"))
 
 (defun get-max-rows (pixel-height)
   "Return the maximum number of rows that will fit with this screen.
