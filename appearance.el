@@ -1,4 +1,11 @@
+;; Add themes.
+(dolist
+    (theme (directory-files(expand-file-name "themes" dotfiles-dir) t "\\w+"))
+  (when (file-directory-p theme)
+    (add-to-list 'custom-theme-load-path theme)))
+
 (load-theme 'wombat t)
+;(load-theme 'zenburn t)
 ;(load-theme 'whiteboard t)
 
 ;; Consolas on OS X, please!

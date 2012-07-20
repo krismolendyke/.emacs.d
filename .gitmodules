@@ -4,3 +4,6 @@
 [submodule "site-lisp/js2-mode"]
 	path = site-lisp/js2-mode
 	url = git://github.com/magnars/js2-mode.git
+[submodule "themes/zenburn"]
+	path = themes/zenburn
+	url = git://github.com/bbatsov/zenburn-emacs.git
