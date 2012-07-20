@@ -5,6 +5,7 @@
 (setq echo-keystrokes 0.1)
 
 ;; Where am I?
+;(global-linum-mode t)
 (line-number-mode t)
 (column-number-mode t)
 (show-paren-mode t)
