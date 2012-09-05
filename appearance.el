@@ -9,7 +9,8 @@
              (expand-file-name
               "themes/tomorrow/GNU Emacs" dotfiles-dir))
 
-(load-theme 'wombat t)
+(load-theme 'tomorrow-night)
+;(load-theme 'wombat t)
 ;(load-theme 'zenburn t)
 ;(load-theme 'whiteboard t)
 
