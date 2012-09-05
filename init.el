@@ -51,6 +51,7 @@
 
 (require 'setup-hyperspec)
 (require 'setup-ido)
+(require 'setup-org-mode)
 (require 'setup-paredit)
 (require 'setup-slime)
 (require 'setup-smex)
