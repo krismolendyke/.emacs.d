@@ -4,6 +4,11 @@
   (when (file-directory-p theme)
     (add-to-list 'custom-theme-load-path theme)))
 
+;; Tomorrow as a submodule.  It has a bunch of other editor support.
+(add-to-list 'custom-theme-load-path
+             (expand-file-name
+              "themes/tomorrow/GNU Emacs" dotfiles-dir))
+
 (load-theme 'wombat t)
 ;(load-theme 'zenburn t)
 ;(load-theme 'whiteboard t)
