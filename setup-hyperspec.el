@@ -1,5 +1,6 @@
 ;; Set HyperSpec root in Dropbox.
 (setq common-lisp-hyperspec-root
-      "file:///Users/kris/Desktop/Dropbox/Documents/HyperSpec/")
+      (format "file://%s/"
+              (expand-file-name "Documents/HyperSpec" dropbox-directory)))
 
 (provide 'setup-hyperspec)

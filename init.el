@@ -29,6 +29,10 @@
 (setq custom-file (expand-file-name "custom.el" dotfiles-dir))
 (load custom-file)
 
+;; Cloud storage.
+(setq dropbox-directory (expand-file-name "~/Desktop/Dropbox"))
+(setq google-drive-directory (expand-file-name "~/Google Drive"))
+
 ;; Theme, font, frame attributes, etc.
 (require 'appearance)
 
