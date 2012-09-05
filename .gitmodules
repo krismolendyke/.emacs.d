@@ -10,3 +10,6 @@
 [submodule "themes/tomorrow"]
 	path = themes/tomorrow
 	url = git://github.com/chriskempson/tomorrow-theme.git
+[submodule "themes/solarized"]
+	path = themes/solarized
+	url = git://github.com/sellout/emacs-color-theme-solarized.git
