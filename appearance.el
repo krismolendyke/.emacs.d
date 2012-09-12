@@ -1,13 +1,13 @@
 ;; Add themes.
 (dolist
-    (theme (directory-files(expand-file-name "themes" dotfiles-dir) t "\\w+"))
+    (theme (directory-files(expand-file-name "themes" user-emacs-directory) t "\\w+"))
   (when (file-directory-p theme)
     (add-to-list 'custom-theme-load-path theme)))
 
 ;; Tomorrow as a submodule.  It has a bunch of other editor support.
 (add-to-list 'custom-theme-load-path
              (expand-file-name
-              "themes/tomorrow/GNU Emacs" dotfiles-dir))
+              "themes/tomorrow/GNU Emacs" user-emacs-directory))
 
 (load-theme 'tomorrow-night)
 ;(load-theme 'wombat t)

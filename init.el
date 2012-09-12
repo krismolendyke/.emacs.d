@@ -9,24 +9,24 @@
      (fboundp 'menu-bar-mode))
     (menu-bar-mode -1))
 
-;; Set path to .emacs.d.
-(setq dotfiles-dir (file-name-directory
-                    (or (buffer-file-name) load-file-name)))
-
-;; Set path to dependencies.
-(setq site-lisp-dir (expand-file-name "site-lisp" dotfiles-dir))
+;; Set paths to dependencies.
+;; Stuff that other folks have developed.
+(setq site-lisp-directory (expand-file-name "site-lisp" user-emacs-directory))
+;; Stuff that I have developed.
+(setq elisp-directory (expand-file-name "elisp" user-emacs-directory))
 
 ;; Set up load path.
-(add-to-list 'load-path dotfiles-dir)
-(add-to-list 'load-path site-lisp-dir)
+(add-to-list 'load-path user-emacs-directory)
+(add-to-list 'load-path site-lisp-directory)
+(add-to-list 'load-path elisp-directory)
 
 ;; Add external projects to load path.
-(dolist (project (directory-files site-lisp-dir t "\\w+"))
+(dolist (project (directory-files site-lisp-directory t "\\w+"))
   (when (file-directory-p project)
     (add-to-list 'load-path project)))
 
 ;; Emacs custom settings are in a separate file.
-(setq custom-file (expand-file-name "custom.el" dotfiles-dir))
+(setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 (load custom-file)
 
 ;; Cloud storage.
