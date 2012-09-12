@@ -15,4 +15,4 @@
       (list (expand-file-name "k20e.org" org-directory)
             (expand-file-name "work.org" org-directory)))
 
-(provide 'setup-org-mode)
+(provide 'setup-org)
