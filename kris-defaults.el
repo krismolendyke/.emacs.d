@@ -11,6 +11,9 @@
 (column-number-mode t)
 (show-paren-mode t)
 
+;; Do not wrap lines in the middle of tokens, please.
+(global-visual-line-mode 1)
+
 ;; Automatically reload buffers when files change on disk.
 (global-auto-revert-mode 1)
 
