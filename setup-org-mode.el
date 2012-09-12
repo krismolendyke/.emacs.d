@@ -1,5 +1,7 @@
+(require 'org)
 (require 'org-install)
 
+;; Set the org directory.
 (setq org-directory (expand-file-name "org" google-drive-directory))
 
 ;; Automatically insert a timestamp when a task is marked DONE.
