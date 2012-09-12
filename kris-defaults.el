@@ -7,6 +7,7 @@
 ;; Where am I?
 ;(global-linum-mode t)
 (line-number-mode t)
+(global-hl-line-mode t)
 (column-number-mode t)
 (show-paren-mode t)
 
