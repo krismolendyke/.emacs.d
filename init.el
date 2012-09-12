@@ -56,6 +56,7 @@
   (add-hook hook #'(lambda () (electric-indent-mode 1))))
 
 (require 'setup-hyperspec)
+(require 'setup-flyspell)
 (require 'setup-ido)
 (require 'setup-org)
 (require 'setup-paredit)

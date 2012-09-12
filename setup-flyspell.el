@@ -1,0 +1,6 @@
+;; When to turn on flyspell.
+(dolist (hook '(org-mode-hook
+                text-mode-hook))
+  (add-hook hook #'(lambda () (flyspell-mode 1))))
+
+(provide 'setup-flyspell)
