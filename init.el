@@ -55,8 +55,9 @@
                 lisp-mode-hook))
   (add-hook hook #'(lambda () (electric-indent-mode 1))))
 
-(require 'setup-hyperspec)
+(require 'setup-auto-fill)
 (require 'setup-flyspell)
+(require 'setup-hyperspec)
 (require 'setup-ido)
 (require 'setup-org)
 (require 'setup-paredit)
