@@ -33,9 +33,6 @@
 (setq dropbox-directory (expand-file-name "~/Desktop/Dropbox"))
 (setq google-drive-directory (expand-file-name "~/Google Drive"))
 
-;; flyspell.
-(setq-default ispell-program-name "/usr/local/bin/aspell")
-
 ;; ibuffer.
 (defalias 'list-buffers 'ibuffer)
 
