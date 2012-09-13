@@ -1,3 +1,7 @@
+;; Please, no backup or autosave litter.
+(setq make-backup-files nil)
+(setq auto-save-default nil)
+
 ;; Show the active region.
 (transient-mark-mode t)
 
