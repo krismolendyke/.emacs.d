@@ -8,7 +8,10 @@
 (setq org-log-done t)
 
 ;; Display entities as UTF-8 characters.
-(add-hook 'org-mode-hook #'(lambda () (org-toggle-pretty-entities)))
+(add-hook 'org-mode-hook
+          #'(lambda ()
+              (org-toggle-pretty-entities)
+              (visual-line-mode 0)))
 
 ;; org-capture.
 (setq org-default-notes-file (expand-file-name "notes.org" org-directory))
