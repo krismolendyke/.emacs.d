@@ -7,6 +7,9 @@
 ;; Automatically insert a timestamp when a task is marked DONE.
 (setq org-log-done t)
 
+;; Display entities as UTF-8 characters.
+(add-hook 'org-mode-hook #'(lambda () (org-toggle-pretty-entities)))
+
 ;; org-capture.
 (setq org-default-notes-file (expand-file-name "notes.org" org-directory))
 
