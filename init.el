@@ -47,6 +47,7 @@
 
 ;; Setup extensions.
 (require 'setup-auto-fill)
+(require 'setup-dired)
 (require 'setup-electric-indent)
 (require 'setup-flyspell)
 (require 'setup-hyperspec)
