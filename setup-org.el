@@ -7,6 +7,9 @@
 ;; Automatically insert a timestamp when a task is marked DONE.
 (setq org-log-done t)
 
+;; "Special" `C-a' and `C-e' movement in headlines.
+(setq org-special-ctrl-a/e t)
+
 ;; Display entities as UTF-8 characters.
 (add-hook 'org-mode-hook
           #'(lambda ()
