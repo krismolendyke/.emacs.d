@@ -29,6 +29,8 @@
 (put 'upcase-region 'disabled nil)
 (put 'narrow-to-region 'disabled nil)
 (put 'narrow-to-page 'disabled nil)
+(put 'scroll-left 'disabled nil)
+(put 'scroll-right 'disabled nil)
 
 ;; Kill trailing whitespace on save.
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
