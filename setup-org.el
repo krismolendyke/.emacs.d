@@ -1,5 +1,4 @@
 (require 'org)
-(require 'org-install)
 (require 'org-publish)
 
 ;; Set the org directory.
