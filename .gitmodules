@@ -13,3 +13,6 @@
 [submodule "themes/solarized"]
 	path = themes/solarized
 	url = git://github.com/sellout/emacs-color-theme-solarized.git
+[submodule "site-lisp/org-mode"]
+	path = site-lisp/org-mode
+	url = git://orgmode.org/org-mode.git
