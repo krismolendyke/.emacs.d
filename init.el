@@ -45,6 +45,11 @@
 ;; I spend most of my time in OS X.
 (if (equal system-type 'darwin) (require 'osx))
 
+;; Start the Emacs server.
+(require 'server)
+(unless (server-running-p)
+  (server-start))
+
 ;; Setup extensions.
 (require 'setup-auto-fill)
 (require 'setup-dired)
