@@ -16,3 +16,6 @@
 [submodule "site-lisp/org-mode"]
 	path = site-lisp/org-mode
 	url = git://orgmode.org/org-mode.git
+[submodule "site-lisp/slime-js"]
+	path = site-lisp/slime-js
+	url = git://github.com/swank-js/slime-js.git
