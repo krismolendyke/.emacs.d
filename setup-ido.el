@@ -2,6 +2,7 @@
 (ido-mode t)
 
 (setq ido-enable-flex-matching t
-      ido-auto-merge-work-directories-length -1)
+      ido-auto-merge-work-directories-length -1
+      ido-create-new-buffer 'always)
 
 (provide 'setup-ido)
