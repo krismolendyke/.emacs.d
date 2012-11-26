@@ -58,6 +58,7 @@
 (require 'setup-hyperspec)
 (require 'setup-ido)
 (require 'setup-js2)
+(require 'setup-markdown)
 (require 'setup-org)
 (require 'setup-paredit)
 (require 'setup-slime)
