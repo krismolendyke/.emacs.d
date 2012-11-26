@@ -8,6 +8,9 @@
 ;; What's going on here?
 (setq echo-keystrokes 0.1)
 
+;; quoted-insert is a frequent typo of mine.
+(global-unset-key "\C-q")
+
 ;; Where am I?
 ;(global-linum-mode t)
 (line-number-mode t)
