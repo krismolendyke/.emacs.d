@@ -56,6 +56,7 @@
 (require 'setup-electric-indent)
 (require 'setup-flyspell)
 (require 'setup-hyperspec)
+(require 'setup-ibuffer)
 (require 'setup-ido)
 (require 'setup-js2)
 (require 'setup-markdown)
