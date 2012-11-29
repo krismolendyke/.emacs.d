@@ -11,6 +11,10 @@
 ;; quoted-insert is a frequent typo of mine.
 (global-unset-key "\C-q")
 
+;; Toggle fullscreen mode on OS X
+(if (fboundp 'ns-toggle-fullscreen)
+    (global-set-key "\C-xt" 'ns-toggle-fullscreen))
+
 ;; Where am I?
 ;(global-linum-mode t)
 (line-number-mode t)
