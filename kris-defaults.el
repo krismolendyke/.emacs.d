@@ -13,7 +13,7 @@
 
 ;; Toggle fullscreen mode on OS X
 (if (fboundp 'ns-toggle-fullscreen)
-    (global-set-key "\C-xt" 'ns-toggle-fullscreen))
+    (global-set-key "\C-x\C-t" 'ns-toggle-fullscreen))
 
 ;; Where am I?
 ;(global-linum-mode t)
