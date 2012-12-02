@@ -9,11 +9,11 @@
 (setq echo-keystrokes 0.1)
 
 ;; quoted-insert is a frequent typo of mine.
-(global-unset-key "\C-q")
+(global-unset-key (kbd "C-q"))
 
 ;; Toggle fullscreen mode on OS X
 (if (fboundp 'ns-toggle-fullscreen)
-    (global-set-key "\C-x\C-t" 'ns-toggle-fullscreen))
+    (global-set-key (kbd "C-x t") 'ns-toggle-fullscreen))
 
 ;; Where am I?
 ;(global-linum-mode t)
