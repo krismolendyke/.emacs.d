@@ -14,6 +14,9 @@
 ;(load-theme 'zenburn t)
 ;(load-theme 'whiteboard t)
 
+;; Skinny bar default cursor instead of filled box.
+(set-default 'cursor-type '(bar . 1))
+
 ;; Consolas on OS X, please!
 (if (equal system-type 'darwin)
     (set-frame-font
