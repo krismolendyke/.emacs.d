@@ -23,7 +23,7 @@
   (set-face-attribute 'default nil :height (* 10 point)))
 
 ;; (set-font "Consolas" 18)
-(set-font "Source_Code_Pro" 16)
+(set-font "Source_Code_Pro" 15)
 ;; (set-font "Ubuntu_Mono" 17)
 ;; (set-font "Inconsolata" 18)
 
