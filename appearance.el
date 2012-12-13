@@ -17,12 +17,15 @@
 ;; Skinny bar default cursor instead of filled box.
 (set-default 'cursor-type '(bar . 1))
 
-;; Consolas on OS X, please!
-(if (equal system-type 'darwin)
-    (set-frame-font
-     "-apple-Consolas-medium-normal-normal-*-18-*-*-*-m-0-fontset-auto1")
-  (fset-frame-font
-   "-apple-Inconsolata-medium-normal-normal-*-18-*-*-*-m-0-fontset-auto1"))
+(defun set-font (name point)
+  "Set the font to the given font name and point size."
+  (set-frame-font name)
+  (set-face-attribute 'default nil :height (* 10 point)))
+
+;; (set-font "Consolas" 18)
+(set-font "Source_Code_Pro" 16)
+;; (set-font "Ubuntu_Mono" 17)
+;; (set-font "Inconsolata" 18)
 
 (defun get-max-rows (pixel-height)
   "Return the maximum number of rows that will fit with this screen.
