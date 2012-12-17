@@ -42,6 +42,10 @@
 ;; Kill trailing whitespace on save.
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
+;; Require a final newline before saving or writing a file.
+(setq require-final-newline t)
+(setq mode-require-final-newline t)
+
 ;; Give a man a hand.
 (add-hook 'emacs-lisp-mode-hook 'turn-on-eldoc-mode)
 
