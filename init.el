@@ -51,6 +51,7 @@
   (server-start))
 
 ;; Setup extensions.
+(require 'setup-ace-jump)
 (require 'setup-auto-fill)
 (require 'setup-dired)
 (require 'setup-electric-indent)
