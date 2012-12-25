@@ -25,6 +25,11 @@
   (when (file-directory-p project)
     (add-to-list 'load-path project)))
 
+;; Load my stuff.
+(dolist (file (directory-files elisp-directory t "\\w+"))
+  (when (file-regular-p file)
+    (load file)))
+
 ;; Emacs custom settings are in a separate file.
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 (load custom-file)
