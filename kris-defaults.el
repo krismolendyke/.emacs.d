@@ -11,6 +11,9 @@
 ;; quoted-insert is a frequent typo of mine.
 (global-unset-key (kbd "C-q"))
 
+;; I find that I join lines often.
+(global-set-key (kbd "C-c DEL") 'join-line)
+
 ;; Toggle fullscreen mode on OS X
 (if (fboundp 'ns-toggle-fullscreen)
     (global-set-key (kbd "C-x C-t") 'ns-toggle-fullscreen))
