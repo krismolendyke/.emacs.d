@@ -44,6 +44,7 @@
 
 ;; Kill trailing whitespace on save.
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
+;(setq-default show-trailing-whitespace nil)
 
 ;; Require a final newline before saving or writing a file.
 (setq require-final-newline t)
