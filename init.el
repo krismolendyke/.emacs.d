@@ -58,6 +58,7 @@
 ;; Setup extensions.
 (require 'setup-ace-jump)
 (require 'setup-auto-fill)
+(require 'setup-calendar)
 (require 'setup-dired)
 (require 'setup-electric-indent)
 (require 'setup-flyspell)
@@ -72,3 +73,6 @@
 (require 'setup-python)
 (require 'setup-slime)
 (require 'setup-smex)
+
+;; Handy information for bicycle commuters ;)
+(sunrise-sunset)
