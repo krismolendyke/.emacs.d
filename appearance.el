@@ -9,10 +9,38 @@
              (expand-file-name
               "themes/tomorrow/GNU Emacs" user-emacs-directory))
 
-(load-theme 'tomorrow-night)
-;(load-theme 'wombat t)
-;(load-theme 'zenburn t)
-;(load-theme 'whiteboard t)
+(defvar light-theme 'whiteboard "The default lightly colored theme.")
+(defvar dark-theme 'tomorrow-night "The default darkly colored theme.")
+;; Other good dark-theme candidates: wombat zenburn
+
+(defun load-light-theme ()
+  "Load a lightly colored theme for conditions when ambient light
+is bright."
+  (interactive)
+  (disable-theme (car custom-enabled-themes))
+  (load-theme light-theme t)
+  (set-face-background 'hl-line "LightYellow2"))
+
+(defun load-dark-theme ()
+  "Load a darkly colored theme for conditions when ambient light
+is dark."
+  (interactive)
+  (disable-theme (car custom-enabled-themes))
+  (load-theme dark-theme t)
+  (set-face-background 'hl-line "gray13"))
+
+(defun toggle-theme ()
+  "Switch between the light and dark theme."
+  (interactive)
+  (if (member dark-theme custom-enabled-themes)
+      (load-light-theme)
+    (load-dark-theme)))
+
+;; Load a dark theme by default.
+(load-dark-theme)
+
+;; For easy dark-light theme switching.
+(global-set-key (kbd "C-x t") 'toggle-theme)
 
 ;; Skinny bar default cursor instead of filled box.
 (set-default 'cursor-type '(bar . 1))
