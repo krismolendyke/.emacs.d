@@ -76,3 +76,7 @@
 
 ;; Handy information for bicycle commuters ;)
 (sunrise-sunset)
+(with-current-buffer "*temp*" (fit-window-to-buffer))
+
+;; Resolutions reminder.
+(find-file (expand-file-name "2013-resolutions.org" org-directory))
