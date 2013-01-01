@@ -68,6 +68,7 @@
 (require 'setup-ido)
 (require 'setup-js2)
 (require 'setup-markdown)
+(require 'setup-nrepl)
 (require 'setup-org)
 (require 'setup-paredit)
 (require 'setup-powerline)
