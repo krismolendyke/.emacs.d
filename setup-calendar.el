@@ -11,7 +11,7 @@
       calendar-location-name "Philadelphia, PA")
 
      ;; Attempt to set location with a geo-ip query.
-     (lat-lon-loc-ip
+     (geo-ip-lat-lon-loc-ip
       #'(lambda (lat lon loc ip)
           (setq
            calendar-latitude lat
