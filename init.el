@@ -59,6 +59,7 @@
 (require 'setup-ace-jump)
 (require 'setup-auto-fill)
 (require 'setup-calendar)
+(require 'setup-clojure)
 (require 'setup-dired)
 (require 'setup-electric-indent)
 (require 'setup-flyspell)
