@@ -12,3 +12,16 @@
       (linum-mode linum-mode-previous-state))))
 
 (global-set-key [remap goto-line] 'goto-linum)
+
+;; Inspired by https://github.com/purcell/exec-path-from-shell
+(defun set-path-from-shell ()
+  "Set Emacs' PATH and exec-path variables to the current PATH
+value in the shell."
+  (interactive)
+  (setq exec-path
+        (split-string
+         (cadr (reverse
+                (split-string
+                 (shell-command-to-string "$SHELL --login -i -c 'echo $PATH'")
+                 "\n")))
+         ":")))
