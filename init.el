@@ -75,3 +75,4 @@
 (require 'setup-python)
 (require 'setup-slime)
 (require 'setup-smex)
+(require 'setup-windmove)
