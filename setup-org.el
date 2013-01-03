@@ -49,4 +49,7 @@
            :publishing-function org-publish-attachment)
           (,project-name :components (,org-component ,static-component)))))
 
+;; Resolutions reminder.
+(find-file (expand-file-name "2013-resolutions.org" org-directory))
+
 (provide 'setup-org)
