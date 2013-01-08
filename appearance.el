@@ -19,7 +19,7 @@ is bright."
   (interactive)
   (disable-theme (car custom-enabled-themes))
   (load-theme light-theme t)
-  (set-face-background 'hl-line "LightYellow2"))
+  (set-face-background 'hl-line "AntiqueWhite2"))
 
 (defun load-dark-theme ()
   "Load a darkly colored theme for conditions when ambient light
@@ -27,7 +27,7 @@ is dark."
   (interactive)
   (disable-theme (car custom-enabled-themes))
   (load-theme dark-theme t)
-  (set-face-background 'hl-line "gray13"))
+  (set-face-background 'hl-line "gray17"))
 
 (defun toggle-theme ()
   "Switch between the light and dark theme."
