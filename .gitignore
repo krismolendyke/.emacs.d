@@ -1,6 +1,7 @@
-elpa/
-games/
-tutorial/
-site-lisp/org/
 bookmarks
+elpa/
+eshell/
+games/
+site-lisp/org/
 tramp
+tutorial/
