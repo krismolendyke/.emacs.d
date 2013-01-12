@@ -27,7 +27,8 @@ is dark."
   (interactive)
   (disable-theme (car custom-enabled-themes))
   (load-theme dark-theme t)
-  (set-face-background 'hl-line "gray17"))
+  (set-face-background 'hl-line "gray17")
+  (set-face-background 'region "gray34"))
 
 (defun toggle-theme ()
   "Switch between the light and dark theme."
