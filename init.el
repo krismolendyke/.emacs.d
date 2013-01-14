@@ -30,6 +30,9 @@
   (when (file-regular-p file)
     (load file)))
 
+;; Fixup any path problems Emacs.app may have.
+(set-path-from-shell)
+
 ;; Emacs custom settings are in a separate file.
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 (load custom-file)
