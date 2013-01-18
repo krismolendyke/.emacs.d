@@ -66,6 +66,7 @@
 (require 'setup-dired)
 (require 'setup-electric-indent)
 (require 'setup-flyspell)
+(require 'setup-git)
 (require 'setup-hyperspec)
 (require 'setup-ibuffer)
 (require 'setup-ido)
