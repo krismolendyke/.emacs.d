@@ -4,6 +4,9 @@
 ;; Option as hyper.
 (setq ns-option-modifier 'hyper)
 
+;; fn as super.
+(setq ns-function-modifier 'super)
+
  ;; Trackpad taming.
 (setq
  mouse-wheel-scroll-amount '(0.0001)
