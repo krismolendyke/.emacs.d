@@ -61,6 +61,7 @@
 ;; Setup extensions.
 (require 'setup-ace-jump)
 (require 'setup-auto-fill)
+(require 'setup-autopair)
 (require 'setup-calendar)
 (require 'setup-clojure)
 (require 'setup-dired)

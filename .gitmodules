@@ -34,3 +34,6 @@
 [submodule "site-lisp/nrepl"]
 	path = site-lisp/nrepl
 	url = git://github.com/kingtim/nrepl.el.git
+[submodule "site-lisp/autopair"]
+	path = site-lisp/autopair
+	url = git://github.com/emacsmirror/autopair.git
