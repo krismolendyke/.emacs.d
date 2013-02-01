@@ -43,8 +43,8 @@ is dark."
 ;; For easy dark-light theme switching.
 (global-set-key (kbd "C-x t") 'toggle-theme)
 
-;; Skinny bar default cursor instead of filled box.
-(set-default 'cursor-type '(bar . 1))
+;; Do not blink the cursor.
+(blink-cursor-mode 0)
 
 (defun set-font (font-alist)
   "Set the font family and size to the given font alist of the
