@@ -37,3 +37,7 @@
 [submodule "site-lisp/autopair"]
 	path = site-lisp/autopair
 	url = git://github.com/emacsmirror/autopair.git
+[submodule "site-lisp/python-mode"]
+	path = site-lisp/python-mode
+	url = git://github.com/emacsmirror/python-mode.git
+        ignore = dirty
