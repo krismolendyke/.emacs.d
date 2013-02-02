@@ -42,4 +42,6 @@
    slime-fontifying-fu
    slime-js))
 
+(add-hook 'sldb-hook #'(lambda () (autopair-mode -1)))
+
 (provide 'setup-slime)
