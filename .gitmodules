@@ -36,7 +36,7 @@
 	url = git://github.com/kingtim/nrepl.el.git
 [submodule "site-lisp/autopair"]
 	path = site-lisp/autopair
-	url = git://github.com/emacsmirror/autopair.git
+	url = git://github.com/capitaomorte/autopair.git
 [submodule "site-lisp/python-mode"]
 	path = site-lisp/python-mode
 	url = git://github.com/emacsmirror/python-mode.git
