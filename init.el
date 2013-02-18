@@ -82,3 +82,4 @@
 (require 'setup-slime)
 (require 'setup-smex)
 (require 'setup-windmove)
+(require 'setup-yaml)
