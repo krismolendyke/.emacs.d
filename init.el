@@ -60,6 +60,7 @@
 
 ;; Setup extensions.
 (require 'setup-ace-jump)
+(require 'setup-ag)
 (require 'setup-auto-fill)
 (require 'setup-autopair)
 (require 'setup-calendar)
