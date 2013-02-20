@@ -44,3 +44,6 @@
 [submodule "site-lisp/yaml-mode"]
 	path = site-lisp/yaml-mode
 	url = git://github.com/yoshiki/yaml-mode.git
+[submodule "site-lisp/jinja2-mode"]
+	path = site-lisp/jinja2-mode
+	url = git://github.com/paradoxxxzero/jinja2-mode.git
