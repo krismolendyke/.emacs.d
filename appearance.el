@@ -27,6 +27,7 @@ is dark."
   (interactive)
   (disable-theme (car custom-enabled-themes))
   (load-theme dark-theme t)
+  (set-face-foreground 'compilation-error "tomato1")
   (set-face-background 'hl-line "gray17")
   (set-face-background 'region "gray34"))
 
