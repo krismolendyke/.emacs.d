@@ -44,8 +44,9 @@ is dark."
 ;; For easy dark-light theme switching.
 (global-set-key (kbd "C-x t") 'toggle-theme)
 
-;; Do not blink the cursor.
-(blink-cursor-mode 0)
+;; Blink the cursor.
+(setq blink-cursor-interval 0.75)
+(blink-cursor-mode 1)
 
 (defun set-font (font-alist)
   "Set the font family and size to the given font alist of the
