@@ -82,5 +82,6 @@
 (require 'setup-python-mode)
 (require 'setup-slime)
 (require 'setup-smex)
+(require 'setup-sql)
 (require 'setup-windmove)
 (require 'setup-yaml)
