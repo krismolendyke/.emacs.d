@@ -28,8 +28,8 @@ is dark."
   (disable-theme (car custom-enabled-themes))
   (load-theme dark-theme t)
   (set-face-foreground 'compilation-error "tomato1")
-  (set-face-background 'hl-line "gray17")
-  (set-face-background 'region "gray34"))
+  (set-face-background 'hl-line "gray18")
+  (set-face-background 'region "gray36"))
 
 (defun toggle-theme ()
   "Switch between the light and dark theme."
