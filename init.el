@@ -75,6 +75,7 @@
 ;; (require 'setup-js2)
 (require 'setup-json)
 (require 'setup-markdown)
+(require 'setup-multiple-cursors)
 (require 'setup-nrepl)
 (require 'setup-org)
 (require 'setup-paredit)

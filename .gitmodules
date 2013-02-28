@@ -50,3 +50,6 @@
 [submodule "site-lisp/ag.el"]
 	path = site-lisp/ag.el
 	url = git://github.com/Wilfred/ag.el.git
+[submodule "site-lisp/multiple-cursors.el"]
+	path = site-lisp/multiple-cursors.el
+	url = git://github.com/magnars/multiple-cursors.el.git
