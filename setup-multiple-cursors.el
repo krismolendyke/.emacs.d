@@ -6,6 +6,7 @@
 (global-set-key (kbd "M-L") 'mc/edit-lines)
 (global-set-key (kbd "C-M-.") 'mc/mark-next-like-this)
 (global-set-key (kbd "C-M-,") 'mc/mark-previous-like-this)
+(global-set-key (kbd "C-M-<return>") 'mc/mark-all-like-this)
 (global-set-key (kbd "H-SPC") 'set-rectangular-region-anchor)
 
 (defun mark-current-line ()
