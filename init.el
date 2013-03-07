@@ -67,6 +67,7 @@
 (require 'setup-clojure)
 (require 'setup-dired)
 (require 'setup-electric-indent)
+(require 'setup-expand-region)
 (require 'setup-flyspell)
 (require 'setup-git)
 (require 'setup-hyperspec)
