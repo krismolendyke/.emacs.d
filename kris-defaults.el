@@ -14,6 +14,9 @@
 ;; quoted-insert is a frequent typo of mine.
 (global-unset-key (kbd "C-q"))
 
+;; Text mode menu bar drives me nuts!
+(global-unset-key (kbd "M-`"))
+
 ;; I find that I join lines often.
 (global-set-key (kbd "C-c DEL") 'join-line)
 
