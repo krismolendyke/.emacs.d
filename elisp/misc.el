@@ -11,6 +11,26 @@
 (require 'files)
 (require 'lunar)
 
+;; A few nice editing functions.
+(defun open-line-below ()
+  "Insert a new line below the current one, even if not at end of
+line."
+  (interactive)
+  (end-of-line)
+  (newline)
+  (indent-for-tab-command))
+
+(defun open-line-above ()
+  "Insert a new line above the current one, even if not at
+  beginning of line."
+  (interactive)
+  (beginning-of-line)
+  (newline)
+  (forward-line -1)
+  (indent-for-tab-command))
+
+(global-set-key (kbd "<M-return>") 'open-line-below)
+(global-set-key (kbd "<M-S-return>") 'open-line-above)
 
 ;; Inspired by http://whattheemacsd.com/key-bindings.el-01.html
 (defun goto-linum ()

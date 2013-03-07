@@ -27,26 +27,6 @@
 (if (fboundp 'ns-toggle-fullscreen)
     (global-set-key (kbd "C-x C-t") 'ns-toggle-fullscreen))
 
-(defun open-line-below ()
-  "Insert a new line below the current one, even if not at end of
-line."
-  (interactive)
-  (end-of-line)
-  (newline)
-  (indent-for-tab-command))
-
-(defun open-line-above ()
-  "Insert a new line above the current one, even if not at
-  beginning of line."
-  (interactive)
-  (beginning-of-line)
-  (newline)
-  (forward-line -1)
-  (indent-for-tab-command))
-
-(global-set-key (kbd "<M-return>") 'open-line-below)
-(global-set-key (kbd "<M-S-return>") 'open-line-above)
-
 ;; Where am I?
 ;(global-linum-mode t)
 (line-number-mode t)
