@@ -65,6 +65,7 @@
 (require 'setup-autopair)
 (require 'setup-calendar)
 (require 'setup-clojure)
+(require 'setup-compilation)
 (require 'setup-dired)
 (require 'setup-electric-indent)
 (require 'setup-expand-region)
