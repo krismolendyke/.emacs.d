@@ -1,8 +1,10 @@
+(require 'git-commit-mode)
+(require 'gitconfig-mode)
+(require 'gitignore-mode)
+
+(add-hook 'git-commit-mode-hook (lambda () (setq fill-column 72)))
+
 (autoload 'git-blame-mode "git-blame"
   "Minor mode for incremental blame for Git." t)
-
-(add-to-list 'auto-mode-alist '("^\\.gitconfig$" . conf-mode))
-
-(add-to-list 'auto-mode-alist '("COMMIT_EDITMSG" . text-mode))
 
 (provide 'setup-git)

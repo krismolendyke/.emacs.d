@@ -55,3 +55,6 @@
 [submodule "site-lisp/find-file-in-project"]
 	path = site-lisp/find-file-in-project
 	url = https://github.com/technomancy/find-file-in-project.git
+[submodule "site-lisp/git-modes"]
+	path = site-lisp/git-modes
+	url = https://github.com/lunaryorn/git-modes.git
