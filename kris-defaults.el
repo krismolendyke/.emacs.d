@@ -8,6 +8,9 @@
 ;; Overwrite text when typing in a region.
 (delete-selection-mode 1)
 
+;; Prefer splitting windows horizontally.
+(setq split-width-threshold 81)
+
 ;; What's going on here?
 (setq echo-keystrokes 0.1)
 
