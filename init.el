@@ -86,6 +86,7 @@
 (require 'setup-paredit)
 (require 'setup-powerline)
 (require 'setup-python)
+(require 'setup-sgml)
 (require 'setup-slime)
 (require 'setup-smex)
 (require 'setup-sql)
