@@ -23,10 +23,6 @@
 ;; I find that I join lines often.
 (global-set-key (kbd "C-c DEL") 'join-line)
 
-;; Find file in project.
-(require 'find-file-in-project)
-(global-set-key (kbd "C-x o") 'find-file-in-project)
-
 ;; Easier git-blame-mode access.
 (global-set-key (kbd "C-x v b") 'git-blame-mode)
 

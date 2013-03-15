@@ -69,6 +69,7 @@
 (require 'setup-dired)
 (require 'setup-electric-indent)
 (require 'setup-expand-region)
+(require 'setup-find-file-in-project)
 (require 'setup-flyspell)
 (require 'setup-git)
 (require 'setup-hyperspec)
