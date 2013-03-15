@@ -37,6 +37,10 @@
 (column-number-mode t)
 (show-paren-mode t)
 
+;; Please no more <2>, <3>, >_<
+(require 'uniquify)
+(setq uniquify-buffer-name-style 'forward)
+
 ;; Do not wrap lines in the middle of tokens, please.
 (global-visual-line-mode 1)
 
