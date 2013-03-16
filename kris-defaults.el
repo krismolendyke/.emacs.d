@@ -41,8 +41,8 @@
 (require 'uniquify)
 (setq uniquify-buffer-name-style 'forward)
 
-;; Do not wrap lines in the middle of tokens, please.
-(global-visual-line-mode 1)
+;; Do not break lines.  Truncate them.
+(setq-default truncate-lines t)
 
 ;; Automatically reload buffers when files change on disk.
 (global-auto-revert-mode 1)

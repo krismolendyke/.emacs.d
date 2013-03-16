@@ -1,7 +1,3 @@
-(add-hook 'ibuffer-mode-hook
-          #'(lambda ()
-              (setq ibuffer-truncate-lines t)))
-
 (setq ibuffer-formats '((mark modified read-only " "
                               (name 24 24 :right :elide)
                               " "

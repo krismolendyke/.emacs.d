@@ -4,4 +4,6 @@
 (setq auto-mode-alist
       (cons '("\\.md" . markdown-mode) auto-mode-alist))
 
+(add-hook 'markdown-mode-hook (lambda () (visual-line-mode)))
+
 (provide 'setup-markdown)
