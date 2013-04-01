@@ -1,4 +1,4 @@
-(add-to-list 'auto-mode-alist '("\\.json$" . js-mode))
+(add-to-list 'auto-mode-alist '("\\.json" . js-mode))
 
 (defun json-format ()
   "Pretty-print a buffer containing JSON."
