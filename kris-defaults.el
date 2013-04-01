@@ -26,6 +26,12 @@
 ;; Easier git-blame-mode access.
 (global-set-key (kbd "C-x v b") 'git-blame-mode)
 
+;; find-function instead of Emacs FAQ.
+(global-set-key (kbd "C-h C-f") 'find-function)
+
+;; find-variable instead of ?
+(global-set-key (kbd "C-h C-v") 'find-variable)
+
 ;; Toggle fullscreen mode on OS X
 (if (fboundp 'ns-toggle-fullscreen)
     (global-set-key (kbd "C-x C-t") 'ns-toggle-fullscreen))
