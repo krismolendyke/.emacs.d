@@ -33,8 +33,8 @@
 (global-set-key (kbd "C-h C-v") 'find-variable)
 
 ;; Toggle fullscreen mode on OS X
-(if (fboundp 'ns-toggle-fullscreen)
-    (global-set-key (kbd "C-x C-t") 'ns-toggle-fullscreen))
+(if (fboundp 'toggle-frame-fullscreen)
+    (global-set-key (kbd "C-x C-t") 'toggle-frame-fullscreen))
 
 ;; Where am I?
 ;(global-linum-mode t)
