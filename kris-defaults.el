@@ -32,6 +32,22 @@
 ;; find-variable instead of ?
 (global-set-key (kbd "C-h C-v") 'find-variable)
 
+(defun split-window-right-and-balance ()
+  "Balance windows after splitting."
+  (interactive)
+  (split-window-right)
+  (balance-windows))
+
+(defun delete-window-and-balance ()
+  "Balance windows after deleting."
+  (interactive)
+  (delete-window)
+  (balance-windows))
+
+;; These play more nicely with widescreen monitor.
+(global-set-key (kbd "C-x 3") 'split-window-right-and-balance)
+(global-set-key (kbd "C-x 0") 'delete-window-and-balance)
+
 ;; Toggle fullscreen mode on OS X
 (if (fboundp 'toggle-frame-fullscreen)
     (global-set-key (kbd "C-x C-t") 'toggle-frame-fullscreen))
