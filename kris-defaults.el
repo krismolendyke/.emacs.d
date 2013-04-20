@@ -36,6 +36,8 @@
 ;; find-variable instead of ?
 (global-set-key (kbd "C-h C-v") 'find-variable)
 
+(global-set-key (kbd "M-.") 'imenu)
+
 (defun split-window-right-and-balance ()
   "Balance windows after splitting."
   (interactive)
