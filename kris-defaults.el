@@ -17,6 +17,10 @@
 ;; quoted-insert is a frequent typo of mine.
 (global-unset-key (kbd "C-q"))
 
+;; These typo's catch me often when I mean to be navigating.
+(global-unset-key (kbd "M-c"))
+(global-unset-key (kbd "M-u"))
+
 ;; Text mode menu bar drives me nuts!
 (global-unset-key (kbd "M-`"))
 
