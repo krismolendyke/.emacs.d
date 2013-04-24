@@ -1,4 +1,4 @@
 (require 'powerline)
-(powerline-default)
+(powerline-default-theme)
 
 (provide 'setup-powerline)
