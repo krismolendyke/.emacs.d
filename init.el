@@ -41,6 +41,10 @@
 (setq dropbox-directory (expand-file-name "~/Desktop/Dropbox"))
 (setq google-drive-directory (expand-file-name "~/Google Drive"))
 
+;; Remember and restore buffer/file/etc. state between sessions.
+(desktop-save-mode 1)
+(desktop-read dropbox-directory)
+
 ;; ibuffer.
 (defalias 'list-buffers 'ibuffer)
 
