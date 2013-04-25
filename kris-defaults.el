@@ -36,6 +36,7 @@
 ;; find-variable instead of ?
 (global-set-key (kbd "C-h C-v") 'find-variable)
 
+;; Make imenu easier to call.  I don't use *TAGS so this works well for me.
 (global-set-key (kbd "M-.") 'imenu)
 
 (defun split-window-right-and-balance ()
