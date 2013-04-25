@@ -58,3 +58,12 @@
 [submodule "site-lisp/git-modes"]
 	path = site-lisp/git-modes
 	url = https://github.com/lunaryorn/git-modes.git
+[submodule "site-lisp/flycheck"]
+	path = site-lisp/flycheck
+	url = https://github.com/lunaryorn/flycheck.git
+[submodule "site-lisp/s.el"]
+	path = site-lisp/s.el
+	url = https://github.com/magnars/s.el.git
+[submodule "site-lisp/dash.el"]
+	path = site-lisp/dash.el
+	url = https://github.com/magnars/dash.el.git
