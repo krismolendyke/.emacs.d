@@ -39,12 +39,6 @@
 ;; Make imenu easier to call.  I don't use *TAGS so this works well for me.
 (global-set-key (kbd "M-.") 'imenu)
 
-;; Easier navigation for errors/occurrences/etc.
-;; ◀◀
-(global-set-key (kbd "<f7>") 'previous-error)
-;; ▶▶
-(global-set-key (kbd "<f9>") 'next-error)
-
 (defun split-window-right-and-balance ()
   "Balance windows after splitting."
   (interactive)

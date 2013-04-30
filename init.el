@@ -75,6 +75,7 @@
 (require 'setup-electric-indent)
 (require 'setup-expand-region)
 (require 'setup-find-file-in-project)
+(require 'setup-flycheck)
 (require 'setup-flyspell)
 (require 'setup-git)
 (require 'setup-hyperspec)
