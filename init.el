@@ -96,5 +96,6 @@
 (require 'setup-slime)
 (require 'setup-smex)
 (require 'setup-sql)
+(require 'setup-term)
 (require 'setup-windmove)
 (require 'setup-yaml)
