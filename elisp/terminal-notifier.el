@@ -30,8 +30,7 @@
 
 ;;; Code:
 
-(defmacro terminal-notifier-append-argument (arguments name value
-                                                       &optional default-value)
+(defmacro tn--append-argument (arguments name value &optional default-value)
   "Append to ARGUMENTS the given NAME and VALUE.
 
 Optional argument DEFAULT-VALUE The value to fall back to if VALUE is nil.
@@ -42,8 +41,7 @@ NAME will be formatted as `-name'."
          (setq ,arguments
                (append ,arguments (list (format "-%s" ,name) ,actual-value))))))
 
-(defun terminal-notifier (message
-                          &optional title subtitle group activate open command)
+(defun tn-notify (message &optional title subtitle group activate open command)
   "Display MESSAGE in the OS X Notification Center.
 
 Optional argument TITLE The notification title.  Defaults to
@@ -77,13 +75,13 @@ root or home `Applications' directories."
       (if executable
           (let ((arguments (list "terminal-notifier" "terminal-notifier"
                                  executable "-message" message)))
-            (terminal-notifier-append-argument arguments "title" title "Emacs")
-            (terminal-notifier-append-argument arguments "subtitle" subtitle)
-            (terminal-notifier-append-argument arguments "group" group)
-            (terminal-notifier-append-argument arguments "activate" activate
-                                               "org.gnu.Emacs")
-            (terminal-notifier-append-argument arguments "open" open)
-            (terminal-notifier-append-argument arguments "command" command)
+            (tn--append-argument arguments "title" title "Emacs")
+            (tn--append-argument arguments "subtitle" subtitle)
+            (tn--append-argument arguments "group" group)
+            (tn--append-argument arguments "activate" activate
+                                 "org.gnu.Emacs")
+            (tn--append-argument arguments "open" open)
+            (tn--append-argument arguments "command" command)
             (apply 'start-process arguments))
         (message "terminal-notifier not found.")))))
 
