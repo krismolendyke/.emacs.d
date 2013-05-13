@@ -8,6 +8,8 @@
 (add-to-list 'custom-theme-load-path
              (expand-file-name
               "themes/tomorrow/GNU Emacs" user-emacs-directory))
+(add-to-list 'load-path (expand-file-name
+                         "themes/tomorrow/GNU Emacs" user-emacs-directory))
 
 (defvar light-theme 'whiteboard "The default lightly colored theme.")
 (defvar dark-theme 'tomorrow-night "The default darkly colored theme.")
