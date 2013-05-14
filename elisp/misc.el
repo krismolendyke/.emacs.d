@@ -13,16 +13,14 @@
 
 ;; A few nice editing functions.
 (defun open-line-below ()
-  "Insert a new line below the current one, even if not at end of
-line."
+  "Insert a new line below the current line."
   (interactive)
   (end-of-line)
   (newline)
   (indent-for-tab-command))
 
 (defun open-line-above ()
-  "Insert a new line above the current one, even if not at
-  beginning of line."
+  "Insert a new line above the current line."
   (interactive)
   (beginning-of-line)
   (newline)
