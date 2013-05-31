@@ -47,6 +47,9 @@
 (desktop-save-mode 1)
 (desktop-read dropbox-directory)
 
+;; Remember window configurations.
+(winner-mode 1)
+
 ;; ibuffer.
 (defalias 'list-buffers 'ibuffer)
 
