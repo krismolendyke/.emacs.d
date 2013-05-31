@@ -11,7 +11,8 @@
 (add-to-list 'load-path (expand-file-name
                          "themes/tomorrow/GNU Emacs" user-emacs-directory))
 
-(defvar light-theme 'whiteboard "The default lightly colored theme.")
+(defvar light-theme 'tomorrow-day "The default lightly colored theme.")
+;; Other good light-theme candidates: whiteboard
 (defvar dark-theme 'tomorrow-night "The default darkly colored theme.")
 ;; Other good dark-theme candidates: wombat zenburn
 
