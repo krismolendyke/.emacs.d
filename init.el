@@ -41,12 +41,6 @@
 (setq dropbox-directory (expand-file-name "~/Desktop/Dropbox"))
 (setq google-drive-directory (expand-file-name "~/Google Drive"))
 
-;; Remember and restore buffer/file/etc. state between sessions.
-(setq desktop-path '(dropbox-directory)
-      desktop-load-locked-desktop t)
-(desktop-save-mode 1)
-(desktop-read dropbox-directory)
-
 ;; Remember window configurations.
 (winner-mode 1)
 
@@ -61,6 +55,12 @@
 
 ;; I spend most of my time in OS X.
 (if (equal system-type 'darwin) (require 'osx))
+
+;; Remember and restore buffer/file/etc. state between sessions.
+(setq desktop-path '(dropbox-directory)
+      desktop-load-locked-desktop t)
+(desktop-save-mode 1)
+(desktop-read dropbox-directory)
 
 ;; Start the Emacs server.
 (require 'server)
