@@ -85,7 +85,6 @@
 (require 'setup-hyperspec)
 (require 'setup-ibuffer)
 (require 'setup-ido)
-;; (require 'setup-js2)
 (require 'setup-jinja2)
 (require 'setup-js)
 (require 'setup-json)
