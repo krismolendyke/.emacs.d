@@ -67,3 +67,6 @@
 [submodule "site-lisp/terminal-notifier.el"]
 	path = site-lisp/terminal-notifier.el
 	url = git@github.com:krismolendyke/terminal-notifier.el.git
+[submodule "themes/st2"]
+	path = themes/st2
+	url = https://github.com/owainlewis/emacs-color-themes.git
