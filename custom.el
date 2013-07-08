@@ -15,6 +15,8 @@
        (filename . "-server"))
       ("den"
        (filename . "/den/"))
+      (".emacs.d"
+       (filename . "/\\.emacs\\.d/"))
       ("elisp"
        (used-mode . emacs-lisp-mode))
       ("org"
