@@ -1,6 +1,6 @@
 ;; Add themes.
 (dolist
-    (theme (directory-files(expand-file-name "themes" user-emacs-directory) t "\\w+"))
+    (theme (directory-files (expand-file-name "themes" user-emacs-directory) t "\\w+"))
   (when (file-directory-p theme)
     (add-to-list 'custom-theme-load-path theme)))
 
@@ -11,10 +11,18 @@
 (add-to-list 'load-path (expand-file-name
                          "themes/tomorrow/GNU Emacs" user-emacs-directory))
 
+;; These ports of Sublime Text 2 themes required a stupid shell script
+;; to "install" them which I refuse to use.
+(add-to-list 'custom-theme-load-path
+             (expand-file-name
+              "themes/st2/themes" user-emacs-directory))
+
 (defvar light-theme 'tomorrow-day "The default lightly colored theme.")
 ;; Other good light-theme candidates: whiteboard
+
 (defvar dark-theme 'tomorrow-night "The default darkly colored theme.")
-;; Other good dark-theme candidates: wombat zenburn
+;; Other good dark-theme candidates:
+;; hickey fogus dorsey wilson wombat zenburn
 
 (defun load-light-theme ()
   "Load a lightly colored theme for conditions when ambient light
