@@ -90,6 +90,7 @@
 (require 'setup-json)
 (require 'setup-lisp)
 (require 'setup-markdown)
+(require 'setup-monetate)
 (require 'setup-multiple-cursors)
 (require 'setup-nrepl)
 (require 'setup-org)

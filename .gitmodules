@@ -70,3 +70,6 @@
 [submodule "themes/st2"]
 	path = themes/st2
 	url = https://github.com/owainlewis/emacs-color-themes.git
+[submodule "site-lisp/monetate-mode.el"]
+	path = site-lisp/monetate-mode.el
+	url = git@github.com:krismolendyke/monetate-mode.el.git
