@@ -80,13 +80,22 @@ See `lunar-phase-list' and `lunar-phase-name'."
       "\n"))))
 
 (require 'net-utils)
+(require 'tramp)
 
-(defun host-ip (host)
-  "Insert the current IP of the given HOST using `dns-lookup-program'.
+(defun known-hosts ()
+  "Get a host name from ~./ssh/known_hosts file."
+  (completing-read "host: "
+                   (let ((value))
+                     (dolist (elt (tramp-parse-shosts "~/.ssh/known_hosts") value)
+                       (if elt (setq value (cons (cadr elt) value)))))))
+
+(defun host-ip ()
+  "Insert the current IP of a host using dns-lookup-program.
 Similar to but simpler than `dns-lookup-host'."
-  (interactive "*sHost: ")
-  (insert (car (last (split-string (shell-command-to-string
-                                    (concat dns-lookup-program " " host)))))))
+  (interactive)
+  (let ((host (known-hosts)))
+    (insert (car (last (split-string (shell-command-to-string
+                                      (concat dns-lookup-program " " host))))))))
 
 (provide 'misc)
 
