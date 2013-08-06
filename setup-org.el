@@ -24,6 +24,13 @@
       (list (expand-file-name "k20e.org" org-directory)
             (expand-file-name "work.org" org-directory)))
 
+;; Enable "expert" export interface.
+(setq org-export-dispatch-use-expert-ui t)
+
+;; Enable Markdown export backend.
+(require 'ox-md)
+(add-to-list 'org-export-backends 'md)
+
 ;; Publishing.
 (let* ((project-name "introduction-to-mathematical-thinking")
        (org-component (format "%s-files" project-name))
