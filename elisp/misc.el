@@ -96,7 +96,7 @@ See `lunar-phase-list' and `lunar-phase-name'."
                        (if elt (setq value (cons (cadr elt) value)))))))
 
 (defun host-ip ()
-  "Insert the current IP of a host using dns-lookup-program.
+  "Insert the current IP of a host using `dns-lookup-program'.
 Similar to but simpler than `dns-lookup-host'."
   (interactive)
   (let ((host (known-hosts)))
