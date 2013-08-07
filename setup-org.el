@@ -31,6 +31,17 @@
 (require 'ox-md)
 (add-to-list 'org-export-backends 'md)
 
+;; Customize HTML export styling.
+(require 'ox-html)
+(defun update-org-css ()
+  "Update the `org-html-head' variable with the contents of the
+~/.emacs.d/org.css file."
+  (interactive)
+  (let ((css-filename (expand-file-name "org.css" user-emacs-directory))
+        (css-wrapper "<style type=\"text/css\">%s</style>"))
+    (setq org-html-head (format css-wrapper
+                                (file-contents-as-string css-filename)))))
+
 ;; Publishing.
 (let* ((project-name "introduction-to-mathematical-thinking")
        (org-component (format "%s-files" project-name))
