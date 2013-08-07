@@ -11,6 +11,12 @@
 (require 'files)
 (require 'lunar)
 
+(defun file-contents-as-string (filename)
+  "Return the given FILENAME contents as a string."
+  (with-temp-buffer
+    (insert-file-contents filename)
+    (buffer-string)))
+
 ;; A few nice editing functions.
 (defun open-line-below ()
   "Insert a new line below the current line."
