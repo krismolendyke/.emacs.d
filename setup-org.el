@@ -31,6 +31,9 @@
 (require 'ox-md)
 (add-to-list 'org-export-backends 'md)
 
+;; Fontify _SRC blocks in org-mode buffers.
+(setq org-src-fontify-natively t)
+
 ;; Customize HTML export styling.
 (require 'ox-html)
 (defun update-org-css ()
