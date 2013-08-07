@@ -1,3 +1,4 @@
+(require 'htmlize)
 (require 'org)
 (require 'org-publish)
 
