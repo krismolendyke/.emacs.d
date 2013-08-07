@@ -38,7 +38,11 @@
 ~/.emacs.d/org.css file."
   (interactive)
   (let ((css-filename (expand-file-name "org.css" user-emacs-directory))
-        (css-wrapper "<style type=\"text/css\">%s</style>"))
+        (css-wrapper "<style type=\"text/css\">
+<!--/*--><![CDATA[/*><!--*/
+%s
+/*]]>*/-->
+</style>"))
     (setq org-html-head (format css-wrapper
                                 (file-contents-as-string css-filename)))))
 
