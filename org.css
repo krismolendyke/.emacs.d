@@ -75,9 +75,7 @@ h6 {
   font-size: 11.9px;
 }
 .title  { text-align: center; }
-.todo   { font-family: monospace; color: red; }
-.done   { color: green; }
-.tag > span {
+.todo, .done, .tag > span {
   display: inline-block;
   padding: 2px 4px;
   font-size: 11.844px;
@@ -91,6 +89,17 @@ h6 {
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
   border-radius: 3px;
+}
+.todo   { background-color: #953b39; }
+.done   { background-color: #356635; }
+h1 .todo, h1 .done, h1 .tag > span,
+h2 .todo, h2 .done, h2 .tag > span,
+h3 .todo, h3 .done, h3 .tag > span,
+h4 .todo, h4 .done, h4 .tag > span,
+h5 .todo, h5 .done, h5 .tag > span,
+h6 .todo, h6 .done, h6 .tag > span {
+    font-size: 80%;
+    line-height: 100%;
 }
 .timestamp { color: #bebebe; }
 .timestamp-kwd { color: #5f9ea0; }
