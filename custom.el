@@ -13,6 +13,8 @@
        (filename . "\\(insight\\|predict\\)"))
       ("server"
        (filename . "-server"))
+      ("rydgyd"
+       (filename . "rydgyd"))
       ("den"
        (filename . "/den/"))
       (".emacs.d"
