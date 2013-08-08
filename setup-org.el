@@ -40,6 +40,7 @@
 
 ;; Customize HTML export styling.
 (require 'ox-html)
+(setq org-html-head-include-default-style nil)
 (defun update-org-css ()
   "Update the `org-html-head' variable with the contents of the
 ~/.emacs.d/org.css file."
