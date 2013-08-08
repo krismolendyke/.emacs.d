@@ -59,6 +59,8 @@ pre {
     margin: 1.2em;
 }
 pre.src {
+    color: #c5c8c6;
+    background-color: #1d1f21;
     position: relative;
     overflow: visible;
     padding-top: 1.2em;
