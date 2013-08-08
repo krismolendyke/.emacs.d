@@ -35,6 +35,9 @@
 ;; Fontify _SRC blocks in org-mode buffers.
 (setq org-src-fontify-natively t)
 
+;; Generate a stylesheet rather than inline CSS.
+(setq org-html-htmlize-output-type 'css)
+
 ;; Customize HTML export styling.
 (require 'ox-html)
 (defun update-org-css ()
