@@ -37,7 +37,19 @@ p.footnote          footnote definition paragraph, containing a footnote
 
 */
 
-body { padding: 0 2em; }
+html {
+  font-size: 100%;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+}
+body {
+    margin: 0 2em;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    line-height: 20px;
+    color: #333333;
+    background-color: #ffffff;
+}
 a {
   color: #0088cc;
   text-decoration: none;
