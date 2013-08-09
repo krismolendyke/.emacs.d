@@ -276,6 +276,18 @@ than body or by calling htmlize-buffer and desired style.
   /* font-lock-keyword-face */
   color: #b294bb;
 }
+.org-constant {
+  /* font-lock-constant-face */
+  color: #8abeb7;
+}
+.org-doc {
+  /* font-lock-doc-face */
+  color: #969896;
+}
+.org-function-name {
+  /* font-lock-function-name-face */
+  color: #81a2be;
+}
 .org-string {
   /* font-lock-string-face */
   color: #b5bd68;
