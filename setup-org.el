@@ -5,6 +5,12 @@
 ;; Set the org directory.
 (setq org-directory (expand-file-name "org" dropbox-directory))
 
+;; MobileOrg setup.
+(setq org-mobile-inbox-for-pull (expand-file-name "flagged.org" org-directory)
+      org-mobile-directory (expand-file-name "Apps/MobileOrg" dropbox-directory))
+(dolist (dir (dirs-in-dir org-directory '("." ".." ".git")))
+  (add-to-list 'org-mobile-files dir))
+
 ;; Automatically insert a timestamp when a task is marked DONE.
 (setq org-log-done t)
 
