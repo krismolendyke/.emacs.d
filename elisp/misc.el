@@ -17,6 +17,18 @@
     (insert-file-contents filename)
     (buffer-string)))
 
+(defun dirs-in-dir (directory &optional excludes)
+  "Non-recursively list directories in DIRECTORY.
+
+Optionally exclude EXCLUDES from the result list."
+  (let ((files (directory-files directory t nil t))
+        (excludes (or excludes '()))
+        (dirs '()))
+    (dolist (f files dirs)
+      (when (and (file-directory-p f)
+                 (not (member (file-name-nondirectory f) excludes)))
+        (push f dirs)))))
+
 ;; A few nice editing functions.
 (defun open-line-below ()
   "Insert a new line below the current line."
