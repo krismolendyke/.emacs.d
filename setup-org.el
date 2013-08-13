@@ -6,6 +6,7 @@
 (setq org-directory (expand-file-name "org" dropbox-directory))
 
 ;; MobileOrg setup.
+(require 'org-mobile)
 (setq org-mobile-inbox-for-pull (expand-file-name "flagged.org" org-directory)
       org-mobile-directory (expand-file-name "Apps/MobileOrg" dropbox-directory))
 (dolist (dir (dirs-in-dir org-directory '("." ".." ".git")))
