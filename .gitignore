@@ -6,3 +6,4 @@ site-lisp/org/
 tramp
 tutorial/
 .emacs.desktop
+.org-id-locations
