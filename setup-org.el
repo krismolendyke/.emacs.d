@@ -58,6 +58,8 @@
 </style>"))
     (setq org-html-head (format css-wrapper
                                 (file-contents-as-string css-filename)))))
+(add-hook 'org-export-before-processing-hook
+          (lambda (backend) (update-org-css)))
 
 ;; Publishing.
 (let* ((project-name "introduction-to-mathematical-thinking")
