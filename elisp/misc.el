@@ -45,6 +45,10 @@ Optionally exclude EXCLUDES from the result list."
   (forward-line -1)
   (indent-for-tab-command))
 
+(defun blank-line-p ()
+  "Is point currently on a blank line?"
+  (looking-at "[ \t]*$"))
+
 (global-set-key (kbd "<M-return>") 'open-line-below)
 (global-set-key (kbd "<M-S-return>") 'open-line-above)
 
