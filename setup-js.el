@@ -25,6 +25,7 @@
     (insert (format "console.group('%s');" (js-nearest-function-name)))
     (newline)
     (unless (blank-line-p) (newline-and-indent))
+    (beginning-of-defun)
     (end-of-defun)
     (forward-line -1)
     (unless (blank-line-p)
