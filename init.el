@@ -105,3 +105,4 @@
 (require 'setup-term)
 (require 'setup-windmove)
 (require 'setup-yaml)
+(require 'setup-yasnippet)
