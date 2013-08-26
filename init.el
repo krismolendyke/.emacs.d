@@ -41,6 +41,9 @@
 (setq dropbox-directory (expand-file-name "~/Desktop/Dropbox"))
 (setq google-drive-directory (expand-file-name "~/Google Drive"))
 
+;; Homebrew source files.
+(setq source-directory "/Library/Caches/Homebrew/emacs--git")
+
 ;; Remember window configurations.
 (winner-mode 1)
 
