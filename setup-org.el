@@ -27,6 +27,9 @@
 ;; org-capture.
 (setq org-default-notes-file (expand-file-name "notes.org" org-directory))
 
+;; Global key binding to make storing links to files easier.
+(global-set-key (kbd "C-c l") 'org-store-link)
+
 ;; Agenda files.
 (setq org-agenda-files
       (list (expand-file-name "k20e.org" org-directory)
