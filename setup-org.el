@@ -50,7 +50,12 @@
 
 ;; Customize HTML export styling.
 (require 'ox-html)
-(setq org-html-head-include-default-style nil)
+(setq org-html-head-include-default-style nil
+      org-html-postamble-format '(("en" "<p class=\"author\">Author: %a</p>
+<p class=\"date\">Date: %C</p>
+<p class=\"creator\">%c</p>"))
+      org-html-postamble t)
+
 (defun update-org-css ()
   "Update the `org-html-head' variable with the contents of the
 ~/.emacs.d/org.css file."
