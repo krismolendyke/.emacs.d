@@ -51,8 +51,8 @@
 ;; Customize HTML export styling.
 (require 'ox-html)
 (setq org-html-head-include-default-style nil
-      org-html-postamble-format '(("en" "<p class=\"author\">Author: %a</p>
-<p class=\"date\">Date: %C</p>
+      org-html-postamble-format '(("en" "<p class=\"author\">%a</p>
+<p class=\"date\">%C</p>
 <p class=\"creator\">%c</p>"))
       org-html-postamble t)
 
