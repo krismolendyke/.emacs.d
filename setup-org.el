@@ -100,7 +100,8 @@
          :base-directory ,(expand-file-name "work" org-directory)
          :base-extension "org"
          :publishing-directory ,(expand-file-name "published" (expand-file-name "work" org-directory))
-         :publishing-function org-html-publish-to-html)))
+         :publishing-function org-html-publish-to-html
+         :with-planning t)))
 
 ;; Resolutions reminder.
 (find-file (expand-file-name "2013-resolutions.org" org-directory))
