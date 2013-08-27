@@ -71,29 +71,36 @@
           (lambda (backend) (update-org-css)))
 
 ;; Publishing.
-(let* ((project-name "introduction-to-mathematical-thinking")
-       (org-component (format "%s-files" project-name))
-       (static-component (format "%s-static" project-name))
-       (project-directory project-name)
-       (root (expand-file-name project-directory org-directory))
-       (public (expand-file-name "public" root))
-       (static (expand-file-name "static" root)))
-  (setq org-publish-project-alist
-        `((,org-component
-           :base-directory ,root
-           :base-extension "org"
-           :publishing-directory ,public
-           :recursive t
-           :publishing-function org-publish-org-to-html
-           :headline-levels 6
-           :auto-preamble t)
-          (,static-component
-           :base-directory ,static
-           :base-extension "css\\|pdf"
-           :publishing-directory ,public
-           :recursive t
-           :publishing-function org-publish-attachment)
-          (,project-name :components (,org-component ,static-component)))))
+;; (let* ((project-name "introduction-to-mathematical-thinking")
+;;        (org-component (format "%s-files" project-name))
+;;        (static-component (format "%s-static" project-name))
+;;        (project-directory project-name)
+;;        (root (expand-file-name project-directory org-directory))
+;;        (public (expand-file-name "public" root))
+;;        (static (expand-file-name "static" root)))
+;;   (setq org-publish-project-alist
+;;         `((,org-component
+;;            :base-directory ,root
+;;            :base-extension "org"
+;;            :publishing-directory ,public
+;;            :recursive t
+;;            :publishing-function org-publish-org-to-html
+;;            :headline-levels 6
+;;            :auto-preamble t)
+;;           (,static-component
+;;            :base-directory ,static
+;;            :base-extension "css\\|pdf"
+;;            :publishing-directory ,public
+;;            :recursive t
+;;            :publishing-function org-publish-attachment)
+;;           (,project-name :components (,org-component ,static-component)))))
+
+(setq org-publish-project-alist
+      `(("work"
+         :base-directory ,(expand-file-name "work" org-directory)
+         :base-extension "org"
+         :publishing-directory ,(expand-file-name "published" (expand-file-name "work" org-directory))
+         :publishing-function org-html-publish-to-html)))
 
 ;; Resolutions reminder.
 (find-file (expand-file-name "2013-resolutions.org" org-directory))
