@@ -180,12 +180,12 @@ blockquote p {
   line-height: 1.25;
 }
 .timestamp-wrapper { font-size: 85%; }
-.timestamp-kwd { color: #5f9ea0; }
 .right  { margin-left: auto; margin-right: 0px;  text-align: right; }
 .left   { margin-left: 0px;  margin-right: auto; text-align: left; }
 .center { margin-left: auto; margin-right: auto; text-align: center; }
 .underline { text-decoration: underline; }
-#postamble p, #preamble p { font-size: 90%; margin: .2em; }
+#postamble, #preamble { margin-top: 2em; }
+#postamble p, #preamble p { font-size: 90%; margin: .2em 0; }
 p.verse { margin-left: 3%; }
 code {
     padding: 2px 4px;
