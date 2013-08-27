@@ -56,7 +56,13 @@
         (mode . idl-mode)
         (mode . lisp-mode)))))))
  '(inhibit-startup-screen t)
- '(initial-scratch-message nil))
+ '(initial-scratch-message nil)
+ '(safe-local-variable-values
+   (quote
+    ((eval setq flycheck-emacs-lisp-package-user-dir
+           (expand-file-name
+            (format ".cask/%s/elpa" emacs-version)))
+     (flycheck-emacs-lisp-initialize-packages . t)))))
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
