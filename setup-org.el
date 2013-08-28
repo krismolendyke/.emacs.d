@@ -96,12 +96,19 @@
 ;;           (,project-name :components (,org-component ,static-component)))))
 
 (setq org-publish-project-alist
-      `(("work"
+      `(("work-org-files"
          :base-directory ,(expand-file-name "work" org-directory)
          :base-extension "org"
          :publishing-directory ,(expand-file-name "published" (expand-file-name "work" org-directory))
          :publishing-function org-html-publish-to-html
-         :with-planning t)))
+         :with-planning t)
+        ("work-static-files"
+         :base-directory ,(expand-file-name "work" org-directory)
+         :base-extension "pdf\\|csv"
+         :publishing-directory ,(expand-file-name "published" (expand-file-name "work" org-directory))
+         :publishing-function org-publish-attachment)
+        ("work"
+         :components ("work-org-files" "work-static-files"))))
 
 ;; Resolutions reminder.
 (find-file (expand-file-name "2013-resolutions.org" org-directory))
