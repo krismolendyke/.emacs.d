@@ -274,6 +274,19 @@ org-html-htmlize-generate-css and selecting style for elements other
 than body or by calling htmlize-buffer and desired style.
 
 */
+.org-builtin {
+  color: #70c0b1;
+}
+.org-comment {
+  color: #969896;
+  font-style: italic;
+}
+.org-keyword {
+  color: #c397d8;
+}
+.org-type {
+  color: #e7c547;
+}
 .org-comment {
   /* font-lock-comment-face */
   color: #969896;
