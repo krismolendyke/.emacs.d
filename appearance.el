@@ -20,9 +20,9 @@
 (defvar light-theme 'tomorrow-day "The default lightly colored theme.")
 ;; Other good light-theme candidates: whiteboard
 
-(defvar dark-theme 'tomorrow-night "The default darkly colored theme.")
+(defvar dark-theme 'tomorrow-night-bright "The default darkly colored theme.")
 ;; Other good dark-theme candidates:
-;; hickey fogus dorsey wilson wombat zenburn
+;; tomorrow-night hickey fogus dorsey wilson wombat zenburn
 
 (defun load-light-theme ()
   "Load a lightly colored theme for conditions when ambient light
