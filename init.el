@@ -30,9 +30,6 @@
   (when (file-regular-p file)
     (load file)))
 
-;; Fixup any path problems Emacs.app may have.
-(set-path-from-shell)
-
 ;; Emacs custom settings are in a separate file.
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 (load custom-file)
@@ -43,6 +40,9 @@
 
 ;; Homebrew source files.
 (setq source-directory "/Library/Caches/Homebrew/emacs--git")
+
+;; I spend most of my time in OS X.
+(if (equal system-type 'darwin) (require 'osx))
 
 ;; Remember window configurations.
 (winner-mode 1)
@@ -55,9 +55,6 @@
 
 ;; Kris's defaults.
 (require 'kris-defaults)
-
-;; I spend most of my time in OS X.
-(if (equal system-type 'darwin) (require 'osx))
 
 ;; Remember and restore buffer/file/etc. state between sessions.
 (setq desktop-path '(dropbox-directory)

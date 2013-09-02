@@ -1,3 +1,7 @@
+;; Fix environment issues with Emacs.app.
+(add-to-list 'exec-path-from-shell-variables "DEVBOX")
+(exec-path-from-shell-initialize)
+
 ;; Command as meta.
 (setq ns-command-modifier 'meta)
 

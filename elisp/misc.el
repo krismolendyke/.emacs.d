@@ -67,16 +67,6 @@ Optionally exclude EXCLUDES from the result list."
 
 (global-set-key [remap goto-line] 'goto-linum)
 
-;; Inspired by https://github.com/purcell/exec-path-from-shell
-(defun set-path-from-shell ()
-  "Set `exec-path' to the current PATH value in the shell."
-  (interactive)
-  (setq exec-path
-        (parse-colon-path (cadr (reverse (split-string
-                                          (shell-command-to-string
-                                           "$SHELL --login -i -c 'echo $PATH'")
-                                          "\n"))))))
-
 (defun full-moons-info ()
   "Get a list of upcoming full moons info beginning with the current month.
 See `lunar-phase-list' and `lunar-phase-name'."
