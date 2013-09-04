@@ -82,3 +82,6 @@
 [submodule "site-lisp/exec-path-from-shell"]
 	path = site-lisp/exec-path-from-shell
 	url = https://github.com/purcell/exec-path-from-shell.git
+[submodule "site-lisp/pkg-info.el"]
+	path = site-lisp/pkg-info.el
+	url = https://github.com/lunaryorn/pkg-info.el.git
