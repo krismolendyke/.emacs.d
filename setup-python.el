@@ -20,7 +20,12 @@
               (define-key python-mode-map (kbd "C-M-f") 'python-nav-forward-sexp)
               (define-key python-mode-map (kbd "C-M-b") '(lambda () (interactive) (python-nav--backward-sexp)))
               (define-key python-mode-map (kbd "C-M-n") 'python-nav-forward-block)
-              (define-key python-mode-map (kbd "C-M-p") 'python-nav-backward-block)))
+              (define-key python-mode-map (kbd "C-M-p") 'python-nav-backward-block)
+
+              ;; This has been driving me mad!
+              ;; http://stackoverflow.com/questions/17095247/electric-indent-mode-breaks-my-python-code
+              (define-key python-mode-map (kbd "RET") 'newline-and-indent)
+              (set (make-local-variable 'electric-indent-mode) nil)))
 
 ;; Use IPython!
 (setq
