@@ -25,7 +25,7 @@
               ;; This has been driving me mad!
               ;; http://stackoverflow.com/questions/17095247/electric-indent-mode-breaks-my-python-code
               (define-key python-mode-map (kbd "RET") 'newline-and-indent)
-              (set (make-local-variable 'electric-indent-mode) nil)))
+              (setq-local electric-indent-mode nil)))
 
 ;; Use IPython!
 (setq

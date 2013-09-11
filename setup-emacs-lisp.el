@@ -2,7 +2,7 @@
 
 (add-hook 'emacs-lisp-mode-hook
           (lambda ()
-            (electric-indent-mode)
+            (setq-local electric-indent-mode t)
             ;; autopair `' when writing comments or strings.
             (push '(?` . ?')
                   (getf autopair-extra-pairs :comment))
