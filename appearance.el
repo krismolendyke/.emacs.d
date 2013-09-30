@@ -75,6 +75,7 @@ format (family . point)."
 ;; Ordered list of preferred fonts and sizes.
 (set-font-from-list
  '(("Source_Code_Pro" . 11)
+   ("Glass_TTY_VT220" . 20)
    ("Consolas" . 18)
    ("Ubuntu_Mono" . 17)
    ("Inconsolata" . 18)))

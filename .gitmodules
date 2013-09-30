@@ -85,3 +85,6 @@
 [submodule "site-lisp/pkg-info.el"]
 	path = site-lisp/pkg-info.el
 	url = https://github.com/lunaryorn/pkg-info.el.git
+[submodule "site-lisp/web-mode"]
+	path = site-lisp/web-mode
+	url = https://github.com/fxbois/web-mode.git
