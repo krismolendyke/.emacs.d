@@ -31,9 +31,9 @@
 (global-set-key (kbd "C-c l") 'org-store-link)
 
 ;; Agenda files.
-(setq org-agenda-files
-      (list (expand-file-name "k20e.org" org-directory)
-            (expand-file-name "work.org" org-directory)))
+;; (setq org-agenda-files
+;;       (list (expand-file-name "k20e.org" org-directory)
+;;             (expand-file-name "work.org" org-directory)))
 
 ;; Enable "expert" export interface.
 (setq org-export-dispatch-use-expert-ui t)
