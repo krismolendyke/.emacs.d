@@ -9,20 +9,20 @@
  '(ibuffer-saved-filter-groups
    (quote
     ((""
-      ("predict"
-       (filename . "\\(insight\\|predict\\)"))
+      ("frontend"
+       (filename . "-frontend"))
       ("server"
        (filename . "-server"))
-      ("rydgyd"
-       (filename . "rydgyd"))
-      ("den"
-       (filename . "/den/"))
       (".emacs.d"
        (filename . "/\\.emacs\\.d/"))
       ("elisp"
        (used-mode . emacs-lisp-mode))
       ("org"
        (used-mode . org-mode))
+      ("dired"
+       (used-mode . dired-mode))
+      ("*ag*"
+       (name . "^\\*ag "))
       ("*temp*"
        (name . "^\\*")))
      ("default"
