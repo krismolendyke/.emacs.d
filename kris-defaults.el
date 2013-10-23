@@ -8,6 +8,9 @@
 ;; Overwrite text when typing in a region.
 (delete-selection-mode 1)
 
+;; Indentation... it's electric.
+(electric-indent-mode)
+
 ;; Prefer splitting windows horizontally.
 (setq split-width-threshold 81)
 

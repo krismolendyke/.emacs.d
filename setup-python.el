@@ -4,6 +4,8 @@
 
 (add-hook 'python-mode-hook
           #'(lambda ()
+              ;; Do not drive me crazy with extra-dumb indentation!
+              (setq electric-indent-inhibit t)
               (linum-mode 1)
               (flycheck-mode 1)
               (setq fill-column 118
@@ -20,12 +22,7 @@
               (define-key python-mode-map (kbd "C-M-f") 'python-nav-forward-sexp)
               (define-key python-mode-map (kbd "C-M-b") '(lambda () (interactive) (python-nav--backward-sexp)))
               (define-key python-mode-map (kbd "C-M-n") 'python-nav-forward-block)
-              (define-key python-mode-map (kbd "C-M-p") 'python-nav-backward-block)
-
-              ;; This has been driving me mad!
-              ;; http://stackoverflow.com/questions/17095247/electric-indent-mode-breaks-my-python-code
-              (define-key python-mode-map (kbd "RET") 'newline-and-indent)
-              (setq-local electric-indent-mode nil)))
+              (define-key python-mode-map (kbd "C-M-p") 'python-nav-backward-block)))
 
 ;; Use IPython!
 (setq
