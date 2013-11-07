@@ -25,14 +25,11 @@ The 'q' query string parameter should be omitted.")
    (cons (list ifl--query-key query)
          (url-parse-query-string (cdr (url-path-and-query urlobj))))))
 
-(defun ifl--path-and-query (urlobj query)
-  "Return a list containing the path from a `URLOBJ' and a `QUERY'."
-  (cons (car (url-path-and-query urlobj))
-        (ifl--build-query-string urlobj query)))
-
-(defun ifl--path-and-query->file (path-and-query)
-  "Return a string joining the `PATH-AND-QUERY' with '?'."
-  (format "%s?%s" (car path-and-query) (cdr path-and-query)))
+(defun ifl--file (urlobj query)
+  "Return a file string from a `URLOBJ' and a `QUERY'."
+  (let ((path-and-query (cons (car (url-path-and-query urlobj))
+                              (ifl--build-query-string urlobj query))))
+    (format "%s?%s" (car path-and-query) (cdr path-and-query))))
 
 (defun ifl--build-url (url query)
   "Return a string of a `URL' containing a `QUERY'."
@@ -42,7 +39,7 @@ The 'q' query string parameter should be omitted.")
 	 (pass (url-password urlobj))
 	 (host (url-host urlobj))
 	 (port (url-port-if-non-default urlobj))
-         (file (ifl--path-and-query->file (ifl--path-and-query urlobj query)))
+         (file (ifl--file urlobj query))
          (frag (url-target urlobj)))
     (url-recreate-url (url-parse-make-urlobj type user pass host port file frag
                                              nil t))))
