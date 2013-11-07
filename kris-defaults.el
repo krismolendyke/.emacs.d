@@ -42,6 +42,9 @@
 ;; Make imenu easier to call.  I don't use *TAGS so this works well for me.
 (global-set-key (kbd "M-.") 'imenu)
 
+;; I'm Feeling Lucky!
+(global-set-key (kbd "H-l") 'ifl-region)
+
 (defun split-window-right-and-balance ()
   "Balance windows after splitting."
   (interactive)
