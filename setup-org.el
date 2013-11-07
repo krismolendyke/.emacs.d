@@ -18,6 +18,9 @@
 ;; "Special" `C-a' and `C-e' movement in headlines.
 (setq org-special-ctrl-a/e t)
 
+;; Use completion in the current buffer for movement.
+(setq org-goto-interface 'outline-path-completion)
+
 ;; Display entities as UTF-8 characters.
 (add-hook 'org-mode-hook
           #'(lambda ()
