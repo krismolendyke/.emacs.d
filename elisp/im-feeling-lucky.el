@@ -31,7 +31,7 @@ The 'q' query string parameter should be omitted.")
                               (ifl--build-query-string urlobj query))))
     (format "%s?%s" (car path-and-query) (cdr path-and-query))))
 
-(defun ifl--build-url (url query)
+(defun ifl--url (url query)
   "Return a string of a `URL' containing a `QUERY'."
   (let* ((urlobj (url-generic-parse-url url))
          (type (url-type urlobj))
@@ -46,7 +46,7 @@ The 'q' query string parameter should be omitted.")
 
 (defun ifl--send-query-to-browser (url query)
   "Open a browser at the location made from a `URL' and a `QUERY'."
-  (browse-url (ifl--build-url url query)))
+  (browse-url (ifl--url url query)))
 
 (defun ifl-query (query)
   "Open an I'm Feeling Lucky result for a QUERY."
