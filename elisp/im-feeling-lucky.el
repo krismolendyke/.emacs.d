@@ -48,14 +48,20 @@ The 'q' query string parameter should be omitted.")
   "Open a browser at the location made from a `URL' and a `QUERY'."
   (browse-url (ifl--build-url url query)))
 
-(defun ifl-region (begin end)
-  "Open an I'm Feeling Lucky result for a region.
+(defun ifl-query (query)
+  "Open an I'm Feeling Lucky result for a QUERY."
+  (interactive "sQuery: ")
+  (ifl--send-query-to-browser ifl--url query))
+
+(defun ifl-region-or-query (begin end)
+  "Open an I'm Feeling Lucky result for a region or query.
 Argument BEGIN The beginning of the region to use as a query.
 Argument END The end of the region to use as a query."
   (interactive "r")
   (if (use-region-p)
       (ifl--send-query-to-browser ifl--url
-                                  (buffer-substring-no-properties begin end))))
+                                  (buffer-substring-no-properties begin end))
+    (call-interactively 'ifl-query)))
 
 (provide 'im-feeling-lucky)
 

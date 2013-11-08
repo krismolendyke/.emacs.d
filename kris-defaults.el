@@ -43,7 +43,7 @@
 (global-set-key (kbd "M-.") 'imenu)
 
 ;; I'm Feeling Lucky!
-(global-set-key (kbd "H-l") 'ifl-region)
+(global-set-key (kbd "H-l") 'ifl-region-or-query)
 
 (defun split-window-right-and-balance ()
   "Balance windows after splitting."
