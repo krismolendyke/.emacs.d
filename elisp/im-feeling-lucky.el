@@ -50,7 +50,7 @@ The 'q' query string parameter should be omitted.")
 
 (defun ifl-query (query)
   "Open an I'm Feeling Lucky result for a QUERY."
-  (interactive "sQuery: ")
+  (interactive "sI'm Feeling Lucky: ")
   (ifl--send-query-to-browser ifl--url query))
 
 (defun ifl-region-or-query (begin end)
