@@ -1,6 +1,7 @@
 (require 'htmlize)
 (require 'org)
 (require 'org-publish)
+(require 'yasnippet)
 
 ;; Set the org directory.
 (setq org-directory (expand-file-name "org" dropbox-directory))
@@ -28,7 +29,8 @@
 (add-hook 'org-mode-hook
           #'(lambda ()
               (org-toggle-pretty-entities)
-              (visual-line-mode 0)))
+              (visual-line-mode 0)
+              (yas-minor-mode 1)))
 
 ;; org-capture.
 (setq org-default-notes-file (expand-file-name "notes.org" org-directory))
