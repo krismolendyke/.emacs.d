@@ -76,6 +76,9 @@
 (add-hook 'org-export-before-processing-hook
           (lambda (backend) (update-org-css)))
 
+(setq org-html-head-extra
+      "<link href='http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css' rel='stylesheet'>")
+
 ;; Publishing.
 ;; (let* ((project-name "introduction-to-mathematical-thinking")
 ;;        (org-component (format "%s-files" project-name))
