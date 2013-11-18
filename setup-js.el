@@ -21,7 +21,7 @@
   (save-excursion
     (beginning-of-defun)
     (forward-line 1)
-    (if (monetate-repo-p) (insert "mt."))
+    (if (monetate-server-repo-p) (insert "mt."))
     (insert (format "console.group('%s');" (js-nearest-function-name)))
     (newline)
     (unless (blank-line-p) (newline-and-indent))
@@ -32,7 +32,7 @@
       (end-of-line)
       (newline-and-indent))
     (newline-and-indent)
-    (if (monetate-repo-p) (insert "mt."))
+    (if (monetate-server-repo-p) (insert "mt."))
     (insert "console.groupEnd();")))
 
 (provide 'setup-js)
