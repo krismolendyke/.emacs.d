@@ -12,6 +12,9 @@
 (dolist (dir (dirs-in-dir org-directory '("." ".." ".git")))
   (add-to-list 'org-mobile-files dir))
 
+;; Speeeeeeeeeed!  Move to very beginning of a headline and press "?"
+(setq org-use-speed-commands t)
+
 ;; Automatically insert a timestamp when a task is marked DONE.
 (setq org-log-done t)
 
