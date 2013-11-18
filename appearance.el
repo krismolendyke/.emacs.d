@@ -58,27 +58,39 @@ is dark."
 (setq blink-cursor-interval 0.75)
 (blink-cursor-mode 1)
 
-(defun set-font (font-alist)
+(defun set--font (font-alist)
   "Set the font family and size to the given font alist of the
 format (family . point)."
   (set-frame-font (car font-alist))
   (set-face-attribute 'default nil :height (* 10 (cdr font-alist))))
 
-(defun set-font-from-list (l)
+(defun set--font-from-list (l)
   "Set the font to first available font alist in the given list."
   (if (null l) nil
-    (set-font (car l))
+    (set--font (car l))
     (if (string= (caar l) (face-attribute 'default :family (selected-frame)))
         (caar l)
-      (set-font-from-list (cdr l)))))
+      (set--font-from-list (cdr l)))))
 
-;; Ordered list of preferred fonts and sizes.
-(set-font-from-list
- '(("Source_Code_Pro" . 11)
-   ("Glass_TTY_VT220" . 20)
-   ("Consolas" . 18)
-   ("Ubuntu_Mono" . 17)
-   ("Inconsolata" . 18)))
+(defvar font-list '(("Source_Code_Pro" . 11)
+                    ("Glass_TTY_VT220" . 20)
+                    ("Consolas" . 18)
+                    ("Ubuntu_Mono" . 17)
+                    ("Inconsolata" . 18))
+  "Ordered list of preferred fonts and sizes.")
+
+(set--font-from-list font-list)
+
+(defun set-font ()
+  "Set a font from the `font-list'."
+  (interactive)
+  (let ((ignore-case completion-ignore-case))
+    (unwind-protect
+        (progn
+          (setq completion-ignore-case t)
+          (let ((font (completing-read "Font: " font-list)))
+            (set--font (assoc font font-list))))
+      (setq completion-ignore-case ignore-case))))
 
 (defun get-max-rows (pixel-height)
   "Return the maximum number of rows that will fit with this screen.
