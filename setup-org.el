@@ -113,7 +113,7 @@
          :with-planning t)
         ("work-static-files"
          :base-directory ,(expand-file-name "work" org-directory)
-         :base-extension "pdf\\|csv"
+         :base-extension "pdf\\|csv\\|sql"
          :publishing-directory ,(expand-file-name "published" (expand-file-name "work" org-directory))
          :publishing-function org-publish-attachment)
         ("work"
