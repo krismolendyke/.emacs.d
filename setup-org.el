@@ -1,6 +1,6 @@
 (require 'htmlize)
 (require 'org)
-(require 'org-publish)
+(require 'ox-publish)
 (require 'yasnippet)
 
 ;; Set the org directory.
