@@ -1,3 +1,7 @@
+(require 'cask "~/.cask/cask.el")
+(cask-initialize)
+(require 'pallet)
+
 ;; Turn off bars A.S.A.P.  See appearance.el for more.
 (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
 (if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
