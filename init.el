@@ -13,6 +13,9 @@
      (fboundp 'menu-bar-mode))
     (menu-bar-mode -1))
 
+;; Setup PATH
+;; (require 'setup-path)
+
 ;; Set paths to dependencies.
 ;; Stuff that other folks have developed.
 (setq site-lisp-directory (expand-file-name "site-lisp" user-emacs-directory))
