@@ -12,6 +12,7 @@
 (depends-on "git-commit-mode")
 (depends-on "gitconfig-mode")
 (depends-on "gitignore-mode")
+(depends-on "htmlize")
 (depends-on "multiple-cursors")
 (depends-on "pallet")
 (depends-on "paredit")
