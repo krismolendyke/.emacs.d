@@ -7,3 +7,4 @@ tramp
 tutorial/
 .emacs.desktop
 .org-id-locations
+.cask/

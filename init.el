@@ -1,3 +1,7 @@
+(require 'cask "~/.cask/cask.el")
+(cask-initialize)
+(require 'pallet)
+
 ;; Turn off bars A.S.A.P.  See appearance.el for more.
 (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
 (if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
@@ -30,6 +34,9 @@
   (when (file-regular-p file)
     (load file)))
 
+;; Setup PATH
+(require 'setup-path)
+
 ;; Emacs custom settings are in a separate file.
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 (load custom-file)
@@ -57,7 +64,7 @@
 (require 'kris-defaults)
 
 ;; Remember and restore buffer/file/etc. state between sessions.
-(setq desktop-path '(dropbox-directory)
+(setq desktop-path (list dropbox-directory)
       desktop-load-locked-desktop t)
 (desktop-save-mode 1)
 (desktop-read dropbox-directory)
@@ -68,11 +75,13 @@
   (server-start))
 
 ;; Setup extensions.
-(require 'setup-ace-jump)
+;; (require 'setup-ace-jump)
 (require 'setup-ag)
 (require 'setup-auto-fill)
 (require 'setup-autopair)
+(require 'setup-buffer-move)
 (require 'setup-calendar)
+(require 'setup-cider)
 (require 'setup-clojure)
 (require 'setup-compilation)
 (require 'setup-dired)
@@ -82,27 +91,27 @@
 (require 'setup-flycheck)
 (require 'setup-flyspell)
 (require 'setup-git)
+(require 'setup-highlight-parentheses)
 (require 'setup-hyperspec)
 (require 'setup-ibuffer)
 (require 'setup-ido)
-(require 'setup-jinja2)
+;; (require 'setup-jinja2)
 (require 'setup-js)
 (require 'setup-json)
-(require 'setup-lisp)
-(require 'setup-markdown)
+;; (require 'setup-lisp)
+;; (require 'setup-markdown)
 (require 'setup-monetate)
 (require 'setup-multiple-cursors)
-(require 'setup-nrepl)
 (require 'setup-org)
 (require 'setup-paredit)
-(require 'setup-powerline)
+;; (require 'setup-powerline)
 (require 'setup-python)
 (require 'setup-recentf)
-(require 'setup-sgml)
-(require 'setup-slime)
+;; (require 'setup-sgml)
+;; (require 'setup-slime)
 (require 'setup-smex)
 (require 'setup-sql)
 (require 'setup-term)
 (require 'setup-windmove)
-(require 'setup-yaml)
+;; (require 'setup-yaml)
 (require 'setup-yasnippet)
