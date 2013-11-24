@@ -8,6 +8,7 @@
 (depends-on "expand-region")
 (depends-on "f")
 (depends-on "find-file-in-project")
+(depends-on "flx")
 (depends-on "flx-ido")
 (depends-on "flycheck")
 (depends-on "git-commit-mode")
