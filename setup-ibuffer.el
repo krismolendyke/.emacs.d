@@ -1,4 +1,4 @@
-(require 'ibuf-ext)
+(require 'ibuffer)
 
 (setq ibuffer-formats '((mark
                          " "
