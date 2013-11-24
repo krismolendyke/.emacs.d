@@ -79,6 +79,7 @@
 (require 'setup-ag)
 (require 'setup-auto-fill)
 (require 'setup-autopair)
+(require 'setup-buffer-move)
 (require 'setup-calendar)
 (require 'setup-cider)
 (require 'setup-clojure)

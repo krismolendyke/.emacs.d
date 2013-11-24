@@ -2,6 +2,7 @@
 
 (depends-on "ag")
 (depends-on "autopair")
+(depends-on "buffer-move")
 (depends-on "cask")
 (depends-on "cider")
 (depends-on "clojure-mode")
