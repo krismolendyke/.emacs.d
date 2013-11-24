@@ -1,8 +1,12 @@
 (source melpa)
 
+(depends-on "ag")
+(depends-on "autopair")
 (depends-on "cask")
 (depends-on "dash")
 (depends-on "epl")
+(depends-on "expand-region")
 (depends-on "f")
+(depends-on "multiple-cursors")
 (depends-on "pallet")
 (depends-on "s")
