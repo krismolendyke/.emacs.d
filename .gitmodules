@@ -10,9 +10,6 @@
 [submodule "site-lisp/org-mode"]
 	path = site-lisp/org-mode
 	url = git://orgmode.org/org-mode.git
-[submodule "site-lisp/find-file-in-project"]
-	path = site-lisp/find-file-in-project
-	url = https://github.com/technomancy/find-file-in-project.git
 [submodule "site-lisp/terminal-notifier.el"]
 	path = site-lisp/terminal-notifier.el
 	url = git@github.com:krismolendyke/terminal-notifier.el.git
