@@ -90,6 +90,7 @@
 (require 'setup-flycheck)
 (require 'setup-flyspell)
 (require 'setup-git)
+(require 'setup-highlight-parentheses)
 (require 'setup-hyperspec)
 (require 'setup-ibuffer)
 (require 'setup-ido)

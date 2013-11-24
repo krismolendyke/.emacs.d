@@ -3,7 +3,7 @@
 ;; When to turn on paredit.
 (dolist (hook '(emacs-lisp-mode-hook
                 lisp-mode-hook
-                slime-repl-mode-hook))
+                cider-repl-mode-hook))
   (add-hook hook #'(lambda nil (paredit-mode 1))))
 
 ;; Map close-parenthesis.
