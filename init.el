@@ -13,9 +13,6 @@
      (fboundp 'menu-bar-mode))
     (menu-bar-mode -1))
 
-;; Setup PATH
-;; (require 'setup-path)
-
 ;; Set paths to dependencies.
 ;; Stuff that other folks have developed.
 (setq site-lisp-directory (expand-file-name "site-lisp" user-emacs-directory))
@@ -36,6 +33,9 @@
 (dolist (file (directory-files elisp-directory t "\\w+"))
   (when (file-regular-p file)
     (load file)))
+
+;; Setup PATH
+(require 'setup-path)
 
 ;; Emacs custom settings are in a separate file.
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
