@@ -80,7 +80,7 @@
 (require 'setup-auto-fill)
 (require 'setup-autopair)
 (require 'setup-calendar)
-;; (require 'setup-clojure)
+(require 'setup-clojure)
 (require 'setup-compilation)
 (require 'setup-dired)
 (require 'setup-emacs-lisp)
