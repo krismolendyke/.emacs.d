@@ -24,6 +24,9 @@
 (global-unset-key (kbd "M-c"))
 (global-unset-key (kbd "M-u"))
 
+;; The standard key binding is /madnesssss!/
+(global-set-key (kbd "M-+") 'text-scale-adjust)
+
 ;; Text mode menu bar drives me nuts!
 (global-unset-key (kbd "M-`"))
 
