@@ -18,6 +18,10 @@
                                  " ✔"       ; right bracket around the sole remaining completion
                                  ))
 
+(custom-set-faces '(ido-first-match ((t (:foreground "green4"))))
+                  '(ido-only-match ((t (:foreground "green4"))))
+                  '(flx-highlight-face ((t (:foreground "green3" :underline nil)))))
+
 (add-hook 'ido-minibuffer-setup-hook
           #'(lambda ()
               "Bump up minibuffer text size and height."
@@ -34,6 +38,7 @@
       ido-create-new-buffer 'always
       ido-show-dot-for-dired t
       ido-max-file-prompt-width 0.2
-      ido-use-faces nil)
+      ido-use-faces t
+      flx-ido-use-faces t)
 
 (provide 'setup-ido)
