@@ -18,6 +18,12 @@
                                  ""         ; right bracket around the sole remaining completion
                                  ))
 
+(add-hook 'ido-minibuffer-setup-hook
+          #'(lambda ()
+              "Bump up minibuffer text size and height."
+              (text-scale-set 3)
+              (setq max-mini-window-height 20)))
+
 (ido-mode t)
 (ido-vertical-mode t)
 (ido-everywhere t)
