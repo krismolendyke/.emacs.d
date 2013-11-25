@@ -27,6 +27,9 @@
 ;; The standard key binding is /madnesssss!/
 (global-set-key (kbd "M-+") 'text-scale-adjust)
 
+;; A bit of OS X style window switching.
+(global-set-key (kbd "M-`") 'other-window)
+
 ;; Text mode menu bar drives me nuts!
 (global-unset-key (kbd "M-`"))
 
