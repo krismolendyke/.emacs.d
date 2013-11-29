@@ -2,6 +2,15 @@
 (require 'ido)
 (require 'ido-vertical-mode)
 
+;; All this to avoid `ido-vertical-mode' from eating M-p
+(setq ido-vertical-define-keys nil)
+(define-key ido-completion-map (kbd "C-n") 'ido-next-match)
+(define-key ido-completion-map (kbd "C-p") 'ido-prev-match)
+(define-key ido-completion-map (kbd "<up>") 'ido-prev-match)
+(define-key ido-completion-map (kbd "<down>") 'ido-next-match)
+(define-key ido-completion-map (kbd "<left>") 'ido-vertical-prev-match)
+(define-key ido-completion-map (kbd "<right>") 'ido-vertical-next-match)
+
 ;; Boring arrows be gone!
 (setq ido-vertical-decorations '("\n    "  ; left bracket around prospect list
                                  ""        ; right bracket around prospect list
