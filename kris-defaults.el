@@ -1,3 +1,6 @@
+(require 'ido)
+(require 'windmove)
+
 ;; Please, no backup or autosave litter.
 (setq make-backup-files nil
       auto-save-default nil)
@@ -57,6 +60,16 @@
   (split-window-right)
   (balance-windows))
 
+(defun split-window-right-and-balance-and-go-there-and-switch-buffer (&optional arg)
+  "Optional argument ARG Prefix argument will switch buffer using ido."
+  (interactive "P")
+  (split-window-right)
+  (balance-windows)
+  (windmove-right)
+  (if arg
+      (ido-switch-buffer)
+    (switch-to-buffer nil)))
+
 (defun delete-window-and-balance ()
   "Balance windows after deleting."
   (interactive)
@@ -64,7 +77,7 @@
   (balance-windows))
 
 ;; These play more nicely with widescreen monitor.
-(global-set-key (kbd "C-x 3") 'split-window-right-and-balance)
+(global-set-key (kbd "C-x 3") 'split-window-right-and-balance-and-go-there-and-switch-buffer)
 (global-set-key (kbd "C-x 0") 'delete-window-and-balance)
 
 ;; Toggle fullscreen mode on OS X
