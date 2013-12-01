@@ -11,6 +11,8 @@
 (define-key ido-completion-map (kbd "<left>") 'ido-vertical-prev-match)
 (define-key ido-completion-map (kbd "<right>") 'ido-vertical-next-match)
 
+(add-to-list 'ido-ignore-files "\\.DS_Store")
+
 ;; Boring arrows be gone!
 (setq ido-vertical-decorations '("\n    "  ; left bracket around prospect list
                                  ""        ; right bracket around prospect list
