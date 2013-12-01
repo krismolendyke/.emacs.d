@@ -2,15 +2,6 @@
 (require 'ido)
 (require 'ido-vertical-mode)
 
-;; All this to avoid `ido-vertical-mode' from eating M-p
-(setq ido-vertical-define-keys nil)
-(define-key ido-completion-map (kbd "C-n") 'ido-next-match)
-(define-key ido-completion-map (kbd "C-p") 'ido-prev-match)
-(define-key ido-completion-map (kbd "<up>") 'ido-prev-match)
-(define-key ido-completion-map (kbd "<down>") 'ido-next-match)
-(define-key ido-completion-map (kbd "<left>") 'ido-vertical-prev-match)
-(define-key ido-completion-map (kbd "<right>") 'ido-vertical-next-match)
-
 (add-to-list 'ido-ignore-files "\\.DS_Store")
 
 ;; Boring arrows be gone!
@@ -38,6 +29,17 @@
               "Bump up minibuffer text size and height."
               (text-scale-set 3)
               (setq max-mini-window-height 20)))
+
+;; All this to avoid `ido-vertical-mode' from eating M-p
+(setq ido-vertical-define-keys nil)
+(add-hook 'ido-setup-hook
+          (lambda ()
+            (define-key ido-completion-map (kbd "C-n") 'ido-next-match)
+            (define-key ido-completion-map (kbd "C-p") 'ido-prev-match)
+            (define-key ido-completion-map (kbd "<up>") 'ido-prev-match)
+            (define-key ido-completion-map (kbd "<down>") 'ido-next-match)
+            (define-key ido-completion-map (kbd "<left>") 'ido-vertical-prev-match)
+            (define-key ido-completion-map (kbd "<right>") 'ido-vertical-next-match)))
 
 (ido-mode t)
 (ido-vertical-mode t)
