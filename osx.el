@@ -15,4 +15,8 @@
  scroll-conservatively 10000
  auto-window-vscroll nil)
 
+;; Trash.
+(setq trash-directory (expand-file-name "~/.Trash")
+      delete-by-moving-to-trash t)
+
 (provide 'osx)
