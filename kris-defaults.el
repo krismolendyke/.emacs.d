@@ -14,9 +14,6 @@
 ;; C-n at the end of a buffer inserts newlines w/o need for Return.
 (setq next-line-add-newlines t)
 
-;; Pad scrolling and recentering a bit.
-(setq scroll-margin 2)
-
 ;; Indentation... it's electric.
 (electric-indent-mode)
 
