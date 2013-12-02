@@ -22,6 +22,7 @@
 (depends-on "gitignore-mode")
 (depends-on "highlight-parentheses")
 (depends-on "htmlize")
+(depends-on "ido-ubiquitous")
 (depends-on "ido-vertical-mode")
 (depends-on "multiple-cursors")
 (depends-on "pallet")
