@@ -46,7 +46,6 @@
 
 (ido-mode t)
 (ido-vertical-mode t)
-(ido-everywhere t)
 (ido-ubiquitous-mode t)
 (flx-ido-mode t)
 
