@@ -20,10 +20,6 @@
                                  " ✔"  ; right bracket around the sole remaining completion
                                  ))
 
-(custom-set-faces '(ido-first-match ((t (:foreground "green4"))))
-                  '(ido-only-match ((t (:foreground "green4"))))
-                  '(flx-highlight-face ((t (:foreground "green3" :underline nil)))))
-
 (add-hook 'ido-minibuffer-setup-hook
           #'(lambda ()
               "Bump up minibuffer text size and height."
@@ -39,7 +35,14 @@
             (define-key ido-completion-map (kbd "<up>") 'ido-prev-match)
             (define-key ido-completion-map (kbd "<down>") 'ido-next-match)
             (define-key ido-completion-map (kbd "<left>") 'ido-vertical-prev-match)
-            (define-key ido-completion-map (kbd "<right>") 'ido-vertical-next-match)))
+            (define-key ido-completion-map (kbd "<right>") 'ido-vertical-next-match)
+
+            ;; Theme!
+            (let ((match (face-attribute 'font-lock-string-face :foreground))
+                  (highlight (face-attribute 'font-lock-keyword-face :foreground)))
+              (custom-set-faces `(ido-first-match ((t (:foreground ,match))))
+                                `(ido-only-match ((t (:foreground ,match))))
+                                `(flx-highlight-face ((t (:foreground ,highlight :underline nil))))))))
 
 (ido-mode t)
 (ido-vertical-mode t)
