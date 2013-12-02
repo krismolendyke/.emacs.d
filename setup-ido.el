@@ -26,23 +26,26 @@
               (text-scale-set 3)
               (setq max-mini-window-height 20)))
 
-;; All this to avoid `ido-vertical-mode' from eating M-p
+;; Avoid `ido-vertical-mode' from eating M-p.
 (setq ido-vertical-define-keys nil)
-(add-hook 'ido-setup-hook
-          (lambda ()
-            (define-key ido-completion-map (kbd "C-n") 'ido-next-match)
-            (define-key ido-completion-map (kbd "C-p") 'ido-prev-match)
-            (define-key ido-completion-map (kbd "<up>") 'ido-prev-match)
-            (define-key ido-completion-map (kbd "<down>") 'ido-next-match)
-            (define-key ido-completion-map (kbd "<left>") 'ido-vertical-prev-match)
-            (define-key ido-completion-map (kbd "<right>") 'ido-vertical-next-match)
 
-            ;; Theme!
-            (let ((match (face-attribute 'font-lock-string-face :foreground))
-                  (highlight (face-attribute 'font-lock-keyword-face :foreground)))
-              (custom-set-faces `(ido-first-match ((t (:foreground ,match))))
-                                `(ido-only-match ((t (:foreground ,match))))
-                                `(flx-highlight-face ((t (:foreground ,highlight :underline nil))))))))
+(defun my-ido-setup ()
+  "Setup key map and theme faces."
+  (define-key ido-completion-map (kbd "C-n") 'ido-next-match)
+  (define-key ido-completion-map (kbd "C-p") 'ido-prev-match)
+  (define-key ido-completion-map (kbd "<up>") 'ido-prev-match)
+  (define-key ido-completion-map (kbd "<down>") 'ido-next-match)
+  (define-key ido-completion-map (kbd "<left>") 'ido-vertical-prev-match)
+  (define-key ido-completion-map (kbd "<right>") 'ido-vertical-next-match)
+
+  ;; Theme!
+  (let ((match (face-attribute 'font-lock-string-face :foreground))
+        (highlight (face-attribute 'font-lock-keyword-face :foreground)))
+    (custom-set-faces `(ido-first-match ((t (:foreground ,match))))
+                      `(ido-only-match ((t (:foreground ,match))))
+                      `(flx-highlight-face ((t (:foreground ,highlight
+                                                :underline nil)))))))
+(add-hook 'ido-setup-hook 'my-ido-setup)
 
 (ido-mode t)
 (ido-vertical-mode t)
