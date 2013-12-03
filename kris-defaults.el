@@ -11,9 +11,6 @@
 ;; Overwrite text when typing in a region.
 (delete-selection-mode 1)
 
-;; C-n at the end of a buffer inserts newlines w/o need for Return.
-(setq next-line-add-newlines t)
-
 ;; Indentation... it's electric.
 (electric-indent-mode)
 
