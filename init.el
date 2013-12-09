@@ -61,9 +61,13 @@
                         (expand-file-name "org-mode"
                                           site-lisp-directory)))
 (add-to-list 'load-path org-lisp-directory)
-(require 'org)
-(mapc #'org-babel-load-file
-      (directory-files user-emacs-directory t "\\.org$" t))
+
+(defun init-from-org ()
+  (require 'org)
+  (dolist (elt (directory-files user-emacs-directory t "\\.org$" t))
+    (org-babel-load-file elt t)))
+
+(add-hook 'after-init-hook 'init-from-org)
 
 
 
