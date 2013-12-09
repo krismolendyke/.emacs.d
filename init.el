@@ -17,12 +17,6 @@
 ;; Stuff that other folks have developed.
 (setq site-lisp-directory (expand-file-name "site-lisp" user-emacs-directory))
 
-;; org-mode Emacs Lisp files.
-(setq org-lisp-directory
-      (expand-file-name "lisp"
-                        (expand-file-name "org-mode"
-                                          site-lisp-directory)))
-
 ;; Stuff that I have developed.
 (setq elisp-directory (expand-file-name "elisp" user-emacs-directory))
 
@@ -30,7 +24,6 @@
 (add-to-list 'load-path user-emacs-directory)
 (add-to-list 'load-path site-lisp-directory)
 (add-to-list 'load-path elisp-directory)
-(add-to-list 'load-path org-lisp-directory)
 
 ;; Add external projects to load path.
 (dolist (project (directory-files site-lisp-directory t "\\w+"))
@@ -60,6 +53,20 @@
 ;; Homebrew source files.
 (setq source-directory "/Library/Caches/Homebrew/emacs--git")
 
+
+
+;; org-mode Emacs Lisp files.
+(setq org-lisp-directory
+      (expand-file-name "lisp"
+                        (expand-file-name "org-mode"
+                                          site-lisp-directory)))
+(add-to-list 'load-path org-lisp-directory)
+(require 'org)
+(mapc #'org-babel-load-file
+      (directory-files user-emacs-directory t "\\.org$" t))
+
+
+
 ;; I spend most of my time in OS X.
 (if (equal system-type 'darwin) (require 'osx))
 
@@ -85,45 +92,3 @@
 (require 'server)
 (unless (server-running-p)
   (server-start))
-
-;; Setup extensions.
-;; (require 'setup-ace-jump)
-(require 'setup-ag)
-(require 'setup-auto-fill)
-(require 'setup-autopair)
-(require 'setup-buffer-move)
-(require 'setup-calendar)
-(require 'setup-cider)
-(require 'setup-clojure)
-(require 'setup-compilation)
-(require 'setup-dired)
-(require 'setup-emacs-lisp)
-(require 'setup-expand-region)
-(require 'setup-find-file-in-project)
-(require 'setup-flycheck)
-(require 'setup-flyspell)
-(require 'setup-git)
-(require 'setup-highlight-parentheses)
-(require 'setup-hyperspec)
-(require 'setup-ibuffer)
-(require 'setup-ido)
-;; (require 'setup-jinja2)
-(require 'setup-js)
-(require 'setup-json)
-;; (require 'setup-lisp)
-;; (require 'setup-markdown)
-(require 'setup-monetate)
-(require 'setup-multiple-cursors)
-(require 'setup-org)
-(require 'setup-paredit)
-;; (require 'setup-powerline)
-(require 'setup-python)
-(require 'setup-recentf)
-;; (require 'setup-sgml)
-;; (require 'setup-slime)
-(require 'setup-smex)
-(require 'setup-sql)
-(require 'setup-term)
-(require 'setup-windmove)
-;; (require 'setup-yaml)
-(require 'setup-yasnippet)
