@@ -112,6 +112,8 @@
 * =dired=
 
   #+BEGIN_SRC emacs-lisp
+    (require 'autorevert)
+
     (add-hook 'dired-mode-hook
               #'(lambda ()
                   (auto-revert-mode 1)
@@ -176,6 +178,8 @@
 * =flyspell=
 
   #+BEGIN_SRC emacs-lisp
+    (require 'flyspell)
+
     (setq-default ispell-program-name "/usr/local/bin/aspell")
 
     ;; When to turn on flyspell-mode.
@@ -536,6 +540,7 @@
 
   #+BEGIN_SRC emacs-lisp
     (require 'autopair)
+    (require 'electric)
     (require 'flycheck)
     (require 'python)
 
@@ -610,6 +615,8 @@
 * =sql-mode=
 
   #+BEGIN_SRC emacs-lisp
+    (require 'sql)
+
     (add-hook 'sql-mode-hook (lambda ()
                                (setq sql-product 'mysql)
                                (sql-highlight-mysql-keywords)))
