@@ -16,6 +16,13 @@
 ;; Set paths to dependencies.
 ;; Stuff that other folks have developed.
 (setq site-lisp-directory (expand-file-name "site-lisp" user-emacs-directory))
+
+;; org-mode Emacs Lisp files.
+(setq org-lisp-directory
+      (expand-file-name "lisp"
+                        (expand-file-name "org-mode"
+                                          site-lisp-directory)))
+
 ;; Stuff that I have developed.
 (setq elisp-directory (expand-file-name "elisp" user-emacs-directory))
 
@@ -23,6 +30,7 @@
 (add-to-list 'load-path user-emacs-directory)
 (add-to-list 'load-path site-lisp-directory)
 (add-to-list 'load-path elisp-directory)
+(add-to-list 'load-path org-lisp-directory)
 
 ;; Add external projects to load path.
 (dolist (project (directory-files site-lisp-directory t "\\w+"))
