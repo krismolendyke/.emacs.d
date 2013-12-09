@@ -328,17 +328,6 @@
       (shell-command-on-region (point-min) (point-max) "python -m json.tool" (current-buffer)))
   #+END_SRC
 
-* json
-
-  #+BEGIN_SRC emacs-lisp
-    (add-to-list 'auto-mode-alist '("\\.json" . js-mode))
-
-    (defun json-format ()
-      "Pretty-print a buffer containing JSON."
-      (interactive)
-      (shell-command-on-region (point-min) (point-max) "python -m json.tool" (current-buffer)))
-  #+END_SRC
-
 * =monetate-mode=
 
   #+BEGIN_SRC emacs-lisp
