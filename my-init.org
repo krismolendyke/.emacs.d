@@ -893,6 +893,16 @@
                                (sql-highlight-mysql-keywords)))
   #+END_SRC
 
+* =server=
+
+  #+BEGIN_SRC emacs-lisp
+    ;; Start the Emacs server.
+    (require 'server)
+
+    (unless (server-running-p)
+      (server-start))
+  #+END_SRC
+
 * =term=
 
   #+BEGIN_SRC emacs-lisp

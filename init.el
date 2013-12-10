@@ -71,13 +71,9 @@
 
 
 
+
 ;; Remember and restore buffer/file/etc. state between sessions.
 (setq desktop-path (list dropbox-directory)
       desktop-load-locked-desktop t)
 (desktop-save-mode 1)
 (desktop-read dropbox-directory)
-
-;; Start the Emacs server.
-(require 'server)
-(unless (server-running-p)
-  (server-start))
