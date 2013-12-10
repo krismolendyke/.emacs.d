@@ -920,6 +920,15 @@
     (setq windmove-wrap-around t)
   #+END_SRC
 
+* =winner-mode=
+
+  #+BEGIN_SRC emacs-lisp
+    ;; Remember window configurations.
+    (require 'winner)
+
+    (winner-mode)
+  #+END_SRC
+
 * =yasnippet=
 
   #+BEGIN_SRC emacs-lisp

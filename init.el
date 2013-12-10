@@ -71,9 +71,6 @@
 
 
 
-;; Remember window configurations.
-(winner-mode 1)
-
 ;; ibuffer.
 (defalias 'list-buffers 'ibuffer)
 
