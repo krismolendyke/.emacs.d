@@ -1,15 +1,15 @@
 #+TITLE: My Init
 #+OPTIONS: toc:2 num:nil
 
-* Setup
+* Customization
+
+  I don't make much use of the [[http://www.gnu.org/software/emacs/manual/html_node/emacs/Customization.html#Customization][Customization]] interface.  By default it dumps
+  its settings into =init.el= and I don't want to see them there.  A few
+  packages that I use do rely on customization so I do need it to be loaded.
 
   #+BEGIN_SRC emacs-lisp
-    ;; Emacs custom settings are in a separate file.
     (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
     (load custom-file)
-
-    ;; Homebrew source files.
-    (setq source-directory "/Library/Caches/Homebrew/emacs--git")
   #+END_SRC
 
 * Kris Defaults
@@ -17,6 +17,9 @@
   #+BEGIN_SRC emacs-lisp
     (require 'ido)
     (require 'windmove)
+
+    ;; Homebrew source files.
+    (setq source-directory "/Library/Caches/Homebrew/emacs--git")
 
     ;; Please, no backup or autosave litter.
     (setq make-backup-files nil
