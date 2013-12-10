@@ -139,6 +139,34 @@
     (defalias 'yes-or-no-p 'y-or-n-p)
   #+END_SRC
 
+* OS X
+
+  #+BEGIN_SRC emacs-lisp
+    ;; I spend most of my time in OS X.
+    (if (equal system-type 'darwin)
+        (progn
+          ;; Command as meta.
+          (setq ns-command-modifier 'meta)
+
+          ;; Option as hyper.
+          (setq ns-option-modifier 'hyper)
+
+          ;; fn as super.
+          (setq ns-function-modifier 'super)
+
+          ;; Trackpad taming.
+          (setq
+           mouse-wheel-scroll-amount '(0.0001)
+           mouse-wheel-progressive-speed nil
+           scroll-step 1
+           scroll-conservatively 10000
+           auto-window-vscroll nil)
+
+          ;; Trash.
+          (setq trash-directory (expand-file-name "~/.Trash")
+                delete-by-moving-to-trash t)))
+  #+END_SRC
+
 * =ag=
 
   #+BEGIN_SRC emacs-lisp

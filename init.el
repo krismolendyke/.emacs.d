@@ -71,9 +71,6 @@
 
 
 
-;; I spend most of my time in OS X.
-(if (equal system-type 'darwin) (require 'osx))
-
 ;; Remember window configurations.
 (winner-mode 1)
 
