@@ -515,6 +515,8 @@
   #+BEGIN_SRC emacs-lisp
     (require 'ibuffer)
 
+    (defalias 'list-buffers 'ibuffer)
+
     (setq ibuffer-formats '((mark
                              " "
                              (modified)

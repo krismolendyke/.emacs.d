@@ -71,9 +71,6 @@
 
 
 
-;; ibuffer.
-(defalias 'list-buffers 'ibuffer)
-
 ;; Remember and restore buffer/file/etc. state between sessions.
 (setq desktop-path (list dropbox-directory)
       desktop-load-locked-desktop t)
