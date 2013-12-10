@@ -1,17 +1,11 @@
-(require 'cask "~/.cask/cask.el")
-(cask-initialize)
-(require 'pallet)
+;;; init.el --- Bootstrap initialization.
 
-;; Turn off bars A.S.A.P.  See appearance.el for more.
-(if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
-(if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
+;;; Commentary:
+;;
+;; Bootstrap setup during initialization time.  Advanced configuration
+;; and setup is done in an `after-init-hook' function.
 
-;; Only turn off the menu bar in the terminal.
-(if (and
-     (fboundp 'window-system)
-     (not (window-system))
-     (fboundp 'menu-bar-mode))
-    (menu-bar-mode -1))
+;;; Code:
 
 (defvar site-lisp-directory
   (expand-file-name "site-lisp" user-emacs-directory)
@@ -21,6 +15,10 @@
   (expand-file-name "elisp" user-emacs-directory)
   "Stuff that I have developed.")
 
+(defvar org-lisp-directory
+  (expand-file-name "lisp" (expand-file-name "org-mode" site-lisp-directory))
+  "The directory contaiting `org-mode' Emacs Lisp files.")
+
 (defvar dropbox-directory
   (expand-file-name "~/Desktop/Dropbox")
   "Dropbox home.")
@@ -29,41 +27,60 @@
   (expand-file-name "~/Google Drive")
   "Google Drive home.")
 
-;; Set up load path.
-(add-to-list 'load-path user-emacs-directory)
-(add-to-list 'load-path site-lisp-directory)
-(add-to-list 'load-path elisp-directory)
+(defun setup-cask-and-pallet ()
+  "Package managment goodness."
+  (require 'cask "~/.cask/cask.el")
+  (cask-initialize)
+  (require 'pallet))
 
-;; Add external projects to load path.
-(dolist (project (directory-files site-lisp-directory t "\\w+"))
-  (when (file-directory-p project)
-    (add-to-list 'load-path project)))
+(defun no-bars-held ()
+  "Turn off tool, scroll, and menu bars when appropriate.
+Only turn off the menu bar running in a terminal window."
+  (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
+  (if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
+  (if (and (fboundp 'window-system)
+           (not (window-system))
+           (fboundp 'menu-bar-mode))
+      (menu-bar-mode -1)))
 
-;; Load my stuff.
-(dolist (file (directory-files elisp-directory t "\\w+"))
-  (when (file-regular-p file)
-    (load file)))
+(defun setup-load-path ()
+  "Add custom directories to `load-path'."
+  (dolist ((directory '(user-emacs-directory
+                        site-lisp-directory
+                        elisp-directory
+                        org-lisp-directory)))
+    (add-to-list 'load-path directory))
 
+  ;; Add external projects to load path.
+  (dolist (project (directory-files site-lisp-directory t "\\w+"))
+    (when (file-directory-p project)
+      (add-to-list 'load-path project))))
 
-;; Remember and restore buffer/file/etc. state between sessions.
-(require 'desktop)
-(setq desktop-path (list dropbox-directory)
-      desktop-load-locked-desktop t)
-(desktop-save-mode 1)
-(desktop-read dropbox-directory)
+(defun load-custom-elisp ()
+  "Load custom Emacs Lisp files in `elisp-directory'."
+  (dolist (file (directory-files elisp-directory t "\\w+"))
+    (when (file-regular-p file)
+      (load file))))
 
+(defun restore-desktop ()
+  "Restore the state of buffers from the last session."
+  (require 'desktop)
+  (setq desktop-path (list dropbox-directory)
+        desktop-load-locked-desktop t)
+  (desktop-save-mode 1)
+  (desktop-read dropbox-directory))
 
-
-;; org-mode Emacs Lisp files.
-(setq org-lisp-directory
-      (expand-file-name "lisp"
-                        (expand-file-name "org-mode"
-                                          site-lisp-directory)))
-(add-to-list 'load-path org-lisp-directory)
-
-(defun init-from-org ()
+(defun after-init ()
+  "Perform complex post-initialization."
   (require 'org)
   (dolist (elt (directory-files user-emacs-directory t "\\.org$" t))
     (org-babel-load-file elt t)))
 
-(add-hook 'after-init-hook 'init-from-org)
+(setup-cask-and-pallet)
+(no-bars-held)
+(setup-load-path)
+(load-custom-elisp)
+(restore-desktop)
+(add-hook 'after-init-hook 'after-init)
+
+;;; init.el ends here
