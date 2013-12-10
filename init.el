@@ -83,9 +83,6 @@
 ;; Theme, font, frame attributes, etc.
 (require 'appearance)
 
-;; Kris's defaults.
-(require 'kris-defaults)
-
 ;; Remember and restore buffer/file/etc. state between sessions.
 (setq desktop-path (list dropbox-directory)
       desktop-load-locked-desktop t)
