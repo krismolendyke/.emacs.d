@@ -77,9 +77,6 @@
 ;; ibuffer.
 (defalias 'list-buffers 'ibuffer)
 
-;; Theme, font, frame attributes, etc.
-(require 'appearance)
-
 ;; Remember and restore buffer/file/etc. state between sessions.
 (setq desktop-path (list dropbox-directory)
       desktop-load-locked-desktop t)
