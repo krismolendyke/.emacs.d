@@ -8,3 +8,4 @@ tutorial/
 .org-id-locations
 .cask/
 url/
+*.elc
