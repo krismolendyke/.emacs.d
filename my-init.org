@@ -866,6 +866,16 @@
     (global-set-key (kbd "C-x C-r") 'recentf-ido-find-file)
   #+END_SRC
 
+* =savehist=
+
+  #+BEGIN_SRC emacs-lisp
+    ;; Save minibuffer history.
+    (require 'savehist)
+
+    (setq savehist-file (expand-file-name ".savehist" dropbox-directory))
+    (savehist-mode)
+  #+END_SRC
+
 * =smex=
 
   #+BEGIN_SRC emacs-lisp

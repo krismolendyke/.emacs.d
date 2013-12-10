@@ -46,10 +46,6 @@
 (setq dropbox-directory (expand-file-name "~/Desktop/Dropbox"))
 (setq google-drive-directory (expand-file-name "~/Google Drive"))
 
-;; Save minibuffer history.
-(setq savehist-file (expand-file-name ".savehist" dropbox-directory))
-(savehist-mode)
-
 ;; Homebrew source files.
 (setq source-directory "/Library/Caches/Homebrew/emacs--git")
 
