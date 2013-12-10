@@ -1,6 +1,17 @@
 #+TITLE: My Init
 #+OPTIONS: toc:2 num:nil
 
+* Setup
+
+  #+BEGIN_SRC emacs-lisp
+    ;; Emacs custom settings are in a separate file.
+    (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
+    (load custom-file)
+
+    ;; Homebrew source files.
+    (setq source-directory "/Library/Caches/Homebrew/emacs--git")
+  #+END_SRC
+
 * Kris Defaults
 
   #+BEGIN_SRC emacs-lisp
@@ -797,6 +808,16 @@
          (define-key paredit-mode-map [?\)] 'paredit-close-parenthesis)
          (define-key paredit-mode-map [(meta ?\))]
                      'paredit-close-parenthesis-and-newline)))
+  #+END_SRC
+
+* Path
+
+  #+BEGIN_SRC emacs-lisp
+    (require 'exec-path-from-shell)
+
+    ;; Fix environment issues with Emacs.app.
+    (add-to-list 'exec-path-from-shell-variables "DEVBOX")
+    (exec-path-from-shell-initialize)
   #+END_SRC
 
 * =powerline=

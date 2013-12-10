@@ -13,12 +13,21 @@
      (fboundp 'menu-bar-mode))
     (menu-bar-mode -1))
 
-;; Set paths to dependencies.
-;; Stuff that other folks have developed.
-(setq site-lisp-directory (expand-file-name "site-lisp" user-emacs-directory))
+(defvar site-lisp-directory
+  (expand-file-name "site-lisp" user-emacs-directory)
+  "Local libraries.")
 
-;; Stuff that I have developed.
-(setq elisp-directory (expand-file-name "elisp" user-emacs-directory))
+(defvar elisp-directory
+  (expand-file-name "elisp" user-emacs-directory)
+  "Stuff that I have developed.")
+
+(defvar dropbox-directory
+  (expand-file-name "~/Desktop/Dropbox")
+  "Dropbox home.")
+
+(defvar google-drive-directory
+  (expand-file-name "~/Google Drive")
+  "Google Drive home.")
 
 ;; Set up load path.
 (add-to-list 'load-path user-emacs-directory)
@@ -35,19 +44,13 @@
   (when (file-regular-p file)
     (load file)))
 
-;; Setup PATH
-(require 'setup-path)
 
-;; Emacs custom settings are in a separate file.
-(setq custom-file (expand-file-name "custom.el" user-emacs-directory))
-(load custom-file)
-
-;; Cloud storage.
-(setq dropbox-directory (expand-file-name "~/Desktop/Dropbox"))
-(setq google-drive-directory (expand-file-name "~/Google Drive"))
-
-;; Homebrew source files.
-(setq source-directory "/Library/Caches/Homebrew/emacs--git")
+;; Remember and restore buffer/file/etc. state between sessions.
+(require 'desktop)
+(setq desktop-path (list dropbox-directory)
+      desktop-load-locked-desktop t)
+(desktop-save-mode 1)
+(desktop-read dropbox-directory)
 
 
 
@@ -64,12 +67,3 @@
     (org-babel-load-file elt t)))
 
 (add-hook 'after-init-hook 'init-from-org)
-
-
-
-
-;; Remember and restore buffer/file/etc. state between sessions.
-(setq desktop-path (list dropbox-directory)
-      desktop-load-locked-desktop t)
-(desktop-save-mode 1)
-(desktop-read dropbox-directory)
