@@ -1,4 +1,4 @@
-;;; misc.el --- miscellaneous functions
+;;; defuns.el --- miscellaneous functions
 
 ;;; Commentary:
 ;;
@@ -109,6 +109,4 @@ Similar to but simpler than `dns-lookup-host'."
     (insert (car (last (split-string (shell-command-to-string
                                       (concat dns-lookup-program " " host))))))))
 
-(provide 'misc)
-
-;;; misc.el ends here
+;;; defuns.el ends here
