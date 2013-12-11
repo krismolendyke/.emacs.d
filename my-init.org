@@ -11,7 +11,7 @@ function.
   packages that I use do rely on customization so I do need it to be loaded.
 
   #+BEGIN_SRC emacs-lisp
-    (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
+    (setq custom-file (expand-file-name ".emacs-custom.el" user-emacs-directory))
     (load custom-file)
   #+END_SRC
 
