@@ -1,4 +1,4 @@
-#+TITLE: My Init
+#+TITLE: Custom
 #+OPTIONS: toc:2 num:nil
 
 All configuration described here should be performed in an =after-init-hook=
