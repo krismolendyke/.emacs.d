@@ -1,0 +1,3 @@
+#+TITLE: Literate Programming Emacs Configuration
+
+Please visit this project's [[http://krismolendyke.github.io/.emacs.d][GitHub Page]].
