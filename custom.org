@@ -288,7 +288,9 @@ function.
     (set-frame-height-to-max)
   #+END_SRC
 
-* =ag=
+* ag
+
+  [[https://github.com/ggreer/the_silver_searcher][The Silver Searcher]] is similar to =ack=, which in turn is similar to =grep=.
 
   #+BEGIN_SRC emacs-lisp
     (require 'ag)
@@ -300,12 +302,13 @@ function.
     (global-set-key (kbd "C-x C-a") 'ag-project)
   #+END_SRC
 
-* =auto-fill=
+* auto-fill
+
+  When to turn on auto-fill and set fill-column to a reasonable value.  This
+  would probably be better dealt with by a data structure that maps mode hooks
+  to fill-column values.
 
   #+BEGIN_SRC emacs-lisp
-    ;; When to turn on auto-fill and set fill-column to a reasonable value.  This
-    ;; would probably be better dealt with by a data structure that maps mode
-    ;; hooks to fill-column values.
     (dolist (hook '(org-mode-hook
                     text-mode-hook))
       (add-hook hook #'(lambda ()
@@ -313,14 +316,19 @@ function.
                          (setq fill-column 78))))
   #+END_SRC
 
-* =autopair=
+* autopair
+
+  [[https://github.com/capitaomorte/autopair][Autopair]] automatically pairs braces, brackets, quotes, etc.
 
   #+BEGIN_SRC emacs-lisp
     (require 'autopair)
+
     (autopair-global-mode)
   #+END_SRC
 
-* =buffer-move=
+* buffer-move
+
+  Move the cursor between buffers much more intuitively than with =C-x b=.
 
   #+BEGIN_SRC emacs-lisp
     (require 'buffer-move)
