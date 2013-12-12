@@ -54,6 +54,8 @@ function.
 
 * Kris Defaults
 
+  This is a bunch of stuff that I just dumped here and need to go through yet.
+
   #+BEGIN_SRC emacs-lisp
     (require 'ido)
     (require 'windmove)
