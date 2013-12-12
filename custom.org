@@ -177,6 +177,8 @@ function.
 
 * Appearance
 
+  The fonts stuff in here can probably be split out.
+
   #+BEGIN_SRC emacs-lisp
     ;; Add themes.
     (dolist
