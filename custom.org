@@ -1,0 +1,979 @@
+#+TITLE: Custom
+#+OPTIONS: toc:2 num:nil
+
+All configuration described here is performed in an =after-init-hook=
+function.
+
+* Customization
+
+  I don't make much use of the [[http://www.gnu.org/software/emacs/manual/html_node/emacs/Customization.html#Customization][Customization]] interface.  By default it dumps
+  its settings into =init.el= and I don't want to see them there.  A few
+  packages that I use do rely on customization so I do need it to be loaded.
+
+  #+BEGIN_SRC emacs-lisp
+    (setq custom-file (expand-file-name ".emacs-custom.el" user-emacs-directory))
+    (load custom-file)
+  #+END_SRC
+
+* Global GNU Emacs Key Bindings
+
+  These global key bindings override /built-in/ functions only.
+  Package-specific or custom function defunition key bindings are made in
+  their own dedicated sections where other specific settings are made.
+
+** Set
+
+   #+BEGIN_SRC emacs-lisp
+     (global-set-key (kbd "C-c DEL") 'join-line)
+     (global-set-key (kbd "C-h C-f") 'find-function)
+     (global-set-key (kbd "C-h C-v") 'find-variable)
+     (global-set-key (kbd "C-x C-t") 'toggle-frame-fullscreen)
+     (global-set-key (kbd "M-+") 'text-scale-adjust)
+     (global-set-key (kbd "M-.") 'imenu)
+     (global-set-key (kbd "M-`") 'other-window)
+   #+END_SRC
+
+** Unset
+
+   #+BEGIN_SRC emacs-lisp
+   #+END_SRC
+
+* Global =defuns.el= Key Bindings
+
+  These global key bindings are for functions that I've defined in =defuns.el=
+  that have been previously loaded during initialization in =init.el=.
+
+** Set
+
+   #+BEGIN_SRC emacs-lisp
+     (global-set-key (kbd "C-x 0") 'delete-window-and-balance)
+     (global-set-key (kbd "C-x 3") 'split-window-right-and-balance-and-go-there-and-switch-buffer)
+     (global-set-key (kbd "C-x t") 'toggle-theme)
+     (global-set-key (kbd "H-l") 'ifl-region-or-query)
+   #+END_SRC
+
+* Kris Defaults
+
+  This is a bunch of stuff that I just dumped here and need to go through yet.
+
+  #+BEGIN_SRC emacs-lisp
+    (require 'ido)
+    (require 'windmove)
+
+    ;; Homebrew source files.
+    (setq source-directory "/Library/Caches/Homebrew/emacs--git")
+
+
+    ;; Please, no backup or autosave litter.
+    (setq make-backup-files nil
+          auto-save-default nil)
+
+
+    ;; Show the active region.
+    (transient-mark-mode t)
+
+    ;; Overwrite text when typing in a region.
+    (delete-selection-mode 1)
+
+    ;; Indentation... it's electric.
+    (electric-indent-mode)
+
+    ;; Prefer splitting windows horizontally.
+    (setq split-width-threshold 81)
+
+    ;; What's going on here?
+    (setq echo-keystrokes 0.1)
+
+
+    ;; quoted-insert is a frequent typo of mine.
+    (global-unset-key (kbd "C-q"))
+
+    ;; These typo's catch me often when I mean to be navigating.
+    (global-unset-key (kbd "M-c"))
+    (global-unset-key (kbd "M-u"))
+
+    ;; Text mode menu bar drives me nuts!
+    (global-unset-key (kbd "M-`"))
+
+    ;; Where am I?
+    ;(global-linum-mode t)
+    (line-number-mode t)
+    (global-hl-line-mode t)
+    (column-number-mode t)
+    (show-paren-mode t)
+
+    ;; Please no more <2>, <3>, >_<
+    (require 'uniquify)
+    (setq uniquify-buffer-name-style 'forward)
+
+    ;; Do not break lines.  Truncate them.
+    (setq-default truncate-lines t)
+
+    ;; Automatically reload buffers when files change on disk.
+    (global-auto-revert-mode 1)
+
+    ;; Tabs... *hisssss*
+    (set-default 'indent-tabs-mode nil)
+
+    ;; Nag, nag, nag, nag...
+    (put 'downcase-region 'disabled nil)
+    (put 'upcase-region 'disabled nil)
+    (put 'narrow-to-region 'disabled nil)
+    (put 'narrow-to-page 'disabled nil)
+    (put 'scroll-left 'disabled nil)
+    (put 'scroll-right 'disabled nil)
+
+    ;; Kill trailing whitespace on save.
+    (add-hook 'before-save-hook 'delete-trailing-whitespace)
+    ;(setq-default show-trailing-whitespace nil)
+
+    ;; Require a final newline before saving or writing a file.
+    (setq require-final-newline t)
+    (setq mode-require-final-newline t)
+
+    ;; Give a man a hand.
+    (add-hook 'emacs-lisp-mode-hook 'turn-on-eldoc-mode)
+
+    ;; Quit all that damn racket!
+    (setq ring-bell-function 'ignore)
+
+    ;; Make sure syntax highlighting is enabled.
+    (global-font-lock-mode t)
+
+    ;; y is the new yes.  n is the new no.
+    (defalias 'yes-or-no-p 'y-or-n-p)
+  #+END_SRC
+
+* OS X
+
+  These may be better suited split up to key bindings and/or a maybe
+  input/mouse section.
+
+  #+BEGIN_SRC emacs-lisp
+    ;; I spend most of my time in OS X.
+    (if (equal system-type 'darwin)
+        (progn
+          ;; Command as meta.
+          (setq ns-command-modifier 'meta)
+
+          ;; Option as hyper.
+          (setq ns-option-modifier 'hyper)
+
+          ;; fn as super.
+          (setq ns-function-modifier 'super)
+
+          ;; Trackpad taming.
+          (setq
+           mouse-wheel-scroll-amount '(0.0001)
+           mouse-wheel-progressive-speed nil
+           scroll-step 1
+           scroll-conservatively 10000
+           auto-window-vscroll nil)
+
+          ;; Trash.
+          (setq trash-directory (expand-file-name "~/.Trash")
+                delete-by-moving-to-trash t)))
+  #+END_SRC
+
+* Appearance
+
+  The fonts stuff in here can probably be split out.
+
+  #+BEGIN_SRC emacs-lisp
+    ;; Add themes.
+    (dolist
+        (theme (directory-files (expand-file-name "themes" user-emacs-directory) t "\\w+"))
+      (when (file-directory-p theme)
+        (add-to-list 'custom-theme-load-path theme)))
+
+    ;; Tomorrow as a submodule.  It has a bunch of other editor support.
+    (add-to-list 'custom-theme-load-path
+                 (expand-file-name
+                  "themes/tomorrow/GNU Emacs" user-emacs-directory))
+    (add-to-list 'load-path (expand-file-name
+                             "themes/tomorrow/GNU Emacs" user-emacs-directory))
+
+    ;; These ports of Sublime Text 2 themes required a stupid shell script
+    ;; to "install" them which I refuse to use.
+    (add-to-list 'custom-theme-load-path
+                 (expand-file-name
+                  "themes/st2/themes" user-emacs-directory))
+
+    (defvar light-theme 'tomorrow-day "The default lightly colored theme.")
+    ;; Other good light-theme candidates: whiteboard
+
+    (defvar dark-theme 'tomorrow-night-bright "The default darkly colored theme.")
+    ;; Other good dark-theme candidates:
+    ;; tomorrow-night hickey fogus dorsey wilson wombat zenburn
+
+    (defun load-light-theme ()
+      "Load a lightly colored theme for conditions when ambient light
+    is bright."
+      (interactive)
+      (disable-theme (car custom-enabled-themes))
+      (load-theme light-theme t)
+      (set-face-background 'hl-line "AntiqueWhite2"))
+
+    (defun load-dark-theme ()
+      "Load a darkly colored theme for conditions when ambient light
+    is dark."
+      (interactive)
+      (disable-theme (car custom-enabled-themes))
+      (load-theme dark-theme t)
+      (set-face-background 'hl-line "gray20")
+      (set-face-background 'region "gray36"))
+
+    (defun toggle-theme ()
+      "Switch between the light and dark theme."
+      (interactive)
+      (if (member dark-theme custom-enabled-themes)
+          (load-light-theme)
+        (load-dark-theme)))
+
+    ;; Load a dark theme by default.
+    (load-dark-theme)
+
+    ;; Blink the cursor.
+    (setq blink-cursor-interval 0.75)
+    (blink-cursor-mode 1)
+
+    (defun set--font (font-alist)
+      "Set the font family and size to the given font alist of the
+    format (family . point)."
+      (set-frame-font (car font-alist))
+      (set-face-attribute 'default nil :height (* 10 (cdr font-alist))))
+
+    (defun set--font-from-list (l)
+      "Set the font to first available font alist in the given list."
+      (if (null l) nil
+        (set--font (car l))
+        (if (string= (caar l) (face-attribute 'default :family (selected-frame)))
+            (caar l)
+          (set--font-from-list (cdr l)))))
+
+    (defvar font-list '(("Source_Code_Pro" . 11)
+                        ("Glass_TTY_VT220" . 20)
+                        ("Consolas" . 18)
+                        ("Ubuntu_Mono" . 17)
+                        ("Inconsolata" . 18))
+      "Ordered list of preferred fonts and sizes.")
+
+    (set--font-from-list font-list)
+
+    (defun set-font ()
+      "Set a font from the `font-list'."
+      (interactive)
+      (let ((ignore-case completion-ignore-case))
+        (unwind-protect
+            (progn
+              (setq completion-ignore-case t)
+              (let ((font (completing-read "Font: " font-list)))
+                (set--font (assoc font font-list))))
+          (setq completion-ignore-case ignore-case))))
+
+    (defun get-max-rows (pixel-height)
+      "Return the maximum number of rows that will fit with this screen.
+    Given a screen pixel height at the current frame character height, calculate
+    the maximum number of rows that will fit with that height."
+      (if (window-system)
+          (/ pixel-height (frame-char-height))))
+
+    (defun set-frame-height-to-max ()
+      "Set the selected frame height to the maximum that will fit the current
+    screen resolution."
+      (if (window-system)
+          (set-frame-height (selected-frame)
+                            (get-max-rows (- (display-pixel-height) 44)))))
+
+    (set-frame-height-to-max)
+  #+END_SRC
+
+* =ag=
+
+  #+BEGIN_SRC emacs-lisp
+    (require 'ag)
+
+    (setq ag-arguments
+          '("--smart-case" "--nogroup" "--column" "--smart-case" "--stats" "--")
+          ag-highlight-search t)
+
+    (global-set-key (kbd "C-x C-a") 'ag-project)
+  #+END_SRC
+
+* =auto-fill=
+
+  #+BEGIN_SRC emacs-lisp
+    ;; When to turn on auto-fill and set fill-column to a reasonable value.  This
+    ;; would probably be better dealt with by a data structure that maps mode
+    ;; hooks to fill-column values.
+    (dolist (hook '(org-mode-hook
+                    text-mode-hook))
+      (add-hook hook #'(lambda ()
+                         (auto-fill-mode 1)
+                         (setq fill-column 78))))
+  #+END_SRC
+
+* =autopair=
+
+  #+BEGIN_SRC emacs-lisp
+    (require 'autopair)
+    (autopair-global-mode)
+  #+END_SRC
+
+* =buffer-move=
+
+  #+BEGIN_SRC emacs-lisp
+    (require 'buffer-move)
+
+    (global-set-key (kbd "<H-S-up>") 'buf-move-up)
+    (global-set-key (kbd "<H-S-down>") 'buf-move-down)
+    (global-set-key (kbd "<H-S-left>") 'buf-move-left)
+    (global-set-key (kbd "<H-S-right>") 'buf-move-right)
+  #+END_SRC
+
+* =calendar=
+
+  #+BEGIN_SRC emacs-lisp
+    (require 'geo-ip)
+    (require 'url)
+
+    (add-hook
+     'calendar-load-hook
+     #'(lambda ()
+         ;; Default location Philly.
+         (setq
+          calendar-latitude 39.9            ; 39.9525
+          calendar-longitude -75.1          ; -75.163
+          calendar-location-name "Philadelphia, PA")
+
+         ;; Attempt to set location with a geo-ip query.
+         (geo-ip-lat-lon-loc-ip
+          #'(lambda (lat lon loc ip)
+              (setq
+               calendar-latitude lat
+               calendar-longitude lon
+               calendar-location-name loc)))))
+  #+END_SRC
+
+* =cider=
+
+  #+BEGIN_SRC emacs-lisp
+    (require 'cider)
+    (require 'paredit)
+
+    (add-hook 'cider-mode-hook (lambda ()
+                                 (cider-turn-on-eldoc-mode)
+                                 (paredit-mode +1)))
+    (setq nrepl-hide-special-buffers t
+          cider-repl-popup-stacktraces nil
+          cider-repl-use-pretty-printing t
+          cider-repl-history-file (expand-file-name "nrepl-history" dropbox-directory))
+  #+END_SRC
+
+* =clojure-mode=
+
+  #+BEGIN_SRC emacs-lisp
+    (require 'clojure-mode)
+    (require 'clojure-test-mode)
+    (require 'paredit)
+
+    ;; Awesome advice to safe buffers before loading or running tests
+    ;; courtesy of
+    ;; https://github.com/magnars/.emacs.d/blob/486e631801c84b018d90cf040d2170ef78045676/setup-clojure-mode.el
+    (defadvice clojure-test-run-tests (before save-first activate)
+      (save-buffer))
+
+    (defadvice nrepl-load-current-buffer (before save-first activate)
+      (save-buffer))
+
+    (add-hook 'clojure-mode-hook 'paredit-mode)
+  #+END_SRC
+
+* =compilation-mode=
+
+  #+BEGIN_SRC emacs-lisp
+    (add-hook 'compilation-mode-hook (lambda ()
+                                       (set-face-foreground 'compilation-error "tomato1")))
+  #+END_SRC
+
+* =dired=
+
+  #+BEGIN_SRC emacs-lisp
+    (require 'autorevert)
+
+    (add-hook 'dired-mode-hook
+              #'(lambda ()
+                  (auto-revert-mode 1)
+                  (setq auto-revert-verbose nil)
+                  (set-face-foreground 'dired-flagged "tomato1")
+                  (set-face-attribute 'dired-flagged nil :strike-through t)))
+
+    ;; C-x C-d is normally bound to `ido-list-directory' which I rarely need and
+    ;; often type when I intend to run `ido-dired'.
+    (global-set-key (kbd "C-x C-d") 'ido-dired)
+  #+END_SRC
+
+* =emacs-lisp-mode=
+
+  #+BEGIN_SRC emacs-lisp
+    (require 'autopair)
+
+    (add-hook 'emacs-lisp-mode-hook
+              (lambda ()
+                ;; autopair `' when writing comments or strings.
+                (push '(?` . ?')
+                      (getf autopair-extra-pairs :comment))
+                (push '(?` . ?')
+                      (getf autopair-extra-pairs :string))))
+  #+END_SRC
+
+* =expand-region=
+
+  #+BEGIN_SRC emacs-lisp
+    (require 'expand-region)
+
+    (global-set-key (kbd "C-M-SPC") 'er/expand-region)
+  #+END_SRC
+
+* =find-file-in-project=
+
+  #+BEGIN_SRC emacs-lisp
+    (require 'find-file-in-project)
+
+    (add-to-list 'ffip-patterns "*.css" t)
+    (add-to-list 'ffip-patterns "*.soy" t)
+
+    (setq ffip-limit 8192
+          ffip-find-options "-not -regex \".*/build.*\""
+          ffip-full-paths t)
+
+    (global-set-key (kbd "C-x o") 'find-file-in-project)
+  #+END_SRC
+
+* =flycheck=
+
+  #+BEGIN_SRC emacs-lisp
+    (require 'flycheck)
+
+    ;; Easier navigation for errors/warnings/etc.
+    ;; ◀◀
+    (global-set-key (kbd "<f7>") 'flycheck-previous-error)
+    ;; ▶▶
+    (global-set-key (kbd "<f9>") 'flycheck-next-error)
+  #+END_SRC
+
+* =flyspell=
+
+  #+BEGIN_SRC emacs-lisp
+    (require 'flyspell)
+
+    (setq-default ispell-program-name "/usr/local/bin/aspell")
+
+    ;; When to turn on flyspell-mode.
+    (dolist (hook '(text-mode-hook))
+      (add-hook hook #'(lambda () (flyspell-mode 1))))
+
+    ;; When to turn on flyspell-prog-mode for comments and strings in source.
+    ;; (dolist (hook '(emacs-lisp-mode-hook
+    ;;                 lisp-mode-hook))
+    ;;   (add-hook hook #'(lambda () (flyspell-prog-mode))))
+
+    ;; Do not emit to *Messages*.
+    (setq flyspell-issue-message-flag nil)
+  #+END_SRC
+
+* git
+
+  #+BEGIN_SRC emacs-lisp
+    (require 'git-commit-mode)
+    (require 'gitconfig-mode)
+    (require 'gitignore-mode)
+
+    (add-hook 'git-commit-mode-hook (lambda () (setq fill-column 72)))
+
+    (autoload 'git-blame-mode "git-blame"
+      "Minor mode for incremental blame for Git." t)
+
+    (global-set-key (kbd "C-x v b") 'git-blame-mode)
+  #+END_SRC
+
+* =highlight-parentheses=
+
+  #+BEGIN_SRC emacs-lisp
+    (require 'highlight-parentheses)
+
+    (dolist (hook '(emacs-lisp-mode-hook
+                    lisp-mode-hook
+                    cider-repl-mode-hook
+                    clojure-mode-hook))
+      (add-hook hook #'(lambda ()
+                         (highlight-parentheses-mode))))
+  #+END_SRC
+
+* hyperspec
+
+  #+BEGIN_SRC emacs-lisp
+    ;; Set HyperSpec root in Dropbox.
+    (defvar common-lisp-hyperspec-root
+      (format "file://%s/"
+              (expand-file-name "Documents/HyperSpec" dropbox-directory)))
+  #+END_SRC
+
+* =ibuffer=
+
+  #+BEGIN_SRC emacs-lisp
+    (require 'ibuffer)
+
+    (defalias 'list-buffers 'ibuffer)
+
+    (setq ibuffer-formats '((mark
+                             " "
+                             (modified)
+                             " "
+                             (name 40 40 :right :elide)
+                             " "
+                             (filename-and-process))
+                            (mark
+                             " "
+                             (filename-and-process 70 70 :left :elide)
+                             " "
+                             name)))
+
+    (add-hook 'ibuffer-hook (lambda () (ibuffer-switch-to-saved-filter-groups "")))
+  #+END_SRC
+
+* =ido=
+
+  #+BEGIN_SRC emacs-lisp
+    (require 'flx-ido)
+    (require 'ido)
+    (require 'ido-vertical-mode)
+
+    (add-to-list 'ido-ignore-files "\\.DS_Store")
+
+    ;; Boring arrows be gone!
+    (setq ido-vertical-decorations '("\n"  ; left bracket around prospect list
+                                     ""    ; right bracket around prospect list
+                                     "\n"  ; separator between prospects, depends on `ido-separator`
+                                     "\n▼" ; inserted at the end of a truncated list of prospects
+                                     "["   ; left bracket around common match string
+                                     "]"   ; right bracket around common match string
+                                     " ✘"  ; no match
+                                     " ✔"  ; matched
+                                     " [Not readable]"
+                                     " [Too big]"
+                                     " ?"  ; confirm
+                                     "\n"  ; left bracket around the sole remaining completion
+                                     " ✔"  ; right bracket around the sole remaining completion
+                                     ))
+
+    (add-hook 'ido-minibuffer-setup-hook
+              #'(lambda ()
+                  "Bump up minibuffer text size and height."
+                  (text-scale-set 3)
+                  (setq max-mini-window-height 20)))
+
+    ;; Avoid `ido-vertical-mode' from eating M-p.
+    (setq ido-vertical-define-keys nil)
+
+    (defun my-ido-setup ()
+      "Setup key map and theme faces."
+      (define-key ido-completion-map (kbd "C-n") 'ido-next-match)
+      (define-key ido-completion-map (kbd "C-p") 'ido-prev-match)
+      (define-key ido-completion-map (kbd "<up>") 'ido-prev-match)
+      (define-key ido-completion-map (kbd "<down>") 'ido-next-match)
+      (define-key ido-completion-map (kbd "<left>") 'ido-vertical-prev-match)
+      (define-key ido-completion-map (kbd "<right>") 'ido-vertical-next-match)
+
+      ;; Theme!
+      (let ((match (face-attribute 'font-lock-string-face :foreground))
+            (highlight (face-attribute 'font-lock-keyword-face :foreground)))
+        (custom-set-faces `(ido-first-match ((t (:foreground ,match))))
+                          `(ido-only-match ((t (:foreground ,match))))
+                          `(flx-highlight-face ((t (:foreground ,highlight
+                                                    :underline nil)))))))
+    (add-hook 'ido-setup-hook 'my-ido-setup)
+
+    (ido-mode t)
+    (ido-vertical-mode t)
+    (ido-ubiquitous-mode t)
+    (flx-ido-mode t)
+
+    (setq ido-enable-flex-matching t
+          ido-auto-merge-work-directories-length -1
+          ido-create-new-buffer 'always
+          ido-show-dot-for-dired t
+          ido-max-file-prompt-width 0.2
+          ido-use-faces t
+          flx-ido-use-faces t)
+  #+END_SRC
+
+* =js-mode=
+
+  #+BEGIN_SRC emacs-lisp
+    (add-to-list 'auto-mode-alist '("\\.json" . js-mode))
+
+    (defun json-format ()
+      "Pretty-print a buffer containing JSON."
+      (interactive)
+      (shell-command-on-region (point-min) (point-max) "python -m json.tool" (current-buffer)))
+  #+END_SRC
+
+* =monetate-mode=
+
+  #+BEGIN_SRC emacs-lisp
+    (require 'monetate-mode)
+
+    (dolist (hook '(python-mode-hook js-mode-hook))
+      (add-hook hook
+                (lambda ()
+                  (if (monetate-repo-p)
+                      (monetate-mode 1)))))
+  #+END_SRC
+
+* =multiple-cursors=
+
+  #+BEGIN_SRC emacs-lisp
+    (require 'multiple-cursors)
+
+    ;; Keep preferences sync'd across machines.
+    (setq mc/list-file (expand-file-name ".mc-lists.el" dropbox-directory))
+
+    (global-set-key (kbd "M-L") 'mc/edit-lines)
+    (global-set-key (kbd "C-M-.") 'mc/mark-next-like-this)
+    (global-set-key (kbd "C-M-,") 'mc/mark-previous-like-this)
+    (global-set-key (kbd "C-M-<return>") 'mc/mark-all-like-this)
+    (global-set-key (kbd "H-SPC") 'set-rectangular-region-anchor)
+
+    (defun mark-current-line ()
+      "Mark the current line.
+    If the mark is already set simply move the point forward a single
+    line.  If it is not set, set it at the beginning of the current
+    line and then move the point forward a single line."
+      (interactive)
+      (unless mark-active
+        (beginning-of-line)
+        (set-mark (point)))
+      (forward-line 1))
+
+    (global-set-key (kbd "M-l") 'mark-current-line)
+  #+END_SRC
+
+* =org-mode=
+
+  #+BEGIN_SRC emacs-lisp
+    (require 'htmlize)
+    (require 'org)
+    (require 'ox-publish)
+    (require 'yasnippet)
+
+    ;; Set the org directory.
+    (setq org-directory (expand-file-name "org" dropbox-directory))
+
+    ;; MobileOrg setup.
+    (require 'org-mobile)
+    (setq org-mobile-inbox-for-pull (expand-file-name "flagged.org" org-directory)
+          org-mobile-directory (expand-file-name "Apps/MobileOrg" dropbox-directory))
+    (dolist (dir (dirs-in-dir org-directory '("." ".." ".git")))
+      (add-to-list 'org-mobile-files dir))
+
+    ;; Speeeeeeeeeed!  Move to very beginning of a headline and press "?"
+    (setq org-use-speed-commands t)
+
+    ;; Automatically insert a timestamp when a task is marked DONE.
+    (setq org-log-done t)
+
+    ;; "Special" `C-a' and `C-e' movement in headlines.
+    (setq org-special-ctrl-a/e t)
+
+    ;; Use completion in the current buffer for movement.
+    (setq org-goto-interface 'outline-path-completion)
+
+    ;; Display entities as UTF-8 characters.
+    (add-hook 'org-mode-hook
+              #'(lambda ()
+                  (org-toggle-pretty-entities)
+                  (visual-line-mode 0)
+                  (yas-minor-mode 1)))
+
+    ;; org-capture.
+    (setq org-default-notes-file (expand-file-name "notes.org" org-directory))
+
+    ;; Global key binding to make storing links to files easier.
+    (global-set-key (kbd "C-c l") 'org-store-link)
+
+    ;; Agenda files.
+    ;; (setq org-agenda-files
+    ;;       (list (expand-file-name "k20e.org" org-directory)
+    ;;             (expand-file-name "work.org" org-directory)))
+
+    ;; Enable "expert" export interface.
+    (setq org-export-dispatch-use-expert-ui t)
+
+    ;; Enable Markdown export backend.
+    (require 'ox-md)
+    (add-to-list 'org-export-backends 'md)
+
+    ;; Fontify _SRC blocks in org-mode buffers.
+    (setq org-src-fontify-natively t)
+
+    ;; Generate a stylesheet rather than inline CSS.
+    (setq org-html-htmlize-output-type 'css)
+
+    ;; Customize HTML export styling.
+    (require 'ox-html)
+    (setq org-html-head-include-default-style nil
+          org-html-postamble-format '(("en" "<p class=\"author\">%a</p>
+    <p class=\"date\">%C</p>
+    <p class=\"creator\">%c</p>"))
+          org-html-postamble t)
+
+    (defun update-org-css ()
+      "Update the `org-html-head' variable with the contents of the
+    ~/.emacs.d/org.css file."
+      (interactive)
+      (let ((css-filename (expand-file-name "org.css" user-emacs-directory))
+            (css-wrapper "<style type=\"text/css\">
+    <!--/*--><![CDATA[/*><!--*/
+    %s/*]]>*/-->
+    </style>"))
+        (setq org-html-head (format css-wrapper
+                                    (file-contents-as-string css-filename)))))
+    (add-hook 'org-export-before-processing-hook
+              (lambda (backend) (update-org-css)))
+
+    (setq org-html-head-extra
+          "<link href='http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css' rel='stylesheet'>")
+
+    ;; Publishing.
+    ;; (let* ((project-name "introduction-to-mathematical-thinking")
+    ;;        (org-component (format "%s-files" project-name))
+    ;;        (static-component (format "%s-static" project-name))
+    ;;        (project-directory project-name)
+    ;;        (root (expand-file-name project-directory org-directory))
+    ;;        (public (expand-file-name "public" root))
+    ;;        (static (expand-file-name "static" root)))
+    ;;   (setq org-publish-project-alist
+    ;;         `((,org-component
+    ;;            :base-directory ,root
+    ;;            :base-extension "org"
+    ;;            :publishing-directory ,public
+    ;;            :recursive t
+    ;;            :publishing-function org-publish-org-to-html
+    ;;            :headline-levels 6
+    ;;            :auto-preamble t)
+    ;;           (,static-component
+    ;;            :base-directory ,static
+    ;;            :base-extension "css\\|pdf"
+    ;;            :publishing-directory ,public
+    ;;            :recursive t
+    ;;            :publishing-function org-publish-attachment)
+    ;;           (,project-name :components (,org-component ,static-component)))))
+
+    (setq org-publish-project-alist
+          `(("work-org-files"
+             :base-directory ,(expand-file-name "work" org-directory)
+             :base-extension "org"
+             :publishing-directory ,(expand-file-name "published" (expand-file-name "work" org-directory))
+             :publishing-function org-html-publish-to-html
+             :with-planning t)
+            ("work-static-files"
+             :base-directory ,(expand-file-name "work" org-directory)
+             :base-extension "pdf\\|csv\\|sql"
+             :publishing-directory ,(expand-file-name "published" (expand-file-name "work" org-directory))
+             :publishing-function org-publish-attachment)
+            ("work"
+             :components ("work-org-files" "work-static-files"))))
+
+    ;; Resolutions reminder.
+    (find-file (expand-file-name "2013-resolutions.org" org-directory))
+  #+END_SRC
+
+* =paredit-mode=
+
+  #+BEGIN_SRC emacs-lisp
+    (autoload 'paredit-mode "paredit" nil t)
+
+    ;; When to turn on paredit.
+    (dolist (hook '(emacs-lisp-mode-hook
+                    lisp-mode-hook
+                    cider-repl-mode-hook))
+      (add-hook hook #'(lambda nil (paredit-mode 1))))
+
+    ;; Map close-parenthesis.
+    (eval-after-load "paredit"
+      '(progn
+         (define-key paredit-mode-map [?\)] 'paredit-close-parenthesis)
+         (define-key paredit-mode-map [(meta ?\))]
+                     'paredit-close-parenthesis-and-newline)))
+  #+END_SRC
+
+* Path
+
+  #+BEGIN_SRC emacs-lisp
+    (require 'exec-path-from-shell)
+
+    ;; Fix environment issues with Emacs.app.
+    (add-to-list 'exec-path-from-shell-variables "DEVBOX")
+    (exec-path-from-shell-initialize)
+  #+END_SRC
+
+* =powerline=
+
+  #+BEGIN_SRC emacs-lisp
+    ;; (require 'powerline)
+    ;; (set-default 'powerline-default-separator 'zigzag)
+    ;; (powerline-default-theme)
+  #+END_SRC
+
+* =python=
+
+  #+BEGIN_SRC emacs-lisp
+    (require 'autopair)
+    (require 'electric)
+    (require 'flycheck)
+    (require 'python)
+
+    (add-hook 'python-mode-hook
+              #'(lambda ()
+                  ;; Do not drive me crazy with extra-dumb indentation!
+                  (setq electric-indent-inhibit t)
+                  (linum-mode 1)
+                  ;; (flycheck-mode 1)
+                  (setq fill-column 118
+                        autopair-handle-action-fns (list #'autopair-default-handle-action
+                                                         #'autopair-python-triple-quote-action))
+                  ;; Previously:
+                  ;; C-M-f, C-M-b (paredit-forward/back)
+                  ;; C-M-n, C-M-p (forward-list/backward-list)
+                  ;; C-M-a, C-M-e (beginning-of-defun/end-of-defun)
+                  (define-key python-mode-map (kbd "M-a") 'python-nav-beginning-of-statement)
+                  (define-key python-mode-map (kbd "M-e") 'python-nav-end-of-statement)
+                  (define-key python-mode-map (kbd "M-n") 'python-nav-forward-statement)
+                  (define-key python-mode-map (kbd "M-p") 'python-nav-backward-statement)
+                  (define-key python-mode-map (kbd "C-M-f") 'python-nav-forward-sexp)
+                  (define-key python-mode-map (kbd "C-M-b") '(lambda () (interactive) (python-nav--backward-sexp)))
+                  (define-key python-mode-map (kbd "C-M-n") 'python-nav-forward-block)
+                  (define-key python-mode-map (kbd "C-M-p") 'python-nav-backward-block)))
+
+    ;; Use IPython!
+    (setq
+     python-shell-interpreter "ipython"
+     python-shell-interpreter-args ""
+     python-shell-prompt-regexp "In \\[[0-9]+\\]: "
+     python-shell-prompt-output-regexp "Out\\[[0-9]+\\]: "
+     python-shell-completion-setup-code "from IPython.core.completerlib import module_completion"
+     python-shell-completion-module-string-code "';'.join(module_completion('''%s'''))\n"
+     python-shell-completion-string-code "';'.join(get_ipython().Completer.all_completions('''%s'''))\n")
+  #+END_SRC
+
+* =recentf=
+
+  #+BEGIN_SRC emacs-lisp
+    (require 'recentf)
+
+    (setq recentf-max-saved-items 250)
+    (recentf-mode 1)
+
+    ;;; Adapted from http://emacsredux.com/blog/2013/04/05/recently-visited-files
+    (defun recentf-ido-find-file ()
+      "Find a recently opened file with ido."
+      (interactive)
+      (let ((file (ido-completing-read "Find recent file: " recentf-list nil t)))
+        (if file (find-file file))))
+
+    (global-set-key (kbd "C-x C-r") 'recentf-ido-find-file)
+  #+END_SRC
+
+* =savehist=
+
+  #+BEGIN_SRC emacs-lisp
+    ;; Save minibuffer history.
+    (require 'savehist)
+
+    (setq savehist-file (expand-file-name ".savehist" dropbox-directory))
+    (savehist-mode)
+  #+END_SRC
+
+* =smex=
+
+  #+BEGIN_SRC emacs-lisp
+    (require 'smex)
+    (smex-initialize)
+
+    ;; Replace execute-extended-command binding with smex.
+    (global-set-key (kbd "M-x") 'smex)
+    (global-set-key (kbd "M-X") 'smex-major-mode-commands)
+
+    ;; Keep execute-extended-command at hand just in case.
+    (global-set-key (kbd "C-c C-c M-x") 'execute-extended-command)
+
+    ;; Share smex history across my machines.
+    (setq smex-save-file (expand-file-name ".smex-items" dropbox-directory))
+  #+END_SRC
+
+* =sql-mode=
+
+  #+BEGIN_SRC emacs-lisp
+    (require 'sql)
+
+    (add-hook 'sql-mode-hook (lambda ()
+                               (setq sql-product 'mysql)
+                               (sql-highlight-mysql-keywords)))
+  #+END_SRC
+
+* =server=
+
+  #+BEGIN_SRC emacs-lisp
+    ;; Start the Emacs server.
+    (require 'server)
+
+    (unless (server-running-p)
+      (server-start))
+  #+END_SRC
+
+* =term=
+
+  #+BEGIN_SRC emacs-lisp
+    (require 'smex)
+    (require 'term)
+
+    ;; `autopair-mode' interferes with `term-send-raw' bounding on `RET'.
+    (if (fboundp 'autopair-mode)
+        (add-hook 'term-mode-hook (lambda () (autopair-mode -1))))
+
+    ;; I have yet to need execute-extended-command in the terminal.
+    (define-key term-raw-map [?\M-x] 'smex)
+    (define-key term-mode-map [?\M-x] 'smex)
+
+    (defun zsh ()
+      "Run an `ansi-term' process with zsh."
+      (interactive)
+      (ansi-term "/bin/zsh" "zsh"))
+  #+END_SRC
+
+* =windmove=
+
+  #+BEGIN_SRC emacs-lisp
+    (require 'windmove)
+
+    (windmove-default-keybindings 'hyper)
+    (setq windmove-wrap-around t)
+  #+END_SRC
+
+* =winner-mode=
+
+  #+BEGIN_SRC emacs-lisp
+    ;; Remember window configurations.
+    (require 'winner)
+
+    (winner-mode)
+  #+END_SRC
+
+* =yasnippet=
+
+  #+BEGIN_SRC emacs-lisp
+    (require 'yasnippet)
+
+    (yas-reload-all)
+  #+END_SRC

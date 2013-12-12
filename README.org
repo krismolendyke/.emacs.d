@@ -1,0 +1,4 @@
+* [[http://www-cs-faculty.stanford.edu/~uno/lp.html][Literate]] =.emacs.d=
+
+This is a literate programming attempt at Emacs configuration.  Please visit
+ this project's [[http://krismolendyke.github.io/.emacs.d][GitHub Page]] for more information.

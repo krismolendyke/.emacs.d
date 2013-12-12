@@ -1,1 +1,0 @@
-Inspired by [@emacsrocks](http://emacsrocks.com/).

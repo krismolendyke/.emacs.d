@@ -1,121 +1,86 @@
-(require 'cask "~/.cask/cask.el")
-(cask-initialize)
-(require 'pallet)
+;;; init.el --- Bootstrap initialization.
 
-;; Turn off bars A.S.A.P.  See appearance.el for more.
-(if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
-(if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
+;;; Commentary:
+;;
+;; Bootstrap setup during initialization time.  Advanced configuration
+;; and setup is done in an `after-init-hook' function.
 
-;; Only turn off the menu bar in the terminal.
-(if (and
-     (fboundp 'window-system)
-     (not (window-system))
-     (fboundp 'menu-bar-mode))
-    (menu-bar-mode -1))
+;;; Code:
 
-;; Set paths to dependencies.
-;; Stuff that other folks have developed.
-(setq site-lisp-directory (expand-file-name "site-lisp" user-emacs-directory))
-;; Stuff that I have developed.
-(setq elisp-directory (expand-file-name "elisp" user-emacs-directory))
+(defvar site-lisp-directory
+  (expand-file-name "site-lisp" user-emacs-directory)
+  "Local libraries.")
 
-;; Set up load path.
-(add-to-list 'load-path user-emacs-directory)
-(add-to-list 'load-path site-lisp-directory)
-(add-to-list 'load-path elisp-directory)
+(defvar elisp-directory
+  (expand-file-name "elisp" user-emacs-directory)
+  "Stuff that I have developed.")
 
-;; Add external projects to load path.
-(dolist (project (directory-files site-lisp-directory t "\\w+"))
-  (when (file-directory-p project)
-    (add-to-list 'load-path project)))
+(defvar org-lisp-directory
+  (expand-file-name "lisp" (expand-file-name "org-mode" site-lisp-directory))
+  "The directory contaiting `org-mode' Emacs Lisp files.")
 
-;; Load my stuff.
-(dolist (file (directory-files elisp-directory t "\\w+"))
-  (when (file-regular-p file)
-    (load file)))
+(defvar dropbox-directory
+  (expand-file-name "~/Desktop/Dropbox")
+  "Dropbox home.")
 
-;; Setup PATH
-(require 'setup-path)
+(defvar google-drive-directory
+  (expand-file-name "~/Google Drive")
+  "Google Drive home.")
 
-;; Emacs custom settings are in a separate file.
-(setq custom-file (expand-file-name "custom.el" user-emacs-directory))
-(load custom-file)
+(defun setup-cask-and-pallet ()
+  "Package managment goodness."
+  (require 'cask "~/.cask/cask.el")
+  (cask-initialize)
+  (require 'pallet))
 
-;; Cloud storage.
-(setq dropbox-directory (expand-file-name "~/Desktop/Dropbox"))
-(setq google-drive-directory (expand-file-name "~/Google Drive"))
+(defun no-bars-held ()
+  "Turn off tool, scroll, and menu bars when appropriate.
+Only turn off the menu bar running in a terminal window."
+  (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
+  (if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
+  (if (and (fboundp 'window-system)
+           (not (window-system))
+           (fboundp 'menu-bar-mode))
+      (menu-bar-mode -1)))
 
-;; Save minibuffer history.
-(setq savehist-file (expand-file-name ".savehist" dropbox-directory))
-(savehist-mode)
+(defun setup-load-path ()
+  "Add custom directories to `load-path'."
+  (dolist ((directory '(user-emacs-directory
+                        site-lisp-directory
+                        elisp-directory
+                        org-lisp-directory)))
+    (add-to-list 'load-path directory))
 
-;; Homebrew source files.
-(setq source-directory "/Library/Caches/Homebrew/emacs--git")
+  ;; Add external projects to load path.
+  (dolist (project (directory-files site-lisp-directory t "\\w+"))
+    (when (file-directory-p project)
+      (add-to-list 'load-path project))))
 
-;; I spend most of my time in OS X.
-(if (equal system-type 'darwin) (require 'osx))
+(defun load-custom-elisp ()
+  "Load custom Emacs Lisp files in `elisp-directory'."
+  (dolist (file (directory-files elisp-directory t "\\w+"))
+    (when (file-regular-p file)
+      (load file))))
 
-;; Remember window configurations.
-(winner-mode 1)
+(defun restore-desktop ()
+  "Restore the state of buffers from the last session."
+  (require 'desktop)
+  (setq desktop-path (list dropbox-directory)
+        desktop-load-locked-desktop t)
+  (desktop-save-mode 1)
+  (desktop-read dropbox-directory))
 
-;; ibuffer.
-(defalias 'list-buffers 'ibuffer)
+(defun after-init ()
+  "Perform complex post-initialization."
+  (require 'org)
+  (dolist (elt (directory-files user-emacs-directory t "\\.org$" t))
+    (org-babel-load-file elt t)))
 
-;; Theme, font, frame attributes, etc.
-(require 'appearance)
+(setup-cask-and-pallet)
+(no-bars-held)
+(setup-load-path)
+(load-custom-elisp)
+(restore-desktop)
+(add-hook 'after-init-hook 'after-init)
 
-;; Kris's defaults.
-(require 'kris-defaults)
-
-;; Remember and restore buffer/file/etc. state between sessions.
-(setq desktop-path (list dropbox-directory)
-      desktop-load-locked-desktop t)
-(desktop-save-mode 1)
-(desktop-read dropbox-directory)
-
-;; Start the Emacs server.
-(require 'server)
-(unless (server-running-p)
-  (server-start))
-
-;; Setup extensions.
-;; (require 'setup-ace-jump)
-(require 'setup-ag)
-(require 'setup-auto-fill)
-(require 'setup-autopair)
-(require 'setup-buffer-move)
-(require 'setup-calendar)
-(require 'setup-cider)
-(require 'setup-clojure)
-(require 'setup-compilation)
-(require 'setup-dired)
-(require 'setup-emacs-lisp)
-(require 'setup-expand-region)
-(require 'setup-find-file-in-project)
-(require 'setup-flycheck)
-(require 'setup-flyspell)
-(require 'setup-git)
-(require 'setup-highlight-parentheses)
-(require 'setup-hyperspec)
-(require 'setup-ibuffer)
-(require 'setup-ido)
-;; (require 'setup-jinja2)
-(require 'setup-js)
-(require 'setup-json)
-;; (require 'setup-lisp)
-;; (require 'setup-markdown)
-(require 'setup-monetate)
-(require 'setup-multiple-cursors)
-(require 'setup-org)
-(require 'setup-paredit)
-;; (require 'setup-powerline)
-(require 'setup-python)
-(require 'setup-recentf)
-;; (require 'setup-sgml)
-;; (require 'setup-slime)
-(require 'setup-smex)
-(require 'setup-sql)
-(require 'setup-term)
-(require 'setup-windmove)
-;; (require 'setup-yaml)
-(require 'setup-yasnippet)
+;;; init.el ends here
