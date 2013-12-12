@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>Custom</title>
-<!-- 2013-12-12 Thu 14:16 -->
+<!-- 2013-12-12 Thu 17:28 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Kris Molendyke" />
@@ -1435,10 +1435,10 @@ for the JavaScript code in this tag.
 <li><a href="#sec-4">Kris Defaults</a></li>
 <li><a href="#sec-5">OS X</a></li>
 <li><a href="#sec-6">Appearance</a></li>
-<li><a href="#sec-7"><code>ag</code></a></li>
-<li><a href="#sec-8"><code>auto-fill</code></a></li>
-<li><a href="#sec-9"><code>autopair</code></a></li>
-<li><a href="#sec-10"><code>buffer-move</code></a></li>
+<li><a href="#sec-7">ag</a></li>
+<li><a href="#sec-8">auto-fill</a></li>
+<li><a href="#sec-9">autopair</a></li>
+<li><a href="#sec-10">buffer-move</a></li>
 <li><a href="#sec-11"><code>calendar</code></a></li>
 <li><a href="#sec-12"><code>cider</code></a></li>
 <li><a href="#sec-13"><code>clojure-mode</code></a></li>
@@ -1810,8 +1810,12 @@ The fonts stuff in here can probably be split out.
 </div>
 </div>
 <div id="outline-container-sec-7" class="outline-2">
-<h2 id="sec-7"><code>ag</code></h2>
+<h2 id="sec-7">ag</h2>
 <div class="outline-text-2" id="text-7">
+<p>
+<a href="https://github.com/ggreer/the_silver_searcher">The Silver Searcher</a> is similar to <code>ack</code>, which in turn is similar to <code>grep</code>.
+</p>
+
 <div class="org-src-container">
 
 <pre class="src src-emacs-lisp">(<span class="org-keyword">require</span> '<span class="org-constant">ag</span>)
@@ -1826,14 +1830,17 @@ The fonts stuff in here can probably be split out.
 </div>
 </div>
 <div id="outline-container-sec-8" class="outline-2">
-<h2 id="sec-8"><code>auto-fill</code></h2>
+<h2 id="sec-8">auto-fill</h2>
 <div class="outline-text-2" id="text-8">
+<p>
+When to turn on auto-fill and set fill-column to a reasonable value.  This
+would probably be better dealt with by a data structure that maps mode hooks
+to fill-column values.
+</p>
+
 <div class="org-src-container">
 
-<pre class="src src-emacs-lisp"><span class="org-comment-delimiter">;; </span><span class="org-comment">When to turn on auto-fill and set fill-column to a reasonable value.  This</span>
-<span class="org-comment-delimiter">;; </span><span class="org-comment">would probably be better dealt with by a data structure that maps mode</span>
-<span class="org-comment-delimiter">;; </span><span class="org-comment">hooks to fill-column values.</span>
-(<span class="org-keyword">dolist</span> (hook '(org-mode-hook
+<pre class="src src-emacs-lisp">(<span class="org-keyword">dolist</span> (hook '(org-mode-hook
                 text-mode-hook))
   (add-hook hook #'(<span class="org-keyword">lambda</span> ()
                      (auto-fill-mode 1)
@@ -1843,19 +1850,28 @@ The fonts stuff in here can probably be split out.
 </div>
 </div>
 <div id="outline-container-sec-9" class="outline-2">
-<h2 id="sec-9"><code>autopair</code></h2>
+<h2 id="sec-9">autopair</h2>
 <div class="outline-text-2" id="text-9">
+<p>
+<a href="https://github.com/capitaomorte/autopair">Autopair</a> automatically pairs braces, brackets, quotes, etc.
+</p>
+
 <div class="org-src-container">
 
 <pre class="src src-emacs-lisp">(<span class="org-keyword">require</span> '<span class="org-constant">autopair</span>)
+
 (autopair-global-mode)
 </pre>
 </div>
 </div>
 </div>
 <div id="outline-container-sec-10" class="outline-2">
-<h2 id="sec-10"><code>buffer-move</code></h2>
+<h2 id="sec-10">buffer-move</h2>
 <div class="outline-text-2" id="text-10">
+<p>
+Move the cursor between buffers much more intuitively than with <code>C-x b</code>.
+</p>
+
 <div class="org-src-container">
 
 <pre class="src src-emacs-lisp">(<span class="org-keyword">require</span> '<span class="org-constant">buffer-move</span>)
@@ -2646,7 +2662,7 @@ The fonts stuff in here can probably be split out.
 </div>
 <div id="postamble" class="status">
 <p class="author">Kris Molendyke</p>
-<p class="date">2013-12-12 Thu 14:05</p>
+<p class="date">2013-12-12 Thu 17:28</p>
 <p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.3.50.1 (<a href="http://orgmode.org">Org</a> mode 8.2.3a)</p>
 </div>
 </body>
