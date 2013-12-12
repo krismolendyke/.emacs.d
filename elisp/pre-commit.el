@@ -3,7 +3,7 @@
 ;;; Commentary:
 ;;
 ;; This file contains the code that I would like to be run at git
-;; pre-commit time.
+;; pre-commit time.  See .git/hooks/pre-commit.
 
 ;;; Code:
 
