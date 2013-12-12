@@ -1,7 +1,7 @@
 #+TITLE: Custom
 #+OPTIONS: toc:2 num:nil
 
-All configuration described here should be performed in an =after-init-hook=
+All configuration described here is performed in an =after-init-hook=
 function.
 
 * Customization
