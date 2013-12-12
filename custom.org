@@ -146,6 +146,9 @@ function.
 
 * OS X
 
+  These may be better suited split up to key bindings and/or a maybe
+  input/mouse section.
+
   #+BEGIN_SRC emacs-lisp
     ;; I spend most of my time in OS X.
     (if (equal system-type 'darwin)
