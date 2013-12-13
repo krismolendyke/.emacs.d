@@ -810,6 +810,15 @@ function.
     (find-file (expand-file-name "2013-resolutions.org" org-directory))
   #+END_SRC
 
+  Define [[http://orgmode.org/worg/org-contrib/babel/languages.html][which languages]] =org-babel= should support.
+
+  #+BEGIN_SRC emacs-lisp
+    (org-babel-do-load-languages
+     'org-babel-load-languages
+     '((emacs-lisp . t)
+       (org . t)))
+  #+END_SRC
+
 * =paredit-mode=
 
   #+BEGIN_SRC emacs-lisp
