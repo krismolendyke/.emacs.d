@@ -9,7 +9,7 @@ that are written only in a high-level language. The main idea is to treat a
 program as a piece of literature, addressed to human beings rather than to a
 computer. The program is also viewed as a hypertext document, rather like the
 World Wide Web. (Indeed, I used the word WEB for this purpose long before CERN
-grabbed it!) -- Donald Knuth
+grabbed it!) -- [[http://www-cs-faculty.stanford.edu/~uno/lp.html][Donald Knuth]]
 #+END_QUOTE
 
 All configuration described here is performed in an =after-init-hook=
