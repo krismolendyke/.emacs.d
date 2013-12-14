@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>Literate <code>.emacs.d</code></title>
-<!-- 2013-12-14 Sat 15:47 -->
+<!-- 2013-12-14 Sat 16:27 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Kris Molendyke" />
@@ -1542,7 +1542,11 @@ their own dedicated sections where other specific settings are made.
 <div class="outline-text-3" id="text-2-2">
 <div class="org-src-container">
 
-<pre class="src src-emacs-lisp"></pre>
+<pre class="src src-emacs-lisp">(global-unset-key (kbd <span class="org-string">"C-q"</span>))
+(global-unset-key (kbd <span class="org-string">"M-c"</span>))
+(global-unset-key (kbd <span class="org-string">"M-u"</span>))
+(global-unset-key (kbd <span class="org-string">"M-`"</span>))
+</pre>
 </div>
 </div>
 </div>
@@ -1606,16 +1610,6 @@ This is a bunch of stuff that I just dumped here and need to go through yet.
 <span class="org-comment-delimiter">;; </span><span class="org-comment">What's going on here?</span>
 (setq echo-keystrokes 0.1)
 
-
-<span class="org-comment-delimiter">;; </span><span class="org-comment">quoted-insert is a frequent typo of mine.</span>
-(global-unset-key (kbd <span class="org-string">"C-q"</span>))
-
-<span class="org-comment-delimiter">;; </span><span class="org-comment">These typo's catch me often when I mean to be navigating.</span>
-(global-unset-key (kbd <span class="org-string">"M-c"</span>))
-(global-unset-key (kbd <span class="org-string">"M-u"</span>))
-
-<span class="org-comment-delimiter">;; </span><span class="org-comment">Text mode menu bar drives me nuts!</span>
-(global-unset-key (kbd <span class="org-string">"M-`"</span>))
 
 <span class="org-comment-delimiter">;; </span><span class="org-comment">Where am I?</span>
 <span class="org-comment-delimiter">;</span><span class="org-comment">(global-linum-mode t)</span>
@@ -2690,7 +2684,7 @@ Define <a href="http://orgmode.org/worg/org-contrib/babel/languages.html">which 
 </div>
 <div id="postamble" class="status">
 <p class="author">Kris Molendyke</p>
-<p class="date">2013-12-14 Sat 15:47</p>
+<p class="date">2013-12-14 Sat 16:25</p>
 <p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.3.50.1 (<a href="http://orgmode.org">Org</a> mode 8.2.3a)</p>
 </div>
 </body>
