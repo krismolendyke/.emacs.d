@@ -49,6 +49,10 @@ function.
 ** Unset
 
    #+BEGIN_SRC emacs-lisp
+     (global-unset-key (kbd "C-q"))
+     (global-unset-key (kbd "M-c"))
+     (global-unset-key (kbd "M-u"))
+     (global-unset-key (kbd "M-`"))
    #+END_SRC
 
 * Global =defuns.el= Key Bindings
@@ -97,16 +101,6 @@ function.
     ;; What's going on here?
     (setq echo-keystrokes 0.1)
 
-
-    ;; quoted-insert is a frequent typo of mine.
-    (global-unset-key (kbd "C-q"))
-
-    ;; These typo's catch me often when I mean to be navigating.
-    (global-unset-key (kbd "M-c"))
-    (global-unset-key (kbd "M-u"))
-
-    ;; Text mode menu bar drives me nuts!
-    (global-unset-key (kbd "M-`"))
 
     ;; Where am I?
     ;(global-linum-mode t)
