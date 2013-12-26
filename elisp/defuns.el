@@ -113,13 +113,13 @@ Similar to but simpler than `dns-lookup-host'."
   "Balance windows after splitting."
   (interactive)
   (split-window-right)
-  (balance-windows))
+  (balance-windows-area))
 
 (defun split-window-right-and-balance-and-go-there-and-switch-buffer (&optional arg)
   "Optional argument ARG Prefix argument will switch buffer using ido."
   (interactive "P")
   (split-window-right)
-  (balance-windows)
+  (balance-windows-area)
   (windmove-right)
   (if arg
       (ido-switch-buffer)
@@ -129,6 +129,6 @@ Similar to but simpler than `dns-lookup-host'."
   "Balance windows after deleting."
   (interactive)
   (delete-window)
-  (balance-windows))
+  (balance-windows-area))
 
 ;;; defuns.el ends here
