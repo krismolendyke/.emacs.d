@@ -17,9 +17,9 @@ function.
 
 #+TOC: headlines 2
 
-* Building Emacs
+* Build Emacs
   :PROPERTIES:
-  :CUSTOM_ID: building-emacs
+  :CUSTOM_ID: build-emacs
   :END:
 
   I primarily use Emacs locally on Apple hardware.  Most, if not all, of the
