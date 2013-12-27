@@ -53,6 +53,10 @@ function.
      (setq source-directory "/Library/Caches/Homebrew/emacs--git")
    #+END_SRC
 
+* TODO Generate and Publish =custom.org= to GitHub
+
+  Include =post-commit= hook.
+
 * Customization
 
   I don't make much use of the [[http://www.gnu.org/software/emacs/manual/html_node/emacs/Customization.html#Customization][Customization]] interface.  By default it dumps
