@@ -530,6 +530,8 @@ function.
     (setq flyspell-issue-message-flag nil)
   #+END_SRC
 
+** TODO Investigate [[http://hunspell.sourceforge.net/][=hunspell=]]
+
 * git
 
   #+BEGIN_SRC emacs-lisp
