@@ -17,6 +17,42 @@ function.
 
 #+TOC: headlines 2
 
+* Building Emacs
+  :PROPERTIES:
+  :CUSTOM_ID: building-emacs
+  :END:
+
+  I primarily use Emacs locally on Apple hardware.  Most, if not all, of the
+  remote editing that I do is done via =tramp=.  I keep an eye on the [[fhttp://git.savannah.gnu.org/cgit/emacs.git/log/][log]] at
+  the bleeding edge [[http://git-scm.com/][git]] mirror of the official Emacs [[http://bazaar.canonical.com/en/][bzr]] repo.  When something
+  interesting lands there I will build a fresh Emacs installation via [[http://brew.sh/][Homebrew]]
+  and try it out.
+
+  #+BEGIN_SRC sh
+    brew info emacs
+  #+END_SRC
+
+  I install Emacs with the following options.
+
+  #+BEGIN_SRC sh
+    time brew install emacs --cocoa --srgb --HEAD --use-git-head
+  #+END_SRC
+
+  If there is an existing installation it needs to be removed first.
+
+  #+BEGIN_SRC sh
+    brew uninstall emacs
+  #+END_SRC
+
+** Emacs Source Directory
+
+   =source-directory= is helpful to have set properly when interested in
+   exploring built-in /C functions/ via =find-function=.
+
+   #+BEGIN_SRC emacs-lisp
+     (setq source-directory "/Library/Caches/Homebrew/emacs--git")
+   #+END_SRC
+
 * Customization
 
   I don't make much use of the [[http://www.gnu.org/software/emacs/manual/html_node/emacs/Customization.html#Customization][Customization]] interface.  By default it dumps
@@ -76,9 +112,6 @@ function.
   #+BEGIN_SRC emacs-lisp
     (require 'ido)
     (require 'windmove)
-
-    ;; Homebrew source files.
-    (setq source-directory "/Library/Caches/Homebrew/emacs--git")
 
 
     ;; Please, no backup or autosave litter.
