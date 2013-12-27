@@ -46,8 +46,8 @@ function.
 
 ** Emacs Source Directory
 
-   =source-directory= is helpful to have set properly when interested in
-   exploring built-in /C functions/ via =find-function=.
+   =source-directory= is helpful to have set properly when exploring built-in
+   /C functions/ via =find-function=.
 
    #+BEGIN_SRC emacs-lisp
      (setq source-directory "/Library/Caches/Homebrew/emacs--git")
