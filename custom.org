@@ -213,6 +213,9 @@ function.
           ;; fn as super.
           (setq ns-function-modifier 'super)
 
+          ;; See https://github.com/Homebrew/homebrew/commit/49c85b89753d42cc4ec2fee9607a608b3b14ab33?w=1
+          (setq ns-use-srgb-colorspace t)
+
           ;; Trackpad taming.
           (setq
            mouse-wheel-scroll-amount '(0.0001)
