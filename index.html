@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>Literate <code>.emacs.d</code></title>
-<!-- 2013-12-27 Fri 12:16 -->
+<!-- 2013-12-28 Sat 11:11 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Kris Molendyke" />
@@ -1556,6 +1556,17 @@ If there is an existing installation it needs to be removed first.
 <pre class="src src-emacs-lisp">(setq source-directory <span class="org-string">"/Library/Caches/Homebrew/emacs--git"</span>)
 </pre>
 </div>
+
+<p>
+Finding the source code directory via Homebrew can be done with the
+following command:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-sh">brew --cache
+</pre>
+</div>
 </div>
 </div>
 </div>
@@ -1753,6 +1764,9 @@ input/mouse section?
 
       <span class="org-comment-delimiter">;; </span><span class="org-comment">fn as super.</span>
       (setq ns-function-modifier 'super)
+
+      <span class="org-comment-delimiter">;; </span><span class="org-comment">See https://github.com/Homebrew/homebrew/commit/49c85b89753d42cc4ec2fee9607a608b3b14ab33?w=1</span>
+      (setq ns-use-srgb-colorspace t)
 
       <span class="org-comment-delimiter">;; </span><span class="org-comment">Trackpad taming.</span>
       (setq
@@ -2758,7 +2772,7 @@ Define <a href="http://orgmode.org/worg/org-contrib/babel/languages.html">which 
 </div>
 <div id="postamble" class="status">
 <p class="author">Kris Molendyke</p>
-<p class="date">2013-12-27 Fri 12:16</p>
+<p class="date">2013-12-28 Sat 11:07</p>
 <p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.3.50.1 (<a href="http://orgmode.org">Org</a> mode 8.2.3a)</p>
 </div>
 </body>
