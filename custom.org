@@ -53,6 +53,13 @@ function.
      (setq source-directory "/Library/Caches/Homebrew/emacs--git")
    #+END_SRC
 
+   Finding the source code directory via Homebrew can be done with the
+   following command:
+
+   #+BEGIN_SRC sh
+     brew --cache
+   #+END_SRC
+
 * TODO Generate and Publish =custom.org= to GitHub
 
   Include =post-commit= hook.
