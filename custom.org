@@ -524,16 +524,32 @@ function.
     (global-set-key (kbd "<f9>") 'flycheck-next-error)
   #+END_SRC
 
-* =flyspell=
+* flyspell
+
+  First setup =ispell= to use [[#install-hunspell][=hunspell=]]:
+
+  #+BEGIN_SRC emacs-lisp
+    (eval-after-load "ispell"
+      '(progn
+         (setq-default ispell-dictionary-alist '((nil
+                                                  "[A-Za-z]"
+                                                  "[^A-Za-z]"
+                                                  "[']"
+                                                  t
+                                                  ("-d" "en_US")
+                                                  nil
+                                                  utf-8))
+                       ispell-program-name "hunspell")))
+  #+END_SRC
+
+  Then setup =flyspell= itself.  It requires  =ispell=.
 
   #+BEGIN_SRC emacs-lisp
     (require 'flyspell)
 
-    (setq-default ispell-program-name "/usr/local/bin/aspell")
-
     ;; When to turn on flyspell-mode.
     (dolist (hook '(text-mode-hook))
-      (add-hook hook #'(lambda () (flyspell-mode 1))))
+      (add-hook hook 'turn-on-flyspell))
 
     ;; When to turn on flyspell-prog-mode for comments and strings in source.
     ;; (dolist (hook '(emacs-lisp-mode-hook
@@ -544,7 +560,37 @@ function.
     (setq flyspell-issue-message-flag nil)
   #+END_SRC
 
-** TODO Investigate [[http://hunspell.sourceforge.net/][=hunspell=]]
+** Install [[http://hunspell.sourceforge.net/][=hunspell=]]
+   :PROPERTIES:
+   :CUSTOM_ID: install-hunspell
+   :END:
+
+   Install =hunspell= via Homebrew:
+
+   #+BEGIN_SRC sh
+     brew install hunspell
+   #+END_SRC
+
+   1. Download a [[http://extensions.openoffice.org/en/project/us-english-spell-checking-dictionary][US English dictionary]] from [[http://extensions.openoffice.org/en/search?f%5B0%5D%3Dfield_project_tags%253A157][OpenOffice Extensions]].
+   2. Decompress the =en_us.oxt= file.  It is just a zip file with a different
+      extension.
+   3. Place it onto the =hunspell= search path.
+
+   The search path can be show via:
+
+   #+BEGIN_SRC sh
+     hunspell -D
+   #+END_SRC
+
+   =/Library/Spelling/= seems like a good spot on OS X.  Once both the
+   =en_US.aff= and =en_US.dic= files are there check again that =en_US= is
+   listed under =AVAILABLE DICTIONARIES=.
+
+   Set the /default dictionary/ to be =en_US= with an environment variable:
+
+   #+BEGIN_SRC sh
+     export LANG=en_US
+   #+END_SRC
 
 * git
 
