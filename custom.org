@@ -896,7 +896,7 @@ function.
              :components ("work-org-files" "work-static-files"))))
 
     ;; Resolutions reminder.
-    (find-file (expand-file-name "2013-resolutions.org" org-directory))
+    (find-file (expand-file-name "resolutions.org" org-directory))
   #+END_SRC
 
   Define [[http://orgmode.org/worg/org-contrib/babel/languages.html][which languages]] =org-babel= should support.
