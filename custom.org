@@ -393,7 +393,7 @@ function.
     (global-set-key (kbd "<H-S-right>") 'buf-move-right)
   #+END_SRC
 
-* =calendar=
+* calendar
 
   #+BEGIN_SRC emacs-lisp
     (require 'geo-ip)
@@ -417,7 +417,7 @@ function.
                calendar-location-name loc)))))
   #+END_SRC
 
-* =cider=
+* cider
 
   #+BEGIN_SRC emacs-lisp
     (require 'cider)
@@ -432,7 +432,7 @@ function.
           cider-repl-history-file (expand-file-name "nrepl-history" dropbox-directory))
   #+END_SRC
 
-* =clojure-mode=
+* clojure-mode
 
   #+BEGIN_SRC emacs-lisp
     (require 'clojure-mode)
@@ -451,14 +451,14 @@ function.
     (add-hook 'clojure-mode-hook 'paredit-mode)
   #+END_SRC
 
-* =compilation-mode=
+* compilation-mode
 
   #+BEGIN_SRC emacs-lisp
     (add-hook 'compilation-mode-hook (lambda ()
                                        (set-face-foreground 'compilation-error "tomato1")))
   #+END_SRC
 
-* =dired=
+* dired
 
   #+BEGIN_SRC emacs-lisp
     (require 'autorevert)
@@ -475,7 +475,7 @@ function.
     (global-set-key (kbd "C-x C-d") 'ido-dired)
   #+END_SRC
 
-* =emacs-lisp-mode=
+* emacs-lisp-mode
 
   #+BEGIN_SRC emacs-lisp
     (require 'autopair)
@@ -489,7 +489,7 @@ function.
                       (getf autopair-extra-pairs :string))))
   #+END_SRC
 
-* =expand-region=
+* expand-region
 
   #+BEGIN_SRC emacs-lisp
     (require 'expand-region)
@@ -497,7 +497,7 @@ function.
     (global-set-key (kbd "C-M-SPC") 'er/expand-region)
   #+END_SRC
 
-* =find-file-in-project=
+* find-file-in-project
 
   #+BEGIN_SRC emacs-lisp
     (require 'find-file-in-project)
@@ -512,7 +512,7 @@ function.
     (global-set-key (kbd "C-x o") 'find-file-in-project)
   #+END_SRC
 
-* =flycheck=
+* flycheck
 
   #+BEGIN_SRC emacs-lisp
     (require 'flycheck)
@@ -607,7 +607,7 @@ function.
     (global-set-key (kbd "C-x v b") 'git-blame-mode)
   #+END_SRC
 
-* =highlight-parentheses=
+* highlight-parentheses
 
   #+BEGIN_SRC emacs-lisp
     (require 'highlight-parentheses)
@@ -629,7 +629,7 @@ function.
               (expand-file-name "Documents/HyperSpec" dropbox-directory)))
   #+END_SRC
 
-* =ibuffer=
+* ibuffer
 
   #+BEGIN_SRC emacs-lisp
     (require 'ibuffer)
@@ -652,7 +652,7 @@ function.
     (add-hook 'ibuffer-hook (lambda () (ibuffer-switch-to-saved-filter-groups "")))
   #+END_SRC
 
-* =ido=
+* ido
 
   #+BEGIN_SRC emacs-lisp
     (require 'flx-ido)
@@ -718,7 +718,7 @@ function.
           flx-ido-use-faces t)
   #+END_SRC
 
-* =js-mode=
+* js-mode
 
   #+BEGIN_SRC emacs-lisp
     (add-to-list 'auto-mode-alist '("\\.json" . js-mode))
@@ -729,7 +729,7 @@ function.
       (shell-command-on-region (point-min) (point-max) "python -m json.tool" (current-buffer)))
   #+END_SRC
 
-* =monetate-mode=
+* monetate-mode
 
   #+BEGIN_SRC emacs-lisp
     (require 'monetate-mode)
@@ -741,7 +741,7 @@ function.
                       (monetate-mode 1)))))
   #+END_SRC
 
-* =multiple-cursors=
+* multiple-cursors
 
   #+BEGIN_SRC emacs-lisp
     (require 'multiple-cursors)
@@ -769,7 +769,7 @@ function.
     (global-set-key (kbd "M-l") 'mark-current-line)
   #+END_SRC
 
-* =org-mode=
+* org-mode
 
   #+BEGIN_SRC emacs-lisp
     (require 'htmlize)
@@ -908,7 +908,7 @@ function.
        (org . t)))
   #+END_SRC
 
-* =paredit-mode=
+* paredit-mode
 
   #+BEGIN_SRC emacs-lisp
     (autoload 'paredit-mode "paredit" nil t)
@@ -937,7 +937,7 @@ function.
     (exec-path-from-shell-initialize)
   #+END_SRC
 
-* =powerline=
+* powerline
 
   #+BEGIN_SRC emacs-lisp
     ;; (require 'powerline)
@@ -945,7 +945,7 @@ function.
     ;; (powerline-default-theme)
   #+END_SRC
 
-* =python=
+* python
 
   #+BEGIN_SRC emacs-lisp
     (require 'autopair)
@@ -986,7 +986,7 @@ function.
      python-shell-completion-string-code "';'.join(get_ipython().Completer.all_completions('''%s'''))\n")
   #+END_SRC
 
-* =recentf=
+* recentf
 
   #+BEGIN_SRC emacs-lisp
     (require 'recentf)
@@ -1004,7 +1004,7 @@ function.
     (global-set-key (kbd "C-x C-r") 'recentf-ido-find-file)
   #+END_SRC
 
-* =savehist=
+* savehist
 
   #+BEGIN_SRC emacs-lisp
     ;; Save minibuffer history.
@@ -1014,7 +1014,7 @@ function.
     (savehist-mode)
   #+END_SRC
 
-* =smex=
+* smex
 
   #+BEGIN_SRC emacs-lisp
     (require 'smex)
@@ -1031,7 +1031,7 @@ function.
     (setq smex-save-file (expand-file-name ".smex-items" dropbox-directory))
   #+END_SRC
 
-* =sql-mode=
+* sql-mode
 
   #+BEGIN_SRC emacs-lisp
     (require 'sql)
@@ -1041,7 +1041,7 @@ function.
                                (sql-highlight-mysql-keywords)))
   #+END_SRC
 
-* =server=
+* server
 
   #+BEGIN_SRC emacs-lisp
     ;; Start the Emacs server.
@@ -1051,7 +1051,7 @@ function.
       (server-start))
   #+END_SRC
 
-* =term=
+* term
 
   #+BEGIN_SRC emacs-lisp
     (require 'smex)
@@ -1071,7 +1071,7 @@ function.
       (ansi-term "/bin/zsh" "zsh"))
   #+END_SRC
 
-* =windmove=
+* windmove
 
   #+BEGIN_SRC emacs-lisp
     (require 'windmove)
@@ -1080,7 +1080,7 @@ function.
     (setq windmove-wrap-around t)
   #+END_SRC
 
-* =winner-mode=
+* winner-mode
 
   #+BEGIN_SRC emacs-lisp
     ;; Remember window configurations.
@@ -1089,7 +1089,7 @@ function.
     (winner-mode)
   #+END_SRC
 
-* =yasnippet=
+* yasnippet
 
   #+BEGIN_SRC emacs-lisp
     (require 'yasnippet)
