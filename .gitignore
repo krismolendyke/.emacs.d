@@ -1,0 +1,15 @@
+auto-save-list/
+bookmarks
+elpa/
+eshell/
+games/
+tramp
+tutorial/
+.emacs.desktop
+.org-id-locations
+.cask/
+url/
+*.el
+*.elc
+site-lisp/
+themes/
