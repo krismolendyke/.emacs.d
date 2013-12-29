@@ -576,7 +576,7 @@ function.
       extension.
    3. Place it onto the =hunspell= search path.
 
-   The search path can be show via:
+   The search path can be shown via:
 
    #+BEGIN_SRC sh
      hunspell -D
