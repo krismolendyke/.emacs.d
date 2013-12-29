@@ -1,9 +1,11 @@
-;;; pre-commit.el --- git pre-commit hook code
+;;; setup-org-html-export-to-html.el --- Setup HTML export for org-mode.
 
 ;;; Commentary:
 ;;
-;; This file contains the code that I would like to be run at git
-;; pre-commit time.  See .git/hooks/pre-commit.
+;; This file contains the code that I would like to be run before
+;; `org-html-export-to-html' is run.  It also needs to be able to be
+;; run from an Emacs batch process so that documentation can be
+;; exported via git commit hooks.
 
 ;;; Code:
 
@@ -33,8 +35,8 @@
       org-html-postamble t)
 
 (defun update-org-css ()
-  "Update the `org-html-head' variable with the contents of the
-~/.emacs.d/org.css file."
+  "Update `org-html-head' with custom CSS.
+See ~/.emacs.d/org.css."
   (let ((css-filename (expand-file-name "org.css" user-emacs-directory))
         (css-wrapper "<style type=\"text/css\">
 <!--/*--><![CDATA[/*><!--*/
@@ -51,4 +53,4 @@
 (setq org-html-head-extra
       "<link href='http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css' rel='stylesheet'>")
 
-;;; pre-commit.el ends here
+;;; setup-org-html-export-to-html.el ends here
