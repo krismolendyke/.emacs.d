@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>Literate <code>.emacs.d</code></title>
-<!-- 2013-12-29 Sun 14:38 -->
+<!-- 2013-12-30 Mon 16:23 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Kris Molendyke" />
@@ -1845,9 +1845,8 @@ The fonts stuff in here can probably be split out.
 <span class="org-comment-delimiter">;; </span><span class="org-comment">Load a dark theme by default.</span>
 (load-dark-theme)
 
-<span class="org-comment-delimiter">;; </span><span class="org-comment">Blink the cursor.</span>
 (setq blink-cursor-interval 0.75)
-(blink-cursor-mode 1)
+(blink-cursor-mode 0)
 
 (<span class="org-keyword">defun</span> <span class="org-function-name">set--font</span> (font-alist)
   <span class="org-doc">"Set the font family and size to the given font alist of the</span>
@@ -2842,7 +2841,7 @@ Define <a href="http://orgmode.org/worg/org-contrib/babel/languages.html">which 
 </div>
 <div id="postamble" class="status">
 <p class="author">Kris Molendyke</p>
-<p class="date">2013-12-29 Sun 14:38</p>
+<p class="date">2013-12-30 Mon 16:23</p>
 <p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.3.50.1 (<a href="http://orgmode.org">Org</a> mode 8.2.3a)</p>
 </div>
 </body>
