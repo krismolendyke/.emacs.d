@@ -287,9 +287,8 @@ function.
     ;; Load a dark theme by default.
     (load-dark-theme)
 
-    ;; Blink the cursor.
     (setq blink-cursor-interval 0.75)
-    (blink-cursor-mode 1)
+    (blink-cursor-mode 0)
 
     (defun set--font (font-alist)
       "Set the font family and size to the given font alist of the
