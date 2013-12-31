@@ -122,8 +122,10 @@ h6 {
   -moz-border-radius: 3px;
   border-radius: 3px;
 }
-.todo   { background-color: #953b39; }
-.done   { background-color: #356635; }
+.todo          { background-color: #953b39; }
+.todo.STARTED  { background-color: #f89406; }
+.done          { background-color: #356635; }
+.done.CANCELED { background-color: #333333; }
 .timestamp-kwd { background-color: #5f9ea0; }
 .timestamp {
     color: #333333;
