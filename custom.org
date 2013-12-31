@@ -897,6 +897,12 @@ function.
             ("work"
              :components ("work-org-files" "work-static-files"))))
 
+    ;; Use ido-completion.
+    (setq org-completion-use-ido t)
+
+    ;; Now that ido-completion is enabled, use it when jumping around.
+    (setq org-outline-path-complete-in-steps nil)
+
     ;; Resolutions reminder.
     (find-file (expand-file-name "resolutions.org" org-directory))
   #+END_SRC
