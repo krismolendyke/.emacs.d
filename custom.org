@@ -892,6 +892,9 @@ function.
           org-habit-completed-glyph ?✓
           org-habit-today-glyph ?|)
 
+    (setq org-agenda-files
+          (list (expand-file-name "resolutions.org" org-directory)))
+
     ;; Resolutions reminder.
     (find-file (expand-file-name "resolutions.org" org-directory))
   #+END_SRC
