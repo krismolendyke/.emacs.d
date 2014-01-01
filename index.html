@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>Literate <code>.emacs.d</code></title>
-<!-- 2013-12-31 Tue 10:11 -->
+<!-- 2014-01-01 Wed 13:53 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Kris Molendyke" />
@@ -134,8 +134,10 @@ h6 {
   -moz-border-radius: 3px;
   border-radius: 3px;
 }
-.todo   { background-color: #953b39; }
-.done   { background-color: #356635; }
+.todo          { background-color: #953b39; }
+.todo.STARTED  { background-color: #f89406; }
+.done          { background-color: #356635; }
+.done.CANCELED { background-color: #333333; }
 .timestamp-kwd { background-color: #5f9ea0; }
 .timestamp {
     color: #333333;
@@ -1615,6 +1617,7 @@ their own dedicated sections where other specific settings are made.
 <div class="org-src-container">
 
 <pre class="src src-emacs-lisp">(global-set-key (kbd <span class="org-string">"C-c DEL"</span>) 'join-line)
+(global-set-key (kbd <span class="org-string">"C-c a"</span>) 'org-agenda)
 (global-set-key (kbd <span class="org-string">"C-h C-f"</span>) 'find-function)
 (global-set-key (kbd <span class="org-string">"C-h C-v"</span>) 'find-variable)
 (global-set-key (kbd <span class="org-string">"C-x C-t"</span>) 'toggle-frame-fullscreen)
@@ -2547,30 +2550,6 @@ Set the <i>default dictionary</i> to be <code>en_US</code> with an environment v
       <span class="org-string">"&lt;link href='http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css' rel='stylesheet'&gt;"</span>)
 
 <span class="org-comment-delimiter">;; </span><span class="org-comment">Publishing.</span>
-<span class="org-comment-delimiter">;; </span><span class="org-comment">(let* ((project-name "introduction-to-mathematical-thinking")</span>
-<span class="org-comment-delimiter">;;        </span><span class="org-comment">(org-component (format "%s-files" project-name))</span>
-<span class="org-comment-delimiter">;;        </span><span class="org-comment">(static-component (format "%s-static" project-name))</span>
-<span class="org-comment-delimiter">;;        </span><span class="org-comment">(project-directory project-name)</span>
-<span class="org-comment-delimiter">;;        </span><span class="org-comment">(root (expand-file-name project-directory org-directory))</span>
-<span class="org-comment-delimiter">;;        </span><span class="org-comment">(public (expand-file-name "public" root))</span>
-<span class="org-comment-delimiter">;;        </span><span class="org-comment">(static (expand-file-name "static" root)))</span>
-<span class="org-comment-delimiter">;;   </span><span class="org-comment">(setq org-publish-project-alist</span>
-<span class="org-comment-delimiter">;;         </span><span class="org-comment">`((,org-component</span>
-<span class="org-comment-delimiter">;;            </span><span class="org-comment">:base-directory ,root</span>
-<span class="org-comment-delimiter">;;            </span><span class="org-comment">:base-extension "org"</span>
-<span class="org-comment-delimiter">;;            </span><span class="org-comment">:publishing-directory ,public</span>
-<span class="org-comment-delimiter">;;            </span><span class="org-comment">:recursive t</span>
-<span class="org-comment-delimiter">;;            </span><span class="org-comment">:publishing-function org-publish-org-to-html</span>
-<span class="org-comment-delimiter">;;            </span><span class="org-comment">:headline-levels 6</span>
-<span class="org-comment-delimiter">;;            </span><span class="org-comment">:auto-preamble t)</span>
-<span class="org-comment-delimiter">;;           </span><span class="org-comment">(,static-component</span>
-<span class="org-comment-delimiter">;;            </span><span class="org-comment">:base-directory ,static</span>
-<span class="org-comment-delimiter">;;            </span><span class="org-comment">:base-extension "css\\|pdf"</span>
-<span class="org-comment-delimiter">;;            </span><span class="org-comment">:publishing-directory ,public</span>
-<span class="org-comment-delimiter">;;            </span><span class="org-comment">:recursive t</span>
-<span class="org-comment-delimiter">;;            </span><span class="org-comment">:publishing-function org-publish-attachment)</span>
-<span class="org-comment-delimiter">;;           </span><span class="org-comment">(,project-name :components (,org-component ,static-component)))))</span>
-
 (setq org-publish-project-alist
       `((<span class="org-string">"work-org-files"</span>
          <span class="org-builtin">:base-directory</span> ,(expand-file-name <span class="org-string">"work"</span> org-directory)
@@ -2585,6 +2564,28 @@ Set the <i>default dictionary</i> to be <code>en_US</code> with an environment v
          <span class="org-builtin">:publishing-function</span> org-publish-attachment)
         (<span class="org-string">"work"</span>
          <span class="org-builtin">:components</span> (<span class="org-string">"work-org-files"</span> <span class="org-string">"work-static-files"</span>))))
+
+<span class="org-comment-delimiter">;; </span><span class="org-comment">Use ido-completion.</span>
+(setq org-completion-use-ido t)
+
+<span class="org-comment-delimiter">;; </span><span class="org-comment">Now that ido-completion is enabled, use it when jumping around.</span>
+(setq org-outline-path-complete-in-steps nil)
+
+(setq org-todo-keywords '((sequence
+                           <span class="org-string">"TODO(t)"</span>
+                           <span class="org-string">"STARTED(s/!)"</span>
+                           <span class="org-string">"|"</span>
+                           <span class="org-string">"DONE(d!)"</span>
+                           <span class="org-string">"CANCELED(c@)"</span>))
+      org-todo-keyword-faces '((<span class="org-string">"TODO"</span> . org-todo)
+                               (<span class="org-string">"STARTED"</span> . org-level-2)
+                               (<span class="org-string">"CANCELED"</span> . org-ellipsis)
+                               (<span class="org-string">"DONE"</span> . org-done))
+      org-habit-completed-glyph ?&#10003;
+      org-habit-today-glyph ?|)
+
+(setq org-agenda-files
+      (list (expand-file-name <span class="org-string">"resolutions.org"</span> org-directory)))
 
 <span class="org-comment-delimiter">;; </span><span class="org-comment">Resolutions reminder.</span>
 (find-file (expand-file-name <span class="org-string">"resolutions.org"</span> org-directory))
@@ -2849,7 +2850,7 @@ Define <a href="http://orgmode.org/worg/org-contrib/babel/languages.html">which 
 </div>
 <div id="postamble" class="status">
 <p class="author">Kris Molendyke</p>
-<p class="date">2013-12-31 Tue 10:01</p>
+<p class="date">2014-01-01 Wed 13:52</p>
 <p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.3.50.1 (<a href="http://orgmode.org">Org</a> mode 8.2.3a)</p>
 </div>
 </body>
