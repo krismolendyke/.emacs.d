@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>Literate <code>.emacs.d</code></title>
-<!-- 2014-01-02 Thu 11:24 -->
+<!-- 2014-01-02 Thu 19:03 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Kris Molendyke" />
@@ -2578,14 +2578,15 @@ Set the <i>default dictionary</i> to be <code>en_US</code> with an environment v
                            <span class="org-string">"DONE(d!)"</span>
                            <span class="org-string">"CANCELED(c@)"</span>))
       org-todo-keyword-faces '((<span class="org-string">"TODO"</span> . org-todo)
-                               (<span class="org-string">"STARTED"</span> . org-level-2)
+                               (<span class="org-string">"STARTED"</span> . org-code)
                                (<span class="org-string">"CANCELED"</span> . org-ellipsis)
                                (<span class="org-string">"DONE"</span> . org-done))
       org-habit-completed-glyph ?&#10003;
       org-habit-today-glyph ?|)
 
 (setq org-agenda-files
-      (list (expand-file-name <span class="org-string">"resolutions.org"</span> org-directory)))
+      (list (expand-file-name <span class="org-string">"resolutions.org"</span> org-directory)
+            (expand-file-name <span class="org-string">"work"</span> org-directory)))
 
 <span class="org-comment-delimiter">;; </span><span class="org-comment">Resolutions reminder.</span>
 (find-file (expand-file-name <span class="org-string">"resolutions.org"</span> org-directory))
@@ -2850,7 +2851,7 @@ Define <a href="http://orgmode.org/worg/org-contrib/babel/languages.html">which 
 </div>
 <div id="postamble" class="status">
 <p class="author">Kris Molendyke</p>
-<p class="date">2014-01-01 Wed 13:53</p>
+<p class="date">2014-01-02 Thu 19:01</p>
 <p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.3.50.1 (<a href="http://orgmode.org">Org</a> mode 8.2.3a)</p>
 </div>
 </body>
