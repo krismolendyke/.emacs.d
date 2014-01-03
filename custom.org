@@ -886,7 +886,7 @@ function.
                                "DONE(d!)"
                                "CANCELED(c@)"))
           org-todo-keyword-faces '(("TODO" . org-todo)
-                                   ("STARTED" . org-level-2)
+                                   ("STARTED" . org-code)
                                    ("CANCELED" . org-ellipsis)
                                    ("DONE" . org-done))
           org-habit-completed-glyph ?✓
