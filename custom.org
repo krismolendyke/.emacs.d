@@ -893,7 +893,8 @@ function.
           org-habit-today-glyph ?|)
 
     (setq org-agenda-files
-          (list (expand-file-name "resolutions.org" org-directory)))
+          (list (expand-file-name "resolutions.org" org-directory)
+                (expand-file-name "work" org-directory)))
 
     ;; Resolutions reminder.
     (find-file (expand-file-name "resolutions.org" org-directory))
