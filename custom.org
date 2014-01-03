@@ -342,6 +342,15 @@ function.
     (set-frame-height-to-max)
   #+END_SRC
 
+** Fringe
+
+   Try out a "minimal" fringe width which is narrower than the default.
+
+   #+BEGIN_SRC emacs-lisp
+     (require 'fringe)
+     (fringe-mode (cdr (assoc "minimal" fringe-styles)))
+   #+END_SRC
+
 ** TODO Try out [[https://github.com/bruce/emacs-spacegray-theme][Spacegray theme]]
 
 * ag
