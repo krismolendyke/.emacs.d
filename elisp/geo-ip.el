@@ -56,6 +56,16 @@ the response and pass them as arguments to CALLBACK."
          (kill-buffer)))
    `(,callback)))
 
+(defun geo-ip--set-calendar-vars (latitude longitude name ip)
+  "Set calendar location variables."
+  (setq calendar-latitude latitude
+        calendar-longitude longitude
+        calendar-location-name name))
+
+(defun geo-ip-update ()
+  "Update variables which require geolocation data."
+  (interactive)
+  (geo-ip-lat-lon-loc-ip #'geo-ip--set-calendar-vars))
 
 (provide 'geo-ip)
 
