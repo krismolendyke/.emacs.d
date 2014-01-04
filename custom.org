@@ -85,7 +85,6 @@ function.
 
    #+BEGIN_SRC emacs-lisp
      (global-set-key (kbd "C-c DEL") 'join-line)
-     (global-set-key (kbd "C-c a") 'org-agenda)
      (global-set-key (kbd "C-h C-f") 'find-function)
      (global-set-key (kbd "C-h C-v") 'find-variable)
      (global-set-key (kbd "C-x C-t") 'toggle-frame-fullscreen)
@@ -917,6 +916,13 @@ function.
      '((emacs-lisp . t)
        (org . t)))
   #+END_SRC
+
+** Key Bindings
+
+   #+BEGIN_SRC emacs-lisp
+     (global-set-key (kbd "C-c a") 'org-agenda)
+     (global-set-key (kbd "C-x c") 'org-switchb)
+   #+END_SRC
 
 * paredit-mode
 
