@@ -13,14 +13,14 @@
 (require 'url)
 
 
-(defun geo-ip-location-name ()
+(defun geo-ip--location-name ()
   "Extract and return the location name string."
   (save-excursion
     (let ((beginning (search-forward-regexp "mapquest\\.com/\\?q=[0-9.,-]+\">"))
           (end (1- (search-forward-regexp "<"))))
       (buffer-substring-no-properties beginning end))))
 
-(defun geo-ip-latitude-longitude ()
+(defun geo-ip--latitude-longitude ()
   "Extract and return the numeric latitude/longitude pair."
   (save-excursion
     (let ((beginning (search-forward-regexp "mapquest\\.com/\\?q="))
@@ -29,7 +29,7 @@
        #'(lambda (x) (string-to-number x))
        (split-string (buffer-substring-no-properties beginning end) ",")))))
 
-(defun geo-ip-ip-address ()
+(defun geo-ip--ip-address ()
   "Extract and return the IP address string."
   (save-excursion
     (let ((beginning
@@ -47,11 +47,11 @@ the response and pass them as arguments to CALLBACK."
    "http://duckduckgo.com/?q=ip"
    #'(lambda (status callback)
        (unwind-protect
-           (let* ((lat-lon (geo-ip-latitude-longitude))
+           (let* ((lat-lon (geo-ip--latitude-longitude))
                   (lat (car lat-lon))
                   (lon (cadr lat-lon))
-                  (loc (geo-ip-location-name))
-                  (ip (geo-ip-ip-address)))
+                  (loc (geo-ip--location-name))
+                  (ip (geo-ip--ip-address)))
              (funcall callback lat lon loc ip))
          (kill-buffer)))
    `(,callback)))
