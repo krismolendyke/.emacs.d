@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>Literate <code>.emacs.d</code></title>
-<!-- 2014-01-02 Thu 23:40 -->
+<!-- 2014-01-03 Fri 20:53 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Kris Molendyke" />
@@ -1493,7 +1493,11 @@ function.
 <li><a href="#sec-28">js-mode</a></li>
 <li><a href="#sec-29">monetate-mode</a></li>
 <li><a href="#sec-30">multiple-cursors</a></li>
-<li><a href="#sec-31">org-mode</a></li>
+<li><a href="#sec-31">org-mode</a>
+<ul>
+<li><a href="#sec-31-1">Key Bindings</a></li>
+</ul>
+</li>
 <li><a href="#sec-32">paredit-mode</a></li>
 <li><a href="#sec-33">Path</a></li>
 <li><a href="#sec-34">powerline</a></li>
@@ -1618,7 +1622,6 @@ their own dedicated sections where other specific settings are made.
 <div class="org-src-container">
 
 <pre class="src src-emacs-lisp">(global-set-key (kbd <span class="org-string">"C-c DEL"</span>) 'join-line)
-(global-set-key (kbd <span class="org-string">"C-c a"</span>) 'org-agenda)
 (global-set-key (kbd <span class="org-string">"C-h C-f"</span>) 'find-function)
 (global-set-key (kbd <span class="org-string">"C-h C-v"</span>) 'find-variable)
 (global-set-key (kbd <span class="org-string">"C-x C-t"</span>) 'toggle-frame-fullscreen)
@@ -2622,6 +2625,18 @@ Define <a href="http://orgmode.org/worg/org-contrib/babel/languages.html">which 
 </pre>
 </div>
 </div>
+
+<div id="outline-container-sec-31-1" class="outline-3">
+<h3 id="sec-31-1">Key Bindings</h3>
+<div class="outline-text-3" id="text-31-1">
+<div class="org-src-container">
+
+<pre class="src src-emacs-lisp">(global-set-key (kbd <span class="org-string">"C-c a"</span>) 'org-agenda)
+(global-set-key (kbd <span class="org-string">"C-x c"</span>) 'org-switchb)
+</pre>
+</div>
+</div>
+</div>
 </div>
 <div id="outline-container-sec-32" class="outline-2">
 <h2 id="sec-32">paredit-mode</h2>
@@ -2867,7 +2882,7 @@ Define <a href="http://orgmode.org/worg/org-contrib/babel/languages.html">which 
 </div>
 <div id="postamble" class="status">
 <p class="author">Kris Molendyke</p>
-<p class="date">2014-01-02 Thu 23:39</p>
+<p class="date">2014-01-03 Fri 20:52</p>
 <p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.3.50.1 (<a href="http://orgmode.org">Org</a> mode 8.2.3a)</p>
 </div>
 </body>
