@@ -5,7 +5,7 @@
 
 ;; Several functions for determining location based on external IP
 ;; address.  `geo-ip-lat-lon-loc-ip' should be the only externally
-;; use-able function as the rest are simple regular expression based
+;; useable function as the rest are simple regular expression based
 ;; text extraction helper functions.
 
 ;;; Code:
