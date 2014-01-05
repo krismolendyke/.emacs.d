@@ -403,7 +403,10 @@ function.
     (global-set-key (kbd "<H-S-right>") 'buf-move-right)
   #+END_SRC
 
-* calendar
+* TODO calendar
+
+  Does setting these geolocation variables in a hook really make sense since
+  they are the result of an asynchronous query and response parsing?
 
   #+BEGIN_SRC emacs-lisp
     (require 'geo-ip)
