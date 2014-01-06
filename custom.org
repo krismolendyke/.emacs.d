@@ -927,6 +927,15 @@ function.
      (global-set-key (kbd "C-x c") 'org-switchb)
    #+END_SRC
 
+** Logging & Drawers
+
+   Insert state change notes and time stamps into a drawer rather than simply
+   "loose" after a headline.
+
+   #+BEGIN_SRC emacs-lisp
+     (setq org-log-into-drawer t)
+   #+END_SRC
+
 * paredit-mode
 
   #+BEGIN_SRC emacs-lisp
