@@ -24,6 +24,7 @@
 (depends-on "htmlize")
 (depends-on "ido-ubiquitous")
 (depends-on "ido-vertical-mode")
+(depends-on "markdown-mode")
 (depends-on "multiple-cursors")
 (depends-on "pallet")
 (depends-on "paredit")
