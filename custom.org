@@ -826,11 +826,6 @@ function.
     ;; Global key binding to make storing links to files easier.
     (global-set-key (kbd "C-c l") 'org-store-link)
 
-    ;; Agenda files.
-    ;; (setq org-agenda-files
-    ;;       (list (expand-file-name "k20e.org" org-directory)
-    ;;             (expand-file-name "work.org" org-directory)))
-
     ;; Enable "expert" export interface.
     (setq org-export-dispatch-use-expert-ui t)
 
@@ -904,10 +899,6 @@ function.
           org-habit-completed-glyph ?✓
           org-habit-today-glyph ?|)
 
-    (setq org-agenda-files
-          (list (expand-file-name "resolutions.org" org-directory)
-                (expand-file-name "work" org-directory)))
-
     ;; Resolutions reminder.
     (find-file (expand-file-name "resolutions.org" org-directory))
   #+END_SRC
@@ -929,6 +920,12 @@ function.
    #+END_SRC
 
 ** Agenda
+
+   #+BEGIN_SRC emacs-lisp
+     (setq org-agenda-files
+           (list (expand-file-name "resolutions.org" org-directory)
+                 (expand-file-name "work" org-directory)))
+   #+END_SRC
 
    Non-nil means skip scheduling line if same entry shows because of deadline.
 
