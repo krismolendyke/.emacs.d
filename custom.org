@@ -928,6 +928,21 @@ function.
      (global-set-key (kbd "C-x c") 'org-switchb)
    #+END_SRC
 
+** Agenda
+
+   Non-nil means skip scheduling line if same entry shows because of deadline.
+
+   In the agenda of today, an entry can show up multiple times because it is
+   both scheduled and has a nearby deadline, and maybe a plain time stamp as
+   well.
+
+   When set to t, then only the deadline is shown and the fact that the entry
+   is scheduled today or was scheduled previously is not shown.
+
+   #+BEGIN_SRC emacs-lisp
+     (setq org-agenda-skip-scheduled-if-deadline-is-shown t)
+   #+END_SRC
+
 ** Logging & Drawers
 
    Insert state change notes and time stamps into a drawer rather than simply
