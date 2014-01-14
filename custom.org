@@ -348,7 +348,7 @@ function.
 
    #+BEGIN_SRC emacs-lisp
      (require 'fringe)
-     (fringe-mode (cdr (assoc "left-only" fringe-styles)))
+     (fringe-mode (cdr (assoc "half-width" fringe-styles)))
    #+END_SRC
 
 ** TODO Try out [[https://github.com/bruce/emacs-spacegray-theme][Spacegray theme]]
