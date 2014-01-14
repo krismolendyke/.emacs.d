@@ -937,7 +937,7 @@ function.
    is scheduled today or was scheduled previously is not shown.
 
    #+BEGIN_SRC emacs-lisp
-     (setq org-agenda-skip-scheduled-if-deadline-is-shown t)
+     (setq org-agenda-skip-scheduled-if-deadline-is-shown nil)
    #+END_SRC
 
 ** Logging & Drawers
