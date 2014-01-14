@@ -33,4 +33,5 @@
 (depends-on "s")
 (depends-on "smex")
 (depends-on "virtualenvwrapper")
+(depends-on "web-mode")
 (depends-on "yasnippet")
