@@ -101,6 +101,7 @@ function.
      (global-unset-key (kbd "M-c"))
      (global-unset-key (kbd "M-u"))
      (global-unset-key (kbd "M-`"))
+     (global-unset-key (kbd "<f11>"))
    #+END_SRC
 
 * Global =defuns.el= Key Bindings
