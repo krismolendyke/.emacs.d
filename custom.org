@@ -345,7 +345,8 @@ function.
 
 ** Fringe
 
-   Try out a "minimal" fringe width which is narrower than the default.
+   The "fringe" or "gutter" shows indicators for wrapped/extended lines,
+   [[#flycheck][flycheck]], etc.
 
    #+BEGIN_SRC emacs-lisp
      (require 'fringe)
@@ -528,6 +529,9 @@ function.
   #+END_SRC
 
 * flycheck
+  :PROPERTIES:
+  :CUSTOM_ID: flycheck
+  :END:
 
   #+BEGIN_SRC emacs-lisp
     (require 'flycheck)
