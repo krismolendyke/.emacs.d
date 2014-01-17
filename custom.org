@@ -925,12 +925,15 @@ function.
    #+END_SRC
 
 ** Agenda
+*** Files
 
    #+BEGIN_SRC emacs-lisp
      (setq org-agenda-files
            (list (expand-file-name "resolutions.org" org-directory)
                  (expand-file-name "work" org-directory)))
    #+END_SRC
+
+*** Deadlines
 
    Non-nil means skip scheduling line if same entry shows because of deadline.
 
@@ -943,6 +946,14 @@ function.
 
    #+BEGIN_SRC emacs-lisp
      (setq org-agenda-skip-scheduled-if-deadline-is-shown nil)
+   #+END_SRC
+
+*** List
+
+   Default to showing only today in the agenda list.
+
+   #+BEGIN_SRC emacs-lisp
+     (setq org-agenda-span 'day)
    #+END_SRC
 
 ** Logging & Drawers
