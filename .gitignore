@@ -11,3 +11,4 @@ tutorial/
 url/
 *.elc
 *.html
+custom.el
