@@ -922,6 +922,7 @@ function.
    #+BEGIN_SRC emacs-lisp
      (global-set-key (kbd "C-c a") 'org-agenda)
      (global-set-key (kbd "C-x c") 'org-switchb)
+     (global-set-key (kbd "<f12>") 'org-agenda-list)
    #+END_SRC
 
 ** Agenda
