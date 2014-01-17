@@ -954,6 +954,12 @@ function.
      (setq org-log-into-drawer t)
    #+END_SRC
 
+** Clock
+
+   #+BEGIN_SRC emacs-lisp
+     (setq org-clock-idle-time 5)
+   #+END_SRC
+
 * paredit-mode
 
   #+BEGIN_SRC emacs-lisp
