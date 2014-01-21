@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>Literate <code>.emacs.d</code></title>
-<!-- 2014-01-17 Fri 10:28 -->
+<!-- 2014-01-21 Tue 14:49 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Kris Molendyke" />
@@ -2804,7 +2804,7 @@ Insert state change notes and time stamps into a drawer rather than simply
               (define-key python-mode-map (kbd <span class="org-string">"M-n"</span>) 'python-nav-forward-statement)
               (define-key python-mode-map (kbd <span class="org-string">"M-p"</span>) 'python-nav-backward-statement)
               (define-key python-mode-map (kbd <span class="org-string">"C-M-f"</span>) 'python-nav-forward-sexp)
-              (define-key python-mode-map (kbd <span class="org-string">"C-M-b"</span>) '(<span class="org-keyword">lambda</span> () (interactive) (python-nav--backward-sexp)))
+              (define-key python-mode-map (kbd <span class="org-string">"C-M-b"</span>) 'python-nav-backward-sexp)
               (define-key python-mode-map (kbd <span class="org-string">"C-M-n"</span>) 'python-nav-forward-block)
               (define-key python-mode-map (kbd <span class="org-string">"C-M-p"</span>) 'python-nav-backward-block)))
 
@@ -2987,7 +2987,7 @@ Insert state change notes and time stamps into a drawer rather than simply
 </div>
 <div id="postamble" class="status">
 <p class="author">Kris Molendyke</p>
-<p class="date">2014-01-17 Fri 10:27</p>
+<p class="date">2014-01-21 Tue 14:46</p>
 <p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.3.50.1 (<a href="http://orgmode.org">Org</a> mode 8.2.3a)</p>
 </div>
 </body>
