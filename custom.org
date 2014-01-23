@@ -1073,7 +1073,8 @@ function.
   #+BEGIN_SRC emacs-lisp
     (require 'recentf)
 
-    (setq recentf-max-saved-items 250)
+    (setq recentf-save-file (expand-file-name ".recentf" dropbox-directory)
+          recentf-max-saved-items 250)
     (recentf-mode 1)
 
     ;;; Adapted from http://emacsredux.com/blog/2013/04/05/recently-visited-files
