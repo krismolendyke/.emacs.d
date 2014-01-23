@@ -683,6 +683,12 @@ function.
 
 * ido
 
+  Set the save file location before =ido= is loaded.
+
+  #+BEGIN_SRC emacs-lisp
+    (defvar ido-save-directory-list-file (expand-file-name ".ido.last" dropbox-directory))
+  #+END_SRC
+
   #+BEGIN_SRC emacs-lisp
     (require 'flx-ido)
     (require 'ido)
