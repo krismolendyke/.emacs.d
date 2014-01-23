@@ -767,6 +767,8 @@ function.
                 (lambda ()
                   (if (monetate-repo-p)
                       (monetate-mode 1)))))
+
+    (setq monetate-notify-function 'monetate--notify-terminal-notifier)
   #+END_SRC
 
 * multiple-cursors
