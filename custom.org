@@ -683,17 +683,12 @@ function.
 
 * ido
 
-  Set the save file location before =ido= is loaded.
-
-  #+BEGIN_SRC emacs-lisp
-    (defvar ido-save-directory-list-file (expand-file-name ".ido.last" dropbox-directory))
-  #+END_SRC
-
   #+BEGIN_SRC emacs-lisp
     (require 'flx-ido)
     (require 'ido)
     (require 'ido-vertical-mode)
 
+    (setq ido-save-directory-list-file (expand-file-name ".ido.last" dropbox-directory))
     (add-to-list 'ido-ignore-files "\\.DS_Store")
 
     ;; Boring arrows be gone!
