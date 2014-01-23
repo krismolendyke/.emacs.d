@@ -341,8 +341,6 @@ function.
                             (get-max-rows (- (display-pixel-height) 44)))))
 
     (set-frame-height-to-max)
-
-    (setq inhibit-startup-echo-area-message "kris")
   #+END_SRC
 
 ** Fringe

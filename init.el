@@ -36,6 +36,7 @@
 (defun no-bars-held ()
   "Turn off tool, scroll, and menu bars when appropriate.
 Only turn off the menu bar running in a terminal window."
+  (setq inhibit-startup-echo-area-message "kris")
   (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
   (if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
   (if (and (fboundp 'window-system)
