@@ -355,6 +355,14 @@ function.
      (fringe-mode (cdr (assoc "half-width" fringe-styles)))
    #+END_SRC
 
+** TODO Disable =linum-mode= when text scale is not zero
+
+   The fringe text scale is adjusted with the rest of the buffer yet the
+   fringe width is not adjusted.  If text scale is positive the line numbers
+   get cut-off and not very useful.  There is [[http://stackoverflow.com/questions/9304192/emacs-linum-mode-and-size-of-font-unreadable-line-numbers][a hack that tries to address
+   this situation]] but I'd just as soon disable line numbering when the text
+   scale is large.
+
 ** TODO Try out [[https://github.com/bruce/emacs-spacegray-theme][Spacegray theme]]
 
 * ag
