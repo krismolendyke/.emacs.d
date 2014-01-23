@@ -910,9 +910,7 @@ function.
           org-todo-keyword-faces '(("TODO" . org-todo)
                                    ("STARTED" . org-code)
                                    ("CANCELED" . org-ellipsis)
-                                   ("DONE" . org-done))
-          org-habit-completed-glyph ?✓
-          org-habit-today-glyph ?|)
+                                   ("DONE" . org-done)))
 
     ;; Resolutions reminder.
     (find-file (expand-file-name "resolutions.org" org-directory))
@@ -965,6 +963,15 @@ function.
 
    #+BEGIN_SRC emacs-lisp
      (setq org-agenda-span 'day)
+   #+END_SRC
+
+** Habit
+
+   #+BEGIN_SRC emacs-lisp
+     (require 'org-habit)
+
+     (setq org-habit-completed-glyph ?✓
+           org-habit-today-glyph ?|)
    #+END_SRC
 
 ** Logging & Drawers
