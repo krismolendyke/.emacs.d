@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>Literate <code>.emacs.d</code></title>
-<!-- 2014-01-23 Thu 11:19 -->
+<!-- 2014-01-27 Mon 19:00 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Kris Molendyke" />
@@ -1497,10 +1497,12 @@ function.
 <li><a href="#sec-31">org-mode</a>
 <ul>
 <li><a href="#sec-31-1">Key Bindings</a></li>
-<li><a href="#sec-31-2">Agenda</a></li>
-<li><a href="#sec-31-3">Habit</a></li>
-<li><a href="#sec-31-4">Logging &amp; Drawers</a></li>
-<li><a href="#sec-31-5">Clock</a></li>
+<li><a href="#sec-31-2">Babel</a></li>
+<li><a href="#sec-31-3"><span class="todo TODO">TODO</span> Keywords</a></li>
+<li><a href="#sec-31-4">Agenda</a></li>
+<li><a href="#sec-31-5">Habit</a></li>
+<li><a href="#sec-31-6">Logging &amp; Drawers</a></li>
+<li><a href="#sec-31-7">Clock</a></li>
 </ul>
 </li>
 <li><a href="#sec-32">paredit-mode</a></li>
@@ -2619,32 +2621,8 @@ Set the <i>default dictionary</i> to be <code>en_US</code> with an environment v
 <span class="org-comment-delimiter">;; </span><span class="org-comment">Now that ido-completion is enabled, use it when jumping around.</span>
 (setq org-outline-path-complete-in-steps nil)
 
-(setq org-todo-keywords '((sequence
-                           <span class="org-string">"TODO(t)"</span>
-                           <span class="org-string">"STARTED(s/!)"</span>
-                           <span class="org-string">"|"</span>
-                           <span class="org-string">"DONE(d!)"</span>
-                           <span class="org-string">"CANCELED(c@)"</span>))
-      org-todo-keyword-faces '((<span class="org-string">"TODO"</span> . org-todo)
-                               (<span class="org-string">"STARTED"</span> . org-code)
-                               (<span class="org-string">"CANCELED"</span> . org-ellipsis)
-                               (<span class="org-string">"DONE"</span> . org-done)))
-
 <span class="org-comment-delimiter">;; </span><span class="org-comment">Resolutions reminder.</span>
 (find-file (expand-file-name <span class="org-string">"resolutions.org"</span> org-directory))
-</pre>
-</div>
-
-<p>
-Define <a href="http://orgmode.org/worg/org-contrib/babel/languages.html">which languages</a> <code>org-babel</code> should support.
-</p>
-
-<div class="org-src-container">
-
-<pre class="src src-emacs-lisp">(org-babel-do-load-languages
- 'org-babel-load-languages
- '((emacs-lisp . t)
-   (org . t)))
 </pre>
 </div>
 </div>
@@ -2662,11 +2640,47 @@ Define <a href="http://orgmode.org/worg/org-contrib/babel/languages.html">which 
 </div>
 </div>
 <div id="outline-container-sec-31-2" class="outline-3">
-<h3 id="sec-31-2">Agenda</h3>
+<h3 id="sec-31-2">Babel</h3>
 <div class="outline-text-3" id="text-31-2">
-</div><div id="outline-container-sec-31-2-1" class="outline-4">
-<h4 id="sec-31-2-1">Files</h4>
-<div class="outline-text-4" id="text-31-2-1">
+<p>
+Define <a href="http://orgmode.org/worg/org-contrib/babel/languages.html">which languages</a> <code>org-babel</code> should support.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-emacs-lisp">(org-babel-do-load-languages
+ 'org-babel-load-languages
+ '((emacs-lisp . t)
+   (org . t)))
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-31-3" class="outline-3">
+<h3 id="sec-31-3"><span class="todo TODO">TODO</span> Keywords</h3>
+<div class="outline-text-3" id="text-31-3">
+<div class="org-src-container">
+
+<pre class="src src-emacs-lisp">(setq org-todo-keywords '((sequence
+                           <span class="org-string">"TODO(t)"</span>
+                           <span class="org-string">"STARTED(s/!)"</span>
+                           <span class="org-string">"|"</span>
+                           <span class="org-string">"DONE(d!)"</span>
+                           <span class="org-string">"CANCELED(c@)"</span>))
+      org-todo-keyword-faces '((<span class="org-string">"TODO"</span> . org-todo)
+                               (<span class="org-string">"STARTED"</span> . org-code)
+                               (<span class="org-string">"CANCELED"</span> . org-ellipsis)
+                               (<span class="org-string">"DONE"</span> . org-done)))
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-31-4" class="outline-3">
+<h3 id="sec-31-4">Agenda</h3>
+<div class="outline-text-3" id="text-31-4">
+</div><div id="outline-container-sec-31-4-1" class="outline-4">
+<h4 id="sec-31-4-1">Files</h4>
+<div class="outline-text-4" id="text-31-4-1">
 <div class="org-src-container">
 
 <pre class="src src-emacs-lisp">(setq org-agenda-files
@@ -2676,9 +2690,9 @@ Define <a href="http://orgmode.org/worg/org-contrib/babel/languages.html">which 
 </div>
 </div>
 </div>
-<div id="outline-container-sec-31-2-2" class="outline-4">
-<h4 id="sec-31-2-2">Deadlines</h4>
-<div class="outline-text-4" id="text-31-2-2">
+<div id="outline-container-sec-31-4-2" class="outline-4">
+<h4 id="sec-31-4-2">Deadlines</h4>
+<div class="outline-text-4" id="text-31-4-2">
 <p>
 Non-nil means skip scheduling line if same entry shows because of deadline.
 </p>
@@ -2701,9 +2715,9 @@ is scheduled today or was scheduled previously is not shown.
 </div>
 </div>
 </div>
-<div id="outline-container-sec-31-2-3" class="outline-4">
-<h4 id="sec-31-2-3">List</h4>
-<div class="outline-text-4" id="text-31-2-3">
+<div id="outline-container-sec-31-4-3" class="outline-4">
+<h4 id="sec-31-4-3">List</h4>
+<div class="outline-text-4" id="text-31-4-3">
 <p>
 Default to showing only today in the agenda list.
 </p>
@@ -2716,9 +2730,9 @@ Default to showing only today in the agenda list.
 </div>
 </div>
 </div>
-<div id="outline-container-sec-31-3" class="outline-3">
-<h3 id="sec-31-3">Habit</h3>
-<div class="outline-text-3" id="text-31-3">
+<div id="outline-container-sec-31-5" class="outline-3">
+<h3 id="sec-31-5">Habit</h3>
+<div class="outline-text-3" id="text-31-5">
 <div class="org-src-container">
 
 <pre class="src src-emacs-lisp">(<span class="org-keyword">require</span> '<span class="org-constant">org-habit</span>)
@@ -2729,9 +2743,9 @@ Default to showing only today in the agenda list.
 </div>
 </div>
 </div>
-<div id="outline-container-sec-31-4" class="outline-3">
-<h3 id="sec-31-4">Logging &amp; Drawers</h3>
-<div class="outline-text-3" id="text-31-4">
+<div id="outline-container-sec-31-6" class="outline-3">
+<h3 id="sec-31-6">Logging &amp; Drawers</h3>
+<div class="outline-text-3" id="text-31-6">
 <p>
 Insert state change notes and time stamps into a drawer rather than simply
 "loose" after a headline.
@@ -2744,9 +2758,9 @@ Insert state change notes and time stamps into a drawer rather than simply
 </div>
 </div>
 </div>
-<div id="outline-container-sec-31-5" class="outline-3">
-<h3 id="sec-31-5">Clock</h3>
-<div class="outline-text-3" id="text-31-5">
+<div id="outline-container-sec-31-7" class="outline-3">
+<h3 id="sec-31-7">Clock</h3>
+<div class="outline-text-3" id="text-31-7">
 <div class="org-src-container">
 
 <pre class="src src-emacs-lisp">(<span class="org-keyword">defvar</span> <span class="org-variable-name">org-clock-idle-time</span> 5)
@@ -3016,7 +3030,7 @@ Insert state change notes and time stamps into a drawer rather than simply
 </div>
 <div id="postamble" class="status">
 <p class="author">Kris Molendyke</p>
-<p class="date">2014-01-23 Thu 11:19</p>
+<p class="date">2014-01-27 Mon 18:59</p>
 <p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.3.50.1 (<a href="http://orgmode.org">Org</a> mode 8.2.3a)</p>
 </div>
 </body>
