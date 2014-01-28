@@ -844,9 +844,6 @@ function.
 
     ;; Now that ido-completion is enabled, use it when jumping around.
     (setq org-outline-path-complete-in-steps nil)
-
-    ;; Resolutions reminder.
-    (find-file (expand-file-name "resolutions.org" org-directory))
   #+END_SRC
 
 ** Key Bindings
@@ -1001,11 +998,16 @@ function.
    #+BEGIN_SRC emacs-lisp
      (setq org-log-into-drawer t)
    #+END_SRC
-
 ** Clock
 
    #+BEGIN_SRC emacs-lisp
      (defvar org-clock-idle-time 5)
+   #+END_SRC
+
+** Visit By Default
+
+   #+BEGIN_SRC emacs-lisp
+     (find-file (expand-file-name "resolutions.org" org-directory))
    #+END_SRC
 
 * paredit-mode
