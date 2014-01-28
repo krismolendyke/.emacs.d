@@ -820,9 +820,6 @@ function.
     ;; Speeeeeeeeeed!  Move to very beginning of a headline and press "?"
     (setq org-use-speed-commands t)
 
-    ;; Automatically insert a timestamp when a task is marked DONE.
-    (setq org-log-done t)
-
     ;; "Special" `C-a' and `C-e' movement in headlines.
     (setq org-special-ctrl-a/e t)
 
@@ -925,7 +922,15 @@ function.
         (org . t)))
    #+END_SRC
 
-** TODO Keywords
+** TODO Items
+
+   Automatically insert a timestamp when a task is marked =DONE=.
+
+   #+BEGIN_SRC emacs-lisp
+     (setq org-log-done t)
+   #+END_SRC
+
+   Custom keywords and faces.
 
    #+BEGIN_SRC emacs-lisp
      (setq org-todo-keywords '((sequence
