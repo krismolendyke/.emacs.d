@@ -906,21 +906,23 @@ function.
     (find-file (expand-file-name "resolutions.org" org-directory))
   #+END_SRC
 
-  Define [[http://orgmode.org/worg/org-contrib/babel/languages.html][which languages]] =org-babel= should support.
-
-  #+BEGIN_SRC emacs-lisp
-    (org-babel-do-load-languages
-     'org-babel-load-languages
-     '((emacs-lisp . t)
-       (org . t)))
-  #+END_SRC
-
 ** Key Bindings
 
    #+BEGIN_SRC emacs-lisp
      (global-set-key (kbd "C-c a") 'org-agenda)
      (global-set-key (kbd "C-x c") 'org-switchb)
      (global-set-key (kbd "<f12>") 'org-agenda-list)
+   #+END_SRC
+
+** Babel
+
+   Define [[http://orgmode.org/worg/org-contrib/babel/languages.html][which languages]] =org-babel= should support.
+
+   #+BEGIN_SRC emacs-lisp
+     (org-babel-do-load-languages
+      'org-babel-load-languages
+      '((emacs-lisp . t)
+        (org . t)))
    #+END_SRC
 
 ** TODO Keywords
