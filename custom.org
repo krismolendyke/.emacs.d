@@ -99,6 +99,7 @@ function.
      (global-set-key (kbd "C-h C-f") 'find-function)
      (global-set-key (kbd "C-h C-v") 'find-variable)
      (global-set-key (kbd "C-x C-t") 'toggle-frame-fullscreen)
+     (global-set-key (kbd "H-h") 'help-command)
      (global-set-key (kbd "M-+") 'text-scale-adjust)
      (global-set-key (kbd "M-.") 'imenu)
      (global-set-key (kbd "M-SPC") 'delete-horizontal-space)
