@@ -773,6 +773,18 @@ function.
       (shell-command-on-region (point-min) (point-max) "python -m json.tool" (current-buffer)))
   #+END_SRC
 
+* keyfreq
+
+  #+BEGIN_SRC emacs-lisp
+    (require 'keyfreq)
+
+    (setq keyfreq-file (expand-file-name ".emacs-keyfreq" dropbox-directory)
+          keyfreq-file-lock (expand-file-name ".emacs-keyfreq-lock" dropbox-directory))
+
+    (keyfreq-mode 1)
+    (keyfreq-autosave-mode 1)
+  #+END_SRC
+
 * monetate-mode
 
   #+BEGIN_SRC emacs-lisp
