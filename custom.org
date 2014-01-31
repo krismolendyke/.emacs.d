@@ -89,6 +89,7 @@ function.
      (global-unset-key (kbd "C-q"))
      (global-unset-key (kbd "M-`"))
      (global-unset-key (kbd "M-c"))
+     (global-unset-key (kbd "M-h"))
      (global-unset-key (kbd "M-u"))
    #+END_SRC
 
@@ -105,6 +106,7 @@ function.
      (global-set-key (kbd "M-.") 'imenu)
      (global-set-key (kbd "M-SPC") 'delete-horizontal-space)
      (global-set-key (kbd "M-`") 'other-window)
+     (global-set-key (kbd "M-h") 'backward-kill-word)
    #+END_SRC
 
 * Global =defuns.el= Key Bindings
