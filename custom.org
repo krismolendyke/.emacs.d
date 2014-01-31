@@ -81,6 +81,17 @@ function.
   Package-specific or custom function defunition key bindings are made in
   their own dedicated sections where other specific settings are made.
 
+** Unset
+
+   #+BEGIN_SRC emacs-lisp
+     (global-unset-key (kbd "<f11>"))
+     (global-unset-key (kbd "C-h"))
+     (global-unset-key (kbd "C-q"))
+     (global-unset-key (kbd "M-`"))
+     (global-unset-key (kbd "M-c"))
+     (global-unset-key (kbd "M-u"))
+   #+END_SRC
+
 ** Set
 
    #+BEGIN_SRC emacs-lisp
@@ -92,16 +103,6 @@ function.
      (global-set-key (kbd "M-.") 'imenu)
      (global-set-key (kbd "M-SPC") 'delete-horizontal-space)
      (global-set-key (kbd "M-`") 'other-window)
-   #+END_SRC
-
-** Unset
-
-   #+BEGIN_SRC emacs-lisp
-     (global-unset-key (kbd "C-q"))
-     (global-unset-key (kbd "M-c"))
-     (global-unset-key (kbd "M-u"))
-     (global-unset-key (kbd "M-`"))
-     (global-unset-key (kbd "<f11>"))
    #+END_SRC
 
 * Global =defuns.el= Key Bindings
