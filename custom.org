@@ -96,9 +96,10 @@ function.
 
    #+BEGIN_SRC emacs-lisp
      (global-set-key (kbd "C-c DEL") 'join-line)
-     (global-set-key (kbd "C-h C-f") 'find-function)
-     (global-set-key (kbd "C-h C-v") 'find-variable)
+     (global-set-key (kbd "C-h") 'delete-backward-char)
      (global-set-key (kbd "C-x C-t") 'toggle-frame-fullscreen)
+     (global-set-key (kbd "H-h H-f") 'find-function)
+     (global-set-key (kbd "H-h H-v") 'find-variable)
      (global-set-key (kbd "H-h") 'help-command)
      (global-set-key (kbd "M-+") 'text-scale-adjust)
      (global-set-key (kbd "M-.") 'imenu)
@@ -506,13 +507,15 @@ function.
   #+BEGIN_SRC emacs-lisp
     (require 'autopair)
 
-    (add-hook 'emacs-lisp-mode-hook
-              (lambda ()
-                ;; autopair `' when writing comments or strings.
-                (push '(?` . ?')
-                      (getf autopair-extra-pairs :comment))
-                (push '(?` . ?')
-                      (getf autopair-extra-pairs :string))))
+    (defun my-emacs-lisp-autopair-hook ()
+      ;; autopair `' when writing comments or strings.
+      (push '(?` . ?')
+            (getf autopair-extra-pairs :comment))
+      (push '(?` . ?')
+            (getf autopair-extra-pairs :string))
+      (setq autopair-skip-whitespace 'chomp))
+
+    (add-hook 'emacs-lisp-mode-hook 'my-emacs-lisp-autopair-hook)
   #+END_SRC
 
 * expand-region
@@ -725,6 +728,8 @@ function.
       (define-key ido-completion-map (kbd "<left>") 'ido-vertical-prev-match)
       (define-key ido-completion-map (kbd "<right>") 'ido-vertical-next-match)
 
+      (define-key ido-completion-map (kbd "C-h") 'delete-backward-char)
+
       ;; Theme!
       (let ((match (face-attribute 'font-lock-string-face :foreground))
             (highlight (face-attribute 'font-lock-keyword-face :foreground)))
@@ -746,6 +751,13 @@ function.
           ido-max-file-prompt-width 0.2
           ido-use-faces t
           flx-ido-use-faces t)
+  #+END_SRC
+
+* isearch
+
+  #+BEGIN_SRC emacs-lisp
+    (eval-after-load "isearch"
+      '(define-key isearch-mode-map (kbd "C-h") 'isearch-delete-char))
   #+END_SRC
 
 * js-mode
@@ -1023,12 +1035,12 @@ function.
                     cider-repl-mode-hook))
       (add-hook hook #'(lambda nil (paredit-mode 1))))
 
-    ;; Map close-parenthesis.
     (eval-after-load "paredit"
       '(progn
          (define-key paredit-mode-map [?\)] 'paredit-close-parenthesis)
          (define-key paredit-mode-map [(meta ?\))]
-                     'paredit-close-parenthesis-and-newline)))
+           'paredit-close-parenthesis-and-newline)
+         (define-key paredit-mode-map (kbd "C-h") 'paredit-backward-delete)))
   #+END_SRC
 
 * Path
