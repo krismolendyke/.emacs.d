@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>Literate <code>.emacs.d</code></title>
-<!-- 2014-02-03 Mon 10:50 -->
+<!-- 2014-02-03 Mon 11:19 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Kris Molendyke" />
@@ -2624,6 +2624,8 @@ Set the <i>default dictionary</i> to be <code>en_US</code> with an environment v
 <pre class="src src-emacs-lisp">(global-set-key (kbd <span class="org-string">"C-c a"</span>) 'org-agenda)
 (global-set-key (kbd <span class="org-string">"C-x c"</span>) 'org-switchb)
 (global-set-key (kbd <span class="org-string">"&lt;f12&gt;"</span>) 'org-agenda-list)
+
+(define-key org-mode-map (kbd <span class="org-string">"M-h"</span>) 'backward-kill-word)
 </pre>
 </div>
 </div>
@@ -3143,7 +3145,7 @@ Insert state change notes and time stamps into a drawer rather than simply
 </div>
 <div id="postamble" class="status">
 <p class="author">Kris Molendyke</p>
-<p class="date">2014-02-03 Mon 10:32</p>
+<p class="date">2014-02-03 Mon 11:17</p>
 <p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.3.50.1 (<a href="http://orgmode.org">Org</a> mode 8.2.5c)</p>
 </div>
 </body>
