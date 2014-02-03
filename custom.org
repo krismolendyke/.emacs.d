@@ -1185,22 +1185,30 @@ function.
 * term
 
   #+BEGIN_SRC emacs-lisp
-    (require 'smex)
     (require 'term)
 
     ;; `autopair-mode' interferes with `term-send-raw' bounding on `RET'.
     (if (fboundp 'autopair-mode)
         (add-hook 'term-mode-hook (lambda () (autopair-mode -1))))
 
-    ;; I have yet to need execute-extended-command in the terminal.
-    (define-key term-raw-map [?\M-x] 'smex)
-    (define-key term-mode-map [?\M-x] 'smex)
-
     (defun zsh ()
       "Run an `ansi-term' process with zsh."
       (interactive)
       (ansi-term "/bin/zsh" "zsh"))
   #+END_SRC
+
+** Key Bindings
+
+   =term-raw-map= is used in char mode.  =term-mode-map= is used in line mode.
+
+   #+BEGIN_SRC emacs-lisp
+     (require 'smex)
+
+     (define-key term-raw-map (kbd "M-x") 'smex)
+     (define-key term-raw-map (kbd "M-h") 'backward-kill-word)
+
+     (define-key term-mode-map (kbd "M-x") 'smex)
+   #+END_SRC
 
 * virtualenvwrapper
 
