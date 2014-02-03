@@ -830,9 +830,7 @@ function.
 * org-mode
 
   #+BEGIN_SRC emacs-lisp
-    (require 'htmlize)
     (require 'org)
-    (require 'ox-publish)
     (require 'yasnippet)
 
     ;; Set the org directory.
@@ -885,6 +883,9 @@ function.
 ** Export
 
    #+BEGIN_SRC emacs-lisp
+     (require 'htmlize)
+     (require 'ox-publish)
+
      ;; Enable "expert" export interface.
      (setq org-export-dispatch-use-expert-ui t)
 
