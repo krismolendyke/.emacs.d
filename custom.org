@@ -870,6 +870,8 @@ function.
 
     ;; Now that ido-completion is enabled, use it when jumping around.
     (setq org-outline-path-complete-in-steps nil)
+
+    (setq org-ellipsis "…")
   #+END_SRC
 
 ** Key Bindings
