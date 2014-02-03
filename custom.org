@@ -880,6 +880,8 @@ function.
      (global-set-key (kbd "C-c a") 'org-agenda)
      (global-set-key (kbd "C-x c") 'org-switchb)
      (global-set-key (kbd "<f12>") 'org-agenda-list)
+
+     (define-key org-mode-map (kbd "M-h") 'backward-kill-word)
    #+END_SRC
 
 ** Export
