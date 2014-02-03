@@ -1203,6 +1203,8 @@ function.
       "Run an `ansi-term' process with zsh."
       (interactive)
       (ansi-term "/bin/zsh" "zsh"))
+
+    (setq term-suppress-hard-newline t)
   #+END_SRC
 
 ** Key Bindings
