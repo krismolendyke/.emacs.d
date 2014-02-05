@@ -933,7 +933,23 @@ function.
 
    #+BEGIN_SRC emacs-lisp
      (setq org-publish-project-alist
-           `(("work-org-files"
+           `(("k20e-org-files"
+              :base-directory ,(expand-file-name "source" (expand-file-name "k20e" org-directory))
+              :base-extension "org"
+              :recursive t
+              :exclude "ga.org\\|level-0.org"
+              :publishing-directory ,(expand-file-name "published" (expand-file-name "k20e" org-directory))
+              :publishing-function org-html-publish-to-html
+              :with-planning t)
+             ("k20e-static-files"
+              :base-directory ,(expand-file-name "source" (expand-file-name "k20e" org-directory))
+              :base-extension "png\\|ico"
+              :recursive t
+              :publishing-directory ,(expand-file-name "published" (expand-file-name "k20e" org-directory))
+              :publishing-function org-publish-attachment)
+             ("k20e"
+              :components ("k20e-org-files" "k20e-static-files"))
+             ("work-org-files"
               :base-directory ,(expand-file-name "work" org-directory)
               :base-extension "org"
               :publishing-directory ,(expand-file-name "published" (expand-file-name "work" org-directory))
