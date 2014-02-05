@@ -7,6 +7,7 @@
 (depends-on "cider")
 (depends-on "clojure-mode")
 (depends-on "clojure-test-mode")
+(depends-on "coffee-mode")
 (depends-on "dash")
 (depends-on "epl")
 (depends-on "exec-path-from-shell")
