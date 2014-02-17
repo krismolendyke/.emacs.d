@@ -765,12 +765,9 @@ function.
 * js-mode
 
   #+BEGIN_SRC emacs-lisp
-    (add-to-list 'auto-mode-alist '("\\.json" . js-mode))
+    (require 'json)
 
-    (defun json-format ()
-      "Pretty-print a buffer containing JSON."
-      (interactive)
-      (shell-command-on-region (point-min) (point-max) "python -m json.tool" (current-buffer)))
+    (add-to-list 'auto-mode-alist '("\\.json" . js-mode))
   #+END_SRC
 
 * keyfreq
