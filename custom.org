@@ -1100,6 +1100,7 @@ function.
     (require 'electric)
     (require 'flycheck)
     (require 'python)
+    (require 'yasnippet)
 
     (defun my-python-setup ()
       (superword-mode)
@@ -1110,6 +1111,7 @@ function.
       (setq fill-column 118
             autopair-handle-action-fns (list #'autopair-default-handle-action
                                              #'autopair-python-triple-quote-action))
+      (yas-minor-mode 1)
       ;; Previously:
       ;; C-M-f, C-M-b (paredit-forward/back)
       ;; C-M-n, C-M-p (forward-list/backward-list)
