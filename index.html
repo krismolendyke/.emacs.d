@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>Literate <code>.emacs.d</code></title>
-<!-- 2014-02-05 Wed 15:22 -->
+<!-- 2014-02-17 Mon 15:03 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Kris Molendyke" />
@@ -1665,9 +1665,9 @@ their own dedicated sections where other specific settings are made.
 <pre class="src src-emacs-lisp">(global-set-key (kbd <span class="org-string">"C-c DEL"</span>) 'join-line)
 (global-set-key (kbd <span class="org-string">"C-h"</span>) 'delete-backward-char)
 (global-set-key (kbd <span class="org-string">"C-x C-t"</span>) 'toggle-frame-fullscreen)
+(global-set-key (kbd <span class="org-string">"H-h"</span>) 'help-command)
 (global-set-key (kbd <span class="org-string">"H-h H-f"</span>) 'find-function)
 (global-set-key (kbd <span class="org-string">"H-h H-v"</span>) 'find-variable)
-(global-set-key (kbd <span class="org-string">"H-h"</span>) 'help-command)
 (global-set-key (kbd <span class="org-string">"M-+"</span>) 'text-scale-adjust)
 (global-set-key (kbd <span class="org-string">"M-."</span>) 'imenu)
 (global-set-key (kbd <span class="org-string">"M-SPC"</span>) 'delete-horizontal-space)
@@ -2489,12 +2489,9 @@ Set the <i>default dictionary</i> to be <code>en_US</code> with an environment v
 <div class="outline-text-2" id="text-29">
 <div class="org-src-container">
 
-<pre class="src src-emacs-lisp">(add-to-list 'auto-mode-alist '(<span class="org-string">"\\.json"</span> . js-mode))
+<pre class="src src-emacs-lisp">(<span class="org-keyword">require</span> '<span class="org-constant">json</span>)
 
-(<span class="org-keyword">defun</span> <span class="org-function-name">json-format</span> ()
-  <span class="org-doc">"Pretty-print a buffer containing JSON."</span>
-  (interactive)
-  (shell-command-on-region (point-min) (point-max) <span class="org-string">"python -m json.tool"</span> (current-buffer)))
+(add-to-list 'auto-mode-alist '(<span class="org-string">"\\.json"</span> . js-mode))
 </pre>
 </div>
 </div>
@@ -2931,6 +2928,7 @@ Insert state change notes and time stamps into a drawer rather than simply
 (<span class="org-keyword">require</span> '<span class="org-constant">electric</span>)
 (<span class="org-keyword">require</span> '<span class="org-constant">flycheck</span>)
 (<span class="org-keyword">require</span> '<span class="org-constant">python</span>)
+(<span class="org-keyword">require</span> '<span class="org-constant">yasnippet</span>)
 
 (<span class="org-keyword">defun</span> <span class="org-function-name">my-python-setup</span> ()
   (superword-mode)
@@ -2941,6 +2939,7 @@ Insert state change notes and time stamps into a drawer rather than simply
   (setq fill-column 118
         autopair-handle-action-fns (list #'autopair-default-handle-action
                                          #'autopair-python-triple-quote-action))
+  (yas-minor-mode 1)
   <span class="org-comment-delimiter">;; </span><span class="org-comment">Previously:</span>
   <span class="org-comment-delimiter">;; </span><span class="org-comment">C-M-f, C-M-b (paredit-forward/back)</span>
   <span class="org-comment-delimiter">;; </span><span class="org-comment">C-M-n, C-M-p (forward-list/backward-list)</span>
@@ -3161,7 +3160,7 @@ Insert state change notes and time stamps into a drawer rather than simply
 </div>
 <div id="postamble" class="status">
 <p class="author">Kris Molendyke</p>
-<p class="date">2014-02-05 Wed 09:38</p>
+<p class="date">2014-02-15 Sat 10:34</p>
 <p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.3.50.1 (<a href="http://orgmode.org">Org</a> mode 8.2.5c)</p>
 </div>
 </body>
