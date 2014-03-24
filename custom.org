@@ -1221,7 +1221,7 @@ function.
       (interactive)
       (ansi-term "/bin/zsh" "zsh"))
 
-    (setq term-suppress-hard-newline t)
+    (setq term-suppress-hard-newline nil)
   #+END_SRC
 
 ** Key Bindings
