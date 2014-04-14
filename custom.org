@@ -787,11 +787,12 @@ function.
   #+BEGIN_SRC emacs-lisp
     (require 'monetate-mode)
 
-    (dolist (hook '(python-mode-hook js-mode-hook))
-      (add-hook hook
-                (lambda ()
-                  (if (monetate-repo-p)
-                      (monetate-mode 1)))))
+    (defun my-monetate-hook ()
+      "Enable monetate-mode if file is in a Monetate repository."
+      (if (monetate-repo-p) (monetate-mode 1)))
+
+    (dolist (hook '(python-mode-hook js-mode-hook shell-mode-hook sql-mode))
+      (add-hook hook 'my-monetate-hook))
 
     (setq monetate-notify-function 'monetate--notify-terminal-notifier)
   #+END_SRC
