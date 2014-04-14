@@ -1099,6 +1099,7 @@ function.
     (require 'autopair)
     (require 'electric)
     (require 'flycheck)
+    (require 'multiple-cursors)
     (require 'python)
     (require 'yasnippet)
 
@@ -1123,7 +1124,11 @@ function.
       (define-key python-mode-map (kbd "C-M-f") 'python-nav-forward-sexp)
       (define-key python-mode-map (kbd "C-M-b") 'python-nav-backward-sexp)
       (define-key python-mode-map (kbd "C-M-n") 'python-nav-forward-block)
-      (define-key python-mode-map (kbd "C-M-p") 'python-nav-backward-block))
+      (define-key python-mode-map (kbd "C-M-p") 'python-nav-backward-block)
+
+      (define-key python-mode-map (kbd "C-M-.") 'mc/mark-next-symbol-like-this)
+      (define-key python-mode-map (kbd "C-M-,") 'mc/mark-previous-symbol-like-this)
+      (define-key python-mode-map (kbd "C-M-<return>") 'mc/mark-all-symbols-like-this))
 
     (add-hook 'python-mode-hook 'my-python-setup)
   #+END_SRC
