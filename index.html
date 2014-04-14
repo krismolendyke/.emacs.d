@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>Literate <code>.emacs.d</code></title>
-<!-- 2014-03-28 Fri 09:42 -->
+<!-- 2014-04-14 Mon 15:01 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Kris Molendyke" />
@@ -2928,6 +2928,7 @@ Insert state change notes and time stamps into a drawer rather than simply
 <pre class="src src-emacs-lisp">(<span class="org-keyword">require</span> '<span class="org-constant">autopair</span>)
 (<span class="org-keyword">require</span> '<span class="org-constant">electric</span>)
 (<span class="org-keyword">require</span> '<span class="org-constant">flycheck</span>)
+(<span class="org-keyword">require</span> '<span class="org-constant">multiple-cursors</span>)
 (<span class="org-keyword">require</span> '<span class="org-constant">python</span>)
 (<span class="org-keyword">require</span> '<span class="org-constant">yasnippet</span>)
 
@@ -2952,7 +2953,11 @@ Insert state change notes and time stamps into a drawer rather than simply
   (define-key python-mode-map (kbd <span class="org-string">"C-M-f"</span>) 'python-nav-forward-sexp)
   (define-key python-mode-map (kbd <span class="org-string">"C-M-b"</span>) 'python-nav-backward-sexp)
   (define-key python-mode-map (kbd <span class="org-string">"C-M-n"</span>) 'python-nav-forward-block)
-  (define-key python-mode-map (kbd <span class="org-string">"C-M-p"</span>) 'python-nav-backward-block))
+  (define-key python-mode-map (kbd <span class="org-string">"C-M-p"</span>) 'python-nav-backward-block)
+
+  (define-key python-mode-map (kbd <span class="org-string">"C-M-."</span>) 'mc/mark-next-symbol-like-this)
+  (define-key python-mode-map (kbd <span class="org-string">"C-M-,"</span>) 'mc/mark-previous-symbol-like-this)
+  (define-key python-mode-map (kbd <span class="org-string">"C-M-&lt;return&gt;"</span>) 'mc/mark-all-symbols-like-this))
 
 (add-hook 'python-mode-hook 'my-python-setup)
 </pre>
@@ -3173,7 +3178,7 @@ Insert state change notes and time stamps into a drawer rather than simply
 </div>
 <div id="postamble" class="status">
 <p class="author">Kris Molendyke</p>
-<p class="date">2014-03-28 Fri 09:41</p>
+<p class="date">2014-04-03 Thu 08:45</p>
 <p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.3.50.1 (<a href="http://orgmode.org">Org</a> mode 8.2.5c)</p>
 </div>
 </body>
