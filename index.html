@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>Literate <code>.emacs.d</code></title>
-<!-- 2014-04-14 Mon 15:01 -->
+<!-- 2014-04-14 Mon 19:47 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Kris Molendyke" />
@@ -2520,11 +2520,12 @@ Set the <i>default dictionary</i> to be <code>en_US</code> with an environment v
 
 <pre class="src src-emacs-lisp">(<span class="org-keyword">require</span> '<span class="org-constant">monetate-mode</span>)
 
-(<span class="org-keyword">dolist</span> (hook '(python-mode-hook js-mode-hook))
-  (add-hook hook
-            (<span class="org-keyword">lambda</span> ()
-              (<span class="org-keyword">if</span> (monetate-repo-p)
-                  (monetate-mode 1)))))
+(<span class="org-keyword">defun</span> <span class="org-function-name">my-monetate-hook</span> ()
+  <span class="org-doc">"Enable monetate-mode if file is in a Monetate repository."</span>
+  (<span class="org-keyword">if</span> (monetate-repo-p) (monetate-mode 1)))
+
+(<span class="org-keyword">dolist</span> (hook '(python-mode-hook js-mode-hook shell-mode-hook sql-mode))
+  (add-hook hook 'my-monetate-hook))
 
 (setq monetate-notify-function 'monetate--notify-terminal-notifier)
 </pre>
@@ -3178,7 +3179,7 @@ Insert state change notes and time stamps into a drawer rather than simply
 </div>
 <div id="postamble" class="status">
 <p class="author">Kris Molendyke</p>
-<p class="date">2014-04-03 Thu 08:45</p>
+<p class="date">2014-04-14 Mon 19:47</p>
 <p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.3.50.1 (<a href="http://orgmode.org">Org</a> mode 8.2.5c)</p>
 </div>
 </body>
