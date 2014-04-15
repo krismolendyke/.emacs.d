@@ -560,20 +560,11 @@ function.
 
 * flyspell
 
-  First setup =ispell= to use [[#install-hunspell][=hunspell=]]:
+  First setup =ispell= to use [[#install-aspell][=aspell=]]:
 
   #+BEGIN_SRC emacs-lisp
-    (eval-after-load "ispell"
-      '(progn
-         (setq-default ispell-dictionary-alist '((nil
-                                                  "[A-Za-z]"
-                                                  "[^A-Za-z]"
-                                                  "[']"
-                                                  t
-                                                  ("-d" "en_US")
-                                                  nil
-                                                  utf-8))
-                       ispell-program-name "hunspell")))
+    (setq ispell-program-name "aspell"
+          ispell-extra-args (list "--sug-mode=ultra"))
   #+END_SRC
 
   Then setup =flyspell= itself.  It requires  =ispell=.
@@ -594,36 +585,15 @@ function.
     (setq flyspell-issue-message-flag nil)
   #+END_SRC
 
-** Install [[http://hunspell.sourceforge.net/][=hunspell=]]
+** Install [[http://hunspell.sourceforge.net/][=aspell=]]
    :PROPERTIES:
-   :CUSTOM_ID: install-hunspell
+   :CUSTOM_ID: install-aspell
    :END:
 
-   Install =hunspell= via Homebrew:
+   Install =aspell= via Homebrew:
 
    #+BEGIN_SRC sh
-     brew install hunspell
-   #+END_SRC
-
-   1. Download a [[http://extensions.openoffice.org/en/project/us-english-spell-checking-dictionary][US English dictionary]] from [[http://extensions.openoffice.org/en/search?f%5B0%5D%3Dfield_project_tags%253A157][OpenOffice Extensions]].
-   2. Decompress the =en_us.oxt= file.  It is just a zip file with a different
-      extension.
-   3. Place it onto the =hunspell= search path.
-
-   The search path can be shown via:
-
-   #+BEGIN_SRC sh
-     hunspell -D
-   #+END_SRC
-
-   =/Library/Spelling/= seems like a good spot on OS X.  Once both the
-   =en_US.aff= and =en_US.dic= files are there check again that =en_US= is
-   listed under =AVAILABLE DICTIONARIES=.
-
-   Set the /default dictionary/ to be =en_US= with an environment variable:
-
-   #+BEGIN_SRC sh
-     export LANG=en_US
+     brew install aspell --with-lang-en
    #+END_SRC
 
 * git
