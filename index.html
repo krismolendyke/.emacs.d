@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>Literate <code>.emacs.d</code></title>
-<!-- 2014-04-15 Tue 13:39 -->
+<!-- 2014-04-15 Tue 14:45 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Kris Molendyke" />
@@ -1483,7 +1483,7 @@ function.
 <li><a href="#flycheck">flycheck</a></li>
 <li><a href="#sec-22">flyspell</a>
 <ul>
-<li><a href="#install-hunspell">Install <code>hunspell</code></a></li>
+<li><a href="#install-aspell">Install <code>aspell</code></a></li>
 </ul>
 </li>
 <li><a href="#sec-23">git</a></li>
@@ -2231,22 +2231,13 @@ they are the result of an asynchronous query and response parsing?
 <h2 id="sec-22">flyspell</h2>
 <div class="outline-text-2" id="text-22">
 <p>
-First setup <code>ispell</code> to use <a href="#install-hunspell"><code>hunspell</code></a>:
+First setup <code>ispell</code> to use <a href="#install-aspell"><code>aspell</code></a>:
 </p>
 
 <div class="org-src-container">
 
-<pre class="src src-emacs-lisp">(eval-after-load <span class="org-string">"ispell"</span>
-  '(<span class="org-keyword">progn</span>
-     (setq-default ispell-dictionary-alist '((nil
-                                              <span class="org-string">"[A-Za-z]"</span>
-                                              <span class="org-string">"[</span><span class="org-negation-char"><span class="org-string">^</span></span><span class="org-string">A-Za-z]"</span>
-                                              <span class="org-string">"[']"</span>
-                                              t
-                                              (<span class="org-string">"-d"</span> <span class="org-string">"en_US"</span>)
-                                              nil
-                                              utf-8))
-                   ispell-program-name <span class="org-string">"hunspell"</span>)))
+<pre class="src src-emacs-lisp">(setq ispell-program-name <span class="org-string">"aspell"</span>
+      ispell-extra-args (list <span class="org-string">"--sug-mode=ultra"</span>))
 </pre>
 </div>
 
@@ -2273,53 +2264,17 @@ Then setup <code>flyspell</code> itself.  It requires  <code>ispell</code>.
 </div>
 </div>
 
-<div id="outline-container-install-hunspell" class="outline-3">
-<h3 id="install-hunspell"><a id="sec-22-1" name="sec-22-1"></a>Install <a href="http://hunspell.sourceforge.net/"><code>hunspell</code></a></h3>
-<div class="outline-text-3" id="text-install-hunspell">
+<div id="outline-container-install-aspell" class="outline-3">
+<h3 id="install-aspell"><a id="sec-22-1" name="sec-22-1"></a>Install <a href="http://hunspell.sourceforge.net/"><code>aspell</code></a></h3>
+<div class="outline-text-3" id="text-install-aspell">
 
 <p>
-Install <code>hunspell</code> via Homebrew:
+Install <code>aspell</code> via Homebrew:
 </p>
 
 <div class="org-src-container">
 
-<pre class="src src-sh">brew install hunspell
-</pre>
-</div>
-
-<ol class="org-ol">
-<li>Download a <a href="http://extensions.openoffice.org/en/project/us-english-spell-checking-dictionary">US English dictionary</a> from <a href="http://extensions.openoffice.org/en/search?f%5B0%5D%3Dfield_project_tags%253A157">OpenOffice Extensions</a>.
-</li>
-<li>Decompress the <code>en_us.oxt</code> file.  It is just a zip file with a different
-extension.
-</li>
-<li>Place it onto the <code>hunspell</code> search path.
-</li>
-</ol>
-
-<p>
-The search path can be shown via:
-</p>
-
-<div class="org-src-container">
-
-<pre class="src src-sh">hunspell -D
-</pre>
-</div>
-
-<p>
-<code>/Library/Spelling/</code> seems like a good spot on OS X.  Once both the
-<code>en_US.aff</code> and <code>en_US.dic</code> files are there check again that <code>en_US</code> is
-listed under <code>AVAILABLE DICTIONARIES</code>.
-</p>
-
-<p>
-Set the <i>default dictionary</i> to be <code>en_US</code> with an environment variable:
-</p>
-
-<div class="org-src-container">
-
-<pre class="src src-sh"><span class="org-builtin">export</span> <span class="org-variable-name">LANG</span>=en_US
+<pre class="src src-sh">brew install aspell --with-lang-en
 </pre>
 </div>
 </div>
@@ -3179,8 +3134,8 @@ Insert state change notes and time stamps into a drawer rather than simply
 </div>
 <div id="postamble" class="status">
 <p class="author">Kris Molendyke</p>
-<p class="date">2014-04-15 Tue 13:39</p>
-<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.3.50.1 (<a href="http://orgmode.org">Org</a> mode 8.2.5c)</p>
+<p class="date">2014-04-15 Tue 14:42</p>
+<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.4.50.1 (<a href="http://orgmode.org">Org</a> mode 8.2.5c)</p>
 </div>
 </body>
 </html>
