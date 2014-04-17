@@ -767,6 +767,67 @@ function.
     (setq monetate-notify-function 'monetate--notify-terminal-notifier)
   #+END_SRC
 
+* multi-term
+  :PROPERTIES:
+  :CUSTOM_ID: multi-term
+  :END:
+
+  Together with [[#term][term]] this sets up my terminal environment within Emacs.
+
+  =multi-term= adds a nice shortcut for flipping between only terminal
+  buffers.  It also lets me fix a big annoyance by binding =M-h= to
+  =backward-kill-word= easily.
+
+  #+BEGIN_SRC emacs-lisp
+    (require 'multi-term)
+    (require 'term)
+
+    (defcustom term-bind-key-alist
+        '(("C-c C-c" . term-interrupt-subjob)
+          ("C-h" . term-send-backspace)
+          ("C-c C-j" . term-line-mode)
+          ("C-c C-k" . term-char-mode)
+          ("C-p" . term-send-up)
+          ("C-n" . term-send-down)
+          ("C-r" . term-send-reverse-search-history)
+          ("C-m" . term-send-raw)
+          ("M-f" . term-send-forward-word)
+          ("M-b" . term-send-backward-word)
+          ("M-p" . previous-line)
+          ("M-n" . next-line)
+          ("M-d" . term-send-forward-kill-word)
+          ("M-h" . term-send-backward-kill-word)
+          ("M-r" . isearch-backward)
+          ("M-s" . isearch-forward)
+          ("M-." . completion-at-point)
+          ("M-]" . multi-term-next)
+          ("M-[" . multi-term-prev))
+        "Custom key bindings for `multi-term'."
+        :type 'alist
+        :group 'multi-term)
+
+    (defun my-multi-term-hook ()
+      "Re-evaluate my custom key bindings."
+      (custom-reevaluate-setting 'term-bind-key-alist))
+
+    (add-hook 'term-mode-hook 'my-multi-term-hook)
+
+    (defalias 'zsh 'multi-term
+      "Execute `multi-term' when `zsh' is executed.
+    `multi-term' will look at the environment $SHELL value to
+    determine the shell to run.  I have it set to zsh.")
+  #+END_SRC
+
+  =my-multi-term-hook= is necessary to re-evaluate my custom key bindings
+  after =multi-term= is loaded.  Otherwise it overrides my bindings with its
+  bindings whenever I open a new terminal.
+
+** Global Key Bindings
+
+   #+BEGIN_SRC emacs-lisp
+     (global-set-key (kbd "<f2>") 'multi-term)
+   #+END_SRC
+
 * multiple-cursors
 
   #+BEGIN_SRC emacs-lisp
@@ -1184,20 +1245,22 @@ function.
   #+END_SRC
 
 * term
+  :PROPERTIES:
+  :CUSTOM_ID: term
+  :END:
+
+  Together with [[#multi-term][multi-term]] this sets up my terminal environment within Emacs.
 
   #+BEGIN_SRC emacs-lisp
     (require 'term)
 
-    ;; `autopair-mode' interferes with `term-send-raw' bounding on `RET'.
-    (if (fboundp 'autopair-mode)
-        (add-hook 'term-mode-hook (lambda () (autopair-mode -1))))
+    (defun my-term-hook ()
+      "Configure terminal mode.
+    `autopair-mode' interferes with `term-send-raw' bounding on
+    `RET' so it is disabled."
+      (if (fboundp 'autopair-mode) (autopair-mode -1)))
 
-    (defun zsh ()
-      "Run an `ansi-term' process with zsh."
-      (interactive)
-      (ansi-term "/bin/zsh" "zsh"))
-
-    (setq term-suppress-hard-newline nil)
+    (add-hook 'term-mode-hook 'my-term-hook)
   #+END_SRC
 
 ** Key Bindings
