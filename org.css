@@ -1354,3 +1354,57 @@ than body or by calling htmlize-buffer and desired style.
   background-color: #ff0000;
   font-weight: bold;
 }
+.org-nxml-attribute-local-name {
+    /* nxml-attribute-local-name */
+    color: #e78c45;
+}
+.org-nxml-attribute-value {
+    /* nxml-attribute-value */
+    color: #b9ca4a;
+}
+.org-nxml-attribute-value-delimiter {
+    /* nxml-attribute-value-delimiter */
+    color: #b9ca4a;
+}
+.org-nxml-element-local-name {
+    /* nxml-element-local-name */
+    color: #7aa6da;
+}
+.org-nxml-entity-ref-delimiter {
+    /* nxml-entity-ref-delimiter */
+    color: #70c0b1;
+}
+.org-nxml-entity-ref-name {
+    /* nxml-entity-ref-name */
+    color: #70c0b1;
+}
+.org-nxml-markup-declaration-delimiter {
+}
+.org-nxml-processing-instruction-content {
+    /* nxml-processing-instruction-content */
+    color: #969896;
+}
+.org-nxml-processing-instruction-delimiter {
+}
+.org-nxml-processing-instruction-target {
+    /* nxml-processing-instruction-target */
+    color: #c397d8;
+}
+.org-nxml-prolog-keyword {
+    /* nxml-prolog-keyword */
+    color: #c397d8;
+}
+.org-nxml-prolog-literal-content {
+    /* nxml-prolog-literal-content */
+    color: #969896;
+}
+.org-nxml-prolog-literal-delimiter {
+    /* nxml-prolog-literal-delimiter */
+    color: #969896;
+}
+.org-nxml-tag-delimiter {
+}
+.org-nxml-tag-slash {
+}
+.org-nxml-text {
+}
