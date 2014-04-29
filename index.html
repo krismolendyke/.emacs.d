@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>Literate <code>.emacs.d</code></title>
-<!-- 2014-04-24 Thu 07:33 -->
+<!-- 2014-04-29 Tue 07:47 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Kris Molendyke" />
@@ -1709,6 +1709,7 @@ their own dedicated sections where other specific settings are made.
 <pre class="src src-emacs-lisp">(global-unset-key (kbd <span class="org-string">"&lt;f11&gt;"</span>))
 (global-unset-key (kbd <span class="org-string">"C-h"</span>))
 (global-unset-key (kbd <span class="org-string">"C-q"</span>))
+(global-unset-key (kbd <span class="org-string">"C-z"</span>))
 (global-unset-key (kbd <span class="org-string">"M-`"</span>))
 (global-unset-key (kbd <span class="org-string">"M-c"</span>))
 (global-unset-key (kbd <span class="org-string">"M-h"</span>))
@@ -2574,6 +2575,7 @@ buffers.  It also lets me fix a big annoyance by binding <code>M-h</code> to
       (<span class="org-string">"C-n"</span> . term-send-down)
       (<span class="org-string">"C-r"</span> . term-send-reverse-search-history)
       (<span class="org-string">"C-m"</span> . term-send-raw)
+      (<span class="org-string">"C-z"</span> . term-stop-subjob)
       (<span class="org-string">"M-f"</span> . term-send-forward-word)
       (<span class="org-string">"M-b"</span> . term-send-backward-word)
       (<span class="org-string">"M-p"</span> . previous-line)
@@ -3269,7 +3271,7 @@ Together with <a href="#multi-term">multi-term</a> this sets up my terminal envi
 </div>
 <div id="postamble" class="status">
 <p class="author">Kris Molendyke</p>
-<p class="date">2014-04-17 Thu 11:14</p>
+<p class="date">2014-04-29 Tue 07:46</p>
 <p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.4.50.1 (<a href="http://orgmode.org">Org</a> mode 8.2.5c)</p>
 </div>
 </body>
