@@ -20,3 +20,6 @@
 [submodule "site-lisp/monetate-mode.el"]
 	path = site-lisp/monetate-mode.el
 	url = git@github.com:krismolendyke/monetate-mode.el.git
+[submodule "site-lisp/font-awesome.el"]
+	path = site-lisp/font-awesome.el
+	url = git@github.com:krismolendyke/font-awesome.el.git
