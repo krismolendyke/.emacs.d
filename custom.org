@@ -1293,6 +1293,13 @@ function.
     ;; (setenv "TMPDIR" "/tmp")
   #+END_SRC
 
+  Do not inline copy files.  This is to avoid =File exists, but cannot be
+  read= errors.
+
+  #+BEGIN_SRC emacs-lisp
+    (setq tramp-copy-size-limit -1)
+  #+END_SRC
+
 ** Debugging
 
    #+BEGIN_SRC emacs-lisp
