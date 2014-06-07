@@ -557,6 +557,9 @@ function.
     (global-set-key (kbd "<f7>") 'flycheck-previous-error)
     ;; ▶▶
     (global-set-key (kbd "<f9>") 'flycheck-next-error)
+
+    (setq-default flycheck-pylintrc "pylintrc"
+                  flycheck-check-syntax-automatically '(mode-enabled save))
   #+END_SRC
 
 * flyspell
