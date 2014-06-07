@@ -1160,8 +1160,8 @@ function.
       (define-key python-mode-map (kbd "C-M-n") 'python-nav-forward-block)
       (define-key python-mode-map (kbd "C-M-p") 'python-nav-backward-block)
 
-      (define-key python-mode-map (kbd "C-M-.") 'mc/mark-next-symbol-like-this)
-      (define-key python-mode-map (kbd "C-M-,") 'mc/mark-previous-symbol-like-this)
+      (define-key python-mode-map (kbd "C-M-.") 'mc/mark-next-like-this)
+      (define-key python-mode-map (kbd "C-M-,") 'mc/mark-previous-like-this)
       (define-key python-mode-map (kbd "C-M-<return>") 'mc/mark-all-symbols-like-this))
 
     (add-hook 'python-mode-hook 'my-python-setup)
