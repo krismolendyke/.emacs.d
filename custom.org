@@ -1286,8 +1286,11 @@ function.
   Fix =ControlPath too long= errors due to OS X pitching a [[https://lists.macosforge.org/pipermail/macports-tickets/2011-June/084295.html][long temporary
   directory]] to =ssh=.
 
+  Unfortunately, setting this is blowing up the =server-start= which can no
+  longer find the socket stored in the original =TMPDIR= value.
+
   #+BEGIN_SRC emacs-lisp
-    (setenv "TMPDIR" "/tmp")
+    ;; (setenv "TMPDIR" "/tmp")
   #+END_SRC
 
 * virtualenvwrapper
