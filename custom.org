@@ -1293,6 +1293,14 @@ function.
     ;; (setenv "TMPDIR" "/tmp")
   #+END_SRC
 
+** Debugging
+
+   #+BEGIN_SRC emacs-lisp
+     ;; (setq tramp-verbose 6)
+   #+END_SRC
+
+   Will create a detailed log buffer.
+
 * virtualenvwrapper
 
   #+BEGIN_SRC emacs-lisp
