@@ -768,7 +768,11 @@ function.
     (dolist (hook '(python-mode-hook js-mode-hook shell-mode-hook sql-mode))
       (add-hook hook 'my-monetate-hook))
 
-    (setq monetate-notify-function 'monetate--notify-terminal-notifier)
+    (setq monetate-notify-function 'monetate--notify-terminal-notifier
+          monetate-notify-process-messages '((started . "🕐 Started…")
+                                             (success . "✅ Success!")
+                                             (failure . "🚫 Error")))
+
   #+END_SRC
 
 * multi-term
