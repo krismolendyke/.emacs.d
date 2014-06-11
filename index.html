@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>Literate <code>.emacs.d</code></title>
-<!-- 2014-04-29 Tue 07:47 -->
+<!-- 2014-06-11 Wed 17:29 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Kris Molendyke" />
@@ -1428,7 +1428,7 @@ than body or by calling htmlize-buffer and desired style.
 @licstart  The following is the entire license notice for the
 JavaScript code in this tag.
 
-Copyright (C) 2012-2014 Free Software Foundation, Inc.
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
 
 The JavaScript code in this tag is free software: you can
 redistribute it and/or modify it under the terms of the GNU
@@ -1587,15 +1587,20 @@ function.
 <li><a href="#sec-44-1">Key Bindings</a></li>
 </ul>
 </li>
-<li><a href="#sec-45">virtualenvwrapper</a>
+<li><a href="#sec-45">tramp</a>
 <ul>
-<li><a href="#sec-45-1"><span class="todo TODO">TODO</span> Automatically activate</a></li>
+<li><a href="#sec-45-1">Debugging</a></li>
 </ul>
 </li>
-<li><a href="#sec-46">windmove</a></li>
-<li><a href="#sec-47">winner-mode</a></li>
-<li><a href="#sec-48">yaml-mode</a></li>
-<li><a href="#sec-49">yasnippet</a></li>
+<li><a href="#sec-46">virtualenvwrapper</a>
+<ul>
+<li><a href="#sec-46-1"><span class="todo TODO">TODO</span> Automatically activate</a></li>
+</ul>
+</li>
+<li><a href="#sec-47">windmove</a></li>
+<li><a href="#sec-48">winner-mode</a></li>
+<li><a href="#sec-49">yaml-mode</a></li>
+<li><a href="#sec-50">yasnippet</a></li>
 </ul>
 </div>
 </div>
@@ -1666,6 +1671,7 @@ following command:
 </div>
 </div>
 </div>
+
 <div id="outline-container-sec-2" class="outline-2">
 <h2 id="sec-2"><span class="todo TODO">TODO</span> Generate and Publish <code>custom.org</code> to GitHub</h2>
 <div class="outline-text-2" id="text-2">
@@ -1674,6 +1680,7 @@ Include <code>post-commit</code> hook.
 </p>
 </div>
 </div>
+
 <div id="outline-container-sec-3" class="outline-2">
 <h2 id="sec-3">Customization</h2>
 <div class="outline-text-2" id="text-3">
@@ -1691,6 +1698,7 @@ packages that I use do rely on customization so I do need it to be loaded.
 </div>
 </div>
 </div>
+
 <div id="outline-container-sec-4" class="outline-2">
 <h2 id="sec-4">Global GNU Emacs Key Bindings</h2>
 <div class="outline-text-2" id="text-4">
@@ -1718,6 +1726,7 @@ their own dedicated sections where other specific settings are made.
 </div>
 </div>
 </div>
+
 <div id="outline-container-sec-4-2" class="outline-3">
 <h3 id="sec-4-2">Set</h3>
 <div class="outline-text-3" id="text-4-2">
@@ -1739,6 +1748,7 @@ their own dedicated sections where other specific settings are made.
 </div>
 </div>
 </div>
+
 <div id="outline-container-sec-5" class="outline-2">
 <h2 id="sec-5">Global <code>defuns.el</code> Key Bindings</h2>
 <div class="outline-text-2" id="text-5">
@@ -1762,6 +1772,7 @@ that have been previously loaded during initialization in <code>init.el</code>.
 </div>
 </div>
 </div>
+
 <div id="outline-container-sec-6" class="outline-2">
 <h2 id="sec-6">Kris Defaults</h2>
 <div class="outline-text-2" id="text-6">
@@ -1847,6 +1858,7 @@ This is a bunch of stuff that I just dumped here and need to go through yet.
 </div>
 </div>
 </div>
+
 <div id="outline-container-sec-7" class="outline-2">
 <h2 id="sec-7">OS X</h2>
 <div class="outline-text-2" id="text-7">
@@ -1887,6 +1899,7 @@ input/mouse section?
 </div>
 </div>
 </div>
+
 <div id="outline-container-sec-8" class="outline-2">
 <h2 id="sec-8">Appearance</h2>
 <div class="outline-text-2" id="text-8">
@@ -2021,6 +2034,7 @@ The "fringe" or "gutter" shows indicators for wrapped/extended lines,
 </div>
 </div>
 </div>
+
 <div id="outline-container-sec-8-2" class="outline-3">
 <h3 id="sec-8-2"><span class="todo TODO">TODO</span> Disable <code>linum-mode</code> when text scale is not zero</h3>
 <div class="outline-text-3" id="text-8-2">
@@ -2033,10 +2047,12 @@ scale is large.
 </p>
 </div>
 </div>
+
 <div id="outline-container-sec-8-3" class="outline-3">
 <h3 id="sec-8-3"><span class="todo TODO">TODO</span> Try out <a href="https://github.com/bruce/emacs-spacegray-theme">Spacegray theme</a></h3>
 </div>
 </div>
+
 <div id="outline-container-sec-9" class="outline-2">
 <h2 id="sec-9">ag</h2>
 <div class="outline-text-2" id="text-9">
@@ -2057,6 +2073,7 @@ scale is large.
 </div>
 </div>
 </div>
+
 <div id="outline-container-sec-10" class="outline-2">
 <h2 id="sec-10">auto-fill</h2>
 <div class="outline-text-2" id="text-10">
@@ -2077,6 +2094,7 @@ to fill-column values.
 </div>
 </div>
 </div>
+
 <div id="outline-container-sec-11" class="outline-2">
 <h2 id="sec-11">autopair</h2>
 <div class="outline-text-2" id="text-11">
@@ -2093,6 +2111,7 @@ to fill-column values.
 </div>
 </div>
 </div>
+
 <div id="outline-container-sec-12" class="outline-2">
 <h2 id="sec-12">buffer-move</h2>
 <div class="outline-text-2" id="text-12">
@@ -2112,6 +2131,7 @@ Move the cursor between buffers much more intuitively than with <code>C-x b</cod
 </div>
 </div>
 </div>
+
 <div id="outline-container-sec-13" class="outline-2">
 <h2 id="sec-13"><span class="todo TODO">TODO</span> calendar</h2>
 <div class="outline-text-2" id="text-13">
@@ -2145,6 +2165,7 @@ they are the result of an asynchronous query and response parsing?
 </div>
 </div>
 </div>
+
 <div id="outline-container-sec-14" class="outline-2">
 <h2 id="sec-14">cider</h2>
 <div class="outline-text-2" id="text-14">
@@ -2164,6 +2185,7 @@ they are the result of an asynchronous query and response parsing?
 </div>
 </div>
 </div>
+
 <div id="outline-container-sec-15" class="outline-2">
 <h2 id="sec-15">clojure-mode</h2>
 <div class="outline-text-2" id="text-15">
@@ -2187,6 +2209,7 @@ they are the result of an asynchronous query and response parsing?
 </div>
 </div>
 </div>
+
 <div id="outline-container-sec-16" class="outline-2">
 <h2 id="sec-16">compilation-mode</h2>
 <div class="outline-text-2" id="text-16">
@@ -2198,6 +2221,7 @@ they are the result of an asynchronous query and response parsing?
 </div>
 </div>
 </div>
+
 <div id="outline-container-sec-17" class="outline-2">
 <h2 id="sec-17">dired</h2>
 <div class="outline-text-2" id="text-17">
@@ -2219,6 +2243,7 @@ they are the result of an asynchronous query and response parsing?
 </div>
 </div>
 </div>
+
 <div id="outline-container-sec-18" class="outline-2">
 <h2 id="sec-18">emacs-lisp-mode</h2>
 <div class="outline-text-2" id="text-18">
@@ -2239,6 +2264,7 @@ they are the result of an asynchronous query and response parsing?
 </div>
 </div>
 </div>
+
 <div id="outline-container-sec-19" class="outline-2">
 <h2 id="sec-19">expand-region</h2>
 <div class="outline-text-2" id="text-19">
@@ -2251,6 +2277,7 @@ they are the result of an asynchronous query and response parsing?
 </div>
 </div>
 </div>
+
 <div id="outline-container-sec-20" class="outline-2">
 <h2 id="sec-20">find-file-in-project</h2>
 <div class="outline-text-2" id="text-20">
@@ -2270,6 +2297,7 @@ they are the result of an asynchronous query and response parsing?
 </div>
 </div>
 </div>
+
 <div id="outline-container-flycheck" class="outline-2">
 <h2 id="flycheck"><a id="sec-21" name="sec-21"></a>flycheck</h2>
 <div class="outline-text-2" id="text-flycheck">
@@ -2283,10 +2311,14 @@ they are the result of an asynchronous query and response parsing?
 (global-set-key (kbd <span class="org-string">"&lt;f7&gt;"</span>) 'flycheck-previous-error)
 <span class="org-comment-delimiter">;; </span><span class="org-comment">&#9654;&#9654;</span>
 (global-set-key (kbd <span class="org-string">"&lt;f9&gt;"</span>) 'flycheck-next-error)
+
+(setq-default flycheck-pylintrc <span class="org-string">"pylintrc"</span>
+              flycheck-check-syntax-automatically '(mode-enabled save))
 </pre>
 </div>
 </div>
 </div>
+
 <div id="outline-container-sec-22" class="outline-2">
 <h2 id="sec-22">flyspell</h2>
 <div class="outline-text-2" id="text-22">
@@ -2340,6 +2372,7 @@ Install <code>aspell</code> via Homebrew:
 </div>
 </div>
 </div>
+
 <div id="outline-container-sec-23" class="outline-2">
 <h2 id="sec-23">git</h2>
 <div class="outline-text-2" id="text-23">
@@ -2359,6 +2392,7 @@ Install <code>aspell</code> via Homebrew:
 </div>
 </div>
 </div>
+
 <div id="outline-container-sec-24" class="outline-2">
 <h2 id="sec-24">highlight-parentheses</h2>
 <div class="outline-text-2" id="text-24">
@@ -2376,6 +2410,7 @@ Install <code>aspell</code> via Homebrew:
 </div>
 </div>
 </div>
+
 <div id="outline-container-sec-25" class="outline-2">
 <h2 id="sec-25">hyperspec</h2>
 <div class="outline-text-2" id="text-25">
@@ -2389,6 +2424,7 @@ Install <code>aspell</code> via Homebrew:
 </div>
 </div>
 </div>
+
 <div id="outline-container-sec-26" class="outline-2">
 <h2 id="sec-26">ibuffer</h2>
 <div class="outline-text-2" id="text-26">
@@ -2416,6 +2452,7 @@ Install <code>aspell</code> via Homebrew:
 </div>
 </div>
 </div>
+
 <div id="outline-container-sec-27" class="outline-2">
 <h2 id="sec-27">ido</h2>
 <div class="outline-text-2" id="text-27">
@@ -2489,6 +2526,7 @@ Install <code>aspell</code> via Homebrew:
 </div>
 </div>
 </div>
+
 <div id="outline-container-sec-28" class="outline-2">
 <h2 id="sec-28">isearch</h2>
 <div class="outline-text-2" id="text-28">
@@ -2500,6 +2538,7 @@ Install <code>aspell</code> via Homebrew:
 </div>
 </div>
 </div>
+
 <div id="outline-container-sec-29" class="outline-2">
 <h2 id="sec-29">js-mode</h2>
 <div class="outline-text-2" id="text-29">
@@ -2512,6 +2551,7 @@ Install <code>aspell</code> via Homebrew:
 </div>
 </div>
 </div>
+
 <div id="outline-container-sec-30" class="outline-2">
 <h2 id="sec-30">keyfreq</h2>
 <div class="outline-text-2" id="text-30">
@@ -2528,6 +2568,7 @@ Install <code>aspell</code> via Homebrew:
 </div>
 </div>
 </div>
+
 <div id="outline-container-sec-31" class="outline-2">
 <h2 id="sec-31">monetate-mode</h2>
 <div class="outline-text-2" id="text-31">
@@ -2542,11 +2583,15 @@ Install <code>aspell</code> via Homebrew:
 (<span class="org-keyword">dolist</span> (hook '(python-mode-hook js-mode-hook shell-mode-hook sql-mode))
   (add-hook hook 'my-monetate-hook))
 
-(setq monetate-notify-function 'monetate--notify-terminal-notifier)
+(setq monetate-notify-function 'monetate--notify-terminal-notifier
+      monetate-notify-process-messages '((started . <span class="org-string">"&#128336; Started&#8230;"</span>)
+                                         (success . <span class="org-string">"&#9989; Success!"</span>)
+                                         (failure . <span class="org-string">"&#128683; Error"</span>)))
 </pre>
 </div>
 </div>
 </div>
+
 <div id="outline-container-multi-term" class="outline-2">
 <h2 id="multi-term"><a id="sec-32" name="sec-32"></a>multi-term</h2>
 <div class="outline-text-2" id="text-multi-term">
@@ -2622,6 +2667,7 @@ bindings whenever I open a new terminal.
 </div>
 </div>
 </div>
+
 <div id="outline-container-sec-33" class="outline-2">
 <h2 id="sec-33">multiple-cursors</h2>
 <div class="outline-text-2" id="text-33">
@@ -2654,6 +2700,7 @@ bindings whenever I open a new terminal.
 </div>
 </div>
 </div>
+
 <div id="outline-container-sec-34" class="outline-2">
 <h2 id="sec-34">org-mode</h2>
 <div class="outline-text-2" id="text-34">
@@ -2719,6 +2766,7 @@ bindings whenever I open a new terminal.
 </div>
 </div>
 </div>
+
 <div id="outline-container-sec-34-2" class="outline-3">
 <h3 id="sec-34-2">Export</h3>
 <div class="outline-text-3" id="text-34-2">
@@ -2768,6 +2816,7 @@ bindings whenever I open a new terminal.
 </div>
 </div>
 </div>
+
 <div id="outline-container-sec-34-3" class="outline-3">
 <h3 id="sec-34-3">Publish</h3>
 <div class="outline-text-3" id="text-34-3">
@@ -2807,6 +2856,7 @@ bindings whenever I open a new terminal.
 </div>
 </div>
 </div>
+
 <div id="outline-container-sec-34-4" class="outline-3">
 <h3 id="sec-34-4">Babel</h3>
 <div class="outline-text-3" id="text-34-4">
@@ -2824,6 +2874,7 @@ Define <a href="http://orgmode.org/worg/org-contrib/babel/languages.html">which 
 </div>
 </div>
 </div>
+
 <div id="outline-container-sec-34-5" class="outline-3">
 <h3 id="sec-34-5"><span class="todo TODO">TODO</span> Items</h3>
 <div class="outline-text-3" id="text-34-5">
@@ -2857,6 +2908,7 @@ Custom keywords and faces.
 </div>
 </div>
 </div>
+
 <div id="outline-container-sec-34-6" class="outline-3">
 <h3 id="sec-34-6">Agenda</h3>
 <div class="outline-text-3" id="text-34-6">
@@ -2872,6 +2924,7 @@ Custom keywords and faces.
 </div>
 </div>
 </div>
+
 <div id="outline-container-sec-34-6-2" class="outline-4">
 <h4 id="sec-34-6-2">Deadlines</h4>
 <div class="outline-text-4" id="text-34-6-2">
@@ -2897,6 +2950,7 @@ is scheduled today or was scheduled previously is not shown.
 </div>
 </div>
 </div>
+
 <div id="outline-container-sec-34-6-3" class="outline-4">
 <h4 id="sec-34-6-3">List</h4>
 <div class="outline-text-4" id="text-34-6-3">
@@ -2912,6 +2966,7 @@ Default to showing only today in the agenda list.
 </div>
 </div>
 </div>
+
 <div id="outline-container-sec-34-7" class="outline-3">
 <h3 id="sec-34-7">Habit</h3>
 <div class="outline-text-3" id="text-34-7">
@@ -2925,6 +2980,7 @@ Default to showing only today in the agenda list.
 </div>
 </div>
 </div>
+
 <div id="outline-container-sec-34-8" class="outline-3">
 <h3 id="sec-34-8">Logging &amp; Drawers</h3>
 <div class="outline-text-3" id="text-34-8">
@@ -2940,7 +2996,6 @@ Insert state change notes and time stamps into a drawer rather than simply
 </div>
 </div>
 </div>
-
 <div id="outline-container-sec-34-9" class="outline-3">
 <h3 id="sec-34-9">Clock</h3>
 <div class="outline-text-3" id="text-34-9">
@@ -2951,6 +3006,7 @@ Insert state change notes and time stamps into a drawer rather than simply
 </div>
 </div>
 </div>
+
 <div id="outline-container-sec-34-10" class="outline-3">
 <h3 id="sec-34-10">Visit By Default</h3>
 <div class="outline-text-3" id="text-34-10">
@@ -2962,6 +3018,7 @@ Insert state change notes and time stamps into a drawer rather than simply
 </div>
 </div>
 </div>
+
 <div id="outline-container-sec-35" class="outline-2">
 <h2 id="sec-35">paredit-mode</h2>
 <div class="outline-text-2" id="text-35">
@@ -2985,6 +3042,7 @@ Insert state change notes and time stamps into a drawer rather than simply
 </div>
 </div>
 </div>
+
 <div id="outline-container-sec-36" class="outline-2">
 <h2 id="sec-36">Path</h2>
 <div class="outline-text-2" id="text-36">
@@ -2999,6 +3057,7 @@ Insert state change notes and time stamps into a drawer rather than simply
 </div>
 </div>
 </div>
+
 <div id="outline-container-sec-37" class="outline-2">
 <h2 id="sec-37">powerline</h2>
 <div class="outline-text-2" id="text-37">
@@ -3011,6 +3070,7 @@ Insert state change notes and time stamps into a drawer rather than simply
 </div>
 </div>
 </div>
+
 <div id="outline-container-sec-38" class="outline-2">
 <h2 id="sec-38">python</h2>
 <div class="outline-text-2" id="text-38">
@@ -3046,8 +3106,8 @@ Insert state change notes and time stamps into a drawer rather than simply
   (define-key python-mode-map (kbd <span class="org-string">"C-M-n"</span>) 'python-nav-forward-block)
   (define-key python-mode-map (kbd <span class="org-string">"C-M-p"</span>) 'python-nav-backward-block)
 
-  (define-key python-mode-map (kbd <span class="org-string">"C-M-."</span>) 'mc/mark-next-symbol-like-this)
-  (define-key python-mode-map (kbd <span class="org-string">"C-M-,"</span>) 'mc/mark-previous-symbol-like-this)
+  (define-key python-mode-map (kbd <span class="org-string">"C-M-."</span>) 'mc/mark-next-like-this)
+  (define-key python-mode-map (kbd <span class="org-string">"C-M-,"</span>) 'mc/mark-previous-like-this)
   (define-key python-mode-map (kbd <span class="org-string">"C-M-&lt;return&gt;"</span>) 'mc/mark-all-symbols-like-this))
 
 (add-hook 'python-mode-hook 'my-python-setup)
@@ -3073,6 +3133,7 @@ Insert state change notes and time stamps into a drawer rather than simply
 </div>
 </div>
 </div>
+
 <div id="outline-container-sec-39" class="outline-2">
 <h2 id="sec-39">recentf</h2>
 <div class="outline-text-2" id="text-39">
@@ -3096,6 +3157,7 @@ Insert state change notes and time stamps into a drawer rather than simply
 </div>
 </div>
 </div>
+
 <div id="outline-container-sec-40" class="outline-2">
 <h2 id="sec-40">savehist</h2>
 <div class="outline-text-2" id="text-40">
@@ -3110,6 +3172,7 @@ Insert state change notes and time stamps into a drawer rather than simply
 </div>
 </div>
 </div>
+
 <div id="outline-container-sec-41" class="outline-2">
 <h2 id="sec-41">smex</h2>
 <div class="outline-text-2" id="text-41">
@@ -3131,6 +3194,7 @@ Insert state change notes and time stamps into a drawer rather than simply
 </div>
 </div>
 </div>
+
 <div id="outline-container-sec-42" class="outline-2">
 <h2 id="sec-42">sql-mode</h2>
 <div class="outline-text-2" id="text-42">
@@ -3145,6 +3209,7 @@ Insert state change notes and time stamps into a drawer rather than simply
 </div>
 </div>
 </div>
+
 <div id="outline-container-sec-43" class="outline-2">
 <h2 id="sec-43">server</h2>
 <div class="outline-text-2" id="text-43">
@@ -3159,6 +3224,7 @@ Insert state change notes and time stamps into a drawer rather than simply
 </div>
 </div>
 </div>
+
 <div id="outline-container-term" class="outline-2">
 <h2 id="term"><a id="sec-44" name="sec-44"></a>term</h2>
 <div class="outline-text-2" id="text-term">
@@ -3202,9 +3268,57 @@ Together with <a href="#multi-term">multi-term</a> this sets up my terminal envi
 </div>
 </div>
 </div>
+
 <div id="outline-container-sec-45" class="outline-2">
-<h2 id="sec-45">virtualenvwrapper</h2>
+<h2 id="sec-45">tramp</h2>
 <div class="outline-text-2" id="text-45">
+<p>
+Fix <code>ControlPath too long</code> errors due to OS X pitching a <a href="https://lists.macosforge.org/pipermail/macports-tickets/2011-June/084295.html">long temporary
+directory</a> to <code>ssh</code>.
+</p>
+
+<p>
+Unfortunately, setting this is blowing up the <code>server-start</code> which can no
+longer find the socket stored in the original <code>TMPDIR</code> value.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-emacs-lisp"><span class="org-comment-delimiter">;; </span><span class="org-comment">(setenv "TMPDIR" "/tmp")</span>
+</pre>
+</div>
+
+<p>
+Do not inline copy files.  This is to avoid <code>File exists, but cannot be
+  read</code> errors.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-emacs-lisp">(setq tramp-copy-size-limit -1)
+</pre>
+</div>
+</div>
+
+<div id="outline-container-sec-45-1" class="outline-3">
+<h3 id="sec-45-1">Debugging</h3>
+<div class="outline-text-3" id="text-45-1">
+<div class="org-src-container">
+
+<pre class="src src-emacs-lisp"><span class="org-comment-delimiter">;; </span><span class="org-comment">(setq tramp-verbose 6)</span>
+</pre>
+</div>
+
+<p>
+Will create a detailed log buffer.
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-46" class="outline-2">
+<h2 id="sec-46">virtualenvwrapper</h2>
+<div class="outline-text-2" id="text-46">
 <div class="org-src-container">
 
 <pre class="src src-emacs-lisp">(<span class="org-keyword">require</span> '<span class="org-constant">virtualenvwrapper</span>)
@@ -3214,13 +3328,14 @@ Together with <a href="#multi-term">multi-term</a> this sets up my terminal envi
 </div>
 </div>
 
-<div id="outline-container-sec-45-1" class="outline-3">
-<h3 id="sec-45-1"><span class="todo TODO">TODO</span> <a href="https://github.com/porterjamesj/virtualenvwrapper.el#automatically-activating-a-virtualenv-in-a-particular-project">Automatically activate</a></h3>
+<div id="outline-container-sec-46-1" class="outline-3">
+<h3 id="sec-46-1"><span class="todo TODO">TODO</span> <a href="https://github.com/porterjamesj/virtualenvwrapper.el#automatically-activating-a-virtualenv-in-a-particular-project">Automatically activate</a></h3>
 </div>
 </div>
-<div id="outline-container-sec-46" class="outline-2">
-<h2 id="sec-46">windmove</h2>
-<div class="outline-text-2" id="text-46">
+
+<div id="outline-container-sec-47" class="outline-2">
+<h2 id="sec-47">windmove</h2>
+<div class="outline-text-2" id="text-47">
 <div class="org-src-container">
 
 <pre class="src src-emacs-lisp">(<span class="org-keyword">require</span> '<span class="org-constant">windmove</span>)
@@ -3231,9 +3346,10 @@ Together with <a href="#multi-term">multi-term</a> this sets up my terminal envi
 </div>
 </div>
 </div>
-<div id="outline-container-sec-47" class="outline-2">
-<h2 id="sec-47">winner-mode</h2>
-<div class="outline-text-2" id="text-47">
+
+<div id="outline-container-sec-48" class="outline-2">
+<h2 id="sec-48">winner-mode</h2>
+<div class="outline-text-2" id="text-48">
 <div class="org-src-container">
 
 <pre class="src src-emacs-lisp"><span class="org-comment-delimiter">;; </span><span class="org-comment">Remember window configurations.</span>
@@ -3244,9 +3360,10 @@ Together with <a href="#multi-term">multi-term</a> this sets up my terminal envi
 </div>
 </div>
 </div>
-<div id="outline-container-sec-48" class="outline-2">
-<h2 id="sec-48">yaml-mode</h2>
-<div class="outline-text-2" id="text-48">
+
+<div id="outline-container-sec-49" class="outline-2">
+<h2 id="sec-49">yaml-mode</h2>
+<div class="outline-text-2" id="text-49">
 <div class="org-src-container">
 
 <pre class="src src-emacs-lisp">(<span class="org-keyword">require</span> '<span class="org-constant">yaml-mode</span>)
@@ -3256,9 +3373,10 @@ Together with <a href="#multi-term">multi-term</a> this sets up my terminal envi
 </div>
 </div>
 </div>
-<div id="outline-container-sec-49" class="outline-2">
-<h2 id="sec-49">yasnippet</h2>
-<div class="outline-text-2" id="text-49">
+
+<div id="outline-container-sec-50" class="outline-2">
+<h2 id="sec-50">yasnippet</h2>
+<div class="outline-text-2" id="text-50">
 <div class="org-src-container">
 
 <pre class="src src-emacs-lisp">(<span class="org-keyword">require</span> '<span class="org-constant">yasnippet</span>)
@@ -3271,8 +3389,8 @@ Together with <a href="#multi-term">multi-term</a> this sets up my terminal envi
 </div>
 <div id="postamble" class="status">
 <p class="author">Kris Molendyke</p>
-<p class="date">2014-04-29 Tue 07:46</p>
-<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.4.50.1 (<a href="http://orgmode.org">Org</a> mode 8.2.5c)</p>
+<p class="date">2014-06-11 Wed 17:28</p>
+<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.4.50.1 (<a href="http://orgmode.org">Org</a> mode 8.2.6)</p>
 </div>
 </body>
 </html>
