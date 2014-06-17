@@ -568,8 +568,8 @@ function.
   First setup =ispell= to use [[#install-aspell][=aspell=]]:
 
   #+BEGIN_SRC emacs-lisp
-    (setq ispell-program-name "aspell"
-          ispell-extra-args (list "--sug-mode=ultra"))
+    (setq-default ispell-program-name "aspell"
+                  ispell-extra-args (list "--sug-mode=ultra"))
   #+END_SRC
 
   Then setup =flyspell= itself.  It requires  =ispell=.
@@ -1302,7 +1302,7 @@ function.
   read= errors.
 
   #+BEGIN_SRC emacs-lisp
-    (setq tramp-copy-size-limit -1)
+    (setq-default tramp-copy-size-limit -1)
   #+END_SRC
 
 ** Debugging
