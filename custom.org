@@ -316,7 +316,8 @@ function.
                         ("Glass_TTY_VT220" . 20)
                         ("Consolas" . 18)
                         ("Ubuntu_Mono" . 17)
-                        ("Inconsolata" . 18))
+                        ("Inconsolata" . 18)
+                        ("DejaVu_Sans_Mono" . 18))
       "Ordered list of preferred fonts and sizes.")
 
     (set--font-from-list font-list)
