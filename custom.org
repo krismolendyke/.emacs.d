@@ -1217,6 +1217,21 @@ function.
     (savehist-mode)
   #+END_SRC
 
+* =*scratch*=
+
+  Begin with an empty =*scratch*= file.
+
+  #+BEGIN_SRC emacs-lisp
+    (setq initial-scratch-message nil)
+  #+END_SRC
+
+  Set it to Emacs Lisp mode.
+
+  #+BEGIN_SRC emacs-lisp
+    (with-current-buffer (get-buffer-create "*scratch*")
+      (emacs-lisp-mode))
+  #+END_SRC
+
 * smex
 
   #+BEGIN_SRC emacs-lisp

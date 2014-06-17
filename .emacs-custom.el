@@ -58,7 +58,6 @@
         (mode . idl-mode)
         (mode . lisp-mode)))))))
  '(inhibit-startup-screen t)
- '(initial-scratch-message nil)
  '(safe-local-variable-values
    (quote
     ((eval setq flycheck-emacs-lisp-package-user-dir
