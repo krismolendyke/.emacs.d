@@ -46,10 +46,9 @@ Only turn off the menu bar running in a terminal window."
 
 (defun setup-load-path ()
   "Add custom directories to `load-path'."
-  (dolist ((directory '(user-emacs-directory
-                        site-lisp-directory
-                        elisp-directory
-                        org-lisp-directory)))
+  (dolist (directory (list site-lisp-directory
+                           elisp-directory
+                           org-lisp-directory))
     (add-to-list 'load-path directory))
 
   ;; Add external projects to load path.
