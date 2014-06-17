@@ -545,6 +545,7 @@ function.
                               "*.el"
                               "*.html"
                               "*.js"
+                              "*.json"
                               "*.md"
                               "*.org"
                               "*.py"
