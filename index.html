@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>Literate <code>.emacs.d</code></title>
-<!-- 2014-06-11 Wed 17:29 -->
+<!-- 2014-06-16 Mon 21:13 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Kris Molendyke" />
@@ -1983,7 +1983,8 @@ The fonts stuff in here can probably be split out.
                     (<span class="org-string">"Glass_TTY_VT220"</span> . 20)
                     (<span class="org-string">"Consolas"</span> . 18)
                     (<span class="org-string">"Ubuntu_Mono"</span> . 17)
-                    (<span class="org-string">"Inconsolata"</span> . 18))
+                    (<span class="org-string">"Inconsolata"</span> . 18)
+                    (<span class="org-string">"DejaVu_Sans_Mono"</span> . 18))
   <span class="org-doc">"Ordered list of preferred fonts and sizes."</span>)
 
 (set--font-from-list font-list)
@@ -2328,8 +2329,8 @@ First setup <code>ispell</code> to use <a href="#install-aspell"><code>aspell</c
 
 <div class="org-src-container">
 
-<pre class="src src-emacs-lisp">(setq ispell-program-name <span class="org-string">"aspell"</span>
-      ispell-extra-args (list <span class="org-string">"--sug-mode=ultra"</span>))
+<pre class="src src-emacs-lisp">(setq-default ispell-program-name <span class="org-string">"aspell"</span>
+              ispell-extra-args (list <span class="org-string">"--sug-mode=ultra"</span>))
 </pre>
 </div>
 
@@ -3295,7 +3296,7 @@ Do not inline copy files.  This is to avoid <code>File exists, but cannot be
 
 <div class="org-src-container">
 
-<pre class="src src-emacs-lisp">(setq tramp-copy-size-limit -1)
+<pre class="src src-emacs-lisp">(setq-default tramp-copy-size-limit -1)
 </pre>
 </div>
 </div>
@@ -3389,7 +3390,7 @@ Will create a detailed log buffer.
 </div>
 <div id="postamble" class="status">
 <p class="author">Kris Molendyke</p>
-<p class="date">2014-06-11 Wed 17:28</p>
+<p class="date">2014-06-16 Mon 21:12</p>
 <p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.4.50.1 (<a href="http://orgmode.org">Org</a> mode 8.2.6)</p>
 </div>
 </body>
