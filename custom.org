@@ -535,12 +535,25 @@ function.
   #+BEGIN_SRC emacs-lisp
     (require 'find-file-in-project)
 
-    (add-to-list 'ffip-patterns "*.css" t)
-    (add-to-list 'ffip-patterns "*.soy" t)
-
     (setq ffip-limit 8192
           ffip-find-options "-not -regex \".*/build.*\""
-          ffip-full-paths t)
+          ffip-full-paths t
+          ffip-patterns (list "*.clj"
+                              "*.conf"
+                              "*.cron"
+                              "*.css"
+                              "*.el"
+                              "*.html"
+                              "*.js"
+                              "*.md"
+                              "*.org"
+                              "*.py"
+                              "*.rb"
+                              "*.rst"
+                              "*.sh"
+                              "*.soy"
+                              "*.txt"
+                              "*.yml"))
 
     (global-set-key (kbd "C-x o") 'find-file-in-project)
   #+END_SRC
