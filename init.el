@@ -76,6 +76,7 @@ Only turn off the menu bar running in a terminal window."
   (dolist (elt (directory-files user-emacs-directory t "\\.org$" t))
     (org-babel-load-file elt t)))
 
+(setq source-directory "/Library/Caches/Homebrew/emacs--git")
 (setup-cask-and-pallet)
 (no-bars-held)
 (setup-load-path)

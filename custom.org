@@ -49,16 +49,15 @@ function.
    =source-directory= is helpful to have set properly when exploring built-in
    /C functions/ via =find-function=.
 
-   #+BEGIN_SRC emacs-lisp
-     (setq source-directory "/Library/Caches/Homebrew/emacs--git")
-   #+END_SRC
-
    Finding the source code directory via Homebrew can be done with the
    following command:
 
    #+BEGIN_SRC sh
      brew --cache
    #+END_SRC
+
+   /Note/: =source-directory= must be set during Emacs initialization time to
+   persist.  See =init.el=.
 
 * TODO Generate and Publish =custom.org= to GitHub
 
