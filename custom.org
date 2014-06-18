@@ -129,10 +129,6 @@ function.
   This is a bunch of stuff that I just dumped here and need to go through yet.
 
   #+BEGIN_SRC emacs-lisp
-    (require 'ido)
-    (require 'windmove)
-
-
     ;; Please, no backup or autosave litter.
     (setq make-backup-files nil
           auto-save-default nil)
@@ -155,24 +151,16 @@ function.
 
 
     ;; Where am I?
-    ;(global-linum-mode t)
     (line-number-mode t)
     (global-hl-line-mode t)
     (column-number-mode t)
     (show-paren-mode t)
-
-    ;; Please no more <2>, <3>, >_<
-    (require 'uniquify)
-    (setq uniquify-buffer-name-style 'forward)
 
     ;; Do not break lines.  Truncate them.
     (setq-default truncate-lines t)
 
     ;; Automatically reload buffers when files change on disk.
     (global-auto-revert-mode 1)
-
-    ;; Tabs... *hisssss*
-    (set-default 'indent-tabs-mode nil)
 
     ;; Nag, nag, nag, nag...
     (put 'downcase-region 'disabled nil)
@@ -181,17 +169,6 @@ function.
     (put 'narrow-to-page 'disabled nil)
     (put 'scroll-left 'disabled nil)
     (put 'scroll-right 'disabled nil)
-
-    ;; Kill trailing whitespace on save.
-    (add-hook 'before-save-hook 'delete-trailing-whitespace)
-    ;(setq-default show-trailing-whitespace nil)
-
-    ;; Require a final newline before saving or writing a file.
-    (setq require-final-newline t)
-    (setq mode-require-final-newline t)
-
-    ;; Give a man a hand.
-    (add-hook 'emacs-lisp-mode-hook 'turn-on-eldoc-mode)
 
     ;; Quit all that damn racket!
     (setq ring-bell-function 'ignore)
@@ -517,7 +494,8 @@ function.
             (getf autopair-extra-pairs :comment))
       (push '(?` . ?')
             (getf autopair-extra-pairs :string))
-      (setq autopair-skip-whitespace 'chomp))
+      (setq autopair-skip-whitespace 'chomp)
+      (turn-on-eldoc-mode))
 
     (add-hook 'emacs-lisp-mode-hook 'my-emacs-lisp-autopair-hook)
   #+END_SRC
@@ -1342,6 +1320,16 @@ function.
 
    Will create a detailed log buffer.
 
+* uniquify
+
+  Name multiple identical buffer names in a sensible manner.
+
+  #+BEGIN_SRC emacs-lisp
+    (require 'uniquify)
+
+    (setq uniquify-buffer-name-style 'forward)
+  #+END_SRC
+
 * virtualenvwrapper
 
   #+BEGIN_SRC emacs-lisp
@@ -1368,6 +1356,23 @@ function.
     (require 'winner)
 
     (winner-mode)
+  #+END_SRC
+
+* whitespace
+
+  Take care of some whitespace issues.
+
+  - Kill trailing whitespace on save
+  - Insert a new line at the end of file on save
+  - Prefer =space= over =tab=
+
+  #+BEGIN_SRC emacs-lisp
+    (add-hook 'before-save-hook 'delete-trailing-whitespace)
+
+    (set-default 'indent-tabs-mode nil)
+
+    (setq require-final-newline t
+          mode-require-final-newline t)
   #+END_SRC
 
 * yaml-mode
