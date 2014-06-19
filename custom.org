@@ -494,7 +494,7 @@ function.
       (push '(?` . ?')
             (getf autopair-extra-pairs :string))
       (setq autopair-skip-whitespace 'chomp)
-      (turn-on-eldoc-mode))
+      (eldoc-mode))
 
     (add-hook 'emacs-lisp-mode-hook 'my-emacs-lisp-autopair-hook)
   #+END_SRC
