@@ -791,6 +791,7 @@ function.
           ("C-n" . term-send-down)
           ("C-r" . term-send-reverse-search-history)
           ("C-m" . term-send-raw)
+          ("C-y" . term-send-raw)
           ("C-z" . term-stop-subjob)
           ("M-f" . term-send-forward-word)
           ("M-b" . term-send-backward-word)
