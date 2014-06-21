@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>Literate <code>.emacs.d</code></title>
-<!-- 2014-06-18 Wed 07:50 -->
+<!-- 2014-06-21 Sat 09:56 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Kris Molendyke" />
@@ -1517,9 +1517,12 @@ function.
 <li><a href="#sec-7">OS X</a></li>
 <li><a href="#sec-8">Appearance</a>
 <ul>
-<li><a href="#sec-8-1">Fringe</a></li>
-<li><a href="#sec-8-2"><span class="todo TODO">TODO</span> Disable <code>linum-mode</code> when text scale is not zero</a></li>
-<li><a href="#sec-8-3"><span class="todo TODO">TODO</span> Try out Spacegray theme</a></li>
+<li><a href="#sec-8-1">Theme</a></li>
+<li><a href="#sec-8-2">Cursor</a></li>
+<li><a href="#sec-8-3">Font</a></li>
+<li><a href="#sec-8-4">Frame Height</a></li>
+<li><a href="#sec-8-5">Fringe</a></li>
+<li><a href="#sec-8-6"><span class="todo TODO">TODO</span> Disable <code>linum-mode</code> when text scale is not zero</a></li>
 </ul>
 </li>
 <li><a href="#sec-9">ag</a></li>
@@ -1654,12 +1657,6 @@ If there is an existing installation it needs to be removed first.
 <i>C functions</i> via <code>find-function</code>.
 </p>
 
-<div class="org-src-container">
-
-<pre class="src src-emacs-lisp">(setq source-directory <span class="org-string">"/Library/Caches/Homebrew/emacs--git"</span>)
-</pre>
-</div>
-
 <p>
 Finding the source code directory via Homebrew can be done with the
 following command:
@@ -1670,6 +1667,11 @@ following command:
 <pre class="src src-sh">brew --cache
 </pre>
 </div>
+
+<p>
+<i>Note</i>: <code>source-directory</code> must be set during Emacs initialization time to
+persist.  See <code>init.el</code>.
+</p>
 </div>
 </div>
 </div>
@@ -1882,10 +1884,9 @@ input/mouse section?
 <div id="outline-container-sec-8" class="outline-2">
 <h2 id="sec-8">Appearance</h2>
 <div class="outline-text-2" id="text-8">
-<p>
-The fonts stuff in here can probably be split out.
-</p>
-
+</div><div id="outline-container-sec-8-1" class="outline-3">
+<h3 id="sec-8-1">Theme</h3>
+<div class="outline-text-3" id="text-8-1">
 <div class="org-src-container">
 
 <pre class="src src-emacs-lisp"><span class="org-comment-delimiter">;; </span><span class="org-comment">Add themes.</span>
@@ -1940,11 +1941,46 @@ The fonts stuff in here can probably be split out.
 
 <span class="org-comment-delimiter">;; </span><span class="org-comment">Load a dark theme by default.</span>
 (load-dark-theme)
+</pre>
+</div>
+</div>
 
-(setq blink-cursor-interval 0.75)
-(blink-cursor-mode 0)
+<div id="outline-container-sec-8-1-1" class="outline-4">
+<h4 id="sec-8-1-1"><span class="todo TODO">TODO</span> Try out <a href="https://github.com/bruce/emacs-spacegray-theme">Spacegray theme</a></h4>
+</div>
+</div>
 
-(<span class="org-keyword">defun</span> <span class="org-function-name">set--font</span> (font-alist)
+<div id="outline-container-sec-8-2" class="outline-3">
+<h3 id="sec-8-2">Cursor</h3>
+<div class="outline-text-3" id="text-8-2">
+<p>
+Disable blinking.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-emacs-lisp">(blink-cursor-mode 0)
+</pre>
+</div>
+
+<p>
+If blinking is enabled the rate can be adjusted.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-emacs-lisp">(setq blink-cursor-interval 0.75)
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-8-3" class="outline-3">
+<h3 id="sec-8-3">Font</h3>
+<div class="outline-text-3" id="text-8-3">
+<div class="org-src-container">
+
+<pre class="src src-emacs-lisp">(<span class="org-keyword">defun</span> <span class="org-function-name">set--font</span> (font-alist)
   <span class="org-doc">"Set the font family and size to the given font alist of the</span>
 <span class="org-doc">format (family . point)."</span>
   (set-frame-font (car font-alist))
@@ -1963,7 +1999,7 @@ The fonts stuff in here can probably be split out.
                     (<span class="org-string">"Consolas"</span> . 18)
                     (<span class="org-string">"Ubuntu_Mono"</span> . 17)
                     (<span class="org-string">"Inconsolata"</span> . 18)
-                    (<span class="org-string">"DejaVu_Sans_Mono"</span> . 18))
+                   (<span class="org-string">"DejaVu_Sans_Mono"</span> . 18))
   <span class="org-doc">"Ordered list of preferred fonts and sizes."</span>)
 
 (set--font-from-list font-list)
@@ -1978,8 +2014,22 @@ The fonts stuff in here can probably be split out.
           (<span class="org-keyword">let</span> ((font (completing-read <span class="org-string">"Font: "</span> font-list)))
             (set--font (assoc font font-list))))
       (setq completion-ignore-case ignore-case))))
+</pre>
+</div>
+</div>
+</div>
 
-(<span class="org-keyword">defun</span> <span class="org-function-name">get-max-rows</span> (pixel-height)
+<div id="outline-container-sec-8-4" class="outline-3">
+<h3 id="sec-8-4">Frame Height</h3>
+<div class="outline-text-3" id="text-8-4">
+<p>
+These functions were more useful before I began using the <a href="http://git.savannah.gnu.org/cgit/emacs.git/tree/lisp/desktop.el"><code>desktop</code></a> package
+and its <a href="http://git.savannah.gnu.org/cgit/emacs.git/tree/lisp/desktop.el?id=e78d7f87377e29ee7ed2dd7aaed40244f1edbf13#n397"><code>desktop-restore-frames</code></a> variable.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-emacs-lisp">(<span class="org-keyword">defun</span> <span class="org-function-name">get-max-rows</span> (pixel-height)
   <span class="org-doc">"Return the maximum number of rows that will fit with this screen.</span>
 <span class="org-doc">Given a screen pixel height at the current frame character height, calculate</span>
 <span class="org-doc">the maximum number of rows that will fit with that height."</span>
@@ -1997,10 +2047,11 @@ The fonts stuff in here can probably be split out.
 </pre>
 </div>
 </div>
+</div>
 
-<div id="outline-container-sec-8-1" class="outline-3">
-<h3 id="sec-8-1">Fringe</h3>
-<div class="outline-text-3" id="text-8-1">
+<div id="outline-container-sec-8-5" class="outline-3">
+<h3 id="sec-8-5">Fringe</h3>
+<div class="outline-text-3" id="text-8-5">
 <p>
 The "fringe" or "gutter" shows indicators for wrapped/extended lines,
 <a href="#flycheck">flycheck</a>, etc.
@@ -2015,9 +2066,9 @@ The "fringe" or "gutter" shows indicators for wrapped/extended lines,
 </div>
 </div>
 
-<div id="outline-container-sec-8-2" class="outline-3">
-<h3 id="sec-8-2"><span class="todo TODO">TODO</span> Disable <code>linum-mode</code> when text scale is not zero</h3>
-<div class="outline-text-3" id="text-8-2">
+<div id="outline-container-sec-8-6" class="outline-3">
+<h3 id="sec-8-6"><span class="todo TODO">TODO</span> Disable <code>linum-mode</code> when text scale is not zero</h3>
+<div class="outline-text-3" id="text-8-6">
 <p>
 The fringe text scale is adjusted with the rest of the buffer yet the
 fringe width is not adjusted.  If text scale is positive the line numbers
@@ -2026,10 +2077,6 @@ this situation</a> but I'd just as soon disable line numbering when the text
 scale is large.
 </p>
 </div>
-</div>
-
-<div id="outline-container-sec-8-3" class="outline-3">
-<h3 id="sec-8-3"><span class="todo TODO">TODO</span> Try out <a href="https://github.com/bruce/emacs-spacegray-theme">Spacegray theme</a></h3>
 </div>
 </div>
 
@@ -2238,7 +2285,7 @@ they are the result of an asynchronous query and response parsing?
   (push '(?` . ?')
         (getf autopair-extra-pairs <span class="org-builtin">:string</span>))
   (setq autopair-skip-whitespace 'chomp)
-  (turn-on-eldoc-mode))
+  (eldoc-mode))
 
 (add-hook 'emacs-lisp-mode-hook 'my-emacs-lisp-autopair-hook)
 </pre>
@@ -2612,6 +2659,7 @@ buffers.  It also lets me fix a big annoyance by binding <code>M-h</code> to
       (<span class="org-string">"C-n"</span> . term-send-down)
       (<span class="org-string">"C-r"</span> . term-send-reverse-search-history)
       (<span class="org-string">"C-m"</span> . term-send-raw)
+      (<span class="org-string">"C-y"</span> . term-send-raw)
       (<span class="org-string">"C-z"</span> . term-stop-subjob)
       (<span class="org-string">"M-f"</span> . term-send-forward-word)
       (<span class="org-string">"M-b"</span> . term-send-backward-word)
@@ -3452,7 +3500,7 @@ Take care of some whitespace issues.
 </div>
 <div id="postamble" class="status">
 <p class="author">Kris Molendyke</p>
-<p class="date">2014-06-17 Tue 20:08</p>
+<p class="date">2014-06-21 Sat 09:55</p>
 <p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.4.50.1 (<a href="http://orgmode.org">Org</a> mode 8.2.4)</p>
 </div>
 </body>
