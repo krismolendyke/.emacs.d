@@ -483,8 +483,10 @@ function.
 * compilation-mode
 
   #+BEGIN_SRC emacs-lisp
-    (add-hook 'compilation-mode-hook (lambda ()
-                                       (set-face-foreground 'compilation-error "tomato1")))
+    (defun my-compilation-mode-hook ()
+      (set-face-foreground 'compilation-error "tomato1"))
+
+    (add-hook 'compilation-mode-hook 'my-compilation-mode-hook)
   #+END_SRC
 
 * dired
