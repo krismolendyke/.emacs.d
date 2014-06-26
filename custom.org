@@ -555,7 +555,8 @@ function.
                               "*.sh"
                               "*.soy"
                               "*.txt"
-                              "*.yml"))
+                              "*.yml")
+          ffip-prune-patterns (list ".git" "build"))
 
     (global-set-key (kbd "C-x o") 'find-file-in-project)
   #+END_SRC
