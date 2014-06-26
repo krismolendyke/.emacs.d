@@ -745,6 +745,17 @@ function.
           flx-ido-use-faces t)
   #+END_SRC
 
+* IELM
+
+  #+BEGIN_SRC emacs-lisp
+    (require 'eldoc)
+
+    (defun my-ielm-hook ()
+      (eldoc-mode))
+
+    (add-hook 'ielm-mode-hook 'my-ielm-hook)
+  #+END_SRC
+
 * isearch
 
   #+BEGIN_SRC emacs-lisp
