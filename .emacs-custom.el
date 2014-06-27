@@ -21,8 +21,8 @@
        (used-mode . org-mode))
       ("dired"
        (used-mode . dired-mode))
-      ("*zsh*"
-       (name . "\\*zsh"))
+      ("*terminal*"
+       (name . "\\*terminal"))
       ("*ag*"
        (name . "^\\*ag "))
       ("*temp*"
