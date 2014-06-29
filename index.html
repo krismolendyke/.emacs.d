@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>Literate <code>.emacs.d</code></title>
-<!-- 2014-06-26 Thu 11:04 -->
+<!-- 2014-06-29 Sun 14:30 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Kris Molendyke" />
@@ -2243,10 +2243,10 @@ they are the result of an asynchronous query and response parsing?
 <div class="outline-text-2" id="text-16">
 <div class="org-src-container">
 
-<pre class="src src-emacs-lisp">(<span class="org-keyword">defun</span> <span class="org-function-name">my-compilation-mode-hook</span> ()
+<pre class="src src-emacs-lisp">(<span class="org-keyword">defun</span> <span class="org-function-name">k20e/compilation-mode-hook</span> ()
   (set-face-foreground 'compilation-error <span class="org-string">"tomato1"</span>))
 
-(add-hook 'compilation-mode-hook 'my-compilation-mode-hook)
+(add-hook 'compilation-mode-hook 'k20e/compilation-mode-hook)
 </pre>
 </div>
 </div>
@@ -2281,7 +2281,7 @@ they are the result of an asynchronous query and response parsing?
 
 <pre class="src src-emacs-lisp">(<span class="org-keyword">require</span> '<span class="org-constant">autopair</span>)
 
-(<span class="org-keyword">defun</span> <span class="org-function-name">my-emacs-lisp-autopair-hook</span> ()
+(<span class="org-keyword">defun</span> <span class="org-function-name">k20e/emacs-lisp-autopair-hook</span> ()
   <span class="org-comment-delimiter">;; </span><span class="org-comment">autopair `' when writing comments or strings.</span>
   (push '(?` . ?')
         (getf autopair-extra-pairs <span class="org-builtin">:comment</span>))
@@ -2290,7 +2290,7 @@ they are the result of an asynchronous query and response parsing?
   (setq autopair-skip-whitespace 'chomp)
   (eldoc-mode))
 
-(add-hook 'emacs-lisp-mode-hook 'my-emacs-lisp-autopair-hook)
+(add-hook 'emacs-lisp-mode-hook 'k20e/emacs-lisp-autopair-hook)
 </pre>
 </div>
 </div>
@@ -2335,7 +2335,8 @@ they are the result of an asynchronous query and response parsing?
                           <span class="org-string">"*.sh"</span>
                           <span class="org-string">"*.soy"</span>
                           <span class="org-string">"*.txt"</span>
-                          <span class="org-string">"*.yml"</span>))
+                          <span class="org-string">"*.yml"</span>)
+      ffip-prune-patterns (list <span class="org-string">".git"</span> <span class="org-string">"build"</span>))
 
 (global-set-key (kbd <span class="org-string">"C-x o"</span>) 'find-file-in-project)
 </pre>
@@ -2533,7 +2534,7 @@ Install <code>aspell</code> via Homebrew:
 <span class="org-comment-delimiter">;; </span><span class="org-comment">Avoid `</span><span class="org-constant"><span class="org-comment">ido-vertical-mode</span></span><span class="org-comment">' from eating M-p.</span>
 (setq ido-vertical-define-keys nil)
 
-(<span class="org-keyword">defun</span> <span class="org-function-name">my-ido-setup</span> ()
+(<span class="org-keyword">defun</span> <span class="org-function-name">k20e/ido-setup</span> ()
   <span class="org-doc">"Setup key map and theme faces."</span>
   (define-key ido-completion-map (kbd <span class="org-string">"C-n"</span>) 'ido-next-match)
   (define-key ido-completion-map (kbd <span class="org-string">"C-p"</span>) 'ido-prev-match)
@@ -2551,7 +2552,7 @@ Install <code>aspell</code> via Homebrew:
                       `(ido-only-match ((t (<span class="org-builtin">:foreground</span> ,match))))
                       `(flx-highlight-face ((t (<span class="org-builtin">:foreground</span> ,highlight
                                                 <span class="org-builtin">:underline</span> nil)))))))
-(add-hook 'ido-setup-hook 'my-ido-setup)
+(add-hook 'ido-setup-hook 'k20e/ido-setup)
 
 (ido-mode t)
 (ido-vertical-mode t)
@@ -2577,10 +2578,10 @@ Install <code>aspell</code> via Homebrew:
 
 <pre class="src src-emacs-lisp">(<span class="org-keyword">require</span> '<span class="org-constant">eldoc</span>)
 
-(<span class="org-keyword">defun</span> <span class="org-function-name">my-ielm-hook</span> ()
+(<span class="org-keyword">defun</span> <span class="org-function-name">k20e/ielm-hook</span> ()
   (eldoc-mode))
 
-(add-hook 'ielm-mode-hook 'my-ielm-hook)
+(add-hook 'ielm-mode-hook 'k20e/ielm-hook)
 </pre>
 </div>
 </div>
@@ -2635,12 +2636,12 @@ Install <code>aspell</code> via Homebrew:
 
 <pre class="src src-emacs-lisp">(<span class="org-keyword">require</span> '<span class="org-constant">monetate-mode</span>)
 
-(<span class="org-keyword">defun</span> <span class="org-function-name">my-monetate-hook</span> ()
+(<span class="org-keyword">defun</span> <span class="org-function-name">k20e/monetate-hook</span> ()
   <span class="org-doc">"Enable monetate-mode if file is in a Monetate repository."</span>
   (<span class="org-keyword">if</span> (monetate-repo-p) (monetate-mode 1)))
 
 (<span class="org-keyword">dolist</span> (hook '(python-mode-hook js-mode-hook shell-mode-hook sql-mode))
-  (add-hook hook 'my-monetate-hook))
+  (add-hook hook 'k20e/monetate-hook))
 
 (setq monetate-notify-function 'monetate--notify-terminal-notifier
       monetate-notify-process-messages '((started . <span class="org-string">"&#128336; Started&#8230;"</span>)
@@ -2695,11 +2696,11 @@ buffers.  It also lets me fix a big annoyance by binding <code>M-h</code> to
     <span class="org-builtin">:type</span> 'alist
     <span class="org-builtin">:group</span> 'multi-term)
 
-(<span class="org-keyword">defun</span> <span class="org-function-name">my-multi-term-hook</span> ()
+(<span class="org-keyword">defun</span> <span class="org-function-name">k20e/multi-term-hook</span> ()
   <span class="org-doc">"Re-evaluate my custom key bindings."</span>
   (custom-reevaluate-setting 'term-bind-key-alist))
 
-(add-hook 'term-mode-hook 'my-multi-term-hook)
+(add-hook 'term-mode-hook 'k20e/multi-term-hook)
 
 (<span class="org-keyword">defalias</span> '<span class="org-function-name">zsh</span> 'multi-term
   <span class="org-doc">"Execute `</span><span class="org-constant"><span class="org-doc">multi-term</span></span><span class="org-doc">' when `</span><span class="org-constant"><span class="org-doc">zsh</span></span><span class="org-doc">' is executed.</span>
@@ -2709,7 +2710,7 @@ buffers.  It also lets me fix a big annoyance by binding <code>M-h</code> to
 </div>
 
 <p>
-<code>my-multi-term-hook</code> is necessary to re-evaluate my custom key bindings
+<code>k20e/multi-term-hook</code> is necessary to re-evaluate my custom key bindings
 after <code>multi-term</code> is loaded.  Otherwise it overrides my bindings with its
 bindings whenever I open a new terminal.
 </p>
@@ -3142,7 +3143,7 @@ Insert state change notes and time stamps into a drawer rather than simply
 (<span class="org-keyword">require</span> '<span class="org-constant">python</span>)
 (<span class="org-keyword">require</span> '<span class="org-constant">yasnippet</span>)
 
-(<span class="org-keyword">defun</span> <span class="org-function-name">my-python-setup</span> ()
+(<span class="org-keyword">defun</span> <span class="org-function-name">k20e/python-setup</span> ()
   (superword-mode)
   <span class="org-comment-delimiter">;; </span><span class="org-comment">Do not drive me crazy with extra-dumb indentation!</span>
   (setq electric-indent-inhibit t)
@@ -3169,7 +3170,7 @@ Insert state change notes and time stamps into a drawer rather than simply
   (define-key python-mode-map (kbd <span class="org-string">"C-M-,"</span>) 'mc/mark-previous-like-this)
   (define-key python-mode-map (kbd <span class="org-string">"C-M-&lt;return&gt;"</span>) 'mc/mark-all-symbols-like-this))
 
-(add-hook 'python-mode-hook 'my-python-setup)
+(add-hook 'python-mode-hook 'k20e/python-setup)
 </pre>
 </div>
 </div>
@@ -3321,13 +3322,13 @@ Together with <a href="#multi-term">multi-term</a> this sets up my terminal envi
 
 <pre class="src src-emacs-lisp">(<span class="org-keyword">require</span> '<span class="org-constant">term</span>)
 
-(<span class="org-keyword">defun</span> <span class="org-function-name">my-term-hook</span> ()
+(<span class="org-keyword">defun</span> <span class="org-function-name">k20e/term-hook</span> ()
   <span class="org-doc">"Configure terminal mode.</span>
 <span class="org-doc">`</span><span class="org-constant"><span class="org-doc">autopair-mode</span></span><span class="org-doc">' interferes with `</span><span class="org-constant"><span class="org-doc">term-send-raw</span></span><span class="org-doc">' bounding on</span>
 <span class="org-doc">`</span><span class="org-constant"><span class="org-doc">RET</span></span><span class="org-doc">' so it is disabled."</span>
   (<span class="org-keyword">if</span> (fboundp 'autopair-mode) (autopair-mode -1)))
 
-(add-hook 'term-mode-hook 'my-term-hook)
+(add-hook 'term-mode-hook 'k20e/term-hook)
 </pre>
 </div>
 </div>
@@ -3519,7 +3520,7 @@ Take care of some whitespace issues.
 </div>
 <div id="postamble" class="status">
 <p class="author">Kris Molendyke</p>
-<p class="date">2014-06-26 Thu 11:04</p>
+<p class="date">2014-06-29 Sun 14:30</p>
 <p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.4.50.1 (<a href="http://orgmode.org">Org</a> mode 8.2.4)</p>
 </div>
 </body>
