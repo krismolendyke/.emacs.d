@@ -483,10 +483,10 @@ function.
 * compilation-mode
 
   #+BEGIN_SRC emacs-lisp
-    (defun my-compilation-mode-hook ()
+    (defun k20e/compilation-mode-hook ()
       (set-face-foreground 'compilation-error "tomato1"))
 
-    (add-hook 'compilation-mode-hook 'my-compilation-mode-hook)
+    (add-hook 'compilation-mode-hook 'k20e/compilation-mode-hook)
   #+END_SRC
 
 * dired
@@ -511,7 +511,7 @@ function.
   #+BEGIN_SRC emacs-lisp
     (require 'autopair)
 
-    (defun my-emacs-lisp-autopair-hook ()
+    (defun k20e/emacs-lisp-autopair-hook ()
       ;; autopair `' when writing comments or strings.
       (push '(?` . ?')
             (getf autopair-extra-pairs :comment))
@@ -520,7 +520,7 @@ function.
       (setq autopair-skip-whitespace 'chomp)
       (eldoc-mode))
 
-    (add-hook 'emacs-lisp-mode-hook 'my-emacs-lisp-autopair-hook)
+    (add-hook 'emacs-lisp-mode-hook 'k20e/emacs-lisp-autopair-hook)
   #+END_SRC
 
 * expand-region
@@ -712,7 +712,7 @@ function.
     ;; Avoid `ido-vertical-mode' from eating M-p.
     (setq ido-vertical-define-keys nil)
 
-    (defun my-ido-setup ()
+    (defun k20e/ido-setup ()
       "Setup key map and theme faces."
       (define-key ido-completion-map (kbd "C-n") 'ido-next-match)
       (define-key ido-completion-map (kbd "C-p") 'ido-prev-match)
@@ -730,7 +730,7 @@ function.
                           `(ido-only-match ((t (:foreground ,match))))
                           `(flx-highlight-face ((t (:foreground ,highlight
                                                     :underline nil)))))))
-    (add-hook 'ido-setup-hook 'my-ido-setup)
+    (add-hook 'ido-setup-hook 'k20e/ido-setup)
 
     (ido-mode t)
     (ido-vertical-mode t)
@@ -751,10 +751,10 @@ function.
   #+BEGIN_SRC emacs-lisp
     (require 'eldoc)
 
-    (defun my-ielm-hook ()
+    (defun k20e/ielm-hook ()
       (eldoc-mode))
 
-    (add-hook 'ielm-mode-hook 'my-ielm-hook)
+    (add-hook 'ielm-mode-hook 'k20e/ielm-hook)
   #+END_SRC
 
 * isearch
@@ -789,12 +789,12 @@ function.
   #+BEGIN_SRC emacs-lisp
     (require 'monetate-mode)
 
-    (defun my-monetate-hook ()
+    (defun k20e/monetate-hook ()
       "Enable monetate-mode if file is in a Monetate repository."
       (if (monetate-repo-p) (monetate-mode 1)))
 
     (dolist (hook '(python-mode-hook js-mode-hook shell-mode-hook sql-mode))
-      (add-hook hook 'my-monetate-hook))
+      (add-hook hook 'k20e/monetate-hook))
 
     (setq monetate-notify-function 'monetate--notify-terminal-notifier
           monetate-notify-process-messages '((started . "🕐 Started…")
@@ -844,11 +844,11 @@ function.
         :type 'alist
         :group 'multi-term)
 
-    (defun my-multi-term-hook ()
+    (defun k20e/multi-term-hook ()
       "Re-evaluate my custom key bindings."
       (custom-reevaluate-setting 'term-bind-key-alist))
 
-    (add-hook 'term-mode-hook 'my-multi-term-hook)
+    (add-hook 'term-mode-hook 'k20e/multi-term-hook)
 
     (defalias 'zsh 'multi-term
       "Execute `multi-term' when `zsh' is executed.
@@ -856,7 +856,7 @@ function.
     determine the shell to run.  I have it set to zsh.")
   #+END_SRC
 
-  =my-multi-term-hook= is necessary to re-evaluate my custom key bindings
+  =k20e/multi-term-hook= is necessary to re-evaluate my custom key bindings
   after =multi-term= is loaded.  Otherwise it overrides my bindings with its
   bindings whenever I open a new terminal.
 
@@ -1173,7 +1173,7 @@ function.
     (require 'python)
     (require 'yasnippet)
 
-    (defun my-python-setup ()
+    (defun k20e/python-setup ()
       (superword-mode)
       ;; Do not drive me crazy with extra-dumb indentation!
       (setq electric-indent-inhibit t)
@@ -1200,7 +1200,7 @@ function.
       (define-key python-mode-map (kbd "C-M-,") 'mc/mark-previous-like-this)
       (define-key python-mode-map (kbd "C-M-<return>") 'mc/mark-all-symbols-like-this))
 
-    (add-hook 'python-mode-hook 'my-python-setup)
+    (add-hook 'python-mode-hook 'k20e/python-setup)
   #+END_SRC
 
 ** IPython
@@ -1307,13 +1307,13 @@ function.
   #+BEGIN_SRC emacs-lisp
     (require 'term)
 
-    (defun my-term-hook ()
+    (defun k20e/term-hook ()
       "Configure terminal mode.
     `autopair-mode' interferes with `term-send-raw' bounding on
     `RET' so it is disabled."
       (if (fboundp 'autopair-mode) (autopair-mode -1)))
 
-    (add-hook 'term-mode-hook 'my-term-hook)
+    (add-hook 'term-mode-hook 'k20e/term-hook)
   #+END_SRC
 
 ** Key Bindings
