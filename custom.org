@@ -494,12 +494,13 @@ function.
   #+BEGIN_SRC emacs-lisp
     (require 'autorevert)
 
-    (add-hook 'dired-mode-hook
-              #'(lambda ()
-                  (auto-revert-mode 1)
-                  (setq auto-revert-verbose nil)
-                  (set-face-foreground 'dired-flagged "tomato1")
-                  (set-face-attribute 'dired-flagged nil :strike-through t)))
+    (defun k20e/dired-mode-hook ()
+      (auto-revert-mode 1)
+      (setq auto-revert-verbose nil)
+      (set-face-foreground 'dired-flagged "tomato1")
+      (set-face-attribute 'dired-flagged nil :strike-through t))
+
+    (add-hook 'dired-mode-hook 'k20e/dired-mode-hook)
 
     ;; C-x C-d is normally bound to `ido-list-directory' which I rarely need and
     ;; often type when I intend to run `ido-dired'.
