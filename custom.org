@@ -427,22 +427,22 @@ function.
     (require 'geo-ip)
     (require 'url)
 
-    (add-hook
-     'calendar-load-hook
-     #'(lambda ()
-         ;; Default location Philly.
-         (setq
-          calendar-latitude 39.9            ; 39.9525
-          calendar-longitude -75.1          ; -75.163
-          calendar-location-name "Philadelphia, PA")
+    (defun k20e/calendar-load-hook ()
+      ;; Default location Philly.
+      (setq
+       calendar-latitude 39.9            ; 39.9525
+       calendar-longitude -75.1          ; -75.163
+       calendar-location-name "Philadelphia, PA")
 
-         ;; Attempt to set location with a geo-ip query.
-         (geo-ip-lat-lon-loc-ip
-          #'(lambda (lat lon loc ip)
-              (setq
-               calendar-latitude lat
-               calendar-longitude lon
-               calendar-location-name loc)))))
+      ;; Attempt to set location with a geo-ip query.
+      (geo-ip-lat-lon-loc-ip
+       #'(lambda (lat lon loc ip)
+           (setq
+            calendar-latitude lat
+            calendar-longitude lon
+            calendar-location-name loc))))
+
+    (add-hook 'calendar-load-hook 'k20e/calendar-load-hook)
   #+END_SRC
 
 * cider
@@ -451,9 +451,12 @@ function.
     (require 'cider)
     (require 'paredit)
 
-    (add-hook 'cider-mode-hook (lambda ()
-                                 (cider-turn-on-eldoc-mode)
-                                 (paredit-mode +1)))
+    (defun k20e/cider-mode-hook ()
+      (cider-turn-on-eldoc-mode)
+      (paredit-mode 1))
+
+    (add-hook 'cider-mode-hook 'k20e/cider-mode-hook)
+
     (setq nrepl-hide-special-buffers t
           cider-repl-popup-stacktraces nil
           cider-repl-use-pretty-printing t
@@ -467,17 +470,26 @@ function.
     (require 'clojure-test-mode)
     (require 'paredit)
 
-    ;; Awesome advice to safe buffers before loading or running tests
-    ;; courtesy of
-    ;; https://github.com/magnars/.emacs.d/blob/486e631801c84b018d90cf040d2170ef78045676/setup-clojure-mode.el
-    (defadvice clojure-test-run-tests (before save-first activate)
-      (save-buffer))
+    (defun k20e/clojure-mode-hook ()
+      (paredit-mode 1))
 
-    (defadvice nrepl-load-current-buffer (before save-first activate)
-      (save-buffer))
-
-    (add-hook 'clojure-mode-hook 'paredit-mode)
+    (add-hook 'clojure-mode-hook 'k20e/clojure-mode-hook)
   #+END_SRC
+
+** Save buffers before loading or running tests
+
+   Courtesy of Magnar Sveen's [[https://github.com/magnars/.emacs.d/blob/486e631801c84b018d90cf040d2170ef78045676/setup-clojure-mode.el][=setup-clojure-mode.el=]].
+
+   #+BEGIN_SRC emacs-lisp
+     (require 'cider-mode)
+     (require 'clojure-test-mode)
+
+     (defadvice clojure-test-run-tests (before save-first activate)
+       (save-buffer))
+
+     (defadvice cider-load-current-buffer (before save-first activate)
+       (save-buffer))
+   #+END_SRC
 
 * compilation-mode
 
@@ -624,7 +636,10 @@ function.
     (require 'gitconfig-mode)
     (require 'gitignore-mode)
 
-    (add-hook 'git-commit-mode-hook (lambda () (setq fill-column 72)))
+    (defun k20e/git-commit-mode-hook ()
+      (setq fill-column 72))
+
+    (add-hook 'git-commit-mode-hook 'k20e/git-commit-mode-hook)
 
     (autoload 'git-blame-mode "git-blame"
       "Minor mode for incremental blame for Git." t)
