@@ -389,11 +389,10 @@ function.
   to fill-column values.
 
   #+BEGIN_SRC emacs-lisp
-    (dolist (hook '(org-mode-hook
-                    text-mode-hook))
-      (add-hook hook #'(lambda ()
-                         (auto-fill-mode 1)
-                         (setq fill-column 78))))
+    (defun k20e/auto-fill-mode-hook ()
+      (setq fill-column 78))
+
+    (add-hook 'auto-fill-mode 'k20e/auto-fill-mode-hook)
   #+END_SRC
 
 * autopair
@@ -899,7 +898,14 @@ function.
 
   #+BEGIN_SRC emacs-lisp
     (require 'org)
+    (require 'auto-fill-mode)
     (require 'yasnippet)
+
+    (defun k20e/org-mode-hook ()
+      (auto-fill-mode 1)
+      (org-toggle-pretty-entities)
+      (visual-line-mode 0)
+      (yas-minor-mode 1))
 
     ;; Set the org directory.
     (setq org-directory (expand-file-name "org" dropbox-directory))
@@ -921,11 +927,7 @@ function.
     (setq org-goto-interface 'outline-path-completion)
 
     ;; Display entities as UTF-8 characters.
-    (add-hook 'org-mode-hook
-              #'(lambda ()
-                  (org-toggle-pretty-entities)
-                  (visual-line-mode 0)
-                  (yas-minor-mode 1)))
+    (add-hook 'org-mode-hook 'k20e/org-mode-hook)
 
     ;; org-capture.
     (setq org-default-notes-file (expand-file-name "notes.org" org-directory))
@@ -1329,6 +1331,17 @@ function.
 
      (define-key term-mode-map (kbd "M-x") 'smex)
    #+END_SRC
+
+* text-mode
+
+  #+BEGIN_SRC emacs-lisp
+    (require 'auto-fill-mode)
+
+    (defun k20e/text-mode-hook ()
+      (auto-fill-mode 1))
+
+    (add-hook 'text-mode-hook 'k20e/text-mode-hook)
+  #+END_SRC
 
 * tramp
 
