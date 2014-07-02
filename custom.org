@@ -913,7 +913,6 @@ function.
 
   #+BEGIN_SRC emacs-lisp
     (require 'org)
-    (require 'auto-fill-mode)
     (require 'yasnippet)
 
     (defun k20e/org-mode-hook ()
@@ -1350,8 +1349,6 @@ function.
 * text-mode
 
   #+BEGIN_SRC emacs-lisp
-    (require 'auto-fill-mode)
-
     (defun k20e/text-mode-hook ()
       (auto-fill-mode 1))
 
