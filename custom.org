@@ -503,6 +503,7 @@ function.
 * dired
 
   #+BEGIN_SRC emacs-lisp
+    (require 'ido)
     (require 'autorevert)
 
     (defun k20e/dired-mode-hook ()
