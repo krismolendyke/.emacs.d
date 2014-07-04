@@ -880,6 +880,7 @@ function.
 
    #+BEGIN_SRC emacs-lisp
      (global-set-key (kbd "<f2>") 'multi-term)
+     (global-set-key (kbd "<f11>") 'multi-term-next)
    #+END_SRC
 
 * multiple-cursors
