@@ -1200,8 +1200,8 @@ function.
       (linum-mode 1)
       ;; (flycheck-mode 1)
       (setq fill-column 118
-            autopair-handle-action-fns (list #'autopair-default-handle-action
-                                             #'autopair-python-triple-quote-action))
+            autopair-handle-action-fns (list 'autopair-default-handle-action
+                                             'autopair-python-triple-quote-action))
       (yas-minor-mode 1)
       ;; Previously:
       ;; C-M-f, C-M-b (paredit-forward/back)
