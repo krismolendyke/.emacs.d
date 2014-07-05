@@ -1193,7 +1193,7 @@ function.
     (require 'python)
     (require 'yasnippet)
 
-    (defun k20e/python-setup ()
+    (defun k20e/python-mode-hook ()
       (superword-mode)
       ;; Do not drive me crazy with extra-dumb indentation!
       (setq electric-indent-inhibit t)
@@ -1220,7 +1220,7 @@ function.
       (define-key python-mode-map (kbd "C-M-,") 'mc/mark-previous-like-this)
       (define-key python-mode-map (kbd "C-M-<return>") 'mc/mark-all-symbols-like-this))
 
-    (add-hook 'python-mode-hook 'k20e/python-setup)
+    (add-hook 'python-mode-hook 'k20e/python-mode-hook)
   #+END_SRC
 
 ** IPython
