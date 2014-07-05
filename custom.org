@@ -1302,9 +1302,11 @@ function.
   #+BEGIN_SRC emacs-lisp
     (require 'sql)
 
-    (add-hook 'sql-mode-hook (lambda ()
-                               (setq sql-product 'mysql)
-                               (sql-highlight-mysql-keywords)))
+    (defun k20e/sql-mode-hook ()
+      (setq sql-product 'mysql)
+      (sql-highlight-mysql-keywords))
+
+    (add-hook 'sql-mode-hook 'k20e/sql-mode-hook)
   #+END_SRC
 
 * server
