@@ -1447,6 +1447,25 @@ function.
           mode-require-final-newline t)
   #+END_SRC
 
+* writeroom-mode
+
+  Hack in a scale adjustment and alter width to fit.  There's likely a
+  much better way to accomplish this.
+
+  #+BEGIN_SRC emacs-lisp
+    (setq writeroom-width 126)
+
+    (defun k20e/writeroom-text-scale (arg)
+      (require 'face-remap)
+      (if arg (progn
+                (set (make-local-variable '*local-text-scale*) text-scale-mode-amount)
+                (text-scale-set 3))
+        (text-scale-set
+         (if (boundp '*local-text-scale*) *local-text-scale* 0))))
+
+    (add-to-list 'writeroom-global-effects 'k20e/writeroom-text-scale)
+  #+END_SRC
+
 * yaml-mode
 
   #+BEGIN_SRC emacs-lisp

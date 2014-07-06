@@ -36,5 +36,6 @@
 (depends-on "smex")
 (depends-on "virtualenvwrapper")
 (depends-on "web-mode")
+(depends-on "writeroom-mode")
 (depends-on "yaml-mode")
 (depends-on "yasnippet")
