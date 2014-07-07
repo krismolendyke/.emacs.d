@@ -408,7 +408,7 @@ function.
 
 * buffer-move
 
-  Move the cursor between buffers much more intuitively than with =C-x b=.
+  Move the current buffer up/down/left/right easily.
 
   #+BEGIN_SRC emacs-lisp
     (require 'buffer-move)
