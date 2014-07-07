@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>Literate <code>.emacs.d</code></title>
-<!-- 2014-06-29 Sun 14:30 -->
+<!-- 2014-07-07 Mon 19:48 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Kris Molendyke" />
@@ -1531,7 +1531,11 @@ function.
 <li><a href="#sec-12">buffer-move</a></li>
 <li><a href="#sec-13"><span class="todo TODO">TODO</span> calendar</a></li>
 <li><a href="#sec-14">cider</a></li>
-<li><a href="#sec-15">clojure-mode</a></li>
+<li><a href="#sec-15">clojure-mode</a>
+<ul>
+<li><a href="#sec-15-1">Save buffers before loading or running tests</a></li>
+</ul>
+</li>
 <li><a href="#sec-16">compilation-mode</a></li>
 <li><a href="#sec-17">dired</a></li>
 <li><a href="#sec-18">emacs-lisp-mode</a></li>
@@ -1592,22 +1596,24 @@ function.
 <li><a href="#sec-46-1">Key Bindings</a></li>
 </ul>
 </li>
-<li><a href="#sec-47">tramp</a>
+<li><a href="#sec-47">text-mode</a></li>
+<li><a href="#sec-48">tramp</a>
 <ul>
-<li><a href="#sec-47-1">Debugging</a></li>
+<li><a href="#sec-48-1">Debugging</a></li>
 </ul>
 </li>
-<li><a href="#sec-48">uniquify</a></li>
-<li><a href="#sec-49">virtualenvwrapper</a>
+<li><a href="#sec-49">uniquify</a></li>
+<li><a href="#sec-50">virtualenvwrapper</a>
 <ul>
-<li><a href="#sec-49-1"><span class="todo TODO">TODO</span> Automatically activate</a></li>
+<li><a href="#sec-50-1"><span class="todo TODO">TODO</span> Automatically activate</a></li>
 </ul>
 </li>
-<li><a href="#sec-50">windmove</a></li>
-<li><a href="#sec-51">winner-mode</a></li>
-<li><a href="#sec-52">whitespace</a></li>
-<li><a href="#sec-53">yaml-mode</a></li>
-<li><a href="#sec-54">yasnippet</a></li>
+<li><a href="#sec-51">windmove</a></li>
+<li><a href="#sec-52">winner-mode</a></li>
+<li><a href="#sec-53">whitespace</a></li>
+<li><a href="#sec-54">writeroom-mode</a></li>
+<li><a href="#sec-55">yaml-mode</a></li>
+<li><a href="#sec-56">yasnippet</a></li>
 </ul>
 </div>
 </div>
@@ -1739,6 +1745,7 @@ their own dedicated sections where other specific settings are made.
 
 <pre class="src src-emacs-lisp">(global-set-key (kbd <span class="org-string">"C-c DEL"</span>) 'join-line)
 (global-set-key (kbd <span class="org-string">"C-h"</span>) 'delete-backward-char)
+(global-set-key (kbd <span class="org-string">"C-j"</span>) 'join-line)
 (global-set-key (kbd <span class="org-string">"C-x C-t"</span>) 'toggle-frame-fullscreen)
 (global-set-key (kbd <span class="org-string">"H-h"</span>) 'help-command)
 (global-set-key (kbd <span class="org-string">"H-h H-f"</span>) 'find-function)
@@ -2113,11 +2120,10 @@ to fill-column values.
 
 <div class="org-src-container">
 
-<pre class="src src-emacs-lisp">(<span class="org-keyword">dolist</span> (hook '(org-mode-hook
-                text-mode-hook))
-  (add-hook hook #'(<span class="org-keyword">lambda</span> ()
-                     (auto-fill-mode 1)
-                     (setq fill-column 78))))
+<pre class="src src-emacs-lisp">(<span class="org-keyword">defun</span> <span class="org-function-name">k20e/auto-fill-mode-hook</span> ()
+  (setq fill-column 78))
+
+(add-hook 'auto-fill-mode 'k20e/auto-fill-mode-hook)
 </pre>
 </div>
 </div>
@@ -2144,7 +2150,7 @@ to fill-column values.
 <h2 id="sec-12">buffer-move</h2>
 <div class="outline-text-2" id="text-12">
 <p>
-Move the cursor between buffers much more intuitively than with <code>C-x b</code>.
+Move the current buffer up/down/left/right easily.
 </p>
 
 <div class="org-src-container">
@@ -2173,22 +2179,22 @@ they are the result of an asynchronous query and response parsing?
 <pre class="src src-emacs-lisp">(<span class="org-keyword">require</span> '<span class="org-constant">geo-ip</span>)
 (<span class="org-keyword">require</span> '<span class="org-constant">url</span>)
 
-(add-hook
- 'calendar-load-hook
- #'(<span class="org-keyword">lambda</span> ()
-     <span class="org-comment-delimiter">;; </span><span class="org-comment">Default location Philly.</span>
-     (setq
-      calendar-latitude 39.9            <span class="org-comment-delimiter">; </span><span class="org-comment">39.9525</span>
-      calendar-longitude -75.1          <span class="org-comment-delimiter">; </span><span class="org-comment">-75.163</span>
-      calendar-location-name <span class="org-string">"Philadelphia, PA"</span>)
+(<span class="org-keyword">defun</span> <span class="org-function-name">k20e/calendar-load-hook</span> ()
+  <span class="org-comment-delimiter">;; </span><span class="org-comment">Default location Philly.</span>
+  (setq
+   calendar-latitude 39.9            <span class="org-comment-delimiter">; </span><span class="org-comment">39.9525</span>
+   calendar-longitude -75.1          <span class="org-comment-delimiter">; </span><span class="org-comment">-75.163</span>
+   calendar-location-name <span class="org-string">"Philadelphia, PA"</span>)
 
-     <span class="org-comment-delimiter">;; </span><span class="org-comment">Attempt to set location with a geo-ip query.</span>
-     (geo-ip-lat-lon-loc-ip
-      #'(<span class="org-keyword">lambda</span> (lat lon loc ip)
-          (setq
-           calendar-latitude lat
-           calendar-longitude lon
-           calendar-location-name loc)))))
+  <span class="org-comment-delimiter">;; </span><span class="org-comment">Attempt to set location with a geo-ip query.</span>
+  (geo-ip-lat-lon-loc-ip
+   #'(<span class="org-keyword">lambda</span> (lat lon loc ip)
+       (setq
+        calendar-latitude lat
+        calendar-longitude lon
+        calendar-location-name loc))))
+
+(add-hook 'calendar-load-hook 'k20e/calendar-load-hook)
 </pre>
 </div>
 </div>
@@ -2202,9 +2208,12 @@ they are the result of an asynchronous query and response parsing?
 <pre class="src src-emacs-lisp">(<span class="org-keyword">require</span> '<span class="org-constant">cider</span>)
 (<span class="org-keyword">require</span> '<span class="org-constant">paredit</span>)
 
-(add-hook 'cider-mode-hook (<span class="org-keyword">lambda</span> ()
-                             (cider-turn-on-eldoc-mode)
-                             (paredit-mode +1)))
+(<span class="org-keyword">defun</span> <span class="org-function-name">k20e/cider-mode-hook</span> ()
+  (cider-turn-on-eldoc-mode)
+  (paredit-mode 1))
+
+(add-hook 'cider-mode-hook 'k20e/cider-mode-hook)
+
 (setq nrepl-hide-special-buffers t
       cider-repl-popup-stacktraces nil
       cider-repl-use-pretty-printing t
@@ -2223,17 +2232,33 @@ they are the result of an asynchronous query and response parsing?
 (<span class="org-keyword">require</span> '<span class="org-constant">clojure-test-mode</span>)
 (<span class="org-keyword">require</span> '<span class="org-constant">paredit</span>)
 
-<span class="org-comment-delimiter">;; </span><span class="org-comment">Awesome advice to safe buffers before loading or running tests</span>
-<span class="org-comment-delimiter">;; </span><span class="org-comment">courtesy of</span>
-<span class="org-comment-delimiter">;; </span><span class="org-comment">https://github.com/magnars/.emacs.d/blob/486e631801c84b018d90cf040d2170ef78045676/setup-clojure-mode.el</span>
+(<span class="org-keyword">defun</span> <span class="org-function-name">k20e/clojure-mode-hook</span> ()
+  (paredit-mode 1))
+
+(add-hook 'clojure-mode-hook 'k20e/clojure-mode-hook)
+</pre>
+</div>
+</div>
+
+<div id="outline-container-sec-15-1" class="outline-3">
+<h3 id="sec-15-1">Save buffers before loading or running tests</h3>
+<div class="outline-text-3" id="text-15-1">
+<p>
+Courtesy of Magnar Sveen's <a href="https://github.com/magnars/.emacs.d/blob/486e631801c84b018d90cf040d2170ef78045676/setup-clojure-mode.el"><code>setup-clojure-mode.el</code></a>.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-emacs-lisp">(<span class="org-keyword">require</span> '<span class="org-constant">cider-mode</span>)
+(<span class="org-keyword">require</span> '<span class="org-constant">clojure-test-mode</span>)
+
 (<span class="org-keyword">defadvice</span> <span class="org-function-name">clojure-test-run-tests</span> (before save-first activate)
   (save-buffer))
 
-(<span class="org-keyword">defadvice</span> <span class="org-function-name">nrepl-load-current-buffer</span> (before save-first activate)
+(<span class="org-keyword">defadvice</span> <span class="org-function-name">cider-load-current-buffer</span> (before save-first activate)
   (save-buffer))
-
-(add-hook 'clojure-mode-hook 'paredit-mode)
 </pre>
+</div>
 </div>
 </div>
 </div>
@@ -2257,14 +2282,16 @@ they are the result of an asynchronous query and response parsing?
 <div class="outline-text-2" id="text-17">
 <div class="org-src-container">
 
-<pre class="src src-emacs-lisp">(<span class="org-keyword">require</span> '<span class="org-constant">autorevert</span>)
+<pre class="src src-emacs-lisp">(<span class="org-keyword">require</span> '<span class="org-constant">ido</span>)
+(<span class="org-keyword">require</span> '<span class="org-constant">autorevert</span>)
 
-(add-hook 'dired-mode-hook
-          #'(<span class="org-keyword">lambda</span> ()
-              (auto-revert-mode 1)
-              (setq auto-revert-verbose nil)
-              (set-face-foreground 'dired-flagged <span class="org-string">"tomato1"</span>)
-              (set-face-attribute 'dired-flagged nil <span class="org-builtin">:strike-through</span> t)))
+(<span class="org-keyword">defun</span> <span class="org-function-name">k20e/dired-mode-hook</span> ()
+  (auto-revert-mode 1)
+  (setq auto-revert-verbose nil)
+  (set-face-foreground 'dired-flagged <span class="org-string">"tomato1"</span>)
+  (set-face-attribute 'dired-flagged nil <span class="org-builtin">:strike-through</span> t))
+
+(add-hook 'dired-mode-hook 'k20e/dired-mode-hook)
 
 <span class="org-comment-delimiter">;; </span><span class="org-comment">C-x C-d is normally bound to `</span><span class="org-constant"><span class="org-comment">ido-list-directory</span></span><span class="org-comment">' which I rarely need and</span>
 <span class="org-comment-delimiter">;; </span><span class="org-comment">often type when I intend to run `</span><span class="org-constant"><span class="org-comment">ido-dired</span></span><span class="org-comment">'.</span>
@@ -2426,7 +2453,10 @@ Install <code>aspell</code> via Homebrew:
 (<span class="org-keyword">require</span> '<span class="org-constant">gitconfig-mode</span>)
 (<span class="org-keyword">require</span> '<span class="org-constant">gitignore-mode</span>)
 
-(add-hook 'git-commit-mode-hook (<span class="org-keyword">lambda</span> () (setq fill-column 72)))
+(<span class="org-keyword">defun</span> <span class="org-function-name">k20e/git-commit-mode-hook</span> ()
+  (setq fill-column 72))
+
+(add-hook 'git-commit-mode-hook 'k20e/git-commit-mode-hook)
 
 (autoload 'git-blame-mode <span class="org-string">"git-blame"</span>
   <span class="org-doc">"Minor mode for incremental blame for Git."</span> t)
@@ -2722,6 +2752,7 @@ bindings whenever I open a new terminal.
 <div class="org-src-container">
 
 <pre class="src src-emacs-lisp">(global-set-key (kbd <span class="org-string">"&lt;f2&gt;"</span>) 'multi-term)
+(global-set-key (kbd <span class="org-string">"&lt;f11&gt;"</span>) 'multi-term-next)
 </pre>
 </div>
 </div>
@@ -2769,6 +2800,12 @@ bindings whenever I open a new terminal.
 <pre class="src src-emacs-lisp">(<span class="org-keyword">require</span> '<span class="org-constant">org</span>)
 (<span class="org-keyword">require</span> '<span class="org-constant">yasnippet</span>)
 
+(<span class="org-keyword">defun</span> <span class="org-function-name">k20e/org-mode-hook</span> ()
+  (auto-fill-mode 1)
+  (org-toggle-pretty-entities)
+  (visual-line-mode 0)
+  (yas-minor-mode 1))
+
 <span class="org-comment-delimiter">;; </span><span class="org-comment">Set the org directory.</span>
 (setq org-directory (expand-file-name <span class="org-string">"org"</span> dropbox-directory))
 
@@ -2789,11 +2826,7 @@ bindings whenever I open a new terminal.
 (setq org-goto-interface 'outline-path-completion)
 
 <span class="org-comment-delimiter">;; </span><span class="org-comment">Display entities as UTF-8 characters.</span>
-(add-hook 'org-mode-hook
-          #'(<span class="org-keyword">lambda</span> ()
-              (org-toggle-pretty-entities)
-              (visual-line-mode 0)
-              (yas-minor-mode 1)))
+(add-hook 'org-mode-hook 'k20e/org-mode-hook)
 
 <span class="org-comment-delimiter">;; </span><span class="org-comment">org-capture.</span>
 (setq org-default-notes-file (expand-file-name <span class="org-string">"notes.org"</span> org-directory))
@@ -3143,15 +3176,15 @@ Insert state change notes and time stamps into a drawer rather than simply
 (<span class="org-keyword">require</span> '<span class="org-constant">python</span>)
 (<span class="org-keyword">require</span> '<span class="org-constant">yasnippet</span>)
 
-(<span class="org-keyword">defun</span> <span class="org-function-name">k20e/python-setup</span> ()
+(<span class="org-keyword">defun</span> <span class="org-function-name">k20e/python-mode-hook</span> ()
   (superword-mode)
   <span class="org-comment-delimiter">;; </span><span class="org-comment">Do not drive me crazy with extra-dumb indentation!</span>
   (setq electric-indent-inhibit t)
   (linum-mode 1)
   <span class="org-comment-delimiter">;; </span><span class="org-comment">(flycheck-mode 1)</span>
   (setq fill-column 118
-        autopair-handle-action-fns (list #'autopair-default-handle-action
-                                         #'autopair-python-triple-quote-action))
+        autopair-handle-action-fns (list 'autopair-default-handle-action
+                                         'autopair-python-triple-quote-action))
   (yas-minor-mode 1)
   <span class="org-comment-delimiter">;; </span><span class="org-comment">Previously:</span>
   <span class="org-comment-delimiter">;; </span><span class="org-comment">C-M-f, C-M-b (paredit-forward/back)</span>
@@ -3170,7 +3203,7 @@ Insert state change notes and time stamps into a drawer rather than simply
   (define-key python-mode-map (kbd <span class="org-string">"C-M-,"</span>) 'mc/mark-previous-like-this)
   (define-key python-mode-map (kbd <span class="org-string">"C-M-&lt;return&gt;"</span>) 'mc/mark-all-symbols-like-this))
 
-(add-hook 'python-mode-hook 'k20e/python-setup)
+(add-hook 'python-mode-hook 'k20e/python-mode-hook)
 </pre>
 </div>
 </div>
@@ -3288,9 +3321,11 @@ Set it to Emacs Lisp mode.
 
 <pre class="src src-emacs-lisp">(<span class="org-keyword">require</span> '<span class="org-constant">sql</span>)
 
-(add-hook 'sql-mode-hook (<span class="org-keyword">lambda</span> ()
-                           (setq sql-product 'mysql)
-                           (sql-highlight-mysql-keywords)))
+(<span class="org-keyword">defun</span> <span class="org-function-name">k20e/sql-mode-hook</span> ()
+  (setq sql-product 'mysql)
+  (sql-highlight-mysql-keywords))
+
+(add-hook 'sql-mode-hook 'k20e/sql-mode-hook)
 </pre>
 </div>
 </div>
@@ -3337,7 +3372,7 @@ Together with <a href="#multi-term">multi-term</a> this sets up my terminal envi
 <h3 id="sec-46-1">Key Bindings</h3>
 <div class="outline-text-3" id="text-46-1">
 <p>
-<code>term-raw-map</code> is used in char mode.  <code>term-mode-map</code> is used in line mode.
+<code>term-raw-map</code> is used in <i>char</i> mode.
 </p>
 
 <div class="org-src-container">
@@ -3346,8 +3381,16 @@ Together with <a href="#multi-term">multi-term</a> this sets up my terminal envi
 
 (define-key term-raw-map (kbd <span class="org-string">"M-x"</span>) 'smex)
 (define-key term-raw-map (kbd <span class="org-string">"M-h"</span>) 'backward-kill-word)
+</pre>
+</div>
 
-(define-key term-mode-map (kbd <span class="org-string">"M-x"</span>) 'smex)
+<p>
+<code>term-mode-map</code> is used in <i>line</i> mode.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-emacs-lisp">(define-key term-mode-map (kbd <span class="org-string">"M-x"</span>) 'smex)
 </pre>
 </div>
 </div>
@@ -3355,8 +3398,22 @@ Together with <a href="#multi-term">multi-term</a> this sets up my terminal envi
 </div>
 
 <div id="outline-container-sec-47" class="outline-2">
-<h2 id="sec-47">tramp</h2>
+<h2 id="sec-47">text-mode</h2>
 <div class="outline-text-2" id="text-47">
+<div class="org-src-container">
+
+<pre class="src src-emacs-lisp">(<span class="org-keyword">defun</span> <span class="org-function-name">k20e/text-mode-hook</span> ()
+  (auto-fill-mode 1))
+
+(add-hook 'text-mode-hook 'k20e/text-mode-hook)
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-48" class="outline-2">
+<h2 id="sec-48">tramp</h2>
+<div class="outline-text-2" id="text-48">
 <p>
 Fix <code>ControlPath too long</code> errors due to OS X pitching a <a href="https://lists.macosforge.org/pipermail/macports-tickets/2011-June/084295.html">long temporary
 directory</a> to <code>ssh</code>.
@@ -3385,9 +3442,9 @@ Do not inline copy files.  This is to avoid <code>File exists, but cannot be
 </div>
 </div>
 
-<div id="outline-container-sec-47-1" class="outline-3">
-<h3 id="sec-47-1">Debugging</h3>
-<div class="outline-text-3" id="text-47-1">
+<div id="outline-container-sec-48-1" class="outline-3">
+<h3 id="sec-48-1">Debugging</h3>
+<div class="outline-text-3" id="text-48-1">
 <div class="org-src-container">
 
 <pre class="src src-emacs-lisp"><span class="org-comment-delimiter">;; </span><span class="org-comment">(setq tramp-verbose 6)</span>
@@ -3401,9 +3458,9 @@ Will create a detailed log buffer.
 </div>
 </div>
 
-<div id="outline-container-sec-48" class="outline-2">
-<h2 id="sec-48">uniquify</h2>
-<div class="outline-text-2" id="text-48">
+<div id="outline-container-sec-49" class="outline-2">
+<h2 id="sec-49">uniquify</h2>
+<div class="outline-text-2" id="text-49">
 <p>
 Name multiple identical buffer names in a sensible manner.
 </p>
@@ -3418,9 +3475,9 @@ Name multiple identical buffer names in a sensible manner.
 </div>
 </div>
 
-<div id="outline-container-sec-49" class="outline-2">
-<h2 id="sec-49">virtualenvwrapper</h2>
-<div class="outline-text-2" id="text-49">
+<div id="outline-container-sec-50" class="outline-2">
+<h2 id="sec-50">virtualenvwrapper</h2>
+<div class="outline-text-2" id="text-50">
 <div class="org-src-container">
 
 <pre class="src src-emacs-lisp">(<span class="org-keyword">require</span> '<span class="org-constant">virtualenvwrapper</span>)
@@ -3430,14 +3487,14 @@ Name multiple identical buffer names in a sensible manner.
 </div>
 </div>
 
-<div id="outline-container-sec-49-1" class="outline-3">
-<h3 id="sec-49-1"><span class="todo TODO">TODO</span> <a href="https://github.com/porterjamesj/virtualenvwrapper.el#automatically-activating-a-virtualenv-in-a-particular-project">Automatically activate</a></h3>
+<div id="outline-container-sec-50-1" class="outline-3">
+<h3 id="sec-50-1"><span class="todo TODO">TODO</span> <a href="https://github.com/porterjamesj/virtualenvwrapper.el#automatically-activating-a-virtualenv-in-a-particular-project">Automatically activate</a></h3>
 </div>
 </div>
 
-<div id="outline-container-sec-50" class="outline-2">
-<h2 id="sec-50">windmove</h2>
-<div class="outline-text-2" id="text-50">
+<div id="outline-container-sec-51" class="outline-2">
+<h2 id="sec-51">windmove</h2>
+<div class="outline-text-2" id="text-51">
 <div class="org-src-container">
 
 <pre class="src src-emacs-lisp">(<span class="org-keyword">require</span> '<span class="org-constant">windmove</span>)
@@ -3449,13 +3506,16 @@ Name multiple identical buffer names in a sensible manner.
 </div>
 </div>
 
-<div id="outline-container-sec-51" class="outline-2">
-<h2 id="sec-51">winner-mode</h2>
-<div class="outline-text-2" id="text-51">
+<div id="outline-container-sec-52" class="outline-2">
+<h2 id="sec-52">winner-mode</h2>
+<div class="outline-text-2" id="text-52">
+<p>
+Remember window configurations.
+</p>
+
 <div class="org-src-container">
 
-<pre class="src src-emacs-lisp"><span class="org-comment-delimiter">;; </span><span class="org-comment">Remember window configurations.</span>
-(<span class="org-keyword">require</span> '<span class="org-constant">winner</span>)
+<pre class="src src-emacs-lisp">(<span class="org-keyword">require</span> '<span class="org-constant">winner</span>)
 
 (winner-mode)
 </pre>
@@ -3463,9 +3523,9 @@ Name multiple identical buffer names in a sensible manner.
 </div>
 </div>
 
-<div id="outline-container-sec-52" class="outline-2">
-<h2 id="sec-52">whitespace</h2>
-<div class="outline-text-2" id="text-52">
+<div id="outline-container-sec-53" class="outline-2">
+<h2 id="sec-53">whitespace</h2>
+<div class="outline-text-2" id="text-53">
 <p>
 Take care of some whitespace issues.
 </p>
@@ -3492,9 +3552,35 @@ Take care of some whitespace issues.
 </div>
 </div>
 
-<div id="outline-container-sec-53" class="outline-2">
-<h2 id="sec-53">yaml-mode</h2>
-<div class="outline-text-2" id="text-53">
+<div id="outline-container-sec-54" class="outline-2">
+<h2 id="sec-54">writeroom-mode</h2>
+<div class="outline-text-2" id="text-54">
+<p>
+Hack in a scale adjustment and alter width to fit.  There's likely a
+much better way to accomplish this.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-emacs-lisp">(setq writeroom-width 126)
+
+(<span class="org-keyword">defun</span> <span class="org-function-name">k20e/writeroom-text-scale</span> (arg)
+  (<span class="org-keyword">require</span> '<span class="org-constant">face-remap</span>)
+  (<span class="org-keyword">if</span> arg (<span class="org-keyword">progn</span>
+            (set (make-local-variable '*local-text-scale*) text-scale-mode-amount)
+            (text-scale-set 3))
+    (text-scale-set
+     (<span class="org-keyword">if</span> (boundp '*local-text-scale*) *local-text-scale* 0))))
+
+(add-to-list 'writeroom-global-effects 'k20e/writeroom-text-scale)
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-55" class="outline-2">
+<h2 id="sec-55">yaml-mode</h2>
+<div class="outline-text-2" id="text-55">
 <div class="org-src-container">
 
 <pre class="src src-emacs-lisp">(<span class="org-keyword">require</span> '<span class="org-constant">yaml-mode</span>)
@@ -3505,9 +3591,9 @@ Take care of some whitespace issues.
 </div>
 </div>
 
-<div id="outline-container-sec-54" class="outline-2">
-<h2 id="sec-54">yasnippet</h2>
-<div class="outline-text-2" id="text-54">
+<div id="outline-container-sec-56" class="outline-2">
+<h2 id="sec-56">yasnippet</h2>
+<div class="outline-text-2" id="text-56">
 <div class="org-src-container">
 
 <pre class="src src-emacs-lisp">(<span class="org-keyword">require</span> '<span class="org-constant">yasnippet</span>)
@@ -3520,7 +3606,7 @@ Take care of some whitespace issues.
 </div>
 <div id="postamble" class="status">
 <p class="author">Kris Molendyke</p>
-<p class="date">2014-06-29 Sun 14:30</p>
+<p class="date">2014-07-07 Mon 19:47</p>
 <p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.4.50.1 (<a href="http://orgmode.org">Org</a> mode 8.2.4)</p>
 </div>
 </body>
