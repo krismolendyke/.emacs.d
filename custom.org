@@ -1286,6 +1286,8 @@ function.
    pads for.
 
    #+BEGIN_SRC emacs-lisp
+     (require 'ido)
+
      (defconst k20e/scratch-buffer-modes
        '(emacs-lisp-mode
          fundamental-mode
