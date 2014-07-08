@@ -1280,6 +1280,31 @@ function.
       (emacs-lisp-mode))
   #+END_SRC
 
+** Quickly create new scratch buffers
+
+   With a preset list of major modes that I find often need scratch
+   pads for.
+
+   #+BEGIN_SRC emacs-lisp
+     (defconst k20e/scratch-buffer-modes
+       '(emacs-lisp-mode
+         fundamental-mode
+         sql-mode
+         text-mode)
+       "Common major modes to create scratch buffers for.")
+
+     (defun k20e/scratch-buffer ()
+       "Generate a new scratch buffer.
+     Choose from `k20e/scratch-buffer-modes' list of major modes to
+     enable in the newly created scratch buffer and switch to it."
+       (interactive)
+       (let ((mode (read (ido-completing-read "New *scratch* buffer with mode: "
+                                              (mapcar (lambda (el) (format "%s" el))
+                                                      k20e/scratch-buffer-modes)))))
+         (switch-to-buffer (generate-new-buffer (format "*scratch-%s*" mode)))
+         (funcall mode)))
+   #+END_SRC
+
 * smex
 
   #+BEGIN_SRC emacs-lisp
