@@ -801,6 +801,16 @@ function.
     (keyfreq-autosave-mode 1)
   #+END_SRC
 
+* minibuffers
+
+  Set =enable-recursive-minibufers= to =t= to allow minibuffers
+  /within/ minibuffers.  A good use-case of this feature is described
+  in [[http://www.masteringemacs.org/articles/2011/10/19/executing-shell-commands-emacs/][Executing Shell Commands in Emacs]].
+
+  #+BEGIN_SRC emacs-lisp
+    (setq enable-recursive-minibuffers t)
+  #+END_SRC
+
 * monetate-mode
 
   #+BEGIN_SRC emacs-lisp
