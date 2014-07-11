@@ -128,24 +128,35 @@ function.
 
   This is a bunch of stuff that I just dumped here and need to go through yet.
 
+  Do not back up files.
+
   #+BEGIN_SRC emacs-lisp
-    ;; Please, no backup or autosave litter.
     (setq make-backup-files nil
           auto-save-default nil)
+  #+END_SRC
 
+  Show the active region and delete it when selected if a character is
+  inserted.
 
-    ;; Show the active region.
+  #+BEGIN_SRC emacs-lisp
     (transient-mark-mode t)
-
-    ;; Overwrite text when typing in a region.
     (delete-selection-mode 1)
+  #+END_SRC
 
-    ;; Indentation... it's electric.
+  "Electric" indentation is generally what I consider to be sensible.
+
+  #+BEGIN_SRC emacs-lisp
     (electric-indent-mode)
+  #+END_SRC
 
-    ;; Prefer splitting windows horizontally.
+  Splitting windows horizontally makes more sense on all of the
+  wide screen monitors I work on.
+
+  #+BEGIN_SRC emacs-lisp
     (setq split-width-threshold 81)
+  #+END_SRC
 
+  #+BEGIN_SRC emacs-lisp
     ;; What's going on here?
     (setq echo-keystrokes 0.1)
 
