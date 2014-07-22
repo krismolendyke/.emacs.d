@@ -1508,15 +1508,23 @@ function.
   much better way to accomplish this.
 
   #+BEGIN_SRC emacs-lisp
+    (require 'face-remap)
+    (require 'writeroom-mode)
+
     (setq writeroom-width 126)
+
+    (defvar k20e/writeroom-text-scale-amount 0
+      "Text scale amount for `writeroom-mode'.")
 
     (defun k20e/writeroom-text-scale (arg)
       (require 'face-remap)
       (if arg (progn
-                (set (make-local-variable '*local-text-scale*) text-scale-mode-amount)
+                (set (make-local-variable 'k20e/writeroom-text-scale-amount)
+                     text-scale-mode-amount)
                 (text-scale-set 3))
         (text-scale-set
-         (if (boundp '*local-text-scale*) *local-text-scale* 0))))
+         (if (boundp 'k20e/writeroom-text-scale-amount)
+             k20e/writeroom-text-scale-amount 0))))
 
     (add-to-list 'writeroom-global-effects 'k20e/writeroom-text-scale)
   #+END_SRC
