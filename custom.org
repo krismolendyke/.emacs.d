@@ -1329,6 +1329,12 @@ function.
          (funcall mode)))
    #+END_SRC
 
+   Bind it globally.
+
+   #+BEGIN_SRC emacs-lisp
+     (global-set-key (kbd "<f10>") 'k20e/scratch-buffer)
+   #+END_SRC
+
 * smex
 
   #+BEGIN_SRC emacs-lisp
