@@ -76,7 +76,10 @@ Only turn off the menu bar running in a terminal window."
   (dolist (elt (directory-files user-emacs-directory t "\\.org$" t))
     (org-babel-load-file elt t)))
 
+;;; Set the Emacs source directory so that C function source can be
+;;; found when necessary.
 (setq source-directory "/Library/Caches/Homebrew/emacs--git")
+
 (k20e/setup-cask-and-pallet)
 (k20e/no-bars-held)
 (k20e/setup-load-path)
