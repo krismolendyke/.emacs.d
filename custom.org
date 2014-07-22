@@ -472,7 +472,7 @@ function.
     (setq nrepl-hide-special-buffers t
           cider-repl-popup-stacktraces nil
           cider-repl-use-pretty-printing t
-          cider-repl-history-file (expand-file-name "nrepl-history" dropbox-directory))
+          cider-repl-history-file (expand-file-name "nrepl-history" k20e/dropbox-directory))
   #+END_SRC
 
 * clojure-mode
@@ -679,7 +679,7 @@ function.
     ;; Set HyperSpec root in Dropbox.
     (defvar common-lisp-hyperspec-root
       (format "file://%s/"
-              (expand-file-name "Documents/HyperSpec" dropbox-directory)))
+              (expand-file-name "Documents/HyperSpec" k20e/dropbox-directory)))
   #+END_SRC
 
 * ibuffer
@@ -712,7 +712,7 @@ function.
     (require 'ido)
     (require 'ido-vertical-mode)
 
-    (setq ido-save-directory-list-file (expand-file-name ".ido.last" dropbox-directory))
+    (setq ido-save-directory-list-file (expand-file-name ".ido.last" k20e/dropbox-directory))
     (add-to-list 'ido-ignore-files "\\.DS_Store")
 
     ;; Boring arrows be gone!
@@ -805,8 +805,8 @@ function.
   #+BEGIN_SRC emacs-lisp
     (require 'keyfreq)
 
-    (setq keyfreq-file (expand-file-name ".emacs-keyfreq" dropbox-directory)
-          keyfreq-file-lock (expand-file-name ".emacs-keyfreq-lock" dropbox-directory))
+    (setq keyfreq-file (expand-file-name ".emacs-keyfreq" k20e/dropbox-directory)
+          keyfreq-file-lock (expand-file-name ".emacs-keyfreq-lock" k20e/dropbox-directory))
 
     (keyfreq-mode 1)
     (keyfreq-autosave-mode 1)
@@ -911,7 +911,7 @@ function.
     (require 'multiple-cursors)
 
     ;; Keep preferences sync'd across machines.
-    (setq mc/list-file (expand-file-name ".mc-lists.el" dropbox-directory))
+    (setq mc/list-file (expand-file-name ".mc-lists.el" k20e/dropbox-directory))
 
     (global-set-key (kbd "M-L") 'mc/edit-lines)
     (global-set-key (kbd "C-M-.") 'mc/mark-next-like-this)
@@ -946,12 +946,12 @@ function.
       (yas-minor-mode 1))
 
     ;; Set the org directory.
-    (setq org-directory (expand-file-name "org" dropbox-directory))
+    (setq org-directory (expand-file-name "org" k20e/dropbox-directory))
 
     ;; MobileOrg setup.
     (require 'org-mobile)
     (setq org-mobile-inbox-for-pull (expand-file-name "flagged.org" org-directory)
-          org-mobile-directory (expand-file-name "Apps/MobileOrg" dropbox-directory))
+          org-mobile-directory (expand-file-name "Apps/MobileOrg" k20e/dropbox-directory))
     (dolist (dir (dirs-in-dir org-directory '("." ".." ".git")))
       (add-to-list 'org-mobile-files dir))
 
@@ -1262,7 +1262,7 @@ function.
   #+BEGIN_SRC emacs-lisp
     (require 'recentf)
 
-    (setq recentf-save-file (expand-file-name ".recentf" dropbox-directory)
+    (setq recentf-save-file (expand-file-name ".recentf" k20e/dropbox-directory)
           recentf-max-saved-items 250)
     (recentf-mode 1)
 
@@ -1282,7 +1282,7 @@ function.
     ;; Save minibuffer history.
     (require 'savehist)
 
-    (setq savehist-file (expand-file-name ".savehist" dropbox-directory))
+    (setq savehist-file (expand-file-name ".savehist" k20e/dropbox-directory))
     (savehist-mode)
   #+END_SRC
 
@@ -1349,7 +1349,7 @@ function.
     (global-set-key (kbd "C-c C-c M-x") 'execute-extended-command)
 
     ;; Share smex history across my machines.
-    (setq smex-save-file (expand-file-name ".smex-items" dropbox-directory))
+    (setq smex-save-file (expand-file-name ".smex-items" k20e/dropbox-directory))
   #+END_SRC
 
 * sql-mode
