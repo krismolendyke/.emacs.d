@@ -1042,7 +1042,7 @@ function.
                (lambda (backend) (update-org-css)))
 
      (setq org-html-head-extra
-           "<link href='http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css' rel='stylesheet'>")
+           "<link href='http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css' rel='stylesheet'>")
    #+END_SRC
 
 ** Publish
