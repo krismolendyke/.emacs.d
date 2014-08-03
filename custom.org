@@ -1115,6 +1115,17 @@ function.
    #+END_SRC
 
 ** Agenda
+
+   #+BEGIN_SRC emacs-lisp
+     (require 'face-remap)
+
+     (defun k20e/org-agenda-mode-hook ()
+       (delete-other-windows)
+       (text-scale-set 2))
+
+     (add-hook 'org-agenda-mode-hook 'k20e/org-agenda-mode-hook)
+   #+END_SRC
+
 *** Files
 
    #+BEGIN_SRC emacs-lisp
