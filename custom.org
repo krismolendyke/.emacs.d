@@ -1131,7 +1131,8 @@ function.
    #+BEGIN_SRC emacs-lisp
      (setq org-agenda-files
            (list (expand-file-name "resolutions.org" org-directory)
-                 (expand-file-name "work" org-directory)))
+                 (expand-file-name "work" org-directory)
+                 (expand-file-name "chores.org" org-directory)))
    #+END_SRC
 
 *** Deadlines
