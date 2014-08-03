@@ -42,6 +42,7 @@
 (depends-on "highlight-parentheses")
 (depends-on "highlight-parentheses")
 (depends-on "htmlize")
+(depends-on "hungry-delete")
 (depends-on "ido-ubiquitous")
 (depends-on "ido-ubiquitous")
 (depends-on "ido-vertical-mode")
