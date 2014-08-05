@@ -572,6 +572,7 @@ function.
                               "*.html"
                               "*.js"
                               "*.json"
+                              "*.mk"
                               "*.md"
                               "*.org"
                               "*.py"
@@ -580,7 +581,8 @@ function.
                               "*.sh"
                               "*.soy"
                               "*.txt"
-                              "*.yml")
+                              "*.yml"
+                              "Makefile")
           ffip-prune-patterns (list ".git" "build"))
 
     (global-set-key (kbd "C-x o") 'find-file-in-project)
