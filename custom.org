@@ -675,14 +675,6 @@ function.
                          (highlight-parentheses-mode))))
   #+END_SRC
 
-* hungry-delete
-
-  #+BEGIN_SRC emacs-lisp
-    (require 'hungry-delete)
-
-    (global-hungry-delete-mode)
-  #+END_SRC
-
 * hyperspec
 
   #+BEGIN_SRC emacs-lisp
