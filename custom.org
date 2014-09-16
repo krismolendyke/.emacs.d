@@ -394,6 +394,23 @@ function.
     (global-set-key (kbd "C-x C-a") 'ag-project)
   #+END_SRC
 
+* arduino-mode
+
+  #+BEGIN_SRC emacs-lisp
+    (require 'arduino-mode)
+    (require 'compile)
+
+    (defun k20e/arduino-recompile ()
+      "Recompile the project without messing with the windows."
+      (interactive)
+      (save-window-excursion (recompile)))
+
+    (defun k20e/arduino-mode-hook ()
+      (define-key arduino-mode-map (kbd "C-c C-c") 'k20e/arduino-recompile))
+
+    (add-hook 'arduino-mode-hook 'k20e/arduino-mode-hook)
+  #+END_SRC
+
 * auto-fill
 
   When to turn on auto-fill and set fill-column to a reasonable value.  This

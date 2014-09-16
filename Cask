@@ -1,6 +1,7 @@
 (source melpa)
 
 (depends-on "ag")
+(depends-on "arduino-mode")
 (depends-on "autopair")
 (depends-on "buffer-move")
 (depends-on "cask")
