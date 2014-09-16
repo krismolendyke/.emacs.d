@@ -149,6 +149,12 @@ function.
     (electric-indent-mode)
   #+END_SRC
 
+  Cycle through the mark ring faster.
+
+  #+BEGIN_SRC emacs-lisp
+    (setq set-mark-command-repeat-pop t)
+  #+END_SRC
+
   Splitting windows horizontally makes more sense on all of the
   wide screen monitors I work on.
 
