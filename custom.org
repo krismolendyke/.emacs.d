@@ -1327,6 +1327,7 @@ function.
        '(emacs-lisp-mode
          fundamental-mode
          javascript-mode
+         org-mode
          sql-mode
          text-mode)
        "Common major modes to create scratch buffers for.")
