@@ -1070,7 +1070,7 @@ function.
               :base-directory ,(expand-file-name "source" (expand-file-name "k20e" org-directory))
               :base-extension "org"
               :recursive t
-              :exclude "ga.org\\|level-0.org\\|todo.org"
+              :exclude "ga.org\\|level-0.org\\|todo.org\\|.DS_Store"
               :publishing-directory ,(expand-file-name "published" (expand-file-name "k20e" org-directory))
               :publishing-function org-html-publish-to-html
               :with-planning t)
