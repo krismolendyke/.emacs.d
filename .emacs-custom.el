@@ -56,6 +56,10 @@
         (mode . idl-mode)
         (mode . lisp-mode)))))))
  '(inhibit-startup-screen t)
+ '(package-archives
+   (quote
+    (("melpa" . "http://melpa.milkbox.net/packages/")
+     ("gnu" . "http://elpa.gnu.org/packages/"))))
  '(safe-local-variable-values
    (quote
     ((eval setq flycheck-emacs-lisp-package-user-dir

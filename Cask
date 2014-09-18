@@ -1,3 +1,4 @@
+(source gnu)
 (source melpa)
 
 (depends-on "ag")
@@ -37,6 +38,7 @@
 (depends-on "pkg-info")
 (depends-on "powerline")
 (depends-on "s")
+(depends-on "shut-up")
 (depends-on "smex")
 (depends-on "virtualenvwrapper")
 (depends-on "web-mode")
