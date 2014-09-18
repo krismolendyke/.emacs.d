@@ -131,4 +131,16 @@ Similar to but simpler than `dns-lookup-host'."
   (delete-window)
   (balance-windows-area))
 
+;;; Stolen from
+;;; https://github.com/magnars/.emacs.d/blob/e56e71ce0f0791c7237192a049f29c2de686409a/defuns/lisp-defuns.el
+(defun eval-and-replace ()
+  "Replace the preceding sexp with its value."
+  (interactive)
+  (backward-kill-sexp)
+  (condition-case nil
+      (prin1 (eval (read (current-kill 0)))
+             (current-buffer))
+    (error (message "Invalid expression")
+           (insert (current-kill 0)))))
+
 ;;; defuns.el ends here
