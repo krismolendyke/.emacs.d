@@ -803,9 +803,11 @@ function.
 
   #+BEGIN_SRC emacs-lisp
     (require 'eldoc)
+    (require 'paredit)
 
     (defun k20e/ielm-hook ()
-      (eldoc-mode))
+      (eldoc-mode)
+      (paredit-mode 1))
 
     (add-hook 'ielm-mode-hook 'k20e/ielm-hook)
   #+END_SRC
