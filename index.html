@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>Literate <code>.emacs.d</code></title>
-<!-- 2014-09-24 Wed 07:16 -->
+<!-- 2014-09-24 Wed 08:09 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Kris Molendyke" />
@@ -1487,7 +1487,7 @@ grabbed it!) &#x2013; <a href="http://www-cs-faculty.stanford.edu/~uno/lp.html">
 </blockquote>
 
 <p>
-All configuration described here is performed in an <code>after-init-hook</code>
+All configuration described here is performed in an <a href="https://github.com/krismolendyke/.emacs.d/blob/0d5a5434ff79d48ab613fc433d0ae2443c552665/init.el#L88"><code>after-init-hook</code></a>
 function.
 </p>
 
@@ -1513,7 +1513,12 @@ function.
 <li><a href="#sec-5-1">Set</a></li>
 </ul>
 </li>
-<li><a href="#sec-6">Kris Defaults</a></li>
+<li><a href="#sec-6">k20e Defaults</a>
+<ul>
+<li><a href="#sec-6-1">Backup Files</a></li>
+<li><a href="#sec-6-2"><span class="todo TODO">TODO</span> Defaults for Review</a></li>
+</ul>
+</li>
 <li><a href="#sec-7">OS X</a></li>
 <li><a href="#sec-8">Appearance</a>
 <ul>
@@ -1792,26 +1797,41 @@ that have been previously loaded during initialization in <code>init.el</code>.
 </div>
 
 <div id="outline-container-sec-6" class="outline-2">
-<h2 id="sec-6">Kris Defaults</h2>
+<h2 id="sec-6">k20e Defaults</h2>
 <div class="outline-text-2" id="text-6">
+</div><div id="outline-container-sec-6-1" class="outline-3">
+<h3 id="sec-6-1">Backup Files</h3>
+<div class="outline-text-3" id="text-6-1">
+<p>
+Back up files to a single location.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-emacs-lisp">(<span class="org-keyword">defvar</span> <span class="org-variable-name">k20e/backup-dir</span> (expand-file-name <span class="org-string">"backup"</span> user-emacs-directory)
+  <span class="org-doc">"A single directory for storing backup files within."</span>)
+
+(<span class="org-keyword">unless</span> (file-exists-p k20e/backup-dir) (make-directory k20e/backup-dir))
+
+(setq backup-by-copying t
+      backup-directory-alist `((<span class="org-string">"."</span> . ,k20e/backup-dir))
+      delete-old-versions t
+      version-control t)
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-6-2" class="outline-3">
+<h3 id="sec-6-2"><span class="todo TODO">TODO</span> Defaults for Review</h3>
+<div class="outline-text-3" id="text-6-2">
 <p>
 This is a bunch of stuff that I just dumped here and need to go through yet.
 </p>
 
 <p>
-Do not back up files.
-</p>
-
-<div class="org-src-container">
-
-<pre class="src src-emacs-lisp">(setq make-backup-files nil
-      auto-save-default nil)
-</pre>
-</div>
-
-<p>
-Show the active region and delete it when selected if a character is
-inserted.
+Show the active region and delete it when selected if a character
+is inserted.
 </p>
 
 <div class="org-src-container">
@@ -1842,8 +1862,8 @@ Cycle through the mark ring faster.
 </div>
 
 <p>
-Splitting windows horizontally makes more sense on all of the
-wide screen monitors I work on.
+Splitting windows horizontally makes more sense on all of the wide
+screen monitors I work on.
 </p>
 
 <div class="org-src-container">
@@ -1887,6 +1907,7 @@ wide screen monitors I work on.
 <span class="org-comment-delimiter">;; </span><span class="org-comment">y is the new yes.  n is the new no.</span>
 (<span class="org-keyword">defalias</span> '<span class="org-function-name">yes-or-no-p</span> 'y-or-n-p)
 </pre>
+</div>
 </div>
 </div>
 </div>
@@ -3586,6 +3607,17 @@ Do not inline copy files.  This is to avoid <code>File exists, but cannot be
 <pre class="src src-emacs-lisp">(setq-default tramp-copy-size-limit -1)
 </pre>
 </div>
+
+<p>
+Do not backup files edited by <code>tramp</code> to <a href="http://www.gnu.org/software/emacs/manual/html_node/tramp/Auto_002dsave-and-Backup.html">avoid possibly sharing
+copies of privileged files with non-privileged users</a>.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-emacs-lisp">(add-to-list 'backup-directory-alist (list tramp-file-name-regexp))
+</pre>
+</div>
 </div>
 
 <div id="outline-container-sec-50-1" class="outline-3">
@@ -3760,7 +3792,7 @@ much better way to accomplish this.
 </div>
 <div id="postamble" class="status">
 <p class="author">Kris Molendyke</p>
-<p class="date">2014-09-24 Wed 07:15</p>
+<p class="date">2014-09-24 Wed 08:08</p>
 <p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.4.50.1 (<a href="http://orgmode.org">Org</a> mode 8.2.4)</p>
 </div>
 </body>
