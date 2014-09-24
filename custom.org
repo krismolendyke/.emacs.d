@@ -126,76 +126,87 @@ function.
 
 * k20e Defaults
 
-  This is a bunch of stuff that I just dumped here and need to go through yet.
+** Backup Files
 
-  Do not back up files.
+   Back up files to a single location.
 
-  #+BEGIN_SRC emacs-lisp
-    (setq make-backup-files nil
-          auto-save-default nil)
-  #+END_SRC
+   #+BEGIN_SRC emacs-lisp
+     (defvar k20e/backup-dir (expand-file-name "backup" user-emacs-directory)
+       "A single directory for storing backup files within.")
 
-  Show the active region and delete it when selected if a character is
-  inserted.
+     (unless (file-exists-p k20e/backup-dir) (make-directory k20e/backup-dir))
 
-  #+BEGIN_SRC emacs-lisp
-    (transient-mark-mode t)
-    (delete-selection-mode 1)
-  #+END_SRC
+     (setq backup-by-copying t
+           backup-directory-alist `(("." . ,k20e/backup-dir))
+           delete-old-versions t
+           version-control t)
+   #+END_SRC
 
-  "Electric" indentation is generally what I consider to be sensible.
+** TODO Defaults for Review
 
-  #+BEGIN_SRC emacs-lisp
-    (electric-indent-mode)
-  #+END_SRC
+   This is a bunch of stuff that I just dumped here and need to go through yet.
 
-  Cycle through the mark ring faster.
+   Show the active region and delete it when selected if a character
+   is inserted.
 
-  #+BEGIN_SRC emacs-lisp
-    (setq set-mark-command-repeat-pop t)
-  #+END_SRC
+   #+BEGIN_SRC emacs-lisp
+     (transient-mark-mode t)
+     (delete-selection-mode 1)
+   #+END_SRC
 
-  Splitting windows horizontally makes more sense on all of the
-  wide screen monitors I work on.
+   "Electric" indentation is generally what I consider to be sensible.
 
-  #+BEGIN_SRC emacs-lisp
-    (setq split-width-threshold 81)
-  #+END_SRC
+   #+BEGIN_SRC emacs-lisp
+     (electric-indent-mode)
+   #+END_SRC
 
-  #+BEGIN_SRC emacs-lisp
-    ;; What's going on here?
-    (setq echo-keystrokes 0.1)
+   Cycle through the mark ring faster.
+
+   #+BEGIN_SRC emacs-lisp
+     (setq set-mark-command-repeat-pop t)
+   #+END_SRC
+
+   Splitting windows horizontally makes more sense on all of the wide
+   screen monitors I work on.
+
+   #+BEGIN_SRC emacs-lisp
+     (setq split-width-threshold 81)
+   #+END_SRC
+
+   #+BEGIN_SRC emacs-lisp
+     ;; What's going on here?
+     (setq echo-keystrokes 0.1)
 
 
-    ;; Where am I?
-    (line-number-mode t)
-    (global-hl-line-mode t)
-    (column-number-mode t)
-    (show-paren-mode t)
+     ;; Where am I?
+     (line-number-mode t)
+     (global-hl-line-mode t)
+     (column-number-mode t)
+     (show-paren-mode t)
 
-    ;; Do not break lines.  Truncate them.
-    (setq-default truncate-lines t)
+     ;; Do not break lines.  Truncate them.
+     (setq-default truncate-lines t)
 
-    ;; Automatically reload buffers when files change on disk.
-    (global-auto-revert-mode 1)
+     ;; Automatically reload buffers when files change on disk.
+     (global-auto-revert-mode 1)
 
-    ;; Nag, nag, nag, nag...
-    (put 'downcase-region 'disabled nil)
-    (put 'upcase-region 'disabled nil)
-    (put 'narrow-to-region 'disabled nil)
-    (put 'narrow-to-page 'disabled nil)
-    (put 'scroll-left 'disabled nil)
-    (put 'scroll-right 'disabled nil)
+     ;; Nag, nag, nag, nag...
+     (put 'downcase-region 'disabled nil)
+     (put 'upcase-region 'disabled nil)
+     (put 'narrow-to-region 'disabled nil)
+     (put 'narrow-to-page 'disabled nil)
+     (put 'scroll-left 'disabled nil)
+     (put 'scroll-right 'disabled nil)
 
-    ;; Quit all that damn racket!
-    (setq ring-bell-function 'ignore)
+     ;; Quit all that damn racket!
+     (setq ring-bell-function 'ignore)
 
-    ;; Make sure syntax highlighting is enabled.
-    (global-font-lock-mode t)
+     ;; Make sure syntax highlighting is enabled.
+     (global-font-lock-mode t)
 
-    ;; y is the new yes.  n is the new no.
-    (defalias 'yes-or-no-p 'y-or-n-p)
-  #+END_SRC
+     ;; y is the new yes.  n is the new no.
+     (defalias 'yes-or-no-p 'y-or-n-p)
+   #+END_SRC
 
 * OS X
 
@@ -1476,6 +1487,13 @@ function.
 
   #+BEGIN_SRC emacs-lisp
     (setq-default tramp-copy-size-limit -1)
+  #+END_SRC
+
+  Do not backup files edited by =tramp= to [[http://www.gnu.org/software/emacs/manual/html_node/tramp/Auto_002dsave-and-Backup.html][avoid possibly sharing
+  copies of privileged files with non-privileged users]].
+
+  #+BEGIN_SRC emacs-lisp
+    (add-to-list 'backup-directory-alist (list tramp-file-name-regexp))
   #+END_SRC
 
 ** Debugging
