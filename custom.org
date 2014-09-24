@@ -12,7 +12,7 @@ World Wide Web. (Indeed, I used the word WEB for this purpose long before CERN
 grabbed it!) -- [[http://www-cs-faculty.stanford.edu/~uno/lp.html][Donald Knuth]]
 #+END_QUOTE
 
-All configuration described here is performed in an =after-init-hook=
+All configuration described here is performed in an [[https://github.com/krismolendyke/.emacs.d/blob/0d5a5434ff79d48ab613fc433d0ae2443c552665/init.el#L88][=after-init-hook=]]
 function.
 
 #+TOC: headlines 2
