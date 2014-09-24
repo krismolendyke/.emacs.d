@@ -124,7 +124,7 @@ function.
      (global-set-key (kbd "H-l") 'ifl-region-or-query)
    #+END_SRC
 
-* Kris Defaults
+* k20e Defaults
 
   This is a bunch of stuff that I just dumped here and need to go through yet.
 
