@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>Literate <code>.emacs.d</code></title>
-<!-- 2014-08-03 Sun 09:41 -->
+<!-- 2014-09-24 Wed 07:16 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Kris Molendyke" />
@@ -1526,30 +1526,30 @@ function.
 </ul>
 </li>
 <li><a href="#sec-9">ag</a></li>
-<li><a href="#sec-10">auto-fill</a></li>
-<li><a href="#sec-11">autopair</a></li>
-<li><a href="#sec-12">buffer-move</a></li>
-<li><a href="#sec-13"><span class="todo TODO">TODO</span> calendar</a></li>
-<li><a href="#sec-14">cider</a></li>
-<li><a href="#sec-15">clojure-mode</a>
+<li><a href="#sec-10">arduino-mode</a></li>
+<li><a href="#sec-11">auto-fill</a></li>
+<li><a href="#sec-12">autopair</a></li>
+<li><a href="#sec-13">buffer-move</a></li>
+<li><a href="#sec-14"><span class="todo TODO">TODO</span> calendar</a></li>
+<li><a href="#sec-15">cider</a></li>
+<li><a href="#sec-16">clojure-mode</a>
 <ul>
-<li><a href="#sec-15-1">Save buffers before loading or running tests</a></li>
+<li><a href="#sec-16-1">Save buffers before loading or running tests</a></li>
 </ul>
 </li>
-<li><a href="#sec-16">compilation-mode</a></li>
-<li><a href="#sec-17">dired</a></li>
-<li><a href="#sec-18">emacs-lisp-mode</a></li>
-<li><a href="#sec-19">expand-region</a></li>
-<li><a href="#sec-20">find-file-in-project</a></li>
+<li><a href="#sec-17">compilation-mode</a></li>
+<li><a href="#sec-18">dired</a></li>
+<li><a href="#sec-19">emacs-lisp-mode</a></li>
+<li><a href="#sec-20">expand-region</a></li>
+<li><a href="#sec-21">find-file-in-project</a></li>
 <li><a href="#flycheck">flycheck</a></li>
-<li><a href="#sec-22">flyspell</a>
+<li><a href="#sec-23">flyspell</a>
 <ul>
 <li><a href="#install-aspell">Install <code>aspell</code></a></li>
 </ul>
 </li>
-<li><a href="#sec-23">git</a></li>
-<li><a href="#sec-24">highlight-parentheses</a></li>
-<li><a href="#sec-25">hungry-delete</a></li>
+<li><a href="#sec-24">git</a></li>
+<li><a href="#sec-25">highlight-parentheses</a></li>
 <li><a href="#sec-26">hyperspec</a></li>
 <li><a href="#sec-27">ibuffer</a></li>
 <li><a href="#sec-28">ido</a></li>
@@ -1828,6 +1828,16 @@ inserted.
 <div class="org-src-container">
 
 <pre class="src src-emacs-lisp">(electric-indent-mode)
+</pre>
+</div>
+
+<p>
+Cycle through the mark ring faster.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-emacs-lisp">(setq set-mark-command-repeat-pop t)
 </pre>
 </div>
 
@@ -2143,8 +2153,30 @@ scale is large.
 </div>
 
 <div id="outline-container-sec-10" class="outline-2">
-<h2 id="sec-10">auto-fill</h2>
+<h2 id="sec-10">arduino-mode</h2>
 <div class="outline-text-2" id="text-10">
+<div class="org-src-container">
+
+<pre class="src src-emacs-lisp">(<span class="org-keyword">require</span> '<span class="org-constant">arduino-mode</span>)
+(<span class="org-keyword">require</span> '<span class="org-constant">compile</span>)
+
+(<span class="org-keyword">defun</span> <span class="org-function-name">k20e/arduino-recompile</span> ()
+  <span class="org-doc">"Recompile the project without messing with the windows."</span>
+  (interactive)
+  (<span class="org-keyword">save-window-excursion</span> (recompile)))
+
+(<span class="org-keyword">defun</span> <span class="org-function-name">k20e/arduino-mode-hook</span> ()
+  (define-key arduino-mode-map (kbd <span class="org-string">"C-c C-c"</span>) 'k20e/arduino-recompile))
+
+(add-hook 'arduino-mode-hook 'k20e/arduino-mode-hook)
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-11" class="outline-2">
+<h2 id="sec-11">auto-fill</h2>
+<div class="outline-text-2" id="text-11">
 <p>
 When to turn on auto-fill and set fill-column to a reasonable value.  This
 would probably be better dealt with by a data structure that maps mode hooks
@@ -2162,9 +2194,9 @@ to fill-column values.
 </div>
 </div>
 
-<div id="outline-container-sec-11" class="outline-2">
-<h2 id="sec-11">autopair</h2>
-<div class="outline-text-2" id="text-11">
+<div id="outline-container-sec-12" class="outline-2">
+<h2 id="sec-12">autopair</h2>
+<div class="outline-text-2" id="text-12">
 <p>
 <a href="https://github.com/capitaomorte/autopair">Autopair</a> automatically pairs braces, brackets, quotes, etc.
 </p>
@@ -2179,9 +2211,9 @@ to fill-column values.
 </div>
 </div>
 
-<div id="outline-container-sec-12" class="outline-2">
-<h2 id="sec-12">buffer-move</h2>
-<div class="outline-text-2" id="text-12">
+<div id="outline-container-sec-13" class="outline-2">
+<h2 id="sec-13">buffer-move</h2>
+<div class="outline-text-2" id="text-13">
 <p>
 Move the current buffer up/down/left/right easily.
 </p>
@@ -2199,9 +2231,9 @@ Move the current buffer up/down/left/right easily.
 </div>
 </div>
 
-<div id="outline-container-sec-13" class="outline-2">
-<h2 id="sec-13"><span class="todo TODO">TODO</span> calendar</h2>
-<div class="outline-text-2" id="text-13">
+<div id="outline-container-sec-14" class="outline-2">
+<h2 id="sec-14"><span class="todo TODO">TODO</span> calendar</h2>
+<div class="outline-text-2" id="text-14">
 <p>
 Does setting these geolocation variables in a hook really make sense since
 they are the result of an asynchronous query and response parsing?
@@ -2233,9 +2265,9 @@ they are the result of an asynchronous query and response parsing?
 </div>
 </div>
 
-<div id="outline-container-sec-14" class="outline-2">
-<h2 id="sec-14">cider</h2>
-<div class="outline-text-2" id="text-14">
+<div id="outline-container-sec-15" class="outline-2">
+<h2 id="sec-15">cider</h2>
+<div class="outline-text-2" id="text-15">
 <div class="org-src-container">
 
 <pre class="src src-emacs-lisp">(<span class="org-keyword">require</span> '<span class="org-constant">cider</span>)
@@ -2256,9 +2288,9 @@ they are the result of an asynchronous query and response parsing?
 </div>
 </div>
 
-<div id="outline-container-sec-15" class="outline-2">
-<h2 id="sec-15">clojure-mode</h2>
-<div class="outline-text-2" id="text-15">
+<div id="outline-container-sec-16" class="outline-2">
+<h2 id="sec-16">clojure-mode</h2>
+<div class="outline-text-2" id="text-16">
 <div class="org-src-container">
 
 <pre class="src src-emacs-lisp">(<span class="org-keyword">require</span> '<span class="org-constant">clojure-mode</span>)
@@ -2273,9 +2305,9 @@ they are the result of an asynchronous query and response parsing?
 </div>
 </div>
 
-<div id="outline-container-sec-15-1" class="outline-3">
-<h3 id="sec-15-1">Save buffers before loading or running tests</h3>
-<div class="outline-text-3" id="text-15-1">
+<div id="outline-container-sec-16-1" class="outline-3">
+<h3 id="sec-16-1">Save buffers before loading or running tests</h3>
+<div class="outline-text-3" id="text-16-1">
 <p>
 Courtesy of Magnar Sveen's <a href="https://github.com/magnars/.emacs.d/blob/486e631801c84b018d90cf040d2170ef78045676/setup-clojure-mode.el"><code>setup-clojure-mode.el</code></a>.
 </p>
@@ -2296,9 +2328,9 @@ Courtesy of Magnar Sveen's <a href="https://github.com/magnars/.emacs.d/blob/486
 </div>
 </div>
 
-<div id="outline-container-sec-16" class="outline-2">
-<h2 id="sec-16">compilation-mode</h2>
-<div class="outline-text-2" id="text-16">
+<div id="outline-container-sec-17" class="outline-2">
+<h2 id="sec-17">compilation-mode</h2>
+<div class="outline-text-2" id="text-17">
 <div class="org-src-container">
 
 <pre class="src src-emacs-lisp">(<span class="org-keyword">defun</span> <span class="org-function-name">k20e/compilation-mode-hook</span> ()
@@ -2310,9 +2342,9 @@ Courtesy of Magnar Sveen's <a href="https://github.com/magnars/.emacs.d/blob/486
 </div>
 </div>
 
-<div id="outline-container-sec-17" class="outline-2">
-<h2 id="sec-17">dired</h2>
-<div class="outline-text-2" id="text-17">
+<div id="outline-container-sec-18" class="outline-2">
+<h2 id="sec-18">dired</h2>
+<div class="outline-text-2" id="text-18">
 <div class="org-src-container">
 
 <pre class="src src-emacs-lisp">(<span class="org-keyword">require</span> '<span class="org-constant">ido</span>)
@@ -2334,9 +2366,9 @@ Courtesy of Magnar Sveen's <a href="https://github.com/magnars/.emacs.d/blob/486
 </div>
 </div>
 
-<div id="outline-container-sec-18" class="outline-2">
-<h2 id="sec-18">emacs-lisp-mode</h2>
-<div class="outline-text-2" id="text-18">
+<div id="outline-container-sec-19" class="outline-2">
+<h2 id="sec-19">emacs-lisp-mode</h2>
+<div class="outline-text-2" id="text-19">
 <div class="org-src-container">
 
 <pre class="src src-emacs-lisp">(<span class="org-keyword">require</span> '<span class="org-constant">autopair</span>)
@@ -2356,9 +2388,9 @@ Courtesy of Magnar Sveen's <a href="https://github.com/magnars/.emacs.d/blob/486
 </div>
 </div>
 
-<div id="outline-container-sec-19" class="outline-2">
-<h2 id="sec-19">expand-region</h2>
-<div class="outline-text-2" id="text-19">
+<div id="outline-container-sec-20" class="outline-2">
+<h2 id="sec-20">expand-region</h2>
+<div class="outline-text-2" id="text-20">
 <div class="org-src-container">
 
 <pre class="src src-emacs-lisp">(<span class="org-keyword">require</span> '<span class="org-constant">expand-region</span>)
@@ -2369,9 +2401,9 @@ Courtesy of Magnar Sveen's <a href="https://github.com/magnars/.emacs.d/blob/486
 </div>
 </div>
 
-<div id="outline-container-sec-20" class="outline-2">
-<h2 id="sec-20">find-file-in-project</h2>
-<div class="outline-text-2" id="text-20">
+<div id="outline-container-sec-21" class="outline-2">
+<h2 id="sec-21">find-file-in-project</h2>
+<div class="outline-text-2" id="text-21">
 <div class="org-src-container">
 
 <pre class="src src-emacs-lisp">(<span class="org-keyword">require</span> '<span class="org-constant">find-file-in-project</span>)
@@ -2387,6 +2419,7 @@ Courtesy of Magnar Sveen's <a href="https://github.com/magnars/.emacs.d/blob/486
                           <span class="org-string">"*.html"</span>
                           <span class="org-string">"*.js"</span>
                           <span class="org-string">"*.json"</span>
+                          <span class="org-string">"*.mk"</span>
                           <span class="org-string">"*.md"</span>
                           <span class="org-string">"*.org"</span>
                           <span class="org-string">"*.py"</span>
@@ -2395,7 +2428,8 @@ Courtesy of Magnar Sveen's <a href="https://github.com/magnars/.emacs.d/blob/486
                           <span class="org-string">"*.sh"</span>
                           <span class="org-string">"*.soy"</span>
                           <span class="org-string">"*.txt"</span>
-                          <span class="org-string">"*.yml"</span>)
+                          <span class="org-string">"*.yml"</span>
+                          <span class="org-string">"Makefile"</span>)
       ffip-prune-patterns (list <span class="org-string">".git"</span> <span class="org-string">"build"</span>))
 
 (global-set-key (kbd <span class="org-string">"C-x o"</span>) 'find-file-in-project)
@@ -2405,7 +2439,7 @@ Courtesy of Magnar Sveen's <a href="https://github.com/magnars/.emacs.d/blob/486
 </div>
 
 <div id="outline-container-flycheck" class="outline-2">
-<h2 id="flycheck"><a id="sec-21"></a>flycheck</h2>
+<h2 id="flycheck"><a id="sec-22"></a>flycheck</h2>
 <div class="outline-text-2" id="text-flycheck">
 <div class="org-src-container">
 
@@ -2424,9 +2458,9 @@ Courtesy of Magnar Sveen's <a href="https://github.com/magnars/.emacs.d/blob/486
 </div>
 </div>
 
-<div id="outline-container-sec-22" class="outline-2">
-<h2 id="sec-22">flyspell</h2>
-<div class="outline-text-2" id="text-22">
+<div id="outline-container-sec-23" class="outline-2">
+<h2 id="sec-23">flyspell</h2>
+<div class="outline-text-2" id="text-23">
 <p>
 First setup <code>ispell</code> to use <a href="#install-aspell"><code>aspell</code></a>:
 </p>
@@ -2462,7 +2496,7 @@ Then setup <code>flyspell</code> itself.  It requires  <code>ispell</code>.
 </div>
 
 <div id="outline-container-install-aspell" class="outline-3">
-<h3 id="install-aspell"><a id="sec-22-1"></a>Install <a href="http://hunspell.sourceforge.net/"><code>aspell</code></a></h3>
+<h3 id="install-aspell"><a id="sec-23-1"></a>Install <a href="http://hunspell.sourceforge.net/"><code>aspell</code></a></h3>
 <div class="outline-text-3" id="text-install-aspell">
 <p>
 Install <code>aspell</code> via Homebrew:
@@ -2477,9 +2511,9 @@ Install <code>aspell</code> via Homebrew:
 </div>
 </div>
 
-<div id="outline-container-sec-23" class="outline-2">
-<h2 id="sec-23">git</h2>
-<div class="outline-text-2" id="text-23">
+<div id="outline-container-sec-24" class="outline-2">
+<h2 id="sec-24">git</h2>
+<div class="outline-text-2" id="text-24">
 <div class="org-src-container">
 
 <pre class="src src-emacs-lisp">(<span class="org-keyword">require</span> '<span class="org-constant">git-commit-mode</span>)
@@ -2500,9 +2534,9 @@ Install <code>aspell</code> via Homebrew:
 </div>
 </div>
 
-<div id="outline-container-sec-24" class="outline-2">
-<h2 id="sec-24">highlight-parentheses</h2>
-<div class="outline-text-2" id="text-24">
+<div id="outline-container-sec-25" class="outline-2">
+<h2 id="sec-25">highlight-parentheses</h2>
+<div class="outline-text-2" id="text-25">
 <div class="org-src-container">
 
 <pre class="src src-emacs-lisp">(<span class="org-keyword">require</span> '<span class="org-constant">highlight-parentheses</span>)
@@ -2513,19 +2547,6 @@ Install <code>aspell</code> via Homebrew:
                 clojure-mode-hook))
   (add-hook hook #'(<span class="org-keyword">lambda</span> ()
                      (highlight-parentheses-mode))))
-</pre>
-</div>
-</div>
-</div>
-
-<div id="outline-container-sec-25" class="outline-2">
-<h2 id="sec-25">hungry-delete</h2>
-<div class="outline-text-2" id="text-25">
-<div class="org-src-container">
-
-<pre class="src src-emacs-lisp">(<span class="org-keyword">require</span> '<span class="org-constant">hungry-delete</span>)
-
-(global-hungry-delete-mode)
 </pre>
 </div>
 </div>
@@ -2653,9 +2674,11 @@ Install <code>aspell</code> via Homebrew:
 <div class="org-src-container">
 
 <pre class="src src-emacs-lisp">(<span class="org-keyword">require</span> '<span class="org-constant">eldoc</span>)
+(<span class="org-keyword">require</span> '<span class="org-constant">paredit</span>)
 
 (<span class="org-keyword">defun</span> <span class="org-function-name">k20e/ielm-hook</span> ()
-  (eldoc-mode))
+  (eldoc-mode)
+  (paredit-mode 1))
 
 (add-hook 'ielm-mode-hook 'k20e/ielm-hook)
 </pre>
@@ -2983,7 +3006,7 @@ bindings whenever I open a new terminal.
          <span class="org-builtin">:base-directory</span> ,(expand-file-name <span class="org-string">"source"</span> (expand-file-name <span class="org-string">"k20e"</span> org-directory))
          <span class="org-builtin">:base-extension</span> <span class="org-string">"org"</span>
          <span class="org-builtin">:recursive</span> t
-         <span class="org-builtin">:exclude</span> <span class="org-string">"ga.org</span><span class="org-regexp-grouping-backslash"><span class="org-string">\\</span></span><span class="org-regexp-grouping-construct"><span class="org-string">|</span></span><span class="org-string">level-0.org</span><span class="org-regexp-grouping-backslash"><span class="org-string">\\</span></span><span class="org-regexp-grouping-construct"><span class="org-string">|</span></span><span class="org-string">todo.org"</span>
+         <span class="org-builtin">:exclude</span> <span class="org-string">"ga.org</span><span class="org-regexp-grouping-backslash"><span class="org-string">\\</span></span><span class="org-regexp-grouping-construct"><span class="org-string">|</span></span><span class="org-string">level-0.org</span><span class="org-regexp-grouping-backslash"><span class="org-string">\\</span></span><span class="org-regexp-grouping-construct"><span class="org-string">|</span></span><span class="org-string">todo.org</span><span class="org-regexp-grouping-backslash"><span class="org-string">\\</span></span><span class="org-regexp-grouping-construct"><span class="org-string">|</span></span><span class="org-string">.DS_Store"</span>
          <span class="org-builtin">:publishing-directory</span> ,(expand-file-name <span class="org-string">"published"</span> (expand-file-name <span class="org-string">"k20e"</span> org-directory))
          <span class="org-builtin">:publishing-function</span> org-html-publish-to-html
          <span class="org-builtin">:with-planning</span> t)
@@ -3007,22 +3030,7 @@ bindings whenever I open a new terminal.
          <span class="org-builtin">:publishing-directory</span> ,(expand-file-name <span class="org-string">"published"</span> (expand-file-name <span class="org-string">"work"</span> org-directory))
          <span class="org-builtin">:publishing-function</span> org-publish-attachment)
         (<span class="org-string">"work"</span>
-         <span class="org-builtin">:components</span> (<span class="org-string">"work-org-files"</span> <span class="org-string">"work-static-files"</span>))
-        (<span class="org-string">"house-hunting-org-files"</span>
-         <span class="org-builtin">:base-directory</span> ,(expand-file-name <span class="org-string">"house-hunting"</span> org-directory)
-         <span class="org-builtin">:base-extension</span> <span class="org-string">"org"</span>
-         <span class="org-builtin">:recursive</span> t
-         <span class="org-builtin">:publishing-directory</span> ,(expand-file-name <span class="org-string">"published"</span> (expand-file-name <span class="org-string">"house-hunting"</span> org-directory))
-         <span class="org-builtin">:publishing-function</span> org-html-publish-to-html
-         <span class="org-builtin">:with-planning</span> t)
-        (<span class="org-string">"house-hunting-static-files"</span>
-         <span class="org-builtin">:base-directory</span> ,(expand-file-name <span class="org-string">"house-hunting"</span> org-directory)
-         <span class="org-builtin">:base-extension</span> <span class="org-string">"pdf</span><span class="org-regexp-grouping-backslash"><span class="org-string">\\</span></span><span class="org-regexp-grouping-construct"><span class="org-string">|</span></span><span class="org-string">csv</span><span class="org-regexp-grouping-backslash"><span class="org-string">\\</span></span><span class="org-regexp-grouping-construct"><span class="org-string">|</span></span><span class="org-string">png</span><span class="org-regexp-grouping-backslash"><span class="org-string">\\</span></span><span class="org-regexp-grouping-construct"><span class="org-string">|</span></span><span class="org-string">xls</span><span class="org-regexp-grouping-backslash"><span class="org-string">\\</span></span><span class="org-regexp-grouping-construct"><span class="org-string">|</span></span><span class="org-string">doc"</span>
-         <span class="org-builtin">:recursive</span> t
-         <span class="org-builtin">:publishing-directory</span> ,(expand-file-name <span class="org-string">"published"</span> (expand-file-name <span class="org-string">"house-hunting"</span> org-directory))
-         <span class="org-builtin">:publishing-function</span> org-publish-attachment)
-        (<span class="org-string">"house-hunting"</span>
-         <span class="org-builtin">:components</span> (<span class="org-string">"house-hunting-org-files"</span> <span class="org-string">"house-hunting-static-files"</span>))))
+         <span class="org-builtin">:components</span> (<span class="org-string">"work-org-files"</span> <span class="org-string">"work-static-files"</span>))))
 </pre>
 </div>
 </div>
@@ -3399,6 +3407,7 @@ pads for.
   '(emacs-lisp-mode
     fundamental-mode
     javascript-mode
+    org-mode
     sql-mode
     text-mode)
   <span class="org-doc">"Common major modes to create scratch buffers for."</span>)
@@ -3751,7 +3760,7 @@ much better way to accomplish this.
 </div>
 <div id="postamble" class="status">
 <p class="author">Kris Molendyke</p>
-<p class="date">2014-08-03 Sun 09:30</p>
+<p class="date">2014-09-24 Wed 07:15</p>
 <p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.4.50.1 (<a href="http://orgmode.org">Org</a> mode 8.2.4)</p>
 </div>
 </body>
