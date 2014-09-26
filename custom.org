@@ -833,7 +833,13 @@ function.
 * js-mode
 
   #+BEGIN_SRC emacs-lisp
+    (require 'flycheck)
     (require 'json)
+
+    (defun k20e/js-mode-hook ()
+      (setq flycheck-gjslintrc "gjslintrc"))
+
+    (add-hook 'js-mode-hook 'k20e/js-mode-hook)
 
     (add-to-list 'auto-mode-alist '("\\.json" . js-mode))
   #+END_SRC
