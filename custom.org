@@ -1478,29 +1478,73 @@ function.
 
 * tramp
 
-  Fix =ControlPath too long= errors due to OS X pitching a [[https://lists.macosforge.org/pipermail/macports-tickets/2011-June/084295.html][long temporary
-  directory]] to =ssh=.
+** =ControlPath=
 
-  Unfortunately, setting this is blowing up the =server-start= which can no
-  longer find the socket stored in the original =TMPDIR= value.
+   Fix =ControlPath too long= errors due to OS X pitching a [[https://lists.macosforge.org/pipermail/macports-tickets/2011-June/084295.html][long
+   temporary directory]] to =ssh=.
 
-  #+BEGIN_SRC emacs-lisp
-    ;; (setenv "TMPDIR" "/tmp")
-  #+END_SRC
+   Unfortunately, setting this is blowing up the =server-start= which
+   can no longer find the socket stored in the original =TMPDIR=
+   value.
 
-  Do not inline copy files.  This is to avoid =File exists, but cannot be
-  read= errors.
+   #+BEGIN_SRC emacs-lisp
+     ;; (setenv "TMPDIR" "/tmp")
+   #+END_SRC
 
-  #+BEGIN_SRC emacs-lisp
-    (setq-default tramp-copy-size-limit -1)
-  #+END_SRC
+   Eureka!  It appears that the =ControlMaster= option for =ssh=
+   should be set to =yes= instead of =auto= to avoid the =ControlPath
+   too long= error.  Here is the interesting section of =man 5
+   ssh_config=:
 
-  Do not backup files edited by =tramp= to [[http://www.gnu.org/software/emacs/manual/html_node/tramp/Auto_002dsave-and-Backup.html][avoid possibly sharing
-  copies of privileged files with non-privileged users]].
+   #+BEGIN_EXAMPLE
+     ControlMaster
+                  Enables the sharing of multiple sessions over a single network connection.  When set to
+                  ``yes'', ssh(1) will listen for connections on a control socket specified using the
+                  ControlPath argument.  Additional sessions can connect to this socket using the same
+                  ControlPath with ControlMaster set to ``no'' (the default).  These sessions will try to reuse
+                  the master instance's network connection rather than initiating new ones, but will fall back
+                  to connecting normally if the control socket does not exist, or is not listening.
 
-  #+BEGIN_SRC emacs-lisp
-    (add-to-list 'backup-directory-alist (list tramp-file-name-regexp))
-  #+END_SRC
+                  Setting this to ``ask'' will cause ssh to listen for control connections, but require confir-
+                  mation using the SSH_ASKPASS program before they are accepted (see ssh-add(1) for details).
+                  If the ControlPath cannot be opened, ssh will continue without connecting to a master
+                  instance.
+
+                  X11 and ssh-agent(1) forwarding is supported over these multiplexed connections, however the
+                  display and agent forwarded will be the one belonging to the master connection i.e. it is not
+                  possible to forward multiple displays or agents.
+
+                  Two additional options allow for opportunistic multiplexing: try to use a master connection
+                  but fall back to creating a new one if one does not already exist.  These options are:
+                  ``auto'' and ``autoask''.  The latter requires confirmation like the ``ask'' option.
+   #+END_EXAMPLE
+
+   The =tramp-ssh-controlmaster-options= variable is responsible for
+   the =ControlMaster= value as well as a few other options which have
+   not been changed from their default values.
+
+   #+BEGIN_SRC emacs-lisp
+     (setq tramp-ssh-controlmaster-options
+           "-o ControlPath=%t.%%r@%%h:%%p -o ControlMaster=yes -o ControlPersist=no")
+   #+END_SRC
+
+** Inline Copying
+
+   Do not inline copy files.  This is to avoid =File exists, but
+   cannot be read= errors.
+
+   #+BEGIN_SRC emacs-lisp
+     (setq-default tramp-copy-size-limit -1)
+   #+END_SRC
+
+** File Backup
+
+   Do not backup files edited by =tramp= to [[http://www.gnu.org/software/emacs/manual/html_node/tramp/Auto_002dsave-and-Backup.html][avoid possibly sharing
+   copies of privileged files with non-privileged users]].
+
+   #+BEGIN_SRC emacs-lisp
+     (add-to-list 'backup-directory-alist (list tramp-file-name-regexp))
+   #+END_SRC
 
 ** Debugging
 
