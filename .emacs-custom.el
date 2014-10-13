@@ -9,6 +9,8 @@
  '(ibuffer-saved-filter-groups
    (quote
     ((""
+      ("cm"
+       (filename . "-cm/"))
       ("server"
        (filename . "-server"))
       (".emacs.d"
