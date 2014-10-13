@@ -871,6 +871,20 @@ function.
     (setq enable-recursive-minibuffers t)
   #+END_SRC
 
+** Eval expression minibuffer
+
+   Enable =eldoc= in the modeline.
+
+   #+BEGIN_SRC emacs-lisp
+     (require 'eldoc)
+
+     (defun k20e/eval-expression-minibuffer-setup-hook ()
+       (eldoc-mode 1))
+
+     (add-hook 'eval-expression-minibuffer-setup-hook
+               'k20e/eval-expression-minibuffer-setup-hook)
+   #+END_SRC
+
 * monetate-mode
 
   #+BEGIN_SRC emacs-lisp
