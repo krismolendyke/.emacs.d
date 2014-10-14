@@ -8,6 +8,7 @@
 ;; https://github.com/timvisher/.emacs.d/blob/master/site-lisp/google-lucky.el
 
 (require 'browse-url)
+(require 'eww)
 (require 'url)
 
 ;;; Code:
@@ -44,22 +45,27 @@ The 'q' query string parameter should be omitted.")
     (url-recreate-url (url-parse-make-urlobj type user pass host port file frag
                                              nil t))))
 
-(defun ifl--send-query-to-browser (url query)
-  "Open a browser at the location made from a `URL' and a `QUERY'."
-  (browse-url (ifl--url url query)))
+(defun ifl--send-query-to-browser (eww-p url query)
+  "Open a browser, eww if `EWW-P', at the location made from `URL' and `QUERY'."
+  (let ((q (ifl--url url query)))
+    (if eww-p
+        (eww-browse-url q)
+      (browse-url q))))
 
-(defun ifl-query (query)
-  "Open an I'm Feeling Lucky result for a QUERY."
-  (interactive "sI'm Feeling Lucky: ")
-  (ifl--send-query-to-browser ifl--url query))
+(defun ifl-query (eww-p query)
+  "Open an I'm Feeling Lucky result, with eww if `EWW-P', for a `QUERY'."
+  (interactive "p\nsI'm Feeling Lucky: ")
+  (ifl--send-query-to-browser eww-p ifl--url query))
 
-(defun ifl-region-or-query (begin end)
+(defun ifl-region-or-query (eww-p begin end)
   "Open an I'm Feeling Lucky result for a region or query.
+Argument EWW-P Prefix argument to browse URL with eww.
 Argument BEGIN The beginning of the region to use as a query.
 Argument END The end of the region to use as a query."
-  (interactive "r")
+  (interactive "P\nr")
   (if (use-region-p)
-      (ifl--send-query-to-browser ifl--url
+      (ifl--send-query-to-browser eww-p
+                                  ifl--url
                                   (buffer-substring-no-properties begin end))
     (call-interactively 'ifl-query)))
 
