@@ -63,11 +63,10 @@ Argument EWW-P Prefix argument to browse URL with eww.
 Argument BEGIN The beginning of the region to use as a query.
 Argument END The end of the region to use as a query."
   (interactive "P\nr")
-  (if (use-region-p)
-      (ifl--send-query-to-browser eww-p
-                                  ifl--url
-                                  (buffer-substring-no-properties begin end))
-    (call-interactively 'ifl-query)))
+  (let ((query (buffer-substring-no-properties begin end)))
+    (if (use-region-p)
+        (ifl--send-query-to-browser eww-p ifl--url query)
+      (call-interactively 'ifl-query))))
 
 (provide 'im-feeling-lucky)
 
