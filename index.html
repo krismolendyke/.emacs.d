@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>Literate <code>.emacs.d</code></title>
-<!-- 2014-10-08 Wed 12:14 -->
+<!-- 2014-10-20 Mon 07:22 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Kris Molendyke" />
@@ -1563,7 +1563,11 @@ function.
 <li><a href="#sec-31">js-mode</a></li>
 <li><a href="#sec-32">keyfreq</a></li>
 <li><a href="#sec-33">markdown-mode</a></li>
-<li><a href="#sec-34">minibuffers</a></li>
+<li><a href="#sec-34">minibuffers</a>
+<ul>
+<li><a href="#sec-34-1">Eval expression minibuffer</a></li>
+</ul>
+</li>
 <li><a href="#sec-35">monetate-mode</a></li>
 <li><a href="#multi-term">multi-term</a>
 <ul>
@@ -1760,6 +1764,7 @@ their own dedicated sections where other specific settings are made.
 
 <pre class="src src-emacs-lisp">(global-set-key (kbd <span class="org-string">"C-c DEL"</span>) 'join-line)
 (global-set-key (kbd <span class="org-string">"C-h"</span>) 'delete-backward-char)
+(global-set-key (kbd <span class="org-string">"C-S-h"</span>) 'kill-whole-line)
 (global-set-key (kbd <span class="org-string">"C-j"</span>) 'join-line)
 (global-set-key (kbd <span class="org-string">"C-x C-t"</span>) 'toggle-frame-fullscreen)
 (global-set-key (kbd <span class="org-string">"H-h"</span>) 'help-command)
@@ -2597,6 +2602,7 @@ Install <code>aspell</code> via Homebrew:
 <div class="org-src-container">
 
 <pre class="src src-emacs-lisp">(<span class="org-keyword">require</span> '<span class="org-constant">ibuffer</span>)
+(<span class="org-keyword">require</span> '<span class="org-constant">ido</span>)
 
 (<span class="org-keyword">defalias</span> '<span class="org-function-name">list-buffers</span> 'ibuffer)
 
@@ -2613,7 +2619,11 @@ Install <code>aspell</code> via Homebrew:
                          <span class="org-string">" "</span>
                          name)))
 
-(add-hook 'ibuffer-hook (<span class="org-keyword">lambda</span> () (ibuffer-switch-to-saved-filter-groups <span class="org-string">""</span>)))
+(<span class="org-keyword">defun</span> <span class="org-function-name">k20e/ibuffer-hook</span> ()
+  (ibuffer-switch-to-saved-filter-groups <span class="org-string">""</span>)
+  (define-key ibuffer-mode-map (kbd <span class="org-string">"C-x C-f"</span>) 'ido-find-file))
+
+(add-hook 'ibuffer-hook 'k20e/ibuffer-hook)
 </pre>
 </div>
 </div>
@@ -2789,6 +2799,27 @@ in <a href="http://www.masteringemacs.org/articles/2011/10/19/executing-shell-co
 
 <pre class="src src-emacs-lisp">(setq enable-recursive-minibuffers t)
 </pre>
+</div>
+</div>
+
+<div id="outline-container-sec-34-1" class="outline-3">
+<h3 id="sec-34-1">Eval expression minibuffer</h3>
+<div class="outline-text-3" id="text-34-1">
+<p>
+Enable <code>eldoc</code> in the modeline.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-emacs-lisp">(<span class="org-keyword">require</span> '<span class="org-constant">eldoc</span>)
+
+(<span class="org-keyword">defun</span> <span class="org-function-name">k20e/eval-expression-minibuffer-setup-hook</span> ()
+  (eldoc-mode 1))
+
+(add-hook 'eval-expression-minibuffer-setup-hook
+          'k20e/eval-expression-minibuffer-setup-hook)
+</pre>
+</div>
 </div>
 </div>
 </div>
@@ -3050,22 +3081,22 @@ bindings whenever I open a new terminal.
 <div class="org-src-container">
 
 <pre class="src src-emacs-lisp">(setq org-publish-project-alist
-      `((<span class="org-string">"k20e-org-files"</span>
-         <span class="org-builtin">:base-directory</span> ,(expand-file-name <span class="org-string">"source"</span> (expand-file-name <span class="org-string">"k20e"</span> org-directory))
+      `((<span class="org-string">"k20e.com-org-files"</span>
+         <span class="org-builtin">:base-directory</span> ,(expand-file-name <span class="org-string">"source"</span> (expand-file-name <span class="org-string">"k20e.com"</span> k20e/dropbox-directory))
          <span class="org-builtin">:base-extension</span> <span class="org-string">"org"</span>
          <span class="org-builtin">:recursive</span> t
          <span class="org-builtin">:exclude</span> <span class="org-string">"ga.org</span><span class="org-regexp-grouping-backslash"><span class="org-string">\\</span></span><span class="org-regexp-grouping-construct"><span class="org-string">|</span></span><span class="org-string">level-0.org</span><span class="org-regexp-grouping-backslash"><span class="org-string">\\</span></span><span class="org-regexp-grouping-construct"><span class="org-string">|</span></span><span class="org-string">todo.org</span><span class="org-regexp-grouping-backslash"><span class="org-string">\\</span></span><span class="org-regexp-grouping-construct"><span class="org-string">|</span></span><span class="org-string">.DS_Store"</span>
-         <span class="org-builtin">:publishing-directory</span> ,(expand-file-name <span class="org-string">"published"</span> (expand-file-name <span class="org-string">"k20e"</span> org-directory))
+         <span class="org-builtin">:publishing-directory</span> ,(expand-file-name <span class="org-string">"published"</span> (expand-file-name <span class="org-string">"k20e.com"</span> k20e/dropbox-directory))
          <span class="org-builtin">:publishing-function</span> org-html-publish-to-html
          <span class="org-builtin">:with-planning</span> t)
-        (<span class="org-string">"k20e-static-files"</span>
-         <span class="org-builtin">:base-directory</span> ,(expand-file-name <span class="org-string">"source"</span> (expand-file-name <span class="org-string">"k20e"</span> org-directory))
+        (<span class="org-string">"k20e.com-static-files"</span>
+         <span class="org-builtin">:base-directory</span> ,(expand-file-name <span class="org-string">"source"</span> (expand-file-name <span class="org-string">"k20e.com"</span> k20e/dropbox-directory))
          <span class="org-builtin">:base-extension</span> <span class="org-string">"jpg</span><span class="org-regexp-grouping-backslash"><span class="org-string">\\</span></span><span class="org-regexp-grouping-construct"><span class="org-string">|</span></span><span class="org-string">png</span><span class="org-regexp-grouping-backslash"><span class="org-string">\\</span></span><span class="org-regexp-grouping-construct"><span class="org-string">|</span></span><span class="org-string">ico"</span>
          <span class="org-builtin">:recursive</span> t
-         <span class="org-builtin">:publishing-directory</span> ,(expand-file-name <span class="org-string">"published"</span> (expand-file-name <span class="org-string">"k20e"</span> org-directory))
+         <span class="org-builtin">:publishing-directory</span> ,(expand-file-name <span class="org-string">"published"</span> (expand-file-name <span class="org-string">"k20e.com"</span> k20e/dropbox-directory))
          <span class="org-builtin">:publishing-function</span> org-publish-attachment)
-        (<span class="org-string">"k20e"</span>
-         <span class="org-builtin">:components</span> (<span class="org-string">"k20e-org-files"</span> <span class="org-string">"k20e-static-files"</span>))
+        (<span class="org-string">"k20e.com"</span>
+         <span class="org-builtin">:components</span> (<span class="org-string">"k20e.com-org-files"</span> <span class="org-string">"k20e.com-static-files"</span>))
         (<span class="org-string">"work-org-files"</span>
          <span class="org-builtin">:base-directory</span> ,(expand-file-name <span class="org-string">"work"</span> org-directory)
          <span class="org-builtin">:base-extension</span> <span class="org-string">"org"</span>
@@ -3078,22 +3109,7 @@ bindings whenever I open a new terminal.
          <span class="org-builtin">:publishing-directory</span> ,(expand-file-name <span class="org-string">"published"</span> (expand-file-name <span class="org-string">"work"</span> org-directory))
          <span class="org-builtin">:publishing-function</span> org-publish-attachment)
         (<span class="org-string">"work"</span>
-         <span class="org-builtin">:components</span> (<span class="org-string">"work-org-files"</span> <span class="org-string">"work-static-files"</span>))
-        (<span class="org-string">"house-hunting-org-files"</span>
-         <span class="org-builtin">:base-directory</span> ,(expand-file-name <span class="org-string">"house-hunting"</span> org-directory)
-         <span class="org-builtin">:base-extension</span> <span class="org-string">"org"</span>
-         <span class="org-builtin">:recursive</span> t
-         <span class="org-builtin">:publishing-directory</span> ,(expand-file-name <span class="org-string">"published"</span> (expand-file-name <span class="org-string">"house-hunting"</span> org-directory))
-         <span class="org-builtin">:publishing-function</span> org-html-publish-to-html
-         <span class="org-builtin">:with-planning</span> t)
-        (<span class="org-string">"house-hunting-static-files"</span>
-         <span class="org-builtin">:base-directory</span> ,(expand-file-name <span class="org-string">"house-hunting"</span> org-directory)
-         <span class="org-builtin">:base-extension</span> <span class="org-string">"pdf</span><span class="org-regexp-grouping-backslash"><span class="org-string">\\</span></span><span class="org-regexp-grouping-construct"><span class="org-string">|</span></span><span class="org-string">csv</span><span class="org-regexp-grouping-backslash"><span class="org-string">\\</span></span><span class="org-regexp-grouping-construct"><span class="org-string">|</span></span><span class="org-string">png</span><span class="org-regexp-grouping-backslash"><span class="org-string">\\</span></span><span class="org-regexp-grouping-construct"><span class="org-string">|</span></span><span class="org-string">xls</span><span class="org-regexp-grouping-backslash"><span class="org-string">\\</span></span><span class="org-regexp-grouping-construct"><span class="org-string">|</span></span><span class="org-string">doc"</span>
-         <span class="org-builtin">:recursive</span> t
-         <span class="org-builtin">:publishing-directory</span> ,(expand-file-name <span class="org-string">"published"</span> (expand-file-name <span class="org-string">"house-hunting"</span> org-directory))
-         <span class="org-builtin">:publishing-function</span> org-publish-attachment)
-        (<span class="org-string">"house-hunting"</span>
-         <span class="org-builtin">:components</span> (<span class="org-string">"house-hunting-org-files"</span> <span class="org-string">"house-hunting-static-files"</span>))))
+         <span class="org-builtin">:components</span> (<span class="org-string">"work-org-files"</span> <span class="org-string">"work-static-files"</span>))))
 </pre>
 </div>
 </div>
@@ -3157,8 +3173,10 @@ Custom keywords and faces.
 <div class="org-src-container">
 
 <pre class="src src-emacs-lisp">(<span class="org-keyword">require</span> '<span class="org-constant">face-remap</span>)
+(<span class="org-keyword">require</span> '<span class="org-constant">winner</span>)
 
 (<span class="org-keyword">defun</span> <span class="org-function-name">k20e/org-agenda-mode-hook</span> ()
+  (define-key org-agenda-mode-map (kbd <span class="org-string">"q"</span>) 'winner-undo)
   (delete-other-windows)
   (text-scale-set 2))
 
@@ -3173,7 +3191,8 @@ Custom keywords and faces.
 <div class="org-src-container">
 
 <pre class="src src-emacs-lisp">(setq org-agenda-files
-      (list (expand-file-name <span class="org-string">"resolutions.org"</span> org-directory)
+      (list (expand-file-name <span class="org-string">"personal.org"</span> org-directory)
+            (expand-file-name <span class="org-string">"resolutions.org"</span> org-directory)
             (expand-file-name <span class="org-string">"work"</span> org-directory)
             (expand-file-name <span class="org-string">"chores.org"</span> org-directory)))
 </pre>
@@ -3892,7 +3911,7 @@ much better way to accomplish this.
 </div>
 <div id="postamble" class="status">
 <p class="author">Kris Molendyke</p>
-<p class="date">2014-10-08 Wed 12:14</p>
+<p class="date">2014-10-20 Mon 07:22</p>
 <p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.4.50.1 (<a href="http://orgmode.org">Org</a> mode 8.2.4)</p>
 </div>
 </body>
