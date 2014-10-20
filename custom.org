@@ -843,7 +843,8 @@ function.
     (require 'json)
 
     (defun k20e/js-mode-hook ()
-      (setq flycheck-gjslintrc "gjslintrc"))
+      (setq flycheck-gjslintrc "gjslintrc")
+      (flycheck-mode 1))
 
     (add-hook 'js-mode-hook 'k20e/js-mode-hook)
 
