@@ -863,6 +863,17 @@ function.
     (keyfreq-autosave-mode 1)
   #+END_SRC
 
+* markdown-mode
+
+  #+BEGIN_SRC emacs-lisp
+    (require 'markdown-mode)
+
+    (defun k20e/markdown-mode-hook ()
+      (setq markdown-open-command "open"))
+
+    (add-hook 'markdown-mode-hook 'k20e/markdown-mode-hook)
+  #+END_SRC
+
 * minibuffers
 
   Set =enable-recursive-minibufers= to =t= to allow minibuffers
