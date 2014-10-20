@@ -106,7 +106,6 @@ function.
      (global-set-key (kbd "H-h H-v") 'find-variable)
      (global-set-key (kbd "M-+") 'text-scale-adjust)
      (global-set-key (kbd "M-.") 'imenu)
-     (global-set-key (kbd "M-SPC") 'delete-horizontal-space)
      (global-set-key (kbd "M-`") 'other-window)
      (global-set-key (kbd "M-h") 'backward-kill-word)
    #+END_SRC
@@ -126,6 +125,17 @@ function.
    #+END_SRC
 
 * k20e Defaults
+
+** =cycle-spacing=
+
+   #+BEGIN_SRC emacs-lisp
+     (defun k20e/cycle-spacing (&optional n)
+       "Make `cycle-spacing' operate in `fast' mode."
+       (interactive "*p")
+       (cycle-spacing n nil 'fast))
+
+     (global-set-key (kbd "M-SPC") 'k20e/cycle-spacing)
+   #+END_SRC
 
 ** Backup Files
 
