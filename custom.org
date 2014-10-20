@@ -1117,22 +1117,22 @@ function.
 
    #+BEGIN_SRC emacs-lisp
      (setq org-publish-project-alist
-           `(("k20e-org-files"
-              :base-directory ,(expand-file-name "source" (expand-file-name "k20e" org-directory))
+           `(("k20e.com-org-files"
+              :base-directory ,(expand-file-name "source" (expand-file-name "k20e.com" k20e/dropbox-directory))
               :base-extension "org"
               :recursive t
               :exclude "ga.org\\|level-0.org\\|todo.org\\|.DS_Store"
-              :publishing-directory ,(expand-file-name "published" (expand-file-name "k20e" org-directory))
+              :publishing-directory ,(expand-file-name "published" (expand-file-name "k20e.com" k20e/dropbox-directory))
               :publishing-function org-html-publish-to-html
               :with-planning t)
-             ("k20e-static-files"
-              :base-directory ,(expand-file-name "source" (expand-file-name "k20e" org-directory))
+             ("k20e.com-static-files"
+              :base-directory ,(expand-file-name "source" (expand-file-name "k20e.com" k20e/dropbox-directory))
               :base-extension "jpg\\|png\\|ico"
               :recursive t
-              :publishing-directory ,(expand-file-name "published" (expand-file-name "k20e" org-directory))
+              :publishing-directory ,(expand-file-name "published" (expand-file-name "k20e.com" k20e/dropbox-directory))
               :publishing-function org-publish-attachment)
-             ("k20e"
-              :components ("k20e-org-files" "k20e-static-files"))
+             ("k20e.com"
+              :components ("k20e.com-org-files" "k20e.com-static-files"))
              ("work-org-files"
               :base-directory ,(expand-file-name "work" org-directory)
               :base-extension "org"
@@ -1198,7 +1198,8 @@ function.
 
    #+BEGIN_SRC emacs-lisp
      (setq org-agenda-files
-           (list (expand-file-name "resolutions.org" org-directory)
+           (list (expand-file-name "personal.org" org-directory)
+                 (expand-file-name "resolutions.org" org-directory)
                  (expand-file-name "work" org-directory)
                  (expand-file-name "chores.org" org-directory)))
    #+END_SRC
