@@ -1186,8 +1186,10 @@ function.
 
    #+BEGIN_SRC emacs-lisp
      (require 'face-remap)
+     (require 'winner)
 
      (defun k20e/org-agenda-mode-hook ()
+       (define-key org-agenda-mode-map (kbd "q") 'winner-undo)
        (delete-other-windows)
        (text-scale-set 2))
 
