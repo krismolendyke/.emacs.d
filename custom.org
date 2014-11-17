@@ -1105,7 +1105,7 @@ function.
      <p class=\"creator\">%c</p>"))
            org-html-postamble t)
 
-     (defun update-org-css ()
+     (defun k20e/update-org-css ()
        "Update the `org-html-head' variable with the contents of the
      ~/.emacs.d/org.css file."
        (interactive)
@@ -1116,8 +1116,12 @@ function.
      </style>"))
          (setq org-html-head (format css-wrapper
                                      (file-contents-as-string css-filename)))))
+
+     (defun k20e/org-export-before-processing-hook (backend)
+       (k20e/update-org-css))
+
      (add-hook 'org-export-before-processing-hook
-               (lambda (backend) (update-org-css)))
+               'k20e/org-export-before-processing-hook)
 
      (setq org-html-head-extra
            "<link href='http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css' rel='stylesheet'>")
