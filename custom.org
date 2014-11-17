@@ -1155,7 +1155,22 @@ function.
               :publishing-directory ,(expand-file-name "published" (expand-file-name "work" org-directory))
               :publishing-function org-publish-attachment)
              ("work"
-              :components ("work-org-files" "work-static-files"))))
+              :components ("work-org-files" "work-static-files"))
+             ("house-org-files"
+              :base-directory ,(expand-file-name "house" org-directory)
+              :base-extension "org"
+              :recursive t
+              :publishing-directory ,(expand-file-name "published" (expand-file-name "house" org-directory))
+              :publishing-function org-html-publish-to-html
+              :with-planning t)
+             ("house-static-files"
+              :base-directory ,(expand-file-name "house" org-directory)
+              :base-extension "pdf\\|csv\\|png\\|xls\\|doc"
+              :recursive t
+              :publishing-directory ,(expand-file-name "published" (expand-file-name "house" org-directory))
+              :publishing-function org-publish-attachment)
+             ("house"
+              :components ("house-org-files" "house-static-files"))))
    #+END_SRC
 
 ** Babel
