@@ -9,7 +9,7 @@
 
 ;;; Code:
 
-;; Use the current version of org-mode.
+;; Add the version of org-mode I use to load-path.
 (add-to-list
  'load-path
  (expand-file-name
@@ -22,6 +22,7 @@
      "site-lisp"
      user-emacs-directory)))))
 
+;; Then use that version of org-mode, etc.
 (require 'htmlize)
 (require 'org)
 (require 'ox-html)
