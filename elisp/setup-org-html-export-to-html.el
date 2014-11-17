@@ -21,14 +21,11 @@
      "site-lisp"
      user-emacs-directory)))))
 
-(message "org-version before require: %s" org-version)
-
+(append-to-file (format "org-version BEFORE: %s\n" org-version) nil "/tmp/emacs.out")
 (require 'htmlize)
 (require 'org)
 (require 'ox-html)
-
-(message "org-version after require: %s" org-version)
-
+(append-to-file (format "org-version AFTER: %s\n" org-version) nil "/tmp/emacs.out")
 
 (setq org-src-fontify-natively t)
 (setq org-html-htmlize-output-type 'css)
