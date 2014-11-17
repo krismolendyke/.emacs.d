@@ -21,9 +21,14 @@
      "site-lisp"
      user-emacs-directory)))))
 
+(message "org-version before require: %s" org-version)
+
 (require 'htmlize)
 (require 'org)
 (require 'ox-html)
+
+(message "org-version after require: %s" org-version)
+
 
 (setq org-src-fontify-natively t)
 (setq org-html-htmlize-output-type 'css)
