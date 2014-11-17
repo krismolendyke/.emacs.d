@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>Literate <code>.emacs.d</code></title>
-<!-- 2014-11-17 Mon 11:54 -->
+<!-- 2014-11-17 Mon 17:47 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Kris Molendyke" />
@@ -3070,7 +3070,7 @@ bindings whenever I open a new terminal.
 <span class="org-string">&lt;p class=\"creator\"&gt;%c&lt;/p&gt;"</span>))
       org-html-postamble t)
 
-(<span class="org-keyword">defun</span> <span class="org-function-name">update-org-css</span> ()
+(<span class="org-keyword">defun</span> <span class="org-function-name">k20e/update-org-css</span> ()
   <span class="org-doc">"Update the `</span><span class="org-constant"><span class="org-doc">org-html-head</span></span><span class="org-doc">' variable with the contents of the</span>
 <span class="org-doc">~/.emacs.d/org.css file."</span>
   (interactive)
@@ -3081,8 +3081,12 @@ bindings whenever I open a new terminal.
 <span class="org-string">&lt;/style&gt;"</span>))
     (setq org-html-head (format css-wrapper
                                 (file-contents-as-string css-filename)))))
+
+(<span class="org-keyword">defun</span> <span class="org-function-name">k20e/org-export-before-processing-hook</span> (backend)
+  (k20e/update-org-css))
+
 (add-hook 'org-export-before-processing-hook
-          (<span class="org-keyword">lambda</span> (backend) (update-org-css)))
+          'k20e/org-export-before-processing-hook)
 
 (setq org-html-head-extra
       <span class="org-string">"&lt;link href='http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css' rel='stylesheet'&gt;"</span>)
@@ -3942,7 +3946,7 @@ much better way to accomplish this.
 </div>
 <div id="postamble" class="status">
 <p class="author">Kris Molendyke</p>
-<p class="date">2014-11-17 Mon 11:50</p>
+<p class="date">2014-11-17 Mon 16:51</p>
 <p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.4.50.1 (<a href="http://orgmode.org">Org</a> mode 8.2.4)</p>
 </div>
 </body>
