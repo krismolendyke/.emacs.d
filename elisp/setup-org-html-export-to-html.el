@@ -9,9 +9,6 @@
 
 ;;; Code:
 
-(require 'org)
-(require 'ox-html)
-
 (add-to-list
  'load-path
  (expand-file-name
@@ -23,7 +20,10 @@
     (expand-file-name
      "site-lisp"
      user-emacs-directory)))))
+
 (require 'htmlize)
+(require 'org)
+(require 'ox-html)
 
 (setq org-src-fontify-natively t)
 (setq org-html-htmlize-output-type 'css)
