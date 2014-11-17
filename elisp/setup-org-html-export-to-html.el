@@ -21,8 +21,6 @@
      "site-lisp"
      user-emacs-directory)))))
 
-
-(append-to-file (format "org-version BEFORE: %s\n" org-version) nil "/tmp/emacs.out")
 (require 'htmlize)
 (require 'org)
 (require 'ox-html)
