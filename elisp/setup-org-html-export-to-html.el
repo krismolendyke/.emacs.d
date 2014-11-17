@@ -22,9 +22,11 @@
      user-emacs-directory)))))
 
 (require 'htmlize)
+(append-to-file (format "htmlize-version: %s\n" htmlize-version) nil "/tmp/emacs.out")
+
 (require 'org)
 (require 'ox-html)
-(append-to-file (format "org-version AFTER: %s\n" org-version) nil "/tmp/emacs.out")
+(append-to-file (format "org-version: %s\n" org-version) nil "/tmp/emacs.out")
 
 (setq org-src-fontify-natively t)
 (setq org-html-htmlize-output-type 'css)
