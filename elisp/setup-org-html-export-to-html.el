@@ -9,6 +9,7 @@
 
 ;;; Code:
 
+;; Use the current version of org-mode.
 (add-to-list
  'load-path
  (expand-file-name
