@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>Literate <code>.emacs.d</code></title>
-<!-- 2014-11-18 Tue 15:55 -->
+<!-- 2014-11-18 Tue 16:14 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Kris Molendyke" />
@@ -3558,14 +3558,8 @@ Insert state change notes and time stamps into a drawer rather than simply
 <div class="outline-text-3" id="text-44-1">
 <div class="org-src-container">
 
-<pre class="src src-emacs-lisp">(setq
- python-shell-interpreter <span class="org-string">"ipython"</span>
- python-shell-interpreter-args <span class="org-string">""</span>
- python-shell-prompt-regexp <span class="org-string">"In \\[[0-9]+\\]: "</span>
- python-shell-prompt-output-regexp <span class="org-string">"Out\\[[0-9]+\\]: "</span>
- python-shell-completion-setup-code <span class="org-string">"from IPython.core.completerlib import module_completion"</span>
- python-shell-completion-module-string-code <span class="org-string">"';'.join(module_completion('''%s'''))\n"</span>
- python-shell-completion-string-code <span class="org-string">"';'.join(get_ipython().Completer.all_completions('''%s'''))\n"</span>)
+<pre class="src src-emacs-lisp">(setq python-shell-interpreter <span class="org-string">"ipython"</span>
+      python-shell-interpreter-args <span class="org-string">"-i"</span>)
 </pre>
 </div>
 </div>
@@ -4074,7 +4068,7 @@ much better way to accomplish this.
 </div>
 <div id="postamble" class="status">
 <p class="author">Kris Molendyke</p>
-<p class="date">2014-11-18 Tue 15:52</p>
+<p class="date">2014-11-18 Tue 16:05</p>
 <p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 25.0.50.1 (<a href="http://orgmode.org">Org</a> mode 8.2.4)</p>
 </div>
 </body>
