@@ -70,7 +70,7 @@ Only turn off the menu bar running in a terminal window."
   (desktop-save-mode 1)
   (desktop-read k20e/dropbox-directory))
 
-(defun k20e/after-init ()
+(defun k20e/after-init-hook ()
   "Perform complex post-initialization."
   (require 'org)
   (dolist (elt (directory-files user-emacs-directory t "\\.org$" t))
@@ -85,6 +85,6 @@ Only turn off the menu bar running in a terminal window."
 (k20e/setup-load-path)
 (k20e/load-custom-elisp)
 (k20e/restore-desktop)
-(add-hook 'after-init-hook 'k20e/after-init)
+(add-hook 'after-init-hook 'k20e/after-init-hook)
 
 ;;; init.el ends here

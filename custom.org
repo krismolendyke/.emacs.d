@@ -59,9 +59,51 @@ function.
    /Note/: =source-directory= must be set during Emacs initialization time to
    persist.  See =init.el=.
 
-* TODO Generate and Publish =custom.org= to GitHub
+* How this works
+  :PROPERTIES:
+  :CUSTOM_ID: how-this-works
+  :END:
 
-  Include =post-commit= hook.
+  The [[https://github.com/krismolendyke/.emacs.d/blob/master/init.el][=init.el=]] file bootstraps the entire process.  It is found by
+  Emacs automatically if it is located in one of several well-defined
+  locations.
+
+  #+BEGIN_QUOTE
+  When Emacs is started, it normally tries to load a Lisp program from
+  an "initialization file", or "init file" for short.  This file, if
+  it exists, specifies how to initialize Emacs for you.  Emacs looks
+  for your init file using the filenames `~/.emacs', `~/.emacs.el', or
+  `~/.emacs.d/init.el'; you can choose to use any one of these three
+  names (*note Find Init::).  Here, `~/' stands for your home
+  directory. -- [[http://www.gnu.org/software/emacs/manual/html_node/emacs/Init-File.html][The Emacs Initialization File]]
+  #+END_QUOTE
+
+  Once it's found, =init.el= sets "global" variables and defines
+  several functions to be executed /during/ initialization and one
+  that should be executed /after/ initialization has completed.
+  =k20e/after-init-hook= is a hook run after initialization.  The most
+  interesting bit of this function is the call to
+  =org-babel-load-file=:
+
+  #+BEGIN_QUOTE
+  (org-babel-load-file FILE &optional COMPILE)
+
+  Load Emacs Lisp source code blocks in the Org-mode FILE. This
+  function exports the source code using `org-babel-tangle' and then
+  loads the resulting file using `load-file'.  With prefix arg
+  (noninteractively: 2nd arg) COMPILE the tangled Emacs Lisp file to
+  byte-code before it is loaded.
+  #+END_QUOTE
+
+  This function invocation exports all [[http://orgmode.org/manual/Working-With-Source-Code.html#Working-With-Source-Code][=org-mode= source blocks]] in any
+  =org-mode= files in the =.emacs.d= directory to a single Emacs Lisp
+  file and then instructs Emacs to load that file.  [[https://github.com/krismolendyke/.emacs.d/blob/master/custom.org][=custom.org=]] is
+  the biggest of those =org-mode= files and … /this/ is that file!
+
+** TODO Discuss =post-commit= hook
+
+   This is the bit that automatically generates the content of this
+   [[https://pages.github.com/][GitHub Pages]] site.
 
 * Customization
 
