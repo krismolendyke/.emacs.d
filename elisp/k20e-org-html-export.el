@@ -1,4 +1,4 @@
-;;; setup-org-html-export-to-html.el --- Setup HTML export for org-mode.
+;;; k20e-org-html-export.el --- Setup HTML export for org-mode.
 
 ;;; Commentary:
 ;;
@@ -55,4 +55,6 @@ See ~/.emacs.d/org.css."
 (setq org-html-head-extra
       "<link href='http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css' rel='stylesheet'>")
 
-;;; setup-org-html-export-to-html.el ends here
+(provide 'k20e-org-html-export)
+
+;;; k20e-org-html-export.el ends here
