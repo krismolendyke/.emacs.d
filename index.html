@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>Literate <code>.emacs.d</code></title>
-<!-- 2014-11-18 Tue 17:06 -->
+<!-- 2014-11-18 Tue 17:20 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Kris Molendyke" />
@@ -1422,7 +1422,7 @@ than body or by calling htmlize-buffer and desired style.
 }
 /*]]>*/-->
 </style>
-<link href='http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css' rel='stylesheet'>
+<link href='http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css' rel='stylesheet'>
 <script type="text/javascript">
 /*
 @licstart  The following is the entire license notice for the
@@ -3174,7 +3174,7 @@ bindings whenever I open a new terminal.
 <div class="outline-text-3" id="text-40-2">
 <div class="org-src-container">
 
-<pre class="src src-emacs-lisp">(<span class="org-keyword">require</span> '<span class="org-constant">htmlize</span>)
+<pre class="src src-emacs-lisp">(<span class="org-keyword">require</span> '<span class="org-constant">k20e-org-html-export</span>)
 (<span class="org-keyword">require</span> '<span class="org-constant">ox-publish</span>)
 
 <span class="org-comment-delimiter">;; </span><span class="org-comment">Enable "expert" export interface.</span>
@@ -3183,20 +3183,6 @@ bindings whenever I open a new terminal.
 <span class="org-comment-delimiter">;; </span><span class="org-comment">Enable Markdown export backend.</span>
 (<span class="org-keyword">require</span> '<span class="org-constant">ox-md</span>)
 (add-to-list 'org-export-backends 'md)
-
-<span class="org-comment-delimiter">;; </span><span class="org-comment">Fontify _SRC blocks in org-mode buffers.</span>
-(setq org-src-fontify-natively t)
-
-<span class="org-comment-delimiter">;; </span><span class="org-comment">Generate a stylesheet rather than inline CSS.</span>
-(setq org-html-htmlize-output-type 'css)
-
-<span class="org-comment-delimiter">;; </span><span class="org-comment">Customize HTML export styling.</span>
-(<span class="org-keyword">require</span> '<span class="org-constant">ox-html</span>)
-(setq org-html-head-include-default-style nil
-      org-html-postamble-format '((<span class="org-string">"en"</span> <span class="org-string">"&lt;p class=\"author\"&gt;%a&lt;/p&gt;</span>
-<span class="org-string">&lt;p class=\"date\"&gt;%C&lt;/p&gt;</span>
-<span class="org-string">&lt;p class=\"creator\"&gt;%c&lt;/p&gt;"</span>))
-      org-html-postamble t)
 
 (<span class="org-keyword">defun</span> <span class="org-function-name">k20e/update-org-css</span> ()
   <span class="org-doc">"Update the `</span><span class="org-constant"><span class="org-doc">org-html-head</span></span><span class="org-doc">' variable with the contents of the</span>
@@ -3215,9 +3201,6 @@ bindings whenever I open a new terminal.
 
 (add-hook 'org-export-before-processing-hook
           'k20e/org-export-before-processing-hook)
-
-(setq org-html-head-extra
-      <span class="org-string">"&lt;link href='http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css' rel='stylesheet'&gt;"</span>)
 </pre>
 </div>
 </div>
@@ -4068,7 +4051,7 @@ much better way to accomplish this.
 </div>
 <div id="postamble" class="status">
 <p class="author">Kris Molendyke</p>
-<p class="date">2014-11-18 Tue 16:39</p>
+<p class="date">2014-11-18 Tue 17:15</p>
 <p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 25.0.50.1 (<a href="http://orgmode.org">Org</a> mode 8.2.4)</p>
 </div>
 </body>
