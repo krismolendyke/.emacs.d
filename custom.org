@@ -116,6 +116,33 @@ function.
     (load custom-file)
   #+END_SRC
 
+* Cask
+
+  #+BEGIN_QUOTE
+  Cask is a project management tool for Emacs Lisp to automate the
+  package development cycle; development, dependencies, testing,
+  building, packaging and more.
+
+  Cask can also be used to manage dependencies for your local Emacs
+  configuration. -- [[http://cask.readthedocs.org/en/latest/][Cask documentation]]
+  #+END_QUOTE
+
+** Installation
+
+   #+BEGIN_SRC sh
+     brew install cask
+   #+END_SRC
+
+   After building a new Emacs version =cask= should be used to update
+   dependencies.
+
+   #+BEGIN_SRC sh
+     cd ~/.emacs.d
+     cask install
+   #+END_SRC
+
+   New dependencies will be installed into =~/.emacs.d/.cask=.
+
 * Global GNU Emacs Key Bindings
 
   These global key bindings override /built-in/ functions only.
