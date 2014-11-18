@@ -143,6 +143,15 @@ function.
 
    New dependencies will be installed into =~/.emacs.d/.cask=.
 
+* Pallet
+
+  #+BEGIN_QUOTE
+  Pallet is a package management helper for Emacs. -- [[https://github.com/rdallasgray/pallet][Pallet README]]
+  #+END_QUOTE
+
+  As packages are installed, updated or removed via =list-packages=,
+  Pallet maintains changes to the =Cask= file automatically.
+
 * Global GNU Emacs Key Bindings
 
   These global key bindings override /built-in/ functions only.
