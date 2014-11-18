@@ -28,10 +28,11 @@
   "Google Drive home.")
 
 (defun k20e/setup-cask-and-pallet ()
-  "Package managment goodness."
+  "Package management goodness."
   (require 'cask "~/.cask/cask.el")
   (cask-initialize)
-  (require 'pallet))
+  (require 'pallet)
+  (pallet-mode t))
 
 (defun k20e/no-bars-held ()
   "Turn off tool, scroll, and menu bars when appropriate.
