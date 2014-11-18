@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>Literate <code>.emacs.d</code></title>
-<!-- 2014-11-18 Tue 17:20 -->
+<!-- 2014-11-18 Tue 17:49 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Kris Molendyke" />
@@ -3172,36 +3172,43 @@ bindings whenever I open a new terminal.
 <div id="outline-container-sec-40-2" class="outline-3">
 <h3 id="sec-40-2">Export</h3>
 <div class="outline-text-3" id="text-40-2">
+<p>
+Most non-interactive export settings are defined in a file loaded
+during initialization.  Those settings are defined during
+initialization time to support a fast batch process for exporting
+<i>this</i> document to HTML in a Git <code>post-commit</code> hook.
+</p>
+
 <div class="org-src-container">
 
 <pre class="src src-emacs-lisp">(<span class="org-keyword">require</span> '<span class="org-constant">k20e-org-html-export</span>)
-(<span class="org-keyword">require</span> '<span class="org-constant">ox-publish</span>)
+</pre>
+</div>
+
+<p>
+Interactive customization can be done here.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-emacs-lisp">(<span class="org-keyword">require</span> '<span class="org-constant">ox-publish</span>)
 
 <span class="org-comment-delimiter">;; </span><span class="org-comment">Enable "expert" export interface.</span>
 (setq org-export-dispatch-use-expert-ui t)
-
-<span class="org-comment-delimiter">;; </span><span class="org-comment">Enable Markdown export backend.</span>
-(<span class="org-keyword">require</span> '<span class="org-constant">ox-md</span>)
-(add-to-list 'org-export-backends 'md)
-
-(<span class="org-keyword">defun</span> <span class="org-function-name">k20e/update-org-css</span> ()
-  <span class="org-doc">"Update the `</span><span class="org-constant"><span class="org-doc">org-html-head</span></span><span class="org-doc">' variable with the contents of the</span>
-<span class="org-doc">~/.emacs.d/org.css file."</span>
-  (interactive)
-  (<span class="org-keyword">let</span> ((css-filename (expand-file-name <span class="org-string">"org.css"</span> user-emacs-directory))
-        (css-wrapper <span class="org-string">"&lt;style type=\"text/css\"&gt;</span>
-<span class="org-string">&lt;!--/*--&gt;&lt;![CDATA[/*&gt;&lt;!--*/</span>
-<span class="org-string">%s/*]]&gt;*/--&gt;</span>
-<span class="org-string">&lt;/style&gt;"</span>))
-    (setq org-html-head (format css-wrapper
-                                (file-contents-as-string css-filename)))))
-
-(<span class="org-keyword">defun</span> <span class="org-function-name">k20e/org-export-before-processing-hook</span> (backend)
-  (k20e/update-org-css))
-
-(add-hook 'org-export-before-processing-hook
-          'k20e/org-export-before-processing-hook)
 </pre>
+</div>
+</div>
+
+<div id="outline-container-sec-40-2-1" class="outline-4">
+<h4 id="sec-40-2-1">Backends</h4>
+<div class="outline-text-4" id="text-40-2-1">
+<div class="org-src-container">
+
+<pre class="src src-emacs-lisp">(<span class="org-keyword">require</span> '<span class="org-constant">ox-md</span>)
+
+(add-to-list 'org-export-backends 'md)
+</pre>
+</div>
 </div>
 </div>
 </div>
@@ -4051,7 +4058,7 @@ much better way to accomplish this.
 </div>
 <div id="postamble" class="status">
 <p class="author">Kris Molendyke</p>
-<p class="date">2014-11-18 Tue 17:15</p>
+<p class="date">2014-11-18 Tue 17:49</p>
 <p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 25.0.50.1 (<a href="http://orgmode.org">Org</a> mode 8.2.4)</p>
 </div>
 </body>
