@@ -1161,8 +1161,8 @@ function.
 
 ** Export
 
-   Most non-interactive export settings are defined in a file loaded
-   during initialization.  Those settings are defined during
+   Most non-interactive export settings are defined in [[https://github.com/krismolendyke/.emacs.d/blob/master/elisp/k20e-org-html-export.el][a file loaded
+   during initialization]].  Those settings are defined during
    initialization time to support a fast batch process for exporting
    /this/ document to HTML in a Git =post-commit= hook.
 
