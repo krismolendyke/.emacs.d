@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>Literate <code>.emacs.d</code></title>
-<!-- 2014-11-18 Tue 15:39 -->
+<!-- 2014-11-18 Tue 15:55 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Kris Molendyke" />
@@ -2221,8 +2221,9 @@ If blinking is enabled the rate can be adjusted.
 (<span class="org-keyword">defun</span> <span class="org-function-name">k20e/font-set-from-list</span> (l)
   <span class="org-doc">"Set the font to first available font alist in the given list."</span>
   (<span class="org-keyword">if</span> (null l) nil
-    (k20e/font-set (car l))
-    (<span class="org-keyword">if</span> (string= (caar l) (face-attribute 'default <span class="org-builtin">:family</span> (selected-frame)))
+    (k20e/font--set (car l))
+    (<span class="org-keyword">if</span> (string= (replace-regexp-in-string <span class="org-string">"-"</span> <span class="org-string">" "</span>(caar l))
+                 (face-attribute 'default <span class="org-builtin">:family</span> (selected-frame)))
         (caar l)
       (k20e/font-set-from-list (cdr l)))))
 
@@ -4073,7 +4074,7 @@ much better way to accomplish this.
 </div>
 <div id="postamble" class="status">
 <p class="author">Kris Molendyke</p>
-<p class="date">2014-11-18 Tue 15:38</p>
+<p class="date">2014-11-18 Tue 15:52</p>
 <p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 25.0.50.1 (<a href="http://orgmode.org">Org</a> mode 8.2.4)</p>
 </div>
 </body>
