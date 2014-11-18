@@ -1161,35 +1161,31 @@ function.
 
 ** Export
 
+   Most non-interactive export settings are defined in a file loaded
+   during initialization.  Those settings are defined during
+   initialization time to support a fast batch process for exporting
+   /this/ document to HTML in a Git =post-commit= hook.
+
    #+BEGIN_SRC emacs-lisp
      (require 'k20e-org-html-export)
+   #+END_SRC
+
+   Interactive customization can be done here.
+
+   #+BEGIN_SRC emacs-lisp
      (require 'ox-publish)
 
      ;; Enable "expert" export interface.
      (setq org-export-dispatch-use-expert-ui t)
-
-     ;; Enable Markdown export backend.
-     (require 'ox-md)
-     (add-to-list 'org-export-backends 'md)
-
-     (defun k20e/update-org-css ()
-       "Update the `org-html-head' variable with the contents of the
-     ~/.emacs.d/org.css file."
-       (interactive)
-       (let ((css-filename (expand-file-name "org.css" user-emacs-directory))
-             (css-wrapper "<style type=\"text/css\">
-     <!--/*--><![CDATA[/*><!--*/
-     %s/*]]>*/-->
-     </style>"))
-         (setq org-html-head (format css-wrapper
-                                     (file-contents-as-string css-filename)))))
-
-     (defun k20e/org-export-before-processing-hook (backend)
-       (k20e/update-org-css))
-
-     (add-hook 'org-export-before-processing-hook
-               'k20e/org-export-before-processing-hook)
    #+END_SRC
+
+*** Backends
+
+    #+BEGIN_SRC emacs-lisp
+      (require 'ox-md)
+
+      (add-to-list 'org-export-backends 'md)
+    #+END_SRC
 
 ** Publish
 

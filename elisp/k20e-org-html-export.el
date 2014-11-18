@@ -44,9 +44,9 @@
 <p class=\"creator\">%c</p>"))
       org-html-postamble t)
 
-(defun update-org-css ()
-  "Update `org-html-head' with custom CSS.
-See ~/.emacs.d/org.css."
+(defun k20e/update-org-css ()
+  "Update the `org-html-head' variable with the contents of the
+~/.emacs.d/org.css file."
   (let ((css-filename (expand-file-name "org.css" user-emacs-directory))
         (css-wrapper "<style type=\"text/css\">
 <!--/*--><![CDATA[/*><!--*/
@@ -57,8 +57,11 @@ See ~/.emacs.d/org.css."
                                   (insert-file-contents css-filename)
                                   (buffer-string))))))
 
+(defun k20e/org-export-before-processing-hook (backend)
+  (k20e/update-org-css))
+
 (add-hook 'org-export-before-processing-hook
-          (lambda (backend) (update-org-css)))
+          'k20e/org-export-before-processing-hook)
 
 (setq org-html-head-extra k20e/org-html-head-extra)
 
