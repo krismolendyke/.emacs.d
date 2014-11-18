@@ -1162,7 +1162,7 @@ function.
 ** Export
 
    #+BEGIN_SRC emacs-lisp
-     (require 'htmlize)
+     (require 'k20e-org-html-export)
      (require 'ox-publish)
 
      ;; Enable "expert" export interface.
@@ -1171,20 +1171,6 @@ function.
      ;; Enable Markdown export backend.
      (require 'ox-md)
      (add-to-list 'org-export-backends 'md)
-
-     ;; Fontify _SRC blocks in org-mode buffers.
-     (setq org-src-fontify-natively t)
-
-     ;; Generate a stylesheet rather than inline CSS.
-     (setq org-html-htmlize-output-type 'css)
-
-     ;; Customize HTML export styling.
-     (require 'ox-html)
-     (setq org-html-head-include-default-style nil
-           org-html-postamble-format '(("en" "<p class=\"author\">%a</p>
-     <p class=\"date\">%C</p>
-     <p class=\"creator\">%c</p>"))
-           org-html-postamble t)
 
      (defun k20e/update-org-css ()
        "Update the `org-html-head' variable with the contents of the
@@ -1203,9 +1189,6 @@ function.
 
      (add-hook 'org-export-before-processing-hook
                'k20e/org-export-before-processing-hook)
-
-     (setq org-html-head-extra
-           "<link href='http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css' rel='stylesheet'>")
    #+END_SRC
 
 ** Publish

@@ -27,9 +27,17 @@
 (require 'org)
 (require 'ox-html)
 
+(defvar k20e/org-html-head-extra
+  "<link href='http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css' rel='stylesheet'>"
+  "Extra HTML to add to the <head> tag.")
+
+;; Fontify _SRC blocks in org-mode buffers.
 (setq org-src-fontify-natively t)
+
+;; Generate a stylesheet rather than inline CSS.
 (setq org-html-htmlize-output-type 'css)
 
+;; Customize HTML export styling.
 (setq org-html-head-include-default-style nil
       org-html-postamble-format '(("en" "<p class=\"author\">%a</p>
 <p class=\"date\">%C</p>
@@ -52,8 +60,7 @@ See ~/.emacs.d/org.css."
 (add-hook 'org-export-before-processing-hook
           (lambda (backend) (update-org-css)))
 
-(setq org-html-head-extra
-      "<link href='http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css' rel='stylesheet'>")
+(setq org-html-head-extra k20e/org-html-head-extra)
 
 (provide 'k20e-org-html-export)
 
