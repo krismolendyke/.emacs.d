@@ -27,9 +27,13 @@
   (expand-file-name "~/Google Drive")
   "Google Drive home.")
 
+(defvar k20e/cask-directory
+  (expand-file-name "~/.cask")
+  "Cask home.")
+
 (defun k20e/setup-cask-and-pallet ()
   "Package management goodness."
-  (require 'cask "~/.cask/cask.el")
+  (require 'cask (expand-file-name "cask.el" k20e/cask-directory))
   (cask-initialize)
   (require 'pallet)
   (pallet-mode t))
