@@ -409,40 +409,42 @@ function.
 ** Font
 
    #+BEGIN_SRC emacs-lisp
-     (defun set--font (font-alist)
-       "Set the font family and size to the given font alist of the
-     format (family . point)."
-       (set-frame-font (car font-alist))
-       (set-face-attribute 'default nil :height (* 10 (cdr font-alist))))
-
-     (defun set--font-from-list (l)
-       "Set the font to first available font alist in the given list."
-       (if (null l) nil
-         (set--font (car l))
-         (if (string= (caar l) (face-attribute 'default :family (selected-frame)))
-             (caar l)
-           (set--font-from-list (cdr l)))))
-
-     (defvar font-list '(("Source Code Pro" . 11)
-                         ("Glass TTY VT220" . 20)
-                         ("Consolas" . 18)
-                         ("Ubuntu Mono" . 17)
-                         ("Inconsolata" . 18)
-                        ("DejaVu Sans Mono" . 18))
+     (defvar k20e/font-list '(("Source-Code-Pro" . 11)
+                              ("Glass-TTY-VT220" . 20)
+                              ("Consolas" . 18)
+                              ("Ubuntu-Mono" . 17)
+                              ("Inconsolata" . 18)
+                              ("DejaVu-Sans-Mono" . 18))
        "Ordered list of preferred fonts and sizes.")
 
-     (set--font-from-list font-list)
+     (defun k20e/font--set (font-alist)
+       "Set the font family and size to the given font alist of the
+     format (family . point)."
+       (let ((font (replace-regexp-in-string "-" " " (car font-alist)))
+             (height (* 10 (cdr font-alist))))
+         (set-frame-font font)
+         (set-face-attribute 'default nil :height height)))
 
-     (defun set-font ()
-       "Set a font from the `font-list'."
+     (defun k20e/font-set-from-list (l)
+       "Set the font to first available font alist in the given list."
+       (if (null l) nil
+         (k20e/font-set (car l))
+         (if (string= (caar l) (face-attribute 'default :family (selected-frame)))
+             (caar l)
+           (k20e/font-set-from-list (cdr l)))))
+
+     (defun k20e/font-set ()
+       "Set a font from the `k20e/font-list'."
        (interactive)
        (let ((ignore-case completion-ignore-case))
          (unwind-protect
              (progn
                (setq completion-ignore-case t)
-               (let ((font (completing-read "Font: " font-list)))
-                 (set--font (assoc font font-list))))
+               (let ((font (completing-read "Font: " k20e/font-list)))
+                 (k20e/font--set (assoc font k20e/font-list))))
            (setq completion-ignore-case ignore-case))))
+
+     (k20e/font-set-from-list k20e/font-list)
    #+END_SRC
 
 ** Frame Height
