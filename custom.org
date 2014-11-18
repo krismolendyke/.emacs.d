@@ -428,8 +428,9 @@ function.
      (defun k20e/font-set-from-list (l)
        "Set the font to first available font alist in the given list."
        (if (null l) nil
-         (k20e/font-set (car l))
-         (if (string= (caar l) (face-attribute 'default :family (selected-frame)))
+         (k20e/font--set (car l))
+         (if (string= (replace-regexp-in-string "-" " "(caar l))
+                      (face-attribute 'default :family (selected-frame)))
              (caar l)
            (k20e/font-set-from-list (cdr l)))))
 
