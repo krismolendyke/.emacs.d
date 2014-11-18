@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>Literate <code>.emacs.d</code></title>
-<!-- 2014-11-17 Mon 17:47 -->
+<!-- 2014-11-17 Mon 20:23 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Kris Molendyke" />
@@ -1500,7 +1500,11 @@ function.
 <li><a href="#sec-1-1">Emacs Source Directory</a></li>
 </ul>
 </li>
-<li><a href="#sec-2"><span class="todo TODO">TODO</span> Generate and Publish <code>custom.org</code> to GitHub</a></li>
+<li><a href="#how-this-works">How this works</a>
+<ul>
+<li><a href="#sec-2-1"><span class="todo TODO">TODO</span> Discuss <code>post-commit</code> hook</a></li>
+</ul>
+</li>
 <li><a href="#sec-3">Customization</a></li>
 <li><a href="#sec-4">Global GNU Emacs Key Bindings</a>
 <ul>
@@ -1703,12 +1707,66 @@ persist.  See <code>init.el</code>.
 </div>
 </div>
 
-<div id="outline-container-sec-2" class="outline-2">
-<h2 id="sec-2"><span class="todo TODO">TODO</span> Generate and Publish <code>custom.org</code> to GitHub</h2>
-<div class="outline-text-2" id="text-2">
+<div id="outline-container-how-this-works" class="outline-2">
+<h2 id="how-this-works"><a id="sec-2"></a>How this works</h2>
+<div class="outline-text-2" id="text-how-this-works">
 <p>
-Include <code>post-commit</code> hook.
+The <a href="https://github.com/krismolendyke/.emacs.d/blob/master/init.el"><code>init.el</code></a> file bootstraps the entire process.  It is found by
+Emacs automatically if it is located in one of several well-defined
+locations.
 </p>
+
+<blockquote>
+<p>
+When Emacs is started, it normally tries to load a Lisp program from
+an "initialization file", or "init file" for short.  This file, if
+it exists, specifies how to initialize Emacs for you.  Emacs looks
+for your init file using the filenames `~/.emacs', `~/.emacs.el', or
+`~/.emacs.d/init.el'; you can choose to use any one of these three
+names (*note Find Init::).  Here, `~/' stands for your home
+directory. &#x2013; <a href="http://www.gnu.org/software/emacs/manual/html_node/emacs/Init-File.html">The Emacs Initialization File</a>
+</p>
+</blockquote>
+
+<p>
+Once it's found, <code>init.el</code> sets "global" variables and defines
+several functions to be executed <i>during</i> initialization and one
+that should be executed <i>after</i> initialization has completed.
+<code>k20e/after-init-hook</code> is a hook run after initialization.  The most
+interesting bit of this function is the call to
+<code>org-babel-load-file</code>:
+</p>
+
+<blockquote>
+<p>
+(org-babel-load-file FILE &amp;optional COMPILE)
+</p>
+
+<p>
+Load Emacs Lisp source code blocks in the Org-mode FILE. This
+function exports the source code using `org-babel-tangle' and then
+loads the resulting file using `load-file'.  With prefix arg
+(noninteractively: 2nd arg) COMPILE the tangled Emacs Lisp file to
+byte-code before it is loaded.
+</p>
+</blockquote>
+
+<p>
+This function invocation exports all <a href="http://orgmode.org/manual/Working-With-Source-Code.html#Working-With-Source-Code"><code>org-mode</code> source blocks</a> in any
+<code>org-mode</code> files in the <code>.emacs.d</code> directory to a single Emacs Lisp
+file and then instructs Emacs to load that file.  <a href="https://github.com/krismolendyke/.emacs.d/blob/master/custom.org"><code>custom.org</code></a> is
+the biggest of those <code>org-mode</code> files and … <i>this</i> is that file!
+</p>
+</div>
+
+<div id="outline-container-sec-2-1" class="outline-3">
+<h3 id="sec-2-1"><span class="todo TODO">TODO</span> Discuss <code>post-commit</code> hook</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+This is the bit that automatically generates the content of this
+<a href="https://pages.github.com/">GitHub Pages</a> site.
+</p>
+</div>
 </div>
 </div>
 
@@ -3946,7 +4004,7 @@ much better way to accomplish this.
 </div>
 <div id="postamble" class="status">
 <p class="author">Kris Molendyke</p>
-<p class="date">2014-11-17 Mon 16:51</p>
+<p class="date">2014-11-17 Mon 20:22</p>
 <p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.4.50.1 (<a href="http://orgmode.org">Org</a> mode 8.2.4)</p>
 </div>
 </body>
