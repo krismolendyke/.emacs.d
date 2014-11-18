@@ -604,7 +604,7 @@ function.
 
   #+BEGIN_SRC emacs-lisp
     (require 'clojure-mode)
-    (require 'clojure-test-mode)
+    (require 'cider-test)
     (require 'paredit)
 
     (defun k20e/clojure-mode-hook ()
@@ -619,13 +619,13 @@ function.
 
    #+BEGIN_SRC emacs-lisp
      (require 'cider-mode)
-     (require 'clojure-test-mode)
+     (require 'cider-test)
 
-     (defadvice clojure-test-run-tests (before save-first activate)
-       (save-buffer))
+     ;; (defadvice clojure-test-run-tests (before save-first activate)
+     ;;   (save-buffer))
 
-     (defadvice cider-load-current-buffer (before save-first activate)
-       (save-buffer))
+     ;; (defadvice cider-load-current-buffer (before save-first activate)
+     ;;   (save-buffer))
    #+END_SRC
 
 * compilation-mode
