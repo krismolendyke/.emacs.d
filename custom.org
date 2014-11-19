@@ -1484,8 +1484,9 @@ function.
      (require 'ido)
 
      (defconst k20e/scratch-buffer-modes
-       '(emacs-lisp-mode
-         fundamental-mode
+       '(fundamental-mode
+         emacs-lisp-mode
+         python-mode
          javascript-mode
          org-mode
          sql-mode
