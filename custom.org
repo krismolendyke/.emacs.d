@@ -632,6 +632,19 @@ function.
     (add-hook 'emacs-lisp-mode-hook 'k20e/emacs-lisp-autopair-hook)
   #+END_SRC
 
+* ert
+
+  Emacs Lisp [[http://en.wikipedia.org/wiki/Unit_testing][unit testing]]!
+
+  #+BEGIN_SRC emacs-lisp
+    (require 'ert)
+
+    (defun k20e/ert ()
+      "Run all the tests in the universe!"
+      (interactive)
+      (ert t))
+  #+END_SRC
+
 * expand-region
 
   #+BEGIN_SRC emacs-lisp
