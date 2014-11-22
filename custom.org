@@ -406,57 +406,6 @@ function.
      (setq blink-cursor-interval 0.75)
    #+END_SRC
 
-** Font
-
-   #+BEGIN_SRC emacs-lisp
-     (defvar k20e/font-list '(("Source-Code-Pro" . 11)
-                              ("Glass-TTY-VT220" . 20)
-                              ("Consolas" . 18)
-                              ("Ubuntu-Mono" . 17)
-                              ("Inconsolata" . 18)
-                              ("DejaVu-Sans-Mono" . 18))
-       "Ordered list of preferred fonts and sizes.")
-
-     (defun k20e/font--set (font-alist)
-       "Set the font family and size to the given font alist of the
-     format (family . point)."
-       (let ((font (replace-regexp-in-string "-" " " (car font-alist)))
-             (height (* 10 (cdr font-alist))))
-         (set-frame-font font)
-         (set-face-attribute 'default nil :height height)))
-
-     (defun k20e/font-set-from-list (l)
-       "Set the font to first available font alist in the given list."
-       (if (null l) nil
-         (k20e/font--set (car l))
-         (if (string= (replace-regexp-in-string "-" " "(caar l))
-                      (face-attribute 'default :family (selected-frame)))
-             (caar l)
-           (k20e/font-set-from-list (cdr l)))))
-
-     (defun k20e/font-set ()
-       "Set a font from the `k20e/font-list'."
-       (interactive)
-       (let ((ignore-case completion-ignore-case))
-         (unwind-protect
-             (progn
-               (setq completion-ignore-case t)
-               (let ((font (completing-read "Font: " k20e/font-list)))
-                 (k20e/font--set (assoc font k20e/font-list))))
-           (setq completion-ignore-case ignore-case))))
-
-     (k20e/font-set-from-list k20e/font-list)
-   #+END_SRC
-
-*** Unicode
-
-    [[http://users.teilar.gr/~g1951d/][Symbola]] is a nice font for displaying Unicode characters 🍺👍.
-
-    #+BEGIN_SRC emacs-lisp
-      (when (member "Symbola" (font-family-list))
-        (set-fontset-font t 'unicode "Symbola" nil 'prepend))
-    #+END_SRC
-
 ** Frame Height
 
    These functions were more useful before I began using the [[http://git.savannah.gnu.org/cgit/emacs.git/tree/lisp/desktop.el][=desktop=]] package
@@ -777,6 +726,61 @@ function.
 
    #+BEGIN_SRC sh
      brew install aspell --with-lang-en
+   #+END_SRC
+
+* Fonts
+
+  Managing fonts always seems to be a hassle.  These functions help to
+  interactively set the font family and a preferred size from a short
+  list of fonts that I like.
+
+  #+BEGIN_SRC emacs-lisp
+    (defvar k20e/font-list '(("Source-Code-Pro" . 11)
+                             ("Glass-TTY-VT220" . 20)
+                             ("Consolas" . 18)
+                             ("Ubuntu-Mono" . 17)
+                             ("Inconsolata" . 18)
+                             ("DejaVu-Sans-Mono" . 18))
+      "Ordered list of preferred fonts and sizes.")
+
+    (defun k20e/font--set (font-alist)
+      "Set the font family and size to the given font alist of the
+    format (family . point)."
+      (let ((font (replace-regexp-in-string "-" " " (car font-alist)))
+            (height (* 10 (cdr font-alist))))
+        (set-frame-font font)
+        (set-face-attribute 'default nil :height height)))
+
+    (defun k20e/font-set-from-list (l)
+      "Set the font to first available font alist in the given list."
+      (if (null l) nil
+        (k20e/font--set (car l))
+        (if (string= (replace-regexp-in-string "-" " "(caar l))
+                     (face-attribute 'default :family (selected-frame)))
+            (caar l)
+          (k20e/font-set-from-list (cdr l)))))
+
+    (defun k20e/font-set ()
+      "Set a font from the `k20e/font-list'."
+      (interactive)
+      (let ((ignore-case completion-ignore-case))
+        (unwind-protect
+            (progn
+              (setq completion-ignore-case t)
+              (let ((font (completing-read "Font: " k20e/font-list)))
+                (k20e/font--set (assoc font k20e/font-list))))
+          (setq completion-ignore-case ignore-case))))
+
+    (k20e/font-set-from-list k20e/font-list)
+  #+END_SRC
+
+** Unicode
+
+   [[http://users.teilar.gr/~g1951d/][Symbola]] is a nice font for displaying Unicode characters 🍺👍.
+
+   #+BEGIN_SRC emacs-lisp
+     (when (member "Symbola" (font-family-list))
+       (set-fontset-font t 'unicode "Symbola" nil 'prepend))
    #+END_SRC
 
 * git
