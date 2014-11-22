@@ -448,6 +448,15 @@ function.
      (k20e/font-set-from-list k20e/font-list)
    #+END_SRC
 
+*** Unicode
+
+    [[http://users.teilar.gr/~g1951d/][Symbola]] is a nice font for displaying Unicode characters 🍺👍.
+
+    #+BEGIN_SRC emacs-lisp
+      (when (member "Symbola" (font-family-list))
+        (set-fontset-font t 'unicode "Symbola" nil 'prepend))
+    #+END_SRC
+
 ** Frame Height
 
    These functions were more useful before I began using the [[http://git.savannah.gnu.org/cgit/emacs.git/tree/lisp/desktop.el][=desktop=]] package
