@@ -643,6 +643,8 @@ function.
       "Run all the tests in the universe!"
       (interactive)
       (ert t))
+
+    (define-key emacs-lisp-mode-map (kbd "H-t") 'k20e/ert)
   #+END_SRC
 
 * expand-region
