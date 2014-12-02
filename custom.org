@@ -798,6 +798,15 @@ function.
        (set-fontset-font t 'unicode "Symbola" nil 'prepend))
    #+END_SRC
 
+* font-awesome
+
+  This is a [[https://github.com/krismolendyke/font-awesome.el][naïve package]] that I wrote to help insert [[http://fortawesome.github.io/Font-Awesome/][Font Awesome]]
+  icons into buffers.
+
+  #+BEGIN_SRC emacs-lisp
+    (require 'font-awesome)
+  #+END_SRC
+
 * git
 
   #+BEGIN_SRC emacs-lisp
