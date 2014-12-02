@@ -559,6 +559,15 @@ function.
           cider-repl-history-file (expand-file-name "nrepl-history" k20e/dropbox-directory))
   #+END_SRC
 
+* clock-face
+
+  This is a [[https://github.com/krismolendyke/clock-face.el][ridiculous package]] that I wrote to insert a Unicode clock
+  face character for the nearest current half-hour.  🕙
+
+  #+BEGIN_SRC emacs-lisp
+    (require 'clock-face)
+  #+END_SRC
+
 * clojure-mode
 
   #+BEGIN_SRC emacs-lisp
