@@ -1021,6 +1021,7 @@ function.
 
   #+BEGIN_SRC emacs-lisp
     (require 'monetate-mode)
+    (require 'terminal-notifier)
 
     (defun k20e/monetate-hook ()
       "Enable monetate-mode if file is in a Monetate repository."
