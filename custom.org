@@ -22,11 +22,11 @@ function.
   :CUSTOM_ID: build-emacs
   :END:
 
-  I primarily use Emacs locally on Apple hardware.  Most, if not all, of the
-  remote editing that I do is done via =tramp=.  I keep an eye on the [[fhttp://git.savannah.gnu.org/cgit/emacs.git/log/][log]] at
-  the bleeding edge [[http://git-scm.com/][git]] mirror of the official Emacs [[http://bazaar.canonical.com/en/][bzr]] repo.  When something
-  interesting lands there I will build a fresh Emacs installation via [[http://brew.sh/][Homebrew]]
-  and try it out.
+  I primarily use Emacs locally on Apple hardware.  Most, if not all,
+  of the remote editing that I do is done via =tramp=.  I keep an eye
+  on the [[fhttp://git.savannah.gnu.org/cgit/emacs.git/log/][log]] at the official Emacs [[http://git-scm.com/][git]] [[http://git.savannah.gnu.org/cgit/emacs.git/][repository]].  When something
+  interesting lands there I will build a fresh Emacs installation via
+  [[http://brew.sh/][Homebrew]] and try it out.
 
   #+BEGIN_SRC sh
     brew info emacs
