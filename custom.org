@@ -231,6 +231,29 @@ function.
            version-control t)
    #+END_SRC
 
+** Enabled Commands
+
+   Commands disabled by default prompt at first use.  Enabling
+   commands disables the prompt.
+
+   #+BEGIN_SRC emacs-lisp
+     (defvar k20e/enabled-commands
+       '(downcase-region
+         upcase-region
+         narrow-to-region
+         narrow-to-page
+         scroll-left
+         scroll-right)
+       "Normally disabled commands.")
+
+     (defun k20e/enable-commands ()
+       "Enabled normally disabled commands."
+       (dolist (command k20e/enabled-commands)
+         (put command 'disabled nil)))
+
+     (k20e/enable-commands)
+   #+END_SRC
+
 ** TODO Defaults for Review
 
    This is a bunch of stuff that I just dumped here and need to go through yet.
@@ -278,14 +301,6 @@ function.
 
      ;; Automatically reload buffers when files change on disk.
      (global-auto-revert-mode 1)
-
-     ;; Nag, nag, nag, nag...
-     (put 'downcase-region 'disabled nil)
-     (put 'upcase-region 'disabled nil)
-     (put 'narrow-to-region 'disabled nil)
-     (put 'narrow-to-page 'disabled nil)
-     (put 'scroll-left 'disabled nil)
-     (put 'scroll-right 'disabled nil)
 
      ;; Quit all that damn racket!
      (setq ring-bell-function 'ignore)
