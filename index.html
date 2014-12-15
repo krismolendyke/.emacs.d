@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>Literate <code>.emacs.d</code></title>
-<!-- 2014-12-01 Mon 22:24 -->
+<!-- 2014-12-15 Mon 09:23 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Kris Molendyke" />
@@ -1527,7 +1527,8 @@ function.
 <ul>
 <li><a href="#sec-8-1"><code>cycle-spacing</code></a></li>
 <li><a href="#sec-8-2">Backup Files</a></li>
-<li><a href="#sec-8-3"><span class="todo TODO">TODO</span> Defaults for Review</a></li>
+<li><a href="#sec-8-3">Enabled Commands</a></li>
+<li><a href="#sec-8-4"><span class="todo TODO">TODO</span> Defaults for Review</a></li>
 </ul>
 </li>
 <li><a href="#sec-9">OS X</a></li>
@@ -1981,8 +1982,38 @@ Back up files to a single location.
 </div>
 
 <div id="outline-container-sec-8-3" class="outline-3">
-<h3 id="sec-8-3"><span class="todo TODO">TODO</span> Defaults for Review</h3>
+<h3 id="sec-8-3">Enabled Commands</h3>
 <div class="outline-text-3" id="text-8-3">
+<p>
+Commands disabled by default prompt at first use.  Enabling
+commands disables the prompt.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-emacs-lisp">(<span class="org-keyword">defvar</span> <span class="org-variable-name">k20e/enabled-commands</span>
+  '(downcase-region
+    upcase-region
+    narrow-to-region
+    narrow-to-page
+    scroll-left
+    scroll-right)
+  <span class="org-doc">"Normally disabled commands."</span>)
+
+(<span class="org-keyword">defun</span> <span class="org-function-name">k20e/enable-commands</span> ()
+  <span class="org-doc">"Enabled normally disabled commands."</span>
+  (<span class="org-keyword">dolist</span> (command k20e/enabled-commands)
+    (put command 'disabled nil)))
+
+(k20e/enable-commands)
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-8-4" class="outline-3">
+<h3 id="sec-8-4"><span class="todo TODO">TODO</span> Defaults for Review</h3>
+<div class="outline-text-3" id="text-8-4">
 <p>
 This is a bunch of stuff that I just dumped here and need to go through yet.
 </p>
@@ -2047,14 +2078,6 @@ screen monitors I work on.
 
 <span class="org-comment-delimiter">;; </span><span class="org-comment">Automatically reload buffers when files change on disk.</span>
 (global-auto-revert-mode 1)
-
-<span class="org-comment-delimiter">;; </span><span class="org-comment">Nag, nag, nag, nag...</span>
-(put 'downcase-region 'disabled nil)
-(put 'upcase-region 'disabled nil)
-(put 'narrow-to-region 'disabled nil)
-(put 'narrow-to-page 'disabled nil)
-(put 'scroll-left 'disabled nil)
-(put 'scroll-right 'disabled nil)
 
 <span class="org-comment-delimiter">;; </span><span class="org-comment">Quit all that damn racket!</span>
 (setq ring-bell-function 'ignore)
@@ -4160,7 +4183,7 @@ much better way to accomplish this.
 </div>
 <div id="postamble" class="status">
 <p class="author">Kris Molendyke</p>
-<p class="date">2014-12-01 Mon 22:23</p>
+<p class="date">2014-12-15 Mon 09:23</p>
 <p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 25.0.50.1 (<a href="http://orgmode.org">Org</a> mode 8.2.4)</p>
 </div>
 </body>
