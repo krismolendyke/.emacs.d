@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>Literate <code>.emacs.d</code></title>
-<!-- 2014-12-15 Mon 09:23 -->
+<!-- 2014-12-16 Tue 06:44 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Kris Molendyke" />
@@ -2161,39 +2161,52 @@ input/mouse section?
              (expand-file-name
               <span class="org-string">"themes/st2/themes"</span> user-emacs-directory))
 
-(<span class="org-keyword">defvar</span> <span class="org-variable-name">light-theme</span> 'tomorrow-day <span class="org-doc">"The default lightly colored theme."</span>)
-<span class="org-comment-delimiter">;; </span><span class="org-comment">Other good light-theme candidates: whiteboard</span>
+(<span class="org-keyword">defvar</span> <span class="org-variable-name">k20e/theme-light</span> 'tomorrow-day
+  <span class="org-doc">"The default lightly colored theme.</span>
 
-(<span class="org-keyword">defvar</span> <span class="org-variable-name">dark-theme</span> 'tomorrow-night-bright <span class="org-doc">"The default darkly colored theme."</span>)
-<span class="org-comment-delimiter">;; </span><span class="org-comment">Other good dark-theme candidates:</span>
-<span class="org-comment-delimiter">;; </span><span class="org-comment">tomorrow-night hickey fogus dorsey wilson wombat zenburn</span>
+<span class="org-doc">Other good light candidates:</span>
 
-(<span class="org-keyword">defun</span> <span class="org-function-name">load-light-theme</span> ()
+<span class="org-doc">  - whiteboard"</span>)
+
+(<span class="org-keyword">defvar</span> <span class="org-variable-name">k20e/theme-dark</span> 'tomorrow-night-bright
+  <span class="org-doc">"The default darkly colored theme.</span>
+
+<span class="org-doc">Other good dark candidates:</span>
+
+<span class="org-doc">  - tomorrow-night</span>
+<span class="org-doc">  - hickey</span>
+<span class="org-doc">  - fogus</span>
+<span class="org-doc">  - dorsey</span>
+<span class="org-doc">  - wilson</span>
+<span class="org-doc">  - wombat</span>
+<span class="org-doc">  - zenburn"</span>)
+
+(<span class="org-keyword">defun</span> <span class="org-function-name">k20e/theme-load-light</span> ()
   <span class="org-doc">"Load a lightly colored theme for conditions when ambient light</span>
 <span class="org-doc">is bright."</span>
   (interactive)
   (disable-theme (car custom-enabled-themes))
-  (load-theme light-theme t)
+  (load-theme k20e/theme-light t)
   (set-face-background 'hl-line <span class="org-string">"AntiqueWhite2"</span>))
 
-(<span class="org-keyword">defun</span> <span class="org-function-name">load-dark-theme</span> ()
+(<span class="org-keyword">defun</span> <span class="org-function-name">k20e/theme-load-dark</span> ()
   <span class="org-doc">"Load a darkly colored theme for conditions when ambient light</span>
 <span class="org-doc">is dark."</span>
   (interactive)
   (disable-theme (car custom-enabled-themes))
-  (load-theme dark-theme t)
+  (load-theme k20e/theme-dark t)
   (set-face-background 'hl-line <span class="org-string">"gray20"</span>)
   (set-face-background 'region <span class="org-string">"gray36"</span>))
 
-(<span class="org-keyword">defun</span> <span class="org-function-name">toggle-theme</span> ()
+(<span class="org-keyword">defun</span> <span class="org-function-name">k20e/theme-toggle</span> ()
   <span class="org-doc">"Switch between the light and dark theme."</span>
   (interactive)
   (<span class="org-keyword">if</span> (member dark-theme custom-enabled-themes)
-      (load-light-theme)
-    (load-dark-theme)))
+      (k20e/theme-load-light)
+    (k20e/theme-load-dark)))
 
 <span class="org-comment-delimiter">;; </span><span class="org-comment">Load a dark theme by default.</span>
-(load-dark-theme)
+(k20e/theme-load-dark)
 </pre>
 </div>
 </div>
@@ -4183,7 +4196,7 @@ much better way to accomplish this.
 </div>
 <div id="postamble" class="status">
 <p class="author">Kris Molendyke</p>
-<p class="date">2014-12-15 Mon 09:23</p>
+<p class="date">2014-12-16 Tue 06:43</p>
 <p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 25.0.50.1 (<a href="http://orgmode.org">Org</a> mode 8.2.4)</p>
 </div>
 </body>
