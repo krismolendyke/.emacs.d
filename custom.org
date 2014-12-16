@@ -370,39 +370,52 @@ function.
                   (expand-file-name
                    "themes/st2/themes" user-emacs-directory))
 
-     (defvar light-theme 'tomorrow-day "The default lightly colored theme.")
-     ;; Other good light-theme candidates: whiteboard
+     (defvar k20e/theme-light 'tomorrow-day
+       "The default lightly colored theme.
 
-     (defvar dark-theme 'tomorrow-night-bright "The default darkly colored theme.")
-     ;; Other good dark-theme candidates:
-     ;; tomorrow-night hickey fogus dorsey wilson wombat zenburn
+     Other good light candidates:
 
-     (defun load-light-theme ()
+       - whiteboard")
+
+     (defvar k20e/theme-dark 'tomorrow-night-bright
+       "The default darkly colored theme.
+
+     Other good dark candidates:
+
+       - tomorrow-night
+       - hickey
+       - fogus
+       - dorsey
+       - wilson
+       - wombat
+       - zenburn")
+
+     (defun k20e/theme-load-light ()
        "Load a lightly colored theme for conditions when ambient light
      is bright."
        (interactive)
        (disable-theme (car custom-enabled-themes))
-       (load-theme light-theme t)
+       (load-theme k20e/theme-light t)
        (set-face-background 'hl-line "AntiqueWhite2"))
 
-     (defun load-dark-theme ()
+     (defun k20e/theme-load-dark ()
        "Load a darkly colored theme for conditions when ambient light
      is dark."
        (interactive)
        (disable-theme (car custom-enabled-themes))
-       (load-theme dark-theme t)
+       (load-theme k20e/theme-dark t)
        (set-face-background 'hl-line "gray20")
        (set-face-background 'region "gray36"))
 
-     (defun toggle-theme ()
+     (defun k20e/theme-toggle ()
        "Switch between the light and dark theme."
        (interactive)
        (if (member dark-theme custom-enabled-themes)
-           (load-light-theme)
-         (load-dark-theme)))
+           (k20e/theme-load-light)
+         (k20e/theme-load-dark)))
 
      ;; Load a dark theme by default.
-     (load-dark-theme)
+     (k20e/theme-load-dark)
    #+END_SRC
 
 *** TODO Try out [[https://github.com/bruce/emacs-spacegray-theme][Spacegray theme]]
