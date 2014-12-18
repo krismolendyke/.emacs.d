@@ -1317,10 +1317,15 @@ function.
    Define [[http://orgmode.org/worg/org-contrib/babel/languages.html][which languages]] =org-babel= should support.
 
    #+BEGIN_SRC emacs-lisp
-     (org-babel-do-load-languages
-      'org-babel-load-languages
-      '((emacs-lisp . t)
-        (org . t)))
+     (defvar k20e/org-babel-load-languages
+       '((emacs-lisp . t)
+         (org . t)
+         (python . t)
+         (shell . t))
+       "Languages to evaluate in `org-mode'.")
+
+     (org-babel-do-load-languages 'org-babel-load-languages
+                                  k20e/org-babel-load-languages)
    #+END_SRC
 
 ** TODO Items
