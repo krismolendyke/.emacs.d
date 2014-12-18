@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>Literate <code>.emacs.d</code></title>
-<!-- 2014-12-16 Tue 06:44 -->
+<!-- 2014-12-18 Thu 17:58 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Kris Molendyke" />
@@ -3398,10 +3398,15 @@ Define <a href="http://orgmode.org/worg/org-contrib/babel/languages.html">which 
 
 <div class="org-src-container">
 
-<pre class="src src-emacs-lisp">(org-babel-do-load-languages
- 'org-babel-load-languages
- '((emacs-lisp . t)
-   (org . t)))
+<pre class="src src-emacs-lisp">(<span class="org-keyword">defvar</span> <span class="org-variable-name">k20e/org-babel-load-languages</span>
+  '((emacs-lisp . t)
+    (org . t)
+    (python . t)
+    (shell . t))
+  <span class="org-doc">"Languages to evaluate in `</span><span class="org-constant"><span class="org-doc">org-mode</span></span><span class="org-doc">'."</span>)
+
+(org-babel-do-load-languages 'org-babel-load-languages
+                             k20e/org-babel-load-languages)
 </pre>
 </div>
 </div>
@@ -4196,7 +4201,7 @@ much better way to accomplish this.
 </div>
 <div id="postamble" class="status">
 <p class="author">Kris Molendyke</p>
-<p class="date">2014-12-16 Tue 06:43</p>
+<p class="date">2014-12-18 Thu 15:48</p>
 <p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 25.0.50.1 (<a href="http://orgmode.org">Org</a> mode 8.2.4)</p>
 </div>
 </body>
