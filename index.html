@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>Literate <code>.emacs.d</code></title>
-<!-- 2014-12-18 Thu 17:58 -->
+<!-- 2014-12-19 Fri 17:05 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Kris Molendyke" />
@@ -3239,13 +3239,6 @@ bindings whenever I open a new terminal.
 <span class="org-comment-delimiter">;; </span><span class="org-comment">Set the org directory.</span>
 (setq org-directory (expand-file-name <span class="org-string">"org"</span> k20e/dropbox-directory))
 
-<span class="org-comment-delimiter">;; </span><span class="org-comment">MobileOrg setup.</span>
-(<span class="org-keyword">require</span> '<span class="org-constant">org-mobile</span>)
-(setq org-mobile-inbox-for-pull (expand-file-name <span class="org-string">"flagged.org"</span> org-directory)
-      org-mobile-directory (expand-file-name <span class="org-string">"Apps/MobileOrg"</span> k20e/dropbox-directory))
-(<span class="org-keyword">dolist</span> (dir (dirs-in-dir org-directory '(<span class="org-string">"."</span> <span class="org-string">".."</span> <span class="org-string">".git"</span>)))
-  (add-to-list 'org-mobile-files dir))
-
 <span class="org-comment-delimiter">;; </span><span class="org-comment">Speeeeeeeeeed!  Move to very beginning of a headline and press "?"</span>
 (setq org-use-speed-commands t)
 
@@ -4201,7 +4194,7 @@ much better way to accomplish this.
 </div>
 <div id="postamble" class="status">
 <p class="author">Kris Molendyke</p>
-<p class="date">2014-12-18 Thu 15:48</p>
+<p class="date">2014-12-19 Fri 17:04</p>
 <p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 25.0.50.1 (<a href="http://orgmode.org">Org</a> mode 8.2.4)</p>
 </div>
 </body>
