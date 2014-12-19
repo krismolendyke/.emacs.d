@@ -1190,13 +1190,6 @@ function.
     ;; Set the org directory.
     (setq org-directory (expand-file-name "org" k20e/dropbox-directory))
 
-    ;; MobileOrg setup.
-    (require 'org-mobile)
-    (setq org-mobile-inbox-for-pull (expand-file-name "flagged.org" org-directory)
-          org-mobile-directory (expand-file-name "Apps/MobileOrg" k20e/dropbox-directory))
-    (dolist (dir (dirs-in-dir org-directory '("." ".." ".git")))
-      (add-to-list 'org-mobile-files dir))
-
     ;; Speeeeeeeeeed!  Move to very beginning of a headline and press "?"
     (setq org-use-speed-commands t)
 
