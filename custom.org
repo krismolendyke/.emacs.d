@@ -410,7 +410,7 @@ function.
      (defun k20e/theme-toggle ()
        "Switch between the light and dark theme."
        (interactive)
-       (if (member dark-theme custom-enabled-themes)
+       (if (member k20e/theme-dark custom-enabled-themes)
            (k20e/theme-load-light)
          (k20e/theme-load-dark)))
 
