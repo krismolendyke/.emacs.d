@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>Literate <code>.emacs.d</code></title>
-<!-- 2014-12-22 Mon 09:11 -->
+<!-- 2014-12-23 Tue 15:18 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Kris Molendyke" />
@@ -1710,13 +1710,17 @@ following command:
 
 <div class="org-src-container">
 
-<pre class="src src-sh">brew --cache
+<pre class="src src-sh"><span class="org-builtin">echo</span> $(brew --cache)/emacs*
 </pre>
 </div>
 
+<pre class="example">
+/Library/Caches/Homebrew/emacs--git
+</pre>
+
 <p>
 <i>Note</i>: <code>source-directory</code> must be set during Emacs initialization time to
-persist.  See <code>init.el</code>.
+persist.  See <a href="https://github.com/krismolendyke/.emacs.d/blob/1241a848cee7dadfa0c719643925fa0a7b86f476/init.el#L84-L86"><code>init.el</code></a>.
 </p>
 </div>
 </div>
@@ -4194,7 +4198,7 @@ much better way to accomplish this.
 </div>
 <div id="postamble" class="status">
 <p class="author">Kris Molendyke</p>
-<p class="date">2014-12-22 Mon 09:10</p>
+<p class="date">2014-12-23 Tue 15:01</p>
 <p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 25.0.50.1 (<a href="http://orgmode.org">Org</a> mode 8.2.4)</p>
 </div>
 </body>
