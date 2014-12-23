@@ -52,9 +52,12 @@ function.
    Finding the source code directory via Homebrew can be done with the
    following command:
 
-   #+BEGIN_SRC sh
-     brew --cache
+   #+BEGIN_SRC sh :exports both
+     echo $(brew --cache)/emacs*
    #+END_SRC
+
+   #+RESULTS:
+   : /Library/Caches/Homebrew/emacs--git
 
    /Note/: =source-directory= must be set during Emacs initialization time to
    persist.  See =init.el=.
