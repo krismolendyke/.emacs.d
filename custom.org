@@ -60,7 +60,7 @@ function.
    : /Library/Caches/Homebrew/emacs--git
 
    /Note/: =source-directory= must be set during Emacs initialization time to
-   persist.  See =init.el=.
+   persist.  See [[https://github.com/krismolendyke/.emacs.d/blob/1241a848cee7dadfa0c719643925fa0a7b86f476/init.el#L84-L86][=init.el=]].
 
 * How this works
   :PROPERTIES:
