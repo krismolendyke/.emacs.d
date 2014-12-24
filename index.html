@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>Literate <code>.emacs.d</code></title>
-<!-- 2014-12-24 Wed 13:43 -->
+<!-- 2014-12-24 Wed 13:54 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Kris Molendyke" />
@@ -2141,6 +2141,19 @@ I have found these to be useful enough to keep around permanently.
   (newline)
   (forward-line -1)
   (indent-for-tab-command))
+
+<span class="org-comment-delimiter">;; </span><span class="org-comment">Inspired by http://whattheemacsd.com/key-bindings.el-01.html</span>
+(<span class="org-keyword">defun</span> <span class="org-function-name">k20e/goto-linum</span> ()
+  <span class="org-doc">"Show line numbers and prompt for a line number to go to."</span>
+  (interactive)
+  (<span class="org-keyword">let</span> ((linum-mode-previous-state
+         (<span class="org-keyword">if</span> (and (boundp 'linum-mode) linum-mode) 1 -1)))
+    (<span class="org-keyword">unwind-protect</span>
+        (<span class="org-keyword">progn</span>
+          (linum-mode 1)
+          (call-interactively 'goto-line)
+          (linum-mode linum-mode-previous-state))
+      (linum-mode linum-mode-previous-state))))
 </pre>
 </div>
 
@@ -2153,6 +2166,7 @@ Bind editing functions:
 <pre class="src src-emacs-lisp">(global-set-key (kbd <span class="org-string">"M-l"</span>) 'k20e/mark-current-line)
 (global-set-key (kbd <span class="org-string">"&lt;M-return&gt;"</span>) 'k20e/open-line-below)
 (global-set-key (kbd <span class="org-string">"&lt;M-S-return&gt;"</span>) 'k20e/open-line-above)
+(global-set-key [remap goto-line] 'k20e/goto-linum)
 </pre>
 </div>
 </div>
@@ -4288,7 +4302,7 @@ much better way to accomplish this.
 </div>
 <div id="postamble" class="status">
 <p class="author">Kris Molendyke</p>
-<p class="date">2014-12-24 Wed 13:38</p>
+<p class="date">2014-12-24 Wed 13:52</p>
 <p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 25.0.50.1 (<a href="http://orgmode.org">Org</a> mode 8.2.4)</p>
 </div>
 </body>
