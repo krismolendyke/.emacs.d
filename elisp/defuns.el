@@ -30,27 +30,9 @@ Optionally exclude EXCLUDES from the result list."
         (push f dirs)))))
 
 ;; A few nice editing functions.
-(defun open-line-below ()
-  "Insert a new line below the current line."
-  (interactive)
-  (end-of-line)
-  (newline)
-  (indent-for-tab-command))
-
-(defun open-line-above ()
-  "Insert a new line above the current line."
-  (interactive)
-  (beginning-of-line)
-  (newline)
-  (forward-line -1)
-  (indent-for-tab-command))
-
 (defun blank-line-p ()
   "Is point currently on a blank line?"
   (looking-at "[ \t]*$"))
-
-(global-set-key (kbd "<M-return>") 'open-line-below)
-(global-set-key (kbd "<M-S-return>") 'open-line-above)
 
 ;; Inspired by http://whattheemacsd.com/key-bindings.el-01.html
 (defun goto-linum ()
