@@ -1177,15 +1177,42 @@ function.
 
   #+BEGIN_SRC emacs-lisp
     (require 'multiple-cursors)
+  #+END_SRC
 
-    ;; Keep preferences sync'd across machines.
-    (setq mc/list-file (expand-file-name ".mc-lists.el" k20e/dropbox-directory))
+  #+BEGIN_SRC emacs-lisp
+    (defun k20e/mark-next (extended)
+      "Wrap multiple-cursors mark-more/next.
+    Call `mc/mark-next-like-this' without a prefix argument.
+    Argument EXTENDED Prefix argument to call function `mc/mark-more-like-this-extended'."
+      (interactive "P")
+      (if extended
+          (call-interactively 'mc/mark-more-like-this-extended)
+        (call-interactively 'mc/mark-next-like-this)))
 
+    (defun k20e/mark-previous (extended)
+      "Wrap multiple-cursors mark-more/previous.
+    Call `mc/mark-previous-like-this' without a prefix argument.
+    Argument EXTENDED Prefix argument to call function `mc/mark-more-like-this-extended'."
+      (interactive "P")
+      (if extended
+          (call-interactively 'mc/mark-more-like-this-extended)
+        (call-interactively 'mc/mark-previous-like-this)))
+  #+END_SRC
+
+  Setup key bindings:
+
+  #+BEGIN_SRC emacs-lisp
     (global-set-key (kbd "M-L") 'mc/edit-lines)
-    (global-set-key (kbd "C-M-.") 'mc/mark-next-like-this)
-    (global-set-key (kbd "C-M-,") 'mc/mark-previous-like-this)
+    (global-set-key (kbd "C-M-.") 'k20e/mark-next)
+    (global-set-key (kbd "C-M-,") 'k20e/mark-previous)
     (global-set-key (kbd "C-M-<return>") 'mc/mark-all-like-this)
     (global-set-key (kbd "H-SPC") 'set-rectangular-region-anchor)
+  #+END_SRC
+
+  Keep preferences sync'd across machines.
+
+  #+BEGIN_SRC emacs-lisp
+    (setq mc/list-file (expand-file-name ".mc-lists.el" k20e/dropbox-directory))
   #+END_SRC
 
 * org-mode
