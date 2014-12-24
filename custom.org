@@ -1164,7 +1164,7 @@ function.
     (global-set-key (kbd "C-M-<return>") 'mc/mark-all-like-this)
     (global-set-key (kbd "H-SPC") 'set-rectangular-region-anchor)
 
-    (defun mark-current-line ()
+    (defun k20e/mark-current-line ()
       "Mark the current line.
     If the mark is already set simply move the point forward a single
     line.  If it is not set, set it at the beginning of the current
@@ -1175,7 +1175,7 @@ function.
         (set-mark (point)))
       (forward-line 1))
 
-    (global-set-key (kbd "M-l") 'mark-current-line)
+    (global-set-key (kbd "M-l") 'k20e/mark-current-line)
   #+END_SRC
 
 * org-mode
