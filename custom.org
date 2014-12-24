@@ -333,8 +333,6 @@ function.
          (set-mark (point)))
        (forward-line 1))
 
-     (global-set-key (kbd "M-l") 'k20e/mark-current-line)
-
      (defun k20e/open-line-below ()
        "Insert a new line below the current line."
        (interactive)
@@ -349,7 +347,12 @@ function.
        (newline)
        (forward-line -1)
        (indent-for-tab-command))
+   #+END_SRC
 
+   Bind editing functions:
+
+   #+BEGIN_SRC emacs-lisp
+     (global-set-key (kbd "M-l") 'k20e/mark-current-line)
      (global-set-key (kbd "<M-return>") 'k20e/open-line-below)
      (global-set-key (kbd "<M-S-return>") 'k20e/open-line-above)
    #+END_SRC
