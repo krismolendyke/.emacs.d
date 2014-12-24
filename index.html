@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>Literate <code>.emacs.d</code></title>
-<!-- 2014-12-23 Tue 15:18 -->
+<!-- 2014-12-24 Wed 06:49 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Kris Molendyke" />
@@ -3209,7 +3209,7 @@ bindings whenever I open a new terminal.
 (global-set-key (kbd <span class="org-string">"C-M-&lt;return&gt;"</span>) 'mc/mark-all-like-this)
 (global-set-key (kbd <span class="org-string">"H-SPC"</span>) 'set-rectangular-region-anchor)
 
-(<span class="org-keyword">defun</span> <span class="org-function-name">mark-current-line</span> ()
+(<span class="org-keyword">defun</span> <span class="org-function-name">k20e/mark-current-line</span> ()
   <span class="org-doc">"Mark the current line.</span>
 <span class="org-doc">If the mark is already set simply move the point forward a single</span>
 <span class="org-doc">line.  If it is not set, set it at the beginning of the current</span>
@@ -3220,7 +3220,7 @@ bindings whenever I open a new terminal.
     (set-mark (point)))
   (forward-line 1))
 
-(global-set-key (kbd <span class="org-string">"M-l"</span>) 'mark-current-line)
+(global-set-key (kbd <span class="org-string">"M-l"</span>) 'k20e/mark-current-line)
 </pre>
 </div>
 </div>
@@ -4198,7 +4198,7 @@ much better way to accomplish this.
 </div>
 <div id="postamble" class="status">
 <p class="author">Kris Molendyke</p>
-<p class="date">2014-12-23 Tue 15:01</p>
+<p class="date">2014-12-24 Wed 06:49</p>
 <p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 25.0.50.1 (<a href="http://orgmode.org">Org</a> mode 8.2.4)</p>
 </div>
 </body>
