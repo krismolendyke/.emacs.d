@@ -34,21 +34,6 @@ Optionally exclude EXCLUDES from the result list."
   "Is point currently on a blank line?"
   (looking-at "[ \t]*$"))
 
-;; Inspired by http://whattheemacsd.com/key-bindings.el-01.html
-(defun goto-linum ()
-  "Show line numbers and prompt for a line number to go to."
-  (interactive)
-  (let ((linum-mode-previous-state
-         (if (and (boundp 'linum-mode) linum-mode) 1 -1)))
-    (unwind-protect
-        (progn
-          (linum-mode 1)
-          (call-interactively 'goto-line)
-          (linum-mode linum-mode-previous-state))
-      (linum-mode linum-mode-previous-state))))
-
-(global-set-key [remap goto-line] 'goto-linum)
-
 (defun full-moons-info ()
   "Get a list of upcoming full moons info beginning with the current month.
 See `lunar-phase-list' and `lunar-phase-name'."

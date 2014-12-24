@@ -347,6 +347,19 @@ function.
        (newline)
        (forward-line -1)
        (indent-for-tab-command))
+
+     ;; Inspired by http://whattheemacsd.com/key-bindings.el-01.html
+     (defun k20e/goto-linum ()
+       "Show line numbers and prompt for a line number to go to."
+       (interactive)
+       (let ((linum-mode-previous-state
+              (if (and (boundp 'linum-mode) linum-mode) 1 -1)))
+         (unwind-protect
+             (progn
+               (linum-mode 1)
+               (call-interactively 'goto-line)
+               (linum-mode linum-mode-previous-state))
+           (linum-mode linum-mode-previous-state))))
    #+END_SRC
 
    Bind editing functions:
@@ -355,6 +368,7 @@ function.
      (global-set-key (kbd "M-l") 'k20e/mark-current-line)
      (global-set-key (kbd "<M-return>") 'k20e/open-line-below)
      (global-set-key (kbd "<M-S-return>") 'k20e/open-line-above)
+     (global-set-key [remap goto-line] 'k20e/goto-linum)
    #+END_SRC
 
 ** TODO Migrate [[https://github.com/krismolendyke/.emacs.d/blob/master/elisp/defuns.el][=defuns.el=]] here
