@@ -336,6 +336,8 @@ function.
      (global-set-key (kbd "M-l") 'k20e/mark-current-line)
    #+END_SRC
 
+** TODO Migrate [[https://github.com/krismolendyke/.emacs.d/blob/master/elisp/defuns.el][=defuns.el=]] here
+
 * OS X
 
   These may be better suited split up to key bindings and/or a maybe
