@@ -257,6 +257,27 @@ function.
      (k20e/enable-commands)
    #+END_SRC
 
+* k20e Custom Functions
+
+  I have found these to be useful enough to keep around permanently.
+
+** Editing
+
+   #+BEGIN_SRC emacs-lisp
+     (defun k20e/mark-current-line ()
+       "Mark the current line.
+     If the mark is already set simply move the point forward a single
+     line.  If it is not set, set it at the beginning of the current
+     line and then move the point forward a single line."
+       (interactive)
+       (unless mark-active
+         (beginning-of-line)
+         (set-mark (point)))
+       (forward-line 1))
+
+     (global-set-key (kbd "M-l") 'k20e/mark-current-line)
+   #+END_SRC
+
 ** TODO Defaults for Review
 
    This is a bunch of stuff that I just dumped here and need to go through yet.
@@ -1163,19 +1184,6 @@ function.
     (global-set-key (kbd "C-M-,") 'mc/mark-previous-like-this)
     (global-set-key (kbd "C-M-<return>") 'mc/mark-all-like-this)
     (global-set-key (kbd "H-SPC") 'set-rectangular-region-anchor)
-
-    (defun k20e/mark-current-line ()
-      "Mark the current line.
-    If the mark is already set simply move the point forward a single
-    line.  If it is not set, set it at the beginning of the current
-    line and then move the point forward a single line."
-      (interactive)
-      (unless mark-active
-        (beginning-of-line)
-        (set-mark (point)))
-      (forward-line 1))
-
-    (global-set-key (kbd "M-l") 'k20e/mark-current-line)
   #+END_SRC
 
 * org-mode
