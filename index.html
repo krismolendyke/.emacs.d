@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>Literate <code>.emacs.d</code></title>
-<!-- 2014-12-24 Wed 08:32 -->
+<!-- 2014-12-24 Wed 13:32 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Kris Molendyke" />
@@ -2128,6 +2128,24 @@ I have found these to be useful enough to keep around permanently.
   (forward-line 1))
 
 (global-set-key (kbd <span class="org-string">"M-l"</span>) 'k20e/mark-current-line)
+
+(<span class="org-keyword">defun</span> <span class="org-function-name">k20e/open-line-below</span> ()
+  <span class="org-doc">"Insert a new line below the current line."</span>
+  (interactive)
+  (end-of-line)
+  (newline)
+  (indent-for-tab-command))
+
+(<span class="org-keyword">defun</span> <span class="org-function-name">k20e/open-line-above</span> ()
+  <span class="org-doc">"Insert a new line above the current line."</span>
+  (interactive)
+  (beginning-of-line)
+  (newline)
+  (forward-line -1)
+  (indent-for-tab-command))
+
+(global-set-key (kbd <span class="org-string">"&lt;M-return&gt;"</span>) 'k20e/open-line-below)
+(global-set-key (kbd <span class="org-string">"&lt;M-S-return&gt;"</span>) 'k20e/open-line-above)
 </pre>
 </div>
 </div>
@@ -4263,7 +4281,7 @@ much better way to accomplish this.
 </div>
 <div id="postamble" class="status">
 <p class="author">Kris Molendyke</p>
-<p class="date">2014-12-24 Wed 08:29</p>
+<p class="date">2014-12-24 Wed 13:24</p>
 <p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 25.0.50.1 (<a href="http://orgmode.org">Org</a> mode 8.2.4)</p>
 </div>
 </body>
