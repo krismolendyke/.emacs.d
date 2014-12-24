@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>Literate <code>.emacs.d</code></title>
-<!-- 2014-12-24 Wed 07:50 -->
+<!-- 2014-12-24 Wed 08:32 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Kris Molendyke" />
@@ -3240,15 +3240,52 @@ bindings whenever I open a new terminal.
 <div class="org-src-container">
 
 <pre class="src src-emacs-lisp">(<span class="org-keyword">require</span> '<span class="org-constant">multiple-cursors</span>)
+</pre>
+</div>
 
-<span class="org-comment-delimiter">;; </span><span class="org-comment">Keep preferences sync'd across machines.</span>
-(setq mc/list-file (expand-file-name <span class="org-string">".mc-lists.el"</span> k20e/dropbox-directory))
+<div class="org-src-container">
 
-(global-set-key (kbd <span class="org-string">"M-L"</span>) 'mc/edit-lines)
-(global-set-key (kbd <span class="org-string">"C-M-."</span>) 'mc/mark-next-like-this)
-(global-set-key (kbd <span class="org-string">"C-M-,"</span>) 'mc/mark-previous-like-this)
+<pre class="src src-emacs-lisp">(<span class="org-keyword">defun</span> <span class="org-function-name">k20e/mark-next</span> (extended)
+  <span class="org-doc">"Wrap multiple-cursors mark-more/next.</span>
+<span class="org-doc">Call `</span><span class="org-constant"><span class="org-doc">mc/mark-next-like-this</span></span><span class="org-doc">' without a prefix argument.</span>
+<span class="org-doc">Argument EXTENDED Prefix argument to call function `</span><span class="org-constant"><span class="org-doc">mc/mark-more-like-this-extended</span></span><span class="org-doc">'."</span>
+  (interactive <span class="org-string">"P"</span>)
+  (<span class="org-keyword">if</span> extended
+      (call-interactively 'mc/mark-more-like-this-extended)
+    (call-interactively 'mc/mark-next-like-this)))
+
+(<span class="org-keyword">defun</span> <span class="org-function-name">k20e/mark-previous</span> (extended)
+  <span class="org-doc">"Wrap multiple-cursors mark-more/previous.</span>
+<span class="org-doc">Call `</span><span class="org-constant"><span class="org-doc">mc/mark-previous-like-this</span></span><span class="org-doc">' without a prefix argument.</span>
+<span class="org-doc">Argument EXTENDED Prefix argument to call function `</span><span class="org-constant"><span class="org-doc">mc/mark-more-like-this-extended</span></span><span class="org-doc">'."</span>
+  (interactive <span class="org-string">"P"</span>)
+  (<span class="org-keyword">if</span> extended
+      (call-interactively 'mc/mark-more-like-this-extended)
+    (call-interactively 'mc/mark-previous-like-this)))
+</pre>
+</div>
+
+<p>
+Setup key bindings:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-emacs-lisp">(global-set-key (kbd <span class="org-string">"M-L"</span>) 'mc/edit-lines)
+(global-set-key (kbd <span class="org-string">"C-M-."</span>) 'k20e/mark-next)
+(global-set-key (kbd <span class="org-string">"C-M-,"</span>) 'k20e/mark-previous)
 (global-set-key (kbd <span class="org-string">"C-M-&lt;return&gt;"</span>) 'mc/mark-all-like-this)
 (global-set-key (kbd <span class="org-string">"H-SPC"</span>) 'set-rectangular-region-anchor)
+</pre>
+</div>
+
+<p>
+Keep preferences sync'd across machines.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-emacs-lisp">(setq mc/list-file (expand-file-name <span class="org-string">".mc-lists.el"</span> k20e/dropbox-directory))
 </pre>
 </div>
 </div>
@@ -4226,7 +4263,7 @@ much better way to accomplish this.
 </div>
 <div id="postamble" class="status">
 <p class="author">Kris Molendyke</p>
-<p class="date">2014-12-24 Wed 07:49</p>
+<p class="date">2014-12-24 Wed 08:29</p>
 <p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 25.0.50.1 (<a href="http://orgmode.org">Org</a> mode 8.2.4)</p>
 </div>
 </body>
