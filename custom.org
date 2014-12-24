@@ -371,7 +371,7 @@ function.
      (global-set-key [remap goto-line] 'k20e/goto-linum)
    #+END_SRC
 
-** TODO Migrate [[https://github.com/krismolendyke/.emacs.d/blob/master/elisp/defuns.el][=defuns.el=]] here
+** STARTED Migrate [[https://github.com/krismolendyke/.emacs.d/blob/master/elisp/defuns.el][=defuns.el=]] here
 
 * OS X
 
