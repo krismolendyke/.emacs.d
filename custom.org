@@ -199,7 +199,6 @@ function.
 ** Set
 
    #+BEGIN_SRC emacs-lisp
-     (global-set-key (kbd "C-x t") 'toggle-theme)
      (global-set-key (kbd "H-l") 'ifl-region-or-query)
    #+END_SRC
 
@@ -502,6 +501,12 @@ function.
 
      ;; Load a dark theme by default.
      (k20e/theme-load-dark)
+   #+END_SRC
+
+   Bind toggle function:
+
+   #+BEGIN_SRC emacs-lisp
+     (global-set-key (kbd "C-x t") 'k20e/theme-toggle)
    #+END_SRC
 
 *** TODO Try out [[https://github.com/bruce/emacs-spacegray-theme][Spacegray theme]]
