@@ -76,28 +76,6 @@ Similar to but simpler than `dns-lookup-host'."
     (insert (car (last (split-string (shell-command-to-string
                                       (concat dns-lookup-program " " host))))))))
 
-(defun split-window-right-and-balance ()
-  "Balance windows after splitting."
-  (interactive)
-  (split-window-right)
-  (balance-windows-area))
-
-(defun split-window-right-and-balance-and-go-there-and-switch-buffer (&optional arg)
-  "Optional argument ARG Prefix argument will switch buffer using ido."
-  (interactive "P")
-  (split-window-right)
-  (balance-windows-area)
-  (windmove-right)
-  (if arg
-      (ido-switch-buffer)
-    (switch-to-buffer nil)))
-
-(defun delete-window-and-balance ()
-  "Balance windows after deleting."
-  (interactive)
-  (delete-window)
-  (balance-windows-area))
-
 ;;; Stolen from
 ;;; https://github.com/magnars/.emacs.d/blob/e56e71ce0f0791c7237192a049f29c2de686409a/defuns/lisp-defuns.el
 (defun eval-and-replace ()

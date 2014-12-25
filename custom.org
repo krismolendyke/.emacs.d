@@ -199,8 +199,6 @@ function.
 ** Set
 
    #+BEGIN_SRC emacs-lisp
-     (global-set-key (kbd "C-x 0") 'delete-window-and-balance)
-     (global-set-key (kbd "C-x 3") 'split-window-right-and-balance-and-go-there-and-switch-buffer)
      (global-set-key (kbd "C-x t") 'toggle-theme)
      (global-set-key (kbd "H-l") 'ifl-region-or-query)
    #+END_SRC
@@ -369,6 +367,39 @@ function.
      (global-set-key (kbd "<M-return>") 'k20e/open-line-below)
      (global-set-key (kbd "<M-S-return>") 'k20e/open-line-above)
      (global-set-key [remap goto-line] 'k20e/goto-linum)
+   #+END_SRC
+
+** Windows
+
+   #+BEGIN_SRC emacs-lisp
+     (defun split-window-right-and-balance ()
+       "Balance windows after splitting."
+       (interactive)
+       (split-window-right)
+       (balance-windows-area))
+
+     (defun split-window-right-and-balance-and-go-there-and-switch-buffer (&optional arg)
+       "Optional argument ARG Prefix argument will switch buffer using ido."
+       (interactive "P")
+       (split-window-right)
+       (balance-windows-area)
+       (windmove-right)
+       (if arg
+           (ido-switch-buffer)
+         (switch-to-buffer nil)))
+
+     (defun delete-window-and-balance ()
+       "Balance windows after deleting."
+       (interactive)
+       (delete-window)
+       (balance-windows-area))
+   #+END_SRC
+
+   Bind window functions:
+
+   #+BEGIN_SRC emacs-lisp
+     (global-set-key (kbd "C-x 0") 'delete-window-and-balance)
+     (global-set-key (kbd "C-x 3") 'split-window-right-and-balance-and-go-there-and-switch-buffer)
    #+END_SRC
 
 ** STARTED Migrate [[https://github.com/krismolendyke/.emacs.d/blob/master/elisp/defuns.el][=defuns.el=]] here
