@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>Literate <code>.emacs.d</code></title>
-<!-- 2014-12-25 Thu 18:33 -->
+<!-- 2014-12-25 Thu 18:41 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Kris Molendyke" />
@@ -1940,8 +1940,7 @@ that have been previously loaded during initialization in <code>init.el</code>.
 <div class="outline-text-3" id="text-7-1">
 <div class="org-src-container">
 
-<pre class="src src-emacs-lisp">(global-set-key (kbd <span class="org-string">"C-x t"</span>) 'toggle-theme)
-(global-set-key (kbd <span class="org-string">"H-l"</span>) 'ifl-region-or-query)
+<pre class="src src-emacs-lisp">(global-set-key (kbd <span class="org-string">"H-l"</span>) 'ifl-region-or-query)
 </pre>
 </div>
 </div>
@@ -2326,6 +2325,16 @@ input/mouse section?
 
 <span class="org-comment-delimiter">;; </span><span class="org-comment">Load a dark theme by default.</span>
 (k20e/theme-load-dark)
+</pre>
+</div>
+
+<p>
+Bind toggle function:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-emacs-lisp">(global-set-key (kbd <span class="org-string">"C-x t"</span>) 'k20e/theme-toggle)
 </pre>
 </div>
 </div>
@@ -4337,7 +4346,7 @@ much better way to accomplish this.
 </div>
 <div id="postamble" class="status">
 <p class="author">Kris Molendyke</p>
-<p class="date">2014-12-25 Thu 18:33</p>
+<p class="date">2014-12-25 Thu 18:36</p>
 <p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 25.0.50.1 (<a href="http://orgmode.org">Org</a> mode 8.2.4)</p>
 </div>
 </body>
