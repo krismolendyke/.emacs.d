@@ -58,24 +58,6 @@ See `lunar-phase-list' and `lunar-phase-name'."
       (full-moons-info)
       "\n"))))
 
-(require 'net-utils)
-(require 'tramp)
-
-(defun known-hosts ()
-  "Get a host name from ~./ssh/known_hosts file."
-  (completing-read "host: "
-                   (let ((value))
-                     (dolist (elt (tramp-parse-shosts "~/.ssh/known_hosts") value)
-                       (if elt (setq value (cons (cadr elt) value)))))))
-
-(defun host-ip ()
-  "Insert the current IP of a host using `dns-lookup-program'.
-Similar to but simpler than `dns-lookup-host'."
-  (interactive)
-  (let ((host (known-hosts)))
-    (insert (car (last (split-string (shell-command-to-string
-                                      (concat dns-lookup-program " " host))))))))
-
 ;;; Stolen from
 ;;; https://github.com/magnars/.emacs.d/blob/e56e71ce0f0791c7237192a049f29c2de686409a/defuns/lisp-defuns.el
 (defun eval-and-replace ()
