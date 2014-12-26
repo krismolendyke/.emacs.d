@@ -191,17 +191,6 @@ function.
      (global-set-key (kbd "M-h") 'backward-kill-word)
    #+END_SRC
 
-* Global =defuns.el= Key Bindings
-
-  These global key bindings are for functions that I've defined in =defuns.el=
-  that have been previously loaded during initialization in =init.el=.
-
-** Set
-
-   #+BEGIN_SRC emacs-lisp
-     (global-set-key (kbd "H-l") 'ifl-region-or-query)
-   #+END_SRC
-
 * k20e Defaults
 
 ** =cycle-spacing=
@@ -1083,6 +1072,14 @@ function.
       (paredit-mode 1))
 
     (add-hook 'ielm-mode-hook 'k20e/ielm-hook)
+  #+END_SRC
+
+* I'm Feeling Lucky
+
+  #+BEGIN_SRC emacs-lisp
+    (require 'im-feeling-lucky)
+
+    (global-set-key (kbd "H-l") 'ifl-region-or-query)
   #+END_SRC
 
 * isearch
