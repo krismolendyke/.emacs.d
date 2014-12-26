@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>Literate <code>.emacs.d</code></title>
-<!-- 2014-12-25 Thu 19:16 -->
+<!-- 2014-12-26 Fri 17:28 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Kris Molendyke" />
@@ -1530,7 +1530,8 @@ function.
 <ul>
 <li><a href="#sec-8-1">Editing</a></li>
 <li><a href="#sec-8-2">Windows</a></li>
-<li><a href="#sec-8-3">STARTED Migrate <code>defuns.el</code> here</a></li>
+<li><a href="#sec-8-3">Networking</a></li>
+<li><a href="#sec-8-4">STARTED Migrate <code>defuns.el</code> here</a></li>
 </ul>
 </li>
 <li><a href="#sec-9">OS X</a></li>
@@ -2182,7 +2183,34 @@ Bind window functions:
 </div>
 
 <div id="outline-container-sec-8-3" class="outline-3">
-<h3 id="sec-8-3">STARTED Migrate <a href="https://github.com/krismolendyke/.emacs.d/blob/master/elisp/defuns.el"><code>defuns.el</code></a> here</h3>
+<h3 id="sec-8-3">Networking</h3>
+<div class="outline-text-3" id="text-8-3">
+<div class="org-src-container">
+
+<pre class="src src-emacs-lisp">(<span class="org-keyword">require</span> '<span class="org-constant">net-utils</span>)
+(<span class="org-keyword">require</span> '<span class="org-constant">tramp</span>)
+
+(<span class="org-keyword">defun</span> <span class="org-function-name">k20e/known-hosts</span> ()
+  <span class="org-doc">"Get a host name from ~./ssh/known_hosts file."</span>
+  (completing-read <span class="org-string">"host: "</span>
+                   (<span class="org-keyword">let</span> ((value))
+                     (<span class="org-keyword">dolist</span> (elt (tramp-parse-shosts <span class="org-string">"~/.ssh/known_hosts"</span>) value)
+                       (<span class="org-keyword">if</span> elt (setq value (cons (cadr elt) value)))))))
+
+(<span class="org-keyword">defun</span> <span class="org-function-name">k20e/host-ip</span> ()
+  <span class="org-doc">"Insert the current IP of a host using `</span><span class="org-constant"><span class="org-doc">dns-lookup-program</span></span><span class="org-doc">'.</span>
+<span class="org-doc">Similar to but simpler than `</span><span class="org-constant"><span class="org-doc">dns-lookup-host</span></span><span class="org-doc">'."</span>
+  (interactive)
+  (<span class="org-keyword">let</span> ((host (k20e/known-hosts)))
+    (insert (car (last (split-string (shell-command-to-string
+                                      (concat dns-lookup-program <span class="org-string">" "</span> host))))))))
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-8-4" class="outline-3">
+<h3 id="sec-8-4">STARTED Migrate <a href="https://github.com/krismolendyke/.emacs.d/blob/master/elisp/defuns.el"><code>defuns.el</code></a> here</h3>
 </div>
 </div>
 
@@ -4338,7 +4366,7 @@ much better way to accomplish this.
 </div>
 <div id="postamble" class="status">
 <p class="author">Kris Molendyke</p>
-<p class="date">2014-12-25 Thu 19:15</p>
+<p class="date">2014-12-26 Fri 17:27</p>
 <p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 25.0.50.1 (<a href="http://orgmode.org">Org</a> mode 8.2.4)</p>
 </div>
 </body>
