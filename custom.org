@@ -1076,6 +1076,8 @@ function.
 
 * I'm Feeling Lucky
 
+  This is [[https://github.com/krismolendyke/im-feeling-lucky.el][my Google search]] module.
+
   #+BEGIN_SRC emacs-lisp
     (require 'im-feeling-lucky)
 
