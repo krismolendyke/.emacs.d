@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>Literate <code>.emacs.d</code></title>
-<!-- 2014-12-26 Fri 17:28 -->
+<!-- 2014-12-27 Sat 18:47 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Kris Molendyke" />
@@ -2128,6 +2128,24 @@ I have found these to be useful enough to keep around permanently.
           (call-interactively 'goto-line)
           (linum-mode linum-mode-previous-state))
       (linum-mode linum-mode-previous-state))))
+</pre>
+</div>
+
+<p>
+This one is stolen from <a href="https://github.com/magnars/.emacs.d/blob/e56e71ce0f0791c7237192a049f29c2de686409a/defuns/lisp-defuns.el">magnars</a>:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-emacs-lisp">(<span class="org-keyword">defun</span> <span class="org-function-name">k20e/eval-and-replace</span> ()
+  <span class="org-doc">"Replace the preceding sexp with its value."</span>
+  (interactive)
+  (backward-kill-sexp)
+  (<span class="org-keyword">condition-case</span> nil
+      (prin1 (eval (read (current-kill 0)))
+             (current-buffer))
+    (<span class="org-warning">error</span> (message <span class="org-string">"Invalid expression"</span>)
+           (insert (current-kill 0)))))
 </pre>
 </div>
 
@@ -4366,7 +4384,7 @@ much better way to accomplish this.
 </div>
 <div id="postamble" class="status">
 <p class="author">Kris Molendyke</p>
-<p class="date">2014-12-26 Fri 17:27</p>
+<p class="date">2014-12-27 Sat 18:46</p>
 <p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 25.0.50.1 (<a href="http://orgmode.org">Org</a> mode 8.2.4)</p>
 </div>
 </body>
