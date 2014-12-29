@@ -451,8 +451,6 @@ function.
            "\n"))))
    #+END_SRC
 
-** STARTED Migrate [[https://github.com/krismolendyke/.emacs.d/blob/master/elisp/defuns.el][=defuns.el=]] here
-
 * OS X
 
   These may be better suited split up to key bindings and/or a maybe
