@@ -374,6 +374,8 @@ function.
 ** Windows
 
    #+BEGIN_SRC emacs-lisp
+     (require 'ido)
+
      (defun split-window-right-and-balance-and-go-there-and-switch-buffer (&optional arg)
        "Optional argument ARG Prefix argument will switch buffer using ido."
        (interactive "P")
@@ -718,10 +720,11 @@ function.
 
   #+BEGIN_SRC emacs-lisp
     (require 'cider)
+    (require 'eldoc)
     (require 'paredit)
 
     (defun k20e/cider-mode-hook ()
-      (cider-turn-on-eldoc-mode)
+      (eldoc-mode)
       (paredit-mode 1))
 
     (add-hook 'cider-mode-hook 'k20e/cider-mode-hook)
@@ -1517,6 +1520,8 @@ function.
 
    #+BEGIN_SRC emacs-lisp
      (require 'face-remap)
+     (require 'org)
+     (require 'org-agenda)
      (require 'winner)
 
      (defun k20e/org-agenda-mode-hook ()
@@ -1532,7 +1537,6 @@ function.
    #+BEGIN_SRC emacs-lisp
      (setq org-agenda-files
            (list (expand-file-name "personal.org" org-directory)
-                 (expand-file-name "resolutions.org" org-directory)
                  (expand-file-name "work" org-directory)
                  (expand-file-name "chores.org" org-directory)))
    #+END_SRC
@@ -1581,12 +1585,6 @@ function.
 
    #+BEGIN_SRC emacs-lisp
      (defvar org-clock-idle-time 5)
-   #+END_SRC
-
-** Visit By Default
-
-   #+BEGIN_SRC emacs-lisp
-     (find-file (expand-file-name "resolutions.org" org-directory))
    #+END_SRC
 
 * paredit-mode
