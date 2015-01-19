@@ -182,7 +182,6 @@ function.
      (global-set-key (kbd "C-S-h") 'kill-whole-line)
      (global-set-key (kbd "C-j") 'join-line)
      (global-set-key (kbd "C-x C-t") 'toggle-frame-fullscreen)
-     (global-set-key (kbd "H-h") 'help-command)
      (global-set-key (kbd "H-h H-f") 'find-function)
      (global-set-key (kbd "H-h H-v") 'find-variable)
      (global-set-key (kbd "M-+") 'text-scale-adjust)
@@ -1338,7 +1337,6 @@ function.
     (global-set-key (kbd "C-M-.") 'k20e/mark-next)
     (global-set-key (kbd "C-M-,") 'k20e/mark-previous)
     (global-set-key (kbd "C-M-<return>") 'mc/mark-all-like-this)
-    (global-set-key (kbd "H-SPC") 'set-rectangular-region-anchor)
   #+END_SRC
 
   Keep preferences sync'd across machines.
@@ -1956,6 +1954,9 @@ function.
 
     (windmove-default-keybindings 'hyper)
     (setq windmove-wrap-around t)
+
+    (global-set-key (kbd "H-SPC") 'windmove-right)
+    (global-set-key (kbd "H-S-SPC") 'windmove-left)
   #+END_SRC
 
 * winner-mode
