@@ -1686,6 +1686,17 @@ function.
     (global-set-key (kbd "C-x C-r") 'recentf-ido-find-file)
   #+END_SRC
 
+* reStructuredText
+
+  #+BEGIN_SRC emacs-lisp
+    (require 'rst)
+
+    (defun k20e/rst-mode-hook ()
+      (setq fill-column 78))
+
+    (add-hook 'rst-mode-hook 'k20e/rst-mode-hook)
+  #+END_SRC
+
 * savehist
 
   #+BEGIN_SRC emacs-lisp
