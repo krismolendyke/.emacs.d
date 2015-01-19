@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>Literate <code>.emacs.d</code></title>
-<!-- 2015-01-12 Mon 11:35 -->
+<!-- 2015-01-19 Mon 17:35 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Kris Molendyke" />
@@ -1620,42 +1620,43 @@ function.
 </ul>
 </li>
 <li><a href="#sec-50">recentf</a></li>
-<li><a href="#sec-51">savehist</a></li>
-<li><a href="#sec-52"><code>*scratch*</code></a>
+<li><a href="#sec-51">reStructuredText</a></li>
+<li><a href="#sec-52">savehist</a></li>
+<li><a href="#sec-53"><code>*scratch*</code></a>
 <ul>
-<li><a href="#sec-52-1">Quickly create new scratch buffers</a></li>
+<li><a href="#sec-53-1">Quickly create new scratch buffers</a></li>
 </ul>
 </li>
-<li><a href="#sec-53">smex</a></li>
-<li><a href="#sec-54">sql-mode</a></li>
-<li><a href="#sec-55">server</a></li>
+<li><a href="#sec-54">smex</a></li>
+<li><a href="#sec-55">sql-mode</a></li>
+<li><a href="#sec-56">server</a></li>
 <li><a href="#term">term</a>
 <ul>
-<li><a href="#sec-56-1">Key Bindings</a></li>
+<li><a href="#sec-57-1">Key Bindings</a></li>
 </ul>
 </li>
-<li><a href="#sec-57">terminal-notifier</a></li>
-<li><a href="#sec-58">text-mode</a></li>
-<li><a href="#sec-59">tramp</a>
+<li><a href="#sec-58">terminal-notifier</a></li>
+<li><a href="#sec-59">text-mode</a></li>
+<li><a href="#sec-60">tramp</a>
 <ul>
-<li><a href="#sec-59-1"><code>ControlPath</code></a></li>
-<li><a href="#sec-59-2">Inline Copying</a></li>
-<li><a href="#sec-59-3">File Backup</a></li>
-<li><a href="#sec-59-4">Debugging</a></li>
+<li><a href="#sec-60-1"><code>ControlPath</code></a></li>
+<li><a href="#sec-60-2">Inline Copying</a></li>
+<li><a href="#sec-60-3">File Backup</a></li>
+<li><a href="#sec-60-4">Debugging</a></li>
 </ul>
 </li>
-<li><a href="#sec-60">uniquify</a></li>
-<li><a href="#sec-61">virtualenvwrapper</a>
+<li><a href="#sec-61">uniquify</a></li>
+<li><a href="#sec-62">virtualenvwrapper</a>
 <ul>
-<li><a href="#sec-61-1"><span class="todo TODO">TODO</span> Automatically activate</a></li>
+<li><a href="#sec-62-1"><span class="todo TODO">TODO</span> Automatically activate</a></li>
 </ul>
 </li>
-<li><a href="#sec-62">windmove</a></li>
-<li><a href="#sec-63">winner-mode</a></li>
-<li><a href="#sec-64">whitespace</a></li>
-<li><a href="#sec-65">writeroom-mode</a></li>
-<li><a href="#sec-66">yaml-mode</a></li>
-<li><a href="#sec-67">yasnippet</a></li>
+<li><a href="#sec-63">windmove</a></li>
+<li><a href="#sec-64">winner-mode</a></li>
+<li><a href="#sec-65">whitespace</a></li>
+<li><a href="#sec-66">writeroom-mode</a></li>
+<li><a href="#sec-67">yaml-mode</a></li>
+<li><a href="#sec-68">yasnippet</a></li>
 </ul>
 </div>
 </div>
@@ -1909,7 +1910,6 @@ their own dedicated sections where other specific settings are made.
 (global-set-key (kbd <span class="org-string">"C-S-h"</span>) 'kill-whole-line)
 (global-set-key (kbd <span class="org-string">"C-j"</span>) 'join-line)
 (global-set-key (kbd <span class="org-string">"C-x C-t"</span>) 'toggle-frame-fullscreen)
-(global-set-key (kbd <span class="org-string">"H-h"</span>) 'help-command)
 (global-set-key (kbd <span class="org-string">"H-h H-f"</span>) 'find-function)
 (global-set-key (kbd <span class="org-string">"H-h H-v"</span>) 'find-variable)
 (global-set-key (kbd <span class="org-string">"M-+"</span>) 'text-scale-adjust)
@@ -3430,7 +3430,6 @@ Setup key bindings:
 (global-set-key (kbd <span class="org-string">"C-M-."</span>) 'k20e/mark-next)
 (global-set-key (kbd <span class="org-string">"C-M-,"</span>) 'k20e/mark-previous)
 (global-set-key (kbd <span class="org-string">"C-M-&lt;return&gt;"</span>) 'mc/mark-all-like-this)
-(global-set-key (kbd <span class="org-string">"H-SPC"</span>) 'set-rectangular-region-anchor)
 </pre>
 </div>
 
@@ -3865,11 +3864,7 @@ Insert state change notes and time stamps into a drawer rather than simply
   (define-key python-mode-map (kbd <span class="org-string">"C-M-f"</span>) 'python-nav-forward-sexp)
   (define-key python-mode-map (kbd <span class="org-string">"C-M-b"</span>) 'python-nav-backward-sexp)
   (define-key python-mode-map (kbd <span class="org-string">"C-M-n"</span>) 'python-nav-forward-block)
-  (define-key python-mode-map (kbd <span class="org-string">"C-M-p"</span>) 'python-nav-backward-block)
-
-  (define-key python-mode-map (kbd <span class="org-string">"C-M-."</span>) 'mc/mark-next-like-this)
-  (define-key python-mode-map (kbd <span class="org-string">"C-M-,"</span>) 'mc/mark-previous-like-this)
-  (define-key python-mode-map (kbd <span class="org-string">"C-M-&lt;return&gt;"</span>) 'mc/mark-all-symbols-like-this))
+  (define-key python-mode-map (kbd <span class="org-string">"C-M-p"</span>) 'python-nav-backward-block))
 
 (add-hook 'python-mode-hook 'k20e/python-mode-hook)
 </pre>
@@ -3914,8 +3909,24 @@ Insert state change notes and time stamps into a drawer rather than simply
 </div>
 
 <div id="outline-container-sec-51" class="outline-2">
-<h2 id="sec-51">savehist</h2>
+<h2 id="sec-51">reStructuredText</h2>
 <div class="outline-text-2" id="text-51">
+<div class="org-src-container">
+
+<pre class="src src-emacs-lisp">(<span class="org-keyword">require</span> '<span class="org-constant">rst</span>)
+
+(<span class="org-keyword">defun</span> <span class="org-function-name">k20e/rst-mode-hook</span> ()
+  (setq fill-column 78))
+
+(add-hook 'rst-mode-hook 'k20e/rst-mode-hook)
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-52" class="outline-2">
+<h2 id="sec-52">savehist</h2>
+<div class="outline-text-2" id="text-52">
 <div class="org-src-container">
 
 <pre class="src src-emacs-lisp"><span class="org-comment-delimiter">;; </span><span class="org-comment">Save minibuffer history.</span>
@@ -3928,9 +3939,9 @@ Insert state change notes and time stamps into a drawer rather than simply
 </div>
 </div>
 
-<div id="outline-container-sec-52" class="outline-2">
-<h2 id="sec-52"><code>*scratch*</code></h2>
-<div class="outline-text-2" id="text-52">
+<div id="outline-container-sec-53" class="outline-2">
+<h2 id="sec-53"><code>*scratch*</code></h2>
+<div class="outline-text-2" id="text-53">
 <p>
 Begin with an empty <code>*scratch*</code> file.
 </p>
@@ -3953,9 +3964,9 @@ Set it to Emacs Lisp mode.
 </div>
 </div>
 
-<div id="outline-container-sec-52-1" class="outline-3">
-<h3 id="sec-52-1">Quickly create new scratch buffers</h3>
-<div class="outline-text-3" id="text-52-1">
+<div id="outline-container-sec-53-1" class="outline-3">
+<h3 id="sec-53-1">Quickly create new scratch buffers</h3>
+<div class="outline-text-3" id="text-53-1">
 <p>
 With a preset list of major modes that I find often need scratch
 pads for.
@@ -4001,9 +4012,9 @@ Bind it globally.
 </div>
 </div>
 
-<div id="outline-container-sec-53" class="outline-2">
-<h2 id="sec-53">smex</h2>
-<div class="outline-text-2" id="text-53">
+<div id="outline-container-sec-54" class="outline-2">
+<h2 id="sec-54">smex</h2>
+<div class="outline-text-2" id="text-54">
 <div class="org-src-container">
 
 <pre class="src src-emacs-lisp">(<span class="org-keyword">require</span> '<span class="org-constant">smex</span>)
@@ -4023,9 +4034,9 @@ Bind it globally.
 </div>
 </div>
 
-<div id="outline-container-sec-54" class="outline-2">
-<h2 id="sec-54">sql-mode</h2>
-<div class="outline-text-2" id="text-54">
+<div id="outline-container-sec-55" class="outline-2">
+<h2 id="sec-55">sql-mode</h2>
+<div class="outline-text-2" id="text-55">
 <div class="org-src-container">
 
 <pre class="src src-emacs-lisp">(<span class="org-keyword">require</span> '<span class="org-constant">sql</span>)
@@ -4040,9 +4051,9 @@ Bind it globally.
 </div>
 </div>
 
-<div id="outline-container-sec-55" class="outline-2">
-<h2 id="sec-55">server</h2>
-<div class="outline-text-2" id="text-55">
+<div id="outline-container-sec-56" class="outline-2">
+<h2 id="sec-56">server</h2>
+<div class="outline-text-2" id="text-56">
 <div class="org-src-container">
 
 <pre class="src src-emacs-lisp"><span class="org-comment-delimiter">;; </span><span class="org-comment">Start the Emacs server.</span>
@@ -4056,7 +4067,7 @@ Bind it globally.
 </div>
 
 <div id="outline-container-term" class="outline-2">
-<h2 id="term"><a id="sec-56"></a>term</h2>
+<h2 id="term"><a id="sec-57"></a>term</h2>
 <div class="outline-text-2" id="text-term">
 <p>
 Together with <a href="#multi-term">multi-term</a> this sets up my terminal environment within Emacs.
@@ -4077,9 +4088,9 @@ Together with <a href="#multi-term">multi-term</a> this sets up my terminal envi
 </div>
 </div>
 
-<div id="outline-container-sec-56-1" class="outline-3">
-<h3 id="sec-56-1">Key Bindings</h3>
-<div class="outline-text-3" id="text-56-1">
+<div id="outline-container-sec-57-1" class="outline-3">
+<h3 id="sec-57-1">Key Bindings</h3>
+<div class="outline-text-3" id="text-57-1">
 <p>
 <code>term-raw-map</code> is used in <i>char</i> mode.
 </p>
@@ -4106,9 +4117,9 @@ Together with <a href="#multi-term">multi-term</a> this sets up my terminal envi
 </div>
 </div>
 
-<div id="outline-container-sec-57" class="outline-2">
-<h2 id="sec-57">terminal-notifier</h2>
-<div class="outline-text-2" id="text-57">
+<div id="outline-container-sec-58" class="outline-2">
+<h2 id="sec-58">terminal-notifier</h2>
+<div class="outline-text-2" id="text-58">
 <p>
 This is a tiny package that I wrote to help with displaying
 notifications in OS X.
@@ -4122,9 +4133,9 @@ notifications in OS X.
 </div>
 </div>
 
-<div id="outline-container-sec-58" class="outline-2">
-<h2 id="sec-58">text-mode</h2>
-<div class="outline-text-2" id="text-58">
+<div id="outline-container-sec-59" class="outline-2">
+<h2 id="sec-59">text-mode</h2>
+<div class="outline-text-2" id="text-59">
 <div class="org-src-container">
 
 <pre class="src src-emacs-lisp">(<span class="org-keyword">defun</span> <span class="org-function-name">k20e/text-mode-hook</span> ()
@@ -4136,12 +4147,12 @@ notifications in OS X.
 </div>
 </div>
 
-<div id="outline-container-sec-59" class="outline-2">
-<h2 id="sec-59">tramp</h2>
-<div class="outline-text-2" id="text-59">
-</div><div id="outline-container-sec-59-1" class="outline-3">
-<h3 id="sec-59-1"><code>ControlPath</code></h3>
-<div class="outline-text-3" id="text-59-1">
+<div id="outline-container-sec-60" class="outline-2">
+<h2 id="sec-60">tramp</h2>
+<div class="outline-text-2" id="text-60">
+</div><div id="outline-container-sec-60-1" class="outline-3">
+<h3 id="sec-60-1"><code>ControlPath</code></h3>
+<div class="outline-text-3" id="text-60-1">
 <p>
 Fix <code>ControlPath too long</code> errors due to OS X pitching a <a href="https://lists.macosforge.org/pipermail/macports-tickets/2011-June/084295.html">long
 temporary directory</a> to <code>ssh</code>.
@@ -4204,9 +4215,9 @@ not been changed from their default values.
 </div>
 </div>
 
-<div id="outline-container-sec-59-2" class="outline-3">
-<h3 id="sec-59-2">Inline Copying</h3>
-<div class="outline-text-3" id="text-59-2">
+<div id="outline-container-sec-60-2" class="outline-3">
+<h3 id="sec-60-2">Inline Copying</h3>
+<div class="outline-text-3" id="text-60-2">
 <p>
 Do not inline copy files.  This is to avoid <code>File exists, but
    cannot be read</code> errors.
@@ -4220,9 +4231,9 @@ Do not inline copy files.  This is to avoid <code>File exists, but
 </div>
 </div>
 
-<div id="outline-container-sec-59-3" class="outline-3">
-<h3 id="sec-59-3">File Backup</h3>
-<div class="outline-text-3" id="text-59-3">
+<div id="outline-container-sec-60-3" class="outline-3">
+<h3 id="sec-60-3">File Backup</h3>
+<div class="outline-text-3" id="text-60-3">
 <p>
 Do not backup files edited by <code>tramp</code> to <a href="http://www.gnu.org/software/emacs/manual/html_node/tramp/Auto_002dsave-and-Backup.html">avoid possibly sharing
 copies of privileged files with non-privileged users</a>.
@@ -4236,9 +4247,9 @@ copies of privileged files with non-privileged users</a>.
 </div>
 </div>
 
-<div id="outline-container-sec-59-4" class="outline-3">
-<h3 id="sec-59-4">Debugging</h3>
-<div class="outline-text-3" id="text-59-4">
+<div id="outline-container-sec-60-4" class="outline-3">
+<h3 id="sec-60-4">Debugging</h3>
+<div class="outline-text-3" id="text-60-4">
 <div class="org-src-container">
 
 <pre class="src src-emacs-lisp"><span class="org-comment-delimiter">;; </span><span class="org-comment">(setq tramp-verbose 6)</span>
@@ -4252,9 +4263,9 @@ Will create a detailed log buffer.
 </div>
 </div>
 
-<div id="outline-container-sec-60" class="outline-2">
-<h2 id="sec-60">uniquify</h2>
-<div class="outline-text-2" id="text-60">
+<div id="outline-container-sec-61" class="outline-2">
+<h2 id="sec-61">uniquify</h2>
+<div class="outline-text-2" id="text-61">
 <p>
 Name multiple identical buffer names in a sensible manner.
 </p>
@@ -4269,9 +4280,9 @@ Name multiple identical buffer names in a sensible manner.
 </div>
 </div>
 
-<div id="outline-container-sec-61" class="outline-2">
-<h2 id="sec-61">virtualenvwrapper</h2>
-<div class="outline-text-2" id="text-61">
+<div id="outline-container-sec-62" class="outline-2">
+<h2 id="sec-62">virtualenvwrapper</h2>
+<div class="outline-text-2" id="text-62">
 <div class="org-src-container">
 
 <pre class="src src-emacs-lisp">(<span class="org-keyword">require</span> '<span class="org-constant">virtualenvwrapper</span>)
@@ -4281,28 +4292,31 @@ Name multiple identical buffer names in a sensible manner.
 </div>
 </div>
 
-<div id="outline-container-sec-61-1" class="outline-3">
-<h3 id="sec-61-1"><span class="todo TODO">TODO</span> <a href="https://github.com/porterjamesj/virtualenvwrapper.el#automatically-activating-a-virtualenv-in-a-particular-project">Automatically activate</a></h3>
+<div id="outline-container-sec-62-1" class="outline-3">
+<h3 id="sec-62-1"><span class="todo TODO">TODO</span> <a href="https://github.com/porterjamesj/virtualenvwrapper.el#automatically-activating-a-virtualenv-in-a-particular-project">Automatically activate</a></h3>
 </div>
 </div>
 
-<div id="outline-container-sec-62" class="outline-2">
-<h2 id="sec-62">windmove</h2>
-<div class="outline-text-2" id="text-62">
+<div id="outline-container-sec-63" class="outline-2">
+<h2 id="sec-63">windmove</h2>
+<div class="outline-text-2" id="text-63">
 <div class="org-src-container">
 
 <pre class="src src-emacs-lisp">(<span class="org-keyword">require</span> '<span class="org-constant">windmove</span>)
 
 (windmove-default-keybindings 'hyper)
 (setq windmove-wrap-around t)
+
+(global-set-key (kbd <span class="org-string">"H-SPC"</span>) 'windmove-right)
+(global-set-key (kbd <span class="org-string">"H-S-SPC"</span>) 'windmove-left)
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-sec-63" class="outline-2">
-<h2 id="sec-63">winner-mode</h2>
-<div class="outline-text-2" id="text-63">
+<div id="outline-container-sec-64" class="outline-2">
+<h2 id="sec-64">winner-mode</h2>
+<div class="outline-text-2" id="text-64">
 <p>
 Remember window configurations.
 </p>
@@ -4317,9 +4331,9 @@ Remember window configurations.
 </div>
 </div>
 
-<div id="outline-container-sec-64" class="outline-2">
-<h2 id="sec-64">whitespace</h2>
-<div class="outline-text-2" id="text-64">
+<div id="outline-container-sec-65" class="outline-2">
+<h2 id="sec-65">whitespace</h2>
+<div class="outline-text-2" id="text-65">
 <p>
 Take care of some whitespace issues.
 </p>
@@ -4346,9 +4360,9 @@ Take care of some whitespace issues.
 </div>
 </div>
 
-<div id="outline-container-sec-65" class="outline-2">
-<h2 id="sec-65">writeroom-mode</h2>
-<div class="outline-text-2" id="text-65">
+<div id="outline-container-sec-66" class="outline-2">
+<h2 id="sec-66">writeroom-mode</h2>
+<div class="outline-text-2" id="text-66">
 <p>
 Hack in a scale adjustment and alter width to fit.  There's likely a
 much better way to accomplish this.
@@ -4380,9 +4394,9 @@ much better way to accomplish this.
 </div>
 </div>
 
-<div id="outline-container-sec-66" class="outline-2">
-<h2 id="sec-66">yaml-mode</h2>
-<div class="outline-text-2" id="text-66">
+<div id="outline-container-sec-67" class="outline-2">
+<h2 id="sec-67">yaml-mode</h2>
+<div class="outline-text-2" id="text-67">
 <div class="org-src-container">
 
 <pre class="src src-emacs-lisp">(<span class="org-keyword">require</span> '<span class="org-constant">yaml-mode</span>)
@@ -4393,9 +4407,9 @@ much better way to accomplish this.
 </div>
 </div>
 
-<div id="outline-container-sec-67" class="outline-2">
-<h2 id="sec-67">yasnippet</h2>
-<div class="outline-text-2" id="text-67">
+<div id="outline-container-sec-68" class="outline-2">
+<h2 id="sec-68">yasnippet</h2>
+<div class="outline-text-2" id="text-68">
 <div class="org-src-container">
 
 <pre class="src src-emacs-lisp">(<span class="org-keyword">require</span> '<span class="org-constant">yasnippet</span>)
@@ -4408,7 +4422,7 @@ much better way to accomplish this.
 </div>
 <div id="postamble" class="status">
 <p class="author">Kris Molendyke</p>
-<p class="date">2015-01-12 Mon 11:32</p>
+<p class="date">2015-01-16 Fri 13:35</p>
 <p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 25.0.50.1 (<a href="http://orgmode.org">Org</a> mode 8.2.4)</p>
 </div>
 </body>
