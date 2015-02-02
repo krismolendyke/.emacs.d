@@ -1086,11 +1086,12 @@ function.
                                      " ✔"  ; right bracket around the sole remaining completion
                                      ))
 
-    (add-hook 'ido-minibuffer-setup-hook
-              #'(lambda ()
-                  "Bump up minibuffer text size and height."
-                  (text-scale-set 3)
-                  (setq max-mini-window-height 20)))
+    (defun k20e/ido-minibuffer-setup-hook ()
+      "Bump up minibuffer text size and height."
+      (text-scale-set 3)
+      (setq max-mini-window-height 20))
+
+    (add-hook 'ido-minibuffer-setup-hook 'k20e/ido-minibuffer-setup-hook)
 
     ;; Avoid `ido-vertical-mode' from eating M-p.
     (setq ido-vertical-define-keys nil)
