@@ -1096,7 +1096,7 @@ function.
     ;; Avoid `ido-vertical-mode' from eating M-p.
     (setq ido-vertical-define-keys nil)
 
-    (defun k20e/ido-setup ()
+    (defun k20e/ido-setup-hook ()
       "Setup key map and theme faces."
       (define-key ido-completion-map (kbd "C-n") 'ido-next-match)
       (define-key ido-completion-map (kbd "C-p") 'ido-prev-match)
@@ -1114,7 +1114,7 @@ function.
                           `(ido-only-match ((t (:foreground ,match))))
                           `(flx-highlight-face ((t (:foreground ,highlight
                                                     :underline nil)))))))
-    (add-hook 'ido-setup-hook 'k20e/ido-setup)
+    (add-hook 'ido-setup-hook 'k20e/ido-setup-hook)
 
     (ido-mode t)
     (ido-vertical-mode t)
