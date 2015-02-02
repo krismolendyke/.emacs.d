@@ -1067,68 +1067,91 @@ function.
     (require 'ido)
     (require 'ido-vertical-mode)
 
-    (setq ido-save-directory-list-file (expand-file-name ".ido.last" k20e/dropbox-directory))
-    (add-to-list 'ido-ignore-files "\\.DS_Store")
-
-    ;; Boring arrows be gone!
-    (setq ido-vertical-decorations '("\n"  ; left bracket around prospect list
-                                     ""    ; right bracket around prospect list
-                                     "\n"  ; separator between prospects, depends on `ido-separator`
-                                     "\n▼" ; inserted at the end of a truncated list of prospects
-                                     "["   ; left bracket around common match string
-                                     "]"   ; right bracket around common match string
-                                     " ✘"  ; no match
-                                     " ✔"  ; matched
-                                     " [Not readable]"
-                                     " [Too big]"
-                                     " ?"  ; confirm
-                                     "\n"  ; left bracket around the sole remaining completion
-                                     " ✔"  ; right bracket around the sole remaining completion
-                                     ))
-
-    (defun k20e/ido-minibuffer-setup-hook ()
-      "Bump up minibuffer text size and height."
-      (text-scale-set 3)
-      (setq max-mini-window-height 20))
-
-    (add-hook 'ido-minibuffer-setup-hook 'k20e/ido-minibuffer-setup-hook)
-
-    ;; Avoid `ido-vertical-mode' from eating M-p.
-    (setq ido-vertical-define-keys nil)
-
-    (defun k20e/ido-setup-hook ()
-      "Setup key map and theme faces."
-      (define-key ido-completion-map (kbd "C-n") 'ido-next-match)
-      (define-key ido-completion-map (kbd "C-p") 'ido-prev-match)
-      (define-key ido-completion-map (kbd "<up>") 'ido-prev-match)
-      (define-key ido-completion-map (kbd "<down>") 'ido-next-match)
-      (define-key ido-completion-map (kbd "<left>") 'ido-vertical-prev-match)
-      (define-key ido-completion-map (kbd "<right>") 'ido-vertical-next-match)
-
-      (define-key ido-completion-map (kbd "C-h") 'delete-backward-char)
-
-      ;; Theme!
-      (let ((match (face-attribute 'font-lock-string-face :foreground))
-            (highlight (face-attribute 'font-lock-keyword-face :foreground)))
-        (custom-set-faces `(ido-first-match ((t (:foreground ,match))))
-                          `(ido-only-match ((t (:foreground ,match))))
-                          `(flx-highlight-face ((t (:foreground ,highlight
-                                                    :underline nil)))))))
-    (add-hook 'ido-setup-hook 'k20e/ido-setup-hook)
-
-    (ido-mode t)
-    (ido-vertical-mode t)
-    (ido-ubiquitous-mode t)
-    (flx-ido-mode t)
-
-    (setq ido-enable-flex-matching t
+    (setq ido-save-directory-list-file (expand-file-name ".ido.last" k20e/dropbox-directory)
+          ido-enable-flex-matching t
           ido-auto-merge-work-directories-length -1
           ido-create-new-buffer 'always
           ido-show-dot-for-dired t
           ido-max-file-prompt-width 0.2
           ido-use-faces t
           flx-ido-use-faces t)
+
+    (add-to-list 'ido-ignore-files "\\.DS_Store")
   #+END_SRC
+
+  Avoid =ido-vertical-mode= from eating =M-p=.
+
+  #+BEGIN_SRC emacs-lisp
+    (setq ido-vertical-define-keys nil)
+  #+END_SRC
+
+** Interface
+
+   #+BEGIN_SRC emacs-lisp
+     (setq ido-vertical-decorations '("\n"  ; left bracket around prospect list
+                                      ""    ; right bracket around prospect list
+                                      "\n"  ; separator between prospects, depends on `ido-separator`
+                                      "\n▼" ; inserted at the end of a truncated list of prospects
+                                      "["   ; left bracket around common match string
+                                      "]"   ; right bracket around common match string
+                                      " ✘"  ; no match
+                                      " ✔"  ; matched
+                                      " [Not readable]"
+                                      " [Too big]"
+                                      " ?"  ; confirm
+                                      "\n"  ; left bracket around the sole remaining completion
+                                      " ✔"  ; right bracket around the sole remaining completion
+                                      ))
+   #+END_SRC
+
+** Minibuffer
+
+   Scale up the minibuffer text size and limit how tall it can get.
+
+   #+BEGIN_SRC emacs-lisp
+     (defun k20e/ido-minibuffer-setup-hook ()
+       "Bump up minibuffer text size and height."
+       (text-scale-set 3)
+       (setq max-mini-window-height 20))
+
+     (add-hook 'ido-minibuffer-setup-hook 'k20e/ido-minibuffer-setup-hook)
+   #+END_SRC
+
+** Keys and Theme
+
+   #+BEGIN_SRC emacs-lisp
+     (defun k20e/ido-setup-hook ()
+       "Setup key map and theme faces."
+       (define-key ido-completion-map (kbd "C-n") 'ido-next-match)
+       (define-key ido-completion-map (kbd "C-p") 'ido-prev-match)
+       (define-key ido-completion-map (kbd "<up>") 'ido-prev-match)
+       (define-key ido-completion-map (kbd "<down>") 'ido-next-match)
+       (define-key ido-completion-map (kbd "<left>") 'ido-vertical-prev-match)
+       (define-key ido-completion-map (kbd "<right>") 'ido-vertical-next-match)
+
+       (define-key ido-completion-map (kbd "C-h") 'delete-backward-char)
+
+       ;; Theme!
+       (let ((match (face-attribute 'font-lock-string-face :foreground))
+             (highlight (face-attribute 'font-lock-keyword-face :foreground)))
+         (custom-set-faces `(ido-first-match ((t (:foreground ,match))))
+                           `(ido-only-match ((t (:foreground ,match))))
+                           `(flx-highlight-face ((t (:foreground ,highlight
+                                                     :underline nil)))))))
+
+     (add-hook 'ido-setup-hook 'k20e/ido-setup-hook)
+   #+END_SRC
+
+** Enable
+
+   Vertical, everywhere, fuzzy matching.
+
+   #+BEGIN_SRC emacs-lisp
+     (ido-mode t)
+     (ido-vertical-mode t)
+     (ido-ubiquitous-mode t)
+     (flx-ido-mode t)
+   #+END_SRC
 
 * IELM
 
