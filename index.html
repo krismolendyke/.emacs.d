@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>Literate <code>.emacs.d</code></title>
-<!-- 2015-02-02 Mon 12:06 -->
+<!-- 2015-02-02 Mon 12:22 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Kris Molendyke" />
@@ -1579,7 +1579,14 @@ function.
 <li><a href="#sec-31">highlight-parentheses</a></li>
 <li><a href="#sec-32">hyperspec</a></li>
 <li><a href="#sec-33">ibuffer</a></li>
-<li><a href="#sec-34">ido</a></li>
+<li><a href="#sec-34">ido</a>
+<ul>
+<li><a href="#sec-34-1">Interface</a></li>
+<li><a href="#sec-34-2">Minibuffer</a></li>
+<li><a href="#sec-34-3">Keys and Theme</a></li>
+<li><a href="#sec-34-4">Enable</a></li>
+</ul>
+</li>
 <li><a href="#sec-35">IELM</a></li>
 <li><a href="#sec-36">I'm Feeling Lucky</a></li>
 <li><a href="#sec-37">isearch</a></li>
@@ -3086,11 +3093,36 @@ icons into buffers.
 (<span class="org-keyword">require</span> '<span class="org-constant">ido</span>)
 (<span class="org-keyword">require</span> '<span class="org-constant">ido-vertical-mode</span>)
 
-(setq ido-save-directory-list-file (expand-file-name <span class="org-string">".ido.last"</span> k20e/dropbox-directory))
-(add-to-list 'ido-ignore-files <span class="org-string">"\\.DS_Store"</span>)
+(setq ido-save-directory-list-file (expand-file-name <span class="org-string">".ido.last"</span> k20e/dropbox-directory)
+      ido-enable-flex-matching t
+      ido-auto-merge-work-directories-length -1
+      ido-create-new-buffer 'always
+      ido-show-dot-for-dired t
+      ido-max-file-prompt-width 0.2
+      ido-use-faces t
+      flx-ido-use-faces t)
 
-<span class="org-comment-delimiter">;; </span><span class="org-comment">Boring arrows be gone!</span>
-(setq ido-vertical-decorations '(<span class="org-string">"\n"</span>  <span class="org-comment-delimiter">; </span><span class="org-comment">left bracket around prospect list</span>
+(add-to-list 'ido-ignore-files <span class="org-string">"\\.DS_Store"</span>)
+</pre>
+</div>
+
+<p>
+Avoid <code>ido-vertical-mode</code> from eating <code>M-p</code>.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-emacs-lisp">(setq ido-vertical-define-keys nil)
+</pre>
+</div>
+</div>
+
+<div id="outline-container-sec-34-1" class="outline-3">
+<h3 id="sec-34-1">Interface</h3>
+<div class="outline-text-3" id="text-34-1">
+<div class="org-src-container">
+
+<pre class="src src-emacs-lisp">(setq ido-vertical-decorations '(<span class="org-string">"\n"</span>  <span class="org-comment-delimiter">; </span><span class="org-comment">left bracket around prospect list</span>
                                  <span class="org-string">""</span>    <span class="org-comment-delimiter">; </span><span class="org-comment">right bracket around prospect list</span>
                                  <span class="org-string">"\n"</span>  <span class="org-comment-delimiter">; </span><span class="org-comment">separator between prospects, depends on `ido-separator`</span>
                                  <span class="org-string">"\n&#9660;"</span> <span class="org-comment-delimiter">; </span><span class="org-comment">inserted at the end of a truncated list of prospects</span>
@@ -3104,18 +3136,37 @@ icons into buffers.
                                  <span class="org-string">"\n"</span>  <span class="org-comment-delimiter">; </span><span class="org-comment">left bracket around the sole remaining completion</span>
                                  <span class="org-string">" &#10004;"</span>  <span class="org-comment-delimiter">; </span><span class="org-comment">right bracket around the sole remaining completion</span>
                                  ))
+</pre>
+</div>
+</div>
+</div>
 
-(<span class="org-keyword">defun</span> <span class="org-function-name">k20e/ido-minibuffer-setup-hook</span> ()
+<div id="outline-container-sec-34-2" class="outline-3">
+<h3 id="sec-34-2">Minibuffer</h3>
+<div class="outline-text-3" id="text-34-2">
+<p>
+Scale up the minibuffer text size and limit how tall it can get.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-emacs-lisp">(<span class="org-keyword">defun</span> <span class="org-function-name">k20e/ido-minibuffer-setup-hook</span> ()
   <span class="org-doc">"Bump up minibuffer text size and height."</span>
   (text-scale-set 3)
   (setq max-mini-window-height 20))
 
 (add-hook 'ido-minibuffer-setup-hook 'k20e/ido-minibuffer-setup-hook)
+</pre>
+</div>
+</div>
+</div>
 
-<span class="org-comment-delimiter">;; </span><span class="org-comment">Avoid `</span><span class="org-constant"><span class="org-comment">ido-vertical-mode</span></span><span class="org-comment">' from eating M-p.</span>
-(setq ido-vertical-define-keys nil)
+<div id="outline-container-sec-34-3" class="outline-3">
+<h3 id="sec-34-3">Keys and Theme</h3>
+<div class="outline-text-3" id="text-34-3">
+<div class="org-src-container">
 
-(<span class="org-keyword">defun</span> <span class="org-function-name">k20e/ido-setup-hook</span> ()
+<pre class="src src-emacs-lisp">(<span class="org-keyword">defun</span> <span class="org-function-name">k20e/ido-setup-hook</span> ()
   <span class="org-doc">"Setup key map and theme faces."</span>
   (define-key ido-completion-map (kbd <span class="org-string">"C-n"</span>) 'ido-next-match)
   (define-key ido-completion-map (kbd <span class="org-string">"C-p"</span>) 'ido-prev-match)
@@ -3133,21 +3184,28 @@ icons into buffers.
                       `(ido-only-match ((t (<span class="org-builtin">:foreground</span> ,match))))
                       `(flx-highlight-face ((t (<span class="org-builtin">:foreground</span> ,highlight
                                                 <span class="org-builtin">:underline</span> nil)))))))
-(add-hook 'ido-setup-hook 'k20e/ido-setup-hook)
 
-(ido-mode t)
+(add-hook 'ido-setup-hook 'k20e/ido-setup-hook)
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-34-4" class="outline-3">
+<h3 id="sec-34-4">Enable</h3>
+<div class="outline-text-3" id="text-34-4">
+<p>
+Vertical, everywhere, fuzzy matching.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-emacs-lisp">(ido-mode t)
 (ido-vertical-mode t)
 (ido-ubiquitous-mode t)
 (flx-ido-mode t)
-
-(setq ido-enable-flex-matching t
-      ido-auto-merge-work-directories-length -1
-      ido-create-new-buffer 'always
-      ido-show-dot-for-dired t
-      ido-max-file-prompt-width 0.2
-      ido-use-faces t
-      flx-ido-use-faces t)
 </pre>
+</div>
 </div>
 </div>
 </div>
@@ -4424,7 +4482,7 @@ much better way to accomplish this.
 </div>
 <div id="postamble" class="status">
 <p class="author">Kris Molendyke</p>
-<p class="date">2015-02-02 Mon 12:06</p>
+<p class="date">2015-02-02 Mon 12:21</p>
 <p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 25.0.50.1 (<a href="http://orgmode.org">Org</a> mode 8.2.4)</p>
 </div>
 </body>
