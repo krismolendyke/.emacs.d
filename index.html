@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>Literate <code>.emacs.d</code></title>
-<!-- 2015-02-02 Mon 12:04 -->
+<!-- 2015-02-02 Mon 12:06 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Kris Molendyke" />
@@ -3115,7 +3115,7 @@ icons into buffers.
 <span class="org-comment-delimiter">;; </span><span class="org-comment">Avoid `</span><span class="org-constant"><span class="org-comment">ido-vertical-mode</span></span><span class="org-comment">' from eating M-p.</span>
 (setq ido-vertical-define-keys nil)
 
-(<span class="org-keyword">defun</span> <span class="org-function-name">k20e/ido-setup</span> ()
+(<span class="org-keyword">defun</span> <span class="org-function-name">k20e/ido-setup-hook</span> ()
   <span class="org-doc">"Setup key map and theme faces."</span>
   (define-key ido-completion-map (kbd <span class="org-string">"C-n"</span>) 'ido-next-match)
   (define-key ido-completion-map (kbd <span class="org-string">"C-p"</span>) 'ido-prev-match)
@@ -3133,7 +3133,7 @@ icons into buffers.
                       `(ido-only-match ((t (<span class="org-builtin">:foreground</span> ,match))))
                       `(flx-highlight-face ((t (<span class="org-builtin">:foreground</span> ,highlight
                                                 <span class="org-builtin">:underline</span> nil)))))))
-(add-hook 'ido-setup-hook 'k20e/ido-setup)
+(add-hook 'ido-setup-hook 'k20e/ido-setup-hook)
 
 (ido-mode t)
 (ido-vertical-mode t)
@@ -4424,7 +4424,7 @@ much better way to accomplish this.
 </div>
 <div id="postamble" class="status">
 <p class="author">Kris Molendyke</p>
-<p class="date">2015-02-02 Mon 12:03</p>
+<p class="date">2015-02-02 Mon 12:06</p>
 <p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 25.0.50.1 (<a href="http://orgmode.org">Org</a> mode 8.2.4)</p>
 </div>
 </body>
