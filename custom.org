@@ -243,6 +243,16 @@ function.
      (k20e/enable-commands)
    #+END_SRC
 
+** Inferior Shell
+
+   I use [[https://github.com/krismolendyke/.zsh][Zsh]] in [[#multi-term][=multi-term=]] but I've customized it so much that it
+   often interferes with simple inferior shell tasks.  Defaulting to
+   =sh= seems to work well.
+
+   #+BEGIN_SRC emacs-lisp
+     (setq shell-file-name "/bin/sh")
+   #+END_SRC
+
 ** TODO Defaults for Review
 
    This is a bunch of stuff that I just dumped here and need to go through yet.
