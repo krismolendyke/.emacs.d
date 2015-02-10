@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>Literate <code>.emacs.d</code></title>
-<!-- 2015-02-02 Mon 12:22 -->
+<!-- 2015-02-10 Tue 18:49 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Kris Molendyke" />
@@ -1523,7 +1523,8 @@ function.
 <li><a href="#sec-7-1"><code>cycle-spacing</code></a></li>
 <li><a href="#sec-7-2">Backup Files</a></li>
 <li><a href="#sec-7-3">Enabled Commands</a></li>
-<li><a href="#sec-7-4"><span class="todo TODO">TODO</span> Defaults for Review</a></li>
+<li><a href="#sec-7-4">Inferior Shell</a></li>
+<li><a href="#sec-7-5"><span class="todo TODO">TODO</span> Defaults for Review</a></li>
 </ul>
 </li>
 <li><a href="#sec-8">k20e Custom Functions</a>
@@ -2003,8 +2004,25 @@ commands disables the prompt.
 </div>
 
 <div id="outline-container-sec-7-4" class="outline-3">
-<h3 id="sec-7-4"><span class="todo TODO">TODO</span> Defaults for Review</h3>
+<h3 id="sec-7-4">Inferior Shell</h3>
 <div class="outline-text-3" id="text-7-4">
+<p>
+I use <a href="https://github.com/krismolendyke/.zsh">Zsh</a> in <a href="#multi-term"><code>multi-term</code></a> but I've customized it so much that it
+often interferes with simple inferior shell tasks.  Defaulting to
+<code>sh</code> seems to work well.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-emacs-lisp">(setq shell-file-name <span class="org-string">"/bin/sh"</span>)
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-7-5" class="outline-3">
+<h3 id="sec-7-5"><span class="todo TODO">TODO</span> Defaults for Review</h3>
+<div class="outline-text-3" id="text-7-5">
 <p>
 This is a bunch of stuff that I just dumped here and need to go through yet.
 </p>
@@ -3561,6 +3579,7 @@ Keep preferences sync'd across machines.
 (global-set-key (kbd <span class="org-string">"&lt;f12&gt;"</span>) 'org-agenda-list)
 
 (define-key org-mode-map (kbd <span class="org-string">"M-h"</span>) 'backward-kill-word)
+(define-key org-mode-map (kbd <span class="org-string">"H-&lt;tab&gt;"</span>) 'pcomplete)
 </pre>
 </div>
 </div>
@@ -4482,7 +4501,7 @@ much better way to accomplish this.
 </div>
 <div id="postamble" class="status">
 <p class="author">Kris Molendyke</p>
-<p class="date">2015-02-02 Mon 12:21</p>
+<p class="date">2015-02-10 Tue 18:39</p>
 <p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 25.0.50.1 (<a href="http://orgmode.org">Org</a> mode 8.2.4)</p>
 </div>
 </body>
