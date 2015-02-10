@@ -1420,6 +1420,7 @@ function.
      (global-set-key (kbd "<f12>") 'org-agenda-list)
 
      (define-key org-mode-map (kbd "M-h") 'backward-kill-word)
+     (define-key org-mode-map (kbd "H-<tab>") 'pcomplete)
    #+END_SRC
 
 ** Export
