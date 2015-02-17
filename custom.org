@@ -1841,13 +1841,13 @@ function.
   #+BEGIN_SRC emacs-lisp
     (require 'term)
 
-    (defun k20e/term-hook ()
+    (defun k20e/term-mode-hook ()
       "Configure terminal mode.
     `autopair-mode' interferes with `term-send-raw' bounding on
     `RET' so it is disabled."
       (if (fboundp 'autopair-mode) (autopair-mode -1)))
 
-    (add-hook 'term-mode-hook 'k20e/term-hook)
+    (add-hook 'term-mode-hook 'k20e/term-mode-hook)
   #+END_SRC
 
 ** Key Bindings
