@@ -2042,7 +2042,8 @@ function.
     (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
 
     (defun k20e/web-mode-hook ()
-      (setq web-mode-engines-alist '(("django" . "\\.html?\\'"))))
+      (setq web-mode-engines-alist '(("django" . "\\.html?\\'"))
+            web-mode-markup-indent-offset 2))
 
     (add-hook 'web-mode-hook 'k20e/web-mode-hook)
   #+END_SRC
