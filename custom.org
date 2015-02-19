@@ -2002,6 +2002,19 @@ function.
     (global-set-key (kbd "H-S-SPC") 'windmove-left)
   #+END_SRC
 
+* web-mode
+
+  #+BEGIN_SRC emacs-lisp
+    (require 'web-mode)
+
+    (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
+
+    (defun k20e/web-mode-hook ()
+      (setq web-mode-engines-alist '(("django" . "\\.html?\\'"))))
+
+    (add-hook 'web-mode-hook 'k20e/web-mode-hook)
+  #+END_SRC
+
 * winner-mode
 
   Remember window configurations.
