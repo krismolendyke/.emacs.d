@@ -1726,7 +1726,14 @@ function.
     (require 'rst)
 
     (defun k20e/rst-mode-hook ()
-      (setq fill-column 78))
+      (setq fill-column 78)
+      (set-default 'rst-preferred-adornments '((?= simple 0)
+                                               (?- simple 0)
+                                               (?~ simple 0)
+                                               (?+ simple 0)
+                                               (?` simple 0)
+                                               (?# simple 0)
+                                               (?@ simple 0))))
 
     (add-hook 'rst-mode-hook 'k20e/rst-mode-hook)
   #+END_SRC
