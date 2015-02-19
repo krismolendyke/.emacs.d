@@ -1220,38 +1220,6 @@ function.
     (keyfreq-autosave-mode 1)
   #+END_SRC
 
-* Open Source Licenses
-
-  #+BEGIN_SRC emacs-lisp
-    (defun k20e/insert-mit-license ()
-      "Insert MIT license file contents.
-    Populate the current year and user name."
-      (interactive)
-      (with-current-buffer (get-buffer-create "LICENSE.txt")
-        (insert (format "The MIT License (MIT)
-
-    Copyright (c) %s %s
-
-    Permission is hereby granted, free of charge, to any person obtaining a copy
-    of this software and associated documentation files (the \"Software\"), to deal
-    in the Software without restriction, including without limitation the rights
-    to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-    copies of the Software, and to permit persons to whom the Software is
-    furnished to do so, subject to the following conditions:
-
-    The above copyright notice and this permission notice shall be included in
-    all copies or substantial portions of the Software.
-
-    THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-    AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-    LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-    THE SOFTWARE.
-    " (format-time-string "%Y") (user-full-name)))))
-  #+END_SRC
-
 * markdown-mode
 
   #+BEGIN_SRC emacs-lisp
@@ -1410,6 +1378,38 @@ function.
 
   #+BEGIN_SRC emacs-lisp
     (setq mc/list-file (expand-file-name ".mc-lists.el" k20e/dropbox-directory))
+  #+END_SRC
+
+* Open Source Licenses
+
+  #+BEGIN_SRC emacs-lisp
+    (defun k20e/insert-mit-license ()
+      "Insert MIT license file contents.
+    Populate the current year and user name."
+      (interactive)
+      (with-current-buffer (get-buffer-create "LICENSE.txt")
+        (insert (format "The MIT License (MIT)
+
+    Copyright (c) %s %s
+
+    Permission is hereby granted, free of charge, to any person obtaining a copy
+    of this software and associated documentation files (the \"Software\"), to deal
+    in the Software without restriction, including without limitation the rights
+    to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+    copies of the Software, and to permit persons to whom the Software is
+    furnished to do so, subject to the following conditions:
+
+    The above copyright notice and this permission notice shall be included in
+    all copies or substantial portions of the Software.
+
+    THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+    AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+    LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+    THE SOFTWARE.
+    " (format-time-string "%Y") (user-full-name)))))
   #+END_SRC
 
 * org-mode
