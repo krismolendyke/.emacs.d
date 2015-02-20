@@ -2037,11 +2037,13 @@ function.
 * web-mode
 
   #+BEGIN_SRC emacs-lisp
+    (require 'autopair)
     (require 'web-mode)
 
     (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
 
     (defun k20e/web-mode-hook ()
+      (autopair-mode -1)
       (setq web-mode-engines-alist '(("django" . "\\.html?\\'"))
             web-mode-markup-indent-offset 2))
 
