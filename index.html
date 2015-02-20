@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>Literate <code>.emacs.d</code></title>
-<!-- 2015-02-19 Thu 13:14 -->
+<!-- 2015-02-20 Fri 18:02 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Kris Molendyke" />
@@ -4444,11 +4444,13 @@ Name multiple identical buffer names in a sensible manner.
 <div class="outline-text-2" id="text-65">
 <div class="org-src-container">
 
-<pre class="src src-emacs-lisp">(<span class="org-keyword">require</span> '<span class="org-constant">web-mode</span>)
+<pre class="src src-emacs-lisp">(<span class="org-keyword">require</span> '<span class="org-constant">autopair</span>)
+(<span class="org-keyword">require</span> '<span class="org-constant">web-mode</span>)
 
 (add-to-list 'auto-mode-alist '(<span class="org-string">"\\.html?\\'"</span> . web-mode))
 
 (<span class="org-keyword">defun</span> <span class="org-function-name">k20e/web-mode-hook</span> ()
+  (autopair-mode -1)
   (setq web-mode-engines-alist '((<span class="org-string">"django"</span> . <span class="org-string">"\\.html?\\'"</span>))
         web-mode-markup-indent-offset 2))
 
@@ -4566,7 +4568,7 @@ much better way to accomplish this.
 </div>
 <div id="postamble" class="status">
 <p class="author">Kris Molendyke</p>
-<p class="date">2015-02-19 Thu 07:55</p>
+<p class="date">2015-02-20 Fri 18:01</p>
 <p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 25.0.50.1 (<a href="http://orgmode.org">Org</a> mode 8.2.4)</p>
 </div>
 </body>
