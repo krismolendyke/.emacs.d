@@ -43,7 +43,6 @@
 (depends-on "s")
 (depends-on "shut-up")
 (depends-on "smex")
-(depends-on "virtualenvwrapper")
 (depends-on "visual-fill-column")
 (depends-on "web-mode")
 (depends-on "writeroom-mode")

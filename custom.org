@@ -2012,16 +2012,6 @@ function.
     (setq uniquify-buffer-name-style 'forward)
   #+END_SRC
 
-* virtualenvwrapper
-
-  #+BEGIN_SRC emacs-lisp
-    (require 'virtualenvwrapper)
-
-    (venv-initialize-interactive-shells)
-  #+END_SRC
-
-** TODO [[https://github.com/porterjamesj/virtualenvwrapper.el#automatically-activating-a-virtualenv-in-a-particular-project][Automatically activate]]
-
 * windmove
 
   #+BEGIN_SRC emacs-lisp
