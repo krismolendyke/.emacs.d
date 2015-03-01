@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>Literate <code>.emacs.d</code></title>
-<!-- 2015-02-20 Fri 18:02 -->
+<!-- 2015-03-01 Sun 17:06 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Kris Molendyke" />
@@ -1655,18 +1655,13 @@ function.
 </ul>
 </li>
 <li><a href="#sec-62">uniquify</a></li>
-<li><a href="#sec-63">virtualenvwrapper</a>
-<ul>
-<li><a href="#sec-63-1"><span class="todo TODO">TODO</span> Automatically activate</a></li>
-</ul>
-</li>
-<li><a href="#sec-64">windmove</a></li>
-<li><a href="#sec-65">web-mode</a></li>
-<li><a href="#sec-66">winner-mode</a></li>
-<li><a href="#sec-67">whitespace</a></li>
-<li><a href="#sec-68">writeroom-mode</a></li>
-<li><a href="#sec-69">yaml-mode</a></li>
-<li><a href="#sec-70">yasnippet</a></li>
+<li><a href="#sec-63">windmove</a></li>
+<li><a href="#sec-64">web-mode</a></li>
+<li><a href="#sec-65">winner-mode</a></li>
+<li><a href="#sec-66">whitespace</a></li>
+<li><a href="#sec-67">writeroom-mode</a></li>
+<li><a href="#sec-68">yaml-mode</a></li>
+<li><a href="#sec-69">yasnippet</a></li>
 </ul>
 </div>
 </div>
@@ -3966,7 +3961,7 @@ Insert state change notes and time stamps into a drawer rather than simply
   <span class="org-comment-delimiter">;; </span><span class="org-comment">Do not drive me crazy with extra-dumb indentation!</span>
   (setq electric-indent-inhibit t)
   (linum-mode 1)
-  <span class="org-comment-delimiter">;; </span><span class="org-comment">(flycheck-mode 1)</span>
+  (flycheck-mode 1)
   (setq fill-column 118
         autopair-handle-action-fns (list 'autopair-default-handle-action
                                          'autopair-python-triple-quote-action))
@@ -4406,25 +4401,8 @@ Name multiple identical buffer names in a sensible manner.
 </div>
 
 <div id="outline-container-sec-63" class="outline-2">
-<h2 id="sec-63">virtualenvwrapper</h2>
+<h2 id="sec-63">windmove</h2>
 <div class="outline-text-2" id="text-63">
-<div class="org-src-container">
-
-<pre class="src src-emacs-lisp">(<span class="org-keyword">require</span> '<span class="org-constant">virtualenvwrapper</span>)
-
-(venv-initialize-interactive-shells)
-</pre>
-</div>
-</div>
-
-<div id="outline-container-sec-63-1" class="outline-3">
-<h3 id="sec-63-1"><span class="todo TODO">TODO</span> <a href="https://github.com/porterjamesj/virtualenvwrapper.el#automatically-activating-a-virtualenv-in-a-particular-project">Automatically activate</a></h3>
-</div>
-</div>
-
-<div id="outline-container-sec-64" class="outline-2">
-<h2 id="sec-64">windmove</h2>
-<div class="outline-text-2" id="text-64">
 <div class="org-src-container">
 
 <pre class="src src-emacs-lisp">(<span class="org-keyword">require</span> '<span class="org-constant">windmove</span>)
@@ -4439,9 +4417,9 @@ Name multiple identical buffer names in a sensible manner.
 </div>
 </div>
 
-<div id="outline-container-sec-65" class="outline-2">
-<h2 id="sec-65">web-mode</h2>
-<div class="outline-text-2" id="text-65">
+<div id="outline-container-sec-64" class="outline-2">
+<h2 id="sec-64">web-mode</h2>
+<div class="outline-text-2" id="text-64">
 <div class="org-src-container">
 
 <pre class="src src-emacs-lisp">(<span class="org-keyword">require</span> '<span class="org-constant">autopair</span>)
@@ -4460,9 +4438,9 @@ Name multiple identical buffer names in a sensible manner.
 </div>
 </div>
 
-<div id="outline-container-sec-66" class="outline-2">
-<h2 id="sec-66">winner-mode</h2>
-<div class="outline-text-2" id="text-66">
+<div id="outline-container-sec-65" class="outline-2">
+<h2 id="sec-65">winner-mode</h2>
+<div class="outline-text-2" id="text-65">
 <p>
 Remember window configurations.
 </p>
@@ -4477,9 +4455,9 @@ Remember window configurations.
 </div>
 </div>
 
-<div id="outline-container-sec-67" class="outline-2">
-<h2 id="sec-67">whitespace</h2>
-<div class="outline-text-2" id="text-67">
+<div id="outline-container-sec-66" class="outline-2">
+<h2 id="sec-66">whitespace</h2>
+<div class="outline-text-2" id="text-66">
 <p>
 Take care of some whitespace issues.
 </p>
@@ -4506,9 +4484,9 @@ Take care of some whitespace issues.
 </div>
 </div>
 
-<div id="outline-container-sec-68" class="outline-2">
-<h2 id="sec-68">writeroom-mode</h2>
-<div class="outline-text-2" id="text-68">
+<div id="outline-container-sec-67" class="outline-2">
+<h2 id="sec-67">writeroom-mode</h2>
+<div class="outline-text-2" id="text-67">
 <p>
 Hack in a scale adjustment and alter width to fit.  There's likely a
 much better way to accomplish this.
@@ -4540,9 +4518,9 @@ much better way to accomplish this.
 </div>
 </div>
 
-<div id="outline-container-sec-69" class="outline-2">
-<h2 id="sec-69">yaml-mode</h2>
-<div class="outline-text-2" id="text-69">
+<div id="outline-container-sec-68" class="outline-2">
+<h2 id="sec-68">yaml-mode</h2>
+<div class="outline-text-2" id="text-68">
 <div class="org-src-container">
 
 <pre class="src src-emacs-lisp">(<span class="org-keyword">require</span> '<span class="org-constant">yaml-mode</span>)
@@ -4553,9 +4531,9 @@ much better way to accomplish this.
 </div>
 </div>
 
-<div id="outline-container-sec-70" class="outline-2">
-<h2 id="sec-70">yasnippet</h2>
-<div class="outline-text-2" id="text-70">
+<div id="outline-container-sec-69" class="outline-2">
+<h2 id="sec-69">yasnippet</h2>
+<div class="outline-text-2" id="text-69">
 <div class="org-src-container">
 
 <pre class="src src-emacs-lisp">(<span class="org-keyword">require</span> '<span class="org-constant">yasnippet</span>)
@@ -4568,7 +4546,7 @@ much better way to accomplish this.
 </div>
 <div id="postamble" class="status">
 <p class="author">Kris Molendyke</p>
-<p class="date">2015-02-20 Fri 18:01</p>
+<p class="date">2015-02-27 Fri 17:38</p>
 <p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 25.0.50.1 (<a href="http://orgmode.org">Org</a> mode 8.2.4)</p>
 </div>
 </body>
