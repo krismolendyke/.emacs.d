@@ -1685,9 +1685,10 @@ function.
 * powerline
 
   #+BEGIN_SRC emacs-lisp
-    ;; (require 'powerline)
-    ;; (set-default 'powerline-default-separator 'zigzag)
-    ;; (powerline-default-theme)
+    (require 'powerline)
+
+    (set-default 'powerline-default-separator 'nil)
+    (powerline-default-theme)
   #+END_SRC
 
 * python
