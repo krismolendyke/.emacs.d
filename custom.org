@@ -2035,8 +2035,8 @@ function.
 
     (defun k20e/web-mode-hook ()
       (autopair-mode -1)
-      (setq web-mode-engines-alist '(("django" . "\\.html?\\'"))
-            web-mode-markup-indent-offset 2))
+      (set-default 'web-mode-engines-alist '(("django" . "\\.html?\\'")))
+      (setq web-mode-markup-indent-offset 2))
 
     (add-hook 'web-mode-hook 'k20e/web-mode-hook)
   #+END_SRC
