@@ -1287,14 +1287,24 @@ function.
   =backward-kill-word= easily.
 
   #+BEGIN_SRC emacs-lisp
-    (require 'multi-term)
     (require 'term)
+
+    (defun k20e/term-toggle-mode ()
+      "Toggle between `term-line-mode' and `term-char-mode'."
+      (interactive)
+      (if (term-in-char-mode)
+          (term-line-mode)
+        (term-char-mode)))
+  #+END_SRC
+
+  #+BEGIN_SRC emacs-lisp
+    (require 'multi-term)
 
     (defcustom term-bind-key-alist
         '(("C-c C-c" . term-interrupt-subjob)
           ("C-h" . term-send-backspace)
-          ("C-c C-j" . term-line-mode)
-          ("C-c C-k" . term-char-mode)
+          ("C-c C-j" . k20e/term-toggle-mode)
+          ("C-c C-k" . k20e/term-toggle-mode)
           ("C-p" . term-send-up)
           ("C-n" . term-send-down)
           ("C-r" . term-send-reverse-search-history)
