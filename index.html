@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>Literate <code>.emacs.d</code></title>
-<!-- 2015-03-01 Sun 17:06 -->
+<!-- 2015-03-02 Mon 16:23 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Kris Molendyke" />
@@ -3402,14 +3402,26 @@ buffers.  It also lets me fix a big annoyance by binding <code>M-h</code> to
 
 <div class="org-src-container">
 
+<pre class="src src-emacs-lisp">(<span class="org-keyword">require</span> '<span class="org-constant">term</span>)
+
+(<span class="org-keyword">defun</span> <span class="org-function-name">k20e/term-toggle-mode</span> ()
+  <span class="org-doc">"Toggle between `</span><span class="org-constant"><span class="org-doc">term-line-mode</span></span><span class="org-doc">' and `</span><span class="org-constant"><span class="org-doc">term-char-mode</span></span><span class="org-doc">'."</span>
+  (interactive)
+  (<span class="org-keyword">if</span> (term-in-char-mode)
+      (term-line-mode)
+    (term-char-mode)))
+</pre>
+</div>
+
+<div class="org-src-container">
+
 <pre class="src src-emacs-lisp">(<span class="org-keyword">require</span> '<span class="org-constant">multi-term</span>)
-(<span class="org-keyword">require</span> '<span class="org-constant">term</span>)
 
 (<span class="org-keyword">defcustom</span> <span class="org-variable-name">term-bind-key-alist</span>
     '((<span class="org-string">"C-c C-c"</span> . term-interrupt-subjob)
       (<span class="org-string">"C-h"</span> . term-send-backspace)
-      (<span class="org-string">"C-c C-j"</span> . term-line-mode)
-      (<span class="org-string">"C-c C-k"</span> . term-char-mode)
+      (<span class="org-string">"C-c C-j"</span> . k20e/term-toggle-mode)
+      (<span class="org-string">"C-c C-k"</span> . k20e/term-toggle-mode)
       (<span class="org-string">"C-p"</span> . term-send-up)
       (<span class="org-string">"C-n"</span> . term-send-down)
       (<span class="org-string">"C-r"</span> . term-send-reverse-search-history)
@@ -3936,9 +3948,10 @@ Insert state change notes and time stamps into a drawer rather than simply
 <div class="outline-text-2" id="text-49">
 <div class="org-src-container">
 
-<pre class="src src-emacs-lisp"><span class="org-comment-delimiter">;; </span><span class="org-comment">(require 'powerline)</span>
-<span class="org-comment-delimiter">;; </span><span class="org-comment">(set-default 'powerline-default-separator 'zigzag)</span>
-<span class="org-comment-delimiter">;; </span><span class="org-comment">(powerline-default-theme)</span>
+<pre class="src src-emacs-lisp">(<span class="org-keyword">require</span> '<span class="org-constant">powerline</span>)
+
+(set-default 'powerline-default-separator 'nil)
+(powerline-default-theme)
 </pre>
 </div>
 </div>
@@ -4429,8 +4442,8 @@ Name multiple identical buffer names in a sensible manner.
 
 (<span class="org-keyword">defun</span> <span class="org-function-name">k20e/web-mode-hook</span> ()
   (autopair-mode -1)
-  (setq web-mode-engines-alist '((<span class="org-string">"django"</span> . <span class="org-string">"\\.html?\\'"</span>))
-        web-mode-markup-indent-offset 2))
+  (set-default 'web-mode-engines-alist '((<span class="org-string">"django"</span> . <span class="org-string">"\\.html?\\'"</span>)))
+  (setq web-mode-markup-indent-offset 2))
 
 (add-hook 'web-mode-hook 'k20e/web-mode-hook)
 </pre>
@@ -4546,7 +4559,7 @@ much better way to accomplish this.
 </div>
 <div id="postamble" class="status">
 <p class="author">Kris Molendyke</p>
-<p class="date">2015-02-27 Fri 17:38</p>
+<p class="date">2015-03-02 Mon 13:02</p>
 <p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 25.0.50.1 (<a href="http://orgmode.org">Org</a> mode 8.2.4)</p>
 </div>
 </body>
