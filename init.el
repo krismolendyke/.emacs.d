@@ -15,9 +15,19 @@
   (expand-file-name "elisp" user-emacs-directory)
   "Stuff that I have developed.")
 
+(defvar k20e/org-mode-directory
+  (expand-file-name "org-mode" k20e/site-lisp-directory)
+  "The directory containing `org-mode' files.
+This is a custom location to keep `org-mode' as a git submodule
+decoupled from the Emacs distribution package.")
+
 (defvar k20e/org-lisp-directory
-  (expand-file-name "lisp" (expand-file-name "org-mode" k20e/site-lisp-directory))
+  (expand-file-name "lisp" k20e/org-mode-directory)
   "The directory contaiting `org-mode' Emacs Lisp files.")
+
+(defvar k20e/org-lisp-contrib-directory
+  (expand-file-name "lisp" (expand-file-name "contrib" k20e/org-mode-directory))
+  "The directory containing `org-mode' Emacs Lisp add-on files.")
 
 (defvar k20e/dropbox-directory
   (expand-file-name "~/Desktop/Dropbox")
@@ -53,7 +63,8 @@ Only turn off the menu bar running in a terminal window."
   "Add custom directories to `load-path'."
   (dolist (directory (list k20e/site-lisp-directory
                            k20e/elisp-directory
-                           k20e/org-lisp-directory))
+                           k20e/org-lisp-directory
+                           k20e/org-lisp-contrib-directory))
     (add-to-list 'load-path directory))
 
   ;; Add external projects to load path.

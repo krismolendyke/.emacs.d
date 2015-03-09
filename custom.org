@@ -1640,6 +1640,12 @@ function.
      (setq org-agenda-span 'day)
    #+END_SRC
 
+** Drill
+
+   #+BEGIN_SRC emacs-lisp
+     (require 'org-drill)
+   #+END_SRC
+
 ** Habit
 
    #+BEGIN_SRC emacs-lisp
