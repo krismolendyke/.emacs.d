@@ -864,6 +864,7 @@ function.
                               "*.css"
                               "*.el"
                               "*.html"
+                              "*.j2"
                               "*.js"
                               "*.json"
                               "*.mk"
