@@ -37,7 +37,6 @@
 (depends-on "paradox")
 (depends-on "paredit")
 (depends-on "pkg-info")
-(depends-on "powerline")
 (depends-on "queue")
 (depends-on "s")
 (depends-on "shut-up")
