@@ -1699,15 +1699,6 @@ function.
     (exec-path-from-shell-initialize)
   #+END_SRC
 
-* powerline
-
-  #+BEGIN_SRC emacs-lisp
-    (require 'powerline)
-
-    (set-default 'powerline-default-separator 'nil)
-    (powerline-default-theme)
-  #+END_SRC
-
 * python
 
   #+BEGIN_SRC emacs-lisp
