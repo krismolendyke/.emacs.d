@@ -381,6 +381,15 @@ function.
      (global-set-key [remap goto-line] 'k20e/goto-linum)
    #+END_SRC
 
+** Buffers
+
+   #+BEGIN_SRC emacs-lisp
+     (defun k20e/display-buffer-file-name ()
+       "Message the full path to the currently visited file."
+       (interactive)
+       (message "%s" (buffer-file-name)))
+   #+END_SRC
+
 ** Windows
 
    #+BEGIN_SRC emacs-lisp
