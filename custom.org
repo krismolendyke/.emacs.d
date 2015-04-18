@@ -530,11 +530,12 @@ function.
                   (expand-file-name
                    "themes/st2/themes" user-emacs-directory))
 
-     (defvar k20e/theme-light 'tomorrow-day
+     (defvar k20e/theme-light 'solarized-light
        "The default lightly colored theme.
 
      Other good light candidates:
 
+       - tomorrow-day
        - whiteboard")
 
      (defvar k20e/theme-dark 'tomorrow-night-bright
