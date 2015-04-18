@@ -565,8 +565,10 @@ function.
        (interactive)
        (disable-theme (car custom-enabled-themes))
        (load-theme k20e/theme-dark t)
+       (set-face-background 'cursor "green1")
        (set-face-background 'hl-line "gray20")
-       (set-face-background 'region "gray36"))
+       (set-face-background 'region "gray36")
+       (set-face-background 'show-paren-match "gray64"))
 
      (defun k20e/theme-toggle ()
        "Switch between the light and dark theme."
