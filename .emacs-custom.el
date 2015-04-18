@@ -62,6 +62,10 @@
    (quote
     (("melpa" . "http://melpa.milkbox.net/packages/")
      ("gnu" . "http://elpa.gnu.org/packages/"))))
+ '(package-selected-packages
+   (quote
+    (dash package-build visual-fill-column clojure-mode yasnippet yaml-mode writeroom-mode web-mode smex paredit paradox pallet multiple-cursors multi-term markdown-mode keyfreq ido-vertical-mode ido-ubiquitous htmlize highlight-parentheses gitignore-mode gitconfig-mode git-timemachine git-commit-mode git-blame flycheck flx-ido find-file-in-project expand-region exec-path-from-shell cider buffer-move autopair arduino-mode ansible-doc ag)))
+ '(paradox-github-token t)
  '(safe-local-variable-values
    (quote
     ((eval setq flycheck-emacs-lisp-package-user-dir
