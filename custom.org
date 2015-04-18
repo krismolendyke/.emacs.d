@@ -1439,13 +1439,13 @@ function.
 
   #+BEGIN_SRC emacs-lisp
     (require 'org)
-    (require 'yasnippet)
 
     (defun k20e/org-mode-hook ()
       (auto-fill-mode 1)
-      (org-toggle-pretty-entities)
-      (visual-line-mode 0)
-      (yas-minor-mode 1))
+      (org-toggle-pretty-entities) ;; Display entities as UTF-8 characters.
+      (visual-line-mode 0))
+
+    (add-hook 'org-mode-hook 'k20e/org-mode-hook)
 
     ;; Set the org directory.
     (setq org-directory (expand-file-name "org" k20e/dropbox-directory))
@@ -1458,9 +1458,6 @@ function.
 
     ;; Use completion in the current buffer for movement.
     (setq org-goto-interface 'outline-path-completion)
-
-    ;; Display entities as UTF-8 characters.
-    (add-hook 'org-mode-hook 'k20e/org-mode-hook)
 
     ;; org-capture.
     (setq org-default-notes-file (expand-file-name "notes.org" org-directory))
