@@ -688,16 +688,6 @@ function.
     (add-hook 'auto-fill-mode 'k20e/auto-fill-mode-hook)
   #+END_SRC
 
-* autopair
-
-  [[https://github.com/capitaomorte/autopair][Autopair]] automatically pairs braces, brackets, quotes, etc.
-
-  #+BEGIN_SRC emacs-lisp
-    (require 'autopair)
-
-    (autopair-global-mode)
-  #+END_SRC
-
 * buffer-move
 
   Move the current buffer up/down/left/right easily.
@@ -822,21 +812,21 @@ function.
     (global-set-key (kbd "C-x C-d") 'ido-dired)
   #+END_SRC
 
+* electric-pair-mode
+
+  #+BEGIN_SRC emacs-lisp
+    (require 'elec-pair)
+
+    (electric-pair-mode t)
+  #+END_SRC
+
 * emacs-lisp-mode
 
   #+BEGIN_SRC emacs-lisp
-    (require 'autopair)
-
-    (defun k20e/emacs-lisp-autopair-hook ()
-      ;; autopair `' when writing comments or strings.
-      (push '(?` . ?')
-            (getf autopair-extra-pairs :comment))
-      (push '(?` . ?')
-            (getf autopair-extra-pairs :string))
-      (setq autopair-skip-whitespace 'chomp)
+    (defun k20e/emacs-lisp-mode-hook ()
       (eldoc-mode))
 
-    (add-hook 'emacs-lisp-mode-hook 'k20e/emacs-lisp-autopair-hook)
+    (add-hook 'emacs-lisp-mode-hook 'k20e/emacs-lisp-mode-hook)
   #+END_SRC
 
 * ert
@@ -1720,7 +1710,6 @@ function.
 * python
 
   #+BEGIN_SRC emacs-lisp
-    (require 'autopair)
     (require 'electric)
     (require 'flycheck)
     (require 'multiple-cursors)
@@ -1733,9 +1722,7 @@ function.
       (setq electric-indent-inhibit t)
       (linum-mode 1)
       (flycheck-mode 1)
-      (setq fill-column 118
-            autopair-handle-action-fns (list 'autopair-default-handle-action
-                                             'autopair-python-triple-quote-action))
+      (setq fill-column 118)
       (yas-minor-mode 1)
       ;; Previously:
       ;; C-M-f, C-M-b (paredit-forward/back)
@@ -1904,18 +1891,6 @@ function.
 
   Together with [[#multi-term][multi-term]] this sets up my terminal environment within Emacs.
 
-  #+BEGIN_SRC emacs-lisp
-    (require 'term)
-
-    (defun k20e/term-mode-hook ()
-      "Configure terminal mode.
-    `autopair-mode' interferes with `term-send-raw' bounding on
-    `RET' so it is disabled."
-      (if (fboundp 'autopair-mode) (autopair-mode -1)))
-
-    (add-hook 'term-mode-hook 'k20e/term-mode-hook)
-  #+END_SRC
-
 ** Key Bindings
 
    =term-raw-map= is used in /char/ mode.
@@ -2054,13 +2029,11 @@ function.
 * web-mode
 
   #+BEGIN_SRC emacs-lisp
-    (require 'autopair)
     (require 'web-mode)
 
     (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
 
     (defun k20e/web-mode-hook ()
-      (autopair-mode -1)
       (set-default 'web-mode-engines-alist '(("django" . "\\.html?\\'")))
       (setq web-mode-markup-indent-offset 2))
 

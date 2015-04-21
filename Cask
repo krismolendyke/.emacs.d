@@ -4,7 +4,6 @@
 (depends-on "ag")
 (depends-on "ansible-doc")
 (depends-on "arduino-mode")
-(depends-on "autopair")
 (depends-on "buffer-move")
 (depends-on "cask")
 (depends-on "cider")
