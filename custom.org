@@ -1448,7 +1448,8 @@ function.
     (defun k20e/org-mode-hook ()
       (auto-fill-mode 1)
       (org-toggle-pretty-entities) ;; Display entities as UTF-8 characters.
-      (visual-line-mode 0))
+      (visual-line-mode 0)
+      (setq truncate-lines 0))
 
     (add-hook 'org-mode-hook 'k20e/org-mode-hook)
 
