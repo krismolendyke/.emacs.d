@@ -2111,11 +2111,3 @@ function.
 
     (add-to-list 'auto-mode-alist '("\\.yml$" . yaml-mode))
   #+END_SRC
-
-* yasnippet
-
-  #+BEGIN_SRC emacs-lisp
-    (require 'yasnippet)
-
-    (yas-reload-all)
-  #+END_SRC
