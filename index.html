@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>Literate <code>.emacs.d</code></title>
-<!-- 2015-04-21 Tue 12:04 -->
+<!-- 2015-04-21 Tue 12:37 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Kris Molendyke" />
@@ -2884,7 +2884,19 @@ Emacs Lisp <a href="http://en.wikipedia.org/wiki/Unit_testing">unit testing</a>!
 <h2 id="unnumbered-49">flyspell</h2>
 <div class="outline-text-2" id="text-unnumbered-49">
 <p>
-First setup <code>ispell</code> to use <a href="#install-aspell"><code>aspell</code></a>:
+Update <code>PATH</code>:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-emacs-lisp">(<span class="org-keyword">require</span> '<span class="org-constant">exec-path-from-shell</span>)
+
+(exec-path-from-shell-initialize)
+</pre>
+</div>
+
+<p>
+Setup <code>ispell</code> to use <a href="#install-aspell"><code>aspell</code></a>:
 </p>
 
 <div class="org-src-container">
@@ -2912,7 +2924,8 @@ Then setup <code>flyspell</code> itself.  It requires  <code>ispell</code>.
 <span class="org-comment-delimiter">;;   </span><span class="org-comment">(add-hook hook #'(lambda () (flyspell-prog-mode))))</span>
 
 <span class="org-comment-delimiter">;; </span><span class="org-comment">Do not emit to *Messages*.</span>
-(<span class="org-keyword">setq</span> flyspell-issue-message-flag nil)
+(<span class="org-keyword">setq</span> flyspell-issue-message-flag nil
+      flyspell-issue-welcome-flag nil)
 </pre>
 </div>
 </div>
@@ -4551,7 +4564,7 @@ much better way to accomplish this.
 </div>
 <div id="postamble" class="status">
 <p class="author">Kris Molendyke</p>
-<p class="date">2015-04-21 Tue 11:53</p>
+<p class="date">2015-04-21 Tue 12:34</p>
 <p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 25.0.50.1 (<a href="http://orgmode.org">Org</a> mode 8.2.4)</p>
 </div>
 </body>
