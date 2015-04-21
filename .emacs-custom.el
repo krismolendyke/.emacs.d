@@ -58,6 +58,22 @@
         (mode . idl-mode)
         (mode . lisp-mode)))))))
  '(inhibit-startup-screen t)
+ '(org-drill-optimal-factor-matrix
+   (quote
+    ((2
+      (2.2800000000000002 . 2.407)
+      (2.5 . 2.5)
+      (2.36 . 2.36)
+      (2.6 . 2.588)
+      (2.1799999999999997 . 2.325)
+      (2.7 . 2.679))
+     (1
+      (2.7 . 4.285)
+      (2.5 . 4.0)
+      (2.1799999999999997 . 3.72)
+      (2.36 . 3.86)
+      (2.6 . 4.14)
+      (1.7000000000000002 . 3.44)))))
  '(package-archives
    (quote
     (("melpa" . "http://melpa.milkbox.net/packages/")
