@@ -1789,8 +1789,8 @@ function.
       (set-default 'rst-preferred-adornments '((?= simple 0)
                                                (?- simple 0)
                                                (?~ simple 0)
+                                               (?* simple 0)
                                                (?+ simple 0)
-                                               (?` simple 0)
                                                (?# simple 0)
                                                (?@ simple 0))))
 
