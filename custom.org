@@ -1488,6 +1488,7 @@ function.
      (global-set-key (kbd "<f12>") 'org-agenda-list)
 
      (define-key org-mode-map (kbd "<return>") 'k20e/org-return)
+     (define-key org-mode-map (kbd "C-j") 'join-line)
      (define-key org-mode-map (kbd "C-m") 'k20e/org-return)
      (define-key org-mode-map (kbd "H-<tab>") 'pcomplete)
      (define-key org-mode-map (kbd "M-h") 'backward-kill-word)
