@@ -1223,6 +1223,16 @@ function.
     (keyfreq-autosave-mode 1)
   #+END_SRC
 
+* lockfiles
+
+  [[http://stackoverflow.com/questions/5738170/why-does-emacs-create-temporary-symbolic-links-for-modified-files][Avoid creating temporary symbolic links]] and disturbing working
+  directory state at the expense of avoiding editing collisions that I
+  do not ever anticipate.
+
+  #+BEGIN_SRC emacs-lisp
+    (setq create-lockfiles nil)
+  #+END_SRC
+
 * markdown-mode
 
   #+BEGIN_SRC emacs-lisp
