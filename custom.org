@@ -905,7 +905,15 @@ function.
 
 * flyspell
 
-  First setup =ispell= to use [[#install-aspell][=aspell=]]:
+  Update =PATH=:
+
+  #+BEGIN_SRC emacs-lisp
+    (require 'exec-path-from-shell)
+
+    (exec-path-from-shell-initialize)
+  #+END_SRC
+
+  Setup =ispell= to use [[#install-aspell][=aspell=]]:
 
   #+BEGIN_SRC emacs-lisp
     (setq-default ispell-program-name "aspell"
@@ -927,7 +935,8 @@ function.
     ;;   (add-hook hook #'(lambda () (flyspell-prog-mode))))
 
     ;; Do not emit to *Messages*.
-    (setq flyspell-issue-message-flag nil)
+    (setq flyspell-issue-message-flag nil
+          flyspell-issue-welcome-flag nil)
   #+END_SRC
 
 ** Install [[http://hunspell.sourceforge.net/][=aspell=]]
