@@ -29,3 +29,6 @@
 [submodule "site-lisp/im-feeling-lucky.el"]
 	path = site-lisp/im-feeling-lucky.el
 	url = https://github.com/krismolendyke/im-feeling-lucky.el.git
+[submodule "themes/base16"]
+	path = themes/base16
+	url = git@github.com:neil477/base16-emacs.git

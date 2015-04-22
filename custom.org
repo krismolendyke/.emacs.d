@@ -538,11 +538,12 @@ function.
        - tomorrow-day
        - whiteboard")
 
-     (defvar k20e/theme-dark 'tomorrow-night-bright
+     (defvar k20e/theme-dark 'base16-tomorrow
        "The default darkly colored theme.
 
      Other good dark candidates:
 
+       - tomorrow-night-bright
        - tomorrow-night
        - hickey
        - fogus
