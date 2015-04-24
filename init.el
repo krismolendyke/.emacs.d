@@ -72,6 +72,12 @@ Only turn off the menu bar running in a terminal window."
     (when (file-directory-p project)
       (add-to-list 'load-path project))))
 
+(defun k20e/setup-exec-path ()
+  "Setup `exec-path'."
+  (require 'exec-path-from-shell)
+  (add-to-list 'exec-path-from-shell-variables "DEVBOX")
+  (exec-path-from-shell-initialize))
+
 (defun k20e/load-custom-elisp ()
   "Load custom Emacs Lisp files in `k20e/elisp-directory'."
   (dolist (file (directory-files k20e/elisp-directory t "\\w+"))
@@ -99,6 +105,7 @@ Only turn off the menu bar running in a terminal window."
 (k20e/setup-cask-and-pallet)
 (k20e/no-bars-held)
 (k20e/setup-load-path)
+(k20e/setup-exec-path)
 (k20e/load-custom-elisp)
 (k20e/restore-desktop)
 (add-hook 'after-init-hook 'k20e/after-init-hook)

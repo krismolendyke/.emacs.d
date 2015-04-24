@@ -907,14 +907,6 @@ function.
 
 * flyspell
 
-  Update =PATH=:
-
-  #+BEGIN_SRC emacs-lisp
-    (require 'exec-path-from-shell)
-
-    (exec-path-from-shell-initialize)
-  #+END_SRC
-
   Setup =ispell= to use [[#install-aspell][=aspell=]]:
 
   #+BEGIN_SRC emacs-lisp
@@ -1716,16 +1708,6 @@ function.
          (define-key paredit-mode-map [(meta ?\))]
            'paredit-close-parenthesis-and-newline)
          (define-key paredit-mode-map (kbd "C-h") 'paredit-backward-delete)))
-  #+END_SRC
-
-* Path
-
-  #+BEGIN_SRC emacs-lisp
-    (require 'exec-path-from-shell)
-
-    ;; Fix environment issues with Emacs.app.
-    (add-to-list 'exec-path-from-shell-variables "DEVBOX")
-    (exec-path-from-shell-initialize)
   #+END_SRC
 
 * python
