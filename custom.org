@@ -690,6 +690,15 @@ function.
     (add-hook 'auto-fill-mode 'k20e/auto-fill-mode-hook)
   #+END_SRC
 
+* auto-save
+
+  Disable =auto-save=.
+
+  #+BEGIN_SRC emacs-lisp
+    (setq auto-save-default nil
+          auto-save-timeout 0)
+  #+END_SRC
+
 * buffer-move
 
   Move the current buffer up/down/left/right easily.
