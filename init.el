@@ -87,6 +87,7 @@ Only turn off the menu bar running in a terminal window."
 (defun k20e/restore-desktop ()
   "Restore the state of buffers from the last session."
   (require 'desktop)
+  (setq-default dired-use-ls-dired nil)
   (setq desktop-path (list k20e/dropbox-directory)
         desktop-load-locked-desktop t)
   (desktop-save-mode 1)
