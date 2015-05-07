@@ -12,7 +12,7 @@
 (defun get-longest-line-length ()
   "Get the length of the longest line in the selected window."
   (save-excursion
-    (beginning-of-buffer)
+    (goto-char (point-min))
     (let ((max-length 0)
           (last-line (count-lines (point-min) (point-max))))
       (while (<= (line-number-at-pos) last-line)
