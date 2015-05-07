@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>Literate <code>.emacs.d</code></title>
-<!-- 2015-04-25 Sat 10:36 -->
+<!-- 2015-05-07 Thu 10:46 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Kris Molendyke" />
@@ -2293,7 +2293,7 @@ Bind window functions:
   (<span class="org-keyword">with-output-to-temp-buffer</span> <span class="org-string">"*full-moons*"</span>
     (princ
      (mapconcat
-      #'(<span class="org-keyword">lambda</span> (x)
+      #'(lambda (x)
           (format <span class="org-string">"%s %s"</span> (calendar-date-string (car x)) (car (cdr x))))
       (k20e/full-moons-info)
       <span class="org-string">"\n"</span>))))
@@ -2648,7 +2648,7 @@ they are the result of an asynchronous query and response parsing?
 
   <span class="org-comment-delimiter">;; </span><span class="org-comment">Attempt to set location with a geo-ip query.</span>
   (geo-ip-lat-lon-loc-ip
-   #'(<span class="org-keyword">lambda</span> (lat lon loc ip)
+   #'(lambda (lat lon loc ip)
        (<span class="org-keyword">setq</span>
         calendar-latitude lat
         calendar-longitude lon
@@ -3071,7 +3071,7 @@ icons into buffers.
                 lisp-mode-hook
                 cider-repl-mode-hook
                 clojure-mode-hook))
-  (add-hook hook #'(<span class="org-keyword">lambda</span> ()
+  (add-hook hook #'(lambda ()
                      (highlight-parentheses-mode))))
 </pre>
 </div>
@@ -3975,7 +3975,7 @@ Insert state change notes and time stamps into a drawer rather than simply
 (<span class="org-keyword">dolist</span> (hook '(emacs-lisp-mode-hook
                 lisp-mode-hook
                 cider-repl-mode-hook))
-  (add-hook hook #'(<span class="org-keyword">lambda</span> nil (paredit-mode 1))))
+  (add-hook hook #'(lambda nil (paredit-mode 1))))
 
 (eval-after-load <span class="org-string">"paredit"</span>
   '(<span class="org-keyword">progn</span>
@@ -4555,7 +4555,7 @@ much better way to accomplish this.
 </div>
 <div id="postamble" class="status">
 <p class="author">Kris Molendyke</p>
-<p class="date">2015-04-25 Sat 10:28</p>
+<p class="date">2015-04-25 Sat 10:36</p>
 <p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 25.0.50.1 (<a href="http://orgmode.org">Org</a> mode 8.2.4)</p>
 </div>
 </body>
