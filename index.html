@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>Literate <code>.emacs.d</code></title>
-<!-- 2015-05-08 Fri 09:08 -->
+<!-- 2015-05-23 Sat 15:08 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Kris Molendyke" />
@@ -4547,6 +4547,11 @@ much better way to accomplish this.
 
 <pre class="src src-emacs-lisp">(<span class="org-keyword">require</span> '<span class="org-constant">yaml-mode</span>)
 
+(<span class="org-keyword">defun</span> <span class="org-function-name">k20e/yaml-mode-hook</span> ()
+    (define-key yaml-mode-map (kbd <span class="org-string">"C-m"</span>) 'newline-and-indent))
+
+(add-hook 'yaml-mode-hook 'k20e/yaml-mode-hook)
+
 (add-to-list 'auto-mode-alist '(<span class="org-string">"\\.yml$"</span> . yaml-mode))
 </pre>
 </div>
@@ -4555,7 +4560,7 @@ much better way to accomplish this.
 </div>
 <div id="postamble" class="status">
 <p class="author">Kris Molendyke</p>
-<p class="date">2015-05-08 Fri 08:44</p>
+<p class="date">2015-05-23 Sat 15:06</p>
 <p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 25.0.50.1 (<a href="http://orgmode.org">Org</a> mode 8.2.4)</p>
 </div>
 </body>
