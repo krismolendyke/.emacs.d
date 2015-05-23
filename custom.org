@@ -2111,5 +2111,10 @@ function.
   #+BEGIN_SRC emacs-lisp
     (require 'yaml-mode)
 
+    (defun k20e/yaml-mode-hook ()
+        (define-key yaml-mode-map (kbd "C-m") 'newline-and-indent))
+
+    (add-hook 'yaml-mode-hook 'k20e/yaml-mode-hook)
+
     (add-to-list 'auto-mode-alist '("\\.yml$" . yaml-mode))
   #+END_SRC
