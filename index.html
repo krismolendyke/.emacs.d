@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>Literate <code>.emacs.d</code></title>
-<!-- 2015-05-23 Sat 15:08 -->
+<!-- 2015-05-25 Mon 07:14 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Kris Molendyke" />
@@ -4545,10 +4545,12 @@ much better way to accomplish this.
 <div class="outline-text-2" id="text-unnumbered-119">
 <div class="org-src-container">
 
-<pre class="src src-emacs-lisp">(<span class="org-keyword">require</span> '<span class="org-constant">yaml-mode</span>)
+<pre class="src src-emacs-lisp">(<span class="org-keyword">require</span> '<span class="org-constant">ansible-doc</span>)
+(<span class="org-keyword">require</span> '<span class="org-constant">yaml-mode</span>)
 
 (<span class="org-keyword">defun</span> <span class="org-function-name">k20e/yaml-mode-hook</span> ()
-    (define-key yaml-mode-map (kbd <span class="org-string">"C-m"</span>) 'newline-and-indent))
+  (ansible-doc-mode)
+  (define-key yaml-mode-map (kbd <span class="org-string">"C-m"</span>) 'newline-and-indent))
 
 (add-hook 'yaml-mode-hook 'k20e/yaml-mode-hook)
 
@@ -4560,7 +4562,7 @@ much better way to accomplish this.
 </div>
 <div id="postamble" class="status">
 <p class="author">Kris Molendyke</p>
-<p class="date">2015-05-23 Sat 15:06</p>
+<p class="date">2015-05-25 Mon 07:14</p>
 <p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 25.0.50.1 (<a href="http://orgmode.org">Org</a> mode 8.2.4)</p>
 </div>
 </body>
