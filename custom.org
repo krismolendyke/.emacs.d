@@ -1035,6 +1035,19 @@ function.
     (global-set-key (kbd "C-x v b") 'git-blame-mode)
   #+END_SRC
 
+* go-mode
+
+  #+BEGIN_SRC emacs-lisp
+    (require 'go-mode)
+
+    (defun k20e/go-mode-hook ()
+      (setq tab-width 4
+            indent-tabs-mode t)
+      (add-hook 'before-save-hook 'gofmt-before-save))
+
+    (add-hook 'go-mode-hook 'k20e/go-mode-hook)
+  #+END_SRC
+
 * highlight-parentheses
 
   #+BEGIN_SRC emacs-lisp
