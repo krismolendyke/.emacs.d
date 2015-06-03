@@ -164,6 +164,7 @@ function.
 ** Unset
 
    #+BEGIN_SRC emacs-lisp
+     (global-unset-key (kbd "<f1> h"))
      (global-unset-key (kbd "<f11>"))
      (global-unset-key (kbd "C-h"))
      (global-unset-key (kbd "C-q"))
