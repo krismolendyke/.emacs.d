@@ -82,7 +82,11 @@ Only turn off the menu bar running in a terminal window."
 (defun k20e/setup-exec-path ()
   "Setup `exec-path'."
   (require 'exec-path-from-shell)
-  (add-to-list 'exec-path-from-shell-variables "DEVBOX")
+  (setq exec-path-from-shell-variables
+        (append exec-path-from-shell-variables
+                '("DEVBOX"
+                  "GOPATH"
+                  "GOROOT")))
   (exec-path-from-shell-initialize))
 
 (defun k20e/load-custom-elisp ()
