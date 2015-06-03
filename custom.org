@@ -1039,7 +1039,7 @@ function.
 * go-mode
 
   #+BEGIN_SRC emacs-lisp
-    (require 'go-mode)
+    (require 'go-mode-autoloads)
 
     (defun k20e/go-mode-hook ()
       (setq tab-width 4
