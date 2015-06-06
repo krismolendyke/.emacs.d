@@ -178,6 +178,8 @@ function.
 ** Set
 
    #+BEGIN_SRC emacs-lisp
+     (global-set-key (kbd "<f1> F") 'find-function)
+     (global-set-key (kbd "<f1> V") 'find-variable)
      (global-set-key (kbd "C-S-h") 'kill-whole-line)
      (global-set-key (kbd "C-c DEL") 'join-line)
      (global-set-key (kbd "C-h") 'delete-backward-char)
