@@ -26,6 +26,7 @@
 (depends-on "go-mode")
 (depends-on "highlight-parentheses")
 (depends-on "htmlize")
+(depends-on "ido-completing-read+")
 (depends-on "ido-ubiquitous")
 (depends-on "ido-vertical-mode")
 (depends-on "keyfreq")
