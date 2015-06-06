@@ -196,6 +196,14 @@ function.
 
 * k20e Defaults
 
+** Apropos
+
+   Sort by relevancy.
+
+   #+BEGIN_SRC emacs-lisp
+     (setq apropos-sort-by-scores t)
+   #+END_SRC
+
 ** =cycle-spacing=
 
    #+BEGIN_SRC emacs-lisp
