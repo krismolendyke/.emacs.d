@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>Literate <code>.emacs.d</code></title>
-<!-- 2015-06-06 Sat 10:03 -->
+<!-- 2015-06-06 Sat 10:40 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Kris Molendyke" />
@@ -1520,151 +1520,152 @@ function.
 </li>
 <li><a href="#unnumbered-12">k20e Defaults</a>
 <ul>
-<li><a href="#unnumbered-13"><code>cycle-spacing</code></a></li>
-<li><a href="#unnumbered-14">Backup Files</a></li>
-<li><a href="#unnumbered-15">Enabled Commands</a></li>
-<li><a href="#unnumbered-16">Inferior Shell</a></li>
-<li><a href="#unnumbered-17"><span class="todo nilTODO">TODO</span> Defaults for Review</a></li>
+<li><a href="#unnumbered-13">Apropos</a></li>
+<li><a href="#unnumbered-14"><code>cycle-spacing</code></a></li>
+<li><a href="#unnumbered-15">Backup Files</a></li>
+<li><a href="#unnumbered-16">Enabled Commands</a></li>
+<li><a href="#unnumbered-17">Inferior Shell</a></li>
+<li><a href="#unnumbered-18"><span class="todo nilTODO">TODO</span> Defaults for Review</a></li>
 </ul>
 </li>
-<li><a href="#unnumbered-18">k20e Custom Functions</a>
+<li><a href="#unnumbered-19">k20e Custom Functions</a>
 <ul>
-<li><a href="#unnumbered-19">Editing</a></li>
-<li><a href="#unnumbered-20">Buffers</a></li>
-<li><a href="#unnumbered-21">Windows</a></li>
-<li><a href="#unnumbered-22">Networking</a></li>
-<li><a href="#unnumbered-23">Lunar 🌙</a></li>
+<li><a href="#unnumbered-20">Editing</a></li>
+<li><a href="#unnumbered-21">Buffers</a></li>
+<li><a href="#unnumbered-22">Windows</a></li>
+<li><a href="#unnumbered-23">Networking</a></li>
+<li><a href="#unnumbered-24">Lunar 🌙</a></li>
 </ul>
 </li>
-<li><a href="#unnumbered-24">OS X</a></li>
-<li><a href="#unnumbered-25">Appearance</a>
+<li><a href="#unnumbered-25">OS X</a></li>
+<li><a href="#unnumbered-26">Appearance</a>
 <ul>
-<li><a href="#unnumbered-26">Theme</a></li>
-<li><a href="#unnumbered-28">Cursor</a></li>
-<li><a href="#unnumbered-29">Frame Height</a></li>
-<li><a href="#unnumbered-30">Fringe</a></li>
-<li><a href="#unnumbered-31"><span class="todo nilTODO">TODO</span> Disable <code>linum-mode</code> when text scale is not zero</a></li>
+<li><a href="#unnumbered-27">Theme</a></li>
+<li><a href="#unnumbered-29">Cursor</a></li>
+<li><a href="#unnumbered-30">Frame Height</a></li>
+<li><a href="#unnumbered-31">Fringe</a></li>
+<li><a href="#unnumbered-32"><span class="todo nilTODO">TODO</span> Disable <code>linum-mode</code> when text scale is not zero</a></li>
 </ul>
 </li>
-<li><a href="#unnumbered-32">ag</a></li>
-<li><a href="#unnumbered-33">arduino-mode</a></li>
-<li><a href="#unnumbered-34">auto-fill</a></li>
-<li><a href="#unnumbered-35">auto-save</a></li>
-<li><a href="#unnumbered-36">buffer-move</a></li>
-<li><a href="#unnumbered-37"><span class="todo nilTODO">TODO</span> calendar</a></li>
-<li><a href="#unnumbered-38">cider</a></li>
-<li><a href="#unnumbered-39">clock-face</a></li>
-<li><a href="#unnumbered-40">clojure-mode</a>
+<li><a href="#unnumbered-33">ag</a></li>
+<li><a href="#unnumbered-34">arduino-mode</a></li>
+<li><a href="#unnumbered-35">auto-fill</a></li>
+<li><a href="#unnumbered-36">auto-save</a></li>
+<li><a href="#unnumbered-37">buffer-move</a></li>
+<li><a href="#unnumbered-38"><span class="todo nilTODO">TODO</span> calendar</a></li>
+<li><a href="#unnumbered-39">cider</a></li>
+<li><a href="#unnumbered-40">clock-face</a></li>
+<li><a href="#unnumbered-41">clojure-mode</a>
 <ul>
-<li><a href="#unnumbered-41">Save buffers before loading or running tests</a></li>
+<li><a href="#unnumbered-42">Save buffers before loading or running tests</a></li>
 </ul>
 </li>
-<li><a href="#unnumbered-42">compilation-mode</a></li>
-<li><a href="#unnumbered-43">dash-at-point</a></li>
-<li><a href="#unnumbered-44">dired</a></li>
-<li><a href="#unnumbered-45">electric-pair-mode</a></li>
-<li><a href="#unnumbered-46">emacs-lisp-mode</a></li>
-<li><a href="#unnumbered-47">ert</a></li>
-<li><a href="#unnumbered-48">expand-region</a></li>
-<li><a href="#unnumbered-49">find-file-in-project</a></li>
+<li><a href="#unnumbered-43">compilation-mode</a></li>
+<li><a href="#unnumbered-44">dash-at-point</a></li>
+<li><a href="#unnumbered-45">dired</a></li>
+<li><a href="#unnumbered-46">electric-pair-mode</a></li>
+<li><a href="#unnumbered-47">emacs-lisp-mode</a></li>
+<li><a href="#unnumbered-48">ert</a></li>
+<li><a href="#unnumbered-49">expand-region</a></li>
+<li><a href="#unnumbered-50">find-file-in-project</a></li>
 <li><a href="#flycheck">flycheck</a></li>
-<li><a href="#unnumbered-51">flyspell</a>
+<li><a href="#unnumbered-52">flyspell</a>
 <ul>
 <li><a href="#install-aspell">Install <code>aspell</code></a></li>
 </ul>
 </li>
-<li><a href="#unnumbered-53">Fonts</a>
+<li><a href="#unnumbered-54">Fonts</a>
 <ul>
-<li><a href="#unnumbered-54">Unicode</a></li>
+<li><a href="#unnumbered-55">Unicode</a></li>
 </ul>
 </li>
-<li><a href="#unnumbered-55">font-awesome</a></li>
-<li><a href="#unnumbered-56">git</a></li>
-<li><a href="#unnumbered-57">go-mode</a></li>
-<li><a href="#unnumbered-58">highlight-parentheses</a></li>
-<li><a href="#unnumbered-59">hyperspec</a></li>
-<li><a href="#unnumbered-60">ibuffer</a></li>
-<li><a href="#unnumbered-61">ido</a>
+<li><a href="#unnumbered-56">font-awesome</a></li>
+<li><a href="#unnumbered-57">git</a></li>
+<li><a href="#unnumbered-58">go-mode</a></li>
+<li><a href="#unnumbered-59">highlight-parentheses</a></li>
+<li><a href="#unnumbered-60">hyperspec</a></li>
+<li><a href="#unnumbered-61">ibuffer</a></li>
+<li><a href="#unnumbered-62">ido</a>
 <ul>
-<li><a href="#unnumbered-62">Interface</a></li>
-<li><a href="#unnumbered-63">Minibuffer</a></li>
-<li><a href="#unnumbered-64">Keys and Theme</a></li>
-<li><a href="#unnumbered-65">Enable</a></li>
+<li><a href="#unnumbered-63">Interface</a></li>
+<li><a href="#unnumbered-64">Minibuffer</a></li>
+<li><a href="#unnumbered-65">Keys and Theme</a></li>
+<li><a href="#unnumbered-66">Enable</a></li>
 </ul>
 </li>
-<li><a href="#unnumbered-66">IELM</a></li>
-<li><a href="#unnumbered-67">I'm Feeling Lucky</a></li>
-<li><a href="#unnumbered-68">isearch</a></li>
-<li><a href="#unnumbered-69">js-mode</a></li>
-<li><a href="#unnumbered-70">keyfreq</a></li>
-<li><a href="#unnumbered-71">lockfiles</a></li>
-<li><a href="#unnumbered-72">markdown-mode</a></li>
-<li><a href="#unnumbered-73">minibuffers</a>
+<li><a href="#unnumbered-67">IELM</a></li>
+<li><a href="#unnumbered-68">I'm Feeling Lucky</a></li>
+<li><a href="#unnumbered-69">isearch</a></li>
+<li><a href="#unnumbered-70">js-mode</a></li>
+<li><a href="#unnumbered-71">keyfreq</a></li>
+<li><a href="#unnumbered-72">lockfiles</a></li>
+<li><a href="#unnumbered-73">markdown-mode</a></li>
+<li><a href="#unnumbered-74">minibuffers</a>
 <ul>
-<li><a href="#unnumbered-74">Eval expression minibuffer</a></li>
+<li><a href="#unnumbered-75">Eval expression minibuffer</a></li>
 </ul>
 </li>
-<li><a href="#unnumbered-75">monetate-mode</a></li>
+<li><a href="#unnumbered-76">monetate-mode</a></li>
 <li><a href="#multi-term">multi-term</a>
 <ul>
-<li><a href="#unnumbered-77">Global Key Bindings</a></li>
+<li><a href="#unnumbered-78">Global Key Bindings</a></li>
 </ul>
 </li>
-<li><a href="#unnumbered-78">multiple-cursors</a></li>
-<li><a href="#unnumbered-79">Open Source Licenses</a></li>
-<li><a href="#unnumbered-80">org-mode</a>
+<li><a href="#unnumbered-79">multiple-cursors</a></li>
+<li><a href="#unnumbered-80">Open Source Licenses</a></li>
+<li><a href="#unnumbered-81">org-mode</a>
 <ul>
-<li><a href="#unnumbered-81">Key Bindings</a></li>
-<li><a href="#unnumbered-82">Export</a></li>
-<li><a href="#unnumbered-84">Publish</a></li>
-<li><a href="#unnumbered-85">Babel</a></li>
-<li><a href="#unnumbered-86"><span class="todo nilTODO">TODO</span> Items</a></li>
-<li><a href="#unnumbered-87">Agenda</a></li>
-<li><a href="#unnumbered-91">Drill</a></li>
-<li><a href="#unnumbered-92">Habit</a></li>
-<li><a href="#unnumbered-93">Logging &amp; Drawers</a></li>
-<li><a href="#unnumbered-94">Clock</a></li>
+<li><a href="#unnumbered-82">Key Bindings</a></li>
+<li><a href="#unnumbered-83">Export</a></li>
+<li><a href="#unnumbered-85">Publish</a></li>
+<li><a href="#unnumbered-86">Babel</a></li>
+<li><a href="#unnumbered-87"><span class="todo nilTODO">TODO</span> Items</a></li>
+<li><a href="#unnumbered-88">Agenda</a></li>
+<li><a href="#unnumbered-92">Drill</a></li>
+<li><a href="#unnumbered-93">Habit</a></li>
+<li><a href="#unnumbered-94">Logging &amp; Drawers</a></li>
+<li><a href="#unnumbered-95">Clock</a></li>
 </ul>
 </li>
-<li><a href="#unnumbered-95">paredit-mode</a></li>
-<li><a href="#unnumbered-96">python</a>
+<li><a href="#unnumbered-96">paredit-mode</a></li>
+<li><a href="#unnumbered-97">python</a>
 <ul>
-<li><a href="#unnumbered-97">IPython</a></li>
+<li><a href="#unnumbered-98">IPython</a></li>
 </ul>
 </li>
-<li><a href="#unnumbered-98">recentf</a></li>
-<li><a href="#unnumbered-99">reStructuredText</a></li>
-<li><a href="#unnumbered-100">savehist</a></li>
-<li><a href="#unnumbered-101"><code>*scratch*</code></a>
+<li><a href="#unnumbered-99">recentf</a></li>
+<li><a href="#unnumbered-100">reStructuredText</a></li>
+<li><a href="#unnumbered-101">savehist</a></li>
+<li><a href="#unnumbered-102"><code>*scratch*</code></a>
 <ul>
-<li><a href="#unnumbered-102">Quickly create new scratch buffers</a></li>
+<li><a href="#unnumbered-103">Quickly create new scratch buffers</a></li>
 </ul>
 </li>
-<li><a href="#unnumbered-103">smex</a></li>
-<li><a href="#unnumbered-104">sql-mode</a></li>
-<li><a href="#unnumbered-105">server</a></li>
+<li><a href="#unnumbered-104">smex</a></li>
+<li><a href="#unnumbered-105">sql-mode</a></li>
+<li><a href="#unnumbered-106">server</a></li>
 <li><a href="#term">term</a>
 <ul>
-<li><a href="#unnumbered-107">Key Bindings</a></li>
+<li><a href="#unnumbered-108">Key Bindings</a></li>
 </ul>
 </li>
-<li><a href="#unnumbered-108">terminal-notifier</a></li>
-<li><a href="#unnumbered-109">text-mode</a></li>
-<li><a href="#unnumbered-110">tramp</a>
+<li><a href="#unnumbered-109">terminal-notifier</a></li>
+<li><a href="#unnumbered-110">text-mode</a></li>
+<li><a href="#unnumbered-111">tramp</a>
 <ul>
-<li><a href="#unnumbered-111"><code>ControlPath</code></a></li>
-<li><a href="#unnumbered-112">Inline Copying</a></li>
-<li><a href="#unnumbered-113">File Backup</a></li>
-<li><a href="#unnumbered-114">Debugging</a></li>
+<li><a href="#unnumbered-112"><code>ControlPath</code></a></li>
+<li><a href="#unnumbered-113">Inline Copying</a></li>
+<li><a href="#unnumbered-114">File Backup</a></li>
+<li><a href="#unnumbered-115">Debugging</a></li>
 </ul>
 </li>
-<li><a href="#unnumbered-115">uniquify</a></li>
-<li><a href="#unnumbered-116">windmove</a></li>
-<li><a href="#unnumbered-117">web-mode</a></li>
-<li><a href="#unnumbered-118">winner-mode</a></li>
-<li><a href="#unnumbered-119">whitespace</a></li>
-<li><a href="#unnumbered-120">writeroom-mode</a></li>
-<li><a href="#unnumbered-121">yaml-mode</a></li>
+<li><a href="#unnumbered-116">uniquify</a></li>
+<li><a href="#unnumbered-117">windmove</a></li>
+<li><a href="#unnumbered-118">web-mode</a></li>
+<li><a href="#unnumbered-119">winner-mode</a></li>
+<li><a href="#unnumbered-120">whitespace</a></li>
+<li><a href="#unnumbered-121">writeroom-mode</a></li>
+<li><a href="#unnumbered-122">yaml-mode</a></li>
 </ul>
 </div>
 </div>
@@ -1938,8 +1939,23 @@ their own dedicated sections where other specific settings are made.
 <h2 id="unnumbered-12">k20e Defaults</h2>
 <div class="outline-text-2" id="text-unnumbered-12">
 </div><div id="outline-container-unnumbered-13" class="outline-3">
-<h3 id="unnumbered-13"><code>cycle-spacing</code></h3>
+<h3 id="unnumbered-13">Apropos</h3>
 <div class="outline-text-3" id="text-unnumbered-13">
+<p>
+Sort by relevancy.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-emacs-lisp">(<span class="org-keyword">setq</span> apropos-sort-by-scores t)
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-unnumbered-14" class="outline-3">
+<h3 id="unnumbered-14"><code>cycle-spacing</code></h3>
+<div class="outline-text-3" id="text-unnumbered-14">
 <div class="org-src-container">
 
 <pre class="src src-emacs-lisp">(<span class="org-keyword">defun</span> <span class="org-function-name">k20e/cycle-spacing</span> (<span class="org-type">&amp;optional</span> n)
@@ -1953,9 +1969,9 @@ their own dedicated sections where other specific settings are made.
 </div>
 </div>
 
-<div id="outline-container-unnumbered-14" class="outline-3">
-<h3 id="unnumbered-14">Backup Files</h3>
-<div class="outline-text-3" id="text-unnumbered-14">
+<div id="outline-container-unnumbered-15" class="outline-3">
+<h3 id="unnumbered-15">Backup Files</h3>
+<div class="outline-text-3" id="text-unnumbered-15">
 <p>
 Back up files to a single location.
 </p>
@@ -1976,9 +1992,9 @@ Back up files to a single location.
 </div>
 </div>
 
-<div id="outline-container-unnumbered-15" class="outline-3">
-<h3 id="unnumbered-15">Enabled Commands</h3>
-<div class="outline-text-3" id="text-unnumbered-15">
+<div id="outline-container-unnumbered-16" class="outline-3">
+<h3 id="unnumbered-16">Enabled Commands</h3>
+<div class="outline-text-3" id="text-unnumbered-16">
 <p>
 Commands disabled by default prompt at first use.  Enabling
 commands disables the prompt.
@@ -2006,9 +2022,9 @@ commands disables the prompt.
 </div>
 </div>
 
-<div id="outline-container-unnumbered-16" class="outline-3">
-<h3 id="unnumbered-16">Inferior Shell</h3>
-<div class="outline-text-3" id="text-unnumbered-16">
+<div id="outline-container-unnumbered-17" class="outline-3">
+<h3 id="unnumbered-17">Inferior Shell</h3>
+<div class="outline-text-3" id="text-unnumbered-17">
 <p>
 I use <a href="https://github.com/krismolendyke/.zsh">Zsh</a> in <a href="#multi-term"><code>multi-term</code></a> but I've customized it so much that it
 often interferes with simple inferior shell tasks.  Defaulting to
@@ -2023,9 +2039,9 @@ often interferes with simple inferior shell tasks.  Defaulting to
 </div>
 </div>
 
-<div id="outline-container-unnumbered-17" class="outline-3">
-<h3 id="unnumbered-17"><span class="todo TODO">TODO</span> Defaults for Review</h3>
-<div class="outline-text-3" id="text-unnumbered-17">
+<div id="outline-container-unnumbered-18" class="outline-3">
+<h3 id="unnumbered-18"><span class="todo TODO">TODO</span> Defaults for Review</h3>
+<div class="outline-text-3" id="text-unnumbered-18">
 <p>
 This is a bunch of stuff that I just dumped here and need to go through yet.
 </p>
@@ -2105,17 +2121,17 @@ screen monitors I work on.
 </div>
 </div>
 
-<div id="outline-container-unnumbered-18" class="outline-2">
-<h2 id="unnumbered-18">k20e Custom Functions</h2>
-<div class="outline-text-2" id="text-unnumbered-18">
+<div id="outline-container-unnumbered-19" class="outline-2">
+<h2 id="unnumbered-19">k20e Custom Functions</h2>
+<div class="outline-text-2" id="text-unnumbered-19">
 <p>
 I have found these to be useful enough to keep around permanently.
 </p>
 </div>
 
-<div id="outline-container-unnumbered-19" class="outline-3">
-<h3 id="unnumbered-19">Editing</h3>
-<div class="outline-text-3" id="text-unnumbered-19">
+<div id="outline-container-unnumbered-20" class="outline-3">
+<h3 id="unnumbered-20">Editing</h3>
+<div class="outline-text-3" id="text-unnumbered-20">
 <div class="org-src-container">
 
 <pre class="src src-emacs-lisp">(<span class="org-keyword">defun</span> <span class="org-function-name">k20e/mark-current-line</span> ()
@@ -2192,9 +2208,9 @@ Bind editing functions:
 </div>
 </div>
 
-<div id="outline-container-unnumbered-20" class="outline-3">
-<h3 id="unnumbered-20">Buffers</h3>
-<div class="outline-text-3" id="text-unnumbered-20">
+<div id="outline-container-unnumbered-21" class="outline-3">
+<h3 id="unnumbered-21">Buffers</h3>
+<div class="outline-text-3" id="text-unnumbered-21">
 <div class="org-src-container">
 
 <pre class="src src-emacs-lisp">(<span class="org-keyword">defun</span> <span class="org-function-name">k20e/display-buffer-file-name</span> ()
@@ -2206,9 +2222,9 @@ Bind editing functions:
 </div>
 </div>
 
-<div id="outline-container-unnumbered-21" class="outline-3">
-<h3 id="unnumbered-21">Windows</h3>
-<div class="outline-text-3" id="text-unnumbered-21">
+<div id="outline-container-unnumbered-22" class="outline-3">
+<h3 id="unnumbered-22">Windows</h3>
+<div class="outline-text-3" id="text-unnumbered-22">
 <div class="org-src-container">
 
 <pre class="src src-emacs-lisp">(<span class="org-keyword">require</span> '<span class="org-constant">ido</span>)
@@ -2244,9 +2260,9 @@ Bind window functions:
 </div>
 </div>
 
-<div id="outline-container-unnumbered-22" class="outline-3">
-<h3 id="unnumbered-22">Networking</h3>
-<div class="outline-text-3" id="text-unnumbered-22">
+<div id="outline-container-unnumbered-23" class="outline-3">
+<h3 id="unnumbered-23">Networking</h3>
+<div class="outline-text-3" id="text-unnumbered-23">
 <div class="org-src-container">
 
 <pre class="src src-emacs-lisp">(<span class="org-keyword">require</span> '<span class="org-constant">net-utils</span>)
@@ -2271,9 +2287,9 @@ Bind window functions:
 </div>
 </div>
 
-<div id="outline-container-unnumbered-23" class="outline-3">
-<h3 id="unnumbered-23">Lunar 🌙</h3>
-<div class="outline-text-3" id="text-unnumbered-23">
+<div id="outline-container-unnumbered-24" class="outline-3">
+<h3 id="unnumbered-24">Lunar 🌙</h3>
+<div class="outline-text-3" id="text-unnumbered-24">
 <div class="org-src-container">
 
 <pre class="src src-emacs-lisp">(<span class="org-keyword">require</span> '<span class="org-constant">calendar</span>)
@@ -2308,9 +2324,9 @@ Bind window functions:
 </div>
 </div>
 
-<div id="outline-container-unnumbered-24" class="outline-2">
-<h2 id="unnumbered-24">OS X</h2>
-<div class="outline-text-2" id="text-unnumbered-24">
+<div id="outline-container-unnumbered-25" class="outline-2">
+<h2 id="unnumbered-25">OS X</h2>
+<div class="outline-text-2" id="text-unnumbered-25">
 <p>
 These may be better suited split up to key bindings and/or a maybe
 input/mouse section?
@@ -2349,12 +2365,12 @@ input/mouse section?
 </div>
 </div>
 
-<div id="outline-container-unnumbered-25" class="outline-2">
-<h2 id="unnumbered-25">Appearance</h2>
-<div class="outline-text-2" id="text-unnumbered-25">
-</div><div id="outline-container-unnumbered-26" class="outline-3">
-<h3 id="unnumbered-26">Theme</h3>
-<div class="outline-text-3" id="text-unnumbered-26">
+<div id="outline-container-unnumbered-26" class="outline-2">
+<h2 id="unnumbered-26">Appearance</h2>
+<div class="outline-text-2" id="text-unnumbered-26">
+</div><div id="outline-container-unnumbered-27" class="outline-3">
+<h3 id="unnumbered-27">Theme</h3>
+<div class="outline-text-3" id="text-unnumbered-27">
 <div class="org-src-container">
 
 <pre class="src src-emacs-lisp"><span class="org-comment-delimiter">;; </span><span class="org-comment">Add themes.</span>
@@ -2441,14 +2457,14 @@ Bind toggle function:
 </div>
 </div>
 
-<div id="outline-container-unnumbered-27" class="outline-4">
-<h4 id="unnumbered-27"><span class="todo TODO">TODO</span> Try out <a href="https://github.com/bruce/emacs-spacegray-theme">Spacegray theme</a></h4>
+<div id="outline-container-unnumbered-28" class="outline-4">
+<h4 id="unnumbered-28"><span class="todo TODO">TODO</span> Try out <a href="https://github.com/bruce/emacs-spacegray-theme">Spacegray theme</a></h4>
 </div>
 </div>
 
-<div id="outline-container-unnumbered-28" class="outline-3">
-<h3 id="unnumbered-28">Cursor</h3>
-<div class="outline-text-3" id="text-unnumbered-28">
+<div id="outline-container-unnumbered-29" class="outline-3">
+<h3 id="unnumbered-29">Cursor</h3>
+<div class="outline-text-3" id="text-unnumbered-29">
 <p>
 Disable blinking.
 </p>
@@ -2471,9 +2487,9 @@ If blinking is enabled the rate can be adjusted.
 </div>
 </div>
 
-<div id="outline-container-unnumbered-29" class="outline-3">
-<h3 id="unnumbered-29">Frame Height</h3>
-<div class="outline-text-3" id="text-unnumbered-29">
+<div id="outline-container-unnumbered-30" class="outline-3">
+<h3 id="unnumbered-30">Frame Height</h3>
+<div class="outline-text-3" id="text-unnumbered-30">
 <p>
 These functions were more useful before I began using the <a href="http://git.savannah.gnu.org/cgit/emacs.git/tree/lisp/desktop.el"><code>desktop</code></a> package
 and its <a href="http://git.savannah.gnu.org/cgit/emacs.git/tree/lisp/desktop.el?id=e78d7f87377e29ee7ed2dd7aaed40244f1edbf13#n397"><code>desktop-restore-frames</code></a> variable.
@@ -2501,9 +2517,9 @@ and its <a href="http://git.savannah.gnu.org/cgit/emacs.git/tree/lisp/desktop.el
 </div>
 </div>
 
-<div id="outline-container-unnumbered-30" class="outline-3">
-<h3 id="unnumbered-30">Fringe</h3>
-<div class="outline-text-3" id="text-unnumbered-30">
+<div id="outline-container-unnumbered-31" class="outline-3">
+<h3 id="unnumbered-31">Fringe</h3>
+<div class="outline-text-3" id="text-unnumbered-31">
 <p>
 The "fringe" or "gutter" shows indicators for wrapped/extended lines,
 <a href="#flycheck">flycheck</a>, etc.
@@ -2518,9 +2534,9 @@ The "fringe" or "gutter" shows indicators for wrapped/extended lines,
 </div>
 </div>
 
-<div id="outline-container-unnumbered-31" class="outline-3">
-<h3 id="unnumbered-31"><span class="todo TODO">TODO</span> Disable <code>linum-mode</code> when text scale is not zero</h3>
-<div class="outline-text-3" id="text-unnumbered-31">
+<div id="outline-container-unnumbered-32" class="outline-3">
+<h3 id="unnumbered-32"><span class="todo TODO">TODO</span> Disable <code>linum-mode</code> when text scale is not zero</h3>
+<div class="outline-text-3" id="text-unnumbered-32">
 <p>
 The fringe text scale is adjusted with the rest of the buffer yet the
 fringe width is not adjusted.  If text scale is positive the line numbers
@@ -2532,9 +2548,9 @@ scale is large.
 </div>
 </div>
 
-<div id="outline-container-unnumbered-32" class="outline-2">
-<h2 id="unnumbered-32">ag</h2>
-<div class="outline-text-2" id="text-unnumbered-32">
+<div id="outline-container-unnumbered-33" class="outline-2">
+<h2 id="unnumbered-33">ag</h2>
+<div class="outline-text-2" id="text-unnumbered-33">
 <p>
 <a href="https://github.com/ggreer/the_silver_searcher">The Silver Searcher</a> is similar to <code>ack</code>, which in turn is similar to <code>grep</code>.
 </p>
@@ -2553,9 +2569,9 @@ scale is large.
 </div>
 </div>
 
-<div id="outline-container-unnumbered-33" class="outline-2">
-<h2 id="unnumbered-33">arduino-mode</h2>
-<div class="outline-text-2" id="text-unnumbered-33">
+<div id="outline-container-unnumbered-34" class="outline-2">
+<h2 id="unnumbered-34">arduino-mode</h2>
+<div class="outline-text-2" id="text-unnumbered-34">
 <div class="org-src-container">
 
 <pre class="src src-emacs-lisp">(<span class="org-keyword">require</span> '<span class="org-constant">arduino-mode</span>)
@@ -2575,9 +2591,9 @@ scale is large.
 </div>
 </div>
 
-<div id="outline-container-unnumbered-34" class="outline-2">
-<h2 id="unnumbered-34">auto-fill</h2>
-<div class="outline-text-2" id="text-unnumbered-34">
+<div id="outline-container-unnumbered-35" class="outline-2">
+<h2 id="unnumbered-35">auto-fill</h2>
+<div class="outline-text-2" id="text-unnumbered-35">
 <p>
 When to turn on auto-fill and set fill-column to a reasonable value.  This
 would probably be better dealt with by a data structure that maps mode hooks
@@ -2595,9 +2611,9 @@ to fill-column values.
 </div>
 </div>
 
-<div id="outline-container-unnumbered-35" class="outline-2">
-<h2 id="unnumbered-35">auto-save</h2>
-<div class="outline-text-2" id="text-unnumbered-35">
+<div id="outline-container-unnumbered-36" class="outline-2">
+<h2 id="unnumbered-36">auto-save</h2>
+<div class="outline-text-2" id="text-unnumbered-36">
 <p>
 Disable <code>auto-save</code>.
 </p>
@@ -2611,9 +2627,9 @@ Disable <code>auto-save</code>.
 </div>
 </div>
 
-<div id="outline-container-unnumbered-36" class="outline-2">
-<h2 id="unnumbered-36">buffer-move</h2>
-<div class="outline-text-2" id="text-unnumbered-36">
+<div id="outline-container-unnumbered-37" class="outline-2">
+<h2 id="unnumbered-37">buffer-move</h2>
+<div class="outline-text-2" id="text-unnumbered-37">
 <p>
 Move the current buffer up/down/left/right easily.
 </p>
@@ -2631,9 +2647,9 @@ Move the current buffer up/down/left/right easily.
 </div>
 </div>
 
-<div id="outline-container-unnumbered-37" class="outline-2">
-<h2 id="unnumbered-37"><span class="todo TODO">TODO</span> calendar</h2>
-<div class="outline-text-2" id="text-unnumbered-37">
+<div id="outline-container-unnumbered-38" class="outline-2">
+<h2 id="unnumbered-38"><span class="todo TODO">TODO</span> calendar</h2>
+<div class="outline-text-2" id="text-unnumbered-38">
 <p>
 Does setting these geolocation variables in a hook really make sense since
 they are the result of an asynchronous query and response parsing?
@@ -2665,9 +2681,9 @@ they are the result of an asynchronous query and response parsing?
 </div>
 </div>
 
-<div id="outline-container-unnumbered-38" class="outline-2">
-<h2 id="unnumbered-38">cider</h2>
-<div class="outline-text-2" id="text-unnumbered-38">
+<div id="outline-container-unnumbered-39" class="outline-2">
+<h2 id="unnumbered-39">cider</h2>
+<div class="outline-text-2" id="text-unnumbered-39">
 <div class="org-src-container">
 
 <pre class="src src-emacs-lisp">(<span class="org-keyword">require</span> '<span class="org-constant">cider</span>)
@@ -2689,9 +2705,9 @@ they are the result of an asynchronous query and response parsing?
 </div>
 </div>
 
-<div id="outline-container-unnumbered-39" class="outline-2">
-<h2 id="unnumbered-39">clock-face</h2>
-<div class="outline-text-2" id="text-unnumbered-39">
+<div id="outline-container-unnumbered-40" class="outline-2">
+<h2 id="unnumbered-40">clock-face</h2>
+<div class="outline-text-2" id="text-unnumbered-40">
 <p>
 This is a <a href="https://github.com/krismolendyke/clock-face.el">ridiculous package</a> that I wrote to insert a Unicode clock
 face character for the nearest current half-hour.  🕙
@@ -2705,9 +2721,9 @@ face character for the nearest current half-hour.  🕙
 </div>
 </div>
 
-<div id="outline-container-unnumbered-40" class="outline-2">
-<h2 id="unnumbered-40">clojure-mode</h2>
-<div class="outline-text-2" id="text-unnumbered-40">
+<div id="outline-container-unnumbered-41" class="outline-2">
+<h2 id="unnumbered-41">clojure-mode</h2>
+<div class="outline-text-2" id="text-unnumbered-41">
 <div class="org-src-container">
 
 <pre class="src src-emacs-lisp">(<span class="org-keyword">require</span> '<span class="org-constant">clojure-mode</span>)
@@ -2722,9 +2738,9 @@ face character for the nearest current half-hour.  🕙
 </div>
 </div>
 
-<div id="outline-container-unnumbered-41" class="outline-3">
-<h3 id="unnumbered-41">Save buffers before loading or running tests</h3>
-<div class="outline-text-3" id="text-unnumbered-41">
+<div id="outline-container-unnumbered-42" class="outline-3">
+<h3 id="unnumbered-42">Save buffers before loading or running tests</h3>
+<div class="outline-text-3" id="text-unnumbered-42">
 <p>
 Courtesy of Magnar Sveen's <a href="https://github.com/magnars/.emacs.d/blob/486e631801c84b018d90cf040d2170ef78045676/setup-clojure-mode.el"><code>setup-clojure-mode.el</code></a>.
 </p>
@@ -2745,9 +2761,9 @@ Courtesy of Magnar Sveen's <a href="https://github.com/magnars/.emacs.d/blob/486
 </div>
 </div>
 
-<div id="outline-container-unnumbered-42" class="outline-2">
-<h2 id="unnumbered-42">compilation-mode</h2>
-<div class="outline-text-2" id="text-unnumbered-42">
+<div id="outline-container-unnumbered-43" class="outline-2">
+<h2 id="unnumbered-43">compilation-mode</h2>
+<div class="outline-text-2" id="text-unnumbered-43">
 <div class="org-src-container">
 
 <pre class="src src-emacs-lisp">(<span class="org-keyword">defun</span> <span class="org-function-name">k20e/compilation-mode-hook</span> ()
@@ -2759,9 +2775,9 @@ Courtesy of Magnar Sveen's <a href="https://github.com/magnars/.emacs.d/blob/486
 </div>
 </div>
 
-<div id="outline-container-unnumbered-43" class="outline-2">
-<h2 id="unnumbered-43">dash-at-point</h2>
-<div class="outline-text-2" id="text-unnumbered-43">
+<div id="outline-container-unnumbered-44" class="outline-2">
+<h2 id="unnumbered-44">dash-at-point</h2>
+<div class="outline-text-2" id="text-unnumbered-44">
 <p>
 <a href="https://kapeli.com/dash">Dash</a> offline API access.
 </p>
@@ -2777,9 +2793,9 @@ Courtesy of Magnar Sveen's <a href="https://github.com/magnars/.emacs.d/blob/486
 </div>
 </div>
 
-<div id="outline-container-unnumbered-44" class="outline-2">
-<h2 id="unnumbered-44">dired</h2>
-<div class="outline-text-2" id="text-unnumbered-44">
+<div id="outline-container-unnumbered-45" class="outline-2">
+<h2 id="unnumbered-45">dired</h2>
+<div class="outline-text-2" id="text-unnumbered-45">
 <div class="org-src-container">
 
 <pre class="src src-emacs-lisp">(<span class="org-keyword">require</span> '<span class="org-constant">ido</span>)
@@ -2801,9 +2817,9 @@ Courtesy of Magnar Sveen's <a href="https://github.com/magnars/.emacs.d/blob/486
 </div>
 </div>
 
-<div id="outline-container-unnumbered-45" class="outline-2">
-<h2 id="unnumbered-45">electric-pair-mode</h2>
-<div class="outline-text-2" id="text-unnumbered-45">
+<div id="outline-container-unnumbered-46" class="outline-2">
+<h2 id="unnumbered-46">electric-pair-mode</h2>
+<div class="outline-text-2" id="text-unnumbered-46">
 <div class="org-src-container">
 
 <pre class="src src-emacs-lisp">(<span class="org-keyword">require</span> '<span class="org-constant">elec-pair</span>)
@@ -2814,9 +2830,9 @@ Courtesy of Magnar Sveen's <a href="https://github.com/magnars/.emacs.d/blob/486
 </div>
 </div>
 
-<div id="outline-container-unnumbered-46" class="outline-2">
-<h2 id="unnumbered-46">emacs-lisp-mode</h2>
-<div class="outline-text-2" id="text-unnumbered-46">
+<div id="outline-container-unnumbered-47" class="outline-2">
+<h2 id="unnumbered-47">emacs-lisp-mode</h2>
+<div class="outline-text-2" id="text-unnumbered-47">
 <div class="org-src-container">
 
 <pre class="src src-emacs-lisp">(<span class="org-keyword">defun</span> <span class="org-function-name">k20e/emacs-lisp-mode-hook</span> ()
@@ -2828,9 +2844,9 @@ Courtesy of Magnar Sveen's <a href="https://github.com/magnars/.emacs.d/blob/486
 </div>
 </div>
 
-<div id="outline-container-unnumbered-47" class="outline-2">
-<h2 id="unnumbered-47">ert</h2>
-<div class="outline-text-2" id="text-unnumbered-47">
+<div id="outline-container-unnumbered-48" class="outline-2">
+<h2 id="unnumbered-48">ert</h2>
+<div class="outline-text-2" id="text-unnumbered-48">
 <p>
 Emacs Lisp <a href="http://en.wikipedia.org/wiki/Unit_testing">unit testing</a>!
 </p>
@@ -2850,9 +2866,9 @@ Emacs Lisp <a href="http://en.wikipedia.org/wiki/Unit_testing">unit testing</a>!
 </div>
 </div>
 
-<div id="outline-container-unnumbered-48" class="outline-2">
-<h2 id="unnumbered-48">expand-region</h2>
-<div class="outline-text-2" id="text-unnumbered-48">
+<div id="outline-container-unnumbered-49" class="outline-2">
+<h2 id="unnumbered-49">expand-region</h2>
+<div class="outline-text-2" id="text-unnumbered-49">
 <div class="org-src-container">
 
 <pre class="src src-emacs-lisp">(<span class="org-keyword">require</span> '<span class="org-constant">expand-region</span>)
@@ -2863,9 +2879,9 @@ Emacs Lisp <a href="http://en.wikipedia.org/wiki/Unit_testing">unit testing</a>!
 </div>
 </div>
 
-<div id="outline-container-unnumbered-49" class="outline-2">
-<h2 id="unnumbered-49">find-file-in-project</h2>
-<div class="outline-text-2" id="text-unnumbered-49">
+<div id="outline-container-unnumbered-50" class="outline-2">
+<h2 id="unnumbered-50">find-file-in-project</h2>
+<div class="outline-text-2" id="text-unnumbered-50">
 <div class="org-src-container">
 
 <pre class="src src-emacs-lisp">(<span class="org-keyword">require</span> '<span class="org-constant">find-file-in-project</span>)
@@ -2902,7 +2918,7 @@ Emacs Lisp <a href="http://en.wikipedia.org/wiki/Unit_testing">unit testing</a>!
 </div>
 
 <div id="outline-container-flycheck" class="outline-2">
-<h2 id="flycheck"><a id="unnumbered-50"></a>flycheck</h2>
+<h2 id="flycheck"><a id="unnumbered-51"></a>flycheck</h2>
 <div class="outline-text-2" id="text-flycheck">
 <div class="org-src-container">
 
@@ -2921,9 +2937,9 @@ Emacs Lisp <a href="http://en.wikipedia.org/wiki/Unit_testing">unit testing</a>!
 </div>
 </div>
 
-<div id="outline-container-unnumbered-51" class="outline-2">
-<h2 id="unnumbered-51">flyspell</h2>
-<div class="outline-text-2" id="text-unnumbered-51">
+<div id="outline-container-unnumbered-52" class="outline-2">
+<h2 id="unnumbered-52">flyspell</h2>
+<div class="outline-text-2" id="text-unnumbered-52">
 <p>
 Setup <code>ispell</code> to use <a href="#install-aspell"><code>aspell</code></a>:
 </p>
@@ -2960,7 +2976,7 @@ Then setup <code>flyspell</code> itself.  It requires  <code>ispell</code>.
 </div>
 
 <div id="outline-container-install-aspell" class="outline-3">
-<h3 id="install-aspell"><a id="unnumbered-52"></a>Install <a href="http://hunspell.sourceforge.net/"><code>aspell</code></a></h3>
+<h3 id="install-aspell"><a id="unnumbered-53"></a>Install <a href="http://hunspell.sourceforge.net/"><code>aspell</code></a></h3>
 <div class="outline-text-3" id="text-install-aspell">
 <p>
 Install <code>aspell</code> via Homebrew:
@@ -2975,9 +2991,9 @@ Install <code>aspell</code> via Homebrew:
 </div>
 </div>
 
-<div id="outline-container-unnumbered-53" class="outline-2">
-<h2 id="unnumbered-53">Fonts</h2>
-<div class="outline-text-2" id="text-unnumbered-53">
+<div id="outline-container-unnumbered-54" class="outline-2">
+<h2 id="unnumbered-54">Fonts</h2>
+<div class="outline-text-2" id="text-unnumbered-54">
 <p>
 Managing fonts always seems to be a hassle.  These functions help to
 interactively set the font family and a preferred size from a short
@@ -3027,9 +3043,9 @@ list of fonts that I like.
 </div>
 </div>
 
-<div id="outline-container-unnumbered-54" class="outline-3">
-<h3 id="unnumbered-54">Unicode</h3>
-<div class="outline-text-3" id="text-unnumbered-54">
+<div id="outline-container-unnumbered-55" class="outline-3">
+<h3 id="unnumbered-55">Unicode</h3>
+<div class="outline-text-3" id="text-unnumbered-55">
 <p>
 <a href="http://users.teilar.gr/~g1951d/">Symbola</a> is a nice font for displaying Unicode characters 🍺👍.
 </p>
@@ -3044,9 +3060,9 @@ list of fonts that I like.
 </div>
 </div>
 
-<div id="outline-container-unnumbered-55" class="outline-2">
-<h2 id="unnumbered-55">font-awesome</h2>
-<div class="outline-text-2" id="text-unnumbered-55">
+<div id="outline-container-unnumbered-56" class="outline-2">
+<h2 id="unnumbered-56">font-awesome</h2>
+<div class="outline-text-2" id="text-unnumbered-56">
 <p>
 This is a <a href="https://github.com/krismolendyke/font-awesome.el">naïve package</a> that I wrote to help insert <a href="http://fortawesome.github.io/Font-Awesome/">Font Awesome</a>
 icons into buffers.
@@ -3060,9 +3076,9 @@ icons into buffers.
 </div>
 </div>
 
-<div id="outline-container-unnumbered-56" class="outline-2">
-<h2 id="unnumbered-56">git</h2>
-<div class="outline-text-2" id="text-unnumbered-56">
+<div id="outline-container-unnumbered-57" class="outline-2">
+<h2 id="unnumbered-57">git</h2>
+<div class="outline-text-2" id="text-unnumbered-57">
 <div class="org-src-container">
 
 <pre class="src src-emacs-lisp">(<span class="org-keyword">require</span> '<span class="org-constant">git-commit-mode</span>)
@@ -3083,9 +3099,9 @@ icons into buffers.
 </div>
 </div>
 
-<div id="outline-container-unnumbered-57" class="outline-2">
-<h2 id="unnumbered-57">go-mode</h2>
-<div class="outline-text-2" id="text-unnumbered-57">
+<div id="outline-container-unnumbered-58" class="outline-2">
+<h2 id="unnumbered-58">go-mode</h2>
+<div class="outline-text-2" id="text-unnumbered-58">
 <div class="org-src-container">
 
 <pre class="src src-emacs-lisp">(<span class="org-keyword">require</span> '<span class="org-constant">go-mode-autoloads</span>)
@@ -3101,9 +3117,9 @@ icons into buffers.
 </div>
 </div>
 
-<div id="outline-container-unnumbered-58" class="outline-2">
-<h2 id="unnumbered-58">highlight-parentheses</h2>
-<div class="outline-text-2" id="text-unnumbered-58">
+<div id="outline-container-unnumbered-59" class="outline-2">
+<h2 id="unnumbered-59">highlight-parentheses</h2>
+<div class="outline-text-2" id="text-unnumbered-59">
 <div class="org-src-container">
 
 <pre class="src src-emacs-lisp">(<span class="org-keyword">require</span> '<span class="org-constant">highlight-parentheses</span>)
@@ -3119,9 +3135,9 @@ icons into buffers.
 </div>
 </div>
 
-<div id="outline-container-unnumbered-59" class="outline-2">
-<h2 id="unnumbered-59">hyperspec</h2>
-<div class="outline-text-2" id="text-unnumbered-59">
+<div id="outline-container-unnumbered-60" class="outline-2">
+<h2 id="unnumbered-60">hyperspec</h2>
+<div class="outline-text-2" id="text-unnumbered-60">
 <div class="org-src-container">
 
 <pre class="src src-emacs-lisp"><span class="org-comment-delimiter">;; </span><span class="org-comment">Set HyperSpec root in Dropbox.</span>
@@ -3133,9 +3149,9 @@ icons into buffers.
 </div>
 </div>
 
-<div id="outline-container-unnumbered-60" class="outline-2">
-<h2 id="unnumbered-60">ibuffer</h2>
-<div class="outline-text-2" id="text-unnumbered-60">
+<div id="outline-container-unnumbered-61" class="outline-2">
+<h2 id="unnumbered-61">ibuffer</h2>
+<div class="outline-text-2" id="text-unnumbered-61">
 <div class="org-src-container">
 
 <pre class="src src-emacs-lisp">(<span class="org-keyword">require</span> '<span class="org-constant">ibuffer</span>)
@@ -3166,9 +3182,9 @@ icons into buffers.
 </div>
 </div>
 
-<div id="outline-container-unnumbered-61" class="outline-2">
-<h2 id="unnumbered-61">ido</h2>
-<div class="outline-text-2" id="text-unnumbered-61">
+<div id="outline-container-unnumbered-62" class="outline-2">
+<h2 id="unnumbered-62">ido</h2>
+<div class="outline-text-2" id="text-unnumbered-62">
 <div class="org-src-container">
 
 <pre class="src src-emacs-lisp">(<span class="org-keyword">require</span> '<span class="org-constant">flx-ido</span>)
@@ -3199,9 +3215,9 @@ Avoid <code>ido-vertical-mode</code> from eating <code>M-p</code>.
 </div>
 </div>
 
-<div id="outline-container-unnumbered-62" class="outline-3">
-<h3 id="unnumbered-62">Interface</h3>
-<div class="outline-text-3" id="text-unnumbered-62">
+<div id="outline-container-unnumbered-63" class="outline-3">
+<h3 id="unnumbered-63">Interface</h3>
+<div class="outline-text-3" id="text-unnumbered-63">
 <div class="org-src-container">
 
 <pre class="src src-emacs-lisp">(<span class="org-keyword">setq</span> ido-vertical-decorations '(<span class="org-string">"\n"</span>  <span class="org-comment-delimiter">; </span><span class="org-comment">left bracket around prospect list</span>
@@ -3223,9 +3239,9 @@ Avoid <code>ido-vertical-mode</code> from eating <code>M-p</code>.
 </div>
 </div>
 
-<div id="outline-container-unnumbered-63" class="outline-3">
-<h3 id="unnumbered-63">Minibuffer</h3>
-<div class="outline-text-3" id="text-unnumbered-63">
+<div id="outline-container-unnumbered-64" class="outline-3">
+<h3 id="unnumbered-64">Minibuffer</h3>
+<div class="outline-text-3" id="text-unnumbered-64">
 <p>
 Scale up the minibuffer text size and limit how tall it can get.
 </p>
@@ -3243,9 +3259,9 @@ Scale up the minibuffer text size and limit how tall it can get.
 </div>
 </div>
 
-<div id="outline-container-unnumbered-64" class="outline-3">
-<h3 id="unnumbered-64">Keys and Theme</h3>
-<div class="outline-text-3" id="text-unnumbered-64">
+<div id="outline-container-unnumbered-65" class="outline-3">
+<h3 id="unnumbered-65">Keys and Theme</h3>
+<div class="outline-text-3" id="text-unnumbered-65">
 <div class="org-src-container">
 
 <pre class="src src-emacs-lisp">(<span class="org-keyword">defun</span> <span class="org-function-name">k20e/ido-setup-hook</span> ()
@@ -3273,9 +3289,9 @@ Scale up the minibuffer text size and limit how tall it can get.
 </div>
 </div>
 
-<div id="outline-container-unnumbered-65" class="outline-3">
-<h3 id="unnumbered-65">Enable</h3>
-<div class="outline-text-3" id="text-unnumbered-65">
+<div id="outline-container-unnumbered-66" class="outline-3">
+<h3 id="unnumbered-66">Enable</h3>
+<div class="outline-text-3" id="text-unnumbered-66">
 <p>
 Vertical, everywhere, fuzzy matching.
 </p>
@@ -3292,9 +3308,9 @@ Vertical, everywhere, fuzzy matching.
 </div>
 </div>
 
-<div id="outline-container-unnumbered-66" class="outline-2">
-<h2 id="unnumbered-66">IELM</h2>
-<div class="outline-text-2" id="text-unnumbered-66">
+<div id="outline-container-unnumbered-67" class="outline-2">
+<h2 id="unnumbered-67">IELM</h2>
+<div class="outline-text-2" id="text-unnumbered-67">
 <div class="org-src-container">
 
 <pre class="src src-emacs-lisp">(<span class="org-keyword">require</span> '<span class="org-constant">eldoc</span>)
@@ -3310,9 +3326,9 @@ Vertical, everywhere, fuzzy matching.
 </div>
 </div>
 
-<div id="outline-container-unnumbered-67" class="outline-2">
-<h2 id="unnumbered-67">I'm Feeling Lucky</h2>
-<div class="outline-text-2" id="text-unnumbered-67">
+<div id="outline-container-unnumbered-68" class="outline-2">
+<h2 id="unnumbered-68">I'm Feeling Lucky</h2>
+<div class="outline-text-2" id="text-unnumbered-68">
 <p>
 This is <a href="https://github.com/krismolendyke/im-feeling-lucky.el">my Google search</a> module.
 </p>
@@ -3327,9 +3343,9 @@ This is <a href="https://github.com/krismolendyke/im-feeling-lucky.el">my Google
 </div>
 </div>
 
-<div id="outline-container-unnumbered-68" class="outline-2">
-<h2 id="unnumbered-68">isearch</h2>
-<div class="outline-text-2" id="text-unnumbered-68">
+<div id="outline-container-unnumbered-69" class="outline-2">
+<h2 id="unnumbered-69">isearch</h2>
+<div class="outline-text-2" id="text-unnumbered-69">
 <div class="org-src-container">
 
 <pre class="src src-emacs-lisp">(eval-after-load <span class="org-string">"isearch"</span>
@@ -3339,9 +3355,9 @@ This is <a href="https://github.com/krismolendyke/im-feeling-lucky.el">my Google
 </div>
 </div>
 
-<div id="outline-container-unnumbered-69" class="outline-2">
-<h2 id="unnumbered-69">js-mode</h2>
-<div class="outline-text-2" id="text-unnumbered-69">
+<div id="outline-container-unnumbered-70" class="outline-2">
+<h2 id="unnumbered-70">js-mode</h2>
+<div class="outline-text-2" id="text-unnumbered-70">
 <div class="org-src-container">
 
 <pre class="src src-emacs-lisp">(<span class="org-keyword">require</span> '<span class="org-constant">flycheck</span>)
@@ -3359,9 +3375,9 @@ This is <a href="https://github.com/krismolendyke/im-feeling-lucky.el">my Google
 </div>
 </div>
 
-<div id="outline-container-unnumbered-70" class="outline-2">
-<h2 id="unnumbered-70">keyfreq</h2>
-<div class="outline-text-2" id="text-unnumbered-70">
+<div id="outline-container-unnumbered-71" class="outline-2">
+<h2 id="unnumbered-71">keyfreq</h2>
+<div class="outline-text-2" id="text-unnumbered-71">
 <div class="org-src-container">
 
 <pre class="src src-emacs-lisp">(<span class="org-keyword">require</span> '<span class="org-constant">keyfreq</span>)
@@ -3376,9 +3392,9 @@ This is <a href="https://github.com/krismolendyke/im-feeling-lucky.el">my Google
 </div>
 </div>
 
-<div id="outline-container-unnumbered-71" class="outline-2">
-<h2 id="unnumbered-71">lockfiles</h2>
-<div class="outline-text-2" id="text-unnumbered-71">
+<div id="outline-container-unnumbered-72" class="outline-2">
+<h2 id="unnumbered-72">lockfiles</h2>
+<div class="outline-text-2" id="text-unnumbered-72">
 <p>
 <a href="http://stackoverflow.com/questions/5738170/why-does-emacs-create-temporary-symbolic-links-for-modified-files">Avoid creating temporary symbolic links</a> and disturbing working
 directory state at the expense of avoiding editing collisions that I
@@ -3393,9 +3409,9 @@ do not ever anticipate.
 </div>
 </div>
 
-<div id="outline-container-unnumbered-72" class="outline-2">
-<h2 id="unnumbered-72">markdown-mode</h2>
-<div class="outline-text-2" id="text-unnumbered-72">
+<div id="outline-container-unnumbered-73" class="outline-2">
+<h2 id="unnumbered-73">markdown-mode</h2>
+<div class="outline-text-2" id="text-unnumbered-73">
 <div class="org-src-container">
 
 <pre class="src src-emacs-lisp">(<span class="org-keyword">require</span> '<span class="org-constant">markdown-mode</span>)
@@ -3409,9 +3425,9 @@ do not ever anticipate.
 </div>
 </div>
 
-<div id="outline-container-unnumbered-73" class="outline-2">
-<h2 id="unnumbered-73">minibuffers</h2>
-<div class="outline-text-2" id="text-unnumbered-73">
+<div id="outline-container-unnumbered-74" class="outline-2">
+<h2 id="unnumbered-74">minibuffers</h2>
+<div class="outline-text-2" id="text-unnumbered-74">
 <p>
 Set <code>enable-recursive-minibufers</code> to <code>t</code> to allow minibuffers
 <i>within</i> minibuffers.  A good use-case of this feature is described
@@ -3425,9 +3441,9 @@ in <a href="http://www.masteringemacs.org/articles/2011/10/19/executing-shell-co
 </div>
 </div>
 
-<div id="outline-container-unnumbered-74" class="outline-3">
-<h3 id="unnumbered-74">Eval expression minibuffer</h3>
-<div class="outline-text-3" id="text-unnumbered-74">
+<div id="outline-container-unnumbered-75" class="outline-3">
+<h3 id="unnumbered-75">Eval expression minibuffer</h3>
+<div class="outline-text-3" id="text-unnumbered-75">
 <p>
 Enable <code>eldoc</code> in the modeline.
 </p>
@@ -3447,9 +3463,9 @@ Enable <code>eldoc</code> in the modeline.
 </div>
 </div>
 
-<div id="outline-container-unnumbered-75" class="outline-2">
-<h2 id="unnumbered-75">monetate-mode</h2>
-<div class="outline-text-2" id="text-unnumbered-75">
+<div id="outline-container-unnumbered-76" class="outline-2">
+<h2 id="unnumbered-76">monetate-mode</h2>
+<div class="outline-text-2" id="text-unnumbered-76">
 <div class="org-src-container">
 
 <pre class="src src-emacs-lisp">(<span class="org-keyword">require</span> '<span class="org-constant">monetate-mode</span>)
@@ -3472,7 +3488,7 @@ Enable <code>eldoc</code> in the modeline.
 </div>
 
 <div id="outline-container-multi-term" class="outline-2">
-<h2 id="multi-term"><a id="unnumbered-76"></a>multi-term</h2>
+<h2 id="multi-term"><a id="unnumbered-77"></a>multi-term</h2>
 <div class="outline-text-2" id="text-multi-term">
 <p>
 Together with <a href="#term">term</a> this sets up my terminal environment within Emacs.
@@ -3547,9 +3563,9 @@ bindings whenever I open a new terminal.
 </p>
 </div>
 
-<div id="outline-container-unnumbered-77" class="outline-3">
-<h3 id="unnumbered-77">Global Key Bindings</h3>
-<div class="outline-text-3" id="text-unnumbered-77">
+<div id="outline-container-unnumbered-78" class="outline-3">
+<h3 id="unnumbered-78">Global Key Bindings</h3>
+<div class="outline-text-3" id="text-unnumbered-78">
 <div class="org-src-container">
 
 <pre class="src src-emacs-lisp">(global-set-key (kbd <span class="org-string">"&lt;f2&gt;"</span>) 'multi-term)
@@ -3560,9 +3576,9 @@ bindings whenever I open a new terminal.
 </div>
 </div>
 
-<div id="outline-container-unnumbered-78" class="outline-2">
-<h2 id="unnumbered-78">multiple-cursors</h2>
-<div class="outline-text-2" id="text-unnumbered-78">
+<div id="outline-container-unnumbered-79" class="outline-2">
+<h2 id="unnumbered-79">multiple-cursors</h2>
+<div class="outline-text-2" id="text-unnumbered-79">
 <div class="org-src-container">
 
 <pre class="src src-emacs-lisp">(<span class="org-keyword">require</span> '<span class="org-constant">multiple-cursors</span>)
@@ -3616,9 +3632,9 @@ Keep preferences sync'd across machines.
 </div>
 </div>
 
-<div id="outline-container-unnumbered-79" class="outline-2">
-<h2 id="unnumbered-79">Open Source Licenses</h2>
-<div class="outline-text-2" id="text-unnumbered-79">
+<div id="outline-container-unnumbered-80" class="outline-2">
+<h2 id="unnumbered-80">Open Source Licenses</h2>
+<div class="outline-text-2" id="text-unnumbered-80">
 <div class="org-src-container">
 
 <pre class="src src-emacs-lisp">(<span class="org-keyword">defun</span> <span class="org-function-name">k20e/insert-mit-license</span> ()
@@ -3653,9 +3669,9 @@ Keep preferences sync'd across machines.
 </div>
 </div>
 
-<div id="outline-container-unnumbered-80" class="outline-2">
-<h2 id="unnumbered-80">org-mode</h2>
-<div class="outline-text-2" id="text-unnumbered-80">
+<div id="outline-container-unnumbered-81" class="outline-2">
+<h2 id="unnumbered-81">org-mode</h2>
+<div class="outline-text-2" id="text-unnumbered-81">
 <div class="org-src-container">
 
 <pre class="src src-emacs-lisp">(<span class="org-keyword">require</span> '<span class="org-constant">org</span>)
@@ -3702,9 +3718,9 @@ Keep preferences sync'd across machines.
 </div>
 </div>
 
-<div id="outline-container-unnumbered-81" class="outline-3">
-<h3 id="unnumbered-81">Key Bindings</h3>
-<div class="outline-text-3" id="text-unnumbered-81">
+<div id="outline-container-unnumbered-82" class="outline-3">
+<h3 id="unnumbered-82">Key Bindings</h3>
+<div class="outline-text-3" id="text-unnumbered-82">
 <div class="org-src-container">
 
 <pre class="src src-emacs-lisp">(global-set-key (kbd <span class="org-string">"C-c a"</span>) 'org-agenda)
@@ -3721,9 +3737,9 @@ Keep preferences sync'd across machines.
 </div>
 </div>
 
-<div id="outline-container-unnumbered-82" class="outline-3">
-<h3 id="unnumbered-82">Export</h3>
-<div class="outline-text-3" id="text-unnumbered-82">
+<div id="outline-container-unnumbered-83" class="outline-3">
+<h3 id="unnumbered-83">Export</h3>
+<div class="outline-text-3" id="text-unnumbered-83">
 <p>
 Most non-interactive export settings are defined in <a href="https://github.com/krismolendyke/.emacs.d/blob/master/elisp/k20e-org-html-export.el">a file loaded
 during initialization</a>.  Those settings are defined during
@@ -3751,9 +3767,9 @@ Interactive customization can be done here.
 </div>
 </div>
 
-<div id="outline-container-unnumbered-83" class="outline-4">
-<h4 id="unnumbered-83">Backends</h4>
-<div class="outline-text-4" id="text-unnumbered-83">
+<div id="outline-container-unnumbered-84" class="outline-4">
+<h4 id="unnumbered-84">Backends</h4>
+<div class="outline-text-4" id="text-unnumbered-84">
 <div class="org-src-container">
 
 <pre class="src src-emacs-lisp">(<span class="org-keyword">require</span> '<span class="org-constant">ox-md</span>)
@@ -3765,9 +3781,9 @@ Interactive customization can be done here.
 </div>
 </div>
 
-<div id="outline-container-unnumbered-84" class="outline-3">
-<h3 id="unnumbered-84">Publish</h3>
-<div class="outline-text-3" id="text-unnumbered-84">
+<div id="outline-container-unnumbered-85" class="outline-3">
+<h3 id="unnumbered-85">Publish</h3>
+<div class="outline-text-3" id="text-unnumbered-85">
 <div class="org-src-container">
 
 <pre class="src src-emacs-lisp">(<span class="org-keyword">setq</span> org-publish-project-alist
@@ -3820,9 +3836,9 @@ Interactive customization can be done here.
 </div>
 </div>
 
-<div id="outline-container-unnumbered-85" class="outline-3">
-<h3 id="unnumbered-85">Babel</h3>
-<div class="outline-text-3" id="text-unnumbered-85">
+<div id="outline-container-unnumbered-86" class="outline-3">
+<h3 id="unnumbered-86">Babel</h3>
+<div class="outline-text-3" id="text-unnumbered-86">
 <p>
 Define <a href="http://orgmode.org/worg/org-contrib/babel/languages.html">which languages</a> <code>org-babel</code> should support.
 </p>
@@ -3843,9 +3859,9 @@ Define <a href="http://orgmode.org/worg/org-contrib/babel/languages.html">which 
 </div>
 </div>
 
-<div id="outline-container-unnumbered-86" class="outline-3">
-<h3 id="unnumbered-86"><span class="todo TODO">TODO</span> Items</h3>
-<div class="outline-text-3" id="text-unnumbered-86">
+<div id="outline-container-unnumbered-87" class="outline-3">
+<h3 id="unnumbered-87"><span class="todo TODO">TODO</span> Items</h3>
+<div class="outline-text-3" id="text-unnumbered-87">
 <p>
 Automatically insert a timestamp when a task is marked <code>DONE</code>.
 </p>
@@ -3877,9 +3893,9 @@ Custom keywords and faces.
 </div>
 </div>
 
-<div id="outline-container-unnumbered-87" class="outline-3">
-<h3 id="unnumbered-87">Agenda</h3>
-<div class="outline-text-3" id="text-unnumbered-87">
+<div id="outline-container-unnumbered-88" class="outline-3">
+<h3 id="unnumbered-88">Agenda</h3>
+<div class="outline-text-3" id="text-unnumbered-88">
 <div class="org-src-container">
 
 <pre class="src src-emacs-lisp">(<span class="org-keyword">require</span> '<span class="org-constant">face-remap</span>)
@@ -3897,9 +3913,9 @@ Custom keywords and faces.
 </div>
 </div>
 
-<div id="outline-container-unnumbered-88" class="outline-4">
-<h4 id="unnumbered-88">Files</h4>
-<div class="outline-text-4" id="text-unnumbered-88">
+<div id="outline-container-unnumbered-89" class="outline-4">
+<h4 id="unnumbered-89">Files</h4>
+<div class="outline-text-4" id="text-unnumbered-89">
 <div class="org-src-container">
 
 <pre class="src src-emacs-lisp">(<span class="org-keyword">setq</span> org-agenda-files
@@ -3911,9 +3927,9 @@ Custom keywords and faces.
 </div>
 </div>
 
-<div id="outline-container-unnumbered-89" class="outline-4">
-<h4 id="unnumbered-89">Deadlines</h4>
-<div class="outline-text-4" id="text-unnumbered-89">
+<div id="outline-container-unnumbered-90" class="outline-4">
+<h4 id="unnumbered-90">Deadlines</h4>
+<div class="outline-text-4" id="text-unnumbered-90">
 <p>
 Non-nil means skip scheduling line if same entry shows because of deadline.
 </p>
@@ -3937,9 +3953,9 @@ is scheduled today or was scheduled previously is not shown.
 </div>
 </div>
 
-<div id="outline-container-unnumbered-90" class="outline-4">
-<h4 id="unnumbered-90">List</h4>
-<div class="outline-text-4" id="text-unnumbered-90">
+<div id="outline-container-unnumbered-91" class="outline-4">
+<h4 id="unnumbered-91">List</h4>
+<div class="outline-text-4" id="text-unnumbered-91">
 <p>
 Default to showing only today in the agenda list.
 </p>
@@ -3953,9 +3969,9 @@ Default to showing only today in the agenda list.
 </div>
 </div>
 
-<div id="outline-container-unnumbered-91" class="outline-3">
-<h3 id="unnumbered-91">Drill</h3>
-<div class="outline-text-3" id="text-unnumbered-91">
+<div id="outline-container-unnumbered-92" class="outline-3">
+<h3 id="unnumbered-92">Drill</h3>
+<div class="outline-text-3" id="text-unnumbered-92">
 <div class="org-src-container">
 
 <pre class="src src-emacs-lisp">(<span class="org-keyword">require</span> '<span class="org-constant">org-drill</span>)
@@ -3964,9 +3980,9 @@ Default to showing only today in the agenda list.
 </div>
 </div>
 
-<div id="outline-container-unnumbered-92" class="outline-3">
-<h3 id="unnumbered-92">Habit</h3>
-<div class="outline-text-3" id="text-unnumbered-92">
+<div id="outline-container-unnumbered-93" class="outline-3">
+<h3 id="unnumbered-93">Habit</h3>
+<div class="outline-text-3" id="text-unnumbered-93">
 <div class="org-src-container">
 
 <pre class="src src-emacs-lisp">(<span class="org-keyword">require</span> '<span class="org-constant">org-habit</span>)
@@ -3978,9 +3994,9 @@ Default to showing only today in the agenda list.
 </div>
 </div>
 
-<div id="outline-container-unnumbered-93" class="outline-3">
-<h3 id="unnumbered-93">Logging &amp; Drawers</h3>
-<div class="outline-text-3" id="text-unnumbered-93">
+<div id="outline-container-unnumbered-94" class="outline-3">
+<h3 id="unnumbered-94">Logging &amp; Drawers</h3>
+<div class="outline-text-3" id="text-unnumbered-94">
 <p>
 Insert state change notes and time stamps into a drawer rather than simply
 "loose" after a headline.
@@ -3993,9 +4009,9 @@ Insert state change notes and time stamps into a drawer rather than simply
 </div>
 </div>
 </div>
-<div id="outline-container-unnumbered-94" class="outline-3">
-<h3 id="unnumbered-94">Clock</h3>
-<div class="outline-text-3" id="text-unnumbered-94">
+<div id="outline-container-unnumbered-95" class="outline-3">
+<h3 id="unnumbered-95">Clock</h3>
+<div class="outline-text-3" id="text-unnumbered-95">
 <div class="org-src-container">
 
 <pre class="src src-emacs-lisp">(<span class="org-keyword">defvar</span> <span class="org-variable-name">org-clock-idle-time</span> 5)
@@ -4005,9 +4021,9 @@ Insert state change notes and time stamps into a drawer rather than simply
 </div>
 </div>
 
-<div id="outline-container-unnumbered-95" class="outline-2">
-<h2 id="unnumbered-95">paredit-mode</h2>
-<div class="outline-text-2" id="text-unnumbered-95">
+<div id="outline-container-unnumbered-96" class="outline-2">
+<h2 id="unnumbered-96">paredit-mode</h2>
+<div class="outline-text-2" id="text-unnumbered-96">
 <div class="org-src-container">
 
 <pre class="src src-emacs-lisp">(autoload 'paredit-mode <span class="org-string">"paredit"</span> nil t)
@@ -4029,9 +4045,9 @@ Insert state change notes and time stamps into a drawer rather than simply
 </div>
 </div>
 
-<div id="outline-container-unnumbered-96" class="outline-2">
-<h2 id="unnumbered-96">python</h2>
-<div class="outline-text-2" id="text-unnumbered-96">
+<div id="outline-container-unnumbered-97" class="outline-2">
+<h2 id="unnumbered-97">python</h2>
+<div class="outline-text-2" id="text-unnumbered-97">
 <div class="org-src-container">
 
 <pre class="src src-emacs-lisp">(<span class="org-keyword">require</span> '<span class="org-constant">electric</span>)
@@ -4066,9 +4082,9 @@ Insert state change notes and time stamps into a drawer rather than simply
 </div>
 </div>
 
-<div id="outline-container-unnumbered-97" class="outline-3">
-<h3 id="unnumbered-97">IPython</h3>
-<div class="outline-text-3" id="text-unnumbered-97">
+<div id="outline-container-unnumbered-98" class="outline-3">
+<h3 id="unnumbered-98">IPython</h3>
+<div class="outline-text-3" id="text-unnumbered-98">
 <div class="org-src-container">
 
 <pre class="src src-emacs-lisp">(<span class="org-keyword">setq</span> python-shell-interpreter <span class="org-string">"ipython"</span>
@@ -4079,9 +4095,9 @@ Insert state change notes and time stamps into a drawer rather than simply
 </div>
 </div>
 
-<div id="outline-container-unnumbered-98" class="outline-2">
-<h2 id="unnumbered-98">recentf</h2>
-<div class="outline-text-2" id="text-unnumbered-98">
+<div id="outline-container-unnumbered-99" class="outline-2">
+<h2 id="unnumbered-99">recentf</h2>
+<div class="outline-text-2" id="text-unnumbered-99">
 <div class="org-src-container">
 
 <pre class="src src-emacs-lisp">(<span class="org-keyword">require</span> '<span class="org-constant">recentf</span>)
@@ -4103,9 +4119,9 @@ Insert state change notes and time stamps into a drawer rather than simply
 </div>
 </div>
 
-<div id="outline-container-unnumbered-99" class="outline-2">
-<h2 id="unnumbered-99">reStructuredText</h2>
-<div class="outline-text-2" id="text-unnumbered-99">
+<div id="outline-container-unnumbered-100" class="outline-2">
+<h2 id="unnumbered-100">reStructuredText</h2>
+<div class="outline-text-2" id="text-unnumbered-100">
 <div class="org-src-container">
 
 <pre class="src src-emacs-lisp">(<span class="org-keyword">require</span> '<span class="org-constant">rst</span>)
@@ -4126,9 +4142,9 @@ Insert state change notes and time stamps into a drawer rather than simply
 </div>
 </div>
 
-<div id="outline-container-unnumbered-100" class="outline-2">
-<h2 id="unnumbered-100">savehist</h2>
-<div class="outline-text-2" id="text-unnumbered-100">
+<div id="outline-container-unnumbered-101" class="outline-2">
+<h2 id="unnumbered-101">savehist</h2>
+<div class="outline-text-2" id="text-unnumbered-101">
 <div class="org-src-container">
 
 <pre class="src src-emacs-lisp"><span class="org-comment-delimiter">;; </span><span class="org-comment">Save minibuffer history.</span>
@@ -4141,9 +4157,9 @@ Insert state change notes and time stamps into a drawer rather than simply
 </div>
 </div>
 
-<div id="outline-container-unnumbered-101" class="outline-2">
-<h2 id="unnumbered-101"><code>*scratch*</code></h2>
-<div class="outline-text-2" id="text-unnumbered-101">
+<div id="outline-container-unnumbered-102" class="outline-2">
+<h2 id="unnumbered-102"><code>*scratch*</code></h2>
+<div class="outline-text-2" id="text-unnumbered-102">
 <p>
 Begin with an empty <code>*scratch*</code> file.
 </p>
@@ -4166,9 +4182,9 @@ Set it to Emacs Lisp mode.
 </div>
 </div>
 
-<div id="outline-container-unnumbered-102" class="outline-3">
-<h3 id="unnumbered-102">Quickly create new scratch buffers</h3>
-<div class="outline-text-3" id="text-unnumbered-102">
+<div id="outline-container-unnumbered-103" class="outline-3">
+<h3 id="unnumbered-103">Quickly create new scratch buffers</h3>
+<div class="outline-text-3" id="text-unnumbered-103">
 <p>
 With a preset list of major modes that I find often need scratch
 pads for.
@@ -4214,9 +4230,9 @@ Bind it globally.
 </div>
 </div>
 
-<div id="outline-container-unnumbered-103" class="outline-2">
-<h2 id="unnumbered-103">smex</h2>
-<div class="outline-text-2" id="text-unnumbered-103">
+<div id="outline-container-unnumbered-104" class="outline-2">
+<h2 id="unnumbered-104">smex</h2>
+<div class="outline-text-2" id="text-unnumbered-104">
 <div class="org-src-container">
 
 <pre class="src src-emacs-lisp">(<span class="org-keyword">require</span> '<span class="org-constant">smex</span>)
@@ -4236,9 +4252,9 @@ Bind it globally.
 </div>
 </div>
 
-<div id="outline-container-unnumbered-104" class="outline-2">
-<h2 id="unnumbered-104">sql-mode</h2>
-<div class="outline-text-2" id="text-unnumbered-104">
+<div id="outline-container-unnumbered-105" class="outline-2">
+<h2 id="unnumbered-105">sql-mode</h2>
+<div class="outline-text-2" id="text-unnumbered-105">
 <div class="org-src-container">
 
 <pre class="src src-emacs-lisp">(<span class="org-keyword">require</span> '<span class="org-constant">sql</span>)
@@ -4253,9 +4269,9 @@ Bind it globally.
 </div>
 </div>
 
-<div id="outline-container-unnumbered-105" class="outline-2">
-<h2 id="unnumbered-105">server</h2>
-<div class="outline-text-2" id="text-unnumbered-105">
+<div id="outline-container-unnumbered-106" class="outline-2">
+<h2 id="unnumbered-106">server</h2>
+<div class="outline-text-2" id="text-unnumbered-106">
 <div class="org-src-container">
 
 <pre class="src src-emacs-lisp"><span class="org-comment-delimiter">;; </span><span class="org-comment">Start the Emacs server.</span>
@@ -4269,16 +4285,16 @@ Bind it globally.
 </div>
 
 <div id="outline-container-term" class="outline-2">
-<h2 id="term"><a id="unnumbered-106"></a>term</h2>
+<h2 id="term"><a id="unnumbered-107"></a>term</h2>
 <div class="outline-text-2" id="text-term">
 <p>
 Together with <a href="#multi-term">multi-term</a> this sets up my terminal environment within Emacs.
 </p>
 </div>
 
-<div id="outline-container-unnumbered-107" class="outline-3">
-<h3 id="unnumbered-107">Key Bindings</h3>
-<div class="outline-text-3" id="text-unnumbered-107">
+<div id="outline-container-unnumbered-108" class="outline-3">
+<h3 id="unnumbered-108">Key Bindings</h3>
+<div class="outline-text-3" id="text-unnumbered-108">
 <p>
 <code>term-raw-map</code> is used in <i>char</i> mode.
 </p>
@@ -4305,9 +4321,9 @@ Together with <a href="#multi-term">multi-term</a> this sets up my terminal envi
 </div>
 </div>
 
-<div id="outline-container-unnumbered-108" class="outline-2">
-<h2 id="unnumbered-108">terminal-notifier</h2>
-<div class="outline-text-2" id="text-unnumbered-108">
+<div id="outline-container-unnumbered-109" class="outline-2">
+<h2 id="unnumbered-109">terminal-notifier</h2>
+<div class="outline-text-2" id="text-unnumbered-109">
 <p>
 This is a tiny package that I wrote to help with displaying
 notifications in OS X.
@@ -4321,9 +4337,9 @@ notifications in OS X.
 </div>
 </div>
 
-<div id="outline-container-unnumbered-109" class="outline-2">
-<h2 id="unnumbered-109">text-mode</h2>
-<div class="outline-text-2" id="text-unnumbered-109">
+<div id="outline-container-unnumbered-110" class="outline-2">
+<h2 id="unnumbered-110">text-mode</h2>
+<div class="outline-text-2" id="text-unnumbered-110">
 <div class="org-src-container">
 
 <pre class="src src-emacs-lisp">(<span class="org-keyword">defun</span> <span class="org-function-name">k20e/text-mode-hook</span> ()
@@ -4335,12 +4351,12 @@ notifications in OS X.
 </div>
 </div>
 
-<div id="outline-container-unnumbered-110" class="outline-2">
-<h2 id="unnumbered-110">tramp</h2>
-<div class="outline-text-2" id="text-unnumbered-110">
-</div><div id="outline-container-unnumbered-111" class="outline-3">
-<h3 id="unnumbered-111"><code>ControlPath</code></h3>
-<div class="outline-text-3" id="text-unnumbered-111">
+<div id="outline-container-unnumbered-111" class="outline-2">
+<h2 id="unnumbered-111">tramp</h2>
+<div class="outline-text-2" id="text-unnumbered-111">
+</div><div id="outline-container-unnumbered-112" class="outline-3">
+<h3 id="unnumbered-112"><code>ControlPath</code></h3>
+<div class="outline-text-3" id="text-unnumbered-112">
 <p>
 Fix <code>ControlPath too long</code> errors due to OS X pitching a <a href="https://lists.macosforge.org/pipermail/macports-tickets/2011-June/084295.html">long
 temporary directory</a> to <code>ssh</code>.
@@ -4403,9 +4419,9 @@ not been changed from their default values.
 </div>
 </div>
 
-<div id="outline-container-unnumbered-112" class="outline-3">
-<h3 id="unnumbered-112">Inline Copying</h3>
-<div class="outline-text-3" id="text-unnumbered-112">
+<div id="outline-container-unnumbered-113" class="outline-3">
+<h3 id="unnumbered-113">Inline Copying</h3>
+<div class="outline-text-3" id="text-unnumbered-113">
 <p>
 Do not inline copy files.  This is to avoid <code>File exists, but
    cannot be read</code> errors.
@@ -4419,9 +4435,9 @@ Do not inline copy files.  This is to avoid <code>File exists, but
 </div>
 </div>
 
-<div id="outline-container-unnumbered-113" class="outline-3">
-<h3 id="unnumbered-113">File Backup</h3>
-<div class="outline-text-3" id="text-unnumbered-113">
+<div id="outline-container-unnumbered-114" class="outline-3">
+<h3 id="unnumbered-114">File Backup</h3>
+<div class="outline-text-3" id="text-unnumbered-114">
 <p>
 Do not backup files edited by <code>tramp</code> to <a href="http://www.gnu.org/software/emacs/manual/html_node/tramp/Auto_002dsave-and-Backup.html">avoid possibly sharing
 copies of privileged files with non-privileged users</a>.
@@ -4435,9 +4451,9 @@ copies of privileged files with non-privileged users</a>.
 </div>
 </div>
 
-<div id="outline-container-unnumbered-114" class="outline-3">
-<h3 id="unnumbered-114">Debugging</h3>
-<div class="outline-text-3" id="text-unnumbered-114">
+<div id="outline-container-unnumbered-115" class="outline-3">
+<h3 id="unnumbered-115">Debugging</h3>
+<div class="outline-text-3" id="text-unnumbered-115">
 <div class="org-src-container">
 
 <pre class="src src-emacs-lisp"><span class="org-comment-delimiter">;; </span><span class="org-comment">(setq tramp-verbose 6)</span>
@@ -4451,9 +4467,9 @@ Will create a detailed log buffer.
 </div>
 </div>
 
-<div id="outline-container-unnumbered-115" class="outline-2">
-<h2 id="unnumbered-115">uniquify</h2>
-<div class="outline-text-2" id="text-unnumbered-115">
+<div id="outline-container-unnumbered-116" class="outline-2">
+<h2 id="unnumbered-116">uniquify</h2>
+<div class="outline-text-2" id="text-unnumbered-116">
 <p>
 Name multiple identical buffer names in a sensible manner.
 </p>
@@ -4468,9 +4484,9 @@ Name multiple identical buffer names in a sensible manner.
 </div>
 </div>
 
-<div id="outline-container-unnumbered-116" class="outline-2">
-<h2 id="unnumbered-116">windmove</h2>
-<div class="outline-text-2" id="text-unnumbered-116">
+<div id="outline-container-unnumbered-117" class="outline-2">
+<h2 id="unnumbered-117">windmove</h2>
+<div class="outline-text-2" id="text-unnumbered-117">
 <div class="org-src-container">
 
 <pre class="src src-emacs-lisp">(<span class="org-keyword">require</span> '<span class="org-constant">windmove</span>)
@@ -4485,9 +4501,9 @@ Name multiple identical buffer names in a sensible manner.
 </div>
 </div>
 
-<div id="outline-container-unnumbered-117" class="outline-2">
-<h2 id="unnumbered-117">web-mode</h2>
-<div class="outline-text-2" id="text-unnumbered-117">
+<div id="outline-container-unnumbered-118" class="outline-2">
+<h2 id="unnumbered-118">web-mode</h2>
+<div class="outline-text-2" id="text-unnumbered-118">
 <div class="org-src-container">
 
 <pre class="src src-emacs-lisp">(<span class="org-keyword">require</span> '<span class="org-constant">web-mode</span>)
@@ -4504,9 +4520,9 @@ Name multiple identical buffer names in a sensible manner.
 </div>
 </div>
 
-<div id="outline-container-unnumbered-118" class="outline-2">
-<h2 id="unnumbered-118">winner-mode</h2>
-<div class="outline-text-2" id="text-unnumbered-118">
+<div id="outline-container-unnumbered-119" class="outline-2">
+<h2 id="unnumbered-119">winner-mode</h2>
+<div class="outline-text-2" id="text-unnumbered-119">
 <p>
 Remember window configurations.
 </p>
@@ -4521,9 +4537,9 @@ Remember window configurations.
 </div>
 </div>
 
-<div id="outline-container-unnumbered-119" class="outline-2">
-<h2 id="unnumbered-119">whitespace</h2>
-<div class="outline-text-2" id="text-unnumbered-119">
+<div id="outline-container-unnumbered-120" class="outline-2">
+<h2 id="unnumbered-120">whitespace</h2>
+<div class="outline-text-2" id="text-unnumbered-120">
 <p>
 Take care of some whitespace issues.
 </p>
@@ -4547,9 +4563,9 @@ Take care of some whitespace issues.
 </div>
 </div>
 
-<div id="outline-container-unnumbered-120" class="outline-2">
-<h2 id="unnumbered-120">writeroom-mode</h2>
-<div class="outline-text-2" id="text-unnumbered-120">
+<div id="outline-container-unnumbered-121" class="outline-2">
+<h2 id="unnumbered-121">writeroom-mode</h2>
+<div class="outline-text-2" id="text-unnumbered-121">
 <p>
 Hack in a scale adjustment and alter width to fit.  There's likely a
 much better way to accomplish this.
@@ -4581,9 +4597,9 @@ much better way to accomplish this.
 </div>
 </div>
 
-<div id="outline-container-unnumbered-121" class="outline-2">
-<h2 id="unnumbered-121">yaml-mode</h2>
-<div class="outline-text-2" id="text-unnumbered-121">
+<div id="outline-container-unnumbered-122" class="outline-2">
+<h2 id="unnumbered-122">yaml-mode</h2>
+<div class="outline-text-2" id="text-unnumbered-122">
 <div class="org-src-container">
 
 <pre class="src src-emacs-lisp">(<span class="org-keyword">require</span> '<span class="org-constant">ansible-doc</span>)
@@ -4603,7 +4619,7 @@ much better way to accomplish this.
 </div>
 <div id="postamble" class="status">
 <p class="author">Kris Molendyke</p>
-<p class="date">2015-06-06 Sat 10:01</p>
+<p class="date">2015-06-06 Sat 10:40</p>
 <p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 25.0.50.1 (<a href="http://orgmode.org">Org</a> mode 8.2.4)</p>
 </div>
 </body>
