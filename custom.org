@@ -805,6 +805,17 @@ function.
     (add-hook 'compilation-mode-hook 'k20e/compilation-mode-hook)
   #+END_SRC
 
+* dash-at-point
+
+  [[https://kapeli.com/dash][Dash]] offline API access.
+
+  #+BEGIN_SRC emacs-lisp
+    (autoload 'dash-at-point
+      "dash-at-point" "Search the word at point with Dash." t nil)
+
+    (global-set-key (kbd "H-d") 'dash-at-point)
+  #+END_SRC
+
 * dired
 
   #+BEGIN_SRC emacs-lisp

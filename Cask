@@ -9,6 +9,7 @@
 (depends-on "cider")
 (depends-on "clojure-mode")
 (depends-on "dash")
+(depends-on "dash-at-point")
 (depends-on "epl")
 (depends-on "exec-path-from-shell")
 (depends-on "expand-region")
