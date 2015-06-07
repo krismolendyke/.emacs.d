@@ -1114,7 +1114,6 @@ function.
                              name)))
 
     (defun k20e/ibuffer-hook ()
-      (ibuffer-switch-to-saved-filter-groups "")
       (define-key ibuffer-mode-map (kbd "C-x C-f") 'ido-find-file))
 
     (add-hook 'ibuffer-hook 'k20e/ibuffer-hook)
