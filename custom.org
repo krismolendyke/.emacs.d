@@ -1060,10 +1060,20 @@ function.
 
 * go-mode
 
+  Install [[https://github.com/golang/lint][golint]]:
+
+  #+BEGIN_SRC sh
+     go get -u github.com/golang/lint/golint
+  #+END_SRC
+
   #+BEGIN_SRC emacs-lisp
     (require 'go-mode-autoloads)
 
     (defun k20e/go-mode-hook ()
+      (let ((gopath (getenv "GOPATH"))
+            (d "/src/github.com/golang/lint/misc/emacs")
+            (f "golint.el"))
+        (require 'golint (expand-file-name f (expand-file-name d gopath))))
       (setq tab-width 4
             indent-tabs-mode t)
       (add-hook 'before-save-hook 'gofmt-before-save))
