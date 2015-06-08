@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>Literate <code>.emacs.d</code></title>
-<!-- 2015-06-08 Mon 10:17 -->
+<!-- 2015-06-08 Mon 12:07 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Kris Molendyke" />
@@ -3104,11 +3104,25 @@ icons into buffers.
 <div id="outline-container-unnumbered-58" class="outline-2">
 <h2 id="unnumbered-58">go-mode</h2>
 <div class="outline-text-2" id="text-unnumbered-58">
+<p>
+Install <a href="https://github.com/golang/lint">golint</a>:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-sh">go get -u github.com/golang/lint/golint
+</pre>
+</div>
+
 <div class="org-src-container">
 
 <pre class="src src-emacs-lisp">(<span class="org-keyword">require</span> '<span class="org-constant">go-mode-autoloads</span>)
 
 (<span class="org-keyword">defun</span> <span class="org-function-name">k20e/go-mode-hook</span> ()
+  (<span class="org-keyword">let</span> ((gopath (getenv <span class="org-string">"GOPATH"</span>))
+        (d <span class="org-string">"/src/github.com/golang/lint/misc/emacs"</span>)
+        (f <span class="org-string">"golint.el"</span>))
+    (<span class="org-keyword">require</span> '<span class="org-constant">golint</span> (expand-file-name f (expand-file-name d gopath))))
   (<span class="org-keyword">setq</span> tab-width 4
         indent-tabs-mode t)
   (add-hook 'before-save-hook 'gofmt-before-save))
@@ -4634,7 +4648,7 @@ much better way to accomplish this.
 </div>
 <div id="postamble" class="status">
 <p class="author">Kris Molendyke</p>
-<p class="date">2015-06-08 Mon 10:15</p>
+<p class="date">2015-06-08 Mon 12:02</p>
 <p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 25.0.50.1 (<a href="http://orgmode.org">Org</a> mode 8.2.4)</p>
 </div>
 </body>
