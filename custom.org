@@ -1101,18 +1101,17 @@ function.
 
     (defalias 'list-buffers 'ibuffer)
 
-    (setq ibuffer-formats '((mark
-                             " "
-                             (modified)
-                             " "
-                             (name 40 40 :right :elide)
-                             " "
-                             (filename-and-process))
-                            (mark
-                             " "
-                             (filename-and-process 70 70 :left :elide)
-                             " "
-                             name)))
+    (setq ibuffer-formats
+          '((mark " "
+                  (modified)
+                  " "
+                  (name 40 40 :right :elide)
+                  " "
+                  (filename-and-process))
+            (mark " "
+                  (filename-and-process 70 70 :left :elide)
+                  " "
+                  name)))
 
     (defun k20e/ibuffer-hook ()
       (define-key ibuffer-mode-map (kbd "C-x C-f") 'ido-find-file))
