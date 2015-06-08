@@ -1225,6 +1225,14 @@ function.
     (add-hook 'ielm-mode-hook 'k20e/ielm-hook)
   #+END_SRC
 
+* imenu
+
+  Re-scan the buffer for new menu items automatically.
+
+  #+BEGIN_SRC emacs-lisp
+    (setq imenu-auto-rescan t)
+  #+END_SRC
+
 * I'm Feeling Lucky
 
   This is [[https://github.com/krismolendyke/im-feeling-lucky.el][my Google search]] module.
