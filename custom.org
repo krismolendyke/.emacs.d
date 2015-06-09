@@ -180,6 +180,8 @@ function.
    #+BEGIN_SRC emacs-lisp
      (global-set-key (kbd "<f1> F") 'find-function)
      (global-set-key (kbd "<f1> V") 'find-variable)
+     (global-set-key (kbd "<f7>") 'previous-error) ;; ◀◀
+     (global-set-key (kbd "<f9>") 'next-error) ;; ▶▶
      (global-set-key (kbd "C-S-h") 'kill-whole-line)
      (global-set-key (kbd "C-c DEL") 'join-line)
      (global-set-key (kbd "C-h") 'delete-backward-char)
@@ -926,12 +928,6 @@ function.
 
   #+BEGIN_SRC emacs-lisp
     (require 'flycheck)
-
-    ;; Easier navigation for errors/warnings/etc.
-    ;; ◀◀
-    (global-set-key (kbd "<f7>") 'flycheck-previous-error)
-    ;; ▶▶
-    (global-set-key (kbd "<f9>") 'flycheck-next-error)
 
     (setq-default flycheck-pylintrc "pylintrc"
                   flycheck-check-syntax-automatically '(mode-enabled save))
