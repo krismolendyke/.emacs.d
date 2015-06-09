@@ -1063,6 +1063,7 @@ function.
   #+END_SRC
 
   #+BEGIN_SRC emacs-lisp
+    (require 'flycheck)
     (require 'go-mode-autoloads)
 
     (defun k20e/go-mode-hook ()
@@ -1072,6 +1073,7 @@ function.
         (require 'golint (expand-file-name f (expand-file-name d gopath))))
       (setq tab-width 4
             indent-tabs-mode t)
+      (flycheck-mode 1)
       (add-hook 'before-save-hook 'gofmt-before-save))
 
     (add-hook 'go-mode-hook 'k20e/go-mode-hook)
