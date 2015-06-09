@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>Literate <code>.emacs.d</code></title>
-<!-- 2015-06-08 Mon 12:07 -->
+<!-- 2015-06-09 Tue 13:08 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Kris Molendyke" />
@@ -1918,6 +1918,8 @@ their own dedicated sections where other specific settings are made.
 
 <pre class="src src-emacs-lisp">(global-set-key (kbd <span class="org-string">"&lt;f1&gt; F"</span>) 'find-function)
 (global-set-key (kbd <span class="org-string">"&lt;f1&gt; V"</span>) 'find-variable)
+(global-set-key (kbd <span class="org-string">"&lt;f7&gt;"</span>) 'previous-error) <span class="org-comment-delimiter">;; </span><span class="org-comment">&#9664;&#9664;</span>
+(global-set-key (kbd <span class="org-string">"&lt;f9&gt;"</span>) 'next-error) <span class="org-comment-delimiter">;; </span><span class="org-comment">&#9654;&#9654;</span>
 (global-set-key (kbd <span class="org-string">"C-S-h"</span>) 'kill-whole-line)
 (global-set-key (kbd <span class="org-string">"C-c DEL"</span>) 'join-line)
 (global-set-key (kbd <span class="org-string">"C-h"</span>) 'delete-backward-char)
@@ -2925,12 +2927,6 @@ Emacs Lisp <a href="http://en.wikipedia.org/wiki/Unit_testing">unit testing</a>!
 <div class="org-src-container">
 
 <pre class="src src-emacs-lisp">(<span class="org-keyword">require</span> '<span class="org-constant">flycheck</span>)
-
-<span class="org-comment-delimiter">;; </span><span class="org-comment">Easier navigation for errors/warnings/etc.</span>
-<span class="org-comment-delimiter">;; </span><span class="org-comment">&#9664;&#9664;</span>
-(global-set-key (kbd <span class="org-string">"&lt;f7&gt;"</span>) 'flycheck-previous-error)
-<span class="org-comment-delimiter">;; </span><span class="org-comment">&#9654;&#9654;</span>
-(global-set-key (kbd <span class="org-string">"&lt;f9&gt;"</span>) 'flycheck-next-error)
 
 (<span class="org-keyword">setq-default</span> flycheck-pylintrc <span class="org-string">"pylintrc"</span>
               flycheck-check-syntax-automatically '(mode-enabled save))
@@ -4648,7 +4644,7 @@ much better way to accomplish this.
 </div>
 <div id="postamble" class="status">
 <p class="author">Kris Molendyke</p>
-<p class="date">2015-06-08 Mon 12:02</p>
+<p class="date">2015-06-09 Tue 13:06</p>
 <p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 25.0.50.1 (<a href="http://orgmode.org">Org</a> mode 8.2.4)</p>
 </div>
 </body>
