@@ -1,15 +1,46 @@
-auto-save-list/
+*.html
+.emacs.desktop
 backup/
 bookmarks
-elpa/
-eshell/
-games/
-tramp
-tutorial/
-.emacs.desktop
-.org-id-locations
-.cask/
-url/
-*.elc
-*.html
 custom.el
+games/
+tutorial/
+url/
+
+####################################################################################
+# Below from:                                                                      #
+#                                                                                  #
+# https://raw.githubusercontent.com/github/gitignore/master/Global/Emacs.gitignore #
+####################################################################################
+
+*~
+\#*\#
+/.emacs.desktop
+/.emacs.desktop.lock
+*.elc
+auto-save-list
+tramp
+.\#*
+
+# Org-mode
+.org-id-locations
+*_archive
+
+# flymake-mode
+*_flymake.*
+
+# eshell files
+/eshell/history
+/eshell/lastdir
+
+# elpa packages
+/elpa/
+
+# reftex files
+*.rel
+
+# AUCTeX auto folder
+/auto/
+
+# cask packages
+.cask/
