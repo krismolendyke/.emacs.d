@@ -1295,6 +1295,15 @@ function.
     (setq create-lockfiles nil)
   #+END_SRC
 
+* man
+
+  Setting a width avoids a possibly (likely) poorly chosen automatic
+  width.
+
+  #+BEGIN_SRC emacs-lisp
+    (setq Man-width 80)
+  #+END_SRC
+
 * markdown-mode
 
   #+BEGIN_SRC emacs-lisp
