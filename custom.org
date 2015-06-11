@@ -1807,7 +1807,8 @@ function.
          (define-key paredit-mode-map [?\)] 'paredit-close-parenthesis)
          (define-key paredit-mode-map [(meta ?\))]
            'paredit-close-parenthesis-and-newline)
-         (define-key paredit-mode-map (kbd "C-h") 'paredit-backward-delete)))
+         (define-key paredit-mode-map (kbd "C-h") 'paredit-backward-delete)
+         (define-key paredit-mode-map (kbd "C-j") 'join-line)))
   #+END_SRC
 
 * python
