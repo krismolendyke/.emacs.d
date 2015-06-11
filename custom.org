@@ -1054,6 +1054,38 @@ function.
     (global-set-key (kbd "C-x v b") 'git-blame-mode)
   #+END_SRC
 
+** GitHub =.gitignore=
+
+   A simple function to insert starter =.gitignore= file contents from
+   the [[https://github.com/github/gitignore][github/gitignore]] repository.
+
+   #+BEGIN_SRC emacs-lisp
+     (require 'url)
+
+     (defun k20e/gh--gitignore-url (language)
+       "Get GitHub .gitignore URL for LANGUAGE."
+       (format "https://raw.githubusercontent.com/github/gitignore/master/%s.gitignore"
+               (capitalize language)))
+
+     (defun k20e/gh--gitignore-get-region (response-buffer)
+       "Get GitHub .gitignore response body bounds.
+     Argument RESPONSE-BUFFER HTTP GET response."
+       (with-current-buffer response-buffer
+         (goto-char (point-min))
+         (let ((start (1+ (search-forward-regexp "^$")))
+               (end (point-max)))
+           (list start end))))
+
+     (defun k20e/gh-gitignore-insert (language)
+       "Insert Github .gitignore for LANGUAGE."
+       (interactive "sLanguage: ")
+       (let* ((response-buffer (url-retrieve-synchronously
+                                (k20e/gh--gitignore-url language) t))
+              (gitignore-region (k20e/gh--gitignore-get-region response-buffer)))
+         (insert-buffer-substring-no-properties
+          response-buffer (car gitignore-region) (cadr gitignore-region))))
+   #+END_SRC
+
 * go-mode
 
   Install [[https://github.com/golang/lint][golint]]:
