@@ -192,6 +192,7 @@ function.
      (global-set-key (kbd "H-t") 'toggle-frame-fullscreen)
      (global-set-key (kbd "M-+") 'text-scale-adjust)
      (global-set-key (kbd "M-.") 'imenu)
+     (global-set-key (kbd "M-/") 'hippie-expand)
      (global-set-key (kbd "M-`") 'other-window)
      (global-set-key (kbd "M-h") 'backward-kill-word)
      (global-set-key (kbd "M-t") 'transpose-words)
