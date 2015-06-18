@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>Literate <code>.emacs.d</code></title>
-<!-- 2015-06-16 Tue 11:46 -->
+<!-- 2015-06-18 Thu 09:47 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Kris Molendyke" />
@@ -1900,6 +1900,19 @@ their own dedicated sections where other specific settings are made.
 <div id="outline-container-unnumbered-10" class="outline-3">
 <h3 id="unnumbered-10">Unset</h3>
 <div class="outline-text-3" id="text-unnumbered-10">
+<p>
+OS X annoyance &#x2013; <code>C-M-d</code> is a "hot key" bound to dictionary lookup
+and masks the key binding in Emacs.  <a href="http://apple.stackexchange.com/questions/22785/how-do-i-disable-the-command-control-d-word-definition-keyboard-shortcut-in-os-x/114269#114269">Disabling it</a> can currently
+only be done by editing a default <i>and restarting</i>.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-sh">defaults write com.apple.symbolichotkeys AppleSymbolicHotKeys <span class="org-sh-escaped-newline">\</span>
+         -dict-add 70 <span class="org-string">'&lt;dict&gt;&lt;key&gt;enabled&lt;/key&gt;&lt;false/&gt;&lt;/dict&gt;'</span>
+</pre>
+</div>
+
 <div class="org-src-container">
 
 <pre class="src src-emacs-lisp">(global-unset-key (kbd <span class="org-string">"&lt;f1&gt; h"</span>))
@@ -4708,7 +4721,7 @@ much better way to accomplish this.
 </div>
 <div id="postamble" class="status">
 <p class="author">Kris Molendyke</p>
-<p class="date">2015-06-16 Tue 11:45</p>
+<p class="date">2015-06-18 Thu 09:36</p>
 <p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 25.0.50.1 (<a href="http://orgmode.org">Org</a> mode 8.2.4)</p>
 </div>
 </body>
