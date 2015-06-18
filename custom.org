@@ -163,6 +163,15 @@ function.
 
 ** Unset
 
+   OS X annoyance -- =C-M-d= is a "hot key" bound to dictionary lookup
+   and masks the key binding in Emacs.  [[http://apple.stackexchange.com/questions/22785/how-do-i-disable-the-command-control-d-word-definition-keyboard-shortcut-in-os-x/114269#114269][Disabling it]] can currently
+   only be done by editing a default /and restarting/.
+
+   #+BEGIN_SRC sh
+     defaults write com.apple.symbolichotkeys AppleSymbolicHotKeys \
+              -dict-add 70 '<dict><key>enabled</key><false/></dict>'
+   #+END_SRC
+
    #+BEGIN_SRC emacs-lisp
      (global-unset-key (kbd "<f1> h"))
      (global-unset-key (kbd "<f11>"))
