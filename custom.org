@@ -1327,6 +1327,12 @@ function.
     (keyfreq-autosave-mode 1)
   #+END_SRC
 
+* LaTeX
+
+  #+BEGIN_SRC emacs-lisp
+    (define-key latex-mode-map (kbd "C-j") 'join-line)
+  #+END_SRC
+
 * lockfiles
 
   [[http://stackoverflow.com/questions/5738170/why-does-emacs-create-temporary-symbolic-links-for-modified-files][Avoid creating temporary symbolic links]] and disturbing working
