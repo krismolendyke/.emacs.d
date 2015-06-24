@@ -412,6 +412,39 @@ function.
        "Message the full path to the currently visited file."
        (interactive)
        (message "%s" (buffer-file-name)))
+
+     (defun k20e/test-buffer-p ()
+       "Is the current buffer a test buffer?
+     This function naïvely assumes that the file name suffix '_test'
+     is indicative of a test file."
+       (string-suffix-p
+        "_test"
+        (file-name-sans-extension (buffer-file-name))))
+
+     (defun k20e/switch-to-test-buffer ()
+       "Switch to the test buffer associated with the current source buffer."
+       (let ((d (file-name-directory (buffer-file-name)))
+             (f (format "%s_test.%s"
+                         (file-name-sans-extension (buffer-name))
+                         (file-name-extension (buffer-file-name)))))
+         (find-file (expand-file-name f d))))
+
+     (defun k20e/switch-to-source-buffer ()
+       "Switch to the source buffer associated with the current test buffer."
+       (let ((e (file-name-extension (buffer-file-name)))
+             (f (car (split-string (file-name-sans-extension (buffer-file-name))
+                                   "_"))))
+         (find-file (format "%s.%s" f e)))))
+
+     (defun k20e/toggle-test-buffer ()
+       "Toggle between a source and test buffer.
+     This function naïvely assumes that the file name suffix '_test'
+     is indicative of a test file.  Therefore it should only be useful
+     in major modes where that convention is expected."
+       (interactive)
+       (if (k20e/test-buffer-p)
+           (k20e/switch-to-source-buffer)
+         (k20e/switch-to-test-buffer)))
    #+END_SRC
 
 ** Windows
