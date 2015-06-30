@@ -441,7 +441,7 @@ function.
         (let ((e (file-name-extension (buffer-file-name)))
               (f (car (split-string (file-name-sans-extension (buffer-file-name))
                                     "_"))))
-          (find-file (format "%s.%s" f e)))))
+          (find-file (format "%s.%s" f e))))
 
       (defun k20e/toggle-test-buffer ()
         "Toggle between a source and test buffer.
