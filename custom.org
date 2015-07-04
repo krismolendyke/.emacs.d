@@ -1159,6 +1159,7 @@ function.
       (add-hook 'before-save-hook 'gofmt-before-save))
 
     (define-key go-mode-map (kbd "C-c C-t") 'k20e/toggle-test-buffer)
+    (define-key go-mode-map (kbd "C-c C-r") 'go-remove-unused-imports)
 
     (add-hook 'go-mode-hook 'k20e/go-mode-hook)
   #+END_SRC
