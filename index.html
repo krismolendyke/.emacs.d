@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>Literate <code>.emacs.d</code></title>
-<!-- 2015-06-30 Tue 09:58 -->
+<!-- 2015-07-04 Sat 11:07 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Kris Molendyke" />
@@ -2843,6 +2843,40 @@ Courtesy of Magnar Sveen's <a href="https://github.com/magnars/.emacs.d/blob/486
 (add-hook 'compilation-mode-hook 'k20e/compilation-mode-hook)
 </pre>
 </div>
+
+<p>
+Functions to execute after compilation has finished:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-emacs-lisp">(<span class="org-keyword">require</span> '<span class="org-constant">hl-line</span>)
+
+(<span class="org-keyword">defun</span> <span class="org-function-name">k20e/compilation-finish-function-delay-delete</span> (buf result)
+  <span class="org-doc">"Delete and bury BUF after short delay.</span>
+<span class="org-doc">Do so only if compilation is successful."</span>
+  (<span class="org-keyword">if</span> (string= (string-trim result) <span class="org-string">"finished"</span>)
+      (run-with-timer
+       1.0 nil
+       (<span class="org-keyword">lambda</span> (buf)
+         (<span class="org-keyword">with-current-buffer</span> buf
+           (delete-window)
+           (bury-buffer)))
+       buf)))
+
+(<span class="org-keyword">defun</span> <span class="org-function-name">k20e/compilation-finish-function-select-window</span> (buf result)
+  <span class="org-doc">"Switch to the compilation buffer BUF.</span>
+<span class="org-doc">When compilation completes, regardless of result."</span>
+  (<span class="org-keyword">let</span> ((win (get-buffer-window buf)))
+    (select-window (get-buffer-window buf))
+    (goto-char (point-max))
+    (forward-line -1)
+    (hl-line-mode)))
+
+(add-to-list 'compilation-finish-functions
+             'k20e/compilation-finish-function-select-window)
+</pre>
+</div>
 </div>
 </div>
 
@@ -3232,6 +3266,7 @@ Install <a href="https://github.com/golang/lint">golint</a>:
   (add-hook 'before-save-hook 'gofmt-before-save))
 
 (define-key go-mode-map (kbd <span class="org-string">"C-c C-t"</span>) 'k20e/toggle-test-buffer)
+(define-key go-mode-map (kbd <span class="org-string">"C-c C-r"</span>) 'go-remove-unused-imports)
 
 (add-hook 'go-mode-hook 'k20e/go-mode-hook)
 </pre>
@@ -4782,7 +4817,7 @@ much better way to accomplish this.
 </div>
 <div id="postamble" class="status">
 <p class="author">Kris Molendyke</p>
-<p class="date">2015-06-30 Tue 09:50</p>
+<p class="date">2015-07-04 Sat 11:07</p>
 <p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 25.0.50.1 (<a href="http://orgmode.org">Org</a> mode 8.2.4)</p>
 </div>
 </body>
