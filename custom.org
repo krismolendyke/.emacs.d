@@ -868,6 +868,36 @@ function.
     (add-hook 'compilation-mode-hook 'k20e/compilation-mode-hook)
   #+END_SRC
 
+  Functions to execute after compilation has finished:
+
+  #+BEGIN_SRC emacs-lisp
+    (require 'hl-line)
+
+    (defun k20e/compilation-finish-function-delay-delete (buf result)
+      "Delete and bury BUF after short delay.
+    Do so only if compilation is successful."
+      (if (string= (string-trim result) "finished")
+          (run-with-timer
+           1.0 nil
+           (lambda (buf)
+             (with-current-buffer buf
+               (delete-window)
+               (bury-buffer)))
+           buf)))
+
+    (defun k20e/compilation-finish-function-select-window (buf result)
+      "Switch to the compilation buffer BUF.
+    When compilation completes, regardless of result."
+      (let ((win (get-buffer-window buf)))
+        (select-window (get-buffer-window buf))
+        (goto-char (point-max))
+        (forward-line -1)
+        (hl-line-mode)))
+
+    (add-to-list 'compilation-finish-functions
+                 'k20e/compilation-finish-function-select-window)
+  #+END_SRC
+
 * dash-at-point
 
   [[https://kapeli.com/dash][Dash]] offline API access.
