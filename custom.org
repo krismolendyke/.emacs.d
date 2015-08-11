@@ -35,7 +35,7 @@ function.
   I install Emacs with the following options.
 
   #+BEGIN_SRC sh
-    time brew install emacs --with-cocoa --HEAD --use-git-head
+    time brew install emacs --with-cocoa --HEAD
   #+END_SRC
 
   If there is an existing installation it needs to be removed first.
