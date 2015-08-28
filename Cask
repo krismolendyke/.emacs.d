@@ -31,6 +31,7 @@
 (depends-on "ido-vertical-mode")
 (depends-on "keyfreq")
 (depends-on "let-alist")
+(depends-on "lua-mode")
 (depends-on "markdown-mode")
 (depends-on "multi-term")
 (depends-on "multiple-cursors")
