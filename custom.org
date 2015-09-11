@@ -894,9 +894,6 @@ function.
         (goto-char (point-max))
         (forward-line -1)
         (hl-line-mode)))
-
-    (add-to-list 'compilation-finish-functions
-                 'k20e/compilation-finish-function-select-window)
   #+END_SRC
 
 * dash-at-point
