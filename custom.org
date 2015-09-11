@@ -1065,7 +1065,8 @@ function.
                              ("Consolas" . 18)
                              ("Ubuntu-Mono" . 17)
                              ("Inconsolata" . 18)
-                             ("DejaVu-Sans-Mono" . 18))
+                             ("DejaVu-Sans-Mono" . 18)
+                             ("Hack" . 11))
       "Ordered list of preferred fonts and sizes.")
 
     (defun k20e/font--set (font-alist)
