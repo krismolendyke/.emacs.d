@@ -820,7 +820,7 @@ function.
     (setq nrepl-hide-special-buffers t
           cider-show-error-buffer nil
           cider-repl-use-pretty-printing t
-          cider-repl-history-file (expand-file-name "nrepl-history" k20e/dropbox-directory))
+          cider-repl-history-file (expand-file-name "nrepl-history" k20e/google-drive-directory))
   #+END_SRC
 
 * clock-face
@@ -1209,10 +1209,10 @@ function.
 * hyperspec
 
   #+BEGIN_SRC emacs-lisp
-    ;; Set HyperSpec root in Dropbox.
+    ;; Set HyperSpec root in Google Drive.
     (defvar common-lisp-hyperspec-root
       (format "file://%s/"
-              (expand-file-name "Documents/HyperSpec" k20e/dropbox-directory)))
+              (expand-file-name "Documents/HyperSpec" k20e/google-drive-directory)))
   #+END_SRC
 
 * ibuffer
@@ -1248,7 +1248,7 @@ function.
     (require 'ido)
     (require 'ido-vertical-mode)
 
-    (setq ido-save-directory-list-file (expand-file-name ".ido.last" k20e/dropbox-directory)
+    (setq ido-save-directory-list-file (expand-file-name ".ido.last" k20e/google-drive-directory)
           ido-enable-flex-matching t
           ido-auto-merge-work-directories-length -1
           ido-create-new-buffer 'always
@@ -1392,8 +1392,8 @@ function.
   #+BEGIN_SRC emacs-lisp
     (require 'keyfreq)
 
-    (setq keyfreq-file (expand-file-name ".emacs-keyfreq" k20e/dropbox-directory)
-          keyfreq-file-lock (expand-file-name ".emacs-keyfreq-lock" k20e/dropbox-directory))
+    (setq keyfreq-file (expand-file-name ".emacs-keyfreq" k20e/google-drive-directory)
+          keyfreq-file-lock (expand-file-name ".emacs-keyfreq-lock" k20e/google-drive-directory))
 
     (keyfreq-mode 1)
     (keyfreq-autosave-mode 1)
@@ -1593,7 +1593,7 @@ function.
   Keep preferences sync'd across machines.
 
   #+BEGIN_SRC emacs-lisp
-    (setq mc/list-file (expand-file-name ".mc-lists.el" k20e/dropbox-directory))
+    (setq mc/list-file (expand-file-name ".mc-lists.el" k20e/google-drive-directory))
   #+END_SRC
 
 * Open Source Licenses
@@ -1647,7 +1647,7 @@ function.
     (add-hook 'org-mode-hook 'k20e/org-mode-hook)
 
     ;; Set the org directory.
-    (setq org-directory (expand-file-name "org" k20e/dropbox-directory))
+    (setq org-directory (expand-file-name "org" k20e/google-drive-directory))
 
     ;; Speeeeeeeeeed!  Move to very beginning of a headline and press "?"
     (setq org-use-speed-commands t)
@@ -1720,18 +1720,18 @@ function.
    #+BEGIN_SRC emacs-lisp
      (setq org-publish-project-alist
            `(("k20e.com-org-files"
-              :base-directory ,(expand-file-name "source" (expand-file-name "k20e.com" k20e/dropbox-directory))
+              :base-directory ,(expand-file-name "source" (expand-file-name "k20e.com" k20e/google-drive-directory))
               :base-extension "org"
               :recursive t
               :exclude "ga.org\\|level-0.org\\|todo.org\\|.DS_Store"
-              :publishing-directory ,(expand-file-name "published" (expand-file-name "k20e.com" k20e/dropbox-directory))
+              :publishing-directory ,(expand-file-name "published" (expand-file-name "k20e.com" k20e/google-drive-directory))
               :publishing-function org-html-publish-to-html
               :with-planning t)
              ("k20e.com-static-files"
-              :base-directory ,(expand-file-name "source" (expand-file-name "k20e.com" k20e/dropbox-directory))
+              :base-directory ,(expand-file-name "source" (expand-file-name "k20e.com" k20e/google-drive-directory))
               :base-extension "jpg\\|png\\|ico"
               :recursive t
-              :publishing-directory ,(expand-file-name "published" (expand-file-name "k20e.com" k20e/dropbox-directory))
+              :publishing-directory ,(expand-file-name "published" (expand-file-name "k20e.com" k20e/google-drive-directory))
               :publishing-function org-publish-attachment)
              ("k20e.com"
               :components ("k20e.com-org-files" "k20e.com-static-files"))
@@ -1946,7 +1946,7 @@ function.
   #+BEGIN_SRC emacs-lisp
     (require 'recentf)
 
-    (setq recentf-save-file (expand-file-name ".recentf" k20e/dropbox-directory)
+    (setq recentf-save-file (expand-file-name ".recentf" k20e/google-drive-directory)
           recentf-max-saved-items 250)
     (recentf-mode 1)
 
@@ -1984,7 +1984,7 @@ function.
     ;; Save minibuffer history.
     (require 'savehist)
 
-    (setq savehist-file (expand-file-name ".savehist" k20e/dropbox-directory))
+    (setq savehist-file (expand-file-name ".savehist" k20e/google-drive-directory))
     (savehist-mode)
   #+END_SRC
 
@@ -2053,7 +2053,7 @@ function.
     (global-set-key (kbd "C-c C-c M-x") 'execute-extended-command)
 
     ;; Share smex history across my machines.
-    (setq smex-save-file (expand-file-name ".smex-items" k20e/dropbox-directory))
+    (setq smex-save-file (expand-file-name ".smex-items" k20e/google-drive-directory))
   #+END_SRC
 
 * sql-mode

@@ -36,10 +36,6 @@ decoupled from the Emacs distribution package.")
   (expand-file-name "lisp" (expand-file-name "contrib" k20e/org-mode-directory))
   "The directory containing `org-mode' Emacs Lisp add-on files.")
 
-(defvar k20e/dropbox-directory
-  (expand-file-name "~/Desktop/Dropbox")
-  "Dropbox home.")
-
 (defvar k20e/google-drive-directory
   (expand-file-name "~/Google Drive")
   "Google Drive home.")
@@ -99,10 +95,10 @@ Only turn off the menu bar running in a terminal window."
   "Restore the state of buffers from the last session."
   (require 'desktop)
   (setq-default dired-use-ls-dired nil)
-  (setq desktop-path (list k20e/dropbox-directory)
+  (setq desktop-path (list k20e/google-drive-directory)
         desktop-load-locked-desktop t)
   (desktop-save-mode 1)
-  (desktop-read k20e/dropbox-directory))
+  (desktop-read k20e/google-drive-directory))
 
 (defun k20e/after-init-hook ()
   "Perform complex post-initialization."
