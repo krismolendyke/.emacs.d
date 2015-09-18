@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>Literate <code>.emacs.d</code></title>
-<!-- 2015-08-11 Tue 09:43 -->
+<!-- 2015-09-18 Fri 14:54 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Kris Molendyke" />
@@ -2497,6 +2497,7 @@ input/mouse section?
   <span class="org-doc">"Load a darkly colored theme for conditions when ambient light</span>
 <span class="org-doc">is dark."</span>
   (<span class="org-keyword">interactive</span>)
+  (<span class="org-keyword">require</span> '<span class="org-constant">linum</span>)
   (disable-theme (car custom-enabled-themes))
   (load-theme k20e/theme-dark t)
   (set-face-background 'hl-line <span class="org-string">"gray20"</span>)
@@ -2770,7 +2771,7 @@ they are the result of an asynchronous query and response parsing?
 (<span class="org-keyword">setq</span> nrepl-hide-special-buffers t
       cider-show-error-buffer nil
       cider-repl-use-pretty-printing t
-      cider-repl-history-file (expand-file-name <span class="org-string">"nrepl-history"</span> k20e/dropbox-directory))
+      cider-repl-history-file (expand-file-name <span class="org-string">"nrepl-history"</span> k20e/google-drive-directory))
 </pre>
 </div>
 </div>
@@ -2872,9 +2873,6 @@ Functions to execute after compilation has finished:
     (goto-char (point-max))
     (forward-line -1)
     (hl-line-mode)))
-
-(add-to-list 'compilation-finish-functions
-             'k20e/compilation-finish-function-select-window)
 </pre>
 </div>
 </div>
@@ -3106,7 +3104,8 @@ list of fonts that I like.
                          (<span class="org-string">"Consolas"</span> . 18)
                          (<span class="org-string">"Ubuntu-Mono"</span> . 17)
                          (<span class="org-string">"Inconsolata"</span> . 18)
-                         (<span class="org-string">"DejaVu-Sans-Mono"</span> . 18))
+                         (<span class="org-string">"DejaVu-Sans-Mono"</span> . 18)
+                         (<span class="org-string">"Hack"</span> . 11))
   <span class="org-doc">"Ordered list of preferred fonts and sizes."</span>)
 
 (<span class="org-keyword">defun</span> <span class="org-function-name">k20e/font--set</span> (font-alist)
@@ -3297,10 +3296,10 @@ Install <a href="https://github.com/golang/lint">golint</a>:
 <div class="outline-text-2" id="text-unnumbered-62">
 <div class="org-src-container">
 
-<pre class="src src-emacs-lisp"><span class="org-comment-delimiter">;; </span><span class="org-comment">Set HyperSpec root in Dropbox.</span>
+<pre class="src src-emacs-lisp"><span class="org-comment-delimiter">;; </span><span class="org-comment">Set HyperSpec root in Google Drive.</span>
 (<span class="org-keyword">defvar</span> <span class="org-variable-name">common-lisp-hyperspec-root</span>
   (format <span class="org-string">"file://%s/"</span>
-          (expand-file-name <span class="org-string">"Documents/HyperSpec"</span> k20e/dropbox-directory)))
+          (expand-file-name <span class="org-string">"Documents/HyperSpec"</span> k20e/google-drive-directory)))
 </pre>
 </div>
 </div>
@@ -3346,7 +3345,7 @@ Install <a href="https://github.com/golang/lint">golint</a>:
 (<span class="org-keyword">require</span> '<span class="org-constant">ido</span>)
 (<span class="org-keyword">require</span> '<span class="org-constant">ido-vertical-mode</span>)
 
-(<span class="org-keyword">setq</span> ido-save-directory-list-file (expand-file-name <span class="org-string">".ido.last"</span> k20e/dropbox-directory)
+(<span class="org-keyword">setq</span> ido-save-directory-list-file (expand-file-name <span class="org-string">".ido.last"</span> k20e/google-drive-directory)
       ido-enable-flex-matching t
       ido-auto-merge-work-directories-length -1
       ido-create-new-buffer 'always
@@ -3552,8 +3551,8 @@ This is <a href="https://github.com/krismolendyke/im-feeling-lucky.el">my Google
 
 <pre class="src src-emacs-lisp">(<span class="org-keyword">require</span> '<span class="org-constant">keyfreq</span>)
 
-(<span class="org-keyword">setq</span> keyfreq-file (expand-file-name <span class="org-string">".emacs-keyfreq"</span> k20e/dropbox-directory)
-      keyfreq-file-lock (expand-file-name <span class="org-string">".emacs-keyfreq-lock"</span> k20e/dropbox-directory))
+(<span class="org-keyword">setq</span> keyfreq-file (expand-file-name <span class="org-string">".emacs-keyfreq"</span> k20e/google-drive-directory)
+      keyfreq-file-lock (expand-file-name <span class="org-string">".emacs-keyfreq-lock"</span> k20e/google-drive-directory))
 
 (keyfreq-mode 1)
 (keyfreq-autosave-mode 1)
@@ -3567,7 +3566,9 @@ This is <a href="https://github.com/krismolendyke/im-feeling-lucky.el">my Google
 <div class="outline-text-2" id="text-unnumbered-75">
 <div class="org-src-container">
 
-<pre class="src src-emacs-lisp">(define-key latex-mode-map (kbd <span class="org-string">"C-j"</span>) 'join-line)
+<pre class="src src-emacs-lisp">(<span class="org-keyword">require</span> '<span class="org-constant">tex-mode</span>)
+
+(define-key latex-mode-map (kbd <span class="org-string">"C-j"</span>) 'join-line)
 </pre>
 </div>
 </div>
@@ -3823,7 +3824,7 @@ Keep preferences sync'd across machines.
 
 <div class="org-src-container">
 
-<pre class="src src-emacs-lisp">(<span class="org-keyword">setq</span> mc/list-file (expand-file-name <span class="org-string">".mc-lists.el"</span> k20e/dropbox-directory))
+<pre class="src src-emacs-lisp">(<span class="org-keyword">setq</span> mc/list-file (expand-file-name <span class="org-string">".mc-lists.el"</span> k20e/google-drive-directory))
 </pre>
 </div>
 </div>
@@ -3887,7 +3888,7 @@ Keep preferences sync'd across machines.
 (add-hook 'org-mode-hook 'k20e/org-mode-hook)
 
 <span class="org-comment-delimiter">;; </span><span class="org-comment">Set the org directory.</span>
-(<span class="org-keyword">setq</span> org-directory (expand-file-name <span class="org-string">"org"</span> k20e/dropbox-directory))
+(<span class="org-keyword">setq</span> org-directory (expand-file-name <span class="org-string">"org"</span> k20e/google-drive-directory))
 
 <span class="org-comment-delimiter">;; </span><span class="org-comment">Speeeeeeeeeed!  Move to very beginning of a headline and press "?"</span>
 (<span class="org-keyword">setq</span> org-use-speed-commands t)
@@ -3985,18 +3986,18 @@ Interactive customization can be done here.
 
 <pre class="src src-emacs-lisp">(<span class="org-keyword">setq</span> org-publish-project-alist
       `((<span class="org-string">"k20e.com-org-files"</span>
-         <span class="org-builtin">:base-directory</span> ,(expand-file-name <span class="org-string">"source"</span> (expand-file-name <span class="org-string">"k20e.com"</span> k20e/dropbox-directory))
+         <span class="org-builtin">:base-directory</span> ,(expand-file-name <span class="org-string">"source"</span> (expand-file-name <span class="org-string">"k20e.com"</span> k20e/google-drive-directory))
          <span class="org-builtin">:base-extension</span> <span class="org-string">"org"</span>
          <span class="org-builtin">:recursive</span> t
          <span class="org-builtin">:exclude</span> <span class="org-string">"ga.org</span><span class="org-regexp-grouping-backslash"><span class="org-string">\\</span></span><span class="org-regexp-grouping-construct"><span class="org-string">|</span></span><span class="org-string">level-0.org</span><span class="org-regexp-grouping-backslash"><span class="org-string">\\</span></span><span class="org-regexp-grouping-construct"><span class="org-string">|</span></span><span class="org-string">todo.org</span><span class="org-regexp-grouping-backslash"><span class="org-string">\\</span></span><span class="org-regexp-grouping-construct"><span class="org-string">|</span></span><span class="org-string">.DS_Store"</span>
-         <span class="org-builtin">:publishing-directory</span> ,(expand-file-name <span class="org-string">"published"</span> (expand-file-name <span class="org-string">"k20e.com"</span> k20e/dropbox-directory))
+         <span class="org-builtin">:publishing-directory</span> ,(expand-file-name <span class="org-string">"published"</span> (expand-file-name <span class="org-string">"k20e.com"</span> k20e/google-drive-directory))
          <span class="org-builtin">:publishing-function</span> org-html-publish-to-html
          <span class="org-builtin">:with-planning</span> t)
         (<span class="org-string">"k20e.com-static-files"</span>
-         <span class="org-builtin">:base-directory</span> ,(expand-file-name <span class="org-string">"source"</span> (expand-file-name <span class="org-string">"k20e.com"</span> k20e/dropbox-directory))
+         <span class="org-builtin">:base-directory</span> ,(expand-file-name <span class="org-string">"source"</span> (expand-file-name <span class="org-string">"k20e.com"</span> k20e/google-drive-directory))
          <span class="org-builtin">:base-extension</span> <span class="org-string">"jpg</span><span class="org-regexp-grouping-backslash"><span class="org-string">\\</span></span><span class="org-regexp-grouping-construct"><span class="org-string">|</span></span><span class="org-string">png</span><span class="org-regexp-grouping-backslash"><span class="org-string">\\</span></span><span class="org-regexp-grouping-construct"><span class="org-string">|</span></span><span class="org-string">ico"</span>
          <span class="org-builtin">:recursive</span> t
-         <span class="org-builtin">:publishing-directory</span> ,(expand-file-name <span class="org-string">"published"</span> (expand-file-name <span class="org-string">"k20e.com"</span> k20e/dropbox-directory))
+         <span class="org-builtin">:publishing-directory</span> ,(expand-file-name <span class="org-string">"published"</span> (expand-file-name <span class="org-string">"k20e.com"</span> k20e/google-drive-directory))
          <span class="org-builtin">:publishing-function</span> org-publish-attachment)
         (<span class="org-string">"k20e.com"</span>
          <span class="org-builtin">:components</span> (<span class="org-string">"k20e.com-org-files"</span> <span class="org-string">"k20e.com-static-files"</span>))
@@ -4300,7 +4301,7 @@ Insert state change notes and time stamps into a drawer rather than simply
 
 <pre class="src src-emacs-lisp">(<span class="org-keyword">require</span> '<span class="org-constant">recentf</span>)
 
-(<span class="org-keyword">setq</span> recentf-save-file (expand-file-name <span class="org-string">".recentf"</span> k20e/dropbox-directory)
+(<span class="org-keyword">setq</span> recentf-save-file (expand-file-name <span class="org-string">".recentf"</span> k20e/google-drive-directory)
       recentf-max-saved-items 250)
 (recentf-mode 1)
 
@@ -4348,7 +4349,7 @@ Insert state change notes and time stamps into a drawer rather than simply
 <pre class="src src-emacs-lisp"><span class="org-comment-delimiter">;; </span><span class="org-comment">Save minibuffer history.</span>
 (<span class="org-keyword">require</span> '<span class="org-constant">savehist</span>)
 
-(<span class="org-keyword">setq</span> savehist-file (expand-file-name <span class="org-string">".savehist"</span> k20e/dropbox-directory))
+(<span class="org-keyword">setq</span> savehist-file (expand-file-name <span class="org-string">".savehist"</span> k20e/google-drive-directory))
 (savehist-mode)
 </pre>
 </div>
@@ -4444,7 +4445,7 @@ Bind it globally.
 (global-set-key (kbd <span class="org-string">"C-c C-c M-x"</span>) 'execute-extended-command)
 
 <span class="org-comment-delimiter">;; </span><span class="org-comment">Share smex history across my machines.</span>
-(<span class="org-keyword">setq</span> smex-save-file (expand-file-name <span class="org-string">".smex-items"</span> k20e/dropbox-directory))
+(<span class="org-keyword">setq</span> smex-save-file (expand-file-name <span class="org-string">".smex-items"</span> k20e/google-drive-directory))
 </pre>
 </div>
 </div>
@@ -4710,7 +4711,8 @@ Name multiple identical buffer names in a sensible manner.
 
 (<span class="org-keyword">defun</span> <span class="org-function-name">k20e/web-mode-hook</span> ()
   (set-default 'web-mode-engines-alist '((<span class="org-string">"django"</span> . <span class="org-string">"\\.html?\\'"</span>)))
-  (<span class="org-keyword">setq</span> web-mode-markup-indent-offset 2))
+  (<span class="org-keyword">setq</span> web-mode-markup-indent-offset 2
+        web-mode-enable-auto-quoting nil))
 
 (add-hook 'web-mode-hook 'k20e/web-mode-hook)
 </pre>
@@ -4817,7 +4819,7 @@ much better way to accomplish this.
 </div>
 <div id="postamble" class="status">
 <p class="author">Kris Molendyke</p>
-<p class="date">2015-08-11 Tue 09:43</p>
+<p class="date">2015-09-18 Fri 14:39</p>
 <p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 25.0.50.1 (<a href="http://orgmode.org">Org</a> mode 8.2.4)</p>
 </div>
 </body>
