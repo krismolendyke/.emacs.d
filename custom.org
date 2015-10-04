@@ -1175,6 +1175,7 @@ function.
 
   #+BEGIN_SRC emacs-lisp
     (require 'flycheck)
+    (require 'go-mode)
     (require 'go-mode-autoloads)
 
     (defun k20e/go-mode-hook ()
