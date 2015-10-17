@@ -1772,7 +1772,8 @@ function.
 
    #+BEGIN_SRC emacs-lisp
      (defvar k20e/org-babel-load-languages
-       '((emacs-lisp . t)
+       '((ditaa . t)
+         (emacs-lisp . t)
          (org . t)
          (python . t)
          (shell . t))
