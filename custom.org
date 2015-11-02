@@ -910,8 +910,14 @@ function.
 * dired
 
   #+BEGIN_SRC emacs-lisp
+    (require 'dired-x)
     (require 'ido)
     (require 'autorevert)
+
+    (defun k20e/dired-load-hook ()
+      (load "dired-x"))
+
+    (add-hook 'dired-load-hook 'k20e/dired-load-hook)
 
     (defun k20e/dired-mode-hook ()
       (auto-revert-mode 1)
