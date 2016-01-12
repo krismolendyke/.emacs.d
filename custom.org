@@ -1297,12 +1297,13 @@ function.
    Scale up the minibuffer text size and limit how tall it can get.
 
    #+BEGIN_SRC emacs-lisp
-     (defun k20e/ido-minibuffer-setup-hook ()
+     (defun k20e/minibuffer-setup-hook ()
        "Bump up minibuffer text size and height."
        (text-scale-set 3)
        (setq max-mini-window-height 20))
 
-     (add-hook 'ido-minibuffer-setup-hook 'k20e/ido-minibuffer-setup-hook)
+     (add-hook 'ido-minibuffer-setup-hook 'k20e/minibuffer-setup-hook)
+     (add-hook 'minibuffer-setup-hook 'k20e/minibuffer-setup-hook)
    #+END_SRC
 
 ** Keys and Theme
