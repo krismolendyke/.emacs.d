@@ -977,30 +977,30 @@ function.
   #+BEGIN_SRC emacs-lisp
     (require 'find-file-in-project)
 
-    (setq ffip-limit 8192
-          ffip-find-options "-not -regex \".*/build.*\""
-          ffip-full-paths t
-          ffip-patterns (list "*.clj"
-                              "*.conf"
-                              "*.cron"
-                              "*.css"
-                              "*.el"
-                              "*.html"
-                              "*.j2"
-                              "*.js"
-                              "*.json"
-                              "*.mk"
-                              "*.md"
-                              "*.org"
-                              "*.py"
-                              "*.rb"
-                              "*.rst"
-                              "*.sh"
-                              "*.soy"
-                              "*.txt"
-                              "*.yml"
-                              "Makefile")
-          ffip-prune-patterns (list ".git" "build"))
+    (setq-default ffip-limit 8192
+                  ffip-find-options "-not -regex \".*/build.*\""
+                  ffip-full-paths t
+                  ffip-patterns (list "*.clj"
+                                      "*.conf"
+                                      "*.cron"
+                                      "*.css"
+                                      "*.el"
+                                      "*.html"
+                                      "*.j2"
+                                      "*.js"
+                                      "*.json"
+                                      "*.mk"
+                                      "*.md"
+                                      "*.org"
+                                      "*.py"
+                                      "*.rb"
+                                      "*.rst"
+                                      "*.sh"
+                                      "*.soy"
+                                      "*.txt"
+                                      "*.yml"
+                                      "Makefile")
+                  ffip-prune-patterns (list ".git" "build"))
 
     (global-set-key (kbd "C-x o") 'find-file-in-project)
   #+END_SRC
