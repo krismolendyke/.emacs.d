@@ -12,19 +12,19 @@
    (quote
     (("gnus"
       ((or
-        (mode . message-mode)
-        (mode . mail-mode)
-        (mode . gnus-group-mode)
-        (mode . gnus-summary-mode)
-        (mode . gnus-article-mode))))
+	(mode . message-mode)
+	(mode . mail-mode)
+	(mode . gnus-group-mode)
+	(mode . gnus-summary-mode)
+	(mode . gnus-article-mode))))
      ("programming"
       ((or
-        (mode . emacs-lisp-mode)
-        (mode . cperl-mode)
-        (mode . c-mode)
-        (mode . java-mode)
-        (mode . idl-mode)
-        (mode . lisp-mode)))))))
+	(mode . emacs-lisp-mode)
+	(mode . cperl-mode)
+	(mode . c-mode)
+	(mode . java-mode)
+	(mode . idl-mode)
+	(mode . lisp-mode)))))))
  '(inhibit-startup-screen t)
  '(org-drill-optimal-factor-matrix
    (quote
@@ -48,13 +48,13 @@
      ("gnu" . "http://elpa.gnu.org/packages/"))))
  '(package-selected-packages
    (quote
-    (dash package-build visual-fill-column clojure-mode yasnippet yaml-mode writeroom-mode web-mode smex paredit paradox pallet multiple-cursors multi-term markdown-mode keyfreq ido-vertical-mode ido-ubiquitous htmlize highlight-parentheses gitignore-mode gitconfig-mode git-timemachine git-commit-mode git-blame flycheck flx-ido find-file-in-project expand-region exec-path-from-shell cider buffer-move arduino-mode ansible-doc ag)))
+    (ag pyvenv dash package-build visual-fill-column clojure-mode yasnippet yaml-mode writeroom-mode web-mode smex paredit paradox pallet multiple-cursors multi-term markdown-mode keyfreq ido-vertical-mode ido-ubiquitous htmlize highlight-parentheses gitignore-mode gitconfig-mode git-timemachine git-commit-mode git-blame flycheck flx-ido find-file-in-project expand-region exec-path-from-shell cider buffer-move arduino-mode ansible-doc)))
  '(paradox-github-token t)
  '(safe-local-variable-values
    (quote
     ((eval setq flycheck-emacs-lisp-package-user-dir
-           (expand-file-name
-            (format ".cask/%s/elpa" emacs-version)))
+	   (expand-file-name
+	    (format ".cask/%s/elpa" emacs-version)))
      (flycheck-emacs-lisp-initialize-packages . t)))))
 
 (custom-set-faces
@@ -62,4 +62,6 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- )
+ '(flx-highlight-face ((t (:foreground "#b294bb" :underline nil))))
+ '(ido-first-match ((t (:foreground "#b5bd68"))))
+ '(ido-only-match ((t (:foreground "#b5bd68")))))
