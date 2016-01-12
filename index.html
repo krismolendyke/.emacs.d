@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>Literate <code>.emacs.d</code></title>
-<!-- 2015-10-17 Sat 08:57 -->
+<!-- 2016-01-12 Tue 10:42 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Kris Molendyke" />
@@ -2901,8 +2901,14 @@ Functions to execute after compilation has finished:
 <div class="outline-text-2" id="text-unnumbered-46">
 <div class="org-src-container">
 
-<pre class="src src-emacs-lisp">(<span class="org-keyword">require</span> '<span class="org-constant">ido</span>)
+<pre class="src src-emacs-lisp">(<span class="org-keyword">require</span> '<span class="org-constant">dired-x</span>)
+(<span class="org-keyword">require</span> '<span class="org-constant">ido</span>)
 (<span class="org-keyword">require</span> '<span class="org-constant">autorevert</span>)
+
+(<span class="org-keyword">defun</span> <span class="org-function-name">k20e/dired-load-hook</span> ()
+  (load <span class="org-string">"dired-x"</span>))
+
+(add-hook 'dired-load-hook 'k20e/dired-load-hook)
 
 (<span class="org-keyword">defun</span> <span class="org-function-name">k20e/dired-mode-hook</span> ()
   (auto-revert-mode 1)
@@ -2989,30 +2995,30 @@ Emacs Lisp <a href="http://en.wikipedia.org/wiki/Unit_testing">unit testing</a>!
 
 <pre class="src src-emacs-lisp">(<span class="org-keyword">require</span> '<span class="org-constant">find-file-in-project</span>)
 
-(<span class="org-keyword">setq</span> ffip-limit 8192
-      ffip-find-options <span class="org-string">"-not -regex \".*/build.*\""</span>
-      ffip-full-paths t
-      ffip-patterns (list <span class="org-string">"*.clj"</span>
-                          <span class="org-string">"*.conf"</span>
-                          <span class="org-string">"*.cron"</span>
-                          <span class="org-string">"*.css"</span>
-                          <span class="org-string">"*.el"</span>
-                          <span class="org-string">"*.html"</span>
-                          <span class="org-string">"*.j2"</span>
-                          <span class="org-string">"*.js"</span>
-                          <span class="org-string">"*.json"</span>
-                          <span class="org-string">"*.mk"</span>
-                          <span class="org-string">"*.md"</span>
-                          <span class="org-string">"*.org"</span>
-                          <span class="org-string">"*.py"</span>
-                          <span class="org-string">"*.rb"</span>
-                          <span class="org-string">"*.rst"</span>
-                          <span class="org-string">"*.sh"</span>
-                          <span class="org-string">"*.soy"</span>
-                          <span class="org-string">"*.txt"</span>
-                          <span class="org-string">"*.yml"</span>
-                          <span class="org-string">"Makefile"</span>)
-      ffip-prune-patterns (list <span class="org-string">".git"</span> <span class="org-string">"build"</span>))
+(<span class="org-keyword">setq-default</span> ffip-limit 8192
+              ffip-find-options <span class="org-string">"-not -regex \".*/build.*\""</span>
+              ffip-full-paths t
+              ffip-patterns (list <span class="org-string">"*.clj"</span>
+                                  <span class="org-string">"*.conf"</span>
+                                  <span class="org-string">"*.cron"</span>
+                                  <span class="org-string">"*.css"</span>
+                                  <span class="org-string">"*.el"</span>
+                                  <span class="org-string">"*.html"</span>
+                                  <span class="org-string">"*.j2"</span>
+                                  <span class="org-string">"*.js"</span>
+                                  <span class="org-string">"*.json"</span>
+                                  <span class="org-string">"*.mk"</span>
+                                  <span class="org-string">"*.md"</span>
+                                  <span class="org-string">"*.org"</span>
+                                  <span class="org-string">"*.py"</span>
+                                  <span class="org-string">"*.rb"</span>
+                                  <span class="org-string">"*.rst"</span>
+                                  <span class="org-string">"*.sh"</span>
+                                  <span class="org-string">"*.soy"</span>
+                                  <span class="org-string">"*.txt"</span>
+                                  <span class="org-string">"*.yml"</span>
+                                  <span class="org-string">"Makefile"</span>)
+              ffip-prune-patterns (list <span class="org-string">".git"</span> <span class="org-string">"build"</span>))
 
 (global-set-key (kbd <span class="org-string">"C-x o"</span>) 'find-file-in-project)
 </pre>
@@ -3403,12 +3409,13 @@ Scale up the minibuffer text size and limit how tall it can get.
 
 <div class="org-src-container">
 
-<pre class="src src-emacs-lisp">(<span class="org-keyword">defun</span> <span class="org-function-name">k20e/ido-minibuffer-setup-hook</span> ()
+<pre class="src src-emacs-lisp">(<span class="org-keyword">defun</span> <span class="org-function-name">k20e/minibuffer-setup-hook</span> ()
   <span class="org-doc">"Bump up minibuffer text size and height."</span>
   (text-scale-set 3)
   (<span class="org-keyword">setq</span> max-mini-window-height 20))
 
-(add-hook 'ido-minibuffer-setup-hook 'k20e/ido-minibuffer-setup-hook)
+(add-hook 'ido-minibuffer-setup-hook 'k20e/minibuffer-setup-hook)
+(add-hook 'minibuffer-setup-hook 'k20e/minibuffer-setup-hook)
 </pre>
 </div>
 </div>
@@ -4821,8 +4828,8 @@ much better way to accomplish this.
 </div>
 <div id="postamble" class="status">
 <p class="author">Kris Molendyke</p>
-<p class="date">2015-10-17 Sat 08:55</p>
-<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 25.0.50.1 (<a href="http://orgmode.org">Org</a> mode 8.2.4)</p>
+<p class="date">2015-11-27 Fri 16:01</p>
+<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 25.1.50.1 (<a href="http://orgmode.org">Org</a> mode 8.2.4)</p>
 </div>
 </body>
 </html>
