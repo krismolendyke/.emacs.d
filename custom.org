@@ -819,7 +819,7 @@ function.
 
     (setq nrepl-hide-special-buffers t
           cider-show-error-buffer nil
-          cider-repl-use-pretty-printing t
+          cider-repl-use-pretty-printing nil
           cider-repl-history-file (expand-file-name "nrepl-history" k20e/google-drive-directory))
   #+END_SRC
 
