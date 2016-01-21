@@ -1124,14 +1124,8 @@ function.
 * git
 
   #+BEGIN_SRC emacs-lisp
-    (require 'git-commit-mode)
     (require 'gitconfig-mode)
     (require 'gitignore-mode)
-
-    (defun k20e/git-commit-mode-hook ()
-      (setq fill-column 72))
-
-    (add-hook 'git-commit-mode-hook 'k20e/git-commit-mode-hook)
 
     (autoload 'git-blame-mode "git-blame"
       "Minor mode for incremental blame for Git." t)
