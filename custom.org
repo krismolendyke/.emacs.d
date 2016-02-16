@@ -1941,7 +1941,7 @@ function.
 
    #+BEGIN_SRC emacs-lisp
      (setq python-shell-interpreter "ipython"
-           python-shell-interpreter-args "-i")
+           python-shell-interpreter-args "-i --no-banner")
    #+END_SRC
 
 * recentf
