@@ -873,6 +873,7 @@ function.
 
   #+BEGIN_SRC emacs-lisp
     (require 'hl-line)
+    (require 'subr-x)
 
     (defun k20e/compilation-finish-function-delay-delete (buf result)
       "Delete and bury BUF after short delay.
