@@ -1676,6 +1676,16 @@ function.
     (setq org-ellipsis "…")
   #+END_SRC
 
+** Inline Images
+
+   Try to get the width of images displayed inline from a =#+ATTR.*=
+   keyword, e.g., =#+ATTR_HTML: :width 800px=, fall back to original
+   image width if no attribute keyword is found:
+
+   #+BEGIN_SRC emacs-lisp
+     (setq org-image-actual-width nil)
+   #+END_SRC
+
 ** Key Bindings
 
    #+BEGIN_SRC emacs-lisp
