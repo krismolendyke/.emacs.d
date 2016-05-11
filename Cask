@@ -40,6 +40,7 @@
 (depends-on "paradox")
 (depends-on "paredit")
 (depends-on "pkg-info")
+(depends-on "pyvenv")
 (depends-on "queue")
 (depends-on "s")
 (depends-on "seq")
