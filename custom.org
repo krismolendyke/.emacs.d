@@ -1064,13 +1064,13 @@ function.
   list of fonts that I like.
 
   #+BEGIN_SRC emacs-lisp
-    (defvar k20e/font-list '(("Source-Code-Pro" . 11)
+    (defvar k20e/font-list '(("Hack" . 11)
+                             ("Source-Code-Pro" . 11)
                              ("Glass-TTY-VT220" . 20)
                              ("Consolas" . 18)
                              ("Ubuntu-Mono" . 17)
                              ("Inconsolata" . 18)
-                             ("DejaVu-Sans-Mono" . 18)
-                             ("Hack" . 11))
+                             ("DejaVu-Sans-Mono" . 18))
       "Ordered list of preferred fonts and sizes.")
 
     (defun k20e/font--set (font-alist)
