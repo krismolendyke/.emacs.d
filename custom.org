@@ -24,7 +24,7 @@ function.
 
   I primarily use Emacs locally on Apple hardware.  Most, if not all,
   of the remote editing that I do is done via =tramp=.  I keep an eye
-  on the [[fhttp://git.savannah.gnu.org/cgit/emacs.git/log/][log]] at the official Emacs [[http://git-scm.com/][git]] [[http://git.savannah.gnu.org/cgit/emacs.git/][repository]].  When something
+  on the [[http://git.savannah.gnu.org/cgit/emacs.git/log/][log]] at the official Emacs [[http://git-scm.com/][git]] [[http://git.savannah.gnu.org/cgit/emacs.git/][repository]].  When something
   interesting lands there I will build a fresh Emacs installation via
   [[http://brew.sh/][Homebrew]] and try it out.
 
@@ -1719,6 +1719,25 @@ function.
      ;; Enable "expert" export interface.
      (setq org-export-dispatch-use-expert-ui t)
    #+END_SRC
+
+*** Options
+
+    A message in =*Messages*= like:
+
+    #+BEGIN_EXAMPLE
+      user-error: Unable to resolve link: nil
+    #+END_EXAMPLE
+
+    indicates that a link somewhere is malformed.  Adding the option:
+
+    #+BEGIN_SRC org
+      ,#+OPTIONS: broken-links:mark
+    #+END_SRC
+
+    and exporting will insert =BROKEN= into the HTML document.
+    Searching for that token makes finding the offending broken link
+    much easier.  Keeping this option set all the time would let
+    broken links slip through the export process undetected.
 
 *** Backends
 
