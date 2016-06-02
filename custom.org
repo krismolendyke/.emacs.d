@@ -1992,6 +1992,17 @@ function.
     (add-hook 'rst-mode-hook 'k20e/rst-mode-hook)
   #+END_SRC
 
+* rust
+
+  #+BEGIN_SRC emacs-lisp
+    (require 'rust-mode)
+
+    (defun k20e/rust-mode-hook ()
+      (setq rust-format-on-save t))
+
+    (add-hook 'rust-mode-hook 'k20e/rust-mode-hook)
+  #+END_SRC
+
 * savehist
 
   #+BEGIN_SRC emacs-lisp
