@@ -719,7 +719,7 @@ function.
     (require 'ag)
 
     (setq ag-arguments
-          '("--smart-case" "--nogroup" "--column" "--smart-case" "--stats" "--")
+          '("--smart-case" "--nogroup" "--column" "--smart-case" "--stats" "--vimgrep" "--")
           ag-highlight-search t)
 
     (global-set-key (kbd "C-x C-a") 'ag-project)
