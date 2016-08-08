@@ -18,6 +18,7 @@
 (depends-on "flx")
 (depends-on "flx-ido")
 (depends-on "flycheck")
+(depends-on "geiser")
 (depends-on "git-blame")
 (depends-on "git-timemachine")
 (depends-on "gitconfig-mode")

@@ -1122,6 +1122,12 @@ function.
     (require 'font-awesome)
   #+END_SRC
 
+* geiser
+
+  #+BEGIN_SRC emacs-lisp
+    (setq geiser-active-implementations '(chicken))
+  #+END_SRC
+
 * git
 
   #+BEGIN_SRC emacs-lisp
