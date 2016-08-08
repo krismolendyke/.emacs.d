@@ -1668,7 +1668,7 @@ function.
     (global-set-key (kbd "C-c l") 'org-store-link)
 
     ;; Use ido-completion.
-    (setq org-completion-use-ido t)
+    (setq-default org-completion-use-ido t)
 
     ;; Now that ido-completion is enabled, use it when jumping around.
     (setq org-outline-path-complete-in-steps nil)
