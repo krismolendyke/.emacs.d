@@ -1926,9 +1926,12 @@ function.
     (autoload 'paredit-mode "paredit" nil t)
 
     ;; When to turn on paredit.
-    (dolist (hook '(emacs-lisp-mode-hook
+    (dolist (hook '(cider-repl-mode-hook
+                    emacs-lisp-mode-hook
+                    geiser-mode-hook
+                    geiser-repl-mode-hook
                     lisp-mode-hook
-                    cider-repl-mode-hook))
+                    scheme-mode-hook))
       (add-hook hook #'(lambda nil (paredit-mode 1))))
 
     (eval-after-load "paredit"
