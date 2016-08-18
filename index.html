@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-08-17 Wed 22:01 -->
+<!-- 2016-08-18 Thu 07:37 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="viewport" content="width=device-width, initial-scale=1" />
 <title>Literate <code>.emacs.d</code></title>
@@ -1503,7 +1503,7 @@ function.
 </li>
 <li><a href="#how-this-works">How this works</a>
 <ul>
-<li><a href="#orgheadline2"><span class="todo TODO">TODO</span> Discuss <code>post-commit</code> hook</a></li>
+<li><a href="#orgheadline2">HTML Export <code>post-commit</code> Hook</a></li>
 </ul>
 </li>
 <li><a href="#orgheadline3">Customization</a></li>
@@ -1803,11 +1803,35 @@ the biggest of those <code>org-mode</code> files and … <i>this</i> is that fil
 </div>
 
 <div id="outline-container-orgheadline2" class="outline-3">
-<h3 id="orgheadline2"><span class="todo TODO">TODO</span> Discuss <code>post-commit</code> hook</h3>
+<h3 id="orgheadline2">HTML Export <code>post-commit</code> Hook</h3>
 <div class="outline-text-3" id="text-orgheadline2">
 <p>
-This is the bit that automatically generates the content of this
-<a href="https://pages.github.com/">GitHub Pages</a> site.
+This <a href="https://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks">git <code>post-commit</code> hook</a> is located at <code>.git/hooks/post-commit</code>
+and automatically generates the HTML content of this <a href="https://pages.github.com/">GitHub Pages</a>
+site.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-sh"><span class="org-comment-delimiter">#</span><span class="org-comment">!/bin/</span><span class="org-keyword">sh</span>
+
+emacs --batch <span class="org-sh-escaped-newline">\</span>
+      --directory <span class="org-string">'~/.emacs.d/site-lisp/org-mode/lisp'</span> <span class="org-sh-escaped-newline">\</span>
+      --load <span class="org-string">'~/.emacs.d/elisp/k20e-org-html-export.el'</span> <span class="org-sh-escaped-newline">\</span>
+      --visit <span class="org-string">'~/.emacs.d/custom.org'</span> <span class="org-sh-escaped-newline">\</span>
+      --execute <span class="org-string">'(org-html-export-to-html)'</span> 2&gt;&amp;1
+rm *~
+git checkout gh-pages
+mv custom.html index.html
+git add index.html
+git commit --message <span class="org-string">"post-commit hook regeneration."</span>
+git checkout master
+</pre>
+</div>
+
+<p>
+All of the interesting customization of the exported document is
+performed in <a href="https://github.com/krismolendyke/.emacs.d/blob/master/elisp/k20e-org-html-export.el"><code>elisp/k20e-org-html-export.el</code></a>.
 </p>
 </div>
 </div>
@@ -4904,7 +4928,7 @@ much better way to accomplish this.
 </div>
 <div id="postamble" class="status">
 <p class="author">Kris Molendyke</p>
-<p class="date">2016-08-17 Wed 21:42</p>
+<p class="date">2016-08-18 Thu 07:37</p>
 <p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 25.1.50.1 (<a href="http://orgmode.org">Org</a> mode 8.3.5)</p>
 </div>
 </body>
