@@ -103,10 +103,30 @@ function.
   file and then instructs Emacs to load that file.  [[https://github.com/krismolendyke/.emacs.d/blob/master/custom.org][=custom.org=]] is
   the biggest of those =org-mode= files and … /this/ is that file!
 
-** TODO Discuss =post-commit= hook
+** HTML Export =post-commit= Hook
 
-   This is the bit that automatically generates the content of this
-   [[https://pages.github.com/][GitHub Pages]] site.
+   This [[https://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks][git =post-commit= hook]] is located at =.git/hooks/post-commit=
+   and automatically generates the HTML content of this [[https://pages.github.com/][GitHub Pages]]
+   site.
+
+   #+BEGIN_SRC sh
+     #!/bin/sh
+
+     emacs --batch \
+           --directory '~/.emacs.d/site-lisp/org-mode/lisp' \
+           --load '~/.emacs.d/elisp/k20e-org-html-export.el' \
+           --visit '~/.emacs.d/custom.org' \
+           --execute '(org-html-export-to-html)' 2>&1
+     rm *~
+     git checkout gh-pages
+     mv custom.html index.html
+     git add index.html
+     git commit --message "post-commit hook regeneration."
+     git checkout master
+   #+END_SRC
+
+   All of the interesting customization of the exported document is
+   performed in [[https://github.com/krismolendyke/.emacs.d/blob/master/elisp/k20e-org-html-export.el][=elisp/k20e-org-html-export.el=]].
 
 * Customization
 
