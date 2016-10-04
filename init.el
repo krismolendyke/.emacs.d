@@ -14,6 +14,8 @@
 ;; You may delete these explanatory comments.
 (package-initialize)
 
+(require 'subr-x)
+
 (defvar k20e/site-lisp-directory
   (expand-file-name "site-lisp" user-emacs-directory)
   "Local libraries.")
@@ -41,8 +43,13 @@ decoupled from the Emacs distribution package.")
   "Google Drive home.")
 
 (defvar k20e/cask-directory
-  (expand-file-name "~/.cask")
+  (expand-file-name "/usr/local/share/emacs/site-lisp/cask")
   "Cask home.")
+
+(defvar k20e/brew-cache-directory
+  (string-trim (shell-command-to-string
+                (string-join `(,(executable-find "brew") "--cache") " ")))
+  "Homebrew cache.")
 
 (defun k20e/setup-cask-and-pallet ()
   "Package management goodness."
@@ -108,7 +115,9 @@ Only turn off the menu bar running in a terminal window."
 
 ;;; Set the Emacs source directory so that C function source can be
 ;;; found when necessary.
-(setq source-directory "/Library/Caches/Homebrew/emacs--git")
+(setq source-directory
+      (string-join `(,k20e/brew-cache-directory "emacs--git") "/"))
+
 
 (setq-default load-prefer-newer t
               python-indent-guess-indent-offset-verbose nil)
