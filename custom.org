@@ -1145,7 +1145,7 @@ function.
 * geiser
 
   #+BEGIN_SRC emacs-lisp
-    (setq-default geiser-active-implementations '(chicken))
+    (setq-default geiser-active-implementations '(racket chicken))
   #+END_SRC
 
 * git
