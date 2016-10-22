@@ -24,6 +24,7 @@
 (depends-on "gitconfig-mode")
 (depends-on "gitignore-mode")
 (depends-on "go-mode")
+(depends-on "groovy-mode")
 (depends-on "highlight-parentheses")
 (depends-on "htmlize")
 (depends-on "hydra")

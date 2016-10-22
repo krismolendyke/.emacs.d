@@ -1221,6 +1221,17 @@ function.
     (add-hook 'go-mode-hook 'k20e/go-mode-hook)
   #+END_SRC
 
+* groovy-mode
+
+  #+BEGIN_SRC emacs-lisp
+    (require 'cc-vars)
+
+    (defun k20e/groovy-mode-hook ()
+      (setq c-basic-offset 4))
+
+    (add-hook 'groovy-mode-hook 'k20e/groovy-mode-hook)
+  #+END_SRC
+
 * highlight-parentheses
 
   #+BEGIN_SRC emacs-lisp
