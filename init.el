@@ -39,7 +39,7 @@ decoupled from the Emacs distribution package.")
   "The directory containing `org-mode' Emacs Lisp add-on files.")
 
 (defvar k20e/google-drive-directory
-  (expand-file-name "~/Google Drive")
+  (expand-file-name "~/Google")
   "Google Drive home.")
 
 (defvar k20e/cask-directory
