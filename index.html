@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2016-11-06 Sun 21:00 -->
+<!-- 2017-03-19 Sun 15:35 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="viewport" content="width=device-width, initial-scale=1" />
 <title>Literate <code>.emacs.d</code></title>
@@ -3141,7 +3141,8 @@ list of fonts that I like.
                          (<span class="org-string">"Consolas"</span> . 18)
                          (<span class="org-string">"Ubuntu-Mono"</span> . 17)
                          (<span class="org-string">"Inconsolata"</span> . 18)
-                         (<span class="org-string">"DejaVu-Sans-Mono"</span> . 18))
+                         (<span class="org-string">"DejaVu-Sans-Mono"</span> . 18)
+                         (<span class="org-string">"PICO-8"</span> . 20))
   <span class="org-doc">"Ordered list of preferred fonts and sizes."</span>)
 
 (<span class="org-keyword">defun</span> <span class="org-function-name">k20e/font--set</span> (font-alist)
@@ -3294,7 +3295,6 @@ Install <a href="https://github.com/golang/lint">golint</a>:
 
 <pre class="src src-emacs-lisp">(<span class="org-keyword">require</span> '<span class="org-constant">flycheck</span>)
 (<span class="org-keyword">require</span> '<span class="org-constant">go-mode</span>)
-(<span class="org-keyword">require</span> '<span class="org-constant">go-mode-autoloads</span>)
 
 (<span class="org-keyword">defun</span> <span class="org-function-name">k20e/go-mode-hook</span> ()
   (<span class="org-keyword">let</span> ((gopath (getenv <span class="org-string">"GOPATH"</span>))
@@ -4932,6 +4932,7 @@ much better way to accomplish this.
 (<span class="org-keyword">require</span> '<span class="org-constant">yaml-mode</span>)
 
 (<span class="org-keyword">defun</span> <span class="org-function-name">k20e/yaml-mode-hook</span> ()
+  (<span class="org-keyword">setq</span> fill-column 118)
   (ansible-doc-mode)
   (define-key yaml-mode-map (kbd <span class="org-string">"C-m"</span>) 'newline-and-indent))
 
@@ -4945,8 +4946,8 @@ much better way to accomplish this.
 </div>
 <div id="postamble" class="status">
 <p class="author">Kris Molendyke</p>
-<p class="date">2016-10-22 Sat 12:11</p>
-<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 26.0.50.1 (<a href="http://orgmode.org">Org</a> mode 8.3.5)</p>
+<p class="date">2017-03-19 Sun 15:22</p>
+<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 26.0.50 (<a href="http://orgmode.org">Org</a> mode 8.3.5)</p>
 </div>
 </body>
 </html>
