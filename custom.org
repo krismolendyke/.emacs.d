@@ -2381,6 +2381,7 @@ function.
     (require 'yaml-mode)
 
     (defun k20e/yaml-mode-hook ()
+      (setq fill-column 118)
       (ansible-doc-mode)
       (define-key yaml-mode-map (kbd "C-m") 'newline-and-indent))
 
