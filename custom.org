@@ -2378,11 +2378,17 @@ function.
   #+BEGIN_SRC emacs-lisp
     (require 'ansible-doc)
     (require 'yaml-mode)
+    (require 'flycheck)
+    (require 'flycheck-yamllint)
+    (require 'flyspell)
 
     (defun k20e/yaml-mode-hook ()
       (setq fill-column 118)
       (ansible-doc-mode)
-      (define-key yaml-mode-map (kbd "C-m") 'newline-and-indent))
+      (define-key yaml-mode-map (kbd "C-m") 'newline-and-indent)
+      (flycheck-mode 1)
+      (flycheck-yamllint-setup)
+      (flyspell-mode-off))
 
     (add-hook 'yaml-mode-hook 'k20e/yaml-mode-hook)
 

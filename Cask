@@ -19,6 +19,7 @@
 (depends-on "flx")
 (depends-on "flx-ido")
 (depends-on "flycheck")
+(depends-on "flycheck-yamllint")
 (depends-on "geiser")
 (depends-on "git-blame")
 (depends-on "git-timemachine")
