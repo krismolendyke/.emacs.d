@@ -1710,7 +1710,7 @@ function.
     ;; Now that ido-completion is enabled, use it when jumping around.
     (setq org-outline-path-complete-in-steps nil)
 
-    (setq org-ellipsis "…")
+    (setq org-ellipsis nil)
   #+END_SRC
 
 ** Inline Images
