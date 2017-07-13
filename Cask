@@ -31,7 +31,6 @@
 (depends-on "htmlize")
 (depends-on "hydra")
 (depends-on "ido-completing-read+")
-(depends-on "ido-ubiquitous")
 (depends-on "ido-vertical-mode")
 (depends-on "ivy")
 (depends-on "keyfreq")
