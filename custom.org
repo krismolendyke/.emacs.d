@@ -477,16 +477,16 @@ function.
 ** Windows
 
    #+BEGIN_SRC emacs-lisp
-     (require 'ido)
+     (require 'ivy)
 
      (defun split-window-right-and-balance-and-go-there-and-switch-buffer (&optional arg)
-       "Optional argument ARG Prefix argument will switch buffer using ido."
+       "Optional argument ARG Prefix argument will switch buffer using ivy."
        (interactive "P")
        (split-window-right)
        (balance-windows-area)
        (windmove-right)
        (if arg
-           (ido-switch-buffer)
+           (ivy-switch-buffer)
          (switch-to-buffer nil)))
 
      (defun delete-window-and-balance ()
@@ -737,12 +737,13 @@ function.
 
   #+BEGIN_SRC emacs-lisp
     (require 'ag)
+    (require 'counsel)
 
     (setq ag-arguments
           '("--smart-case" "--nogroup" "--column" "--smart-case" "--stats" "--vimgrep" "--")
           ag-highlight-search t)
 
-    (global-set-key (kbd "C-x C-a") 'ag-project)
+    (global-set-key (kbd "C-x C-a") 'counsel-ag)
   #+END_SRC
 
 * arduino-mode
@@ -890,6 +891,24 @@ function.
         (hl-line-mode)))
   #+END_SRC
 
+* Counsel
+
+  #+BEGIN_SRC emacs-lisp
+    (require 'counsel)
+
+    (global-set-key (kbd "M-x") 'counsel-M-x)
+
+    (global-set-key (kbd "C-x C-f") 'counsel-find-file)
+    (global-set-key (kbd "<f1> f") 'counsel-describe-function)
+    (global-set-key (kbd "<f1> v") 'counsel-describe-variable)
+    (global-set-key (kbd "<f1> l") 'counsel-find-library)
+    (global-set-key (kbd "<f1> s") 'counsel-info-lookup-symbol)
+
+    (global-set-key (kbd "C-x 8 RET") 'counsel-unicode-char)
+
+    (define-key read-expression-map (kbd "C-r") 'counsel-expression-history)
+  #+END_SRC
+
 * dash-at-point
 
   [[https://kapeli.com/dash][Dash]] offline API access.
@@ -905,7 +924,6 @@ function.
 
   #+BEGIN_SRC emacs-lisp
     (require 'dired-x)
-    (require 'ido)
     (require 'autorevert)
 
     (defun k20e/dired-load-hook ()
@@ -920,10 +938,6 @@ function.
       (set-face-attribute 'dired-flagged nil :strike-through t))
 
     (add-hook 'dired-mode-hook 'k20e/dired-mode-hook)
-
-    ;; C-x C-d is normally bound to `ido-list-directory' which I rarely need and
-    ;; often type when I intend to run `ido-dired'.
-    (global-set-key (kbd "C-x C-d") 'ido-dired)
   #+END_SRC
 
 * electric-pair-mode
@@ -1154,13 +1168,17 @@ function.
 * git
 
   #+BEGIN_SRC emacs-lisp
+    (require 'counsel)
     (require 'gitconfig-mode)
     (require 'gitignore-mode)
 
     (autoload 'git-blame-mode "git-blame"
       "Minor mode for incremental blame for Git." t)
 
+    (global-set-key (kbd "C-c g") 'counsel-git)
+    (global-set-key (kbd "C-c j") 'counsel-git-grep)
     (global-set-key (kbd "C-x v b") 'git-blame-mode)
+
   #+END_SRC
 
 ** GitHub =.gitignore=
@@ -1260,7 +1278,6 @@ function.
 
   #+BEGIN_SRC emacs-lisp
     (require 'ibuffer)
-    (require 'ido)
 
     (defalias 'list-buffers 'ibuffer)
 
@@ -1275,106 +1292,7 @@ function.
                   (filename-and-process 70 70 :left :elide)
                   " "
                   name)))
-
-    (defun k20e/ibuffer-hook ()
-      (define-key ibuffer-mode-map (kbd "C-x C-f") 'ido-find-file))
-
-    (add-hook 'ibuffer-hook 'k20e/ibuffer-hook)
   #+END_SRC
-
-* ido
-
-  #+BEGIN_SRC emacs-lisp
-    (require 'flx-ido)
-    (require 'ido)
-    (require 'ido-vertical-mode)
-
-    (setq ido-save-directory-list-file (expand-file-name ".ido.last" k20e/google-drive-directory)
-          ido-enable-flex-matching t
-          ido-auto-merge-work-directories-length -1
-          ido-create-new-buffer 'always
-          ido-show-dot-for-dired t
-          ido-max-file-prompt-width 0.2
-          ido-use-faces t
-          flx-ido-use-faces t)
-
-    (add-to-list 'ido-ignore-files "\\.DS_Store")
-  #+END_SRC
-
-  Avoid =ido-vertical-mode= from eating =M-p=.
-
-  #+BEGIN_SRC emacs-lisp
-    (setq ido-vertical-define-keys nil)
-  #+END_SRC
-
-** Interface
-
-   #+BEGIN_SRC emacs-lisp
-     (setq ido-vertical-decorations '("\n"  ; left bracket around prospect list
-                                      ""    ; right bracket around prospect list
-                                      "\n"  ; separator between prospects, depends on `ido-separator`
-                                      "\n▼" ; inserted at the end of a truncated list of prospects
-                                      "["   ; left bracket around common match string
-                                      "]"   ; right bracket around common match string
-                                      " ✘"  ; no match
-                                      " ✔"  ; matched
-                                      " [Not readable]"
-                                      " [Too big]"
-                                      " ?"  ; confirm
-                                      "\n"  ; left bracket around the sole remaining completion
-                                      " ✔"  ; right bracket around the sole remaining completion
-                                      ))
-   #+END_SRC
-
-** Minibuffer
-
-   Scale up the minibuffer text size and limit how tall it can get.
-
-   #+BEGIN_SRC emacs-lisp
-     (defun k20e/minibuffer-setup-hook ()
-       "Bump up minibuffer text size and height."
-       (text-scale-set 3)
-       (setq max-mini-window-height 20))
-
-     (add-hook 'ido-minibuffer-setup-hook 'k20e/minibuffer-setup-hook)
-     (add-hook 'minibuffer-setup-hook 'k20e/minibuffer-setup-hook)
-   #+END_SRC
-
-** Keys and Theme
-
-   #+BEGIN_SRC emacs-lisp
-     (defun k20e/ido-setup-hook ()
-       "Setup key map and theme faces."
-       (define-key ido-completion-map (kbd "C-n") 'ido-next-match)
-       (define-key ido-completion-map (kbd "C-p") 'ido-prev-match)
-       (define-key ido-completion-map (kbd "<up>") 'ido-prev-match)
-       (define-key ido-completion-map (kbd "<down>") 'ido-next-match)
-       (define-key ido-completion-map (kbd "<left>") 'ido-vertical-prev-match)
-       (define-key ido-completion-map (kbd "<right>") 'ido-vertical-next-match)
-
-       (define-key ido-completion-map (kbd "C-h") 'delete-backward-char)
-
-       ;; Theme!
-       (let ((match (face-attribute 'font-lock-string-face :foreground))
-             (highlight (face-attribute 'font-lock-keyword-face :foreground)))
-         (custom-set-faces `(ido-first-match ((t (:foreground ,match))))
-                           `(ido-only-match ((t (:foreground ,match))))
-                           `(flx-highlight-face ((t (:foreground ,highlight
-                                                     :underline nil)))))))
-
-     (add-hook 'ido-setup-hook 'k20e/ido-setup-hook)
-   #+END_SRC
-
-** Enable
-
-   Vertical, everywhere, fuzzy matching.
-
-   #+BEGIN_SRC emacs-lisp
-     (ido-mode t)
-     (ido-vertical-mode t)
-     (ido-ubiquitous-mode t)
-     (flx-ido-mode t)
-   #+END_SRC
 
 * IELM
 
@@ -1407,11 +1325,19 @@ function.
     (global-set-key (kbd "H-l") 'ifl-region-or-query)
   #+END_SRC
 
-* isearch
+* Ivy
 
   #+BEGIN_SRC emacs-lisp
-    (eval-after-load "isearch"
-      '(define-key isearch-mode-map (kbd "C-h") 'isearch-delete-char))
+    (require 'ivy)
+    (require 'recentf)
+
+    (ivy-mode 1)
+
+    (setq ivy-use-virtual-buffers t)
+
+    (global-set-key (kbd "C-c C-r") 'ivy-resume)
+    (global-set-key (kbd "C-x b") 'ivy-switch-buffer)
+    (global-set-key (kbd "C-x C-r") 'ivy-recentf)
   #+END_SRC
 
 * js-mode
@@ -1479,7 +1405,18 @@ function.
     (add-hook 'markdown-mode-hook 'k20e/markdown-mode-hook)
   #+END_SRC
 
-* minibuffers
+* Minibuffer
+
+  Scale up the minibuffer text size and limit how tall it can get.
+
+  #+BEGIN_SRC emacs-lisp
+    (defun k20e/minibuffer-setup-hook ()
+      "Bump up minibuffer text size and height."
+      (text-scale-set 3)
+      (setq max-mini-window-height 20))
+
+    (add-hook 'minibuffer-setup-hook 'k20e/minibuffer-setup-hook)
+  #+END_SRC
 
   Set =enable-recursive-minibufers= to =t= to allow minibuffers
   /within/ minibuffers.  A good use-case of this feature is described
@@ -1706,10 +1643,7 @@ function.
     ;; Global key binding to make storing links to files easier.
     (global-set-key (kbd "C-c l") 'org-store-link)
 
-    ;; Use ido-completion.
-    (setq-default org-completion-use-ido t)
-
-    ;; Now that ido-completion is enabled, use it when jumping around.
+    ;; Use Ivy for completion
     (setq org-outline-path-complete-in-steps nil)
 
     (setq org-ellipsis nil)
@@ -1728,11 +1662,14 @@ function.
 ** Key Bindings
 
    #+BEGIN_SRC emacs-lisp
+     (require 'ivy)
+
      (global-set-key (kbd "C-c a") 'org-agenda)
      (global-set-key (kbd "C-x c") 'org-switchb)
      (global-set-key (kbd "<f12>") 'org-agenda-list)
 
      (define-key org-mode-map (kbd "<return>") 'k20e/org-return)
+     (define-key org-mode-map (kbd "C-c C-r") 'ivy-resume)
      (define-key org-mode-map (kbd "C-j") 'join-line)
      (define-key org-mode-map (kbd "C-m") 'k20e/org-return)
      (define-key org-mode-map (kbd "H-<tab>") 'pcomplete)
@@ -2024,15 +1961,6 @@ function.
     (setq recentf-save-file (expand-file-name ".recentf" k20e/google-drive-directory)
           recentf-max-saved-items 250)
     (recentf-mode 1)
-
-    ;;; Adapted from http://emacsredux.com/blog/2013/04/05/recently-visited-files
-    (defun recentf-ido-find-file ()
-      "Find a recently opened file with ido."
-      (interactive)
-      (let ((file (ido-completing-read "Find recent file: " recentf-list nil t)))
-        (if file (find-file file))))
-
-    (global-set-key (kbd "C-x C-r") 'recentf-ido-find-file)
   #+END_SRC
 
 * reStructuredText
@@ -2095,8 +2023,6 @@ function.
    pads for.
 
    #+BEGIN_SRC emacs-lisp
-     (require 'ido)
-
      (defconst k20e/scratch-buffer-modes
        '(fundamental-mode
          emacs-lisp-mode
@@ -2112,7 +2038,7 @@ function.
      Choose from `k20e/scratch-buffer-modes' list of major modes to
      enable in the newly created scratch buffer and switch to it."
        (interactive)
-       (let ((mode (read (ido-completing-read "New *scratch* buffer with mode: "
+       (let ((mode (read (ivy-completing-read "New *scratch* buffer with mode: "
                                               (mapcar (lambda (el) (format "%s" el))
                                                       k20e/scratch-buffer-modes)))))
          (switch-to-buffer (generate-new-buffer (format "*scratch-%s*" mode)))
@@ -2125,18 +2051,21 @@ function.
      (global-set-key (kbd "<f10>") 'k20e/scratch-buffer)
    #+END_SRC
 
+* server
+
+  #+BEGIN_SRC emacs-lisp
+    ;; Start the Emacs server.
+    (require 'server)
+
+    (unless (server-running-p)
+      (server-start))
+  #+END_SRC
+
 * smex
 
   #+BEGIN_SRC emacs-lisp
     (require 'smex)
     (smex-initialize)
-
-    ;; Replace execute-extended-command binding with smex.
-    (global-set-key (kbd "M-x") 'smex)
-    (global-set-key (kbd "M-X") 'smex-major-mode-commands)
-
-    ;; Keep execute-extended-command at hand just in case.
-    (global-set-key (kbd "C-c C-c M-x") 'execute-extended-command)
 
     ;; Share smex history across my machines.
     (setq smex-save-file (expand-file-name ".smex-items" k20e/google-drive-directory))
@@ -2162,6 +2091,14 @@ function.
 
     (unless (server-running-p)
       (server-start))
+  #+END_SRC
+
+* Swiper
+
+  #+BEGIN_SRC emacs-lisp
+    (require 'swiper)
+
+    (global-set-key (kbd "C-s") 'swiper)
   #+END_SRC
 
 * term
