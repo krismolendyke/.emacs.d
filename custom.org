@@ -797,33 +797,6 @@ function.
     (global-set-key (kbd "<H-S-right>") 'buf-move-right)
   #+END_SRC
 
-* TODO calendar
-
-  Does setting these geolocation variables in a hook really make sense since
-  they are the result of an asynchronous query and response parsing?
-
-  #+BEGIN_SRC emacs-lisp
-    (require 'geo-ip)
-    (require 'url)
-
-    (defun k20e/calendar-load-hook ()
-      ;; Default location Philly.
-      (setq
-       calendar-latitude 39.9            ; 39.9525
-       calendar-longitude -75.1          ; -75.163
-       calendar-location-name "Philadelphia, PA")
-
-      ;; Attempt to set location with a geo-ip query.
-      (geo-ip-lat-lon-loc-ip
-       #'(lambda (lat lon loc ip)
-           (setq
-            calendar-latitude lat
-            calendar-longitude lon
-            calendar-location-name loc))))
-
-    (add-hook 'calendar-load-hook 'k20e/calendar-load-hook)
-  #+END_SRC
-
 * cider
 
   #+BEGIN_SRC emacs-lisp
@@ -1147,6 +1120,35 @@ function.
 
   #+BEGIN_SRC emacs-lisp
     (setq-default geiser-active-implementations '(racket chicken))
+  #+END_SRC
+
+* Geo IP
+
+  #+BEGIN_SRC emacs-lisp
+    (require 'json)
+    (require 'solar)
+    (require 'url)
+
+    (defun k20e/get-geo-ip-data ()
+      "Get geographic data from current IP address."
+      (let ((data))
+        (with-current-buffer (url-retrieve-synchronously "http://freegeoip.net/json/")
+          (goto-char (point-max))
+          (forward-line -1)
+          (setq data (json-read))
+          (kill-buffer))
+        data))
+
+    (defun k20e/set-geo-ip-data ()
+      "Set geographic data for current IP address."
+      (interactive)
+      (let ((data (k20e/get-geo-ip-data)))
+        (setq-default calendar-latitude (cdr (assoc 'latitude data))
+                      calendar-longitude (cdr (assoc 'longitude data)))
+        data))
+
+    (k20e/set-geo-ip-data)
+    (sunrise-sunset)
   #+END_SRC
 
 * git
