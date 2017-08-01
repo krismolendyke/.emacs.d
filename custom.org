@@ -1373,6 +1373,22 @@ function.
     (global-set-key (kbd "C-x b") 'ivy-switch-buffer)
   #+END_SRC
 
+  #+BEGIN_QUOTE
+  =M-j= (=ivy-yank-word=)
+
+    Inserts the sub-word at point into the minibuffer.
+
+    This is similar to =C-s C-w= with =isearch=. Ivy reserves =C-w=
+    for =kill-region=. -- [[http://oremacs.com/swiper/#minibuffer-key-bindings][Ivy minibuffer key bindings]]
+  #+END_QUOTE
+
+  =isearch-forward-word= was mapped to =w= and my muscle memory
+  requires this:
+
+  #+BEGIN_SRC emacs-lisp
+    (define-key ivy-minibuffer-map (kbd "C-w") 'ivy-yank-word)
+  #+END_SRC
+
 * js-mode
 
   #+BEGIN_SRC emacs-lisp
