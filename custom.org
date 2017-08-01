@@ -1362,7 +1362,6 @@ function.
 
   #+BEGIN_SRC emacs-lisp
     (require 'ivy)
-    (require 'recentf)
 
     (ivy-mode 1)
 
@@ -1371,7 +1370,6 @@ function.
 
     (global-set-key (kbd "C-c C-r") 'ivy-resume)
     (global-set-key (kbd "C-x b") 'ivy-switch-buffer)
-    (global-set-key (kbd "C-x C-r") 'ivy-recentf)
   #+END_SRC
 
 * js-mode
@@ -1970,11 +1968,15 @@ function.
 * recentf
 
   #+BEGIN_SRC emacs-lisp
+    (require 'ivy)
     (require 'recentf)
 
     (setq recentf-save-file (expand-file-name ".recentf" k20e/google-drive-directory)
           recentf-max-saved-items 250)
+
     (recentf-mode 1)
+
+    (global-set-key (kbd "C-x C-r") 'ivy-recentf)
   #+END_SRC
 
 * reStructuredText
