@@ -17,6 +17,7 @@
 (depends-on "expand-region")
 (depends-on "f")
 (depends-on "find-file-in-project")
+(depends-on "flx")
 (depends-on "flycheck")
 (depends-on "flycheck-yamllint")
 (depends-on "geiser")
