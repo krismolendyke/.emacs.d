@@ -1473,26 +1473,6 @@ function.
                'k20e/eval-expression-minibuffer-setup-hook)
    #+END_SRC
 
-* monetate-mode
-
-  #+BEGIN_SRC emacs-lisp
-    (require 'monetate-mode)
-    (require 'terminal-notifier)
-
-    (defun k20e/monetate-hook ()
-      "Enable monetate-mode if file is in a Monetate repository."
-      (if (monetate-repo-p) (monetate-mode 1)))
-
-    (dolist (hook '(python-mode-hook js-mode-hook shell-mode-hook sql-mode))
-      (add-hook hook 'k20e/monetate-hook))
-
-    (setq monetate-notify-function 'monetate--notify-terminal-notifier
-          monetate-notify-process-messages '((started . "🕐 Started…")
-                                             (success . "✅ Success!")
-                                             (failure . "🚫 Error")))
-
-  #+END_SRC
-
 * multi-term
   :PROPERTIES:
   :CUSTOM_ID: multi-term
