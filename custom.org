@@ -1389,6 +1389,23 @@ function.
     (define-key ivy-minibuffer-map (kbd "C-w") 'ivy-yank-word)
   #+END_SRC
 
+  #+BEGIN_QUOTE
+  =C-j= (=ivy-alt-done=)
+
+    When completing file names, selects the current directory
+    candidate and starts a new completion session there. Otherwise, it
+    is the same as =ivy-done=.
+  #+END_QUOTE
+
+  Having to type =C-j= to go into a directory when finding files is
+  maddening and I almost never used =dired=.  Swap =RET= to go into
+  directories and =C-j= to open current directory in =dired=:
+
+  #+BEGIN_SRC emacs-lisp
+    (define-key ivy-minibuffer-map (kbd "RET") 'ivy-alt-done)
+    (define-key ivy-minibuffer-map (kbd "C-j") 'ivy-done)
+  #+END_SRC
+
 * js-mode
 
   #+BEGIN_SRC emacs-lisp
