@@ -2127,7 +2127,8 @@ function.
     (require 'sql)
 
     (defun k20e/sql-mode-hook ()
-      (setq sql-product 'mysql)
+      (setq sql-product 'mysql
+            tab-width 4)
       (sql-highlight-mysql-keywords))
 
     (add-hook 'sql-mode-hook 'k20e/sql-mode-hook)
