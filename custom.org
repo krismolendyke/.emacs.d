@@ -641,12 +641,11 @@ function.
      (add-to-list 'load-path (expand-file-name
                               "themes/tomorrow/GNU Emacs" user-emacs-directory))
 
-     (defvar k20e/theme-light 'solarized-light
+     (defvar k20e/theme-light 'tomorrow-day
        "The default lightly colored theme.
 
      Other good light candidates:
 
-       - tomorrow-day
        - whiteboard")
 
      (defvar k20e/theme-dark 'tomorrow-night
@@ -655,8 +654,7 @@ function.
      Other good dark candidates:
 
        - tomorrow-night-bright
-       - wombat
-       - zenburn")
+       - wombat")
 
      (defun k20e/theme-load-light ()
        "Load a lightly colored theme for conditions when ambient light
