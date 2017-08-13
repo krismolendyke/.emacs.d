@@ -640,7 +640,11 @@ function.
        (interactive)
        (disable-theme (car custom-enabled-themes))
        (load-theme k20e/theme-light t)
-       (set-face-background 'hl-line "AntiqueWhite2"))
+       (set-face-background 'hl-line "WhiteSmoke")
+       (set-face-background 'fringe "WhiteSmoke")
+       (set-face-background 'linum "WhiteSmoke")
+       (set-face-background 'region "gray86")
+       (set-face-background 'show-paren-match "gray50"))
 
      (defun k20e/theme-load-dark ()
        "Load a darkly colored theme for conditions when ambient light
