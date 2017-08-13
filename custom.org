@@ -641,12 +641,6 @@ function.
      (add-to-list 'load-path (expand-file-name
                               "themes/tomorrow/GNU Emacs" user-emacs-directory))
 
-     ;; These ports of Sublime Text 2 themes required a stupid shell script
-     ;; to "install" them which I refuse to use.
-     (add-to-list 'custom-theme-load-path
-                  (expand-file-name
-                   "themes/st2/themes" user-emacs-directory))
-
      (defvar k20e/theme-light 'solarized-light
        "The default lightly colored theme.
 
@@ -661,11 +655,6 @@ function.
      Other good dark candidates:
 
        - tomorrow-night-bright
-       - tomorrow-night
-       - hickey
-       - fogus
-       - dorsey
-       - wilson
        - wombat
        - zenburn")
 
@@ -706,8 +695,6 @@ function.
    #+BEGIN_SRC emacs-lisp
      (global-set-key (kbd "C-x t") 'k20e/theme-toggle)
    #+END_SRC
-
-*** TODO Try out [[https://github.com/bruce/emacs-spacegray-theme][Spacegray theme]]
 
 ** Cursor
 

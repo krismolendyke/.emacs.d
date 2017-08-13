@@ -1,6 +1,3 @@
-[submodule "themes/zenburn"]
-	path = themes/zenburn
-	url = git://github.com/bbatsov/zenburn-emacs.git
 [submodule "themes/tomorrow"]
 	path = themes/tomorrow
 	url = git://github.com/chriskempson/tomorrow-theme.git
@@ -14,9 +11,6 @@
 [submodule "site-lisp/terminal-notifier.el"]
 	path = site-lisp/terminal-notifier.el
 	url = git@github.com:krismolendyke/terminal-notifier.el.git
-[submodule "themes/st2"]
-	path = themes/st2
-	url = https://github.com/owainlewis/emacs-color-themes.git
 [submodule "site-lisp/monetate-mode.el"]
 	path = site-lisp/monetate-mode.el
 	url = git@github.com:krismolendyke/monetate-mode.el.git
@@ -29,6 +23,3 @@
 [submodule "site-lisp/im-feeling-lucky.el"]
 	path = site-lisp/im-feeling-lucky.el
 	url = https://github.com/krismolendyke/im-feeling-lucky.el.git
-[submodule "themes/base16"]
-	path = themes/base16
-	url = git@github.com:neil477/base16-emacs.git
