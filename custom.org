@@ -628,33 +628,11 @@ function.
 ** Theme
 
    #+BEGIN_SRC emacs-lisp
-     ;; Add themes.
-     (dolist
-         (theme (directory-files (expand-file-name "themes" user-emacs-directory) t "\\w+"))
-       (when (file-directory-p theme)
-         (add-to-list 'custom-theme-load-path theme)))
+     (defvar k20e/theme-light 'tango
+       "The default lightly colored theme.")
 
-     ;; Tomorrow as a submodule.  It has a bunch of other editor support.
-     (add-to-list 'custom-theme-load-path
-                  (expand-file-name
-                   "themes/tomorrow/GNU Emacs" user-emacs-directory))
-     (add-to-list 'load-path (expand-file-name
-                              "themes/tomorrow/GNU Emacs" user-emacs-directory))
-
-     (defvar k20e/theme-light 'tomorrow-day
-       "The default lightly colored theme.
-
-     Other good light candidates:
-
-       - whiteboard")
-
-     (defvar k20e/theme-dark 'tomorrow-night
-       "The default darkly colored theme.
-
-     Other good dark candidates:
-
-       - tomorrow-night-bright
-       - wombat")
+     (defvar k20e/theme-dark 'wombat
+       "The default darkly colored theme.")
 
      (defun k20e/theme-load-light ()
        "Load a lightly colored theme for conditions when ambient light
