@@ -8,6 +8,7 @@
 (depends-on "cask")
 (depends-on "cider")
 (depends-on "clojure-mode")
+(depends-on "color-theme-sanityinc-tomorrow")
 (depends-on "counsel")
 (depends-on "dash")
 (depends-on "dash-at-point")
