@@ -28,7 +28,8 @@
 (require 'ox-html)
 
 (defvar k20e/org-html-head-extra
-  "<link href='http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css' rel='stylesheet'>"
+  "<link href='https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css' rel='stylesheet'>
+<link href='https://fonts.googleapis.com/css?family=Roboto|Roboto+Mono' rel='stylesheet'>"
   "Extra HTML to add to the <head> tag.")
 
 ;; Fontify _SRC blocks in org-mode buffers.
