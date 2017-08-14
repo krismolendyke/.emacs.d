@@ -1803,6 +1803,13 @@ function.
                                   k20e/org-babel-load-languages)
    #+END_SRC
 
+   Disable interactive prompt for executing code blocks.  This is
+   dangerous but I never execute any org files that I didn't author.
+
+   #+BEGIN_SRC emacs-lisp
+     (setq org-confirm-babel-evaluate nil)
+   #+END_SRC
+
 ** TODO Items
 
    Automatically insert a timestamp when a task is marked =DONE=.
