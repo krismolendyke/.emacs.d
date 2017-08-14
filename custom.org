@@ -1136,6 +1136,12 @@ function.
     (setq-default geiser-active-implementations '(racket chicken))
   #+END_SRC
 
+  Default to [[https://racket-lang.org/][Racket]].
+
+  #+BEGIN_SRC emacs-lisp
+    (setq-default geiser-default-implementation 'racket)
+  #+END_SRC
+
 * Geo IP
 
   #+BEGIN_SRC emacs-lisp
