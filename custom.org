@@ -1802,6 +1802,7 @@ function.
          (emacs-lisp . t)
          (org . t)
          (python . t)
+         (scheme . t)
          (shell . t))
        "Languages to evaluate in `org-mode'.")
 
