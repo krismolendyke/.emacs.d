@@ -20,6 +20,11 @@ pre {
 
 a, a:link, a:focus, a:hover, a:active {
     color: lightskyblue;
+    text-decoration: none;
+}
+
+a:focus, a:hover, a:active {
+    text-decoration: underline;
 }
 
 a:visited {
