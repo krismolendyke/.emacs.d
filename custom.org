@@ -1073,6 +1073,7 @@ function.
   #+BEGIN_SRC emacs-lisp
     (defvar k20e/font-list '(("Hack" . 12)
                              ("Source-Code-Pro" . 11)
+                             ("Roboto-Mono". 12)
                              ("Glass-TTY-VT220" . 20)
                              ("Consolas" . 18)
                              ("Ubuntu-Mono" . 17)
