@@ -909,6 +909,14 @@ function.
     (define-key read-expression-map (kbd "C-r") 'counsel-expression-history)
   #+END_SRC
 
+** Find File Ignore
+
+   #+BEGIN_SRC emacs-lisp
+     (require 'regexp-opt)
+
+     (setq-default counsel-find-file-ignore-regexp (regexp-opt '(".pyc")))
+   #+END_SRC
+
 * dash-at-point
 
   [[https://kapeli.com/dash][Dash]] offline API access.
