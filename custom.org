@@ -362,30 +362,30 @@ function.
 ** Editing
 
    #+BEGIN_SRC emacs-lisp
-     (defun k20e/mark-current-line ()
+     (defun k20e/mark-current-line (arg)
        "Mark the current line.
      If the mark is already set simply move the point forward a single
      line.  If it is not set, set it at the beginning of the current
      line and then move the point forward a single line."
-       (interactive)
+       (interactive "p")
        (unless mark-active
          (beginning-of-line)
          (set-mark (point)))
-       (forward-line 1))
+       (forward-line arg))
 
-     (defun k20e/open-line-below ()
+     (defun k20e/open-line-below (arg)
        "Insert a new line below the current line."
-       (interactive)
+       (interactive "p")
        (end-of-line)
-       (newline)
+       (newline arg)
        (indent-for-tab-command))
 
-     (defun k20e/open-line-above ()
+     (defun k20e/open-line-above (arg)
        "Insert a new line above the current line."
-       (interactive)
+       (interactive "p")
        (beginning-of-line)
-       (newline)
-       (forward-line -1)
+       (newline arg)
+       (forward-line (- 0 arg))
        (indent-for-tab-command))
 
      ;; Inspired by http://whattheemacsd.com/key-bindings.el-01.html
