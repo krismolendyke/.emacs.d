@@ -2261,6 +2261,23 @@ function.
 
    Will create a detailed log buffer.
 
+* TypeScript
+
+  #+BEGIN_SRC emacs-lisp
+    (require 'eldoc)
+    (require 'flycheck)
+    (require 'tide)
+    (require 'typescript-mode)
+
+    (defun k20e/typescript-mode-hook ()
+      (eldoc-mode)
+      (flycheck-mode 1)
+      (tide-setup)
+      (tide-hl-identifier-mode 1))
+
+    (add-hook 'typescript-mode-hook 'k20e/typescript-mode-hook)
+  #+END_SRC
+
 * uniquify
 
   Name multiple identical buffer names in a sensible manner.
