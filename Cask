@@ -49,6 +49,7 @@
 (depends-on "smex")
 (depends-on "spinner")
 (depends-on "swiper")
+(depends-on "tide")
 (depends-on "toml")
 (depends-on "toml-mode")
 (depends-on "typescript-mode")
