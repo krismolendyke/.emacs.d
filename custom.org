@@ -1809,6 +1809,7 @@ function.
      (defvar k20e/org-babel-load-languages
        '((ditaa . t)
          (emacs-lisp . t)
+         (js . t)
          (org . t)
          (python . t)
          (scheme . t)
