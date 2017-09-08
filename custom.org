@@ -2277,6 +2277,8 @@ function.
       (tide-hl-identifier-mode 1))
 
     (add-hook 'typescript-mode-hook 'k20e/typescript-mode-hook)
+
+    (add-hook 'before-save-hook 'tide-format-before-save)
   #+END_SRC
 
 * uniquify
