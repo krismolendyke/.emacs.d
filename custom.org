@@ -690,29 +690,6 @@ function.
      (setq blink-cursor-interval 0.75)
    #+END_SRC
 
-** Frame Height
-
-   These functions were more useful before I began using the [[http://git.savannah.gnu.org/cgit/emacs.git/tree/lisp/desktop.el][=desktop=]] package
-   and its [[http://git.savannah.gnu.org/cgit/emacs.git/tree/lisp/desktop.el?id=e78d7f87377e29ee7ed2dd7aaed40244f1edbf13#n397][=desktop-restore-frames=]] variable.
-
-   #+BEGIN_SRC emacs-lisp
-     (defun get-max-rows (pixel-height)
-       "Return the maximum number of rows that will fit with this screen.
-     Given a screen pixel height at the current frame character height, calculate
-     the maximum number of rows that will fit with that height."
-       (if (window-system)
-           (/ pixel-height (frame-char-height))))
-
-     (defun set-frame-height-to-max ()
-       "Set the selected frame height to the maximum that will fit the current
-     screen resolution."
-       (if (window-system)
-           (set-frame-height (selected-frame)
-                             (get-max-rows (- (display-pixel-height) 44)))))
-
-     (set-frame-height-to-max)
-   #+END_SRC
-
 ** Fringe
 
    The "fringe" or "gutter" shows indicators for wrapped/extended lines,
