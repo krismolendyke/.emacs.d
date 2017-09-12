@@ -1790,7 +1790,8 @@ function.
          (org . t)
          (python . t)
          (scheme . t)
-         (shell . t))
+         (shell . t)
+         (sql . t))
        "Languages to evaluate in `org-mode'.")
 
      (org-babel-do-load-languages 'org-babel-load-languages
