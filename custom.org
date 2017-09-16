@@ -2141,16 +2141,17 @@ function.
    =term-raw-map= is used in /char/ mode.
 
    #+BEGIN_SRC emacs-lisp
+     (require 'counsel)
      (require 'smex)
 
-     (define-key term-raw-map (kbd "M-x") 'smex)
+     (define-key term-raw-map (kbd "M-x") 'counsel-M-x)
      (define-key term-raw-map (kbd "M-h") 'backward-kill-word)
    #+END_SRC
 
    =term-mode-map= is used in /line/ mode.
 
    #+BEGIN_SRC emacs-lisp
-     (define-key term-mode-map (kbd "M-x") 'smex)
+     (define-key term-mode-map (kbd "M-x") 'counsel-M-x)
    #+END_SRC
 
 * terminal-notifier
