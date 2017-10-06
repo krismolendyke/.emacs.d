@@ -1702,6 +1702,19 @@ function.
     (setq org-ellipsis nil)
   #+END_SRC
 
+** UPGRAYEDD
+
+   #+BEGIN_SRC sh
+     cd ~/.emacs.d/site-lisp/org-mode
+     g fetch origin --tags
+     g co -b release_9.1.2 release_9.1.2
+     make clean
+     make
+     cd ~/.emacs.d
+     g add site-lisp/org-mode
+     g commit -m "UPGRAYEDD org-mode"
+   #+END_SRC
+
 ** Inline Images
 
    Try to get the width of images displayed inline from a =#+ATTR.*=
