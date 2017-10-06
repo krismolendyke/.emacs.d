@@ -1069,7 +1069,10 @@ function.
   list of fonts that I like.
 
   #+BEGIN_SRC emacs-lisp
-    (defvar k20e/font-list '(("Hack" . 12)
+    (defvar k20e/font-list '(("Input-Sans" . 15)
+                             ("Input-Mono" . 15)
+                             ("Input-Serif" . 15)
+                             ("Hack" . 12)
                              ("Source-Code-Pro" . 11)
                              ("Roboto-Mono". 12)
                              ("Glass-TTY-VT220" . 20)
@@ -1111,6 +1114,20 @@ function.
     (k20e/font-set-from-list k20e/font-list)
   #+END_SRC
 
+** Per-buffer
+
+   Set a fixed width font to be used in major modes where that always
+   makes sense, even if I currently have the frame's font set to a
+   proportional font.  https://www.emacswiki.org/emacs/FacesPerBuffer
+
+   #+BEGIN_SRC emacs-lisp
+     (setq-default buffer-face-mode-face '(:family "Input Mono"))
+   #+END_SRC
+
+   Then, any major mode can add =(buffer-face-mode)= to its hook to
+   override the currently selected font with a fixed width one, e.g.,
+   [[id:multi-term][=multi-term=]], [[id:ibuffer][=ibuffer=]], etc.
+
 ** Unicode
 
    [[http://users.teilar.gr/~g1951d/][Symbola]] is a nice font for displaying Unicode characters 🍺👍.
@@ -1119,6 +1136,10 @@ function.
      (when (member "Symbola" (font-family-list))
        (set-fontset-font t 'unicode "Symbola" nil 'prepend))
    #+END_SRC
+
+** TODO Fonts
+
+   - https://be5invis.github.io/Iosevka/
 
 * font-awesome
 
@@ -1280,9 +1301,20 @@ function.
   #+END_SRC
 
 * ibuffer
+  :PROPERTIES:
+  :CUSTOM_ID: ibuffer
+  :END:
 
   #+BEGIN_SRC emacs-lisp
+    (require 'face-remap)
     (require 'ibuffer)
+
+    (defun k20e/ibuffer-mode-hook ()
+      "Make sure a non-proportional font is set:
+    https://www.emacswiki.org/emacs/FacesPerBuffer"
+      (buffer-face-mode))
+
+    (add-hook 'ibuffer-mode-hook 'k20e/ibuffer-mode-hook)
 
     (defalias 'list-buffers 'ibuffer)
 
@@ -1501,6 +1533,7 @@ function.
   #+END_SRC
 
   #+BEGIN_SRC emacs-lisp
+    (require 'face-remap)
     (require 'multi-term)
 
     (defcustom term-bind-key-alist
@@ -1530,8 +1563,10 @@ function.
         :group 'multi-term)
 
     (defun k20e/multi-term-hook ()
-      "Re-evaluate my custom key bindings."
-      (custom-reevaluate-setting 'term-bind-key-alist))
+      "Re-evaluate my custom key bindings.
+     Make sure a fixed width font is set."
+      (custom-reevaluate-setting 'term-bind-key-alist)
+      (buffer-face-mode))
 
     (add-hook 'term-mode-hook 'k20e/multi-term-hook)
 
