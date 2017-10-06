@@ -23,7 +23,6 @@
      user-emacs-directory)))))
 
 ;; Then use that version of org-mode, etc.
-(require 'htmlize)
 (require 'org)
 (require 'ox-html)
 
