@@ -44,6 +44,16 @@ function.
     brew uninstall emacs
   #+END_SRC
 
+  If there is a major version bump between the previous and current
+  build [[id:cask][Cask]] will need to be updated.
+
+  #+BEGIN_SRC sh
+    cd ~/.emacs
+    cask clean-elc
+    cask update
+    cask install
+  #+END_SRC
+
 ** Emacs Source Directory
 
    =source-directory= is helpful to have set properly when exploring built-in
@@ -140,6 +150,9 @@ function.
   #+END_SRC
 
 * Cask
+  :PROPERTIES:
+  :CUSTOM_ID: cask
+  :END:
 
   #+BEGIN_QUOTE
   Cask is a project management tool for Emacs Lisp to automate the
