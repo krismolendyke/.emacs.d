@@ -222,6 +222,7 @@ function.
    #+BEGIN_SRC emacs-lisp
      (global-set-key (kbd "<f1> F") 'find-function)
      (global-set-key (kbd "<f1> V") 'find-variable)
+     (global-set-key (kbd "<f6>") 'k20e/font-toggle-proportional)
      (global-set-key (kbd "<f7>") 'previous-error) ;; ◀◀
      (global-set-key (kbd "<f9>") 'next-error) ;; ▶▶
      (global-set-key (kbd "C-S-h") 'kill-whole-line)
@@ -445,6 +446,13 @@ function.
        "Message the full path to the currently visited file."
        (interactive)
        (message "%s" (buffer-file-name)))
+   #+END_SRC
+
+   #+BEGIN_SRC emacs-lisp
+     (defun k20e/font-toggle-proportional ()
+       "Toggle between a proportional font."
+       (interactive)
+       (buffer-face-toggle '(:family "Input Mono")))
    #+END_SRC
 
 *** Toggle Source/Test Buffer
