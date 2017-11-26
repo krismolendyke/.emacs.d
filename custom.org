@@ -1930,9 +1930,14 @@ function.
      (require 'winner)
 
      (defun k20e/org-agenda-mode-hook ()
-       (define-key org-agenda-mode-map (kbd "q") 'winner-undo)
+       (define-key org-agenda-mode-map (kbd "q")
+         (lambda (x)
+           (interactive "p")
+           (winner-undo)
+           (kill-buffer "*Org Agenda*")))
        (delete-other-windows)
-       (text-scale-set 2))
+       (text-scale-set 2)
+       (buffer-face-mode))
 
      (add-hook 'org-agenda-mode-hook 'k20e/org-agenda-mode-hook)
    #+END_SRC
@@ -1940,10 +1945,7 @@ function.
 *** Files
 
    #+BEGIN_SRC emacs-lisp
-     (setq org-agenda-files
-           (list (expand-file-name "personal.org" org-directory)
-                 (expand-file-name "work" org-directory)
-                 (expand-file-name "chores.org" org-directory)))
+     (setq org-agenda-files (list (expand-file-name "work" org-directory)))
    #+END_SRC
 
 *** Deadlines
