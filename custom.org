@@ -819,6 +819,19 @@ function.
     (add-hook 'calendar-mode-hook 'k20e/calendar-mode-hook)
   #+END_SRC
 
+* C
+
+  #+BEGIN_SRC emacs-lisp
+    (require 'flycheck)
+
+    (defun k20e/c-mode-hook ()
+      (setq flycheck-checker 'c/c++-gcc)
+      (setq-default flycheck-c/c++-gcc-executable "gcc-7")
+      (flycheck-mode 1))
+
+    (add-hook 'c-mode-hook 'k20e/c-mode-hook)
+  #+END_SRC
+
 * cider
 
   #+BEGIN_SRC emacs-lisp
