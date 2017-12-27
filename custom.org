@@ -2121,9 +2121,13 @@ function.
 * rust
 
   #+BEGIN_SRC emacs-lisp
+    (require 'flycheck)
+    (require 'flycheck-rust)
     (require 'rust-mode)
 
     (defun k20e/rust-mode-hook ()
+      (flycheck-mode 1)
+      (flycheck-rust-setup)
       (setq rust-format-on-save t))
 
     (add-hook 'rust-mode-hook 'k20e/rust-mode-hook)

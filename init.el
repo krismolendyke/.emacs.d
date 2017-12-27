@@ -88,6 +88,7 @@ Only turn off the menu bar running in a terminal window."
   (setq exec-path-from-shell-variables
         (append exec-path-from-shell-variables
                 '("DEVBOX"
+                  "DYLD_LIBRARY_PATH" ; https://github.com/rust-lang-nursery/rustfmt#tips
                   "GOPATH"
                   "GOROOT")))
   (exec-path-from-shell-initialize))
