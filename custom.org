@@ -825,7 +825,8 @@ function.
     (require 'flycheck)
 
     (defun k20e/c-mode-hook ()
-      (setq flycheck-checker 'c/c++-gcc)
+      (setq flycheck-checker 'c/c++-gcc
+            flycheck-gcc-pedantic-errors t)
       (setq-default flycheck-c/c++-gcc-executable "gcc-7")
       (flycheck-mode 1))
 
@@ -892,6 +893,7 @@ function.
 
   #+BEGIN_SRC emacs-lisp
     (defun k20e/compilation-mode-hook ()
+      (buffer-face-mode)
       (set-face-foreground 'compilation-error "tomato1"))
 
     (add-hook 'compilation-mode-hook 'k20e/compilation-mode-hook)
