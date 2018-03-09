@@ -4,6 +4,7 @@
 (depends-on "ag")
 (depends-on "ansible-doc")
 (depends-on "arduino-mode")
+(depends-on "avy")
 (depends-on "buffer-move")
 (depends-on "cargo")
 (depends-on "cask")
