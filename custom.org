@@ -758,23 +758,6 @@ function.
     (global-set-key (kbd "C-x C-a") 'k20e/counsel-ag-project)
   #+END_SRC
 
-* arduino-mode
-
-  #+BEGIN_SRC emacs-lisp
-    (require 'arduino-mode)
-    (require 'compile)
-
-    (defun k20e/arduino-recompile ()
-      "Recompile the project without messing with the windows."
-      (interactive)
-      (save-window-excursion (recompile)))
-
-    (defun k20e/arduino-mode-hook ()
-      (define-key arduino-mode-map (kbd "C-c C-c") 'k20e/arduino-recompile))
-
-    (add-hook 'arduino-mode-hook 'k20e/arduino-mode-hook)
-  #+END_SRC
-
 * auto-fill
 
   When to turn on auto-fill and set fill-column to a reasonable value.  This
@@ -833,25 +816,6 @@ function.
     (add-hook 'c-mode-hook 'k20e/c-mode-hook)
   #+END_SRC
 
-* cider
-
-  #+BEGIN_SRC emacs-lisp
-    (require 'cider)
-    (require 'eldoc)
-    (require 'paredit)
-
-    (defun k20e/cider-mode-hook ()
-      (eldoc-mode)
-      (paredit-mode 1))
-
-    (add-hook 'cider-mode-hook 'k20e/cider-mode-hook)
-
-    (setq nrepl-hide-special-buffers t
-          cider-show-error-buffer nil
-          cider-repl-use-pretty-printing nil
-          cider-repl-history-file (expand-file-name "nrepl-history" k20e/google-drive-directory))
-  #+END_SRC
-
 * clock-face
 
   This is a [[https://github.com/krismolendyke/clock-face.el][ridiculous package]] that I wrote to insert a Unicode clock
@@ -860,34 +824,6 @@ function.
   #+BEGIN_SRC emacs-lisp
     (require 'clock-face)
   #+END_SRC
-
-* clojure-mode
-
-  #+BEGIN_SRC emacs-lisp
-    (require 'clojure-mode)
-    (require 'cider-test)
-    (require 'paredit)
-
-    (defun k20e/clojure-mode-hook ()
-      (paredit-mode 1))
-
-    (add-hook 'clojure-mode-hook 'k20e/clojure-mode-hook)
-  #+END_SRC
-
-** Save buffers before loading or running tests
-
-   Courtesy of Magnar Sveen's [[https://github.com/magnars/.emacs.d/blob/486e631801c84b018d90cf040d2170ef78045676/setup-clojure-mode.el][=setup-clojure-mode.el=]].
-
-   #+BEGIN_SRC emacs-lisp
-     (require 'cider-mode)
-     (require 'cider-test)
-
-     ;; (defadvice clojure-test-run-tests (before save-first activate)
-     ;;   (save-buffer))
-
-     ;; (defadvice cider-load-current-buffer (before save-first activate)
-     ;;   (save-buffer))
-   #+END_SRC
 
 * compilation-mode
 
@@ -952,17 +888,6 @@ function.
 
      (setq-default counsel-find-file-ignore-regexp (regexp-opt '(".pyc")))
    #+END_SRC
-
-* dash-at-point
-
-  [[https://kapeli.com/dash][Dash]] offline API access.
-
-  #+BEGIN_SRC emacs-lisp
-    (autoload 'dash-at-point
-      "dash-at-point" "Search the word at point with Dash." t nil)
-
-    (global-set-key (kbd "H-d") 'dash-at-point)
-  #+END_SRC
 
 * dired
 
@@ -1331,9 +1256,7 @@ function.
     (require 'highlight-parentheses)
 
     (dolist (hook '(emacs-lisp-mode-hook
-                    lisp-mode-hook
-                    cider-repl-mode-hook
-                    clojure-mode-hook))
+                    lisp-mode-hook))
       (add-hook hook #'(lambda ()
                          (highlight-parentheses-mode))))
   #+END_SRC
@@ -2029,8 +1952,7 @@ function.
     (autoload 'paredit-mode "paredit" nil t)
 
     ;; When to turn on paredit.
-    (dolist (hook '(cider-repl-mode-hook
-                    emacs-lisp-mode-hook
+    (dolist (hook '(emacs-lisp-mode-hook
                     geiser-mode-hook
                     geiser-repl-mode-hook
                     lisp-mode-hook
@@ -2126,9 +2048,10 @@ function.
     (require 'rust-mode)
 
     (defun k20e/rust-mode-hook ()
+      (setq flycheck-checker 'rust
+            rust-format-on-save t)
       (flycheck-mode 1)
-      (flycheck-rust-setup)
-      (setq rust-format-on-save t))
+      (flycheck-rust-setup))
 
     (add-hook 'rust-mode-hook 'k20e/rust-mode-hook)
   #+END_SRC
@@ -2444,33 +2367,6 @@ function.
 
     (setq require-final-newline t
           mode-require-final-newline t)
-  #+END_SRC
-
-* writeroom-mode
-
-  Hack in a scale adjustment and alter width to fit.  There's likely a
-  much better way to accomplish this.
-
-  #+BEGIN_SRC emacs-lisp
-    (require 'face-remap)
-    (require 'writeroom-mode)
-
-    (setq writeroom-width 126)
-
-    (defvar k20e/writeroom-text-scale-amount 0
-      "Text scale amount for `writeroom-mode'.")
-
-    (defun k20e/writeroom-text-scale (arg)
-      (require 'face-remap)
-      (if arg (progn
-                (set (make-local-variable 'k20e/writeroom-text-scale-amount)
-                     text-scale-mode-amount)
-                (text-scale-set 3))
-        (text-scale-set
-         (if (boundp 'k20e/writeroom-text-scale-amount)
-             k20e/writeroom-text-scale-amount 0))))
-
-    (add-to-list 'writeroom-global-effects 'k20e/writeroom-text-scale)
   #+END_SRC
 
 * yaml-mode
