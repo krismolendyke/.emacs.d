@@ -303,9 +303,7 @@ function.
 
 ** Inferior Shell
 
-   I use [[https://github.com/krismolendyke/.zsh][Zsh]] in [[#multi-term][=multi-term=]] but I've customized it so much that it
-   often interferes with simple inferior shell tasks.  Defaulting to
-   =sh= seems to work well.
+   Defaulting to =sh= seems to work well.
 
    #+BEGIN_SRC emacs-lisp
      (setq shell-file-name "/bin/sh")
@@ -1319,7 +1317,7 @@ function.
   Re-scan the buffer for new menu items automatically.
 
   #+BEGIN_SRC emacs-lisp
-    (setq imenu-auto-rescan t)
+    (setq-default imenu-auto-rescan t)
   #+END_SRC
 
 * I'm Feeling Lucky
@@ -1539,11 +1537,6 @@ function.
       (buffer-face-mode))
 
     (add-hook 'term-mode-hook 'k20e/multi-term-hook)
-
-    (defalias 'zsh 'multi-term
-      "Execute `multi-term' when `zsh' is executed.
-    `multi-term' will look at the environment $SHELL value to
-    determine the shell to run.  I have it set to zsh.")
   #+END_SRC
 
   =k20e/multi-term-hook= is necessary to re-evaluate my custom key bindings
@@ -2279,6 +2272,8 @@ function.
    #+END_SRC
 
 ** Debugging
+
+   Level =3= by default.
 
    #+BEGIN_SRC emacs-lisp
      ;; (setq tramp-verbose 6)

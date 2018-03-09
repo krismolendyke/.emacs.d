@@ -90,7 +90,8 @@ Only turn off the menu bar running in a terminal window."
                 '("DEVBOX"
                   "DYLD_LIBRARY_PATH" ; https://github.com/rust-lang-nursery/rustfmt#tips
                   "GOPATH"
-                  "GOROOT")))
+                  "GOROOT"
+                  "SHELL")))
   (exec-path-from-shell-initialize))
 
 (defun k20e/load-custom-elisp ()
