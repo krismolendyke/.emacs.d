@@ -10,6 +10,7 @@
 (depends-on "cask")
 (depends-on "color-theme-sanityinc-tomorrow")
 (depends-on "counsel")
+(depends-on "dash")
 (depends-on "epl")
 (depends-on "exec-path-from-shell")
 (depends-on "expand-region")
