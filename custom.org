@@ -778,6 +778,15 @@ function.
           auto-save-timeout 0)
   #+END_SRC
 
+* avy
+
+  #+BEGIN_SRC emacs-lisp
+    (setq-default
+     avy-keys '(?a ?o ?e ?u ?i ?d ?h ?t ?n)
+     avy-all-windows nil
+     avy-style 'at-full)
+  #+END_SRC
+
 * buffer-move
 
   Move the current buffer up/down/left/right easily.
