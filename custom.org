@@ -1947,9 +1947,14 @@ function.
 * Paradox
 
   #+BEGIN_SRC emacs-lisp
+    (require 'face-remap)
     (require 'paradox)
 
-    (setq-default paradox-execute-asynchronously nil)
+    (defun k20e/paradox-menu-mode-hook ()
+      (buffer-face-mode)
+      (setq-default paradox-execute-asynchronously nil))
+
+    (add-hook 'paradox-menu-mode-hook 'k20e/paradox-menu-mode-hook)
   #+END_SRC
 
 * paredit-mode
