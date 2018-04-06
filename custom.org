@@ -2353,6 +2353,7 @@ function.
 * web-mode
 
   #+BEGIN_SRC emacs-lisp
+    (require 'elec-pair)
     (require 'web-mode)
 
     (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
@@ -2360,7 +2361,12 @@ function.
     (defun k20e/web-mode-hook ()
       (set-default 'web-mode-engines-alist '(("django" . "\\.html?\\'")))
       (setq web-mode-markup-indent-offset 2
-            web-mode-enable-auto-quoting nil))
+            web-mode-enable-auto-quoting nil)
+
+      ;; Disable pairing { to avoid {{ }}}} from web-mode block templates
+      (setq-local electric-pair-inhibit-predicate
+                  (lambda (c)
+                    (if (char-equal c ?{) t (electric-pair-default-inhibit c)))))
 
     (add-hook 'web-mode-hook 'k20e/web-mode-hook)
   #+END_SRC
