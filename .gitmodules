@@ -1,6 +1,6 @@
 [submodule "site-lisp/org-mode"]
 	path = site-lisp/org-mode
-	url = git://orgmode.org/org-mode.git
+	url = https://code.orgmode.org/bzg/org-mode.git
 [submodule "site-lisp/terminal-notifier.el"]
 	path = site-lisp/terminal-notifier.el
 	url = git@github.com:krismolendyke/terminal-notifier.el.git
