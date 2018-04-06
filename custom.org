@@ -781,6 +781,10 @@ function.
 * avy
 
   #+BEGIN_SRC emacs-lisp
+    (require 'avy)
+
+    (global-set-key (kbd "H-g") 'avy-goto-char-timer)
+
     (setq-default
      avy-keys '(?a ?o ?e ?u ?i ?d ?h ?t ?n)
      avy-all-windows nil
