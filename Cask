@@ -44,6 +44,7 @@
 (depends-on "rust-mode")
 (depends-on "s")
 (depends-on "shut-up")
+(depends-on "smart-mode-line")
 (depends-on "smex")
 (depends-on "spinner")
 (depends-on "swiper")
