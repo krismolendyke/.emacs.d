@@ -21,6 +21,7 @@
 (depends-on "flycheck-rust")
 (depends-on "flycheck-yamllint")
 (depends-on "geiser")
+(depends-on "git-commit")
 (depends-on "git-timemachine")
 (depends-on "gitconfig-mode")
 (depends-on "gitignore-mode")
