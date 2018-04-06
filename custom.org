@@ -716,7 +716,7 @@ function.
 
    #+BEGIN_SRC emacs-lisp
      (require 'fringe)
-     (fringe-mode (cdr (assoc "half-width" fringe-styles)))
+     (fringe-mode (cdr (assoc "minimal" fringe-styles)))
    #+END_SRC
 
 ** TODO Disable =linum-mode= when text scale is not zero
