@@ -1890,12 +1890,11 @@ function.
     (require 'yasnippet)
 
     (defun k20e/python-mode-hook ()
-      (superword-mode)
-      ;; Do not drive me crazy with extra-dumb indentation!
-      (setq electric-indent-inhibit t)
-      (linum-mode 0)
+      (setq electric-indent-inhibit t       ; Do not drive me crazy with extra-dumb indentation!
+            fill-column 118)
       (flycheck-mode 1)
-      (setq fill-column 118)
+      (linum-mode 0)
+      (superword-mode)
       (yas-minor-mode 1)
       ;; Previously:
       ;; C-M-f, C-M-b (paredit-forward/back)
