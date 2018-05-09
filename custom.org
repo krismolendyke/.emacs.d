@@ -866,7 +866,7 @@ function.
     (require 'find-file-in-project)
 
     (setq-default ffip-limit 8192
-                  ffip-find-options "-not -regex \".*/build.*\""
+                  ffip-find-options "-not -regex \".*/build.*\"" ; TODO ignore .tox
                   ffip-full-paths t
                   ffip-patterns (list "*.clj"
                                       "*.conf"
