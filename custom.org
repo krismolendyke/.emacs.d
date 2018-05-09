@@ -1302,7 +1302,8 @@ function.
 
     (add-hook 'js-mode-hook 'k20e/js-mode-hook)
 
-    (add-to-list 'auto-mode-alist '("\\.json" . js-mode))
+    (add-to-list 'auto-mode-alist '("\\.json\\'" . js-mode))
+    (add-to-list 'auto-mode-alist '("Pipfile.lock\\'" . js-mode))
   #+END_SRC
 
 * keyfreq
@@ -2198,6 +2199,12 @@ function.
       (auto-fill-mode 1))
 
     (add-hook 'text-mode-hook 'k20e/text-mode-hook)
+  #+END_SRC
+
+* toml-mode
+
+  #+BEGIN_SRC emacs-lisp
+    (add-to-list 'auto-mode-alist '("Pipfile\\'" . toml-mode))
   #+END_SRC
 
 * tramp
