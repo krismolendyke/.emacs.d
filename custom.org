@@ -1443,13 +1443,14 @@ function.
         :type 'alist
         :group 'multi-term)
 
-    (defun k20e/multi-term-hook ()
+    (defun k20e/term-mode-hook ()
       "Re-evaluate my custom key bindings.
-     Make sure a fixed width font is set."
+     Make sure a fixed width font is set. Disable highlight line."
       (custom-reevaluate-setting 'term-bind-key-alist)
-      (buffer-face-mode))
+      (buffer-face-mode)
+      (setq-local global-hl-line-mode nil))
 
-    (add-hook 'term-mode-hook 'k20e/multi-term-hook)
+    (add-hook 'term-mode-hook 'k20e/term-mode-hook)
   #+END_SRC
 
   =k20e/multi-term-hook= is necessary to re-evaluate my custom key bindings
