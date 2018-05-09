@@ -2036,16 +2036,6 @@ function.
       (server-start))
   #+END_SRC
 
-* smart-mode-line
-
-  #+BEGIN_SRC emacs-lisp
-    (require 'smart-mode-line)
-
-    (setq-default sml/theme 'respectful)
-
-    (sml/setup)
-  #+END_SRC
-
 * smex
 
   #+BEGIN_SRC emacs-lisp
