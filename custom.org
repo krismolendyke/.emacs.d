@@ -344,24 +344,8 @@ function.
      ;; What's going on here?
      (setq echo-keystrokes 0.1)
 
-
-     ;; Where am I?
-     (line-number-mode t)
-     (global-hl-line-mode t)
-     (column-number-mode t)
-     (show-paren-mode t)
-
-     ;; Do not break lines.  Truncate them.
-     (setq-default truncate-lines t)
-
      ;; Automatically reload buffers when files change on disk.
      (global-auto-revert-mode 1)
-
-     ;; Quit all that damn racket!
-     (setq ring-bell-function 'ignore)
-
-     ;; Make sure syntax highlighting is enabled.
-     (global-font-lock-mode t)
 
      ;; y is the new yes.  n is the new no.
      (defalias 'yes-or-no-p 'y-or-n-p)
@@ -641,91 +625,6 @@ function.
           (setq trash-directory (expand-file-name "~/.Trash")
                 delete-by-moving-to-trash t)))
   #+END_SRC
-
-* Appearance
-
-** Theme
-
-   #+BEGIN_SRC emacs-lisp
-     (defvar k20e/theme-light 'sanityinc-tomorrow-day
-       "The default lightly colored theme.")
-
-     (defvar k20e/theme-dark 'sanityinc-tomorrow-night
-       "The default darkly colored theme.")
-
-     (defun k20e/theme-load-light ()
-       "Load a lightly colored theme for conditions when ambient light
-     is bright."
-       (interactive)
-       (disable-theme (car custom-enabled-themes))
-       (load-theme k20e/theme-light t)
-       (set-face-background 'hl-line "WhiteSmoke")
-       (set-face-background 'fringe "WhiteSmoke")
-       (set-face-background 'linum "WhiteSmoke")
-       (set-face-background 'region "gray86")
-       (set-face-background 'show-paren-match "gray50"))
-
-     (defun k20e/theme-load-dark ()
-       "Load a darkly colored theme for conditions when ambient light
-     is dark."
-       (interactive)
-       (require 'linum)
-       (disable-theme (car custom-enabled-themes))
-       (load-theme k20e/theme-dark t)
-       (set-face-background 'hl-line "gray20")
-       (set-face-background 'fringe "gray20")
-       (set-face-background 'linum "gray20")
-       (set-face-background 'region "gray36")
-       (set-face-background 'show-paren-match "gray64"))
-
-     (defun k20e/theme-toggle ()
-       "Switch between the light and dark theme."
-       (interactive)
-       (if (member k20e/theme-dark custom-enabled-themes)
-           (k20e/theme-load-light)
-         (k20e/theme-load-dark)))
-
-     ;; Load a dark theme by default.
-     (k20e/theme-load-dark)
-   #+END_SRC
-
-   Bind toggle function:
-
-   #+BEGIN_SRC emacs-lisp
-     (global-set-key (kbd "C-x t") 'k20e/theme-toggle)
-   #+END_SRC
-
-** Cursor
-
-   Disable blinking.
-
-   #+BEGIN_SRC emacs-lisp
-     (blink-cursor-mode 0)
-   #+END_SRC
-
-   If blinking is enabled the rate can be adjusted.
-
-   #+BEGIN_SRC emacs-lisp
-     (setq blink-cursor-interval 0.75)
-   #+END_SRC
-
-** Fringe
-
-   The "fringe" or "gutter" shows indicators for wrapped/extended lines,
-   [[#flycheck][flycheck]], etc.
-
-   #+BEGIN_SRC emacs-lisp
-     (require 'fringe)
-     (fringe-mode (cdr (assoc "minimal" fringe-styles)))
-   #+END_SRC
-
-** TODO Disable =linum-mode= when text scale is not zero
-
-   The fringe text scale is adjusted with the rest of the buffer yet the
-   fringe width is not adjusted.  If text scale is positive the line numbers
-   get cut-off and not very useful.  There is [[http://stackoverflow.com/questions/9304192/emacs-linum-mode-and-size-of-font-unreadable-line-numbers][a hack that tries to address
-   this situation]] but I'd just as soon disable line numbering when the text
-   scale is large.
 
 * ag
 
@@ -2185,6 +2084,77 @@ function.
     (require 'swiper)
 
     (global-set-key (kbd "C-s") 'swiper)
+  #+END_SRC
+
+* Theme
+
+  Always highlight the current line:
+
+  #+BEGIN_SRC emacs-lisp
+    (require 'hl-line)
+
+    (global-hl-line-mode t)
+  #+END_SRC
+
+  Simple stuff:
+
+  #+BEGIN_SRC emacs-lisp
+    (require 'simple)
+
+    (line-number-mode)
+    (column-number-mode)
+
+    (size-indication-mode)
+  #+END_SRC
+
+  Highlight matching parentheses:
+
+  #+BEGIN_SRC emacs-lisp
+    (require 'paren)
+
+    (show-paren-mode)
+  #+END_SRC
+
+  Do not blink the cursor:
+
+  #+BEGIN_SRC emacs-lisp
+    (require 'frame)
+
+    (setq-default blink-cursor-mode 0)
+  #+END_SRC
+
+  Truncate lines and enable fringes to indicate truncated lines:
+
+  #+BEGIN_SRC emacs-lisp
+    (require 'fringe)
+
+    (fringe-mode)
+
+    (setq-default
+     truncate-lines t
+     truncate-partial-width-windows nil)
+  #+END_SRC
+
+  No bell:
+
+  #+BEGIN_SRC emacs-lisp
+    (setq-default ring-bell-function 'ignore)
+  #+END_SRC
+
+  Make sure syntax highlighting is enabled:
+
+  #+BEGIN_SRC emacs-lisp
+    (require 'font-core)
+
+    (global-font-lock-mode)
+  #+END_SRC
+
+  Set theme:
+
+  #+BEGIN_SRC emacs-lisp
+    (require 'color-theme-sanityinc-tomorrow)
+
+    (color-theme-sanityinc-tomorrow-blue)
   #+END_SRC
 
 * term
