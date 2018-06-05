@@ -385,17 +385,15 @@ function.
        (indent-for-tab-command))
 
      ;; Inspired by http://whattheemacsd.com/key-bindings.el-01.html
-     (defun k20e/goto-linum ()
-       "Show line numbers and prompt for a line number to go to."
+     (defun k20e/goto-line ()
+       "Show line numbers and prompt for a line number to go to.
+     Restore previous state of displaying line numbers."
        (interactive)
-       (let ((linum-mode-previous-state
-              (if (and (boundp 'linum-mode) linum-mode) 1 -1)))
-         (unwind-protect
-             (progn
-               (linum-mode 1)
-               (call-interactively 'goto-line)
-               (linum-mode linum-mode-previous-state))
-           (linum-mode linum-mode-previous-state))))
+       (if display-line-numbers-mode
+         (call-interactively 'goto-line)
+       (setq display-line-numbers t)
+       (call-interactively 'goto-line)
+       (setq display-line-numbers nil)))
    #+END_SRC
 
    This one is stolen from [[https://github.com/magnars/.emacs.d/blob/e56e71ce0f0791c7237192a049f29c2de686409a/defuns/lisp-defuns.el][magnars]]:
@@ -418,7 +416,7 @@ function.
      (global-set-key (kbd "M-l") 'k20e/mark-current-line)
      (global-set-key (kbd "<M-return>") 'k20e/open-line-below)
      (global-set-key (kbd "<M-S-return>") 'k20e/open-line-above)
-     (global-set-key [remap goto-line] 'k20e/goto-linum)
+     (global-set-key [remap goto-line] 'k20e/goto-line)
    #+END_SRC
 
 ** Buffers
@@ -1886,10 +1884,10 @@ function.
     (require 'yasnippet)
 
     (defun k20e/python-mode-hook ()
-      (setq electric-indent-inhibit t       ; Do not drive me crazy with extra-dumb indentation!
+      (setq display-line-numbers nil
+            electric-indent-inhibit t       ; Do not drive me crazy with extra-dumb indentation!
             fill-column 118)
       (flycheck-mode 1)
-      (linum-mode 0)
       (superword-mode)
       (yas-minor-mode 1)
       ;; Previously:
