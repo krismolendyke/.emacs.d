@@ -954,6 +954,7 @@ function.
     (defvar k20e/font-list '(("Input-Sans" . 15)
                              ("Input-Mono" . 15)
                              ("Input-Serif" . 15)
+                             ("EtBembo" . 18)
                              ("Hack" . 12)
                              ("Source-Code-Pro" . 11)
                              ("Roboto-Mono". 12)
@@ -1660,6 +1661,10 @@ function.
       (require 'ox-md)
 
       (add-to-list 'org-export-backends 'md)
+    #+END_SRC
+
+    #+BEGIN_SRC emacs-lisp
+      (require 'ox-tufte)
     #+END_SRC
 
 ** Publish
