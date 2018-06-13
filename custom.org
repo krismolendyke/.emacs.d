@@ -391,11 +391,17 @@ function.
        (interactive)
        (if display-line-numbers-mode
          (call-interactively 'goto-line)
+<<<<<<< HEAD
          (unwind-protect
              (progn
                (setq display-line-numbers t)
                (call-interactively 'goto-line))
            (setq display-line-numbers nil))))
+=======
+       (setq display-line-numbers t)
+       (call-interactively 'goto-line)
+       (setq display-line-numbers nil)))
+>>>>>>> c4caed6f72ca26cea80db7811ad7e74b43d17fe1
    #+END_SRC
 
    This one is stolen from [[https://github.com/magnars/.emacs.d/blob/e56e71ce0f0791c7237192a049f29c2de686409a/defuns/lisp-defuns.el][magnars]]:
