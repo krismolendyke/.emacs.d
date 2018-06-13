@@ -385,6 +385,7 @@ function.
        (indent-for-tab-command))
 
      ;; Inspired by http://whattheemacsd.com/key-bindings.el-01.html
+     (require 'display-line-numbers)
      (defun k20e/goto-line ()
        "Show line numbers and prompt for a line number to go to.
      Restore previous state of displaying line numbers."
