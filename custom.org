@@ -1047,35 +1047,6 @@ function.
     (setq-default geiser-default-implementation 'racket)
   #+END_SRC
 
-* Geo IP
-
-  #+BEGIN_SRC emacs-lisp
-    (require 'json)
-    (require 'solar)
-    (require 'url)
-
-    (defun k20e/get-geo-ip-data ()
-      "Get geographic data from current IP address."
-      (let ((data))
-        (with-current-buffer (url-retrieve-synchronously "http://freegeoip.net/json/")
-          (goto-char (point-max))
-          (forward-line -1)
-          (setq data (json-read))
-          (kill-buffer))
-        data))
-
-    (defun k20e/set-geo-ip-data ()
-      "Set geographic data for current IP address."
-      (interactive)
-      (let ((data (k20e/get-geo-ip-data)))
-        (setq-default calendar-latitude (cdr (assoc 'latitude data))
-                      calendar-longitude (cdr (assoc 'longitude data)))
-        data))
-
-    (k20e/set-geo-ip-data)
-    (sunrise-sunset)
-  #+END_SRC
-
 * git
 
   #+BEGIN_SRC emacs-lisp
