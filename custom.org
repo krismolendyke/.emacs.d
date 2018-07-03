@@ -1899,7 +1899,7 @@ function.
 * recentf
 
   #+BEGIN_SRC emacs-lisp
-    (require 'ivy)
+    (require 'counsel)
     (require 'recentf)
 
     (setq recentf-save-file (expand-file-name ".recentf" k20e/google-drive-directory)
@@ -1907,7 +1907,7 @@ function.
 
     (recentf-mode 1)
 
-    (global-set-key (kbd "C-x C-r") 'ivy-recentf)
+    (global-set-key (kbd "C-x C-r") 'counsel-recentf)
   #+END_SRC
 
 * reStructuredText
