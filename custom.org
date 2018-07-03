@@ -1662,15 +1662,27 @@ function.
 
 *** Backends
 
-    #+BEGIN_SRC emacs-lisp
-      (require 'ox-md)
+**** Markdown
 
-      (add-to-list 'org-export-backends 'md)
-    #+END_SRC
+     #+BEGIN_SRC emacs-lisp
+       (require 'ox-md)
 
-    #+BEGIN_SRC emacs-lisp
-      (require 'ox-tufte)
-    #+END_SRC
+       (add-to-list 'org-export-backends 'md)
+     #+END_SRC
+
+**** Tufte HTML
+
+     #+BEGIN_SRC emacs-lisp
+       ;; (require 'ox-tufte)
+     #+END_SRC
+
+**** Tufte Latex
+
+     #+BEGIN_SRC emacs-lisp
+       (require 'ebib)
+       (require 'ox-extra)
+       (require 'ox-tufte-latex)
+     #+END_SRC
 
 ** Publish
 
