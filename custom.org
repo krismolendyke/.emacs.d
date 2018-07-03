@@ -2282,6 +2282,22 @@ function.
     (setq uniquify-buffer-name-style 'forward)
   #+END_SRC
 
+* vc
+
+  Version control modes.
+
+** vc-annotate
+
+   #+BEGIN_SRC emacs-lisp
+     (require 'face-remap)
+     (require 'vc-annotate)
+
+     (defun k20e/vc-annotate-mode-hook ()
+       (buffer-face-mode))
+
+     (add-hook 'vc-annotate-mode-hook 'k20e/vc-annotate-mode-hook)
+   #+END_SRC
+
 * windmove
 
   #+BEGIN_SRC emacs-lisp
