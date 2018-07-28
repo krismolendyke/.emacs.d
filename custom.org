@@ -1932,6 +1932,14 @@ function.
            python-shell-interpreter-args "-i --no-banner")
    #+END_SRC
 
+* re-builder
+
+  #+BEGIN_SRC emacs-lisp
+    (require 're-builder)
+
+    (setq-default reb-re-syntax 'string)
+  #+END_SRC
+
 * recentf
 
   #+BEGIN_SRC emacs-lisp
