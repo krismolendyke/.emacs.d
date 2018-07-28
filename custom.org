@@ -1100,7 +1100,13 @@ function.
   Install [[https://github.com/golang/lint][golint]]:
 
   #+BEGIN_SRC sh
-     go get -u github.com/golang/lint/golint
+     go get github.com/golang/lint/golint
+  #+END_SRC
+
+  Install godef:
+
+  #+BEGIN_SRC sh
+    go get github.com/rogpeppe/godef
   #+END_SRC
 
   #+BEGIN_SRC emacs-lisp
