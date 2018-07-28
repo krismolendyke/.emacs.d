@@ -1126,6 +1126,9 @@ function.
             (f "golint.el"))
         (require 'golint (expand-file-name f (expand-file-name d gopath))))
 
+      (set-face-attribute 'go-guru-hl-identifier-face nil :underline t)
+      (go-guru-hl-identifier-mode)
+
       (setq fill-column 118
             indent-tabs-mode t
             tab-width 4)
