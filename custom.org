@@ -1126,7 +1126,6 @@ function.
             (f "golint.el"))
         (require 'golint (expand-file-name f (expand-file-name d gopath))))
 
-      (set-face-attribute 'go-guru-hl-identifier-face nil :underline t)
       (go-guru-hl-identifier-mode)
 
       (setq fill-column 118
@@ -1137,6 +1136,12 @@ function.
 
       (add-hook 'before-save-hook 'gofmt-before-save))
 
+    ;;; Make identifiers stick out a bit more.
+    (set-face-attribute 'go-guru-hl-identifier-face nil :underline t)
+
+    ;;; Guru is mapped to C-c C-o because it used to be called Oracle but
+    ;;; that hurts my brain.
+    (define-key go-mode-map (kbd "C-c C-g") 'go-guru-map)
     (define-key go-mode-map (kbd "C-c C-r") 'go-remove-unused-imports)
     (define-key go-mode-map (kbd "C-c C-t") 'k20e/toggle-test-buffer)
     (define-key go-mode-map (kbd "C-M-SPC") 'go-guru-expand-region)
