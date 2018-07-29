@@ -1139,6 +1139,8 @@ function.
     ;;; Make identifiers stick out a bit more.
     (set-face-attribute 'go-guru-hl-identifier-face nil :underline t)
 
+    (setq-default gofmt-args '("-s"))
+
     ;;; Guru is mapped to C-c C-o because it used to be called Oracle but
     ;;; that hurts my brain.
     (define-key go-mode-map (kbd "C-c C-g") 'go-guru-map)
