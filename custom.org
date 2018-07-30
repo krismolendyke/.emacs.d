@@ -1131,6 +1131,9 @@ function.
 
       (go-guru-hl-identifier-mode)
 
+      (set (make-local-variable 'compile-command)
+           "go build -v ")
+
       (setq fill-column 118
             indent-tabs-mode t
             tab-width 4)
