@@ -1117,6 +1117,7 @@ function.
 
   #+BEGIN_SRC emacs-lisp
     (require 'flycheck)
+    (require 'go-eldoc)
     (require 'go-guru)
     (require 'go-mode)
 
@@ -1125,6 +1126,8 @@ function.
             (d "src/github.com/golang/lint/misc/emacs")
             (f "golint.el"))
         (require 'golint (expand-file-name f (expand-file-name d gopath))))
+
+      (go-eldoc-setup)
 
       (go-guru-hl-identifier-mode)
 
