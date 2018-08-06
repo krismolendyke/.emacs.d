@@ -1115,6 +1115,12 @@ function.
     go get golang.org/x/tools/cmd/guru
   #+END_SRC
 
+  Install =goimports=:
+
+  #+BEGIN_SRC sh
+    go get golang.org/x/tools/cmd/goimports
+  #+END_SRC
+
   #+BEGIN_SRC emacs-lisp
     (require 'flycheck)
     (require 'go-eldoc)
@@ -1139,6 +1145,9 @@ function.
             tab-width 4)
 
       (flycheck-mode 1)
+
+      (setq-default gofmt-command "goimports"
+                    gofmt-args nil)
 
       (add-hook 'before-save-hook 'gofmt-before-save))
 
