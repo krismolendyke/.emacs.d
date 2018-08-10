@@ -1103,12 +1103,6 @@ function.
      go get github.com/golang/lint/golint
   #+END_SRC
 
-  Install godef:
-
-  #+BEGIN_SRC sh
-    go get github.com/rogpeppe/godef
-  #+END_SRC
-
   Install Go Guru:
 
   #+BEGIN_SRC sh
@@ -1171,7 +1165,9 @@ function.
 
     ;;; Guru is mapped to C-c C-o because it used to be called Oracle but
     ;;; that hurts my brain.
+    (define-key go-mode-map (kbd "C-c C-d") 'go-guru-describe)
     (define-key go-mode-map (kbd "C-c C-g") 'go-guru-map)
+    (define-key go-mode-map (kbd "C-c C-j") 'go-guru-definition)
     (define-key go-mode-map (kbd "C-c C-r") 'go-rename)
     (define-key go-mode-map (kbd "C-c C-t") 'k20e/toggle-test-buffer)
     (define-key go-mode-map (kbd "C-M-SPC") 'go-guru-expand-region)
