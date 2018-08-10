@@ -1157,7 +1157,7 @@ function.
     (set-face-attribute 'go-guru-hl-identifier-face nil :underline t)
 
     (setq-default company-show-numbers t
-                  gofmt-args '("-s")
+                  gofmt-args nil
                   gofmt-command "goimports")
 
     ;;; Not help!
