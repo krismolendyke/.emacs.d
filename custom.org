@@ -1121,6 +1121,10 @@ function.
     go get golang.org/x/tools/cmd/goimports
   #+END_SRC
 
+  #+BEGIN_SRC sh
+    go get golang.org/x/tools/cmd/gorename
+  #+END_SRC
+
   #+BEGIN_SRC emacs-lisp
     (require 'company)
     (require 'company-go)
@@ -1129,6 +1133,7 @@ function.
     (require 'go-eldoc)
     (require 'go-guru)
     (require 'go-mode)
+    (require 'go-rename)
 
     (defun k20e/go-mode-hook ()
       (let ((gopath (getenv "GOPATH"))
@@ -1172,7 +1177,7 @@ function.
     ;;; Guru is mapped to C-c C-o because it used to be called Oracle but
     ;;; that hurts my brain.
     (define-key go-mode-map (kbd "C-c C-g") 'go-guru-map)
-    (define-key go-mode-map (kbd "C-c C-r") 'go-remove-unused-imports)
+    (define-key go-mode-map (kbd "C-c C-r") 'go-rename)
     (define-key go-mode-map (kbd "C-c C-t") 'k20e/toggle-test-buffer)
     (define-key go-mode-map (kbd "C-M-SPC") 'go-guru-expand-region)
 

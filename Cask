@@ -31,6 +31,7 @@
 (depends-on "go-eldoc")
 (depends-on "go-guru")
 (depends-on "go-mode")
+(depends-on "go-rename")
 (depends-on "groovy-mode")
 (depends-on "highlight-parentheses")
 (depends-on "htmlize")
