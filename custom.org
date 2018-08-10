@@ -1142,12 +1142,9 @@ function.
         (require 'golint (expand-file-name f (expand-file-name d gopath))))
 
       (buffer-face-mode)
-
-      (setq-default company-show-numbers t)
-
       (go-eldoc-setup)
-
       (go-guru-hl-identifier-mode)
+      (flycheck-mode 1)
 
       (set (make-local-variable 'compile-command)
            "go build -v ")
@@ -1156,20 +1153,18 @@ function.
             indent-tabs-mode t
             tab-width 4)
 
-      (flycheck-mode 1)
-
       (set (make-local-variable 'company-backends) '(company-go))
       (company-mode)
 
-      (setq-default gofmt-command "goimports"
-                    gofmt-args nil)
-
       (add-hook 'before-save-hook 'gofmt-before-save))
+    (add-hook 'go-mode-hook 'k20e/go-mode-hook)
 
     ;;; Make identifiers stick out a bit more.
     (set-face-attribute 'go-guru-hl-identifier-face nil :underline t)
 
-    (setq-default gofmt-args '("-s"))
+    (setq-default company-show-numbers t
+                  gofmt-args '("-s")
+                  gofmt-command "goimports")
 
     ;;; Not help!
     (define-key company-active-map (kbd "C-h") 'delete-backward-char)
@@ -1180,8 +1175,6 @@ function.
     (define-key go-mode-map (kbd "C-c C-r") 'go-rename)
     (define-key go-mode-map (kbd "C-c C-t") 'k20e/toggle-test-buffer)
     (define-key go-mode-map (kbd "C-M-SPC") 'go-guru-expand-region)
-
-    (add-hook 'go-mode-hook 'k20e/go-mode-hook)
   #+END_SRC
 
 ** [1/5] =TODO=
