@@ -1122,6 +1122,9 @@ function.
   #+END_SRC
 
   #+BEGIN_SRC emacs-lisp
+    (require 'company)
+    (require 'company-go)
+    (require 'face-remap)
     (require 'flycheck)
     (require 'go-eldoc)
     (require 'go-guru)
@@ -1132,6 +1135,10 @@ function.
             (d "src/github.com/golang/lint/misc/emacs")
             (f "golint.el"))
         (require 'golint (expand-file-name f (expand-file-name d gopath))))
+
+      (buffer-face-mode)
+
+      (setq-default company-show-numbers t)
 
       (go-eldoc-setup)
 
@@ -1146,6 +1153,9 @@ function.
 
       (flycheck-mode 1)
 
+      (set (make-local-variable 'company-backends) '(company-go))
+      (company-mode)
+
       (setq-default gofmt-command "goimports"
                     gofmt-args nil)
 
@@ -1155,6 +1165,9 @@ function.
     (set-face-attribute 'go-guru-hl-identifier-face nil :underline t)
 
     (setq-default gofmt-args '("-s"))
+
+    ;;; Not help!
+    (define-key company-active-map (kbd "C-h") 'delete-backward-char)
 
     ;;; Guru is mapped to C-c C-o because it used to be called Oracle but
     ;;; that hurts my brain.

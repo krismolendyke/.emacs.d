@@ -10,6 +10,8 @@
 (depends-on "cargo")
 (depends-on "cask")
 (depends-on "color-theme-sanityinc-tomorrow")
+(depends-on "company")
+(depends-on "company-go")
 (depends-on "counsel")
 (depends-on "dash")
 (depends-on "epl")
