@@ -1162,9 +1162,10 @@ function.
     (define-key go-mode-map (kbd "C-c C-t") 'k20e/toggle-test-buffer)
   #+END_SRC
 
-** [0/1] =TODO=
+** [0/2] =TODO=
 
    - [ ] Steal some of these https://github.com/dominikh/yasnippet-go
+   - [ ] https://github.com/nlamirault/gotest.el
 
 * groovy-mode
 
