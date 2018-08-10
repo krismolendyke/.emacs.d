@@ -1173,17 +1173,9 @@ function.
     (define-key go-mode-map (kbd "C-M-SPC") 'go-guru-expand-region)
   #+END_SRC
 
-** [1/5] =TODO=
+** [0/1] =TODO=
 
-   - [ ] https://godoc.org/golang.org/x/tools/cmd/goimports instead of
-     =gofmt= on save hook?  Why not both?
-   - [X] Ditch =company= and =company-go=, they feel wonky to me
-   - [ ] Try out https://github.com/syohex/emacs-go-eldoc instead of
-     =company= nonsense
    - [ ] Steal some of these https://github.com/dominikh/yasnippet-go
-   - [ ] Whoa, Go Guru
-     - https://www.youtube.com/watch?v=ak97oH0D6fI
-     - https://docs.google.com/document/d/1_Y9xCEMj5S-7rv2ooHpZNH15JgRT5iM742gJkw5LtmQ/edit
 
 * groovy-mode
 
