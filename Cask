@@ -14,6 +14,7 @@
 (depends-on "company-go")
 (depends-on "counsel")
 (depends-on "dash")
+(depends-on "dockerfile-mode")
 (depends-on "epl")
 (depends-on "exec-path-from-shell")
 (depends-on "expand-region")
