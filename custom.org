@@ -1692,6 +1692,10 @@ function.
       (require 'ox-tufte)
     #+END_SRC
 
+    #+BEGIN_SRC emacs-lisp
+      (require 'ox-jira)
+    #+END_SRC
+
 ** Publish
 
    #+BEGIN_SRC emacs-lisp
