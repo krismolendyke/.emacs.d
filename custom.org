@@ -1595,6 +1595,9 @@ function.
     (setq org-outline-path-complete-in-steps nil)
 
     (setq org-ellipsis nil)
+
+    (setq org-log-redeadline 'time
+          org-log-reschedule 'time)
   #+END_SRC
 
 ** UPGRAYEDD
