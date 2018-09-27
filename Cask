@@ -39,6 +39,7 @@
 (depends-on "hydra")
 (depends-on "ivy")
 (depends-on "keyfreq")
+(depends-on "kotlin-mode")
 (depends-on "markdown-mode")
 (depends-on "multi-term")
 (depends-on "multiple-cursors")
