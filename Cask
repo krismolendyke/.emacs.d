@@ -50,6 +50,7 @@
 (depends-on "paradox")
 (depends-on "paredit")
 (depends-on "pkg-info")
+(depends-on "protobuf-mode")
 (depends-on "queue")
 (depends-on "rust-mode")
 (depends-on "s")
