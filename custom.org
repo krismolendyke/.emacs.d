@@ -600,9 +600,13 @@ function.
   input/mouse section?
 
   #+BEGIN_SRC emacs-lisp
+    (require 'ns-auto-titlebar)
+
     ;; I spend most of my time in OS X.
     (if (equal system-type 'darwin)
         (progn
+          (ns-auto-titlebar-mode)
+
           ;; Command as meta.
           (setq ns-command-modifier 'meta)
 
