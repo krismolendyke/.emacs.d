@@ -883,6 +883,7 @@ function.
                                       "*.j2"
                                       "*.js"
                                       "*.json"
+                                      "*.kt"
                                       "*.mk"
                                       "*.md"
                                       "*.org"
