@@ -894,6 +894,7 @@ function.
                                       "*.soy"
                                       "*.txt"
                                       "*.yml"
+                                      "Dockerfile"
                                       "Makefile")
                   ffip-prune-patterns (list ".git" "build"))
 
