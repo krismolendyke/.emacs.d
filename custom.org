@@ -1377,7 +1377,8 @@ function.
     (require 'markdown-mode)
 
     (defun k20e/markdown-mode-hook ()
-      (setq markdown-open-command "open"))
+      (setq markdown-open-command "open"
+            fill-column 118))
 
     (add-hook 'markdown-mode-hook 'k20e/markdown-mode-hook)
   #+END_SRC
