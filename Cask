@@ -2,7 +2,6 @@
 (source melpa)
 
 (depends-on "ag")
-(depends-on "ansible-doc")
 (depends-on "arduino-mode")
 (depends-on "async")
 (depends-on "avy")
@@ -34,6 +33,7 @@
 (depends-on "go-mode")
 (depends-on "go-rename")
 (depends-on "groovy-mode")
+(depends-on "highlight-indent-guides")
 (depends-on "highlight-parentheses")
 (depends-on "htmlize")
 (depends-on "hydra")

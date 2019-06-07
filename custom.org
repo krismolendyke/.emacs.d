@@ -1186,6 +1186,15 @@ function.
     (add-hook 'groovy-mode-hook 'k20e/groovy-mode-hook)
   #+END_SRC
 
+* highlight-indent-guides
+
+  #+BEGIN_SRC emacs-lisp
+    (require 'highlight-indent-guides)
+
+    (setq highlight-indent-guides-method 'character
+          highlight-indent-guides-responsive 'stack)
+  #+END_SRC
+
 * highlight-parentheses
 
   #+BEGIN_SRC emacs-lisp
@@ -2432,7 +2441,7 @@ function.
 * yaml-mode
 
   #+BEGIN_SRC emacs-lisp
-    (require 'ansible-doc)
+    (require 'highlight-indent-guides)
     (require 'yaml-mode)
     (require 'flycheck)
     (require 'flycheck-yamllint)
@@ -2440,12 +2449,12 @@ function.
 
     (defun k20e/yaml-mode-hook ()
       (setq fill-column 118)
-      (ansible-doc-mode)
       (buffer-face-mode)
       (define-key yaml-mode-map (kbd "C-m") 'newline-and-indent)
       (flycheck-mode 1)
       (flycheck-yamllint-setup)
-      (flyspell-mode-off))
+      (flyspell-mode-off)
+      (highlight-indent-guides-mode))
 
     (add-hook 'yaml-mode-hook 'k20e/yaml-mode-hook)
 
