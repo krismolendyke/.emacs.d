@@ -893,6 +893,7 @@ function.
                                       "*.sh"
                                       "*.soy"
                                       "*.txt"
+                                      "*.yaml"
                                       "*.yml"
                                       "Dockerfile"
                                       "Makefile")
@@ -2062,7 +2063,8 @@ function.
          javascript-mode
          org-mode
          sql-mode
-         text-mode)
+         text-mode
+         yaml-mode)
        "Common major modes to create scratch buffers for.")
 
      (defun k20e/scratch-buffer ()
