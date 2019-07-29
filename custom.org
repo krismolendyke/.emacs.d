@@ -436,7 +436,7 @@ function.
      (defun k20e/font-toggle-proportional ()
        "Toggle between a proportional font."
        (interactive)
-       (buffer-face-toggle '(:family "Input Mono")))
+       (buffer-face-toggle '(:family "PragmataPro-Liga")))
    #+END_SRC
 
 *** Toggle Source/Test Buffer
@@ -709,15 +709,6 @@ function.
     (global-set-key (kbd "<H-S-right>") 'buf-move-right)
   #+END_SRC
 
-* Calendar
-
-  #+BEGIN_SRC emacs-lisp
-    (defun k20e/calendar-mode-hook ()
-      (buffer-face-mode))
-
-    (add-hook 'calendar-mode-hook 'k20e/calendar-mode-hook)
-  #+END_SRC
-
 * C
 
   #+BEGIN_SRC emacs-lisp
@@ -745,7 +736,6 @@ function.
 
   #+BEGIN_SRC emacs-lisp
     (defun k20e/compilation-mode-hook ()
-      (buffer-face-mode)
       (set-face-foreground 'compilation-error "tomato1"))
 
     (add-hook 'compilation-mode-hook 'k20e/compilation-mode-hook)
@@ -818,7 +808,6 @@ function.
 
     (defun k20e/dired-mode-hook ()
       (auto-revert-mode 1)
-      (buffer-face-mode)
       (setq auto-revert-verbose nil)
       (set-face-foreground 'dired-flagged "tomato1")
       (set-face-attribute 'dired-flagged nil :strike-through t))
@@ -955,24 +944,30 @@ function.
 
 * Fonts
 
-  Managing fonts always seems to be a hassle.  These functions help to
-  interactively set the font family and a preferred size from a short
-  list of fonts that I like.
+  I purchased the excellent font family [[https://www.fsd.it/shop/fonts/pragmatapro/][PragmataPro]] and use it
+  exclusively now, rather than toggling between various proportional
+  and fixed width fonts as I read and edit.
+
+  The =add-pragmatapro-prettify-symbols-alist= function below is from
+  a file I load from the =elisp= directory at initialization.  That
+  file should be kept in sync with the version of the PragmataPro font
+  that is currently installed.  The font author releases updates here
+  https://github.com/fabrizioschiavi/pragmatapro/tree/master/emacs_snippets.
 
   #+BEGIN_SRC emacs-lisp
-    (defvar k20e/font-list '(("Input-Sans" . 15)
-                             ("Input-Mono" . 15)
-                             ("Input-Serif" . 15)
-                             ("EtBembo" . 18)
-                             ("Hack" . 12)
-                             ("Source-Code-Pro" . 11)
-                             ("Roboto-Mono". 12)
-                             ("Glass-TTY-VT220" . 20)
-                             ("Consolas" . 18)
-                             ("Ubuntu-Mono" . 17)
-                             ("Inconsolata" . 18)
-                             ("DejaVu-Sans-Mono" . 18)
-                             ("PICO-8" . 20))
+    (require 'prog-mode)
+
+    (defun k20e/prog-mode-hook ()
+      (add-pragmatapro-prettify-symbols-alist))
+
+    (add-hook 'prog-mode-hook 'k20e/prog-mode-hook)
+  #+END_SRC
+
+  #+BEGIN_SRC emacs-lisp
+    (global-prettify-symbols-mode 1)
+
+    (defvar k20e/font-list '(("PragmataPro-Liga" . 16)
+                             ("PragmataPro" . 16))
       "Ordered list of preferred fonts and sizes.")
 
     (defun k20e/font--set (font-alist)
@@ -1006,32 +1001,14 @@ function.
     (k20e/font-set-from-list k20e/font-list)
   #+END_SRC
 
-** Per-buffer
-
-   Set a fixed width font to be used in major modes where that always
-   makes sense, even if I currently have the frame's font set to a
-   proportional font.  https://www.emacswiki.org/emacs/FacesPerBuffer
-
-   #+BEGIN_SRC emacs-lisp
-     (setq-default buffer-face-mode-face '(:family "Input Mono"))
-   #+END_SRC
-
-   Then, any major mode can add =(buffer-face-mode)= to its hook to
-   override the currently selected font with a fixed width one, e.g.,
-   [[id:multi-term][=multi-term=]], [[id:ibuffer][=ibuffer=]], etc.
-
 ** Unicode
 
    [[http://users.teilar.gr/~g1951d/][Symbola]] is a nice font for displaying Unicode characters 🍺👍.
 
-   #+BEGIN_SRC emacs-lisp
-     (when (member "Symbola" (font-family-list))
-       (set-fontset-font t 'unicode "Symbola" nil 'prepend))
-   #+END_SRC
-
-** TODO Fonts
-
-   - https://be5invis.github.io/Iosevka/
+    #+BEGIN_SRC emacs-lisp
+      (when (member "Symbola" (font-family-list))
+        (set-fontset-font t 'unicode "Symbola" nil 'prepend))
+    #+END_SRC
 
 * font-awesome
 
@@ -1132,7 +1109,6 @@ function.
             (f "golint.el"))
         (require 'golint (expand-file-name f (expand-file-name d gopath))))
 
-      (buffer-face-mode)
       (go-eldoc-setup)
       (go-guru-hl-identifier-mode)
       (flycheck-mode 1)
@@ -1223,14 +1199,6 @@ function.
 
   #+BEGIN_SRC emacs-lisp
     (require 'face-remap)
-    (require 'ibuffer)
-
-    (defun k20e/ibuffer-mode-hook ()
-      "Make sure a non-proportional font is set:
-    https://www.emacswiki.org/emacs/FacesPerBuffer"
-      (buffer-face-mode))
-
-    (add-hook 'ibuffer-mode-hook 'k20e/ibuffer-mode-hook)
 
     (defalias 'list-buffers 'ibuffer)
 
@@ -1484,7 +1452,6 @@ function.
       "Re-evaluate my custom key bindings.
      Make sure a fixed width font is set. Disable highlight line."
       (custom-reevaluate-setting 'term-bind-key-alist)
-      (buffer-face-mode)
       (setq-local global-hl-line-mode nil))
 
     (add-hook 'term-mode-hook 'k20e/term-mode-hook)
@@ -1831,8 +1798,7 @@ function.
            (winner-undo)
            (kill-buffer "*Org Agenda*")))
        (delete-other-windows)
-       (text-scale-set 2)
-       (buffer-face-mode))
+       (text-scale-set 2))
 
      (add-hook 'org-agenda-mode-hook 'k20e/org-agenda-mode-hook)
    #+END_SRC
@@ -1902,7 +1868,6 @@ function.
     (require 'paradox)
 
     (defun k20e/paradox-menu-mode-hook ()
-      (buffer-face-mode)
       (setq-default paradox-execute-asynchronously nil))
 
     (add-hook 'paradox-menu-mode-hook 'k20e/paradox-menu-mode-hook)
@@ -2084,6 +2049,17 @@ function.
    #+BEGIN_SRC emacs-lisp
      (global-set-key (kbd "<f10>") 'k20e/scratch-buffer)
    #+END_SRC
+
+* sh-mode
+
+  #+BEGIN_SRC emacs-lisp
+    (require 'sh-script)
+
+    (defun k20e/sh-script-mode-hook ()
+      (prettify-symbols-mode 1))
+
+    (add-hook 'sh-mode-hook 'k20e/sh-script-mode-hook)
+  #+END_SRC
 
 * server
 
@@ -2364,22 +2340,6 @@ function.
     (setq uniquify-buffer-name-style 'forward)
   #+END_SRC
 
-* vc
-
-  Version control modes.
-
-** vc-annotate
-
-   #+BEGIN_SRC emacs-lisp
-     (require 'face-remap)
-     (require 'vc-annotate)
-
-     (defun k20e/vc-annotate-mode-hook ()
-       (buffer-face-mode))
-
-     (add-hook 'vc-annotate-mode-hook 'k20e/vc-annotate-mode-hook)
-   #+END_SRC
-
 * windmove
 
   #+BEGIN_SRC emacs-lisp
@@ -2451,7 +2411,6 @@ function.
 
     (defun k20e/yaml-mode-hook ()
       (setq fill-column 118)
-      (buffer-face-mode)
       (define-key yaml-mode-map (kbd "C-m") 'newline-and-indent)
       (flycheck-mode 1)
       (flycheck-yamllint-setup)
