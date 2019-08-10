@@ -1355,6 +1355,8 @@ function.
     (require 'markdown-mode)
 
     (defun k20e/markdown-mode-hook ()
+      (add-pragmatapro-prettify-symbols-alist)
+      (prettify-symbols-mode 1)
       (setq markdown-open-command "open"
             fill-column 118))
 
@@ -1549,6 +1551,10 @@ function.
     (defun k20e/org-mode-hook ()
       (auto-fill-mode 1)
       (visual-line-mode 0)
+
+      (add-pragmatapro-prettify-symbols-alist)
+      (prettify-symbols-mode 1)
+
       (setq org-pretty-entities t           ; Display entities as UTF-8 characters.
             truncate-lines nil
             org-fontify-quote-and-verse-blocks t
@@ -2053,10 +2059,13 @@ function.
 * sh-mode
 
   #+BEGIN_SRC emacs-lisp
+    (require 'flycheck)
     (require 'sh-script)
 
     (defun k20e/sh-script-mode-hook ()
-      (prettify-symbols-mode 1))
+      (add-pragmatapro-prettify-symbols-alist)
+      (prettify-symbols-mode 1)
+      (flycheck-mode 1))
 
     (add-hook 'sh-mode-hook 'k20e/sh-script-mode-hook)
   #+END_SRC
@@ -2415,7 +2424,9 @@ function.
       (flycheck-mode 1)
       (flycheck-yamllint-setup)
       (flyspell-mode-off)
-      (highlight-indent-guides-mode))
+      (highlight-indent-guides-mode)
+      (add-pragmatapro-prettify-symbols-alist)
+      (prettify-symbols-mode 1))
 
     (add-hook 'yaml-mode-hook 'k20e/yaml-mode-hook)
 
