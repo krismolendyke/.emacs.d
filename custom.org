@@ -1104,7 +1104,7 @@ function.
     (require 'go-rename)
 
     (defun k20e/go-mode-hook ()
-      (let ((gopath (getenv "GOPATH"))
+      (let ((gopath "${HOME}/go")
             (d "src/github.com/golang/lint/misc/emacs")
             (f "golint.el"))
         (require 'golint (expand-file-name f (expand-file-name d gopath))))
