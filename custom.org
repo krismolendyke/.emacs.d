@@ -1574,6 +1574,7 @@ function.
 
       (setq org-pretty-entities t           ; Display entities as UTF-8 characters.
             truncate-lines nil
+            org-ellipsis "…"
             org-fontify-quote-and-verse-blocks t
             org-fontify-whole-heading-line t)
       (setq-local global-hl-line-mode nil))
@@ -1600,8 +1601,6 @@ function.
 
     ;; Use Ivy for completion
     (setq org-outline-path-complete-in-steps nil)
-
-    (setq org-ellipsis nil)
 
     (setq org-log-redeadline 'time
           org-log-reschedule 'time)
