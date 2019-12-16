@@ -454,7 +454,8 @@ function.
          (file-name-sans-extension (buffer-file-name))))
 
       (defun k20e/switch-to-test-buffer ()
-        "Switch to the test buffer associated with the current source buffer."
+        "Switch to the test buffer associated with the current source buffer.
+      FIX: when >1 buffer w/ same name this is wrong because the buffer name is prepended w/ dir name or whatever"
         (let ((d (file-name-directory (buffer-file-name)))
               (f (format "%s_test.%s"
                           (file-name-sans-extension (buffer-name))
