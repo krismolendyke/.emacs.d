@@ -31,6 +31,7 @@
 (depends-on "gitconfig-mode")
 (depends-on "gitignore-mode")
 (depends-on "go-eldoc")
+(depends-on "go-errcheck")
 (depends-on "go-guru")
 (depends-on "go-mode")
 (depends-on "go-rename")
