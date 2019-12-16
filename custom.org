@@ -225,6 +225,7 @@ function.
      (global-set-key (kbd "<f6>") 'k20e/font-toggle-proportional)
      (global-set-key (kbd "<f7>") 'previous-error) ;; ◀◀
      (global-set-key (kbd "<f9>") 'next-error) ;; ▶▶
+     (global-set-key (kbd "C-M-;") 'comment-line)
      (global-set-key (kbd "C-S-h") 'kill-whole-line)
      (global-set-key (kbd "C-c DEL") 'join-line)
      (global-set-key (kbd "C-h") 'delete-backward-char)
