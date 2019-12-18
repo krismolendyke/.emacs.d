@@ -42,26 +42,30 @@ decoupled from the Emacs distribution package.")
   (expand-file-name "~/Google")
   "Google Drive home.")
 
-(defvar k20e/cask-directory
-  (expand-file-name "/usr/local/share/emacs/site-lisp/cask")
-  "Cask home.")
+(dolist (cask-directory `(,(substitute-in-file-name "${HOME}/.cask")
+                          "/usr/local/share/emacs/site-lisp/cask"))
+  (when (file-accessible-directory-p cask-directory)
+    (defvar k20e/cask-directory cask-directory
+      "Cask Home.")))
 
-(defvar k20e/brew-cache-directory
-  (string-trim (shell-command-to-string
-                (string-join `(,(executable-find "brew") "--cache") " ")))
-  "Homebrew cache.")
+(when (string-equal system-type "darwin")
+  (defvar k20e/brew-cache-directory
+    (string-trim (shell-command-to-string
+                  (string-join `(,(executable-find "brew") "--cache") " ")))
+    "Homebrew cache."))
 
 (defun k20e/setup-cask-and-pallet ()
   "Package management goodness."
   (require 'cask (expand-file-name "cask.el" k20e/cask-directory))
-  (cask-initialize)
+  (cask-initialize user-emacs-directory)
   (require 'pallet)
   (pallet-mode t))
 
 (defun k20e/no-bars-held ()
   "Turn off tool, scroll, and menu bars when appropriate.
 Only turn off the menu bar running in a terminal window."
-  (setq inhibit-startup-echo-area-message "kris")
+  (setq inhibit-startup-echo-area-message t
+        inhibit-startup-screen t)
   (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
   (if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
   (if (and (fboundp 'window-system)
@@ -116,8 +120,9 @@ Only turn off the menu bar running in a terminal window."
 
 ;;; Set the Emacs source directory so that C function source can be
 ;;; found when necessary.
-(setq source-directory
-      (string-join `(,k20e/brew-cache-directory "emacs--git") "/"))
+(when (boundp 'k20e/brew-cache-directory)
+  (setq source-directory
+        (string-join `(,k20e/brew-cache-directory "emacs--git") "/")))
 
 
 (setq-default load-prefer-newer t
