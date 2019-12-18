@@ -1953,8 +1953,9 @@ function.
 ** IPython
 
    #+BEGIN_SRC emacs-lisp
-     (setq python-shell-interpreter "ipython"
-           python-shell-interpreter-args "-i --no-banner")
+     (setq python-shell-interpreter "python"
+           python-shell-interpreter-args ""
+           python-shell-completion-native-enable nil)
    #+END_SRC
 
 * re-builder
