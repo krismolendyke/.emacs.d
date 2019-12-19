@@ -1220,7 +1220,7 @@ function.
 
     (defalias 'list-buffers 'ibuffer)
 
-    (setq ibuffer-formats
+    (defvar ibuffer-formats
           '((mark " "
                   (modified)
                   " "
