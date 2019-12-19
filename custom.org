@@ -1918,6 +1918,16 @@ function.
          (define-key paredit-mode-map (kbd "C-j") 'join-line)))
   #+END_SRC
 
+* TODO prettify-symbols-mode
+
+  - https://blog.jft.rocks/emacs/unicode-for-orgmode-checkboxes.html
+  - http://www.modernemacs.com/post/prettify-mode/
+  - https://www.emacswiki.org/emacs/DontReadItsName
+  - http://endlessparentheses.com/using-prettify-symbols-in-clojure-and-elisp-without-breaking-indentation.html
+  - https://pixelambacht.nl/2015/sans-bullshit-sans/
+  - https://github.com/ekaschalk/.spacemacs.d/blob/master/layers/display/local/pretty-fonts/pretty-fonts.el
+  - https://unix.stackexchange.com/questions/247108/how-to-find-out-which-unicode-codepoints-are-defined-in-a-ttf-file
+
 * python
 
   #+BEGIN_SRC emacs-lisp
