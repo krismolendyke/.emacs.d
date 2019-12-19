@@ -2090,7 +2090,9 @@ function.
     (defun k20e/sh-script-mode-hook ()
       (add-pragmatapro-prettify-symbols-alist)
       (prettify-symbols-mode 1)
-      (flycheck-mode 1))
+      (flycheck-mode 1)
+
+      (setup-compose-predicate))
 
     (add-hook 'sh-mode-hook 'k20e/sh-script-mode-hook)
   #+END_SRC
@@ -2451,6 +2453,7 @@ function.
       (flyspell-mode-off)
       (highlight-indent-guides-mode)
       (add-pragmatapro-prettify-symbols-alist)
+      (setup-compose-predicate)
       (prettify-symbols-mode 1))
 
     (add-hook 'yaml-mode-hook 'k20e/yaml-mode-hook)
