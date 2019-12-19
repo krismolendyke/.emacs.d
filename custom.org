@@ -2207,7 +2207,7 @@ function.
   #+BEGIN_SRC emacs-lisp
     (require 'color-theme-sanityinc-tomorrow)
 
-    (color-theme-sanityinc-tomorrow-day)
+    (color-theme-sanityinc-tomorrow-night)
   #+END_SRC
 
 * term
