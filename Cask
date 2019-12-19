@@ -6,6 +6,7 @@
 (depends-on "arduino-mode")
 (depends-on "async")
 (depends-on "avy")
+(depends-on "blacken")
 (depends-on "buffer-move")
 (depends-on "cargo")
 (depends-on "cask")

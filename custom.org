@@ -1922,6 +1922,7 @@ function.
 
   #+BEGIN_SRC emacs-lisp
     (require 'electric)
+    (require 'blacken)
     (require 'flycheck)
     (require 'multiple-cursors)
     (require 'python)
@@ -1930,7 +1931,12 @@ function.
     (defun k20e/python-mode-hook ()
       (setq display-line-numbers nil
             electric-indent-inhibit t       ; Do not drive me crazy with extra-dumb indentation!
-            fill-column 118)
+            fill-column 88)
+      (add-pragmatapro-prettify-symbols-alist)
+      (prettify-symbols-mode 1)
+      (setup-compose-predicate)
+
+      (blacken-mode)
       (flycheck-mode 1)
       (superword-mode)
       (yas-minor-mode 1)
@@ -1942,6 +1948,7 @@ function.
       (define-key python-mode-map (kbd "M-e") 'python-nav-end-of-statement)
       (define-key python-mode-map (kbd "M-n") 'python-nav-forward-statement)
       (define-key python-mode-map (kbd "M-p") 'python-nav-backward-statement)
+      (define-key python-mode-map (kbd "M-q") 'blacken-buffer)
       (define-key python-mode-map (kbd "C-M-f") 'python-nav-forward-sexp)
       (define-key python-mode-map (kbd "C-M-b") 'python-nav-backward-sexp)
       (define-key python-mode-map (kbd "C-M-n") 'python-nav-forward-block)
