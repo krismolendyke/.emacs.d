@@ -2257,6 +2257,17 @@ function.
     (require 'terminal-notifier)
   #+END_SRC
 
+* terraform-mode
+
+  #+BEGIN_SRC emacs-lisp
+    (require 'terraform-mode)
+
+    (defun k20e/terraform-mode-hook ()
+      (setq terraform-format-on-save-mode t))
+
+    (add-hook 'terraform-mode-hook 'k20e/terraform-mode-hook)
+  #+END_SRC
+
 * text-mode
 
   #+BEGIN_SRC emacs-lisp

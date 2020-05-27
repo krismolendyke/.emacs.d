@@ -64,6 +64,7 @@
 (depends-on "smex")
 (depends-on "spinner")
 (depends-on "swiper")
+(depends-on "terraform-mode")
 (depends-on "tide")
 (depends-on "toml")
 (depends-on "toml-mode")
