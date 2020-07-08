@@ -623,16 +623,16 @@ function.
           (ns-auto-titlebar-mode)
 
           ;; Command as meta.
-          (defvar ns-command-modifier 'meta)
+          (setq ns-command-modifier 'meta)
 
           ;; Option as hyper.
-          (defvar ns-option-modifier 'hyper)
+          (setq ns-option-modifier 'hyper)
 
           ;; fn as super.
-          (defvar ns-function-modifier 'super)
+          (setq ns-function-modifier 'super)
 
           ;; See https://github.com/Homebrew/homebrew/commit/49c85b89753d42cc4ec2fee9607a608b3b14ab33?w=1
-          (defvar ns-use-srgb-colorspace t)
+          (setq ns-use-srgb-colorspace t)
 
           ;; Trackpad taming.
           (setq
