@@ -1105,6 +1105,7 @@ function.
   #+END_SRC
 
   #+BEGIN_SRC emacs-lisp
+    (require 'company)
     (require 'go-mode)
     (require 'lsp-mode)
 
@@ -1119,6 +1120,8 @@ function.
       (set (make-local-variable 'compile-command)
            "go build -v ")
 
+      (setq-default company-show-numbers t)
+
       (setq fill-column 118
             indent-tabs-mode t
             tab-width 4)
@@ -1131,6 +1134,10 @@ function.
       (lsp-deferred))
 
     (add-hook 'go-mode-hook 'k20e/go-mode-hook)
+
+    ;;; I can't rewire my brain to navigate the overlay w/ `M-n' ond `M-p'
+    (define-key company-active-map (kbd "C-n") 'company-select-next)
+    (define-key company-active-map (kbd "C-p") 'company-select-previous)
 
     (define-key go-mode-map (kbd "C-c C-t") 'k20e/toggle-test-buffer)
     (define-key go-mode-map (kbd "M-q") 'lsp-format-buffer)
