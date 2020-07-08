@@ -32,11 +32,24 @@ function.
     brew info emacs
   #+END_SRC
 
-  I install Emacs with the following options.
+  I install Emacs with the following options.  The standard Homebrew
+  installation has lost a lot of MacOS customization flags over the
+  years so I've switched to the [[https://github.com/d12frosted/homebrew-emacs-plus][Emacs Plus]] formula instead.  First,
+  tap that keg:
 
   #+BEGIN_SRC sh
-    time brew install emacs --with-cocoa --with-gnutls --HEAD
+    brew tap d12frosted/emacs-plus
   #+END_SRC
+
+  And then install:
+
+  #+BEGIN_SRC sh
+    brew install emacs-plus@27 --with-jansson
+  #+END_SRC
+
+  The =--with-jansson= flag enables a native JSON serdes library that
+  is supposed to improve JSON support.  I am mainly interested in LSP
+  performance improvements enabled by compiling with this flag.
 
   If there is an existing installation it needs to be removed first.
 
