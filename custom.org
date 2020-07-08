@@ -1101,6 +1101,7 @@ function.
   #+BEGIN_SRC sh
     pushd "${TMPDIR}" && \
         GO111MODULE=on go get golang.org/x/tools/gopls@latest; \
+        GO111MODULE=on go get honnef.co/go/tools/cmd/staticcheck; \
         popd
   #+END_SRC
 
@@ -1120,11 +1121,16 @@ function.
       (set (make-local-variable 'compile-command)
            "go build -v ")
 
-      (setq-default company-show-numbers t)
-
-      (setq fill-column 118
+      (setq company-show-numbers t
+            fill-column 118
             indent-tabs-mode t
+            lsp-eldoc-render-all t
+            lsp-gopls-use-placeholders t
             tab-width 4)
+
+      (lsp-register-custom-settings
+       '(("gopls.completeUnimported" t t)
+         ("gopls.staticcheck" t t )))
 
       (add-hook 'before-save-hook 'lsp-format-buffer)
       (add-hook 'before-save-hook 'lsp-organize-imports)
