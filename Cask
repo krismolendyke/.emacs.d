@@ -4,6 +4,7 @@
 (depends-on "0blayout")
 (depends-on "ag")
 (depends-on "ansi")
+(depends-on "arduino-mode")
 (depends-on "async")
 (depends-on "avy")
 (depends-on "bind-key")
