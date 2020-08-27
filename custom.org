@@ -280,8 +280,6 @@ function.
        "Make `cycle-spacing' operate in `fast' mode."
        (interactive "*p")
        (cycle-spacing n nil 'fast))
-
-     (global-set-key (kbd "M-SPC") 'k20e/cycle-spacing)
    #+END_SRC
 
 ** Backup Files
@@ -2393,8 +2391,8 @@ function.
     (windmove-default-keybindings 'hyper)
     (setq windmove-wrap-around t)
 
-    (global-set-key (kbd "H-SPC") 'windmove-right)
-    (global-set-key (kbd "H-S-SPC") 'windmove-left)
+    (global-set-key (kbd "M-SPC") 'windmove-right)
+    (global-set-key (kbd "M-S-SPC") 'windmove-left)
   #+END_SRC
 
 * web-mode
