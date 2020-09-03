@@ -1,3 +1,4 @@
+.lsp-session*
 *.html
 .emacs.desktop
 backup/
