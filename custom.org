@@ -201,6 +201,15 @@ function.
   As packages are installed, updated or removed via =list-packages=,
   Pallet maintains changes to the =Cask= file automatically.
 
+* use-package
+
+  Before =use-package= I had 70 packages installed and
+  =emacs-init-time= was ="8.678111 seconds"=.
+
+  #+BEGIN_SRC emacs-lisp
+    (eval-when-compile (require 'use-package))
+  #+END_SRC
+
 * Global GNU Emacs Key Bindings
 
   These global key bindings override /built-in/ functions only.
@@ -1106,8 +1115,13 @@ function.
   #+END_SRC
 
   #+BEGIN_SRC emacs-lisp
-    (require 'company)
-    (require 'go-mode)
+    (use-package company
+      :bind (:map company-active-map
+	     ("C-n" . 'company-select-next)
+	     ("C-p" . 'company-select-previous)))
+
+    (use-package go-mode)
+
     (require 'lsp-mode)
 
     (defun k20e/go-mode-hook ()
@@ -1140,10 +1154,6 @@ function.
       (lsp-deferred))
 
     (add-hook 'go-mode-hook 'k20e/go-mode-hook)
-
-    ;;; I can't rewire my brain to navigate the overlay w/ `M-n' ond `M-p'
-    (define-key company-active-map (kbd "C-n") 'company-select-next)
-    (define-key company-active-map (kbd "C-p") 'company-select-previous)
 
     (define-key go-mode-map (kbd "C-c C-t") 'k20e/toggle-test-buffer)
     (define-key go-mode-map (kbd "M-q") 'lsp-format-buffer)
