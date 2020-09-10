@@ -1089,7 +1089,6 @@ function.
             fill-column 118
             indent-tabs-mode t
             lsp-eldoc-render-all t
-            lsp-gopls-use-placeholders t
             tab-width 4)
 
       (lsp-register-custom-settings
