@@ -58,7 +58,7 @@ function.
   #+END_SRC
 
   If there is a major version bump between the previous and current
-  build [[id:cask][Cask]] will need to be updated.
+  build [[#cask][Cask]] will need to be updated.
 
   #+BEGIN_SRC sh
     cd ~/.emacs
