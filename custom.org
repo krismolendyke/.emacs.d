@@ -615,33 +615,6 @@ function.
            "\n"))))
    #+END_SRC
 
-* ag
-
-  [[https://github.com/ggreer/the_silver_searcher][The Silver Searcher]] is similar to =ack=, which in turn is similar to =grep=.
-
-  #+BEGIN_SRC emacs-lisp
-    (require 'ag)
-
-    (setq ag-arguments
-          '("--smart-case" "--nogroup" "--column" "--stats" "--")
-          ag-highlight-search t)
-  #+END_SRC
-
-  Counsel only tells =ag= to search the current directory.  I almost
-  always want to search the current Git repository.
-
-  #+BEGIN_SRC emacs-lisp
-    (require 'ag)
-    (require 'counsel)
-
-    (defun k20e/counsel-ag-project (initial-input)
-      "Search using `counsel-ag' from the project root for INITIAL-INPUT."
-      (interactive (list (thing-at-point 'symbol)))
-      (counsel-ag initial-input (condition-case err
-                                    (vc-root-dir)
-                                  (error default-directory))))
-  #+END_SRC
-
 * auto-fill
 
   When to turn on auto-fill and set fill-column to a reasonable value.  This
@@ -751,13 +724,15 @@ function.
   #+END_SRC
 
 * Counsel
-
+  :PROPERTIES:
+  :CUSTOM_ID: counsel
+  :END:
+    
   #+BEGIN_SRC emacs-lisp
     (require 'counsel)
 
     (global-set-key (kbd "M-x") 'counsel-M-x)
 
-    (global-set-key (kbd "C-x C-a") 'counsel-rg)
     (global-set-key (kbd "C-x C-f") 'counsel-find-file)
     (global-set-key (kbd "<f1> f") 'counsel-describe-function)
     (global-set-key (kbd "<f1> v") 'counsel-describe-variable)
@@ -1952,6 +1927,24 @@ function.
     (add-hook 'rst-mode-hook 'k20e/rst-mode-hook)
   #+END_SRC
 
+* ripgrep
+
+  [[https://github.com/BurntSushi/ripgrep][ripgrep]] via [[#counsel][Counsel]], defaulting to the thing at point in the nearest
+  =git= repository ancestor.
+  
+  #+BEGIN_SRC emacs-lisp
+    (require 'counsel)
+
+    (defun k20e/counsel-rg-project (initial-input)
+      "Search using `counsel-rg' from the project root for INITIAL-INPUT."
+      (interactive (list (thing-at-point 'symbol)))
+      (counsel-rg initial-input (condition-case err
+                                    (vc-root-dir)
+                                  (error default-directory))))
+
+    (global-set-key (kbd "C-x C-a") 'k20e/counsel-rg-project)
+  #+END_SRC
+  
 * rust
 
   #+BEGIN_SRC emacs-lisp
