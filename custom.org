@@ -2416,6 +2416,4 @@ function.
       (prettify-symbols-mode 1))
 
     (add-hook 'yaml-mode-hook 'k20e/yaml-mode-hook)
-
-    (add-to-list 'auto-mode-alist '("\\.yml$" . yaml-mode))
   #+END_SRC
