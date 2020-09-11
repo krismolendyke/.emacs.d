@@ -23,6 +23,7 @@
 (depends-on "find-file-in-project")
 (depends-on "flx")
 (depends-on "flycheck")
+(depends-on "flycheck-golangci-lint")
 (depends-on "flycheck-rust")
 (depends-on "flycheck-yamllint")
 (depends-on "geiser")

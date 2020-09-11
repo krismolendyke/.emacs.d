@@ -1038,14 +1038,18 @@ function.
         popd
   #+END_SRC
 
+  Switched from =staticcheck= to =golangci-lint= but its install
+  doesn't recommend =go get -u=.
+  
   #+BEGIN_SRC emacs-lisp
     (use-package company
       :bind (:map company-active-map
-	     ("C-n" . 'company-select-next)
-	     ("C-p" . 'company-select-previous)))
+             ("C-n" . 'company-select-next)
+             ("C-p" . 'company-select-previous)))
 
     (use-package go-mode)
 
+    (require 'flycheck)
     (require 'lsp-mode)
 
     (defun k20e/go-mode-hook ()
@@ -1073,6 +1077,8 @@ function.
       (add-hook 'before-save-hook 'lsp-organize-imports)
 
       (set-face-attribute 'lsp-face-highlight-textual nil :underline t)
+
+      (add-hook 'flycheck-mode-hook #'flycheck-golangci-lint-setup)
 
       (lsp-deferred))
 
