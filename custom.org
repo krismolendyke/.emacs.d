@@ -1088,17 +1088,6 @@ function.
    - [ ] https://github.com/nlamirault/gotest.el
    - [ ] https://github.com/alecthomas/gometalinter
 
-* groovy-mode
-
-  #+BEGIN_SRC emacs-lisp
-    (require 'cc-vars)
-
-    (defun k20e/groovy-mode-hook ()
-      (setq c-basic-offset 4))
-
-    (add-hook 'groovy-mode-hook 'k20e/groovy-mode-hook)
-  #+END_SRC
-
 * highlight-indent-guides
 
   #+BEGIN_SRC emacs-lisp
@@ -1619,11 +1608,7 @@ function.
     #+BEGIN_SRC emacs-lisp
       (require 'ox-tufte)
     #+END_SRC
-
-    #+BEGIN_SRC emacs-lisp
-      (require 'ox-jira)
-    #+END_SRC
-
+    
 ** Publish
 
    #+BEGIN_SRC emacs-lisp
