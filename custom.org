@@ -1045,7 +1045,9 @@ function.
     (use-package company
       :bind (:map company-active-map
              ("C-n" . 'company-select-next)
-             ("C-p" . 'company-select-previous)))
+             ("C-p" . 'company-select-previous)
+             ("C-h" . 'delete-backward-char) ; Not help!
+             )) 
 
     (use-package go-mode)
 
