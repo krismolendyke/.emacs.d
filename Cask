@@ -43,6 +43,7 @@
 (depends-on "markdown-mode")
 (depends-on "multi-term")
 (depends-on "multiple-cursors")
+(depends-on "ox-jira")
 (depends-on "ox-tufte")
 (depends-on "package-build")
 (depends-on "pallet")
