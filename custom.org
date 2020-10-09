@@ -727,7 +727,7 @@ function.
   :PROPERTIES:
   :CUSTOM_ID: counsel
   :END:
-    
+
   #+BEGIN_SRC emacs-lisp
     (require 'counsel)
 
@@ -1040,7 +1040,7 @@ function.
 
   Switched from =staticcheck= to =golangci-lint= but its install
   doesn't recommend =go get -u=.
-  
+
   #+BEGIN_SRC emacs-lisp
     (use-package company
       :bind (:map company-active-map
@@ -1614,7 +1614,7 @@ function.
     #+BEGIN_SRC emacs-lisp
       (require 'ox-tufte)
     #+END_SRC
-    
+
 ** Publish
 
    #+BEGIN_SRC emacs-lisp
@@ -1922,7 +1922,7 @@ function.
 
   [[https://github.com/BurntSushi/ripgrep][ripgrep]] via [[#counsel][Counsel]], defaulting to the thing at point in the nearest
   =git= repository ancestor.
-  
+
   #+BEGIN_SRC emacs-lisp
     (require 'counsel)
 
@@ -1935,7 +1935,7 @@ function.
 
     (global-set-key (kbd "C-x C-a") 'k20e/counsel-rg-project)
   #+END_SRC
-  
+
 * rust
 
   #+BEGIN_SRC emacs-lisp
