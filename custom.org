@@ -486,7 +486,7 @@ function.
         "Switch to the source buffer associated with the current test buffer."
         (let ((e (file-name-extension (buffer-file-name)))
               (f (car (split-string (file-name-sans-extension (buffer-file-name))
-                                    "_"))))
+                                    "_test"))))
           (find-file (format "%s.%s" f e))))
 
       (defun k20e/toggle-test-buffer ()
