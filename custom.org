@@ -210,6 +210,27 @@ function.
     (eval-when-compile (require 'use-package))
   #+END_SRC
 
+* Performance Tuning
+
+  Mucking with these solely based on output from =lsp-doctor= and its
+  recommendations since I use this all day writing Go programs.
+  
+** GC
+  
+   #+BEGIN_SRC emacs-lisp
+     (eval-when-compile
+       (let ((gib (expt 2 30)))
+         (setq gc-cons-threshold (* 2 gib))))
+   #+END_SRC
+
+** Process Output
+
+   #+BEGIN_SRC emacs-lisp
+     (eval-when-compile
+       (let ((mib (expt 2 20)))
+         (setq read-process-output-max (* 1 mib))))
+   #+END_SRC
+   
 * Global GNU Emacs Key Bindings
 
   These global key bindings override /built-in/ functions only.
