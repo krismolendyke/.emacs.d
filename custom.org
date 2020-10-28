@@ -1068,7 +1068,7 @@ function.
              ("C-n" . 'company-select-next)
              ("C-p" . 'company-select-previous)
              ("C-h" . 'delete-backward-char) ; Not help!
-             )) 
+             ))
 
     (use-package go-mode)
 
@@ -1094,7 +1094,7 @@ function.
 
       (lsp-register-custom-settings
        '(("gopls.completeUnimported" t t)
-         ("gopls.staticcheck" t t )))
+         ("gopls.staticcheck" t t)))
 
       (add-hook 'before-save-hook 'lsp-format-buffer)
       (add-hook 'before-save-hook 'lsp-organize-imports)
@@ -2393,7 +2393,13 @@ function.
   - Prefer =space= over =tab=
 
   #+BEGIN_SRC emacs-lisp
-    (add-hook 'before-save-hook 'delete-trailing-whitespace)
+    (require 'whitespace)
+
+    (defun k20e/before-save-hook ()
+      (whitespace-cleanup)
+      (delete-trailing-whitespace 0 nil))
+
+    (add-hook 'before-save-hook 'k20e/before-save-hook)
 
     (set-default 'indent-tabs-mode nil)
 
