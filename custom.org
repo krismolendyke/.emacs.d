@@ -1092,6 +1092,17 @@ function.
             lsp-eldoc-render-all t
             tab-width 4)
 
+      ;; lsp-mode settings
+      ;; Officially supported get first class vars, experiments are "custom"
+      ;; https://github.com/golang/tools/blob/master/gopls/doc/emacs.md#gopls-configuration
+
+      ;; Officially supported settings
+      ;; https://github.com/golang/tools/blob/master/gopls/doc/settings.md#officially-supported
+      (setq lsp-go-link-target "pkg.go.dev"
+            lsp-go-use-placeholders nil)
+
+      ;; Experimental settings
+      ;; https://github.com/golang/tools/blob/master/gopls/doc/settings.md#experimental
       (lsp-register-custom-settings
        '(("gopls.completeUnimported" t t)
          ("gopls.staticcheck" t t)))
