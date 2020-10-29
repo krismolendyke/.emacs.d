@@ -1089,7 +1089,6 @@ function.
       (setq company-show-numbers t
             fill-column 118
             indent-tabs-mode t
-            lsp-eldoc-render-all t
             tab-width 4)
 
       ;; lsp-mode settings
@@ -1099,7 +1098,9 @@ function.
       ;; Officially supported settings
       ;; https://github.com/golang/tools/blob/master/gopls/doc/settings.md#officially-supported
       (setq lsp-go-link-target "pkg.go.dev"
-            lsp-go-use-placeholders nil)
+            lsp-go-use-placeholders nil
+            lsp-eldoc-render-all nil
+            lsp-signature-doc-lines 1)
 
       ;; Experimental settings
       ;; https://github.com/golang/tools/blob/master/gopls/doc/settings.md#experimental
