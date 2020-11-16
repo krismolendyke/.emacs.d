@@ -2180,9 +2180,9 @@ function.
   Set theme:
 
   #+BEGIN_SRC emacs-lisp
-    (require 'color-theme-sanityinc-tomorrow)
+    (require 'nord-theme)
 
-    (color-theme-sanityinc-tomorrow-bright)
+    (load-theme 'nord t)
   #+END_SRC
 
 * term
