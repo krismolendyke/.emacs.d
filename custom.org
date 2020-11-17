@@ -935,8 +935,8 @@ function.
   #+BEGIN_SRC emacs-lisp
     (global-prettify-symbols-mode 1)
 
-    (defvar k20e/font-list '(("PragmataPro-Liga" . 16)
-                             ("PragmataPro" . 16))
+    (defvar k20e/font-list '(("PragmataPro-Liga" . 14)
+                             ("PragmataPro" . 14))
       "Ordered list of preferred fonts and sizes.")
 
     (defun k20e/font--set (font-alist)
