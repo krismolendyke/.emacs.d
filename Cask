@@ -32,6 +32,7 @@
 (depends-on "gitconfig-mode")
 (depends-on "gitignore-mode")
 (depends-on "go-mode")
+(depends-on "graphql-mode")
 (depends-on "highlight-indent-guides")
 (depends-on "highlight-parentheses")
 (depends-on "htmlize")
