@@ -35,6 +35,7 @@
 (depends-on "graphql-mode")
 (depends-on "highlight-indent-guides")
 (depends-on "highlight-parentheses")
+(depends-on "ht")
 (depends-on "htmlize")
 (depends-on "hydra")
 (depends-on "ivy")
