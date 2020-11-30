@@ -1,12 +1,6 @@
 [submodule "site-lisp/org-mode"]
 	path = site-lisp/org-mode
 	url = https://code.orgmode.org/bzg/org-mode.git
-[submodule "site-lisp/terminal-notifier.el"]
-	path = site-lisp/terminal-notifier.el
-	url = git@github.com:krismolendyke/terminal-notifier.el.git
-[submodule "site-lisp/monetate-mode.el"]
-	path = site-lisp/monetate-mode.el
-	url = git@github.com:krismolendyke/monetate-mode.el.git
 [submodule "site-lisp/font-awesome.el"]
 	path = site-lisp/font-awesome.el
 	url = git@github.com:krismolendyke/font-awesome.el.git
@@ -16,3 +10,6 @@
 [submodule "site-lisp/im-feeling-lucky.el"]
 	path = site-lisp/im-feeling-lucky.el
 	url = https://github.com/krismolendyke/im-feeling-lucky.el.git
+[submodule "site-lisp/use-package"]
+	path = site-lisp/use-package
+	url = https://github.com/jwiegley/use-package.git
