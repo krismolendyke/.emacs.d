@@ -2210,15 +2210,6 @@ function.
      (define-key term-mode-map (kbd "M-x") 'counsel-M-x)
    #+END_SRC
 
-* terminal-notifier
-
-  This is a tiny package that I wrote to help with displaying
-  notifications in OS X.
-
-  #+BEGIN_SRC emacs-lisp
-    (require 'terminal-notifier)
-  #+END_SRC
-
 * terraform-mode
 
   #+BEGIN_SRC emacs-lisp
