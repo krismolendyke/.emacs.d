@@ -36,6 +36,10 @@ decoupled from the Emacs distribution package.")
   (expand-file-name "~/Google")
   "Google Drive home.")
 
+(defvar k20e/use-package-directory
+  (expand-file-name "use-package" k20e/site-lisp-directory)
+  "The directory containing `use-package' files.")
+
 (dolist (cask-directory `(,(substitute-in-file-name "${HOME}/.cask")
                           "/usr/local/share/emacs/site-lisp/cask"))
   (when (file-accessible-directory-p cask-directory)
@@ -54,6 +58,17 @@ decoupled from the Emacs distribution package.")
   (cask-initialize user-emacs-directory)
   (require 'pallet)
   (pallet-mode t))
+
+(defun k20e/setup-use-package ()
+  "https://github.com/jwiegley/use-package"
+  (add-to-list 'load-path k20e/use-package-directory)
+  (require 'use-package)
+  (with-eval-after-load 'info
+    (info-initialize)
+    (add-to-list 'Info-directory-list k20e/use-package-directory))
+  
+  (require 'package)
+  (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t))
 
 (defun k20e/no-bars-held ()
   "Turn off tool, scroll, and menu bars when appropriate.
@@ -121,6 +136,7 @@ Only turn off the menu bar running in a terminal window."
 
 (setq-default load-prefer-newer t
               python-indent-guess-indent-offset-verbose nil)
+(k20e/setup-use-package)
 (k20e/setup-cask-and-pallet)
 (k20e/no-bars-held)
 (k20e/setup-load-path)
