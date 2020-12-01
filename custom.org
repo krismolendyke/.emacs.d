@@ -1916,9 +1916,9 @@ function.
 * re-builder
 
   #+BEGIN_SRC emacs-lisp
-    (require 're-builder)
-
-    (setq-default reb-re-syntax 'string)
+    (use-package re-builder
+      :config
+      (setq reb-re-syntax 'string))
   #+END_SRC
 
 * recentf
