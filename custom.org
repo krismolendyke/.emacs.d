@@ -1071,7 +1071,9 @@ function.
             ("C-p" . 'company-select-previous)
             ("C-h" . 'delete-backward-char))
       :config
-      (setq company-show-numbers t))
+      (setq company-idle-delay nil
+            company-show-numbers t
+            company-tooltip-align-annotations t))
 
     (use-package flycheck
       :ensure t)
@@ -1109,7 +1111,8 @@ function.
       :ensure t
       :bind
       (:map go-mode-map
-            ("C-c C-t" . 'k20e/toggle-test-buffer))
+            ("C-c C-t" . 'k20e/toggle-test-buffer)
+            ("C-." . 'company-indent-or-complete-common))
       :preface
       (defun k20e/go-mode ()
         (message "hey, go-mode!"))
