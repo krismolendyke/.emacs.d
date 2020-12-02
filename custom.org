@@ -927,7 +927,7 @@ function.
     (require 'prog-mode)
 
     (defun k20e/prog-mode-hook ()
-      (add-pragmatapro-prettify-symbols-alist))
+      (prettify-hook))
 
     (add-hook 'prog-mode-hook 'k20e/prog-mode-hook)
   #+END_SRC
@@ -1064,35 +1064,30 @@ function.
 
   #+BEGIN_SRC emacs-lisp
     (use-package company
-      :bind (:map company-active-map
-             ("C-n" . 'company-select-next)
-             ("C-p" . 'company-select-previous)
-             ("C-h" . 'delete-backward-char) ; Not help!
-             ))
+      :ensure t
+      :bind
+      (:map company-active-map
+            ("C-n" . 'company-select-next)
+            ("C-p" . 'company-select-previous)
+            ("C-h" . 'delete-backward-char))
+      :config
+      (setq company-show-numbers t))
 
-    (use-package go-mode)
+    (use-package flycheck
+      :ensure t)
 
-    (require 'flycheck)
-    (require 'lsp-mode)
-
-    (defun k20e/go-mode-hook ()
-      (let ((gopath (string-trim (shell-command-to-string (string-join `(,(executable-find "go") "env" "GOPATH") " "))))
-            (goroot (string-trim (shell-command-to-string (string-join `(,(executable-find "go") "env" "GOROOT") " ")))))
-        (setenv "GOPATH" gopath)
-        (setenv "GOROOT" goroot))
-
-      (setup-compose-predicate)
-
-      (set (make-local-variable 'compile-command)
-           "go build -v ")
-
-      (setq company-show-numbers t
-            fill-column 118
-            indent-tabs-mode t
-            tab-width 4)
-
-      ;; lsp-mode settings
-      ;; Officially supported get first class vars, experiments are "custom"
+    (use-package lsp-mode
+      :ensure t
+      :hook ((go-mode . lsp-deferred)
+             (before-save . (lambda () (when (eq major-mode 'go-mode)
+                                         (lsp-format-buffer)
+                                         (lsp-organize-imports)))))
+      :bind
+      (:map go-mode-map
+            ("M-q" . lsp-format-buffer))
+      :config
+      ;; Officially supported settings get first class vars, experimental
+      ;; settings are "custom"
       ;; https://github.com/golang/tools/blob/master/gopls/doc/emacs.md#gopls-configuration
 
       ;; Officially supported settings
@@ -1108,19 +1103,27 @@ function.
        '(("gopls.completeUnimported" t t)
          ("gopls.staticcheck" t t)))
 
-      (add-hook 'before-save-hook 'lsp-format-buffer)
-      (add-hook 'before-save-hook 'lsp-organize-imports)
+      (set-face-attribute 'lsp-face-highlight-textual nil :underline t))
 
-      (set-face-attribute 'lsp-face-highlight-textual nil :underline t)
-
-      (add-hook 'flycheck-mode-hook #'flycheck-golangci-lint-setup)
-
-      (lsp-deferred))
-
-    (add-hook 'go-mode-hook 'k20e/go-mode-hook)
-
-    (define-key go-mode-map (kbd "C-c C-t") 'k20e/toggle-test-buffer)
-    (define-key go-mode-map (kbd "M-q") 'lsp-format-buffer)
+    (use-package go-mode
+      :ensure t
+      :bind
+      (:map go-mode-map
+            ("C-c C-t" . 'k20e/toggle-test-buffer))
+      :preface
+      (defun k20e/go-mode ()
+        (message "hey, go-mode!"))
+      :hook ((flycheck-mode . flycheck-golangci-lint-setup)
+             (go-mode . k20e/go-mode)
+             (go-mode . (lambda ()
+                          (let ((gopath (string-trim (shell-command-to-string (string-join `(,(executable-find "go") "env" "GOPATH") " "))))
+                                (goroot (string-trim (shell-command-to-string (string-join `(,(executable-find "go") "env" "GOROOT") " ")))))
+                            (setenv "GOPATH" gopath)
+                            (setenv "GOROOT" goroot)
+                            (set (make-local-variable 'compile-command) "go build -v ")
+                            (setq fill-column 118
+                                  indent-tabs-mode t
+                                  tab-width 4))))))
   #+END_SRC
 
 ** [0/3] =TODO=
