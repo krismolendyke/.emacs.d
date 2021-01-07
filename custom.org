@@ -1370,6 +1370,14 @@ function.
                'k20e/eval-expression-minibuffer-setup-hook)
    #+END_SRC
 
+* Mouse
+
+  Scroll one line at a time:
+
+  #+BEGIN_SRC emacs-lisp
+    (setq-default mouse-wheel-scroll-amount '(1 ((shift) . 1) ((meta)) ((control) . text-scale)))
+  #+END_SRC
+
 * multi-term
   :PROPERTIES:
   :CUSTOM_ID: multi-term
