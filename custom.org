@@ -1086,7 +1086,7 @@ function.
                                          (lsp-organize-imports)))))
       :bind
       (:map go-mode-map
-            ("M-q" . lsp-format-buffer))
+            ("M-Q" . lsp-format-buffer))
       :config
       ;; Officially supported settings get first class vars, experimental
       ;; settings are "custom"
