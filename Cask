@@ -14,6 +14,7 @@
 (depends-on "company")
 (depends-on "counsel")
 (depends-on "dash")
+(depends-on "dash-functional")
 (depends-on "dockerfile-mode")
 (depends-on "epl")
 (depends-on "exec-path-from-shell")
