@@ -1125,7 +1125,8 @@ function.
                             (set (make-local-variable 'compile-command) "go build -v ")
                             (setq fill-column 118
                                   indent-tabs-mode t
-                                  tab-width 4))))))
+                                  tab-width 4)
+                            (set-face-attribute 'button nil :box nil))))))
   #+END_SRC
 
 ** [0/3] =TODO=
