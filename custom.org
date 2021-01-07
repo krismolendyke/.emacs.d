@@ -2239,6 +2239,7 @@ function.
 
   #+BEGIN_SRC emacs-lisp
     (defun k20e/text-mode-hook ()
+      (prettify-hook)
       (auto-fill-mode 1))
 
     (add-hook 'text-mode-hook 'k20e/text-mode-hook)
