@@ -219,8 +219,8 @@ function.
 
    #+BEGIN_SRC emacs-lisp
      (eval-when-compile
-       (let ((gib (expt 2 30)))
-         (setq gc-cons-threshold (* 2 gib))))
+       (let ((mib (expt 2 20)))
+         (setq gc-cons-threshold (* 500 mib))))
    #+END_SRC
 
 ** Process Output
