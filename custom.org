@@ -1095,7 +1095,7 @@ function.
       ;; Officially supported settings
       ;; https://github.com/golang/tools/blob/master/gopls/doc/settings.md#officially-supported
       (setq-default lsp-go-link-target "pkg.go.dev"
-                    lsp-go-use-placeholders nil
+                    lsp-go-use-placeholders t
                     lsp-eldoc-render-all nil
                     lsp-signature-doc-lines 20)
 
