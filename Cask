@@ -68,6 +68,7 @@
 (depends-on "toml-mode")
 (depends-on "transient")
 (depends-on "typescript-mode")
+(depends-on "use-package")
 (depends-on "uuidgen")
 (depends-on "visual-fill-column")
 (depends-on "web-mode")
