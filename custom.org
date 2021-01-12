@@ -2157,12 +2157,12 @@ function.
     (show-paren-mode)
   #+END_SRC
 
-  Do not blink the cursor:
+  Blink the cursor:
 
   #+BEGIN_SRC emacs-lisp
     (require 'frame)
 
-    (setq-default blink-cursor-mode 0)
+    (setq-default blink-cursor-mode t)
   #+END_SRC
 
   Truncate lines and enable fringes to indicate truncated lines:
