@@ -1075,6 +1075,9 @@ function.
             company-show-numbers t
             company-tooltip-align-annotations t))
 
+    (use-package dash
+      :ensure t)
+
     (use-package flycheck
       :ensure t)
 
