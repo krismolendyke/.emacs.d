@@ -1273,13 +1273,11 @@ function.
     (require 'json)
 
     (defun k20e/js-mode-hook ()
-      (setq-default flycheck-gjslintrc "gjslintrc")
       (flycheck-mode 1))
 
     (add-hook 'js-mode-hook 'k20e/js-mode-hook)
 
     (add-to-list 'auto-mode-alist '("\\.json\\'" . js-mode))
-    (add-to-list 'auto-mode-alist '("Pipfile.lock\\'" . js-mode))
   #+END_SRC
 
 * keyfreq
@@ -2378,6 +2376,8 @@ function.
     (require 'web-mode)
 
     (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
+    (add-to-list 'auto-mode-alist '("\\.jsx\\'" . web-mode))
+    (add-to-list 'auto-mode-alist '("\\.tsx\\'" . web-mode))
 
     (defun k20e/web-mode-hook ()
       (set-default 'web-mode-engines-alist '(("django" . "\\.html?\\'")))
