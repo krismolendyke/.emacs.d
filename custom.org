@@ -2369,6 +2369,7 @@ function.
 
   #+BEGIN_SRC emacs-lisp
     (require 'elec-pair)
+    (require 'flycheck)
     (require 'web-mode)
 
     (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
@@ -2379,6 +2380,8 @@ function.
       (set-default 'web-mode-engines-alist '(("django" . "\\.html?\\'")))
       (setq web-mode-markup-indent-offset 2
             web-mode-enable-auto-quoting nil)
+
+      (flycheck-add-mode 'typescript-tslint 'web-mode)
 
       ;; Disable pairing { to avoid {{ }}}} from web-mode block templates
       (setq-local electric-pair-inhibit-predicate
