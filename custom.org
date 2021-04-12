@@ -2226,7 +2226,7 @@ function.
     (require 'terraform-mode)
 
     (defun k20e/terraform-mode-hook ()
-      (setq terraform-format-on-save-mode t))
+      (terraform-format-on-save-mode))
 
     (add-hook 'terraform-mode-hook 'k20e/terraform-mode-hook)
   #+END_SRC
@@ -2341,8 +2341,6 @@ function.
       (tide-hl-identifier-mode 1))
 
     (add-hook 'typescript-mode-hook 'k20e/typescript-mode-hook)
-
-    (add-hook 'before-save-hook 'tide-format-before-save)
   #+END_SRC
 
 * uniquify
