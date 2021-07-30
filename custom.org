@@ -926,8 +926,7 @@ function.
   #+BEGIN_SRC emacs-lisp
     (require 'prog-mode)
 
-    (defun k20e/prog-mode-hook ()
-      (prettify-hook))
+    (defun k20e/prog-mode-hook ())
 
     (add-hook 'prog-mode-hook 'k20e/prog-mode-hook)
   #+END_SRC
@@ -1298,6 +1297,45 @@ function.
     (define-key latex-mode-map (kbd "C-j") 'join-line)
   #+END_SRC
 
+* =ligature.el=
+
+  #+BEGIN_SRC emacs-lisp
+    (use-package ligature
+      :load-path "~/.emacs.d/elisp/ligature.el"
+      :config
+      (ligature-set-ligatures 'prog-mode '("[ERROR]" "[DEBUG]" "[INFO]" "[WARN]" "[WARNING]"
+                                           "[ERR]" "[FATAL]" "[TRACE]" "[FIXME]" "[TODO]"
+                                           "[BUG]" "[NOTE]" "[HACK]" "[MARK]"
+                                           "# ERROR" "# DEBUG" "# INFO" "# WARN" "# WARNING"
+                                           "# ERR" "# FATAL" "# TRACE" "# FIXME" "# TODO"
+                                           "# BUG" "# NOTE" "# HACK" "# MARK"
+                                           "// ERROR" "// DEBUG" "// INFO" "// WARN" "// WARNING"
+                                           "// ERR" "// FATAL" "// TRACE" "// FIXME" "// TODO"
+                                           "// BUG" "// NOTE" "// HACK" "// MARK"
+                                           "!!" "!=" "!==" "!!!" "!≡" "!≡≡" "!>" "!=<" "#("
+                                           "#_" "#{" "#?" "#>" "##" "#_(" "%=" "%>" "%>%" "%<%"
+                                           "&%" "&&" "&*" "&+" "&-" "&/" "&=" "&&&" "&>" "$>"
+                                           "***" "*=" "*/" "*>" "++" "+++" "+=" "+>" "++=" "--"
+                                           "-<" "-<<" "-=" "->" "->>" "---" "-->" "-+-" "-\\/"
+                                           "-|>" "-<|" ".." "..." "..<" ".>" ".~" ".=" "/*" "//"
+                                           "/>" "/=" "/==" "///" "/**" ":::" "::" ":=" ":≡" ":>"
+                                           ":=>" ":(" ":-(" ":)" ":-)" ":/" ":\\" ":3" ":D" ":P"
+                                           ":>:" ":<:" "<$>" "<*" "<*>" "<+>" "<-" "<<" "<<<" "<<="
+                                           "<=" "<=>" "<>" "<|>" "<<-" "<|" "<=<" "<~" "<~~" "<<~"
+                                           "<$" "<+" "<!>" "<@>" "<#>" "<%>" "<^>" "<&>" "<?>" "<.>"
+                                           "</>" "<\\>" "<\">" "<:>" "<~>" "<**>" "<<^" "<!" "<@"
+                                           "<#" "<%" "<^" "<&" "<?" "<." "</" "<\\" "<\"" "<:" "<->"
+                                           "<!--" "<--" "<~<" "<==>" "<|-" "<<|" "<-<" "<-->" "<<=="
+                                           "<==" "=<<" "==" "===" "==>" "=>" "=~" "=>>" "=/=" "=~="
+                                           "==>>" "≡≡" "≡≡≡" "≡:≡" ">-" ">=" ">>" ">>-" ">>=" ">>>"
+                                           ">=>" ">>^" ">>|" ">!=" ">->" "??" "?~" "?=" "?>" "???"
+                                           "?." "^=" "^." "^?" "^.." "^<<" "^>>" "^>" "\\\\" "\\>"
+                                           "\\/-" "@>" "|=" "||" "|>" "|||" "|+|" "|->" "|-->" "|=>"
+                                           "|==>" "|>-" "|<<" "||>" "|>>" "|-" "||-" "~=" "~>" "~~>"
+                                           "~>>" "[[" "]]" "\">" "_|_"))
+      (global-ligature-mode))
+  #+END_SRC
+
 * lockfiles
 
   [[http://stackoverflow.com/questions/5738170/why-does-emacs-create-temporary-symbolic-links-for-modified-files][Avoid creating temporary symbolic links]] and disturbing working
@@ -1323,7 +1361,6 @@ function.
     (require 'markdown-mode)
 
     (defun k20e/markdown-mode-hook ()
-      (add-pragmatapro-prettify-symbols-alist)
       (prettify-symbols-mode 1)
       (setq markdown-open-command "open"
             fill-column 118))
@@ -1528,7 +1565,6 @@ function.
       (auto-fill-mode 1)
       (visual-line-mode 0)
 
-      (add-pragmatapro-prettify-symbols-alist)
       (prettify-symbols-mode 1)
 
       (setq org-pretty-entities t           ; Display entities as UTF-8 characters.
@@ -1888,11 +1924,9 @@ function.
 
     (defun k20e/python-mode-hook ()
       (setq display-line-numbers nil
-            electric-indent-inhibit t       ; Do not drive me crazy with extra-dumb indentation!
-            fill-column 88)
-      (add-pragmatapro-prettify-symbols-alist)
+	    electric-indent-inhibit t       ; Do not drive me crazy with extra-dumb indentation!
+	    fill-column 88)
       (prettify-symbols-mode 1)
-      (setup-compose-predicate)
 
       (blacken-mode)
       (flycheck-mode 1)
@@ -2064,11 +2098,8 @@ function.
     (require 'sh-script)
 
     (defun k20e/sh-script-mode-hook ()
-      (add-pragmatapro-prettify-symbols-alist)
       (prettify-symbols-mode 1)
-      (flycheck-mode 1)
-
-      (setup-compose-predicate))
+      (flycheck-mode 1))
 
     (add-hook 'sh-mode-hook 'k20e/sh-script-mode-hook)
   #+END_SRC
@@ -2236,7 +2267,6 @@ function.
 
   #+BEGIN_SRC emacs-lisp
     (defun k20e/text-mode-hook ()
-      (prettify-hook)
       (auto-fill-mode 1))
 
     (add-hook 'text-mode-hook 'k20e/text-mode-hook)
@@ -2441,8 +2471,6 @@ function.
       (flycheck-yamllint-setup)
       (flyspell-mode-off)
       (highlight-indent-guides-mode)
-      (add-pragmatapro-prettify-symbols-alist)
-      (setup-compose-predicate)
       (prettify-symbols-mode 1))
 
     (add-hook 'yaml-mode-hook 'k20e/yaml-mode-hook)
