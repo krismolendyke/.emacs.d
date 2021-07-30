@@ -66,7 +66,7 @@ decoupled from the Emacs distribution package.")
   (with-eval-after-load 'info
     (info-initialize)
     (add-to-list 'Info-directory-list k20e/use-package-directory))
-  
+
   (require 'package)
   (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t))
 
@@ -80,7 +80,7 @@ Only turn off the menu bar running in a terminal window."
   (if (and (fboundp 'window-system)
            (not (window-system))
            (fboundp 'menu-bar-mode))
-      (menu-bar-mode -1)))
+      (menu-bar-mode 0)))
 
 (defun k20e/setup-load-path ()
   "Add custom directories to `load-path'."
