@@ -14,6 +14,7 @@
 (depends-on "color-theme-sanityinc-tomorrow")
 (depends-on "company")
 (depends-on "counsel")
+(depends-on "csv-mode")
 (depends-on "dash")
 (depends-on "dash-functional")
 (depends-on "dockerfile-mode")
