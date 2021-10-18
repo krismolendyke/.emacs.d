@@ -1786,7 +1786,7 @@ function.
    #+BEGIN_SRC emacs-lisp
      (setq org-todo-keywords '((sequence
                                 "TODO(t)"
-                                "STARTED(s/!)"
+                                "STARTED(s!)"
                                 "|"
                                 "DONE(d!)"
                                 "CANCELED(c@)"))
