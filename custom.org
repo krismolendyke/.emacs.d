@@ -1924,8 +1924,8 @@ function.
 
     (defun k20e/python-mode-hook ()
       (setq display-line-numbers nil
-	    electric-indent-inhibit t       ; Do not drive me crazy with extra-dumb indentation!
-	    fill-column 88)
+            electric-indent-inhibit t       ; Do not drive me crazy with extra-dumb indentation!
+            fill-column 88)
       (prettify-symbols-mode 1)
 
       (blacken-mode)
