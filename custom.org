@@ -1066,7 +1066,7 @@ function.
             ("C-h" . 'delete-backward-char))
       :config
       (setq company-idle-delay nil
-            company-show-numbers t
+            company-show-quick-access t
             company-tooltip-align-annotations t))
 
     (use-package dash
