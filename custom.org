@@ -2224,7 +2224,7 @@ function.
     (require 'nord-theme)
     (require 'color-theme-sanityinc-tomorrow)
 
-    (load-theme 'sanityinc-tomorrow-day)
+    (load-theme 'sanityinc-tomorrow-bright)
   #+END_SRC
 
 * term
