@@ -1406,10 +1406,10 @@ function.
 
 * Mouse
 
-  Scroll one line at a time:
+  Scroll one line at a time in the "natural" direction:
 
   #+BEGIN_SRC emacs-lisp
-    (setq-default mouse-wheel-scroll-amount '(1 ((shift) . 1) ((meta)) ((control) . text-scale)))
+    (setq-default mouse-wheel-scroll-amount '(-1 ((shift) . 1) ((meta)) ((control) . text-scale)))
   #+END_SRC
 
 * multi-term
