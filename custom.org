@@ -496,7 +496,8 @@ function.
 
       (defun k20e/switch-to-test-buffer ()
         "Switch to the test buffer associated with the current source buffer.
-      FIX: when >1 buffer w/ same name this is wrong because the buffer name is prepended w/ dir name or whatever"
+      FIX: when >1 buffer w/ same name this is wrong because the buffer
+      name is prepended w/ dir name or whatever"
         (let ((d (file-name-directory (buffer-file-name)))
               (f (format "%s_test.%s"
                           (file-name-sans-extension (buffer-name))
@@ -1493,7 +1494,8 @@ function.
     (defun k20e/mark-next (extended)
       "Wrap multiple-cursors mark-more/next.
     Call `mc/mark-next-like-this' without a prefix argument.
-    Argument EXTENDED Prefix argument to call function `mc/mark-more-like-this-extended'."
+    Argument EXTENDED Prefix argument to call function
+    `mc/mark-more-like-this-extended'."
       (interactive "P")
       (if extended
           (call-interactively 'mc/mark-more-like-this-extended)
@@ -1502,7 +1504,8 @@ function.
     (defun k20e/mark-previous (extended)
       "Wrap multiple-cursors mark-more/previous.
     Call `mc/mark-previous-like-this' without a prefix argument.
-    Argument EXTENDED Prefix argument to call function `mc/mark-more-like-this-extended'."
+    Argument EXTENDED Prefix argument to call function
+    `mc/mark-more-like-this-extended'."
       (interactive "P")
       (if extended
           (call-interactively 'mc/mark-more-like-this-extended)
