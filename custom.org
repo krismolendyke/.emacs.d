@@ -1664,8 +1664,12 @@ function.
    #+BEGIN_SRC emacs-lisp
      (require 'ox-publish)
 
-     ;; Enable "expert" export interface.
-     (setq org-export-dispatch-use-expert-ui t)
+     (setq
+      ;; Enable "expert" export interface.
+      org-export-dispatch-use-expert-ui t
+
+      ;; Continue export when links are broken, but mark them
+      org-export-with-broken-links  `mark)
    #+END_SRC
 
 *** Options
