@@ -1048,8 +1048,8 @@ function.
 
   #+BEGIN_SRC sh
     pushd "${TMPDIR}" && \
-        GO111MODULE=on go get golang.org/x/tools/gopls@latest; \
-        GO111MODULE=on go get honnef.co/go/tools/cmd/staticcheck; \
+        go install golang.org/x/tools/gopls@latest; \
+        go install honnef.co/go/tools/cmd/staticcheck@latest; \
         popd
   #+END_SRC
 
@@ -1091,7 +1091,8 @@ function.
 
       ;; Officially supported settings
       ;; https://github.com/golang/tools/blob/master/gopls/doc/settings.md#officially-supported
-      (setq-default lsp-go-link-target "pkg.go.dev"
+      (setq-default lsp-go-directory-filters ["-testdata"]
+                    lsp-go-link-target "pkg.go.dev"
                     lsp-go-use-placeholders t
                     lsp-eldoc-render-all nil
                     lsp-signature-doc-lines 20)
@@ -1099,8 +1100,7 @@ function.
       ;; Experimental settings
       ;; https://github.com/golang/tools/blob/master/gopls/doc/settings.md#experimental
       (lsp-register-custom-settings
-       '(("gopls.completeUnimported" t t)
-         ("gopls.staticcheck" t t)))
+       '(("gopls.staticcheck" t t)))
 
       (set-face-attribute 'lsp-face-highlight-textual nil :underline t))
 
