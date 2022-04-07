@@ -1079,31 +1079,9 @@ function.
 
     (use-package lsp-mode
       :ensure t
-      :hook ((go-mode . lsp-deferred)
-             (before-save . (lambda () (when (eq major-mode 'go-mode)
-                                         (lsp-format-buffer)
-                                         (lsp-organize-imports)))))
-      :bind
-      (:map go-mode-map
-            ("M-Q" . lsp-format-buffer))
       :config
-      ;; Officially supported settings get first class vars, experimental
-      ;; settings are "custom"
-      ;; https://github.com/golang/tools/blob/master/gopls/doc/emacs.md#gopls-configuration
-
-      ;; Officially supported settings
-      ;; https://github.com/golang/tools/blob/master/gopls/doc/settings.md#officially-supported
-      (setq-default lsp-go-directory-filters ["-testdata"]
-                    lsp-go-link-target "pkg.go.dev"
-                    lsp-go-use-placeholders t
-                    lsp-eldoc-render-all nil
+      (setq-default lsp-eldoc-render-all nil
                     lsp-signature-doc-lines 20)
-
-      ;; Experimental settings
-      ;; https://github.com/golang/tools/blob/master/gopls/doc/settings.md#experimental
-      (lsp-register-custom-settings
-       '(("gopls.staticcheck" t t)))
-
       (set-face-attribute 'lsp-face-highlight-textual nil :underline t))
 
     (use-package go-mode
@@ -1112,20 +1090,45 @@ function.
       (:map go-mode-map
             ("C-c C-t" . 'k20e/toggle-test-buffer)
             ("C-." . 'company-indent-or-complete-common))
+      :custom-face (button ((t (:box nil))))
       :preface
-      (defun k20e/go-mode ()
-        (message "hey, go-mode!"))
-      :hook ((go-mode . k20e/go-mode)
-             (go-mode . (lambda ()
-                          (let ((gopath (string-trim (shell-command-to-string (string-join `(,(executable-find "go") "env" "GOPATH") " "))))
-                                (goroot (string-trim (shell-command-to-string (string-join `(,(executable-find "go") "env" "GOROOT") " ")))))
-                            (setenv "GOPATH" gopath)
-                            (setenv "GOROOT" goroot)
-                            (set (make-local-variable 'compile-command) "go build -v ")
-                            (setq fill-column 118
-                                  indent-tabs-mode t
-                                  tab-width 4)
-                            (set-face-attribute 'button nil :box nil))))))
+      (defun k20e/go-mode-hook ()
+        (message "k20e/go-mode-hook"))
+      :hook
+      ((before-save . (lambda () (when (eq major-mode 'go-mode)
+                              (lsp-format-buffer)
+                              (lsp-organize-imports))))
+       (go-mode . lsp-deferred)
+       (go-mode . k20e/go-mode-hook)
+       (go-mode . (lambda ()
+                    (let ((gopath (string-trim (shell-command-to-string (string-join `(,(executable-find "go") "env" "GOPATH") " "))))
+                          (goroot (string-trim (shell-command-to-string (string-join `(,(executable-find "go") "env" "GOROOT") " ")))))
+                      (setenv "GOPATH" gopath)
+                      (setenv "GOROOT" goroot))
+                    (setq-local compile-command "go run main.go"))))
+      :config
+      (setq fill-column 118
+            indent-tabs-mode t
+            tab-width 4)
+
+      ;; lsp (currently gopls)
+
+      ;; https://github.com/golang/tools/blob/master/gopls/doc/emacs.md#configuring-lsp-mode
+      ;; Officially supported settings get first class vars, experimental
+      ;; settings are "custom" strings set via
+      ;; lsp-register-custom-settings.
+
+      ;; Officially supported settings
+      ;; https://github.com/golang/tools/blob/master/gopls/doc/settings.md#officially-supported
+      (setq-default lsp-go-directory-filters ["-testdata"]
+                    lsp-go-link-target "pkg.go.dev"
+                    lsp-go-use-placeholders t)
+
+      ;; Experimental settings
+      ;; https://github.com/golang/tools/blob/master/gopls/doc/settings.md
+      ;; anything marked as, "This setting is experimental and may be
+      ;; deleted."
+      (lsp-register-custom-settings '(("gopls.staticcheck" t t))))
   #+END_SRC
 
 ** [0/3] =TODO=
