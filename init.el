@@ -114,7 +114,10 @@ Only turn off the menu bar running in a terminal window."
   "Load custom Emacs Lisp files in `k20e/elisp-directory'."
   (dolist (file (directory-files k20e/elisp-directory t "\\w+"))
     (when (file-regular-p file)
-      (load file))))
+      (load file)))
+  (require 'org)
+  (dolist (elt (directory-files user-emacs-directory t "\\.org$" t))
+    (org-babel-load-file elt t)))
 
 (defun k20e/restore-desktop ()
   "Restore the state of buffers from the last session."

@@ -1107,9 +1107,9 @@ function.
                       (setenv "GOROOT" goroot))
                     (setq-local compile-command "go run main.go"))))
       :config
-      (setq fill-column 118
-            indent-tabs-mode t
-            tab-width 4)
+      (setq-default fill-column 118
+                    indent-tabs-mode t
+                    tab-width 4)
 
       ;; lsp (currently gopls)
 
