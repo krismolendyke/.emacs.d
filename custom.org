@@ -1574,17 +1574,54 @@ function.
 
       (prettify-symbols-mode 1)
 
-      (setq org-pretty-entities t           ; Display entities as UTF-8 characters.
+      (setq org-pretty-entities t  ; Display entities as UTF-8 characters.
             truncate-lines nil
             org-ellipsis "…"
             org-fontify-quote-and-verse-blocks t
             org-fontify-whole-heading-line t)
-      (setq-local global-hl-line-mode nil))
+      (setq-local global-hl-line-mode nil)
+
+      ;; WIP gettin' fancy
+      (variable-pitch-mode)
+      (custom-theme-set-faces
+       'user
+       '(variable-pitch ((t (:family "Nimbus Sans"))))
+       '(fixed-pitch ((t (:family "PragmataPro Liga"))))
+       '(org-block ((t (:inherit fixed-pitch))))
+       '(org-block-begin-line ((t (:inherit fixed-pitch))))
+       '(org-block-end-line ((t (:inherit fixed-pitch))))
+       '(org-code ((t (:inherit (shadow fixed-pitch)))))
+       '(org-date ((t (:inherit (shadow fixed-pitch)))))
+       '(org-drawer ((t (:inherit (shadow fixed-pitch)))))
+       '(org-document-info-keyword ((t (:inherit (shadow fixed-pitch)))))
+       '(org-indent ((t (:inherit (org-hide fixed-pitch)))))
+       '(org-meta-line ((t (:inherit (font-lock-comment-face fixed-pitch)))))
+       '(org-property-value ((t (:inherit fixed-pitch))) t)
+       '(org-special-keyword ((t (:inherit (font-lock-comment-face fixed-pitch)))))
+       '(org-table ((t (:inherit fixed-pitch))))
+       '(org-tag ((t (:inherit (shadow fixed-pitch)))))
+       '(org-todo ((t (:inherit (shadow fixed-pitch)))))
+       '(org-done ((t (:inherit (shadow fixed-pitch)))))
+       '(org-ellipsis ((t (:inherit (shadow fixed-pitch))))) ; "CANCELED" for some reason is this
+       '(org-verbatim ((t (:inherit (shadow fixed-pitch)))))
+       '(org-quote ((t (:inherit (shadow variable-pitch))))))
+
+      ;; Replace - w/ fancy dot for bulleted lists
+      (font-lock-add-keywords
+       'org-mode
+       '(("^ *\\([-]\\) "
+          (0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "•")))))))
 
     (add-hook 'org-mode-hook 'k20e/org-mode-hook)
 
     ;; Set the org directory.
     (setq org-directory (expand-file-name "org" k20e/google-drive-directory))
+
+    ;; Collapse into headlines when opening files
+    (setq-default org-startup-folded t)
+
+    ;; Automatically indent new lines below sections to align with section stars
+    (setq-default org-adapt-indentation t)
 
     ;; Speeeeeeeeeed!  Move to very beginning of a headline and press "?"
     (setq org-use-speed-commands t)
@@ -1598,12 +1635,10 @@ function.
     ;; org-capture.
     (setq org-default-notes-file (expand-file-name "notes.org" org-directory))
 
-    ;; Global key binding to make storing links to files easier.
-    (global-set-key (kbd "C-c l") 'org-store-link)
-
     ;; Use Ivy for completion
     (setq org-outline-path-complete-in-steps nil)
 
+    ;; Record time for schedules and deadlines
     (setq org-log-redeadline 'time
           org-log-reschedule 'time)
   #+END_SRC
@@ -1639,9 +1674,10 @@ function.
    #+BEGIN_SRC emacs-lisp
      (require 'ivy)
 
-     (global-set-key (kbd "C-c a") 'org-agenda)
-     (global-set-key (kbd "C-x c") 'org-switchb)
      (global-set-key (kbd "<f12>") 'org-agenda-list)
+     (global-set-key (kbd "C-c a") 'org-agenda)
+     (global-set-key (kbd "C-c l") 'org-store-link)
+     (global-set-key (kbd "C-x c") 'org-switchb)
 
      (define-key org-mode-map (kbd "<return>") 'org-return-indent)
      (define-key org-mode-map (kbd "M-<return>") 'org-meta-return)
