@@ -783,7 +783,8 @@ function.
     (defun k20e/dired-load-hook ()
       (load "dired-x"))
 
-    (add-hook 'dired-load-hook 'k20e/dired-load-hook)
+    (with-eval-after-load 'dired
+      (k20e/dired-load-hook))
 
     (defun k20e/dired-mode-hook ()
       (auto-revert-mode 1)

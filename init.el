@@ -10,6 +10,9 @@
 
 (require 'subr-x)
 
+;;; /sigh/ https://github.com/cask/cask/issues/463
+(setq warning-suppress-log-types '((package reinitialization)))
+
 (defvar k20e/site-lisp-directory
   (expand-file-name "site-lisp" user-emacs-directory)
   "Local libraries.")
