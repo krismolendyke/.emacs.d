@@ -1,5 +1,6 @@
 (source gnu)
 (source melpa)
+(source nongnu)
 
 (depends-on "0blayout")
 (depends-on "ansi")
@@ -19,7 +20,6 @@
 (depends-on "dash-functional")
 (depends-on "dockerfile-mode")
 (depends-on "eldoc" "1.11")
-(depends-on "eldoc")
 (depends-on "emacs" "25.1")
 (depends-on "epl")
 (depends-on "exec-path-from-shell")
@@ -75,7 +75,7 @@
 (depends-on "tide")
 (depends-on "toml")
 (depends-on "toml-mode")
-(depends-on "transient")
+(depends-on "transient" "0.1.0")
 (depends-on "typescript-mode")
 (depends-on "use-package")
 (depends-on "uuidgen")

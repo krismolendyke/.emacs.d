@@ -1589,7 +1589,7 @@ function.
     (setq org-special-ctrl-a/e t)
 
     ;; Use completion in the current buffer for movement.
-    (setq org-goto-interface 'outline-path-completion)
+    (setq-default org-goto-interface 'outline-path-completion)
 
     ;; org-capture.
     (setq org-default-notes-file (expand-file-name "notes.org" org-directory))
@@ -1616,6 +1616,9 @@ function.
      g add site-lisp/org-mode
      g commit -m "UPGRAYEDD org-mode"
    #+END_SRC
+
+   [[https://list.orgmode.org/87wnzfy60h.fsf@bzg.fr/][=contrib/=]] was split out into a separate repo so that needs to be
+   updated separately via [[*Paradox][Paradox]].
 
 ** Inline Images
 
@@ -1755,7 +1758,7 @@ function.
 
 ** Babel
 
-   Define [[http://orgmode.org/worg/org-contrib/babel/languages.html][which languages]] =org-babel= should support.
+   Define [[https://orgmode.org/worg/org-contrib/babel/languages/index.html][which languages]] =org-babel= should support.
 
    #+BEGIN_SRC emacs-lisp
      (defvar k20e/org-babel-load-languages

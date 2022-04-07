@@ -68,7 +68,8 @@ decoupled from the Emacs distribution package.")
     (add-to-list 'Info-directory-list k20e/use-package-directory))
 
   (require 'package)
-  (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t))
+  (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
+  (add-to-list 'package-archives '("nongnu" . "https://elpa.nongnu.org/nongnu/") t))
 
 (defun k20e/no-bars-held ()
   "Turn off tool, scroll, and menu bars when appropriate.
