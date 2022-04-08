@@ -473,13 +473,6 @@ function.
        (message "%s" (buffer-file-name)))
    #+END_SRC
 
-   #+BEGIN_SRC emacs-lisp
-     (defun k20e/font-toggle-proportional ()
-       "Toggle between a proportional font."
-       (interactive)
-       (buffer-face-toggle '(:family "PragmataPro-Liga")))
-   #+END_SRC
-
 *** Toggle Source/Test Buffer
 
     If this gets any smarter it should be refactored into its own
@@ -936,8 +929,8 @@ function.
   #+BEGIN_SRC emacs-lisp
     (global-prettify-symbols-mode 1)
 
-    (defvar k20e/font-list '(("PragmataPro-Liga" . 14)
-                             ("PragmataPro" . 14))
+    (defvar k20e/font-list '(("PragmataPro-Mono-Liga" . 14)
+                             ("PragmataPro-Liga" . 14))
       "Ordered list of preferred fonts and sizes.")
 
     (defun k20e/font--set (font-alist)
