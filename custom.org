@@ -1582,9 +1582,9 @@ function.
       :hook
       ((org-mode . auto-fill-mode)
        (org-mode . prettify-symbols-mode)
+       (org-mode . variable-pitch-mode)
        (org-mode . (lambda ()
                      (visual-line-mode 0)   ; TODO how to do this w/ :hook?
-                     (variable-pitch-mode)  ; Apparently this isn't a "real" mode for use-package :hook?
 
                      ;; Replace '-' w/ fancy dot for bulleted lists
                      (font-lock-add-keywords
@@ -1610,7 +1610,14 @@ function.
       (setq-default org-adapt-indentation t
                     org-goto-interface 'outline-path-completion
                     org-startup-folded t)
-      (setq-local global-hl-line-mode nil))
+      (setq-local global-hl-line-mode nil)
+      :functions
+      company-indent-or-complete-common
+      company-select-next
+      company-select-previous
+      lsp-format-buffer
+      lsp-organize-imports
+      lsp-register-custom-settings)
   #+END_SRC
 
 ** UPGRAYEDD
