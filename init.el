@@ -114,7 +114,10 @@ Only turn off the menu bar running in a terminal window."
   "Load custom Emacs Lisp files in `k20e/elisp-directory'."
   (dolist (file (directory-files k20e/elisp-directory t "\\w+"))
     (when (file-regular-p file)
-      (load file)))
+      (load file))))
+
+(defun k20e/load-custom-org ()
+  "Load custom Org Mode configuration."
   (require 'org)
   (dolist (elt (directory-files user-emacs-directory t "\\.org$" t))
     (org-babel-load-file elt t)))
@@ -129,10 +132,7 @@ Only turn off the menu bar running in a terminal window."
   (desktop-read k20e/google-drive-directory))
 
 (defun k20e/after-init-hook ()
-  "Perform complex post-initialization."
-  (require 'org)
-  (dolist (elt (directory-files user-emacs-directory t "\\.org$" t))
-    (org-babel-load-file elt t)))
+  "Perform complex post-initialization.")
 
 ;;; Set the Emacs source directory so that C function source can be
 ;;; found when necessary.
@@ -143,12 +143,14 @@ Only turn off the menu bar running in a terminal window."
 
 (setq-default load-prefer-newer t
               python-indent-guess-indent-offset-verbose nil)
+
 (k20e/setup-use-package)
 (k20e/setup-cask-and-pallet)
 (k20e/no-bars-held)
 (k20e/setup-load-path)
 (k20e/setup-exec-path)
 (k20e/load-custom-elisp)
+(k20e/load-custom-org)
 (k20e/restore-desktop)
 (add-hook 'after-init-hook 'k20e/after-init-hook)
 

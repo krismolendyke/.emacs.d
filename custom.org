@@ -1566,81 +1566,60 @@ function.
 * org-mode
 
   #+BEGIN_SRC emacs-lisp
-    (require 'org)
+    (use-package org
+      :custom-face
+      (variable-pitch ((t (:family "ETBembo" :height 1.3))))
+      (fixed-pitch ((t (:family "PragmataPro Mono Liga" :height 0.9))))
+      (org-block ((t (:inherit fixed-pitch))))
+      (org-block-begin-line ((t (:inherit fixed-pitch))))
+      (org-block-end-line ((t (:inherit fixed-pitch))))
+      (org-code ((t (:inherit (shadow fixed-pitch)))))
+      (org-date ((t (:inherit (shadow fixed-pitch)))))
+      (org-document-info-keyword ((t (:inherit (shadow fixed-pitch)))))
+      (org-done ((t (:inherit (shadow fixed-pitch)))))
+      (org-drawer ((t (:inherit (shadow fixed-pitch)))))
+      (org-ellipsis ((t (:inherit (shadow fixed-pitch))))) ; "CANCELED" for some reason is this
+      (org-indent ((t (:inherit (org-hide fixed-pitch)))))
+      (org-meta-line ((t (:inherit (font-lock-comment-face fixed-pitch)))))
+      (org-property-value ((t (:inherit fixed-pitch))))
+      (org-quote ((t (:inherit (shadow)))))
+      (org-special-keyword ((t (:inherit (font-lock-comment-face fixed-pitch)))))
+      (org-table ((t (:inherit fixed-pitch))))
+      (org-tag ((t (:inherit (shadow fixed-pitch)))))
+      (org-todo ((t (:inherit (shadow fixed-pitch)))))
+      (org-verbatim ((t (:inherit (shadow fixed-pitch)))))
+      :hook
+      ((org . auto-fill)
+       (org . prettify-symbols)
+       (org . (lambda ()
+                (visual-line-mode 0)        ; TODO how to do this w/ :hook?
+                (variable-pitch-mode)       ; Apparently this isn't a "real" mode for use-package :hook?
 
-    (defun k20e/org-mode-hook ()
-      (auto-fill-mode 1)
-      (visual-line-mode 0)
+                ;; Replace '-' w/ fancy dot for bulleted lists
+                (font-lock-add-keywords
+                 'org-mode
+                 '(("^ *\\([-]\\) "
+                    (0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "•"))))))
 
-      (prettify-symbols-mode 1)
-
-      (setq org-pretty-entities t  ; Display entities as UTF-8 characters.
-            truncate-lines nil
+                )))
+      :config
+      (setq org-default-notes-file (expand-file-name "notes.org" org-directory)
+            org-directory (expand-file-name "org" k20e/google-drive-directory)
             org-ellipsis "…"
             org-fontify-quote-and-verse-blocks t
-            org-fontify-whole-heading-line t)
-      (setq-local global-hl-line-mode nil)
-
-      ;; WIP gettin' fancy
-      (variable-pitch-mode)
-      (custom-theme-set-faces
-       'user
-       '(variable-pitch ((t (:family "Nimbus Sans"))))
-       '(fixed-pitch ((t (:family "PragmataPro Liga"))))
-       '(org-block ((t (:inherit fixed-pitch))))
-       '(org-block-begin-line ((t (:inherit fixed-pitch))))
-       '(org-block-end-line ((t (:inherit fixed-pitch))))
-       '(org-code ((t (:inherit (shadow fixed-pitch)))))
-       '(org-date ((t (:inherit (shadow fixed-pitch)))))
-       '(org-drawer ((t (:inherit (shadow fixed-pitch)))))
-       '(org-document-info-keyword ((t (:inherit (shadow fixed-pitch)))))
-       '(org-indent ((t (:inherit (org-hide fixed-pitch)))))
-       '(org-meta-line ((t (:inherit (font-lock-comment-face fixed-pitch)))))
-       '(org-property-value ((t (:inherit fixed-pitch))) t)
-       '(org-special-keyword ((t (:inherit (font-lock-comment-face fixed-pitch)))))
-       '(org-table ((t (:inherit fixed-pitch))))
-       '(org-tag ((t (:inherit (shadow fixed-pitch)))))
-       '(org-todo ((t (:inherit (shadow fixed-pitch)))))
-       '(org-done ((t (:inherit (shadow fixed-pitch)))))
-       '(org-ellipsis ((t (:inherit (shadow fixed-pitch))))) ; "CANCELED" for some reason is this
-       '(org-verbatim ((t (:inherit (shadow fixed-pitch)))))
-       '(org-quote ((t (:inherit (shadow variable-pitch))))))
-
-      ;; Replace - w/ fancy dot for bulleted lists
-      (font-lock-add-keywords
-       'org-mode
-       '(("^ *\\([-]\\) "
-          (0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "•")))))))
-
-    (add-hook 'org-mode-hook 'k20e/org-mode-hook)
-
-    ;; Set the org directory.
-    (setq org-directory (expand-file-name "org" k20e/google-drive-directory))
-
-    ;; Collapse into headlines when opening files
-    (setq-default org-startup-folded t)
-
-    ;; Automatically indent new lines below sections to align with section stars
-    (setq-default org-adapt-indentation t)
-
-    ;; Speeeeeeeeeed!  Move to very beginning of a headline and press "?"
-    (setq org-use-speed-commands t)
-
-    ;; "Special" `C-a' and `C-e' movement in headlines.
-    (setq org-special-ctrl-a/e t)
-
-    ;; Use completion in the current buffer for movement.
-    (setq-default org-goto-interface 'outline-path-completion)
-
-    ;; org-capture.
-    (setq org-default-notes-file (expand-file-name "notes.org" org-directory))
-
-    ;; Use Ivy for completion
-    (setq org-outline-path-complete-in-steps nil)
-
-    ;; Record time for schedules and deadlines
-    (setq org-log-redeadline 'time
-          org-log-reschedule 'time)
+            org-fontify-whole-heading-line t
+            org-hide-emphasis-markers t
+            org-log-redeadline 'time
+            org-log-reschedule 'time
+            org-outline-path-complete-in-steps nil
+            org-pretty-entities t
+            org-special-ctrl-a/e t
+            org-use-speed-commands t
+            truncate-lines nil)
+      (setq-default org-adapt-indentation t
+                    org-goto-interface 'outline-path-completion
+                    org-startup-folded t)
+      (setq-local global-hl-line-mode nil))
   #+END_SRC
 
 ** UPGRAYEDD
