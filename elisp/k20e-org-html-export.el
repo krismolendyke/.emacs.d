@@ -30,12 +30,13 @@
  (expand-file-name
   "elpa"
   (expand-file-name
-   "27.0"
+   "28.1"
    (expand-file-name
     ".cask"
     user-emacs-directory))))
 
 ;; Then use that version of org-mode, etc.
+(require 'use-package)
 (require 'org)
 (require 'ox-html)
 
