@@ -7,7 +7,6 @@
 
 ;;; Code:
 
-
 (require 'subr-x)
 
 ;;; /sigh/ https://github.com/cask/cask/issues/463
