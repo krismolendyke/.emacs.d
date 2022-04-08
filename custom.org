@@ -1589,8 +1589,8 @@ function.
       (org-todo ((t (:inherit (shadow fixed-pitch)))))
       (org-verbatim ((t (:inherit (shadow fixed-pitch)))))
       :hook
-      ((org-mode . auto-fill)
-       (org-mode . prettify-symbols)
+      ((org-mode . auto-fill-mode)
+       (org-mode . prettify-symbols-mode)
        (org-mode . (lambda ()
                      (visual-line-mode 0)   ; TODO how to do this w/ :hook?
                      (variable-pitch-mode)  ; Apparently this isn't a "real" mode for use-package :hook?
