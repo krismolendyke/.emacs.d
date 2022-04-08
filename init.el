@@ -141,10 +141,6 @@ Only turn off the menu bar running in a terminal window."
   (setq source-directory
         (string-join `(,k20e/brew-cache-directory "emacs--git") "/")))
 
-
-(setq-default load-prefer-newer t
-              python-indent-guess-indent-offset-verbose nil)
-
 (k20e/setup-use-package)
 (k20e/setup-cask-and-pallet)
 (k20e/no-bars-held)
