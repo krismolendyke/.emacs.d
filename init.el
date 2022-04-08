@@ -63,8 +63,10 @@ decoupled from the Emacs distribution package.")
 
 (defun k20e/setup-use-package ()
   "https://github.com/jwiegley/use-package"
-  (add-to-list 'load-path k20e/use-package-directory)
-  (require 'use-package)
+  (eval-when-compile
+    (add-to-list 'load-path k20e/use-package-directory)
+    (require 'use-package))
+
   (with-eval-after-load 'info
     (info-initialize)
     (add-to-list 'Info-directory-list k20e/use-package-directory))
