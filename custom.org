@@ -908,15 +908,10 @@ function.
 
 * Fonts
 
-  I purchased the excellent font family [[https://www.fsd.it/shop/fonts/pragmatapro/][PragmataPro]] and use it
-  exclusively now, rather than toggling between various proportional
-  and fixed width fonts as I read and edit.
-
-  The =add-pragmatapro-prettify-symbols-alist= function below is from
-  a file I load from the =elisp= directory at initialization.  That
-  file should be kept in sync with the version of the PragmataPro font
-  that is currently installed.  The font author releases updates here
-  https://github.com/fabrizioschiavi/pragmatapro/tree/master/emacs_snippets.
+  - [[https://protesilaos.com/codelog/2020-09-05-emacs-note-mixed-font-heights/][Setting default, variable & fixed pitch heights]]
+  - Fonts
+    - [[https://www.fsd.it/shop/fonts/pragmatapro/][PragmataPro]] ([[https://github.com/fabrizioschiavi/pragmatapro][GitHub]])
+    - [[https://edwardtufte.github.io/et-book/][ET Book]] ([[https://github.com/edwardtufte/et-book][GitHub]], [[https://aur.archlinux.org/packages/otf-et-book][AUR]])
 
   #+BEGIN_SRC emacs-lisp
     (require 'prog-mode)
@@ -970,7 +965,7 @@ function.
 
     #+BEGIN_SRC emacs-lisp
       (when (member "Symbola" (font-family-list))
-        (set-fontset-font t 'unicode "Symbola" nil 'prepend))
+        (set-fontset-font t 'unicode "Noto Color Emoji" nil 'prepend))
     #+END_SRC
 
 * font-awesome
