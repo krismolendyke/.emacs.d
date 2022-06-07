@@ -392,6 +392,17 @@ function.
      (defalias 'yes-or-no-p 'y-or-n-p)
    #+END_SRC
 
+   Stuff in review from https://www.masteringemacs.org/article/whats-new-in-emacs-28-1.
+
+   #+begin_src emacs-lisp
+     (setq-default
+      completions-detailed t
+      describe-bindings-outline t
+      mode-line-compact t
+      next-error-message-highlight t
+      frame-title-format '(multiple-frames "%b" ("%b\t%f")))
+   #+end_src
+
 * k20e Custom Functions
 
   I have found these to be useful enough to keep around permanently.
