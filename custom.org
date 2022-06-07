@@ -649,9 +649,9 @@ function.
 
   #+BEGIN_SRC emacs-lisp
     (defun k20e/auto-fill-mode-hook ()
-      (setq fill-column 78))
+      (setq-default fill-column 118))
 
-    (add-hook 'auto-fill-mode 'k20e/auto-fill-mode-hook)
+    (add-hook 'auto-fill-mode-hook 'k20e/auto-fill-mode-hook)
   #+END_SRC
 
 * auto-save
@@ -1104,8 +1104,7 @@ function.
                       (setenv "GOROOT" goroot))
                     (setq-local compile-command "go run main.go"))))
       :config
-      (setq-default fill-column 118
-                    indent-tabs-mode t
+      (setq-default indent-tabs-mode t
                     tab-width 4)
 
       ;; lsp (currently gopls)
@@ -1364,8 +1363,7 @@ function.
 
     (defun k20e/markdown-mode-hook ()
       (prettify-symbols-mode 1)
-      (setq markdown-open-command "open"
-            fill-column 118))
+      (setq markdown-open-command "open"))
 
     (add-hook 'markdown-mode-hook 'k20e/markdown-mode-hook)
   #+END_SRC
@@ -1957,8 +1955,7 @@ function.
 
     (defun k20e/python-mode-hook ()
       (setq display-line-numbers nil
-            electric-indent-inhibit t       ; Do not drive me crazy with extra-dumb indentation!
-            fill-column 88)
+            electric-indent-inhibit t)
       (prettify-symbols-mode 1)
 
       (blacken-mode)
@@ -2499,7 +2496,6 @@ function.
     (require 'flyspell)
 
     (defun k20e/yaml-mode-hook ()
-      (setq fill-column 118)
       (define-key yaml-mode-map (kbd "C-m") 'newline-and-indent)
       (flycheck-mode 1)
       (flycheck-yamllint-setup)
