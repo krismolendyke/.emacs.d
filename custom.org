@@ -2009,24 +2009,6 @@ function.
     (global-set-key (kbd "C-x C-r") 'counsel-recentf)
   #+END_SRC
 
-* reStructuredText
-
-  #+BEGIN_SRC emacs-lisp
-    (require 'rst)
-
-    (defun k20e/rst-mode-hook ()
-      (setq fill-column 78)
-      (set-default 'rst-preferred-adornments '((?= simple 0)
-                                               (?- simple 0)
-                                               (?~ simple 0)
-                                               (?* simple 0)
-                                               (?+ simple 0)
-                                               (?# simple 0)
-                                               (?@ simple 0))))
-
-    (add-hook 'rst-mode-hook 'k20e/rst-mode-hook)
-  #+END_SRC
-
 * ripgrep
 
   [[https://github.com/BurntSushi/ripgrep][ripgrep]] via [[#counsel][Counsel]], defaulting to the thing at point in the nearest
