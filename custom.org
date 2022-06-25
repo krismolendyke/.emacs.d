@@ -1951,7 +1951,6 @@ function.
     (require 'flycheck)
     (require 'multiple-cursors)
     (require 'python)
-    (require 'yasnippet)
 
     (defun k20e/python-mode-hook ()
       (setq display-line-numbers nil
@@ -1961,7 +1960,6 @@ function.
       (blacken-mode)
       (flycheck-mode 1)
       (superword-mode)
-      (yas-minor-mode 1)
       ;; Previously:
       ;; C-M-f, C-M-b (paredit-forward/back)
       ;; C-M-n, C-M-p (forward-list/backward-list)
