@@ -94,3 +94,4 @@
 (depends-on "xref" "1.0.2")
 (depends-on "yaml-mode")
 (depends-on "yasnippet")
+(depends-on "zig-mode")

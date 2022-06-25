@@ -2487,3 +2487,24 @@ function.
 
     (add-hook 'yaml-mode-hook 'k20e/yaml-mode-hook)
   #+END_SRC
+
+* zig-mode
+
+  #+begin_src emacs-lisp
+    (use-package zig-mode
+      :ensure t
+      :bind
+      (:map zig-mode-map
+            ("C-." . 'company-indent-or-complete-common))
+      :functions
+      lsp-register-client
+      make-lsp-client
+      :hook ((zig-mode . company-mode)
+             (zig-mode . lsp-deferred))
+      :custom (zig-format-on-save nil)
+      :config
+      (lsp-register-client
+       (make-lsp-client
+        :major-modes '(zig-mode)
+        :server-id 'zls)))
+  #+end_src
