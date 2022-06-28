@@ -2497,8 +2497,11 @@ function.
       :functions
       lsp-register-client
       make-lsp-client
-      :hook ((zig-mode . company-mode)
-             (zig-mode . lsp-deferred))
+      :hook
+      ((before-save . (lambda () (when (eq major-mode 'zig-mode)
+                              (lsp-format-buffer))))
+       (zig-mode . company-mode)
+       (zig-mode . lsp-deferred))
       :custom (zig-format-on-save nil)
       :config
       (lsp-register-client
