@@ -67,6 +67,7 @@
 (depends-on "paradox")
 (depends-on "paredit")
 (depends-on "pcache" "0.3.1")
+(depends-on "pcache")
 (depends-on "persistent-soft" "0.8.10")
 (depends-on "pkg-info")
 (depends-on "project" "0.8.1")
