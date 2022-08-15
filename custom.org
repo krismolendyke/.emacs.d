@@ -1302,7 +1302,6 @@ function.
 
   #+BEGIN_SRC emacs-lisp
     (use-package ligature
-      :load-path "~/.emacs.d/elisp/ligature.el"
       :config
       (ligature-set-ligatures 'prog-mode '("[ERROR]" "[DEBUG]" "[INFO]" "[WARN]" "[WARNING]"
                                            "[ERR]" "[FATAL]" "[TRACE]" "[FIXME]" "[TODO]"

@@ -49,6 +49,7 @@
 (depends-on "ivy")
 (depends-on "keyfreq")
 (depends-on "let-alist" "1.0.3")
+(depends-on "ligature")
 (depends-on "list-utils" "0.4.2")
 (depends-on "lsp-mode")
 (depends-on "lv")
