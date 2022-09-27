@@ -1116,7 +1116,7 @@ function.
 
       ;; Officially supported settings
       ;; https://github.com/golang/tools/blob/master/gopls/doc/settings.md#officially-supported
-      (setq-default lsp-go-directory-filters ["-testdata"]
+      (setq-default lsp-go-directory-filters ["-**/testdata"]
                     lsp-go-link-target "pkg.go.dev"
                     lsp-go-use-placeholders t)
 
@@ -1124,7 +1124,14 @@ function.
       ;; https://github.com/golang/tools/blob/master/gopls/doc/settings.md
       ;; anything marked as, "This setting is experimental and may be
       ;; deleted."
-      (lsp-register-custom-settings '(("gopls.staticcheck" t t))))
+      (lsp-register-custom-settings '(("gopls.staticcheck" t t)
+                                      ("go.inlayHints.assignVariableTypes" t t)
+                                      ("go.inlayHints.compositeLiteralFields" t t)
+                                      ("go.inlayHints.compositeLiteralTypes" t t )
+                                      ("go.inlayHints.constantValues" t t)
+                                      ("go.inlayHints.functionTypeParameters" t t)
+                                      ("go.inlayHints.parameterNames" t t)
+                                      ("go.inlayHints.rangeVariableTypes" t t))))
   #+END_SRC
 
 ** [0/3] =TODO=
@@ -1333,7 +1340,7 @@ function.
                                            "\\/-" "@>" "|=" "||" "|>" "|||" "|+|" "|->" "|-->" "|=>"
                                            "|==>" "|>-" "|<<" "||>" "|>>" "|-" "||-" "~=" "~>" "~~>"
                                            "~>>" "[[" "]]" "\">" "_|_"))
-      (global-ligature-mode))
+      (global-ligature-mode t))
   #+END_SRC
 
 * lockfiles
