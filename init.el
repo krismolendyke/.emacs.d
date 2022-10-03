@@ -9,9 +9,6 @@
 
 (require 'subr-x)
 
-;;; /sigh/ https://github.com/cask/cask/issues/463
-(setq warning-suppress-log-types '((package reinitialization)))
-
 (defvar k20e/site-lisp-directory
   (expand-file-name "site-lisp" user-emacs-directory)
   "Local libraries.")
@@ -42,24 +39,12 @@ decoupled from the Emacs distribution package.")
   (expand-file-name "use-package" k20e/site-lisp-directory)
   "The directory containing `use-package' files.")
 
-(dolist (cask-directory `(,(substitute-in-file-name "${HOME}/.cask")
-                          "/usr/local/share/emacs/site-lisp/cask"))
-  (when (file-accessible-directory-p cask-directory)
-    (defvar k20e/cask-directory cask-directory
-      "Cask Home.")))
-
 (when (string-equal system-type "darwin")
+  (setq mac-command-modifier 'meta)     ; TODO move into macos section in custom
   (defvar k20e/brew-cache-directory
     (string-trim (shell-command-to-string
                   (string-join `(,(executable-find "brew") "--cache") " ")))
     "Homebrew cache."))
-
-(defun k20e/setup-cask-and-pallet ()
-  "Package management goodness."
-  (require 'cask (expand-file-name "cask.el" k20e/cask-directory))
-  (cask-initialize user-emacs-directory)
-  (require 'pallet)
-  (pallet-mode t))
 
 (defun k20e/setup-use-package ()
   "https://github.com/jwiegley/use-package"
@@ -142,7 +127,6 @@ Only turn off the menu bar running in a terminal window."
         (string-join `(,k20e/brew-cache-directory "emacs--git") "/")))
 
 (k20e/setup-use-package)
-(k20e/setup-cask-and-pallet)
 (k20e/no-bars-held)
 (k20e/setup-load-path)
 (k20e/setup-exec-path)
