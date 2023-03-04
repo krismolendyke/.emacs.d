@@ -30,7 +30,7 @@
  (expand-file-name
   "elpa"
   (expand-file-name
-   "28.1"
+   "28.2"
    (expand-file-name
     ".cask"
     user-emacs-directory))))
