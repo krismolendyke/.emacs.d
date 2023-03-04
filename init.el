@@ -40,7 +40,10 @@ decoupled from the Emacs distribution package.")
   "The directory containing `use-package' files.")
 
 (when (string-equal system-type "darwin")
-  (setq mac-command-modifier 'meta)     ; TODO move into macos section in custom
+                    ; TODO move into macos section in custom
+  (setq mac-command-modifier 'meta
+        ns-alternate-modifier 'super
+        shell-file-name "/opt/homebrew/bin/bash")
   (defvar k20e/brew-cache-directory
     (string-trim (shell-command-to-string
                   (string-join `(,(executable-find "brew") "--cache") " ")))
