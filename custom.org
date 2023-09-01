@@ -2252,14 +2252,20 @@ function.
     (global-font-lock-mode)
   #+END_SRC
 
-  Set theme:
+  Set theme automatically on MacOS thanks to
+  https://github.com/d12frosted/homebrew-emacs-plus#system-appearance-change.  Just set it to dark on Linux for now.
 
   #+BEGIN_SRC emacs-lisp
-    (require 'nord-theme)
     (require 'color-theme-sanityinc-tomorrow)
 
-    (load-theme 'sanityinc-tomorrow-bright)
-    ;; (load-theme 'sanityinc-tomorrow-day)
+    (cond ((string-equal system-type "darwin")
+           (defun k20e/load-theme (mode)
+             "Load light or dark theme depending on which mode the system is currently in."
+             (pcase mode
+               ('light (load-theme 'sanityinc-tomorrow-day))
+               ('dark (load-theme 'sanityinc-tomorrow-bright))))
+           (add-hook 'ns-system-appearance-change-functions 'k20e/load-theme))
+          ((string-equal system-type "gnu/linux") (load-theme 'sanityinc-tomorrow-bright)))
   #+END_SRC
 
 * term
