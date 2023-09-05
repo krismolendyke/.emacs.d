@@ -10,6 +10,3 @@
 [submodule "site-lisp/im-feeling-lucky.el"]
 	path = site-lisp/im-feeling-lucky.el
 	url = https://github.com/krismolendyke/im-feeling-lucky.el.git
-[submodule "site-lisp/use-package"]
-	path = site-lisp/use-package
-	url = https://github.com/jwiegley/use-package.git
