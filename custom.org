@@ -580,10 +580,9 @@ function.
   to fill-column values.
 
   #+BEGIN_SRC emacs-lisp
-    (defun k20e/auto-fill-mode-hook ()
+    (use-package emacs
+      :config
       (setq-default fill-column 118))
-
-    (add-hook 'auto-fill-mode-hook 'k20e/auto-fill-mode-hook)
   #+END_SRC
 
 * auto-save
@@ -624,15 +623,13 @@ function.
 * C
 
   #+BEGIN_SRC emacs-lisp
-	(use-package flycheck :ensure t)
-
-	(defun k20e/c-mode-hook ()
-	  (setq flycheck-checker 'c/c++-gcc
-			flycheck-gcc-pedantic-errors t)
-	  (setq-default flycheck-c/c++-gcc-executable "gcc-7")
-	  (flycheck-mode 1))
-
-	(add-hook 'c-mode-hook 'k20e/c-mode-hook)
+    (use-package flycheck
+      :ensure t
+      :config
+      (setq flycheck-checker 'c/c++-gcc
+            flycheck-gcc-pedantic-errors t)
+      (setq-default flycheck-c/c++-gcc-executable "gcc-7")
+      :hook ((c-mode . flycheck-mode)))
   #+END_SRC
 
 * clock-face
