@@ -2075,17 +2075,18 @@ function.
   https://github.com/d12frosted/homebrew-emacs-plus#system-appearance-change.  Just set it to dark on Linux for now.
 
   #+BEGIN_SRC emacs-lisp
-	(use-package color-theme-sanityinc-tomorrow
-	  :ensure t
-	  :config
-	  (cond ((string-equal system-type "darwin")
-			 (defun k20e/load-theme (mode)
-			   "Load light or dark theme depending on which mode the system is currently in."
-			   (pcase mode
-				 ('light (load-theme 'sanityinc-tomorrow-day t))
-				 ('dark (load-theme 'sanityinc-tomorrow-bright t))))
-			 (add-hook 'ns-system-appearance-change-functions 'k20e/load-theme))
-			((string-equal system-type "gnu/linux") (load-theme 'sanityinc-tomorrow-bright t))))
+    (use-package color-theme-sanityinc-tomorrow
+      :ensure t
+      :config
+      (cond ((string-equal system-type "darwin")
+             (defun k20e/load-theme (mode)
+               "Load light or dark theme depending on which mode the system is currently in."
+               (pcase mode
+                 ('light (load-theme 'sanityinc-tomorrow-day t))
+                 ('dark (load-theme 'sanityinc-tomorrow-bright t))))
+             (add-hook 'ns-system-appearance-change-functions 'k20e/load-theme))
+            ((string-equal system-type "gnu/linux")
+             (load-theme 'sanityinc-tomorrow-bright t))))
   #+END_SRC
 
 * terraform-mode
