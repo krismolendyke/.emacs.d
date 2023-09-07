@@ -1758,16 +1758,6 @@ function.
      (defvar org-clock-idle-time 5)
    #+END_SRC
 
-* Paradox
-
-  #+BEGIN_SRC emacs-lisp
-	(require 'face-remap)
-	(use-package paradox
-	  :ensure t
-	  :config
-	  (setq-default paradox-execute-asynchronously nil))
-  #+END_SRC
-
 * paredit-mode
 
   #+BEGIN_SRC emacs-lisp
