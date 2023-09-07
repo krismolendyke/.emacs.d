@@ -26,6 +26,12 @@
 (require 'org)
 (require 'ox-html)
 
+;; Setup use-package.
+(eval-when-compile (require 'use-package))
+(use-package package
+  :config
+  (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t))
+
 (use-package htmlize
   :ensure t)
 
