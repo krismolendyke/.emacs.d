@@ -135,17 +135,6 @@ function.
    All of the interesting customization of the exported document is
    performed in [[https://github.com/krismolendyke/.emacs.d/blob/master/elisp/k20e-org-html-export.el][=elisp/k20e-org-html-export.el=]].
 
-* Customization
-
-  I don't make much use of the [[http://www.gnu.org/software/emacs/manual/html_node/emacs/Customization.html#Customization][Customization]] interface.  By default it dumps
-  its settings into =init.el= and I don't want to see them there.  A few
-  packages that I use do rely on customization so I do need it to be loaded.
-
-  #+BEGIN_SRC emacs-lisp
-    (setq custom-file (expand-file-name ".emacs-custom.el" user-emacs-directory))
-    (load custom-file)
-  #+END_SRC
-
 * use-package
 
   Before =use-package= I had 70 packages installed and
@@ -2093,10 +2082,10 @@ function.
 			 (defun k20e/load-theme (mode)
 			   "Load light or dark theme depending on which mode the system is currently in."
 			   (pcase mode
-				 ('light (load-theme 'sanityinc-tomorrow-day))
-				 ('dark (load-theme 'sanityinc-tomorrow-bright))))
+				 ('light (load-theme 'sanityinc-tomorrow-day t))
+				 ('dark (load-theme 'sanityinc-tomorrow-bright t))))
 			 (add-hook 'ns-system-appearance-change-functions 'k20e/load-theme))
-			((string-equal system-type "gnu/linux") (load-theme 'sanityinc-tomorrow-bright))))
+			((string-equal system-type "gnu/linux") (load-theme 'sanityinc-tomorrow-bright t))))
   #+END_SRC
 
 * terraform-mode
