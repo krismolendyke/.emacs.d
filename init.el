@@ -70,9 +70,16 @@ Only turn off the menu bar running in a terminal window."
     (when (file-directory-p project)
       (add-to-list 'load-path project))))
 
+(defun k20e/setup-use-package ()
+  "Configure use-package."
+  (use-package package
+    :config
+    (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)))
+
 (defun k20e/setup-exec-path ()
   "Setup `exec-path'."
-  (require 'exec-path-from-shell)
+  (use-package exec-path-from-shell
+    :ensure t)
   (setq exec-path-from-shell-variables
         (append exec-path-from-shell-variables
                 '("DYLD_LIBRARY_PATH" ; https://github.com/rust-lang-nursery/rustfmt#tips
@@ -111,15 +118,9 @@ Only turn off the menu bar running in a terminal window."
   (setq source-directory
         (string-join `(,k20e/brew-cache-directory "emacs--git") "/")))
 
-(defun k20e/setup-use-package ()
-  "Configure use-package."
-  (use-package package
-    :config
-    (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)))
-
-(k20e/setup-use-package)
 (k20e/no-bars-held)
 (k20e/setup-load-path)
+(k20e/setup-use-package)
 (k20e/setup-exec-path)
 (k20e/load-custom-elisp)
 (k20e/load-custom-org)
