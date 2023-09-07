@@ -521,23 +521,25 @@ function.
 ** Networking
 
    #+BEGIN_SRC emacs-lisp
-	 (use-package net-utils :ensure t)
-	 (use-package tramp :ensure t)
+     (use-package net-utils :ensure t)
+     (use-package tramp
+       :ensure t
+       :commands tramp-parse-shosts)
 
-	 (defun k20e/known-hosts ()
-	   "Get a host name from ~./ssh/known_hosts file."
-	   (completing-read "host: "
-						(let ((value))
-						  (dolist (elt (tramp-parse-shosts "~/.ssh/known_hosts") value)
-							(if elt (setq value (cons (cadr elt) value)))))))
+     (defun k20e/known-hosts ()
+       "Get a host name from ~./ssh/known_hosts file."
+       (completing-read "host: "
+                        (let ((value))
+                          (dolist (elt (tramp-parse-shosts "~/.ssh/known_hosts") value)
+                            (if elt (setq value (cons (cadr elt) value)))))))
 
-	 (defun k20e/host-ip ()
-	   "Insert the current IP of a host using `dns-lookup-program'.
-	 Similar to but simpler than `dns-lookup-host'."
-	   (interactive)
-	   (let ((host (k20e/known-hosts)))
-		 (insert (car (last (split-string (shell-command-to-string
-										   (concat dns-lookup-program " " host))))))))
+     (defun k20e/host-ip ()
+       "Insert the current IP of a host using `dns-lookup-program'.
+     Similar to but simpler than `dns-lookup-host'."
+       (interactive)
+       (let ((host (k20e/known-hosts)))
+         (insert (car (last (split-string (shell-command-to-string
+                                           (concat dns-lookup-program " " host))))))))
    #+END_SRC
 
 ** Lunar 🌙
@@ -2092,12 +2094,9 @@ function.
 * terraform-mode
 
   #+BEGIN_SRC emacs-lisp
-	(use-package terraform-mode
-	  :ensure t
-	  :config
-	  (defun k20e/terraform-mode-hook ()
-		(terraform-format-on-save-mode))
-	  :hook ((terraform-mode . k20e/terraform-mode-hook)))
+    (use-package terraform-mode
+      :ensure t
+      :hook ((terraform-mode . terraform-format-on-save-mode)))
   #+END_SRC
 
 * text-mode
@@ -2162,8 +2161,11 @@ function.
    not been changed from their default values.
 
    #+BEGIN_SRC emacs-lisp
-     (setq tramp-ssh-controlmaster-options
-           "-o ControlPath=%t.%%r@%%h:%%p -o ControlMaster=yes -o ControlPersist=no")
+     (use-package tramp
+       :defines tramp-ssh-controlmaster-options
+       :config
+       (setq tramp-ssh-controlmaster-options "-o ControlPath=%t.%%r@%%h:%%p -o ControlMaster=yes -o ControlPersist=no"))
+
    #+END_SRC
 
 ** Inline Copying
