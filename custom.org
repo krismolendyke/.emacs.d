@@ -1266,17 +1266,15 @@ function.
 * lsp-mode
 
   #+begin_src emacs-lisp
-    (require 'lsp-mode)
-
-    (use-package lsp-mode
-      :ensure t
-      :config
-      (setq-default
-       lsp-eldoc-render-all nil
-       lsp-signature-doc-lines 20           ; limit lines shown in docs
-       lsp-enable-links nil                 ; disable clickable links in files
-       )
-      (set-face-attribute 'lsp-face-highlight-textual nil :underline t))
+	(use-package lsp-mode
+	  :ensure t
+	  :config
+	  (setq-default
+	   lsp-eldoc-render-all nil
+	   lsp-signature-doc-lines 20           ; limit lines shown in docs
+	   lsp-enable-links nil                 ; disable clickable links in files
+	   )
+	  (set-face-attribute 'lsp-face-highlight-textual nil :underline t))
   #+end_src
 
 * man
