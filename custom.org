@@ -243,15 +243,6 @@ function.
      (setq-default apropos-sort-by-scores t)
    #+END_SRC
 
-** =cycle-spacing=
-
-   #+BEGIN_SRC emacs-lisp
-     (defun k20e/cycle-spacing (&optional n)
-       "Make `cycle-spacing' operate in `fast' mode."
-       (interactive "*p")
-       (cycle-spacing n nil 'fast))
-   #+END_SRC
-
 ** Backup Files
 
    Back up files to a single location.
