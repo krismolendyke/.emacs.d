@@ -482,7 +482,7 @@ function.
           (let ((max-length 0)
                 (last-line (count-lines (point-min) (point-max))))
             (while (<= (line-number-at-pos) last-line)
-              (setq max-length (max max-length (- (point-at-eol) (point-at-bol))))
+              (setq max-length (max max-length (- (line-end-position) (line-beginning-position))))
               (forward-line))
             (1+ max-length))))
 
