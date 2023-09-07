@@ -35,16 +35,6 @@ decoupled from the Emacs distribution package.")
   (expand-file-name "~/Google")
   "Google Drive home.")
 
-(when (string-equal system-type "darwin")
-                    ; TODO move into macos section in custom
-  (setq mac-command-modifier 'meta
-        ns-alternate-modifier 'super
-        shell-file-name "/opt/homebrew/bin/bash")
-  (defvar k20e/brew-cache-directory
-    (string-trim (shell-command-to-string
-                  (string-join `(,(executable-find "brew") "--cache") " ")))
-    "Homebrew cache."))
-
 (defun k20e/no-bars-held ()
   "Turn off tool, scroll, and menu bars when appropriate.
 Only turn off the menu bar running in a terminal window."
@@ -112,11 +102,13 @@ Only turn off the menu bar running in a terminal window."
 (defun k20e/after-init-hook ()
   "Perform complex post-initialization.")
 
-;;; Set the Emacs source directory so that C function source can be
-;;; found when necessary.
-(when (boundp 'k20e/brew-cache-directory)
-  (setq source-directory
-        (string-join `(,k20e/brew-cache-directory "emacs--git") "/")))
+;;; MacOS specific configuration.
+(use-package emacs
+  :when (eq system-type 'darwin)
+  :config
+  (setq mac-command-modifier 'meta
+        ns-alternate-modifier 'super
+        shell-file-name "/opt/homebrew/bin/bash"))
 
 (k20e/no-bars-held)
 (k20e/setup-load-path)
