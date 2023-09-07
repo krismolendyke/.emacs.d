@@ -1081,6 +1081,13 @@ function.
 						   (highlight-parentheses-mode))))) ; TODO
   #+END_SRC
 
+* htmlize
+
+  #+begin_src emacs-lisp
+    (use-package htmlize
+      :ensure t)
+  #+end_src
+  
 * hyperspec
 
   #+BEGIN_SRC emacs-lisp

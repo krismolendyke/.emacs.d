@@ -22,23 +22,12 @@
      "site-lisp"
      user-emacs-directory)))))
 
-;;; htmlize has been moved out of org and now Cask is responsible for
-;;; installing the dependency.
-;;; TODO should probably just init cask or whatever
-(add-to-list
- 'load-path
- (expand-file-name
-  "elpa"
-  (expand-file-name
-   "28.2"
-   (expand-file-name
-    ".cask"
-    user-emacs-directory))))
-
 ;; Then use that version of org-mode, etc.
-(require 'use-package)
 (require 'org)
 (require 'ox-html)
+
+(use-package htmlize
+  :ensure t)
 
 (defvar k20e/org-html-head-extra
   "<link href='https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css' rel='stylesheet'>
