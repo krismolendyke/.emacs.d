@@ -905,13 +905,13 @@ function.
 * geiser
 
   #+BEGIN_SRC emacs-lisp
-    (setq-default geiser-active-implementations '(racket chicken))
-  #+END_SRC
+    (use-package geiser
+      :ensure t
+      :config
+      (setq-default geiser-active-implementations '(racket chicken)
+                    geiser-default-implementation 'racket))
 
-  Default to [[https://racket-lang.org/][Racket]].
 
-  #+BEGIN_SRC emacs-lisp
-    (setq-default geiser-default-implementation 'racket)
   #+END_SRC
 
 * git
@@ -1750,23 +1750,18 @@ function.
 * paredit-mode
 
   #+BEGIN_SRC emacs-lisp
-    (autoload 'paredit-mode "paredit" nil t)
-
-    ;; When to turn on paredit.
-    (dolist (hook '(emacs-lisp-mode-hook
-                    geiser-mode-hook
-                    geiser-repl-mode-hook
-                    lisp-mode-hook
-                    scheme-mode-hook))
-      (add-hook hook #'(lambda nil (paredit-mode 1))))
-
-    (eval-after-load "paredit"
-      '(progn
-         (define-key paredit-mode-map [?\)] 'paredit-close-parenthesis)
-         (define-key paredit-mode-map [(meta ?\))]
-           'paredit-close-parenthesis-and-newline)
-         (define-key paredit-mode-map (kbd "C-h") 'paredit-backward-delete)
-         (define-key paredit-mode-map (kbd "C-j") 'join-line)))
+    (use-package paredit
+      :ensure t
+      :bind (:map paredit-mode-map
+                  ([?\)] . paredit-close-parenthesis)
+                  ([(meta ?\))] . paredit-close-parenthesis-and-newline)
+                  ("C-h" . paredit-backward-delete)
+                  ("C-j" . join-line))
+      :hook ((emacs-lisp-mode . paredit-mode)
+             (geiser-mode . paredit-mode)
+             (geiser-repl-mode . paredit-mode)
+             (lisp-mode . paredit-mode)
+             (scheme-mode . paredit-mode)))
   #+END_SRC
 
 * TODO prettify-symbols-mode
