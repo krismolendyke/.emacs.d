@@ -47,10 +47,6 @@ function.
     brew install emacs-plus@29
   #+END_SRC
 
-  #+BEGIN_SRC sh
-    brew uninstall emacs
-  #+END_SRC
-
 ** Emacs Source Directory
 
    =source-directory= is helpful to have set properly when exploring built-in
