@@ -586,8 +586,10 @@ function.
   Disable =auto-save=.
 
   #+BEGIN_SRC emacs-lisp
-    (setq auto-save-default nil
-          auto-save-timeout 0)
+    (use-package emacs
+      :config
+      (setq auto-save-default nil
+            auto-save-timeout 0))
   #+END_SRC
 
 * avy
@@ -642,10 +644,8 @@ function.
 * compilation-mode
 
   #+BEGIN_SRC emacs-lisp
-    (defun k20e/compilation-mode-hook ()
-      (set-face-foreground 'compilation-error "tomato1"))
-
-    (add-hook 'compilation-mode-hook 'k20e/compilation-mode-hook)
+    (use-package compile
+      :custom-face (compilation-error ((t (:foreground "tomato1")))))
   #+END_SRC
 
   Functions to execute after compilation has finished:
@@ -696,30 +696,23 @@ function.
 * dired
 
   #+BEGIN_SRC emacs-lisp
-    (require 'dired-x)
-    (require 'autorevert)
-
-    (defun k20e/dired-load-hook ()
-      (load "dired-x"))
-
-    (with-eval-after-load 'dired
-      (k20e/dired-load-hook))
-
-    (defun k20e/dired-mode-hook ()
-      (auto-revert-mode 1)
-      (setq auto-revert-verbose nil)
-      (set-face-foreground 'dired-flagged "tomato1")
-      (set-face-attribute 'dired-flagged nil :strike-through t))
-
-    (add-hook 'dired-mode-hook 'k20e/dired-mode-hook)
+    (use-package dired
+      :custom-face (dired-flagged ((t (:foreground "tomato1" :strike-through t))))
+      :config
+      (use-package autorevert
+        :config
+        (setq auto-revert-verbose nil))
+      (use-package dired-x
+        :config
+        (load "dired-x.el"))  
+      :hook ((dired-mode . auto-revert-mode)))
   #+END_SRC
 
 * electric-pair-mode
 
   #+BEGIN_SRC emacs-lisp
-    (require 'elec-pair)
-
-    (electric-pair-mode t)
+    (use-package elec-pair
+      :hook ((prog-mode . electric-pair-mode)))
   #+END_SRC
 
 * emacs-lisp-mode
