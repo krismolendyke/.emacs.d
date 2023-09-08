@@ -638,7 +638,9 @@ function.
   face character for the nearest current half-hour.  🕙
 
   #+BEGIN_SRC emacs-lisp
-    (require 'clock-face)
+    (use-package clock-face
+      :ensure nil
+      :load-path "site-lisp/clock-face.el")
   #+END_SRC
 
 * compilation-mode
@@ -899,7 +901,9 @@ function.
   icons into buffers.
 
   #+BEGIN_SRC emacs-lisp
-    (require 'font-awesome)
+    (use-package font-awesome
+      :ensure nil
+      :load-path "site-lisp/font-awesome.el")
   #+END_SRC
 
 * geiser
@@ -1134,9 +1138,10 @@ function.
   This is [[https://github.com/krismolendyke/im-feeling-lucky.el][my Google search]] module.
 
   #+BEGIN_SRC emacs-lisp
-    (require 'im-feeling-lucky)
-
-    (global-set-key (kbd "H-l") 'ifl-region-or-query)
+    (use-package im-feeling-lucky
+      :ensure nil
+      :load-path "site-lisp/im-feeling-lucky.el"
+      :bind (("H-l" . ifl-region-or-query)))
   #+END_SRC
 
 * Ivy

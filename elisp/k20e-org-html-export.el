@@ -9,28 +9,18 @@
 
 ;;; Code:
 
-;; Add the version of org-mode I use to load-path.
-(add-to-list
- 'load-path
- (expand-file-name
-  "lisp"
-  (expand-file-name
-   "contrib"
-   (expand-file-name
-    "org-mode"
-    (expand-file-name
-     "site-lisp"
-     user-emacs-directory)))))
-
-;; Then use that version of org-mode, etc.
-(require 'org)
-(require 'ox-html)
-
 ;; Setup use-package.
 (eval-when-compile (require 'use-package))
 (use-package package
   :config
   (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t))
+
+(use-package org
+  :ensure t
+  :pin manual
+  :load-path "site-lisp/org-mode/lisp")
+
+(require 'ox-html)
 
 (use-package htmlize
   :ensure t)

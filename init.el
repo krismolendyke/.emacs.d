@@ -9,27 +9,9 @@
 
 (require 'subr-x)
 
-(defvar k20e/site-lisp-directory
-  (expand-file-name "site-lisp" user-emacs-directory)
-  "Local libraries.")
-
 (defvar k20e/elisp-directory
   (expand-file-name "elisp" user-emacs-directory)
   "Stuff that I have developed.")
-
-(defvar k20e/org-mode-directory
-  (expand-file-name "org-mode" k20e/site-lisp-directory)
-  "The directory containing `org-mode' files.
-This is a custom location to keep `org-mode' as a git submodule
-decoupled from the Emacs distribution package.")
-
-(defvar k20e/org-lisp-directory
-  (expand-file-name "lisp" k20e/org-mode-directory)
-  "The directory contaiting `org-mode' Emacs Lisp files.")
-
-(defvar k20e/org-lisp-contrib-directory
-  (expand-file-name "lisp" (expand-file-name "contrib" k20e/org-mode-directory))
-  "The directory containing `org-mode' Emacs Lisp add-on files.")
 
 (defvar k20e/google-drive-directory
   (expand-file-name "~/Google")
@@ -49,16 +31,8 @@ Only turn off the menu bar running in a terminal window."
 
 (defun k20e/setup-load-path ()
   "Add custom directories to `load-path'."
-  (dolist (directory (list k20e/site-lisp-directory
-                           k20e/elisp-directory
-                           k20e/org-lisp-directory
-                           k20e/org-lisp-contrib-directory))
-    (add-to-list 'load-path directory))
-
-  ;; Add external projects to load path.
-  (dolist (project (directory-files k20e/site-lisp-directory t "\\w+"))
-    (when (file-directory-p project)
-      (add-to-list 'load-path project))))
+  (dolist (directory (list k20e/elisp-directory))
+    (add-to-list 'load-path directory)))
 
 (defun k20e/setup-use-package ()
   "Configure use-package."
@@ -86,9 +60,13 @@ Only turn off the menu bar running in a terminal window."
 
 (defun k20e/load-custom-org ()
   "Load custom Org Mode configuration."
-  (require 'org)
-  (dolist (elt (directory-files user-emacs-directory t "\\.org$" t))
-    (org-babel-load-file elt t)))
+  (use-package org
+	:ensure t
+	:pin manual
+	:load-path "site-lisp/org-mode/lisp"
+    :config
+    (dolist (elt (directory-files user-emacs-directory t "\\.org$" t))
+    (org-babel-load-file elt t))))
 
 (defun k20e/restore-desktop ()
   "Restore the state of buffers from the last session."
