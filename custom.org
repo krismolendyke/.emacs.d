@@ -1026,11 +1026,8 @@ function.
   #+BEGIN_SRC emacs-lisp
     (use-package highlight-parentheses
       :ensure t
-      :config
-      (dolist (hook '(emacs-lisp-mode-hook
-                      lisp-mode-hook))
-        (add-hook hook #'(lambda ()
-                           (highlight-parentheses-mode))))) ; TODO
+      :hook ((emacs-lisp-mode . highlight-parentheses-mode)
+             (lisp-mode-hook . highlight-parentheses-mode)))
   #+END_SRC
 
 * htmlize
