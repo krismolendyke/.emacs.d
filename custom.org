@@ -335,46 +335,46 @@ function.
 ** Editing
 
    #+BEGIN_SRC emacs-lisp
-	 (defun k20e/mark-current-line (arg)
-	   "Mark the current line.
-	 If the mark is already set simply move the point forward a single
-	 line.  If it is not set, set it at the beginning of the current
-	 line and then move the point forward a single line."
-	   (interactive "p")
-	   (unless mark-active
-		 (beginning-of-line)
-		 (set-mark (point)))
-	   (forward-line arg))
+     (defun k20e/mark-current-line (arg)
+       "Mark the current line.
+     If the mark is already set simply move the point forward a single
+     line.  If it is not set, set it at the beginning of the current
+     line and then move the point forward a single line."
+       (interactive "p")
+       (unless mark-active
+         (beginning-of-line)
+         (set-mark (point)))
+       (forward-line arg))
 
-	 (defun k20e/open-line-below (arg)
-	   "Insert a new line below the current line."
-	   (interactive "p")
-	   (end-of-line)
-	   (newline arg)
-	   (indent-for-tab-command))
+     (defun k20e/open-line-below (arg)
+       "Insert a new line below the current line."
+       (interactive "p")
+       (end-of-line)
+       (newline arg)
+       (indent-for-tab-command))
 
-	 (defun k20e/open-line-above (arg)
-	   "Insert a new line above the current line."
-	   (interactive "p")
-	   (beginning-of-line)
-	   (newline arg)
-	   (forward-line (- 0 arg))
-	   (indent-for-tab-command))
+     (defun k20e/open-line-above (arg)
+       "Insert a new line above the current line."
+       (interactive "p")
+       (beginning-of-line)
+       (newline arg)
+       (forward-line (- 0 arg))
+       (indent-for-tab-command))
 
-	 ;; Inspired by http://whattheemacsd.com/key-bindings.el-01.html
-	 (use-package display-line-numbers :ensure t)
+     ;; Inspired by http://whattheemacsd.com/key-bindings.el-01.html
+     (use-package display-line-numbers :ensure t)
 
-	 (defun k20e/goto-line ()
-	   "Show line numbers and prompt for a line number to go to.
-	 Restore previous state of displaying line numbers."
-	   (interactive)
-	   (if display-line-numbers-mode
-		 (call-interactively 'goto-line)
-		 (unwind-protect
-			 (progn
-			   (setq display-line-numbers t)
-			   (call-interactively 'goto-line))
-		   (setq display-line-numbers nil))))
+     (defun k20e/goto-line ()
+       "Show line numbers and prompt for a line number to go to.
+     Restore previous state of displaying line numbers."
+       (interactive)
+       (if display-line-numbers-mode
+         (call-interactively 'goto-line)
+         (unwind-protect
+             (progn
+               (setq display-line-numbers t)
+               (call-interactively 'goto-line))
+           (setq display-line-numbers nil))))
 
    #+END_SRC
 
@@ -488,23 +488,23 @@ function.
 ** Windows
 
    #+BEGIN_SRC emacs-lisp
-	 (use-package ivy :ensure t)
+     (use-package ivy :ensure t)
 
-	 (defun split-window-right-and-balance-and-go-there-and-switch-buffer (&optional arg)
-	   "Optional argument ARG Prefix argument will switch buffer using ivy."
-	   (interactive "P")
-	   (split-window-right)
-	   (balance-windows-area)
-	   (windmove-right)
-	   (if arg
-		   (ivy-switch-buffer)
-		 (switch-to-buffer nil)))
+     (defun split-window-right-and-balance-and-go-there-and-switch-buffer (&optional arg)
+       "Optional argument ARG Prefix argument will switch buffer using ivy."
+       (interactive "P")
+       (split-window-right)
+       (balance-windows-area)
+       (windmove-right)
+       (if arg
+           (ivy-switch-buffer)
+         (switch-to-buffer nil)))
 
-	 (defun delete-window-and-balance ()
-	   "Balance windows after deleting."
-	   (interactive)
-	   (delete-window)
-	   (balance-windows-area))
+     (defun delete-window-and-balance ()
+       "Balance windows after deleting."
+       (interactive)
+       (delete-window)
+       (balance-windows-area))
    #+END_SRC
 
    Bind window functions:
@@ -541,32 +541,32 @@ function.
 ** Lunar 🌙
 
    #+BEGIN_SRC emacs-lisp
-	 (use-package calendar :ensure t)
-	 (require 'lunar)
+     (use-package calendar :ensure t)
+     (require 'lunar)
 
-	 (defun k20e/full-moons-info ()
-	   "Get a list of upcoming full moons info beginning with the current month.
-	 See `lunar-phase-list' and `lunar-phase-name'."
-	   (let* ((current-date (calendar-current-date))
-			  (current-month (car current-date))
-			  (current-year (car (last current-date)))
-			  (full-moon-phase-index 2)
-			  (k20e/full-moons-info '()))
-		 (dolist (phase (lunar-phase-list current-month current-year))
-		   (if (= (car (last phase)) full-moon-phase-index)
-			   (setq k20e/full-moons-info (cons phase k20e/full-moons-info))))
-		 (reverse k20e/full-moons-info)))
+     (defun k20e/full-moons-info ()
+       "Get a list of upcoming full moons info beginning with the current month.
+     See `lunar-phase-list' and `lunar-phase-name'."
+       (let* ((current-date (calendar-current-date))
+              (current-month (car current-date))
+              (current-year (car (last current-date)))
+              (full-moon-phase-index 2)
+              (k20e/full-moons-info '()))
+         (dolist (phase (lunar-phase-list current-month current-year))
+           (if (= (car (last phase)) full-moon-phase-index)
+               (setq k20e/full-moons-info (cons phase k20e/full-moons-info))))
+         (reverse k20e/full-moons-info)))
 
-	 (defun k20e/full-moons ()
-	   "Display upcoming full moons beginning with the current month."
-	   (interactive)
-	   (with-output-to-temp-buffer "*full-moons*"
-		 (princ
-		  (mapconcat
-		   #'(lambda (x)
-			   (format "%s %s" (calendar-date-string (car x)) (car (cdr x))))
-		   (k20e/full-moons-info)
-		   "\n"))))
+     (defun k20e/full-moons ()
+       "Display upcoming full moons beginning with the current month."
+       (interactive)
+       (with-output-to-temp-buffer "*full-moons*"
+         (princ
+          (mapconcat
+           #'(lambda (x)
+               (format "%s %s" (calendar-date-string (car x)) (car (cdr x))))
+           (k20e/full-moons-info)
+           "\n"))))
    #+END_SRC
 
 * auto-fill
@@ -613,9 +613,9 @@ function.
     (use-package buffer-move
       :ensure t
       :bind (("M-S-<up>" . buf-move-up)
-	     ("M-S-<down>" . buf-move-down)
-	     ("M-S-<left>" . buf-move-left)
-	     ("M-S-<right>" . buf-move-right)))
+         ("M-S-<down>" . buf-move-down)
+         ("M-S-<left>" . buf-move-left)
+         ("M-S-<right>" . buf-move-right)))
   #+END_SRC
 
 * C
@@ -685,12 +685,12 @@ function.
     (use-package counsel
       :ensure t
       :bind (("M-x" . counsel-M-x)
-	     ("C-x C-f" . counsel-find-file)
-	     ("<f1> f" . counsel-describe-function)
-	     ("<f1> v" . counsel-describe-variable)
-	     ("<f1> l" . counsel-find-library)
-	     ("<f1> s" . counsel-info-lookup-symbol)
-	     ("C-x 8 RET" . counsel-unicode-char)))
+         ("C-x C-f" . counsel-find-file)
+         ("<f1> f" . counsel-describe-function)
+         ("<f1> v" . counsel-describe-variable)
+         ("<f1> l" . counsel-find-library)
+         ("<f1> s" . counsel-info-lookup-symbol)
+         ("C-x 8 RET" . counsel-unicode-char)))
   #+END_SRC
 
 * dired
@@ -704,7 +704,7 @@ function.
         (setq auto-revert-verbose nil))
       (use-package dired-x
         :config
-        (load "dired-x.el"))  
+        (load "dired-x.el"))
       :hook ((dired-mode . auto-revert-mode)))
   #+END_SRC
 
@@ -727,7 +727,7 @@ function.
       :bind (:map emacs-lisp-mode-map ("H-t" . k20e/ert))
       :hook ((emacs-lisp-mode . eldoc-mode)))
   #+END_SRC
-  
+
 * expand-region
 
   #+BEGIN_SRC emacs-lisp
@@ -744,23 +744,23 @@ function.
       :bind (("C-x o" . find-file-in-project))
       :config
       (setq-default ffip-limit 8192
-		    ffip-find-options "-not -regex \".*/build.*\"" ; TODO ignore .tox
-		    ffip-full-paths t
-		    ffip-patterns (list "*.el"
-					"*.html"
-					"*.js"
-					"*.json"
-					"*.go"
-					"*.md"
-					"*.org"
-					"*.py"
-					"*.sh"
-					"*.txt"
-					"*.yaml"
-					"*.yml"
-					"Dockerfile"
-					"Makefile")
-		    ffip-prune-patterns (list ".git" "build")))
+            ffip-find-options "-not -regex \".*/build.*\"" ; TODO ignore .tox
+            ffip-full-paths t
+            ffip-patterns (list "*.el"
+                    "*.html"
+                    "*.js"
+                    "*.json"
+                    "*.go"
+                    "*.md"
+                    "*.org"
+                    "*.py"
+                    "*.sh"
+                    "*.txt"
+                    "*.yaml"
+                    "*.yml"
+                    "Dockerfile"
+                    "Makefile")
+            ffip-prune-patterns (list ".git" "build")))
   #+END_SRC
 
 * flycheck
@@ -804,7 +804,7 @@ function.
    #+END_SRC
 
 * Fonts
-  
+
   - [[https://protesilaos.com/codelog/2020-09-05-emacs-note-mixed-font-heights/][Setting default, variable & fixed pitch heights]]
   - Fonts
     - [[https://www.fsd.it/shop/fonts/pragmatapro/][PragmataPro]] ([[https://github.com/fabrizioschiavi/pragmatapro][GitHub]])
@@ -1014,23 +1014,23 @@ function.
 * highlight-indent-guides
 
   #+BEGIN_SRC emacs-lisp
-	(use-package highlight-indent-guides
-	  :ensure t
-	  :config
-	  (setq highlight-indent-guides-method 'character
-			highlight-indent-guides-responsive 'stack))
+    (use-package highlight-indent-guides
+      :ensure t
+      :config
+      (setq highlight-indent-guides-method 'character
+            highlight-indent-guides-responsive 'stack))
   #+END_SRC
 
 * highlight-parentheses
 
   #+BEGIN_SRC emacs-lisp
-	(use-package highlight-parentheses
-	  :ensure t
-	  :config
-	  (dolist (hook '(emacs-lisp-mode-hook
-					  lisp-mode-hook))
-		(add-hook hook #'(lambda ()
-						   (highlight-parentheses-mode))))) ; TODO
+    (use-package highlight-parentheses
+      :ensure t
+      :config
+      (dolist (hook '(emacs-lisp-mode-hook
+                      lisp-mode-hook))
+        (add-hook hook #'(lambda ()
+                           (highlight-parentheses-mode))))) ; TODO
   #+END_SRC
 
 * htmlize
@@ -1039,7 +1039,7 @@ function.
     (use-package htmlize
       :ensure t)
   #+end_src
-  
+
 * hyperspec
 
   #+BEGIN_SRC emacs-lisp
@@ -1105,16 +1105,16 @@ function.
 * Ivy
 
   #+BEGIN_SRC emacs-lisp
-    (require 'ivy)
+    (use-package ivy
+      :ensure t
+      :config
+      (setq ivy-extra-directories nil
+            ivy-use-virtual-buffers t
+            ivy-wrap t)
+      :bind (("C-c C-r" . ivy-resume)
+             ("C-x b" . ivy-switch-buffer)))
 
     (ivy-mode 1)
-
-    (setq ivy-extra-directories nil
-          ivy-use-virtual-buffers t
-          ivy-wrap t)
-
-    (global-set-key (kbd "C-c C-r") 'ivy-resume)
-    (global-set-key (kbd "C-x b") 'ivy-switch-buffer)
   #+END_SRC
 
   #+BEGIN_QUOTE
@@ -1167,48 +1167,48 @@ function.
 * LaTeX
 
   #+BEGIN_SRC emacs-lisp
-	(use-package tex-mode
-	  :ensure t
-	  :bind (:map latex-mode-map ("C-j" . join-line)))
+    (use-package tex-mode
+      :ensure t
+      :bind (:map latex-mode-map ("C-j" . join-line)))
   #+END_SRC
 
 * =ligature.el=
 
   #+BEGIN_SRC emacs-lisp
-	(use-package ligature
-	  :ensure t
-	  :config
-	  (ligature-set-ligatures 'prog-mode '("[ERROR]" "[DEBUG]" "[INFO]" "[WARN]" "[WARNING]"
-										   "[ERR]" "[FATAL]" "[TRACE]" "[FIXME]" "[TODO]"
-										   "[BUG]" "[NOTE]" "[HACK]" "[MARK]"
-										   "# ERROR" "# DEBUG" "# INFO" "# WARN" "# WARNING"
-										   "# ERR" "# FATAL" "# TRACE" "# FIXME" "# TODO"
-										   "# BUG" "# NOTE" "# HACK" "# MARK"
-										   "// ERROR" "// DEBUG" "// INFO" "// WARN" "// WARNING"
-										   "// ERR" "// FATAL" "// TRACE" "// FIXME" "// TODO"
-										   "// BUG" "// NOTE" "// HACK" "// MARK"
-										   "!!" "!=" "!==" "!!!" "!≡" "!≡≡" "!>" "!=<" "#("
-										   "#_" "#{" "#?" "#>" "##" "#_(" "%=" "%>" "%>%" "%<%"
-										   "&%" "&&" "&*" "&+" "&-" "&/" "&=" "&&&" "&>" "$>"
-										   "***" "*=" "*/" "*>" "++" "+++" "+=" "+>" "++=" "--"
-										   "-<" "-<<" "-=" "->" "->>" "---" "-->" "-+-" "-\\/"
-										   "-|>" "-<|" ".." "..." "..<" ".>" ".~" ".=" "/*" "//"
-										   "/>" "/=" "/==" "///" "/**" ":::" "::" ":=" ":≡" ":>"
-										   ":=>" ":(" ":-(" ":)" ":-)" ":/" ":\\" ":3" ":D" ":P"
-										   ":>:" ":<:" "<$>" "<*" "<*>" "<+>" "<-" "<<" "<<<" "<<="
-										   "<=" "<=>" "<>" "<|>" "<<-" "<|" "<=<" "<~" "<~~" "<<~"
-										   "<$" "<+" "<!>" "<@>" "<#>" "<%>" "<^>" "<&>" "<?>" "<.>"
-										   "</>" "<\\>" "<\">" "<:>" "<~>" "<**>" "<<^" "<!" "<@"
-										   "<#" "<%" "<^" "<&" "<?" "<." "</" "<\\" "<\"" "<:" "<->"
-										   "<!--" "<--" "<~<" "<==>" "<|-" "<<|" "<-<" "<-->" "<<=="
-										   "<==" "=<<" "==" "===" "==>" "=>" "=~" "=>>" "=/=" "=~="
-										   "==>>" "≡≡" "≡≡≡" "≡:≡" ">-" ">=" ">>" ">>-" ">>=" ">>>"
-										   ">=>" ">>^" ">>|" ">!=" ">->" "??" "?~" "?=" "?>" "???"
-										   "?." "^=" "^." "^?" "^.." "^<<" "^>>" "^>" "\\\\" "\\>"
-										   "\\/-" "@>" "|=" "||" "|>" "|||" "|+|" "|->" "|-->" "|=>"
-										   "|==>" "|>-" "|<<" "||>" "|>>" "|-" "||-" "~=" "~>" "~~>"
-										   "~>>" "[[" "]]" "\">" "_|_"))
-	  (global-ligature-mode t))
+    (use-package ligature
+      :ensure t
+      :config
+      (ligature-set-ligatures 'prog-mode '("[ERROR]" "[DEBUG]" "[INFO]" "[WARN]" "[WARNING]"
+                                           "[ERR]" "[FATAL]" "[TRACE]" "[FIXME]" "[TODO]"
+                                           "[BUG]" "[NOTE]" "[HACK]" "[MARK]"
+                                           "# ERROR" "# DEBUG" "# INFO" "# WARN" "# WARNING"
+                                           "# ERR" "# FATAL" "# TRACE" "# FIXME" "# TODO"
+                                           "# BUG" "# NOTE" "# HACK" "# MARK"
+                                           "// ERROR" "// DEBUG" "// INFO" "// WARN" "// WARNING"
+                                           "// ERR" "// FATAL" "// TRACE" "// FIXME" "// TODO"
+                                           "// BUG" "// NOTE" "// HACK" "// MARK"
+                                           "!!" "!=" "!==" "!!!" "!≡" "!≡≡" "!>" "!=<" "#("
+                                           "#_" "#{" "#?" "#>" "##" "#_(" "%=" "%>" "%>%" "%<%"
+                                           "&%" "&&" "&*" "&+" "&-" "&/" "&=" "&&&" "&>" "$>"
+                                           "***" "*=" "*/" "*>" "++" "+++" "+=" "+>" "++=" "--"
+                                           "-<" "-<<" "-=" "->" "->>" "---" "-->" "-+-" "-\\/"
+                                           "-|>" "-<|" ".." "..." "..<" ".>" ".~" ".=" "/*" "//"
+                                           "/>" "/=" "/==" "///" "/**" ":::" "::" ":=" ":≡" ":>"
+                                           ":=>" ":(" ":-(" ":)" ":-)" ":/" ":\\" ":3" ":D" ":P"
+                                           ":>:" ":<:" "<$>" "<*" "<*>" "<+>" "<-" "<<" "<<<" "<<="
+                                           "<=" "<=>" "<>" "<|>" "<<-" "<|" "<=<" "<~" "<~~" "<<~"
+                                           "<$" "<+" "<!>" "<@>" "<#>" "<%>" "<^>" "<&>" "<?>" "<.>"
+                                           "</>" "<\\>" "<\">" "<:>" "<~>" "<**>" "<<^" "<!" "<@"
+                                           "<#" "<%" "<^" "<&" "<?" "<." "</" "<\\" "<\"" "<:" "<->"
+                                           "<!--" "<--" "<~<" "<==>" "<|-" "<<|" "<-<" "<-->" "<<=="
+                                           "<==" "=<<" "==" "===" "==>" "=>" "=~" "=>>" "=/=" "=~="
+                                           "==>>" "≡≡" "≡≡≡" "≡:≡" ">-" ">=" ">>" ">>-" ">>=" ">>>"
+                                           ">=>" ">>^" ">>|" ">!=" ">->" "??" "?~" "?=" "?>" "???"
+                                           "?." "^=" "^." "^?" "^.." "^<<" "^>>" "^>" "\\\\" "\\>"
+                                           "\\/-" "@>" "|=" "||" "|>" "|||" "|+|" "|->" "|-->" "|=>"
+                                           "|==>" "|>-" "|<<" "||>" "|>>" "|-" "||-" "~=" "~>" "~~>"
+                                           "~>>" "[[" "]]" "\">" "_|_"))
+      (global-ligature-mode t))
   #+END_SRC
 
 * lockfiles
@@ -1302,32 +1302,32 @@ function.
 * multiple-cursors
 
   #+BEGIN_SRC emacs-lisp
-	(use-package multiple-cursors
-	  :ensure t
-	  :bind (("M-L" . mc/edit-lines)
-			 ("C-M-." . k20e/mark-next)
-			 ("C-M-," . k20e/mark-previous)
-			 ("C-M-<return>" . mc/mark-all-like-this))
-	  :config
-	  (defun k20e/mark-next (extended)
-		"Wrap multiple-cursors mark-more/next.
-	Call `mc/mark-next-like-this' without a prefix argument.
-	Argument EXTENDED Prefix argument to call function
-	`mc/mark-more-like-this-extended'."
-		(interactive "P")
-		(if extended
-			(call-interactively 'mc/mark-more-like-this-extended)
-		  (call-interactively 'mc/mark-next-like-this)))
+    (use-package multiple-cursors
+      :ensure t
+      :bind (("M-L" . mc/edit-lines)
+             ("C-M-." . k20e/mark-next)
+             ("C-M-," . k20e/mark-previous)
+             ("C-M-<return>" . mc/mark-all-like-this))
+      :config
+      (defun k20e/mark-next (extended)
+        "Wrap multiple-cursors mark-more/next.
+    Call `mc/mark-next-like-this' without a prefix argument.
+    Argument EXTENDED Prefix argument to call function
+    `mc/mark-more-like-this-extended'."
+        (interactive "P")
+        (if extended
+            (call-interactively 'mc/mark-more-like-this-extended)
+          (call-interactively 'mc/mark-next-like-this)))
 
-	  (defun k20e/mark-previous (extended)
-		"Wrap multiple-cursors mark-more/previous.
-	Call `mc/mark-previous-like-this' without a prefix argument.
-	Argument EXTENDED Prefix argument to call function
-	`mc/mark-more-like-this-extended'."
-		(interactive "P")
-		(if extended
-			(call-interactively 'mc/mark-more-like-this-extended)
-		  (call-interactively 'mc/mark-previous-like-this))))
+      (defun k20e/mark-previous (extended)
+        "Wrap multiple-cursors mark-more/previous.
+    Call `mc/mark-previous-like-this' without a prefix argument.
+    Argument EXTENDED Prefix argument to call function
+    `mc/mark-more-like-this-extended'."
+        (interactive "P")
+        (if extended
+            (call-interactively 'mc/mark-more-like-this-extended)
+          (call-interactively 'mc/mark-previous-like-this))))
   #+END_SRC
 
   Keep preferences sync'd across machines.
@@ -1534,7 +1534,7 @@ function.
     #+END_SRC
 
     #+BEGIN_SRC emacs-lisp
-	  (use-package ox-tufte :ensure t)
+      (use-package ox-tufte :ensure t)
     #+END_SRC
 
 ** Publish
@@ -1739,42 +1739,42 @@ function.
 * python
 
   #+BEGIN_SRC emacs-lisp
-	(require 'electric)
-	(use-package blacken :ensure t)
-	(use-package flycheck :ensure t)
-	(use-package multiple-cursors :ensure t)
-	(use-package python :ensure t)
+    (use-package electric)
+    (use-package blacken :ensure t)
+    (use-package flycheck :ensure t)
+    (use-package multiple-cursors :ensure t)
+    (use-package python :ensure t)
 
-	(defun k20e/python-mode-hook ()
-	  (setq display-line-numbers nil
-			electric-indent-inhibit t)
-	  (prettify-symbols-mode 1)
+    (defun k20e/python-mode-hook ()
+      (setq display-line-numbers nil
+            electric-indent-inhibit t)
+      (prettify-symbols-mode 1)
 
-	  (blacken-mode)
-	  (flycheck-mode 1)
-	  (superword-mode)
-	  ;; Previously:
-	  ;; C-M-f, C-M-b (paredit-forward/back)
-	  ;; C-M-n, C-M-p (forward-list/backward-list)
-	  ;; C-M-a, C-M-e (beginning-of-defun/end-of-defun)
-	  (define-key python-mode-map (kbd "M-a") 'python-nav-beginning-of-statement)
-	  (define-key python-mode-map (kbd "M-e") 'python-nav-end-of-statement)
-	  (define-key python-mode-map (kbd "M-n") 'python-nav-forward-statement)
-	  (define-key python-mode-map (kbd "M-p") 'python-nav-backward-statement)
-	  (define-key python-mode-map (kbd "M-q") 'blacken-buffer)
-	  (define-key python-mode-map (kbd "C-M-f") 'python-nav-forward-sexp)
-	  (define-key python-mode-map (kbd "C-M-b") 'python-nav-backward-sexp)
-	  (define-key python-mode-map (kbd "C-M-n") 'python-nav-forward-block)
-	  (define-key python-mode-map (kbd "C-M-p") 'python-nav-backward-block))
+      (blacken-mode)
+      (flycheck-mode 1)
+      (superword-mode)
+      ;; Previously:
+      ;; C-M-f, C-M-b (paredit-forward/back)
+      ;; C-M-n, C-M-p (forward-list/backward-list)
+      ;; C-M-a, C-M-e (beginning-of-defun/end-of-defun)
+      (define-key python-mode-map (kbd "M-a") 'python-nav-beginning-of-statement)
+      (define-key python-mode-map (kbd "M-e") 'python-nav-end-of-statement)
+      (define-key python-mode-map (kbd "M-n") 'python-nav-forward-statement)
+      (define-key python-mode-map (kbd "M-p") 'python-nav-backward-statement)
+      (define-key python-mode-map (kbd "M-q") 'blacken-buffer)
+      (define-key python-mode-map (kbd "C-M-f") 'python-nav-forward-sexp)
+      (define-key python-mode-map (kbd "C-M-b") 'python-nav-backward-sexp)
+      (define-key python-mode-map (kbd "C-M-n") 'python-nav-forward-block)
+      (define-key python-mode-map (kbd "C-M-p") 'python-nav-backward-block))
 
-	;; (add-hook 'python-mode-hook 'k20e/python-mode-hook)
+    ;; (add-hook 'python-mode-hook 'k20e/python-mode-hook)
 
-	(use-package lsp-mode
-	  :hook ((python-mode . lsp-deferred))
-	  :commands (lsp lsp-deferred)
-	  :config (setq-default lsp-pylsp-plugins-rope-completion-enabled t))
+    (use-package lsp-mode
+      :hook ((python-mode . lsp-deferred))
+      :commands (lsp lsp-deferred)
+      :config (setq-default lsp-pylsp-plugins-rope-completion-enabled t))
 
-	;; (use-package lsp-ivy :commands lsp-ivy-workspace-symbol)
+    ;; (use-package lsp-ivy :commands lsp-ivy-workspace-symbol)
   #+END_SRC
 
 ** IPython
@@ -1828,17 +1828,17 @@ function.
 * rust
 
   #+BEGIN_SRC emacs-lisp
-	(use-package flycheck :ensure t)
-	(use-package flycheck-rust :ensure t)
-	(use-package rust-mode
-	  :ensure t
-	  :config
-	  (defun k20e/rust-mode-hook ()
-		(setq flycheck-checker 'rust
-			  rust-format-on-save t)
-		(flycheck-mode 1)
-		(flycheck-rust-setup))
-	  :hook ((rust-mode . k20e/rust-mode-hook)))
+    (use-package flycheck :ensure t)
+    (use-package flycheck-rust :ensure t)
+    (use-package rust-mode
+      :ensure t
+      :config
+      (defun k20e/rust-mode-hook ()
+        (setq flycheck-checker 'rust
+              rust-format-on-save t)
+        (flycheck-mode 1)
+        (flycheck-rust-setup))
+      :hook ((rust-mode . k20e/rust-mode-hook)))
   #+END_SRC
 
 * savehist
@@ -1927,11 +1927,11 @@ function.
 * smex
 
   #+BEGIN_SRC emacs-lisp
-	(use-package smex
-	  :ensure t
-	  :config
-	  (smex-initialize)
-	  (setq-default smex-save-file (expand-file-name ".smex-items" k20e/google-drive-directory)))
+    (use-package smex
+      :ensure t
+      :config
+      (smex-initialize)
+      (setq-default smex-save-file (expand-file-name ".smex-items" k20e/google-drive-directory)))
   #+END_SRC
 
 * sql-mode
@@ -2164,38 +2164,37 @@ function.
 * windmove
 
   #+BEGIN_SRC emacs-lisp
-    (require 'windmove)
-
-    (windmove-default-keybindings 'hyper)
-    (setq windmove-wrap-around t)
-
-    (global-set-key (kbd "M-SPC") 'windmove-right)
-    (global-set-key (kbd "M-S-SPC") 'windmove-left)
+    (use-package windmove
+      :config
+      (windmove-default-keybindings 'hyper)
+      (setq windmove-wrap-around t)
+      :bind (("M-SPC" . windmove-right)
+             ("M-S-SPC" . windmove-left)))
   #+END_SRC
 
 * web-mode
 
   #+BEGIN_SRC emacs-lisp
-	(require 'elec-pair)
-	(require 'flycheck)
-	(use-package web-mode
-	  :ensure t
-	  :config
-	  (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
-	  (add-to-list 'auto-mode-alist '("\\.jsx\\'" . web-mode))
-	  (add-to-list 'auto-mode-alist '("\\.tsx\\'" . web-mode))
-	  (defun k20e/web-mode-hook ()
-		(set-default 'web-mode-engines-alist '(("django" . "\\.html?\\'")))
-		(setq web-mode-markup-indent-offset 2
-			  web-mode-enable-auto-quoting nil)
+    (require 'elec-pair)
+    (require 'flycheck)
+    (use-package web-mode
+      :ensure t
+      :config
+      (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
+      (add-to-list 'auto-mode-alist '("\\.jsx\\'" . web-mode))
+      (add-to-list 'auto-mode-alist '("\\.tsx\\'" . web-mode))
+      (defun k20e/web-mode-hook ()
+        (set-default 'web-mode-engines-alist '(("django" . "\\.html?\\'")))
+        (setq web-mode-markup-indent-offset 2
+              web-mode-enable-auto-quoting nil)
 
-		(flycheck-add-mode 'typescript-tslint 'web-mode)
+        (flycheck-add-mode 'typescript-tslint 'web-mode)
 
-		;; Disable pairing { to avoid {{ }}}} from web-mode block templates
-		(setq-local electric-pair-inhibit-predicate
-					(lambda (c)
-					  (if (char-equal c ?{) t (electric-pair-default-inhibit c)))))
-	  :hook ((web-mode . k20e/web-mode-hook)))
+        ;; Disable pairing { to avoid {{ }}}} from web-mode block templates
+        (setq-local electric-pair-inhibit-predicate
+                    (lambda (c)
+                      (if (char-equal c ?{) t (electric-pair-default-inhibit c)))))
+      :hook ((web-mode . k20e/web-mode-hook)))
   #+END_SRC
 
 * winner-mode
@@ -2203,9 +2202,9 @@ function.
   Remember window configurations.
 
   #+BEGIN_SRC emacs-lisp
-	(use-package winner
-	  :config
-	  (winner-mode))
+    (use-package winner
+      :config
+      (winner-mode))
   #+END_SRC
 
 * whitespace
@@ -2217,16 +2216,16 @@ function.
   - Prefer =space= over =tab=
 
   #+BEGIN_SRC emacs-lisp
-	(use-package whitespace
-	  :ensure t
-	  :config
-	  (setq-default require-final-newline t
-					mode-require-final-newline t
-					indent-tabs-mode nil)
-	  (defun k20e/before-save-hook ()
-		(whitespace-cleanup)
-		(delete-trailing-whitespace 0 nil))
-	  :hook ((whitespace . k20e/before-save-hook)))
+    (use-package whitespace
+      :ensure t
+      :config
+      (setq-default require-final-newline t
+                    mode-require-final-newline t
+                    indent-tabs-mode nil)
+      (defun k20e/before-save-hook ()
+        (whitespace-cleanup)
+        (delete-trailing-whitespace 0 nil))
+      :hook ((before-save . k20e/before-save-hook)))
   #+END_SRC
 
 * yaml-mode

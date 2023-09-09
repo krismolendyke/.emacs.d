@@ -61,9 +61,9 @@ Only turn off the menu bar running in a terminal window."
 (defun k20e/load-custom-org ()
   "Load custom Org Mode configuration."
   (use-package org
-	:ensure t
-	:pin manual
-	:load-path "site-lisp/org-mode/lisp"
+    :ensure t
+    :pin manual
+    :load-path "site-lisp/org-mode/lisp"
     :config
     (dolist (elt (directory-files user-emacs-directory t "\\.org$" t))
     (org-babel-load-file elt t))))
