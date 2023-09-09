@@ -1,7 +1,7 @@
 #+TITLE: Literate =.emacs.d=
 #+OPTIONS: toc:nil num:nil
 
-#+BEGIN_QUOTE
+#+begin_quote
 [[http://www.literateprogramming.com/][Literate programming]] is a methodology that combines a programming language
 with a documentation language, thereby making programs more robust, more
 portable, more easily maintained, and arguably more fun to write than programs
@@ -10,7 +10,7 @@ program as a piece of literature, addressed to human beings rather than to a
 computer. The program is also viewed as a hypertext document, rather like the
 World Wide Web. (Indeed, I used the word WEB for this purpose long before CERN
 grabbed it!) -- [[http://www-cs-faculty.stanford.edu/~uno/lp.html][Donald Knuth]]
-#+END_QUOTE
+#+end_quote
 
 All configuration described here is performed in an [[https://github.com/krismolendyke/.emacs.d/blob/0d5a5434ff79d48ab613fc433d0ae2443c552665/init.el#L88][=after-init-hook=]]
 function.
@@ -28,24 +28,24 @@ function.
   interesting lands there I will build a fresh Emacs installation via
   [[http://brew.sh/][Homebrew]] and try it out.
 
-  #+BEGIN_SRC sh
+  #+begin_src sh
     brew info emacs
-  #+END_SRC
+  #+end_src
 
   I install Emacs with the following options.  The standard Homebrew
   installation has lost a lot of MacOS customization flags over the
   years so I've switched to the [[https://github.com/d12frosted/homebrew-emacs-plus][Emacs Plus]] formula instead.  First,
   tap that keg:
 
-  #+BEGIN_SRC sh
+  #+begin_src sh
     brew tap d12frosted/emacs-plus
-  #+END_SRC
+  #+end_src
 
   And then install:
 
-  #+BEGIN_SRC sh
+  #+begin_src sh
     brew install emacs-plus@29
-  #+END_SRC
+  #+end_src
 
 ** Emacs Source Directory
 
@@ -55,9 +55,9 @@ function.
    Finding the source code directory via Homebrew can be done with the
    following command:
 
-   #+BEGIN_SRC sh :exports both
+   #+begin_src sh :exports both
      echo $(brew --cache)/emacs*
-   #+END_SRC
+   #+end_src
 
    #+RESULTS:
    : /Library/Caches/Homebrew/emacs--git
@@ -74,7 +74,7 @@ function.
   Emacs automatically if it is located in one of several well-defined
   locations.
 
-  #+BEGIN_QUOTE
+  #+begin_quote
   When Emacs is started, it normally tries to load a Lisp program from
   an "initialization file", or "init file" for short.  This file, if
   it exists, specifies how to initialize Emacs for you.  Emacs looks
@@ -82,7 +82,7 @@ function.
   `~/.emacs.d/init.el'; you can choose to use any one of these three
   names (*note Find Init::).  Here, `~/' stands for your home
   directory. -- [[http://www.gnu.org/software/emacs/manual/html_node/emacs/Init-File.html][The Emacs Initialization File]]
-  #+END_QUOTE
+  #+end_quote
 
   Once it's found, =init.el= sets "global" variables and defines
   several functions to be executed /during/ initialization and one
@@ -91,7 +91,7 @@ function.
   interesting bit of this function is the call to
   =org-babel-load-file=:
 
-  #+BEGIN_QUOTE
+  #+begin_quote
   (org-babel-load-file FILE &optional COMPILE)
 
   Load Emacs Lisp source code blocks in the Org-mode FILE. This
@@ -99,7 +99,7 @@ function.
   loads the resulting file using `load-file'.  With prefix arg
   (noninteractively: 2nd arg) COMPILE the tangled Emacs Lisp file to
   byte-code before it is loaded.
-  #+END_QUOTE
+  #+end_quote
 
   This function invocation exports all [[http://orgmode.org/manual/Working-With-Source-Code.html#Working-With-Source-Code][=org-mode= source blocks]] in any
   =org-mode= files in the =.emacs.d= directory to a single Emacs Lisp
@@ -112,7 +112,7 @@ function.
    and automatically generates the HTML content of this [[https://pages.github.com/][GitHub Pages]]
    site.
 
-   #+BEGIN_SRC sh
+   #+begin_src sh
      #!/bin/sh
 
      emacs --batch \
@@ -126,7 +126,7 @@ function.
      git add index.html
      git commit --message "post-commit hook regeneration."
      git checkout master
-   #+END_SRC
+   #+end_src
 
    All of the interesting customization of the exported document is
    performed in [[https://github.com/krismolendyke/.emacs.d/blob/master/elisp/k20e-org-html-export.el][=elisp/k20e-org-html-export.el=]].
@@ -136,13 +136,13 @@ function.
   Before =use-package= I had 70 packages installed and
   =emacs-init-time= was ="8.678111 seconds"=.
 
-  #+BEGIN_SRC emacs-lisp
+  #+begin_src emacs-lisp
     (eval-when-compile (require 'use-package))
 
     (use-package package
       :config
       (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t))
-  #+END_SRC
+  #+end_src
 
 * Performance Tuning
 
@@ -151,19 +151,19 @@ function.
 
 ** GC
 
-   #+BEGIN_SRC emacs-lisp
+   #+begin_src emacs-lisp
      (eval-when-compile
        (let ((mib (expt 2 20)))
          (setq gc-cons-threshold (* 500 mib))))
-   #+END_SRC
+   #+end_src
 
 ** Process Output
 
-   #+BEGIN_SRC emacs-lisp
+   #+begin_src emacs-lisp
      (eval-when-compile
        (let ((mib (expt 2 20)))
          (setq read-process-output-max (* 1 mib))))
-   #+END_SRC
+   #+end_src
 
 * Global GNU Emacs Key Bindings
 
@@ -177,12 +177,12 @@ function.
    and masks the key binding in Emacs.  [[http://apple.stackexchange.com/questions/22785/how-do-i-disable-the-command-control-d-word-definition-keyboard-shortcut-in-os-x/114269#114269][Disabling it]] can currently
    only be done by editing a default /and restarting/.
 
-   #+BEGIN_SRC sh
+   #+begin_src sh
      defaults write com.apple.symbolichotkeys AppleSymbolicHotKeys \
               -dict-add 70 '<dict><key>enabled</key><false/></dict>'
-   #+END_SRC
+   #+end_src
 
-   #+BEGIN_SRC emacs-lisp
+   #+begin_src emacs-lisp
      (global-unset-key (kbd "<f1> h"))
      (global-unset-key (kbd "<f11>"))
      (global-unset-key (kbd "C-h"))
@@ -191,11 +191,11 @@ function.
      (global-unset-key (kbd "M-c"))
      (global-unset-key (kbd "M-h"))
      (global-unset-key (kbd "M-u"))
-   #+END_SRC
+   #+end_src
 
 ** Set
 
-   #+BEGIN_SRC emacs-lisp
+   #+begin_src emacs-lisp
      (global-set-key (kbd "<f1> F") 'find-function)
      (global-set-key (kbd "<f1> V") 'find-variable)
      (global-set-key (kbd "<f6>") 'k20e/font-toggle-proportional)
@@ -216,7 +216,7 @@ function.
      (global-set-key (kbd "M-`") 'other-window)
      (global-set-key (kbd "M-h") 'backward-kill-word)
      (global-set-key (kbd "M-t") 'transpose-words)
-   #+END_SRC
+   #+end_src
 
 * k20e Defaults
 
@@ -224,15 +224,15 @@ function.
 
    Sort by relevancy.
 
-   #+BEGIN_SRC emacs-lisp
+   #+begin_src emacs-lisp
      (setq-default apropos-sort-by-scores t)
-   #+END_SRC
+   #+end_src
 
 ** Backup Files
 
    Back up files to a single location.
 
-   #+BEGIN_SRC emacs-lisp
+   #+begin_src emacs-lisp
      (defvar k20e/backup-dir (expand-file-name "backup" user-emacs-directory)
        "A single directory for storing backup files within.")
 
@@ -242,14 +242,14 @@ function.
            backup-directory-alist `(("." . ,k20e/backup-dir))
            delete-old-versions t
            version-control t)
-   #+END_SRC
+   #+end_src
 
 ** Enabled Commands
 
    Commands disabled by default prompt at first use.  Enabling
    commands disables the prompt.
 
-   #+BEGIN_SRC emacs-lisp
+   #+begin_src emacs-lisp
      (defvar k20e/enabled-commands
        '(downcase-region
          upcase-region
@@ -265,15 +265,15 @@ function.
          (put command 'disabled nil)))
 
      (k20e/enable-commands)
-   #+END_SRC
+   #+end_src
 
 ** Inferior Shell
 
    Defaulting to =sh= seems to work well.
 
-   #+BEGIN_SRC emacs-lisp
+   #+begin_src emacs-lisp
      (setq shell-file-name "/bin/sh")
-   #+END_SRC
+   #+end_src
 
 ** TODO Defaults for Review
 
@@ -282,31 +282,31 @@ function.
    Show the active region and delete it when selected if a character
    is inserted.
 
-   #+BEGIN_SRC emacs-lisp
+   #+begin_src emacs-lisp
      (transient-mark-mode t)
      (delete-selection-mode 1)
-   #+END_SRC
+   #+end_src
 
    "Electric" indentation is generally what I consider to be sensible.
 
-   #+BEGIN_SRC emacs-lisp
+   #+begin_src emacs-lisp
      (electric-indent-mode)
-   #+END_SRC
+   #+end_src
 
    Cycle through the mark ring faster.
 
-   #+BEGIN_SRC emacs-lisp
+   #+begin_src emacs-lisp
      (setq set-mark-command-repeat-pop t)
-   #+END_SRC
+   #+end_src
 
    Splitting windows horizontally makes more sense on all of the wide
    screen monitors I work on.
 
-   #+BEGIN_SRC emacs-lisp
+   #+begin_src emacs-lisp
      (setq split-width-threshold 81)
-   #+END_SRC
+   #+end_src
 
-   #+BEGIN_SRC emacs-lisp
+   #+begin_src emacs-lisp
      ;; What's going on here?
      (setq echo-keystrokes 0.1)
 
@@ -315,7 +315,7 @@ function.
 
      ;; y is the new yes.  n is the new no.
      (defalias 'yes-or-no-p 'y-or-n-p)
-   #+END_SRC
+   #+end_src
 
    Stuff in review from https://www.masteringemacs.org/article/whats-new-in-emacs-28-1.
 
@@ -334,7 +334,7 @@ function.
 
 ** Editing
 
-   #+BEGIN_SRC emacs-lisp
+   #+begin_src emacs-lisp
      (defun k20e/mark-current-line (arg)
        "Mark the current line.
      If the mark is already set simply move the point forward a single
@@ -376,11 +376,11 @@ function.
                (call-interactively 'goto-line))
            (setq display-line-numbers nil))))
 
-   #+END_SRC
+   #+end_src
 
    This one is stolen from [[https://github.com/magnars/.emacs.d/blob/e56e71ce0f0791c7237192a049f29c2de686409a/defuns/lisp-defuns.el][magnars]]:
 
-   #+BEGIN_SRC emacs-lisp
+   #+begin_src emacs-lisp
      (defun k20e/eval-and-replace ()
        "Replace the preceding sexp with its value."
        (interactive)
@@ -390,32 +390,32 @@ function.
                   (current-buffer))
          (error (message "Invalid expression")
                 (insert (current-kill 0)))))
-   #+END_SRC
+   #+end_src
 
    Bind editing functions:
 
-   #+BEGIN_SRC emacs-lisp
+   #+begin_src emacs-lisp
      (global-set-key (kbd "M-l") 'k20e/mark-current-line)
      (global-set-key (kbd "<M-return>") 'k20e/open-line-below)
      (global-set-key (kbd "<M-S-return>") 'k20e/open-line-above)
      (global-set-key [remap goto-line] 'k20e/goto-line)
-   #+END_SRC
+   #+end_src
 
 ** Buffers
 
-   #+BEGIN_SRC emacs-lisp
+   #+begin_src emacs-lisp
      (defun k20e/display-buffer-file-name ()
        "Message the full path to the currently visited file."
        (interactive)
        (message "%s" (buffer-file-name)))
-   #+END_SRC
+   #+end_src
 
 *** Toggle Source/Test Buffer
 
     If this gets any smarter it should be refactored into its own
     package.
 
-    #+BEGIN_SRC emacs-lisp
+    #+begin_src emacs-lisp
       (defun k20e/test-buffer-p ()
         "Is the current buffer a test buffer?
       This function naïvely assumes that the file name suffix '_test'
@@ -450,7 +450,7 @@ function.
         (if (k20e/test-buffer-p)
             (k20e/switch-to-source-buffer)
           (k20e/switch-to-test-buffer)))
-    #+END_SRC
+    #+end_src
 
 *** Widescreen
 
@@ -459,7 +459,7 @@ function.
     monitors.  In particular, a function like =fit-window-to-buffer=
     which adjusts the window's width is helpful.
 
-    #+BEGIN_SRC emacs-lisp
+    #+begin_src emacs-lisp
       (defun k20e/get-longest-line-length ()
         "Get the length of the longest line in the selected window."
         (save-excursion
@@ -483,11 +483,11 @@ function.
           delta))
 
       (global-set-key (kbd "C-x w") 'k20e/fit-window-to-buffer-horizontally)
-    #+END_SRC
+    #+end_src
 
 ** Windows
 
-   #+BEGIN_SRC emacs-lisp
+   #+begin_src emacs-lisp
      (use-package ivy :ensure t)
 
      (defun split-window-right-and-balance-and-go-there-and-switch-buffer (&optional arg)
@@ -505,18 +505,18 @@ function.
        (interactive)
        (delete-window)
        (balance-windows-area))
-   #+END_SRC
+   #+end_src
 
    Bind window functions:
 
-   #+BEGIN_SRC emacs-lisp
+   #+begin_src emacs-lisp
      (global-set-key (kbd "C-x 0") 'delete-window-and-balance)
      (global-set-key (kbd "C-x 3") 'split-window-right-and-balance-and-go-there-and-switch-buffer)
-   #+END_SRC
+   #+end_src
 
 ** Networking
 
-   #+BEGIN_SRC emacs-lisp
+   #+begin_src emacs-lisp
      (use-package net-utils :ensure t)
      (use-package tramp
        :ensure t
@@ -536,11 +536,11 @@ function.
        (let ((host (k20e/known-hosts)))
          (insert (car (last (split-string (shell-command-to-string
                                            (concat dns-lookup-program " " host))))))))
-   #+END_SRC
+   #+end_src
 
 ** Lunar 🌙
 
-   #+BEGIN_SRC emacs-lisp
+   #+begin_src emacs-lisp
      (use-package calendar :ensure t)
      (require 'lunar)
 
@@ -567,7 +567,7 @@ function.
                (format "%s %s" (calendar-date-string (car x)) (car (cdr x))))
            (k20e/full-moons-info)
            "\n"))))
-   #+END_SRC
+   #+end_src
 
 * auto-fill
 
@@ -575,26 +575,26 @@ function.
   would probably be better dealt with by a data structure that maps mode hooks
   to fill-column values.
 
-  #+BEGIN_SRC emacs-lisp
+  #+begin_src emacs-lisp
     (use-package emacs
       :config
       (setq-default fill-column 118))
-  #+END_SRC
+  #+end_src
 
 * auto-save
 
   Disable =auto-save=.
 
-  #+BEGIN_SRC emacs-lisp
+  #+begin_src emacs-lisp
     (use-package emacs
       :config
       (setq auto-save-default nil
             auto-save-timeout 0))
-  #+END_SRC
+  #+end_src
 
 * avy
 
-  #+BEGIN_SRC emacs-lisp
+  #+begin_src emacs-lisp
     (use-package avy
       :ensure t
       :bind (("s-g" . avy-goto-char-timer))
@@ -603,24 +603,24 @@ function.
        avy-keys '(?a ?o ?e ?u ?i ?d ?h ?t ?n)
        avy-all-windows nil
        avy-style 'at-full))
-  #+END_SRC
+  #+end_src
 
 * buffer-move
 
   Move the current buffer up/down/left/right easily.
 
-  #+BEGIN_SRC emacs-lisp
+  #+begin_src emacs-lisp
     (use-package buffer-move
       :ensure t
       :bind (("M-S-<up>" . buf-move-up)
          ("M-S-<down>" . buf-move-down)
          ("M-S-<left>" . buf-move-left)
          ("M-S-<right>" . buf-move-right)))
-  #+END_SRC
+  #+end_src
 
 * C
 
-  #+BEGIN_SRC emacs-lisp
+  #+begin_src emacs-lisp
     (use-package flycheck
       :ensure t
       :config
@@ -628,29 +628,29 @@ function.
             flycheck-gcc-pedantic-errors t)
       (setq-default flycheck-c/c++-gcc-executable "gcc-7")
       :hook ((c-mode . flycheck-mode)))
-  #+END_SRC
+  #+end_src
 
 * clock-face
 
   This is a [[https://github.com/krismolendyke/clock-face.el][ridiculous package]] that I wrote to insert a Unicode clock
   face character for the nearest current half-hour.  🕙
 
-  #+BEGIN_SRC emacs-lisp
+  #+begin_src emacs-lisp
     (use-package clock-face
       :ensure nil
       :load-path "site-lisp/clock-face.el")
-  #+END_SRC
+  #+end_src
 
 * compilation-mode
 
-  #+BEGIN_SRC emacs-lisp
+  #+begin_src emacs-lisp
     (use-package compile
       :custom-face (compilation-error ((t (:foreground "tomato1")))))
-  #+END_SRC
+  #+end_src
 
   Functions to execute after compilation has finished:
 
-  #+BEGIN_SRC emacs-lisp
+  #+begin_src emacs-lisp
     (require 'hl-line)
     (require 'subr-x)
 
@@ -674,14 +674,14 @@ function.
         (goto-char (point-max))
         (forward-line -1)
         (hl-line-mode)))
-  #+END_SRC
+  #+end_src
 
 * Counsel
   :PROPERTIES:
   :CUSTOM_ID: counsel
   :END:
 
-  #+BEGIN_SRC emacs-lisp
+  #+begin_src emacs-lisp
     (use-package counsel
       :ensure t
       :bind (("M-x" . counsel-M-x)
@@ -691,11 +691,11 @@ function.
          ("<f1> l" . counsel-find-library)
          ("<f1> s" . counsel-info-lookup-symbol)
          ("C-x 8 RET" . counsel-unicode-char)))
-  #+END_SRC
+  #+end_src
 
 * dired
 
-  #+BEGIN_SRC emacs-lisp
+  #+begin_src emacs-lisp
     (use-package dired
       :custom-face (dired-flagged ((t (:foreground "tomato1" :strike-through t))))
       :config
@@ -706,18 +706,18 @@ function.
         :config
         (load "dired-x.el"))
       :hook ((dired-mode . auto-revert-mode)))
-  #+END_SRC
+  #+end_src
 
 * electric-pair-mode
 
-  #+BEGIN_SRC emacs-lisp
+  #+begin_src emacs-lisp
     (use-package elec-pair
       :hook ((prog-mode . electric-pair-mode)))
-  #+END_SRC
+  #+end_src
 
 * emacs-lisp-mode
 
-  #+BEGIN_SRC emacs-lisp
+  #+begin_src emacs-lisp
     (use-package elisp-mode
       :config
       (defun k20e/ert ()
@@ -726,19 +726,19 @@ function.
         (ert t))
       :bind (:map emacs-lisp-mode-map ("H-t" . k20e/ert))
       :hook ((emacs-lisp-mode . eldoc-mode)))
-  #+END_SRC
+  #+end_src
 
 * expand-region
 
-  #+BEGIN_SRC emacs-lisp
+  #+begin_src emacs-lisp
     (use-package expand-region
       :ensure t
       :bind (("C-M-SPC" . er/expand-region)))
-  #+END_SRC
+  #+end_src
 
 * find-file-in-project
 
-  #+BEGIN_SRC emacs-lisp
+  #+begin_src emacs-lisp
     (use-package find-file-in-project
       :ensure t
       :bind (("C-x o" . find-file-in-project))
@@ -761,26 +761,26 @@ function.
                     "Dockerfile"
                     "Makefile")
             ffip-prune-patterns (list ".git" "build")))
-  #+END_SRC
+  #+end_src
 
 * flycheck
   :PROPERTIES:
   :CUSTOM_ID: flycheck
   :END:
 
-  #+BEGIN_SRC emacs-lisp
+  #+begin_src emacs-lisp
     (use-package flycheck
       :ensure t
       :config
       (setq-default flycheck-pylintrc "pylintrc"
                     flycheck-check-syntax-automatically '(mode-enabled save)))
-  #+END_SRC
+  #+end_src
 
 * flyspell
 
   Setup =ispell= to use [[#install-aspell][=aspell=]], then setup =flyspell= itself.  It requires =ispell=.
 
-  #+BEGIN_SRC emacs-lisp
+  #+begin_src emacs-lisp
     (use-package flyspell
       :ensure t
       :init
@@ -790,7 +790,7 @@ function.
       (setq flyspell-issue-message-flag nil
             flyspell-issue-welcome-flag nil)
       :hook ((text-mode . flyspell-mode)))
-  #+END_SRC
+  #+end_src
 
 ** Install [[http://hunspell.sourceforge.net/][=aspell=]]
    :PROPERTIES:
@@ -799,9 +799,9 @@ function.
 
    Install =aspell= via Homebrew:
 
-   #+BEGIN_SRC sh
+   #+begin_src sh
      brew install aspell --with-lang-en
-   #+END_SRC
+   #+end_src
 
 * Fonts
 
@@ -810,7 +810,7 @@ function.
     - [[https://www.fsd.it/shop/fonts/pragmatapro/][PragmataPro]] ([[https://github.com/fabrizioschiavi/pragmatapro][GitHub]])
     - [[https://edwardtufte.github.io/et-book/][ET Book]] ([[https://github.com/edwardtufte/et-book][GitHub]], [[https://aur.archlinux.org/packages/otf-et-book][AUR]])
 
-  #+BEGIN_SRC emacs-lisp
+  #+begin_src emacs-lisp
     (global-prettify-symbols-mode 1)
 
     (defvar k20e/font-list '(("PragmataPro-Mono-Liga" . 16)
@@ -846,53 +846,53 @@ function.
           (setq completion-ignore-case ignore-case))))
 
     (k20e/font-set-from-list k20e/font-list)
-  #+END_SRC
+  #+end_src
 
 ** Unicode
 
    [[http://users.teilar.gr/~g1951d/][Symbola]] is a nice font for displaying Unicode characters 🍺👍.
 
-    #+BEGIN_SRC emacs-lisp
+    #+begin_src emacs-lisp
       (when (member "Symbola" (font-family-list))
         (set-fontset-font t 'unicode "Noto Color Emoji" nil 'prepend))
-    #+END_SRC
+    #+end_src
 
 * font-awesome
 
   This is a [[https://github.com/krismolendyke/font-awesome.el][naïve package]] that I wrote to help insert [[http://fortawesome.github.io/Font-Awesome/][Font Awesome]]
   icons into buffers.
 
-  #+BEGIN_SRC emacs-lisp
+  #+begin_src emacs-lisp
     (use-package font-awesome
       :ensure nil
       :load-path "site-lisp/font-awesome.el")
-  #+END_SRC
+  #+end_src
 
 * geiser
 
-  #+BEGIN_SRC emacs-lisp
+  #+begin_src emacs-lisp
     (use-package geiser
       :ensure t
       :config
       (setq-default geiser-active-implementations '(racket chicken)
                     geiser-default-implementation 'racket))
-  #+END_SRC
+  #+end_src
 
 * git
 
-  #+BEGIN_SRC emacs-lisp
+  #+begin_src emacs-lisp
     (use-package counsel
       :ensure t
       :bind (("C-c g" . counsel-git)
              ("C-c j" . counsel-git-grep)))
-  #+END_SRC
+  #+end_src
 
 ** GitHub =.gitignore=
 
    A simple function to insert starter =.gitignore= file contents from
    the [[https://github.com/github/gitignore][github/gitignore]] repository.
 
-   #+BEGIN_SRC emacs-lisp
+   #+begin_src emacs-lisp
      (require 'url)
 
      (defun k20e/gh--gitignore-url (language)
@@ -917,23 +917,23 @@ function.
               (gitignore-region (k20e/gh--gitignore-get-region response-buffer)))
          (insert-buffer-substring-no-properties
           response-buffer (car gitignore-region) (cadr gitignore-region))))
-   #+END_SRC
+   #+end_src
 
 * go-mode
 
   Install commands:
 
-  #+BEGIN_SRC sh
+  #+begin_src sh
     pushd "${TMPDIR}" && \
         go install golang.org/x/tools/gopls@latest; \
         go install honnef.co/go/tools/cmd/staticcheck@latest; \
         popd
-  #+END_SRC
+  #+end_src
 
   Switched from =staticcheck= to =golangci-lint= but its install
   doesn't recommend =go get -u=.
 
-  #+BEGIN_SRC emacs-lisp
+  #+begin_src emacs-lisp
     (use-package company
       :ensure t
       :bind
@@ -1003,7 +1003,7 @@ function.
                                       ("go.inlayHints.functionTypeParameters" t t)
                                       ("go.inlayHints.parameterNames" t t)
                                       ("go.inlayHints.rangeVariableTypes" t t))))
-  #+END_SRC
+  #+end_src
 
 ** [0/3] =TODO=
 
@@ -1013,22 +1013,22 @@ function.
 
 * highlight-indent-guides
 
-  #+BEGIN_SRC emacs-lisp
+  #+begin_src emacs-lisp
     (use-package highlight-indent-guides
       :ensure t
       :config
       (setq highlight-indent-guides-method 'character
             highlight-indent-guides-responsive 'stack))
-  #+END_SRC
+  #+end_src
 
 * highlight-parentheses
 
-  #+BEGIN_SRC emacs-lisp
+  #+begin_src emacs-lisp
     (use-package highlight-parentheses
       :ensure t
       :hook ((emacs-lisp-mode . highlight-parentheses-mode)
              (lisp-mode-hook . highlight-parentheses-mode)))
-  #+END_SRC
+  #+end_src
 
 * htmlize
 
@@ -1039,19 +1039,19 @@ function.
 
 * hyperspec
 
-  #+BEGIN_SRC emacs-lisp
+  #+begin_src emacs-lisp
     ;; Set HyperSpec root in Google Drive.
     (defvar common-lisp-hyperspec-root
       (format "file://%s/"
               (expand-file-name "Documents/HyperSpec" k20e/google-drive-directory)))
-  #+END_SRC
+  #+end_src
 
 * ibuffer
   :PROPERTIES:
   :CUSTOM_ID: ibuffer
   :END:
 
-  #+BEGIN_SRC emacs-lisp
+  #+begin_src emacs-lisp
     (require 'face-remap)
 
     (defalias 'list-buffers 'ibuffer)
@@ -1068,40 +1068,40 @@ function.
                                (filename-and-process 70 70 :left :elide)
                                " "
                                name))))
-  #+END_SRC
+  #+end_src
 
 * IELM
 
-  #+BEGIN_SRC emacs-lisp
+  #+begin_src emacs-lisp
     (use-package ielm
       :hook ((ielm-mode . eldoc-mode)
              (ielm-mode . paredit-mode)))
-  #+END_SRC
+  #+end_src
 
 * imenu
 
   Re-scan the buffer for new menu items automatically.
 
-  #+BEGIN_SRC emacs-lisp
+  #+begin_src emacs-lisp
     (use-package imenu
       :config
       (setq-default imenu-auto-rescan t))
-  #+END_SRC
+  #+end_src
 
 * I'm Feeling Lucky
 
   This is [[https://github.com/krismolendyke/im-feeling-lucky.el][my Google search]] module.
 
-  #+BEGIN_SRC emacs-lisp
+  #+begin_src emacs-lisp
     (use-package im-feeling-lucky
       :ensure nil
       :load-path "site-lisp/im-feeling-lucky.el"
       :bind (("H-l" . ifl-region-or-query)))
-  #+END_SRC
+  #+end_src
 
 * Ivy
 
-  #+BEGIN_SRC emacs-lisp
+  #+begin_src emacs-lisp
     (use-package ivy
       :ensure t
       :config
@@ -1112,44 +1112,44 @@ function.
              ("C-x b" . ivy-switch-buffer)))
 
     (ivy-mode 1)
-  #+END_SRC
+  #+end_src
 
-  #+BEGIN_QUOTE
+  #+begin_quote
   =M-j= (=ivy-yank-word=)
 
     Inserts the sub-word at point into the minibuffer.
 
     This is similar to =C-s C-w= with =isearch=. Ivy reserves =C-w=
     for =kill-region=. -- [[http://oremacs.com/swiper/#minibuffer-key-bindings][Ivy minibuffer key bindings]]
-  #+END_QUOTE
+  #+end_quote
 
   =isearch-forward-word= was mapped to =w= and my muscle memory
   requires this:
 
-  #+BEGIN_SRC emacs-lisp
+  #+begin_src emacs-lisp
     (define-key ivy-minibuffer-map (kbd "C-w") 'ivy-yank-word)
-  #+END_SRC
+  #+end_src
 
-  #+BEGIN_QUOTE
+  #+begin_quote
   =C-j= (=ivy-alt-done=)
 
     When completing file names, selects the current directory
     candidate and starts a new completion session there. Otherwise, it
     is the same as =ivy-done=.
-  #+END_QUOTE
+  #+end_quote
 
   Having to type =C-j= to go into a directory when finding files is
   maddening and I almost never used =dired=.  Swap =RET= to go into
   directories and =C-j= to open current directory in =dired=:
 
-  #+BEGIN_SRC emacs-lisp
+  #+begin_src emacs-lisp
     (define-key ivy-minibuffer-map (kbd "RET") 'ivy-alt-done)
     (define-key ivy-minibuffer-map (kbd "C-j") 'ivy-done)
-  #+END_SRC
+  #+end_src
 
 * js-mode
 
-  #+BEGIN_SRC emacs-lisp
+  #+begin_src emacs-lisp
     (require 'flycheck)
     (require 'json)
 
@@ -1159,25 +1159,25 @@ function.
     (add-hook 'js-mode-hook 'k20e/js-mode-hook)
 
     (add-to-list 'auto-mode-alist '("\\.json\\'" . js-mode))
-  #+END_SRC
+  #+end_src
 
 * LaTeX
 
-  #+BEGIN_SRC emacs-lisp
+  #+begin_src emacs-lisp
     (use-package tex-mode
       :ensure t
       :bind (:map latex-mode-map ("C-j" . join-line)))
-  #+END_SRC
+  #+end_src
 
 * ligature-pragmatapro
 
-  #+BEGIN_SRC emacs-lisp
+  #+begin_src emacs-lisp
     (use-package ligature-pragmatapro
       :ensure t
       :config
       (ligature-pragmatapro-setup)
       (global-ligature-mode t))
-  #+END_SRC
+  #+end_src
 
 * lockfiles
 
@@ -1185,9 +1185,9 @@ function.
   directory state at the expense of avoiding editing collisions that I
   do not ever anticipate.
 
-  #+BEGIN_SRC emacs-lisp
+  #+begin_src emacs-lisp
     (setq create-lockfiles nil)
-  #+END_SRC
+  #+end_src
 
 * lsp-mode
 
@@ -1208,13 +1208,13 @@ function.
   Setting a width avoids a possibly (likely) poorly chosen automatic
   width.
 
-  #+BEGIN_SRC emacs-lisp
+  #+begin_src emacs-lisp
     (setq-default Man-width 80)
-  #+END_SRC
+  #+end_src
 
 * markdown-mode
 
-  #+BEGIN_SRC emacs-lisp
+  #+begin_src emacs-lisp
     (require 'markdown-mode)
 
     (defun k20e/markdown-mode-hook ()
@@ -1222,34 +1222,34 @@ function.
       (setq markdown-open-command "open"))
 
     (add-hook 'markdown-mode-hook 'k20e/markdown-mode-hook)
-  #+END_SRC
+  #+end_src
 
 * Minibuffer
 
   Scale up the minibuffer text size and limit how tall it can get.
 
-  #+BEGIN_SRC emacs-lisp
+  #+begin_src emacs-lisp
     (defun k20e/minibuffer-setup-hook ()
       "Bump up minibuffer text size and height."
       (text-scale-set 3)
       (setq max-mini-window-height 20))
 
     (add-hook 'minibuffer-setup-hook 'k20e/minibuffer-setup-hook)
-  #+END_SRC
+  #+end_src
 
   Set =enable-recursive-minibufers= to =t= to allow minibuffers
   /within/ minibuffers.  A good use-case of this feature is described
   in [[http://www.masteringemacs.org/articles/2011/10/19/executing-shell-commands-emacs/][Executing Shell Commands in Emacs]].
 
-  #+BEGIN_SRC emacs-lisp
+  #+begin_src emacs-lisp
     (setq enable-recursive-minibuffers t)
-  #+END_SRC
+  #+end_src
 
 ** Eval expression minibuffer
 
    Enable =eldoc= in the modeline.
 
-   #+BEGIN_SRC emacs-lisp
+   #+begin_src emacs-lisp
      (require 'eldoc)
 
      (defun k20e/eval-expression-minibuffer-setup-hook ()
@@ -1257,19 +1257,19 @@ function.
 
      (add-hook 'eval-expression-minibuffer-setup-hook
                'k20e/eval-expression-minibuffer-setup-hook)
-   #+END_SRC
+   #+end_src
 
 * Mouse
 
   Scroll one line at a time in the "natural" direction:
 
-  #+BEGIN_SRC emacs-lisp
+  #+begin_src emacs-lisp
     (setq-default mouse-wheel-scroll-amount '(-1 ((shift) . 1) ((meta)) ((control) . text-scale)))
-  #+END_SRC
+  #+end_src
 
 * multiple-cursors
 
-  #+BEGIN_SRC emacs-lisp
+  #+begin_src emacs-lisp
     (use-package multiple-cursors
       :ensure t
       :bind (("M-L" . mc/edit-lines)
@@ -1296,17 +1296,17 @@ function.
         (if extended
             (call-interactively 'mc/mark-more-like-this-extended)
           (call-interactively 'mc/mark-previous-like-this))))
-  #+END_SRC
+  #+end_src
 
   Keep preferences sync'd across machines.
 
-  #+BEGIN_SRC emacs-lisp
+  #+begin_src emacs-lisp
     (setq mc/list-file (expand-file-name ".mc-lists.el" k20e/google-drive-directory))
-  #+END_SRC
+  #+end_src
 
 * Open Source Licenses
 
-  #+BEGIN_SRC emacs-lisp
+  #+begin_src emacs-lisp
     (defun k20e/insert-mit-license ()
       "Insert MIT license file contents.
     Populate the current year and user name."
@@ -1334,11 +1334,11 @@ function.
     OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
     THE SOFTWARE.
     " (format-time-string "%Y") (user-full-name)))))
-  #+END_SRC
+  #+end_src
 
 * org-mode
 
-  #+BEGIN_SRC emacs-lisp
+  #+begin_src emacs-lisp
     (use-package org
       :custom-face
       (variable-pitch ((t (:family "ETBembo" :height 1.3))))
@@ -1400,11 +1400,11 @@ function.
       lsp-format-buffer
       lsp-organize-imports
       lsp-register-custom-settings)
-  #+END_SRC
+  #+end_src
 
 ** UPGRAYEDD
 
-   #+BEGIN_SRC sh
+   #+begin_src sh
      cd ~/.emacs.d/site-lisp/org-mode
      g fetch origin --tags
      g co -b release_9.1.2 release_9.1.2
@@ -1413,7 +1413,7 @@ function.
      cd ~/.emacs.d
      g add site-lisp/org-mode
      g commit -m "UPGRAYEDD org-mode"
-   #+END_SRC
+   #+end_src
 
    [[https://list.orgmode.org/87wnzfy60h.fsf@bzg.fr/][=contrib/=]] was split out into a separate repo so that needs to be
    updated separately via [[*Paradox][Paradox]].
@@ -1424,13 +1424,13 @@ function.
    keyword, e.g., =#+ATTR_HTML: :width 800px=, fall back to original
    image width if no attribute keyword is found:
 
-   #+BEGIN_SRC emacs-lisp
+   #+begin_src emacs-lisp
      (setq org-image-actual-width nil)
-   #+END_SRC
+   #+end_src
 
 ** Key Bindings
 
-   #+BEGIN_SRC emacs-lisp
+   #+begin_src emacs-lisp
      (require 'ivy)
 
      (global-set-key (kbd "<f12>") 'org-agenda-list)
@@ -1445,7 +1445,7 @@ function.
      (define-key org-mode-map (kbd "C-m") 'org-return-indent)
      (define-key org-mode-map (kbd "H-<tab>") 'pcomplete)
      (define-key org-mode-map (kbd "M-h") 'backward-kill-word)
-   #+END_SRC
+   #+end_src
 
 ** Export
 
@@ -1457,13 +1457,13 @@ function.
    initialization time to support a fast batch process for exporting
    /this/ document to HTML in a Git =post-commit= hook.
 
-   #+BEGIN_SRC emacs-lisp
+   #+begin_src emacs-lisp
      (require 'k20e-org-html-export)
-   #+END_SRC
+   #+end_src
 
    Interactive customization can be done here.
 
-   #+BEGIN_SRC emacs-lisp
+   #+begin_src emacs-lisp
      (require 'ox-publish)
 
      (setq
@@ -1472,21 +1472,21 @@ function.
 
       ;; Continue export when links are broken, but mark them
       org-export-with-broken-links  `mark)
-   #+END_SRC
+   #+end_src
 
 *** Options
 
     A message in =*Messages*= like:
 
-    #+BEGIN_EXAMPLE
+    #+begin_example
       user-error: Unable to resolve link: nil
-    #+END_EXAMPLE
+    #+end_example
 
     indicates that a link somewhere is malformed.  Adding the option:
 
-    #+BEGIN_SRC org
+    #+begin_src org
       ,#+OPTIONS: broken-links:mark
-    #+END_SRC
+    #+end_src
 
     and exporting will insert =BROKEN= into the HTML document.
     Searching for that token makes finding the offending broken link
@@ -1495,19 +1495,19 @@ function.
 
 *** Backends
 
-    #+BEGIN_SRC emacs-lisp
+    #+begin_src emacs-lisp
       (require 'ox-md)
 
       (add-to-list 'org-export-backends 'md)
-    #+END_SRC
+    #+end_src
 
-    #+BEGIN_SRC emacs-lisp
+    #+begin_src emacs-lisp
       (use-package ox-tufte :ensure t)
-    #+END_SRC
+    #+end_src
 
 ** Publish
 
-   #+BEGIN_SRC emacs-lisp
+   #+begin_src emacs-lisp
      (setq org-publish-project-alist
            `(("k20e.com-org-files"
               :base-directory ,(expand-file-name "source" (expand-file-name "k20e.com" k20e/google-drive-directory))
@@ -1553,13 +1553,13 @@ function.
               :publishing-function org-publish-attachment)
              ("house"
               :components ("house-org-files" "house-static-files"))))
-   #+END_SRC
+   #+end_src
 
 ** Babel
 
    Define [[https://orgmode.org/worg/org-contrib/babel/languages/index.html][which languages]] =org-babel= should support.
 
-   #+BEGIN_SRC emacs-lisp
+   #+begin_src emacs-lisp
      (defvar k20e/org-babel-load-languages
        '((ditaa . t)
          (emacs-lisp . t)
@@ -1573,26 +1573,26 @@ function.
 
      (org-babel-do-load-languages 'org-babel-load-languages
                                   k20e/org-babel-load-languages)
-   #+END_SRC
+   #+end_src
 
    Disable interactive prompt for executing code blocks.  This is
    dangerous but I never execute any org files that I didn't author.
 
-   #+BEGIN_SRC emacs-lisp
+   #+begin_src emacs-lisp
      (setq org-confirm-babel-evaluate nil)
-   #+END_SRC
+   #+end_src
 
 ** TODO Items
 
    Automatically insert a timestamp when a task is marked =DONE=.
 
-   #+BEGIN_SRC emacs-lisp
+   #+begin_src emacs-lisp
      (setq org-log-done t)
-   #+END_SRC
+   #+end_src
 
    Custom keywords and faces.
 
-   #+BEGIN_SRC emacs-lisp
+   #+begin_src emacs-lisp
      (setq org-todo-keywords '((sequence
                                 "TODO(t)"
                                 "STARTED(s!)"
@@ -1603,11 +1603,11 @@ function.
                                     ("STARTED" . org-code)
                                     ("CANCELED" . org-ellipsis)
                                     ("DONE" . org-done)))
-   #+END_SRC
+   #+end_src
 
 ** Agenda
 
-   #+BEGIN_SRC emacs-lisp
+   #+begin_src emacs-lisp
      (require 'face-remap)
      (require 'org)
      (require 'org-agenda)
@@ -1623,13 +1623,13 @@ function.
        (text-scale-set 2))
 
      (add-hook 'org-agenda-mode-hook 'k20e/org-agenda-mode-hook)
-   #+END_SRC
+   #+end_src
 
 *** Files
 
-   #+BEGIN_SRC emacs-lisp
+   #+begin_src emacs-lisp
      (setq org-agenda-files (list (expand-file-name "work" org-directory)))
-   #+END_SRC
+   #+end_src
 
 *** Deadlines
 
@@ -1642,44 +1642,44 @@ function.
    When set to t, then only the deadline is shown and the fact that the entry
    is scheduled today or was scheduled previously is not shown.
 
-   #+BEGIN_SRC emacs-lisp
+   #+begin_src emacs-lisp
      (setq org-agenda-skip-scheduled-if-deadline-is-shown nil)
-   #+END_SRC
+   #+end_src
 
 *** List
 
    Default to showing only today in the agenda list.
 
-   #+BEGIN_SRC emacs-lisp
+   #+begin_src emacs-lisp
      (setq org-agenda-span 'day)
-   #+END_SRC
+   #+end_src
 
 ** Habit
 
-   #+BEGIN_SRC emacs-lisp
+   #+begin_src emacs-lisp
      (require 'org-habit)
 
      (setq org-habit-completed-glyph ?✓
            org-habit-today-glyph ?|)
-   #+END_SRC
+   #+end_src
 
 ** Logging & Drawers
 
    Insert state change notes and time stamps into a drawer rather than simply
    "loose" after a headline.
 
-   #+BEGIN_SRC emacs-lisp
+   #+begin_src emacs-lisp
      (setq org-log-into-drawer t)
-   #+END_SRC
+   #+end_src
 ** Clock
 
-   #+BEGIN_SRC emacs-lisp
+   #+begin_src emacs-lisp
      (defvar org-clock-idle-time 5)
-   #+END_SRC
+   #+end_src
 
 * paredit-mode
 
-  #+BEGIN_SRC emacs-lisp
+  #+begin_src emacs-lisp
     (use-package paredit
       :ensure t
       :bind (:map paredit-mode-map
@@ -1692,7 +1692,7 @@ function.
              (geiser-repl-mode . paredit-mode)
              (lisp-mode . paredit-mode)
              (scheme-mode . paredit-mode)))
-  #+END_SRC
+  #+end_src
 
 * prettify-symbols-mode
 
@@ -1716,7 +1716,7 @@ function.
 
 * python
 
-  #+BEGIN_SRC emacs-lisp
+  #+begin_src emacs-lisp
     (use-package electric)
     (use-package blacken :ensure t)
     (use-package flycheck :ensure t)
@@ -1753,27 +1753,27 @@ function.
       :config (setq-default lsp-pylsp-plugins-rope-completion-enabled t))
 
     ;; (use-package lsp-ivy :commands lsp-ivy-workspace-symbol)
-  #+END_SRC
+  #+end_src
 
 ** IPython
 
-   #+BEGIN_SRC emacs-lisp
+   #+begin_src emacs-lisp
      (setq python-shell-interpreter "python"
            python-shell-interpreter-args ""
            python-shell-completion-native-enable nil)
-   #+END_SRC
+   #+end_src
 
 * re-builder
 
-  #+BEGIN_SRC emacs-lisp
+  #+begin_src emacs-lisp
     (use-package re-builder
       :config
       (setq reb-re-syntax 'string))
-  #+END_SRC
+  #+end_src
 
 * recentf
 
-  #+BEGIN_SRC emacs-lisp
+  #+begin_src emacs-lisp
     (require 'counsel)
     (require 'recentf)
 
@@ -1783,14 +1783,14 @@ function.
     (recentf-mode 1)
 
     (global-set-key (kbd "C-x C-r") 'counsel-recentf)
-  #+END_SRC
+  #+end_src
 
 * ripgrep
 
   [[https://github.com/BurntSushi/ripgrep][ripgrep]] via [[#counsel][Counsel]], defaulting to the thing at point in the nearest
   =git= repository ancestor.
 
-  #+BEGIN_SRC emacs-lisp
+  #+begin_src emacs-lisp
     (require 'counsel)
 
     (defun k20e/counsel-rg-project (initial-input)
@@ -1801,11 +1801,11 @@ function.
                                   (error default-directory))))
 
     (global-set-key (kbd "C-x C-a") 'k20e/counsel-rg-project)
-  #+END_SRC
+  #+end_src
 
 * rust
 
-  #+BEGIN_SRC emacs-lisp
+  #+begin_src emacs-lisp
     (use-package flycheck :ensure t)
     (use-package flycheck-rust :ensure t)
     (use-package rust-mode
@@ -1817,39 +1817,39 @@ function.
         (flycheck-mode 1)
         (flycheck-rust-setup))
       :hook ((rust-mode . k20e/rust-mode-hook)))
-  #+END_SRC
+  #+end_src
 
 * savehist
 
-  #+BEGIN_SRC emacs-lisp
+  #+begin_src emacs-lisp
     ;; Save minibuffer history.
     (require 'savehist)
 
     (setq savehist-file (expand-file-name ".savehist" k20e/google-drive-directory))
     (savehist-mode)
-  #+END_SRC
+  #+end_src
 
 * =*scratch*=
 
   Begin with an empty =*scratch*= file.
 
-  #+BEGIN_SRC emacs-lisp
+  #+begin_src emacs-lisp
     (setq initial-scratch-message nil)
-  #+END_SRC
+  #+end_src
 
   Set it to Emacs Lisp mode.
 
-  #+BEGIN_SRC emacs-lisp
+  #+begin_src emacs-lisp
     (with-current-buffer (get-buffer-create "*scratch*")
       (emacs-lisp-mode))
-  #+END_SRC
+  #+end_src
 
 ** Quickly create new scratch buffers
 
    With a preset list of major modes that I find often need scratch
    pads for.
 
-   #+BEGIN_SRC emacs-lisp
+   #+begin_src emacs-lisp
      (defconst k20e/scratch-buffer-modes
        '(fundamental-mode
          emacs-lisp-mode
@@ -1871,17 +1871,17 @@ function.
                                                       k20e/scratch-buffer-modes)))))
          (switch-to-buffer (generate-new-buffer (format "*scratch-%s*" mode)))
          (funcall mode)))
-   #+END_SRC
+   #+end_src
 
    Bind it globally.
 
-   #+BEGIN_SRC emacs-lisp
+   #+begin_src emacs-lisp
      (global-set-key (kbd "<f10>") 'k20e/scratch-buffer)
-   #+END_SRC
+   #+end_src
 
 * sh-mode
 
-  #+BEGIN_SRC emacs-lisp
+  #+begin_src emacs-lisp
     (require 'flycheck)
     (require 'sh-script)
 
@@ -1890,31 +1890,31 @@ function.
       (flycheck-mode 1))
 
     (add-hook 'sh-mode-hook 'k20e/sh-script-mode-hook)
-  #+END_SRC
+  #+end_src
 
 * server
 
-  #+BEGIN_SRC emacs-lisp
+  #+begin_src emacs-lisp
     ;; Start the Emacs server.
     (require 'server)
 
     (unless (server-running-p)
       (server-start))
-  #+END_SRC
+  #+end_src
 
 * smex
 
-  #+BEGIN_SRC emacs-lisp
+  #+begin_src emacs-lisp
     (use-package smex
       :ensure t
       :config
       (smex-initialize)
       (setq-default smex-save-file (expand-file-name ".smex-items" k20e/google-drive-directory)))
-  #+END_SRC
+  #+end_src
 
 * sql-mode
 
-  #+BEGIN_SRC emacs-lisp
+  #+begin_src emacs-lisp
     (require 'sql)
 
     (defun k20e/sql-mode-hook ()
@@ -1923,66 +1923,66 @@ function.
       (sql-highlight-mysql-keywords))
 
     (add-hook 'sql-mode-hook 'k20e/sql-mode-hook)
-  #+END_SRC
+  #+end_src
 
 * server
 
-  #+BEGIN_SRC emacs-lisp
+  #+begin_src emacs-lisp
     ;; Start the Emacs server.
     (require 'server)
 
     (unless (server-running-p)
       (server-start))
-  #+END_SRC
+  #+end_src
 
 * Swiper
 
-  #+BEGIN_SRC emacs-lisp
+  #+begin_src emacs-lisp
     (require 'swiper)
 
     (global-set-key (kbd "C-s") 'swiper)
-  #+END_SRC
+  #+end_src
 
 * Theme
 
   Always highlight the current line:
 
-  #+BEGIN_SRC emacs-lisp
+  #+begin_src emacs-lisp
     (require 'hl-line)
 
     (global-hl-line-mode t)
-  #+END_SRC
+  #+end_src
 
   Simple stuff:
 
-  #+BEGIN_SRC emacs-lisp
+  #+begin_src emacs-lisp
     (require 'simple)
 
     (line-number-mode)
     (column-number-mode)
 
     (size-indication-mode)
-  #+END_SRC
+  #+end_src
 
   Highlight matching parentheses:
 
-  #+BEGIN_SRC emacs-lisp
+  #+begin_src emacs-lisp
     (require 'paren)
 
     (show-paren-mode)
-  #+END_SRC
+  #+end_src
 
   Blink the cursor:
 
-  #+BEGIN_SRC emacs-lisp
+  #+begin_src emacs-lisp
     (require 'frame)
 
     (setq-default blink-cursor-mode t)
-  #+END_SRC
+  #+end_src
 
   Truncate lines and enable fringes to indicate truncated lines:
 
-  #+BEGIN_SRC emacs-lisp
+  #+begin_src emacs-lisp
     (require 'fringe)
 
     (fringe-mode)
@@ -1990,26 +1990,26 @@ function.
     (setq-default
      truncate-lines t
      truncate-partial-width-windows nil)
-  #+END_SRC
+  #+end_src
 
   No bell:
 
-  #+BEGIN_SRC emacs-lisp
+  #+begin_src emacs-lisp
     (setq-default ring-bell-function 'ignore)
-  #+END_SRC
+  #+end_src
 
   Make sure syntax highlighting is enabled:
 
-  #+BEGIN_SRC emacs-lisp
+  #+begin_src emacs-lisp
     (require 'font-core)
 
     (global-font-lock-mode)
-  #+END_SRC
+  #+end_src
 
   Set theme automatically on MacOS thanks to
   https://github.com/d12frosted/homebrew-emacs-plus#system-appearance-change.  Just set it to dark on Linux for now.
 
-  #+BEGIN_SRC emacs-lisp
+  #+begin_src emacs-lisp
     (use-package color-theme-sanityinc-tomorrow
       :ensure t
       :config
@@ -2022,30 +2022,30 @@ function.
              (add-hook 'ns-system-appearance-change-functions 'k20e/load-theme))
             ((string-equal system-type "gnu/linux")
              (load-theme 'sanityinc-tomorrow-bright t))))
-  #+END_SRC
+  #+end_src
 
 * terraform-mode
 
-  #+BEGIN_SRC emacs-lisp
+  #+begin_src emacs-lisp
     (use-package terraform-mode
       :ensure t
       :hook ((terraform-mode . terraform-format-on-save-mode)))
-  #+END_SRC
+  #+end_src
 
 * text-mode
 
-  #+BEGIN_SRC emacs-lisp
+  #+begin_src emacs-lisp
     (defun k20e/text-mode-hook ()
       (auto-fill-mode 1))
 
     (add-hook 'text-mode-hook 'k20e/text-mode-hook)
-  #+END_SRC
+  #+end_src
 
 * toml-mode
 
-  #+BEGIN_SRC emacs-lisp
+  #+begin_src emacs-lisp
     (add-to-list 'auto-mode-alist '("Pipfile\\'" . toml-mode))
-  #+END_SRC
+  #+end_src
 
 * tramp
 
@@ -2057,16 +2057,16 @@ function.
    can no longer find the socket stored in the original =TMPDIR=
    value.
 
-   #+BEGIN_SRC emacs-lisp
+   #+begin_src emacs-lisp
      ;; (setenv "TMPDIR" "/tmp")
-   #+END_SRC
+   #+end_src
 
    Eureka!  It appears that the =ControlMaster= option for =ssh=
    should be set to =yes= instead of =auto= to avoid the =ControlPath
    too long= error.  Here is the interesting section of =man 5
    ssh_config=:
 
-   #+BEGIN_EXAMPLE
+   #+begin_example
      ControlMaster
                   Enables the sharing of multiple sessions over a single network connection.  When set to
                   ``yes'', ssh(1) will listen for connections on a control socket specified using the
@@ -2087,45 +2087,45 @@ function.
                   Two additional options allow for opportunistic multiplexing: try to use a master connection
                   but fall back to creating a new one if one does not already exist.  These options are:
                   ``auto'' and ``autoask''.  The latter requires confirmation like the ``ask'' option.
-   #+END_EXAMPLE
+   #+end_example
 
    The =tramp-ssh-controlmaster-options= variable is responsible for
    the =ControlMaster= value as well as a few other options which have
    not been changed from their default values.
 
-   #+BEGIN_SRC emacs-lisp
+   #+begin_src emacs-lisp
      (use-package tramp
        :defines tramp-ssh-controlmaster-options
        :config
        (setq tramp-ssh-controlmaster-options "-o ControlPath=%t.%%r@%%h:%%p -o ControlMaster=yes -o ControlPersist=no"))
 
-   #+END_SRC
+   #+end_src
 
 ** Inline Copying
 
    Do not inline copy files.  This is to avoid =File exists, but
    cannot be read= errors.
 
-   #+BEGIN_SRC emacs-lisp
+   #+begin_src emacs-lisp
      (setq-default tramp-copy-size-limit -1)
-   #+END_SRC
+   #+end_src
 
 ** File Backup
 
    Do not backup files edited by =tramp= to [[http://www.gnu.org/software/emacs/manual/html_node/tramp/Auto_002dsave-and-Backup.html][avoid possibly sharing
    copies of privileged files with non-privileged users]].
 
-   #+BEGIN_SRC emacs-lisp
+   #+begin_src emacs-lisp
      (add-to-list 'backup-directory-alist (list tramp-file-name-regexp))
-   #+END_SRC
+   #+end_src
 
 ** Debugging
 
    Level =3= by default.
 
-   #+BEGIN_SRC emacs-lisp
+   #+begin_src emacs-lisp
      ;; (setq tramp-verbose 6)
-   #+END_SRC
+   #+end_src
 
    Will create a detailed log buffer.
 
@@ -2133,26 +2133,26 @@ function.
 
   Name multiple identical buffer names in a sensible manner.
 
-  #+BEGIN_SRC emacs-lisp
+  #+begin_src emacs-lisp
     (require 'uniquify)
 
     (setq uniquify-buffer-name-style 'forward)
-  #+END_SRC
+  #+end_src
 
 * windmove
 
-  #+BEGIN_SRC emacs-lisp
+  #+begin_src emacs-lisp
     (use-package windmove
       :config
       (windmove-default-keybindings 'super)
       (setq windmove-wrap-around t)
       :bind (("M-SPC" . windmove-right)
              ("M-S-SPC" . windmove-left)))
-  #+END_SRC
+  #+end_src
 
 * web-mode
 
-  #+BEGIN_SRC emacs-lisp
+  #+begin_src emacs-lisp
     (require 'elec-pair)
     (require 'flycheck)
     (use-package web-mode
@@ -2173,17 +2173,17 @@ function.
                     (lambda (c)
                       (if (char-equal c ?{) t (electric-pair-default-inhibit c)))))
       :hook ((web-mode . k20e/web-mode-hook)))
-  #+END_SRC
+  #+end_src
 
 * winner-mode
 
   Remember window configurations.
 
-  #+BEGIN_SRC emacs-lisp
+  #+begin_src emacs-lisp
     (use-package winner
       :config
       (winner-mode))
-  #+END_SRC
+  #+end_src
 
 * whitespace
 
@@ -2193,7 +2193,7 @@ function.
   - Insert a new line at the end of file on save
   - Prefer =space= over =tab=
 
-  #+BEGIN_SRC emacs-lisp
+  #+begin_src emacs-lisp
     (use-package whitespace
       :ensure t
       :config
@@ -2204,11 +2204,11 @@ function.
         (whitespace-cleanup)
         (delete-trailing-whitespace 0 nil))
       :hook ((before-save . k20e/before-save-hook)))
-  #+END_SRC
+  #+end_src
 
 * yaml-mode
 
-  #+BEGIN_SRC emacs-lisp
+  #+begin_src emacs-lisp
     (use-package highlight-indent-guides :ensure t)
     (use-package flycheck-yamllint :ensure t)
     (use-package yaml-mode
@@ -2226,7 +2226,7 @@ function.
     ;;; TODO cleanup
     (require 'flycheck)
     (require 'flyspell)
-  #+END_SRC
+  #+end_src
 
 * zig-mode
 
