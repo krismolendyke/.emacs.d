@@ -84,9 +84,11 @@ Only turn off the menu bar running in a terminal window."
 (use-package emacs
   :when (eq system-type 'darwin)
   :config
-  (setq mac-command-modifier 'meta
-        ns-alternate-modifier 'super
-        shell-file-name "/opt/homebrew/bin/bash"))
+  (setq-default mac-command-modifier 'meta
+                mac-option-modifier 'super
+                mac-control-modifier 'control
+                mac-function-modifier 'hyper
+                shell-file-name "/opt/homebrew/bin/bash"))
 
 (k20e/no-bars-held)
 (k20e/setup-load-path)
