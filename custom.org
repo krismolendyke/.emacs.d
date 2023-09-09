@@ -1150,15 +1150,9 @@ function.
 * js-mode
 
   #+begin_src emacs-lisp
-    (require 'flycheck)
-    (require 'json)
-
-    (defun k20e/js-mode-hook ()
-      (flycheck-mode 1))
-
-    (add-hook 'js-mode-hook 'k20e/js-mode-hook)
-
-    (add-to-list 'auto-mode-alist '("\\.json\\'" . js-mode))
+    (use-package js-mode
+      :mode ("\\.json\\'" . js-mode)
+      :hook ((js-mode . flycheck-mode)))
   #+end_src
 
 * LaTeX
