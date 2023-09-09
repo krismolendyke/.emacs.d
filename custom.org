@@ -718,27 +718,16 @@ function.
 * emacs-lisp-mode
 
   #+BEGIN_SRC emacs-lisp
-    (defun k20e/emacs-lisp-mode-hook ()
-      (eldoc-mode))
-
-    (add-hook 'emacs-lisp-mode-hook 'k20e/emacs-lisp-mode-hook)
+    (use-package elisp-mode
+      :config
+      (defun k20e/ert ()
+        "Run all the tests in the universe!"
+        (interactive)
+        (ert t))
+      :bind (:map emacs-lisp-mode-map ("H-t" . k20e/ert))
+      :hook ((emacs-lisp-mode . eldoc-mode)))
   #+END_SRC
-
-* ert
-
-  Emacs Lisp [[http://en.wikipedia.org/wiki/Unit_testing][unit testing]]!
-
-  #+BEGIN_SRC emacs-lisp
-    (require 'ert)
-
-    (defun k20e/ert ()
-      "Run all the tests in the universe!"
-      (interactive)
-      (ert t))
-
-    (define-key emacs-lisp-mode-map (kbd "H-t") 'k20e/ert)
-  #+END_SRC
-
+  
 * expand-region
 
   #+BEGIN_SRC emacs-lisp
@@ -780,35 +769,27 @@ function.
   :END:
 
   #+BEGIN_SRC emacs-lisp
-	(use-package flycheck
-	  :ensure t
-	  :config
-	  (setq-default flycheck-pylintrc "pylintrc"
-				  flycheck-check-syntax-automatically '(mode-enabled save)))
+    (use-package flycheck
+      :ensure t
+      :config
+      (setq-default flycheck-pylintrc "pylintrc"
+                    flycheck-check-syntax-automatically '(mode-enabled save)))
   #+END_SRC
 
 * flyspell
 
-  Setup =ispell= to use [[#install-aspell][=aspell=]]:
+  Setup =ispell= to use [[#install-aspell][=aspell=]], then setup =flyspell= itself.  It requires =ispell=.
 
   #+BEGIN_SRC emacs-lisp
-    (setq-default ispell-program-name "aspell"
-                  ispell-extra-args (list "--sug-mode=ultra"))
-  #+END_SRC
-
-  Then setup =flyspell= itself.  It requires  =ispell=.
-
-  #+BEGIN_SRC emacs-lisp
-	(use-package flyspell
-	  :ensure t
-	  :init
-	  (setq-default ispell-program-name "aspell"
-					ispell-extra-args (list "--sug-mode=ultra"))
-	  :config
-	  (dolist (hook '(text-mode-hook))
-		(add-hook hook 'turn-on-flyspell))
-	  (setq flyspell-issue-message-flag nil
-		  flyspell-issue-welcome-flag nil))
+    (use-package flyspell
+      :ensure t
+      :init
+      (setq-default ispell-program-name "aspell"
+                    ispell-extra-args (list "--sug-mode=ultra"))
+      :config
+      (setq flyspell-issue-message-flag nil
+            flyspell-issue-welcome-flag nil)
+      :hook ((text-mode . flyspell-mode)))
   #+END_SRC
 
 ** Install [[http://hunspell.sourceforge.net/][=aspell=]]
@@ -823,19 +804,11 @@ function.
    #+END_SRC
 
 * Fonts
-
+  
   - [[https://protesilaos.com/codelog/2020-09-05-emacs-note-mixed-font-heights/][Setting default, variable & fixed pitch heights]]
   - Fonts
     - [[https://www.fsd.it/shop/fonts/pragmatapro/][PragmataPro]] ([[https://github.com/fabrizioschiavi/pragmatapro][GitHub]])
     - [[https://edwardtufte.github.io/et-book/][ET Book]] ([[https://github.com/edwardtufte/et-book][GitHub]], [[https://aur.archlinux.org/packages/otf-et-book][AUR]])
-
-  #+BEGIN_SRC emacs-lisp
-    (require 'prog-mode)
-
-    (defun k20e/prog-mode-hook ())
-
-    (add-hook 'prog-mode-hook 'k20e/prog-mode-hook)
-  #+END_SRC
 
   #+BEGIN_SRC emacs-lisp
     (global-prettify-symbols-mode 1)
@@ -903,17 +876,15 @@ function.
       :config
       (setq-default geiser-active-implementations '(racket chicken)
                     geiser-default-implementation 'racket))
-
-
   #+END_SRC
 
 * git
 
   #+BEGIN_SRC emacs-lisp
-    (require 'counsel)
-
-    (global-set-key (kbd "C-c g") 'counsel-git)
-    (global-set-key (kbd "C-c j") 'counsel-git-grep)
+    (use-package counsel
+      :ensure t
+      :bind (("C-c g" . counsel-git)
+             ("C-c j" . counsel-git-grep)))
   #+END_SRC
 
 ** GitHub =.gitignore=
@@ -1088,30 +1059,26 @@ function.
 
     (defalias 'list-buffers 'ibuffer)
 
-    (defvar ibuffer-formats
-          '((mark " "
-                  (modified)
-                  " "
-                  (name 40 40 :right :elide)
-                  " "
-                  (filename-and-process))
-            (mark " "
-                  (filename-and-process 70 70 :left :elide)
-                  " "
-                  name)))
+    (use-package ibuffer
+      :custom
+      (ibuffer-formats '((mark " "
+                               (modified)
+                               " "
+                               (name 40 40 :right :elide)
+                               " "
+                               (filename-and-process))
+                         (mark " "
+                               (filename-and-process 70 70 :left :elide)
+                               " "
+                               name))))
   #+END_SRC
 
 * IELM
 
   #+BEGIN_SRC emacs-lisp
-	(use-package eldoc :ensure t)			; TODO necessary?
-	(use-package paredit :ensure t)
-
-	(defun k20e/ielm-hook ()
-	  (eldoc-mode)
-	  (paredit-mode 1))
-
-	(add-hook 'ielm-mode-hook 'k20e/ielm-hook)
+    (use-package ielm
+      :hook ((ielm-mode . eldoc-mode)
+             (ielm-mode . paredit-mode)))
   #+END_SRC
 
 * imenu
@@ -1119,7 +1086,9 @@ function.
   Re-scan the buffer for new menu items automatically.
 
   #+BEGIN_SRC emacs-lisp
-    (setq-default imenu-auto-rescan t)
+    (use-package imenu
+      :config
+      (setq-default imenu-auto-rescan t))
   #+END_SRC
 
 * I'm Feeling Lucky
