@@ -621,12 +621,11 @@ function.
 * C
 
   #+begin_src emacs-lisp
-    (use-package flycheck
-      :ensure t
-      :config
-      (setq flycheck-checker 'c/c++-gcc
-            flycheck-gcc-pedantic-errors t)
-      (setq-default flycheck-c/c++-gcc-executable "gcc-7")
+    (use-package cc-mode
+      :after flycheck
+      :custom
+      (flycheck-checker 'c/c++-gcc)
+      (flycheck-gcc-pedantic-errors t)
       :hook ((c-mode . flycheck-mode)))
   #+end_src
 
