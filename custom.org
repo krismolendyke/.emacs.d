@@ -1694,7 +1694,17 @@ function.
              (scheme-mode . paredit-mode)))
   #+END_SRC
 
-* TODO prettify-symbols-mode
+* prettify-symbols-mode
+
+  Specific configuration for [[https://fsd.it/shop/fonts/pragmatapro/][PragmataPro]] from
+  https://github.com/fabrizioschiavi/pragmatapro/tree/master/emacs_snippets.
+
+  #+begin_src emacs-lisp
+    (use-package prettify-symbols-mode
+      :config
+      (load (expand-file-name "pragmatapro-prettify-symbols-v0.829.el" k20e/elisp-directory))
+      :hook ((prog-mode . prettify-hook)))
+  #+end_src
 
   - https://blog.jft.rocks/emacs/unicode-for-orgmode-checkboxes.html
   - http://www.modernemacs.com/post/prettify-mode/
