@@ -2166,7 +2166,7 @@ function.
   #+BEGIN_SRC emacs-lisp
     (use-package windmove
       :config
-      (windmove-default-keybindings 'hyper)
+      (windmove-default-keybindings 'super)
       (setq windmove-wrap-around t)
       :bind (("M-SPC" . windmove-right)
              ("M-S-SPC" . windmove-left)))
