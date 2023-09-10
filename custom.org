@@ -1694,7 +1694,7 @@ function.
   https://github.com/fabrizioschiavi/pragmatapro/tree/master/emacs_snippets.
 
   #+begin_src emacs-lisp
-    (use-package prettify-symbols-mode
+    (use-package prog-mode
       :config
       (load (expand-file-name "pragmatapro-prettify-symbols-v0.829.el" k20e/elisp-directory))
       :hook ((prog-mode . prettify-hook)))
