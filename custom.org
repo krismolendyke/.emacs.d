@@ -1190,6 +1190,7 @@ function.
       :config
       (setq-default
        lsp-eldoc-render-all nil
+       lsp-enable-snippet nil
        lsp-signature-doc-lines 20           ; limit lines shown in docs
        lsp-enable-links nil                 ; disable clickable links in files
        )
