@@ -624,7 +624,6 @@ function.
     (use-package cc-mode
       :after flycheck
       :custom
-      (flycheck-checker 'c/c++-gcc)
       (flycheck-gcc-pedantic-errors t)
       :hook ((c-mode . flycheck-mode)))
   #+end_src
@@ -1858,14 +1857,12 @@ function.
 * sh-mode
 
   #+begin_src emacs-lisp
-    (require 'flycheck)
-    (require 'sh-script)
-
-    (defun k20e/sh-script-mode-hook ()
-      (prettify-symbols-mode 1)
-      (flycheck-mode 1))
-
-    (add-hook 'sh-mode-hook 'k20e/sh-script-mode-hook)
+    (use-package sh-script
+      :after flycheck prettify-symbols-mode
+      :config
+      (flycheck-add-next-checker 'sh-bash 'sh-shellcheck)
+      :hook ((sh-mode . flycheck-mode)
+             (sh-mode . prettify-symbols-mode)))
   #+end_src
 
 * server
