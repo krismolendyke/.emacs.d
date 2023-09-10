@@ -541,7 +541,7 @@ function.
 ** Lunar 🌙
 
    #+begin_src emacs-lisp
-     (use-package calendar :ensure t)
+     (require 'calendar)
      (require 'lunar)
 
      (defun k20e/full-moons-info ()
@@ -1859,16 +1859,20 @@ function.
   #+begin_src emacs-lisp
     (use-package sh-script
       :after flycheck prettify-symbols-mode
+      :functions flycheck-select-checker
       :config
-      (flycheck-add-next-checker 'sh-bash 'sh-shellcheck)
-      :hook ((sh-mode . flycheck-mode)
+      (defun k20e/sh-script-hook ()
+        (flycheck-select-checker 'sh-shellcheck))
+      :hook ((sh-mode . k20e/sh-script-hook)
+             (sh-mode . flycheck-mode)
              (sh-mode . prettify-symbols-mode)))
   #+end_src
 
 * server
 
+  Start the Emacs server if it not already running.
+
   #+begin_src emacs-lisp
-    ;; Start the Emacs server.
     (require 'server)
 
     (unless (server-running-p)
@@ -1888,32 +1892,18 @@ function.
 * sql-mode
 
   #+begin_src emacs-lisp
-    (require 'sql)
-
-    (defun k20e/sql-mode-hook ()
+    (use-package sql
+      :config
       (setq sql-product 'mysql
-            tab-width 4)
-      (sql-highlight-mysql-keywords))
-
-    (add-hook 'sql-mode-hook 'k20e/sql-mode-hook)
-  #+end_src
-
-* server
-
-  #+begin_src emacs-lisp
-    ;; Start the Emacs server.
-    (require 'server)
-
-    (unless (server-running-p)
-      (server-start))
+            tab-width 4))
   #+end_src
 
 * Swiper
 
   #+begin_src emacs-lisp
-    (require 'swiper)
-
-    (global-set-key (kbd "C-s") 'swiper)
+    (use-package swiper
+      :ensure t
+      :bind (("C-s" . swiper)))
   #+end_src
 
 * Theme
@@ -1921,62 +1911,71 @@ function.
   Always highlight the current line:
 
   #+begin_src emacs-lisp
-    (require 'hl-line)
-
-    (global-hl-line-mode t)
+    (use-package hl-line)
+    (use-package emacs
+      :config
+      (global-hl-line-mode t))
   #+end_src
 
   Simple stuff:
 
   #+begin_src emacs-lisp
-    (require 'simple)
+    (use-package simple)
+    (use-package emacs
+      :config
+      (line-number-mode)
+      (column-number-mode)
+      (size-indication-mode))
 
-    (line-number-mode)
-    (column-number-mode)
-
-    (size-indication-mode)
   #+end_src
 
   Highlight matching parentheses:
 
   #+begin_src emacs-lisp
-    (require 'paren)
-
-    (show-paren-mode)
+    (use-package paren)
+    (use-package emacs
+      :config
+      (show-paren-mode))
   #+end_src
 
   Blink the cursor:
 
   #+begin_src emacs-lisp
-    (require 'frame)
-
-    (setq-default blink-cursor-mode t)
+    (use-package frame)
+    (use-package emacs
+      :config
+      (setq-default blink-cursor-mode t))
   #+end_src
 
   Truncate lines and enable fringes to indicate truncated lines:
 
   #+begin_src emacs-lisp
-    (require 'fringe)
+    (use-package fringe)
+    (use-package emacs
+      :config
+      (setq-default
+       truncate-lines t
+       truncate-partial-width-windows nil)
+      (fringe-mode))
 
-    (fringe-mode)
 
-    (setq-default
-     truncate-lines t
-     truncate-partial-width-windows nil)
   #+end_src
 
   No bell:
 
   #+begin_src emacs-lisp
-    (setq-default ring-bell-function 'ignore)
+    (use-package emacs
+      :config
+      (setq-default ring-bell-function 'ignore))
   #+end_src
 
   Make sure syntax highlighting is enabled:
 
   #+begin_src emacs-lisp
-    (require 'font-core)
-
-    (global-font-lock-mode)
+    (use-package font-core)
+    (use-package emacs
+      :config
+      (global-font-lock-mode))
   #+end_src
 
   Set theme automatically on MacOS thanks to
@@ -2008,16 +2007,16 @@ function.
 * text-mode
 
   #+begin_src emacs-lisp
-    (defun k20e/text-mode-hook ()
-      (auto-fill-mode 1))
-
-    (add-hook 'text-mode-hook 'k20e/text-mode-hook)
+    (use-package simple
+      :hook ((text-mode . auto-fill-mode)))
   #+end_src
 
 * toml-mode
 
   #+begin_src emacs-lisp
-    (add-to-list 'auto-mode-alist '("Pipfile\\'" . toml-mode))
+    (use-package toml-mode
+      :ensure t
+      :mode ("Pipfile\\'" . toml-mode))
   #+end_src
 
 * tramp
@@ -2107,9 +2106,9 @@ function.
   Name multiple identical buffer names in a sensible manner.
 
   #+begin_src emacs-lisp
-    (require 'uniquify)
-
-    (setq uniquify-buffer-name-style 'forward)
+    (use-package uniquify
+      :config
+      (setq uniquify-buffer-name-style 'forward))
   #+end_src
 
 * windmove
@@ -2126,14 +2125,18 @@ function.
 * web-mode
 
   #+begin_src emacs-lisp
-    (require 'elec-pair)
-    (require 'flycheck)
+    (use-package elec-pair
+      :functions electric-pair-default-inhibit)
+
     (use-package web-mode
       :ensure t
+      :functions flycheck-add-mode
+      :after elec-pair flycheck
+      :mode
+      ("\\.html?\\'" . web-mode)
+      ("\\.jsx?\\'" . web-mode)
+      ("\\.tsx?\\'" . web-mode)
       :config
-      (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
-      (add-to-list 'auto-mode-alist '("\\.jsx\\'" . web-mode))
-      (add-to-list 'auto-mode-alist '("\\.tsx\\'" . web-mode))
       (defun k20e/web-mode-hook ()
         (set-default 'web-mode-engines-alist '(("django" . "\\.html?\\'")))
         (setq web-mode-markup-indent-offset 2
@@ -2182,23 +2185,24 @@ function.
 * yaml-mode
 
   #+begin_src emacs-lisp
-    (use-package highlight-indent-guides :ensure t)
-    (use-package flycheck-yamllint :ensure t)
+    (use-package flycheck-yamllint
+      :ensure t
+      :after flycheck)
+    (use-package highlight-indent-guides
+      :ensure t)
     (use-package yaml-mode
       :ensure t
+      :after flycheck-yamllint flyspell highlight-indent-guides
+      :bind (:map yaml-mode-map ("C-m" . newline-and-indent))
       :config
       (defun k20e/yaml-mode-hook ()
-        (define-key yaml-mode-map (kbd "C-m") 'newline-and-indent)
-        (flycheck-mode 1)
+        (flycheck-select-checker 'yaml-yamllint)
         (flycheck-yamllint-setup)
-        (flyspell-mode-off)
-        (highlight-indent-guides-mode)
-        (prettify-symbols-mode 1))
-      :hook ((yaml-mode . k20e/yaml-mode-hook)))
-
-    ;;; TODO cleanup
-    (require 'flycheck)
-    (require 'flyspell)
+        (flyspell-mode-off))
+      :hook ((yaml-mode . k20e/yaml-mode-hook)
+             (yaml-mode . flycheck-mode)
+             (yaml-mode . highlight-indent-guides-mode)
+             (yaml-mode . prettify-symbols-mode)))
   #+end_src
 
 * zig-mode
@@ -2207,8 +2211,7 @@ function.
     (use-package zig-mode
       :ensure t
       :bind
-      (:map zig-mode-map
-            ("C-." . 'company-indent-or-complete-common))
+      (:map zig-mode-map ("C-." . 'company-indent-or-complete-common))
       :functions
       lsp-register-client
       make-lsp-client
