@@ -1718,7 +1718,10 @@ function.
       :after flycheck lsp-mode prettify-symbols-mode
       :config
       (setq display-line-numbers nil
-            electric-indent-inhibit t)
+            electric-indent-inhibit t
+            python-shell-interpreter "python"
+            python-shell-interpreter-args ""
+            python-shell-completion-native-enable nil)
       :bind (("M-a" . python-nav-beginning-of-statement)
              ("M-e" . python-nav-end-of-statement)
              ("M-n" . python-nav-forward-statement)
@@ -1735,14 +1738,6 @@ function.
              (python-mode . prettify-symbols-mode)
              (python-mode . superword-mode)))
   #+end_src
-
-** IPython
-
-   #+begin_src emacs-lisp
-     (setq python-shell-interpreter "python"
-           python-shell-interpreter-args ""
-           python-shell-completion-native-enable nil)
-   #+end_src
 
 * re-builder
 
