@@ -1710,42 +1710,29 @@ function.
 * python
 
   #+begin_src emacs-lisp
-    (use-package electric)
     (use-package blacken :ensure t)
-    (use-package flycheck :ensure t)
-    (use-package multiple-cursors :ensure t)
-    (use-package python :ensure t)
 
-    (defun k20e/python-mode-hook ()
+    (use-package python
+      :ensure t
+      :after flycheck lsp-mode prettify-symbols-mode
+      :config
       (setq display-line-numbers nil
             electric-indent-inhibit t)
-      (prettify-symbols-mode 1)
-
-      (blacken-mode)
-      (flycheck-mode 1)
-      (superword-mode)
-      ;; Previously:
-      ;; C-M-f, C-M-b (paredit-forward/back)
-      ;; C-M-n, C-M-p (forward-list/backward-list)
-      ;; C-M-a, C-M-e (beginning-of-defun/end-of-defun)
-      (define-key python-mode-map (kbd "M-a") 'python-nav-beginning-of-statement)
-      (define-key python-mode-map (kbd "M-e") 'python-nav-end-of-statement)
-      (define-key python-mode-map (kbd "M-n") 'python-nav-forward-statement)
-      (define-key python-mode-map (kbd "M-p") 'python-nav-backward-statement)
-      (define-key python-mode-map (kbd "M-q") 'blacken-buffer)
-      (define-key python-mode-map (kbd "C-M-f") 'python-nav-forward-sexp)
-      (define-key python-mode-map (kbd "C-M-b") 'python-nav-backward-sexp)
-      (define-key python-mode-map (kbd "C-M-n") 'python-nav-forward-block)
-      (define-key python-mode-map (kbd "C-M-p") 'python-nav-backward-block))
-
-    ;; (add-hook 'python-mode-hook 'k20e/python-mode-hook)
-
-    (use-package lsp-mode
-      :hook ((python-mode . lsp-deferred))
-      :commands (lsp lsp-deferred)
-      :config (setq-default lsp-pylsp-plugins-rope-completion-enabled t))
-
-    ;; (use-package lsp-ivy :commands lsp-ivy-workspace-symbol)
+      :bind (("M-a" . python-nav-beginning-of-statement)
+             ("M-e" . python-nav-end-of-statement)
+             ("M-n" . python-nav-forward-statement)
+             ("M-p" . python-nav-backward-statement)
+             ("M-q" . blacken-buffer)
+             ("C-M-f" . python-nav-forward-sexp)
+             ("C-M-b" . python-nav-backward-sexp)
+             ("C-M-n" . python-nav-forward-block)
+             ("C-M-p" . python-nav-backward-block))
+      :hook (                               ; TODO blacken
+             (python-mode . electric-pair-mode)
+             (python-mode . flycheck-mode)
+             (python-mode . lsp-deferred)
+             (python-mode . prettify-symbols-mode)
+             (python-mode . superword-mode)))
   #+end_src
 
 ** IPython
