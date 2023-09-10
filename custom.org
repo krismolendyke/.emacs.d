@@ -1146,10 +1146,10 @@ function.
     (define-key ivy-minibuffer-map (kbd "C-j") 'ivy-done)
   #+end_src
 
-* js-mode
+* js
 
   #+begin_src emacs-lisp
-    (use-package js-mode
+    (use-package js
       :mode ("\\.json\\'" . js-mode)
       :hook ((js-mode . flycheck-mode)))
   #+end_src
