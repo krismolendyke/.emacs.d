@@ -1797,10 +1797,10 @@ function.
 * savehist
 
   #+begin_src emacs-lisp
-    ;; Save minibuffer history.
-    (require 'savehist)
+    (use-package savehist
+      :config
+      (setq savehist-file (expand-file-name ".savehist" k20e/google-drive-directory)))
 
-    (setq savehist-file (expand-file-name ".savehist" k20e/google-drive-directory))
     (savehist-mode)
   #+end_src
 
