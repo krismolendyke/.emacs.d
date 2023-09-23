@@ -1,18 +1,18 @@
-.last-package-update-day
-.emacs-custom.el
-recentf
-org-persist/
-smex-items
-.lsp-session*
 *.html
+.emacs-custom.el
 .emacs.desktop
+.last-package-update-day
+.lsp-session*
+/transient/
 backup/
 bookmarks
 custom.el
 games/
 history
+org-persist/
+recentf
+smex-items
 tutorial/
-/transient/
 url/
 
 ####################################################################################
