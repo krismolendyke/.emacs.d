@@ -581,6 +581,21 @@ function.
       (setq-default fill-column 118))
   #+end_src
 
+* auto-package-update
+
+  - https://github.com/rranelli/auto-package-update.el
+  - https://github.com/jwiegley/use-package#package-installation
+
+  #+begin_src emacs-lisp
+    (use-package auto-package-update
+      :ensure t
+      :config
+      (setq-default auto-package-update-delete-old-versions t
+                    auto-package-update-interval 7
+                    auto-package-update-prompt-before-update t
+                    auto-package-update-show-preview t))
+  #+end_src
+
 * auto-save
 
   Disable =auto-save=.

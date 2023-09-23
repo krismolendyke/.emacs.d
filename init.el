@@ -90,6 +90,11 @@ Only turn off the menu bar running in a terminal window."
                 mac-function-modifier 'hyper
                 shell-file-name "/opt/homebrew/bin/bash"))
 
+;;; Other settings
+(use-package emacs
+  :config
+  (setq-default custom-file (expand-file-name ".emacs-custom.el" user-emacs-directory)))
+
 (k20e/no-bars-held)
 (k20e/setup-load-path)
 (k20e/setup-use-package)
