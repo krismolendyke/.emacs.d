@@ -1211,6 +1211,13 @@ function.
       (set-face-attribute 'lsp-face-highlight-textual nil :underline t))
   #+end_src
 
+* lua-mode
+
+  #+begin_src emacs-lisp
+    (use-package lua-mode
+      :ensure t)
+  #+end_src
+
 * man
 
   Setting a width avoids a possibly (likely) poorly chosen automatic
