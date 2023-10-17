@@ -637,7 +637,7 @@ function.
 
   #+begin_src emacs-lisp
     (use-package cc-mode
-      :after flycheck
+      :after (flycheck)
       :custom
       (flycheck-gcc-pedantic-errors t)
       :hook ((c-mode . flycheck-mode)))
@@ -1875,7 +1875,7 @@ function.
 
   #+begin_src emacs-lisp
     (use-package sh-script
-      :after flycheck prettify-symbols-mode
+      :after (flycheck)
       :functions flycheck-select-checker
       :config
       (defun k20e/sh-script-hook ()
@@ -2148,7 +2148,7 @@ function.
     (use-package web-mode
       :ensure t
       :functions flycheck-add-mode
-      :after elec-pair flycheck
+      :after (elec-pair flycheck)
       :mode
       ("\\.html?\\'" . web-mode)
       ("\\.jsx?\\'" . web-mode)
@@ -2204,12 +2204,14 @@ function.
   #+begin_src emacs-lisp
     (use-package flycheck-yamllint
       :ensure t
-      :after flycheck)
+      :after (flycheck))
+
     (use-package highlight-indent-guides
       :ensure t)
+
     (use-package yaml-mode
       :ensure t
-      :after flycheck-yamllint flyspell highlight-indent-guides
+      :after (flycheck-yamllint flyspell highlight-indent-guides)
       :bind (:map yaml-mode-map ("C-m" . newline-and-indent))
       :config
       (defun k20e/yaml-mode-hook ()
