@@ -1736,23 +1736,18 @@ function.
 
     (use-package python
       :ensure t
-      :after flycheck lsp-mode prettify-symbols-mode
-      :config
-      (setq display-line-numbers nil
-            electric-indent-inhibit t
-            python-shell-interpreter "python"
-            python-shell-interpreter-args ""
-            python-shell-completion-native-enable nil)
-      :bind (("M-a" . python-nav-beginning-of-statement)
-             ("M-e" . python-nav-end-of-statement)
-             ("M-n" . python-nav-forward-statement)
-             ("M-p" . python-nav-backward-statement)
-             ("M-q" . blacken-buffer)
-             ("C-M-f" . python-nav-forward-sexp)
-             ("C-M-b" . python-nav-backward-sexp)
-             ("C-M-n" . python-nav-forward-block)
-             ("C-M-p" . python-nav-backward-block))
-      :hook (                               ; TODO blacken
+      :after (flycheck lsp-mode)
+      :bind (:map python-mode-map
+                  ("M-a" . python-nav-beginning-of-statement)
+                  ("M-e" . python-nav-end-of-statement)
+                  ("M-n" . python-nav-forward-statement)
+                  ("M-p" . python-nav-backward-statement)
+                  ("M-q" . blacken-buffer)
+                  ("C-M-f" . python-nav-forward-sexp)
+                  ("C-M-b" . python-nav-backward-sexp)
+                  ("C-M-n" . python-nav-forward-block)
+                  ("C-M-p" . python-nav-backward-block))
+      :hook ((python-mode . blacken-mode)
              (python-mode . electric-pair-mode)
              (python-mode . flycheck-mode)
              (python-mode . lsp-deferred)
