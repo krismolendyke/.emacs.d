@@ -1737,6 +1737,9 @@ function.
     (use-package python
       :ensure t
       :after (flycheck lsp-mode)
+      :config
+      (setq-default
+       lsp-pylsp-plugins-black-enabled t)
       :bind (:map python-mode-map
                   ("M-a" . python-nav-beginning-of-statement)
                   ("M-e" . python-nav-end-of-statement)
