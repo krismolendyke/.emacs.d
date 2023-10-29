@@ -1,6 +1,8 @@
 #+TITLE: Literate =.emacs.d=
 #+OPTIONS: toc:nil num:nil
 
+#+begin_epigraph
+#+caption: Donald Knuth, @@html:<cite>"<a href="https://www-cs-faculty.stanford.edu/~knuth/lp.html">Literate Programming</a>"</cite>@@
 #+begin_quote
 [[http://www.literateprogramming.com/][Literate programming]] is a methodology that combines a programming language
 with a documentation language, thereby making programs more robust, more
@@ -9,8 +11,9 @@ that are written only in a high-level language. The main idea is to treat a
 program as a piece of literature, addressed to human beings rather than to a
 computer. The program is also viewed as a hypertext document, rather like the
 World Wide Web. (Indeed, I used the word WEB for this purpose long before CERN
-grabbed it!) -- [[http://www-cs-faculty.stanford.edu/~uno/lp.html][Donald Knuth]]
+grabbed it!)
 #+end_quote
+#+end_epigraph
 
 All configuration described here is performed in an [[https://github.com/krismolendyke/.emacs.d/blob/0d5a5434ff79d48ab613fc433d0ae2443c552665/init.el#L88][=after-init-hook=]]
 function.
