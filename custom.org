@@ -1464,8 +1464,8 @@ function.
 
 ** Export
 
+   - https://github.com/Zilong-Li/org-tufte
    - https://github.com/dakrone/ox-tufte
-   - https://github.com/tsdye/tufte-org-mode
 
    Most non-interactive export settings are defined in [[https://github.com/krismolendyke/.emacs.d/blob/master/elisp/k20e-org-html-export.el][a file loaded
    during initialization]].  Those settings are defined during
@@ -1486,7 +1486,7 @@ function.
       org-export-dispatch-use-expert-ui t
 
       ;; Continue export when links are broken, but mark them
-      org-export-with-broken-links  `mark)
+      org-export-with-broken-links `mark)
    #+end_src
 
 *** Options
