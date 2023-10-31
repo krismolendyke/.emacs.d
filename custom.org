@@ -77,6 +77,7 @@ function.
   Emacs automatically if it is located in one of several well-defined
   locations.
 
+  #+caption: [[https://www.gnu.org/software/emacs/manual/html_node/emacs/index.html][The Emacs Editor]], @@html:<cite>"<a href="https://www.gnu.org/software/emacs/manual/html_node/emacs/Init-File.html">The Emacs Initialization File</a>"</cite>@@
   #+begin_quote
   When Emacs is started, it normally tries to load a Lisp program from
   an "initialization file", or "init file" for short.  This file, if
@@ -84,7 +85,7 @@ function.
   for your init file using the filenames `~/.emacs', `~/.emacs.el', or
   `~/.emacs.d/init.el'; you can choose to use any one of these three
   names (*note Find Init::).  Here, `~/' stands for your home
-  directory. -- [[http://www.gnu.org/software/emacs/manual/html_node/emacs/Init-File.html][The Emacs Initialization File]]
+  directory.
   #+end_quote
 
   Once it's found, =init.el= sets "global" variables and defines
