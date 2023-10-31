@@ -1,5 +1,6 @@
 #+TITLE: Literate =.emacs.d=
 #+OPTIONS: toc:nil num:nil
+#+HTML: <p class="subtitle">Kris Molendyke</p>
 
 #+begin_epigraph
 #+caption: Donald Knuth, @@html:<cite>"<a href="https://www-cs-faculty.stanford.edu/~knuth/lp.html">Literate Programming</a>"</cite>@@
