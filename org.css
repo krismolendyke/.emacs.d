@@ -1,6 +1,11 @@
 /* Tufte CSS tweaks */
 section p, section footer, section table {
-    width: 50%;
+    width: 55%;
+}
+
+/* Sidenote work-around */
+sup.numeral {
+    display: none;
 }
 
 /* inline */
