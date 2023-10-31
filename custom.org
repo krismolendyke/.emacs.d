@@ -1434,8 +1434,7 @@ function.
      g commit -m "UPGRAYEDD org-mode"
    #+end_src
 
-   [[https://list.orgmode.org/87wnzfy60h.fsf@bzg.fr/][=contrib/=]] was split out into a separate repo so that needs to be
-   updated separately via [[*Paradox][Paradox]].
+   [[https://list.orgmode.org/87wnzfy60h.fsf@bzg.fr/][=contrib/=]] was split out into a separate repo so that needs to be updated separately.
 
 ** Inline Images
 
@@ -1507,10 +1506,9 @@ function.
       ,#+OPTIONS: broken-links:mark
     #+end_src
 
-    and exporting will insert =BROKEN= into the HTML document.
-    Searching for that token makes finding the offending broken link
-    much easier.  Keeping this option set all the time would let
-    broken links slip through the export process undetected.
+    and exporting will insert =BROKEN LINK= into the HTML document.  Searching for that token makes finding the
+    offending broken link much easier.  Keeping this option set all the time would let broken links slip through the
+    export process undetected.
 
 *** Backends
 
