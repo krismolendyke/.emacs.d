@@ -1,5 +1,5 @@
 /* Tufte CSS tweaks */
-section p, section footer, section table {
+section p, section footer, section table, div.content p, div.content footer, div.content table {
     width: 55%;
 }
 
