@@ -1058,15 +1058,6 @@ function.
       :ensure t)
   #+end_src
 
-* hyperspec
-
-  #+begin_src emacs-lisp
-    ;; Set HyperSpec root in Google Drive.
-    (defvar common-lisp-hyperspec-root
-      (format "file://%s/"
-              (expand-file-name "Documents/HyperSpec" k20e/google-drive-directory)))
-  #+end_src
-
 * ibuffer
   :PROPERTIES:
   :CUSTOM_ID: ibuffer
