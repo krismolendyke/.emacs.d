@@ -1743,6 +1743,7 @@ function.
                   ("M-n" . python-nav-forward-statement)
                   ("M-p" . python-nav-backward-statement)
                   ("M-q" . blacken-buffer)
+                  ("C-." . completion-at-point)
                   ("C-M-f" . python-nav-forward-sexp)
                   ("C-M-b" . python-nav-backward-sexp)
                   ("C-M-n" . python-nav-forward-block)
