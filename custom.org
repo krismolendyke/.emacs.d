@@ -1119,30 +1119,6 @@ function.
             ivy-wrap t))
   #+end_src
 
-  #+begin_quote
-  =M-j= (=ivy-yank-word=)
-
-    Inserts the sub-word at point into the minibuffer.
-
-    This is similar to =C-s C-w= with =isearch=. Ivy reserves =C-w=
-    for =kill-region=. -- [[http://oremacs.com/swiper/#minibuffer-key-bindings][Ivy minibuffer key bindings]]
-  #+end_quote
-
-  =isearch-forward-word= was mapped to =w= and my muscle memory
-  requires this:
-
-  #+begin_src emacs-lisp
-    (define-key ivy-minibuffer-map (kbd "C-w") 'ivy-yank-word)
-  #+end_src
-
-  #+begin_quote
-  =C-j= (=ivy-alt-done=)
-
-    When completing file names, selects the current directory
-    candidate and starts a new completion session there. Otherwise, it
-    is the same as =ivy-done=.
-  #+end_quote
-
   Having to type =C-j= to go into a directory when finding files is
   maddening and I almost never used =dired=.  Swap =RET= to go into
   directories and =C-j= to open current directory in =dired=:
@@ -1414,7 +1390,7 @@ function.
    #+begin_src sh
      cd ~/.emacs.d/site-lisp/org-mode
      g fetch origin --tags
-     g co -b release_9.1.2 release_9.1.2
+     g co -b release_9.6.12 release_9.6.12
      make clean
      make
      cd ~/.emacs.d
