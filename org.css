@@ -1,5 +1,13 @@
 /* Tufte CSS tweaks */
-article p, section p, section footer, section table, div.content p, div.content footer, div.content table {
+article p,
+div.content footer,
+div.content p,
+div.content table,
+section dl,
+section footer,
+section p,
+section table,
+section ul {
     width: 55%;
 }
 
@@ -26,6 +34,10 @@ code, pre {
 /* Gross !important here because Tufte CSS likes to override font-size for source blocks nested in a bunch of elements, e.g., dl, ol, ul */
 .org-src-container {
     font-size: 15px !important;
+}
+
+dt {
+    font-weight: bold;
 }
 
 /*
