@@ -2101,6 +2101,7 @@ function.
   #+begin_src emacs-lisp
     (use-package vertico
       :ensure t
+      :custom (vertico-cycle 1)
       :init (vertico-mode))
   #+end_src
 
