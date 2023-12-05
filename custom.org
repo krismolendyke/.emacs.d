@@ -1732,15 +1732,14 @@ function.
 * recentf
 
   #+begin_src emacs-lisp
-    (require 'counsel)
     (require 'recentf)
 
-    (setq recentf-save-file (expand-file-name ".recentf" k20e/google-drive-directory)
-          recentf-max-saved-items 250)
-
-    (recentf-mode 1)
-
-    (global-set-key (kbd "C-x C-r") 'counsel-recentf)
+    (use-package emacs
+      :config
+      (setq recentf-save-file (expand-file-name ".recentf" k20e/google-drive-directory)
+            recentf-max-saved-items 250)
+      (recentf-mode 1)
+      :bind (("C-x C-r" . recentf-open)))
   #+end_src
 
 * ripgrep
