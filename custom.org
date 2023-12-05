@@ -2075,12 +2075,45 @@ function.
 
 * vertico
 
+  Since [[https://github.com/minad/vertico][vertico]] is meant to be plug & play, I'm bundling the extension configuration under this section, as well.
+
   #+begin_src emacs-lisp
     (use-package vertico
       :ensure t
       :custom (vertico-cycle 1)
       :init (vertico-mode))
   #+end_src
+
+** TODO [0/3] Other Configuration & Extensions
+
+   - [ ] https://github.com/minad/vertico#extensions
+   - [ ] https://github.com/minad/vertico#completion-at-point-and-completion-in-region
+   - [ ] [[https://github.com/minad/vertico/wiki#make-vertico-and-vertico-directory-behave-more-like-ivyido]]
+
+** orderless
+
+   [[https://github.com/oantolin/orderless][orderless]] is an alternative completion /style/ extension.
+
+   #+begin_src emacs-lisp
+     (use-package orderless
+       :ensure t
+       :custom
+       (setq completion-styles '(orderless-flex basic)))
+   #+end_src
+
+*** TODO [/] Other Confiuration
+
+    - [ ] https://github.com/minad/consult/wiki#minads-orderless-configuration
+
+** consult
+
+   [[https://github.com/minad/consult][consult]] is a =completing-read= extension.
+
+   I'll need to rip out =counsel= before I get started with this extension.
+
+*** TODO [0/3] Other Configuration
+
+    - [ ] https://github.com/minad/consult#org-mode
 
 * windmove
 
