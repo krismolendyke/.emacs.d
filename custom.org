@@ -1103,26 +1103,6 @@ function.
       :bind (("H-l" . ifl-region-or-query)))
   #+end_src
 
-* Ivy
-
-  #+begin_src emacs-lisp
-    (use-package ivy
-      :ensure t
-      :config
-      (setq ivy-extra-directories nil
-            ivy-use-virtual-buffers t
-            ivy-wrap t))
-  #+end_src
-
-  Having to type =C-j= to go into a directory when finding files is
-  maddening and I almost never used =dired=.  Swap =RET= to go into
-  directories and =C-j= to open current directory in =dired=:
-
-  #+begin_src emacs-lisp
-    (define-key ivy-minibuffer-map (kbd "RET") 'ivy-alt-done)
-    (define-key ivy-minibuffer-map (kbd "C-j") 'ivy-done)
-  #+end_src
-
 * js
 
   #+begin_src emacs-lisp
@@ -1818,14 +1798,12 @@ function.
          yaml-mode)
        "Common major modes to create scratch buffers for.")
 
-     (use-package ivy :ensure t)
-
      (defun k20e/scratch-buffer ()
        "Generate a new scratch buffer.
      Choose from `k20e/scratch-buffer-modes' list of major modes to
      enable in the newly created scratch buffer and switch to it."
        (interactive)
-       (let ((mode (read (ivy-completing-read "New *scratch* buffer with mode: "
+       (let ((mode (read (completing-read "New *scratch* buffer with mode: "
                                               (mapcar (lambda (el) (format "%s" el))
                                                       k20e/scratch-buffer-modes)))))
          (switch-to-buffer (generate-new-buffer (format "*scratch-%s*" mode)))
