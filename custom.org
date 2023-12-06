@@ -696,16 +696,6 @@ function.
         (hl-line-mode)))
   #+end_src
 
-* Counsel
-  :PROPERTIES:
-  :CUSTOM_ID: counsel
-  :END:
-
-  #+begin_src emacs-lisp
-    (use-package counsel
-      :ensure t)
-  #+end_src
-
 * dired
 
   #+begin_src emacs-lisp
@@ -893,44 +883,35 @@ function.
 
 * git
 
+  A simple function to insert starter =.gitignore= file contents from
+  the [[https://github.com/github/gitignore][github/gitignore]] repository.
+
   #+begin_src emacs-lisp
-    (use-package counsel
-      :ensure t
-      :bind (("C-c g" . counsel-git)
-             ("C-c j" . counsel-git-grep)))
+    (require 'url)
+
+    (defun k20e/gh--gitignore-url (language)
+      "Get GitHub .gitignore URL for LANGUAGE."
+      (format "https://raw.githubusercontent.com/github/gitignore/master/%s.gitignore"
+              (capitalize language)))
+
+    (defun k20e/gh--gitignore-get-region (response-buffer)
+      "Get GitHub .gitignore response body bounds.
+    Argument RESPONSE-BUFFER HTTP GET response."
+      (with-current-buffer response-buffer
+        (goto-char (point-min))
+        (let ((start (1+ (search-forward-regexp "^$")))
+              (end (point-max)))
+          (list start end))))
+
+    (defun k20e/gh-gitignore-insert (language)
+      "Insert Github .gitignore for LANGUAGE."
+      (interactive "sLanguage: ")
+      (let* ((response-buffer (url-retrieve-synchronously
+                               (k20e/gh--gitignore-url language) t))
+             (gitignore-region (k20e/gh--gitignore-get-region response-buffer)))
+        (insert-buffer-substring-no-properties
+         response-buffer (car gitignore-region) (cadr gitignore-region))))
   #+end_src
-
-** GitHub =.gitignore=
-
-   A simple function to insert starter =.gitignore= file contents from
-   the [[https://github.com/github/gitignore][github/gitignore]] repository.
-
-   #+begin_src emacs-lisp
-     (require 'url)
-
-     (defun k20e/gh--gitignore-url (language)
-       "Get GitHub .gitignore URL for LANGUAGE."
-       (format "https://raw.githubusercontent.com/github/gitignore/master/%s.gitignore"
-               (capitalize language)))
-
-     (defun k20e/gh--gitignore-get-region (response-buffer)
-       "Get GitHub .gitignore response body bounds.
-     Argument RESPONSE-BUFFER HTTP GET response."
-       (with-current-buffer response-buffer
-         (goto-char (point-min))
-         (let ((start (1+ (search-forward-regexp "^$")))
-               (end (point-max)))
-           (list start end))))
-
-     (defun k20e/gh-gitignore-insert (language)
-       "Insert Github .gitignore for LANGUAGE."
-       (interactive "sLanguage: ")
-       (let* ((response-buffer (url-retrieve-synchronously
-                                (k20e/gh--gitignore-url language) t))
-              (gitignore-region (k20e/gh--gitignore-get-region response-buffer)))
-         (insert-buffer-substring-no-properties
-          response-buffer (car gitignore-region) (cadr gitignore-region))))
-   #+end_src
 
 * go-mode
 
@@ -1722,24 +1703,6 @@ function.
       :bind (("C-x C-r" . recentf-open)))
   #+end_src
 
-* ripgrep
-
-  [[https://github.com/BurntSushi/ripgrep][ripgrep]] via [[#counsel][Counsel]], defaulting to the thing at point in the nearest
-  =git= repository ancestor.
-
-  #+begin_src emacs-lisp
-    (require 'counsel)
-
-    (defun k20e/counsel-rg-project (initial-input)
-      "Search using `counsel-rg' from the project root for INITIAL-INPUT."
-      (interactive (list (thing-at-point 'symbol)))
-      (counsel-rg initial-input (condition-case err
-                                    (vc-root-dir)
-                                  (error default-directory))))
-
-    (global-set-key (kbd "C-x C-a") 'k20e/counsel-rg-project)
-  #+end_src
-
 * rust
 
   #+begin_src emacs-lisp
@@ -2127,7 +2090,7 @@ function.
        (setq completion-styles '(orderless-flex basic)))
    #+end_src
 
-*** TODO [/] Other Confiuration
+*** TODO [0/1] Other Confiuration
 
     - [ ] https://github.com/minad/consult/wiki#minads-orderless-configuration
 
@@ -2135,10 +2098,17 @@ function.
 
    [[https://github.com/minad/consult][consult]] is a =completing-read= extension.
 
-   I'll need to rip out =counsel= before I get started with this extension.
+   #+begin_src emacs-lisp
+     (use-package consult
+       :ensure t
+       :demand
+       :bind (("C-x C-a" . consult-ripgrep)
+              ("C-x C-g" . consult-git-grep)))
+   #+end_src
 
-*** TODO [0/3] Other Configuration
+*** TODO [0/2] Other Configuration
 
+    - [ ] https://github.com/minad/consult/wiki
     - [ ] https://github.com/minad/consult#org-mode
 
 * windmove
