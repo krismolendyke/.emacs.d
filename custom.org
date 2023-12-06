@@ -1756,6 +1756,14 @@ function.
       :hook ((rust-mode . k20e/rust-mode-hook)))
   #+end_src
 
+* save-place-mode
+
+  #+begin_src emacs-lisp
+    (use-package emacs
+      :init
+      (save-place-mode t))
+  #+end_src
+
 * savehist
 
   #+begin_src emacs-lisp
