@@ -2083,7 +2083,7 @@ function.
       :init
       (vertico-mode)
       (setq vertico-cycle t
-            vertico-preselect 'directory))
+            vertico-preselect 'first))
   #+end_src
 
 ** TODO [1/3] Other Configuration & Extensions
