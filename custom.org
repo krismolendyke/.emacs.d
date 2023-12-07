@@ -2090,7 +2090,7 @@ function.
        (setq completion-styles '(orderless-flex basic)))
    #+end_src
 
-*** TODO [0/1] Other Confiuration
+*** TODO [0/1] Other Configuration
 
     - [ ] https://github.com/minad/consult/wiki#minads-orderless-configuration
 
