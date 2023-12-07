@@ -2087,7 +2087,7 @@ function.
      (use-package orderless
        :ensure t
        :init
-       (setq completion-styles '(orderless-flex basic)))
+       (setq completion-styles '(orderless basic)))
    #+end_src
 
 *** TODO [0/1] Other Configuration
