@@ -2086,7 +2086,7 @@ function.
    #+begin_src emacs-lisp
      (use-package orderless
        :ensure t
-       :custom
+       :init
        (setq completion-styles '(orderless-flex basic)))
    #+end_src
 
