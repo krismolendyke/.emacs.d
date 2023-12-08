@@ -1198,14 +1198,6 @@ function.
                'k20e/eval-expression-minibuffer-setup-hook)
    #+end_src
 
-* Mouse
-
-  Scroll one line at a time in the "natural" direction:
-
-  #+begin_src emacs-lisp
-    (setq-default mouse-wheel-scroll-amount '(-1 ((shift) . 1) ((meta)) ((control) . text-scale)))
-  #+end_src
-
 * multiple-cursors
 
   #+begin_src emacs-lisp
