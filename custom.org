@@ -1831,14 +1831,6 @@ function.
             tab-width 4))
   #+end_src
 
-* Swiper
-
-  #+begin_src emacs-lisp
-    (use-package swiper
-      :ensure t
-      :bind (("C-s" . swiper)))
-  #+end_src
-
 * Theme
 
   Always highlight the current line:
@@ -2102,7 +2094,8 @@ function.
      (use-package consult
        :ensure t
        :demand
-       :bind (("C-x b". consult-buffer)
+       :bind (("C-s" . consult-line)
+              ("C-x b". consult-buffer)
               ("C-x C-a" . consult-ripgrep)
               ("C-x C-g" . consult-git-grep)))
    #+end_src
