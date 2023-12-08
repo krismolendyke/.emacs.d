@@ -2097,13 +2097,18 @@ function.
        :bind (("C-s" . consult-line)
               ("C-x b". consult-buffer)
               ("C-x C-a" . consult-ripgrep)
-              ("C-x C-g" . consult-git-grep)))
+              ("C-x C-g" . consult-git-grep)
+              :map org-mode-map
+              ("C-c C-j" . consult-org-heading)))
    #+end_src
 
-*** TODO [0/2] Other Configuration
+*** STARTED [1/2] Other Configuration
+    :LOGBOOK:
+    - State "STARTED"    from "TODO"       [2023-12-08 Fri 17:08]
+    :END:
 
     - [ ] https://github.com/minad/consult/wiki
-    - [ ] https://github.com/minad/consult#org-mode
+    - [X] https://github.com/minad/consult#org-mode
 
 * windmove
 
