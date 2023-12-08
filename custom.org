@@ -1611,6 +1611,10 @@ function.
      (defvar org-clock-idle-time 5)
    #+end_src
 
+** TODO [/] Other Configuration
+
+   - [ ]   https://github.com/minad/org-modern
+
 * paredit-mode
 
   #+begin_src emacs-lisp
