@@ -2045,7 +2045,10 @@ function.
             vertico-preselect 'first))
   #+end_src
 
-** TODO [1/3] Other Configuration & Extensions
+** STARTED [1/3] Other Configuration & Extensions
+   :LOGBOOK:
+   - State "STARTED"    from "TODO"       [2023-12-16 Sat 21:12]
+   :END:
 
    - [ ] https://github.com/minad/vertico#extensions
    - [ ] https://github.com/minad/vertico#completion-at-point-and-completion-in-region
@@ -2115,6 +2118,9 @@ function.
        :ensure t
        :custom (setq corfu-cycle t)
        :init (global-corfu-mode))
+
+     (use-package emacs
+       :init (setq tab-always-indent 'complete))
    #+end_src
 
 *** TODO [0/2] Other Configuration
