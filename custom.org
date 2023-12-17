@@ -2106,6 +2106,23 @@ function.
     - [ ] https://github.com/minad/consult/wiki
     - [X] https://github.com/minad/consult#org-mode
 
+** corfu
+
+   [[https://github.com/minad/corfu][corfu]] is an in-buffer completion popup extension.
+
+   #+begin_src emacs-lisp
+     (use-package corfu
+       :ensure t
+       :custom (setq corfu-cycle t)
+       :init (global-corfu-mode))
+   #+end_src
+
+*** TODO [0/2] Other Configuration
+
+    - [ ] https://github.com/minad/corfu#orderless-completion
+    - [ ] https://github.com/minad/corfu#alternatives particularly =consult-completion-in-region=:
+      [[https://github.com/minad/consult#miscellaneous]] as an alternative to =corfu=
+
 ** marginalia
 
    [[https://github.com/minad/marginalia][marginalia]] is an extension that adds information as annotations in the minibuffer.
