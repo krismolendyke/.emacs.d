@@ -2106,6 +2106,22 @@ function.
     - [ ] https://github.com/minad/consult/wiki
     - [X] https://github.com/minad/consult#org-mode
 
+** marginalia
+
+   [[https://github.com/minad/marginalia][marginalia]] is an extension that adds information as annotations in the minibuffer.
+
+   #+begin_src emacs-lisp
+     (use-package marginalia
+       :ensure t
+       :after vertico
+       :bind (:map minibuffer-local-map ("M-A" . marginalia-cycle))
+       :init (marginalia-mode))
+   #+end_src
+
+*** TODO [0/1] Other Configuration
+
+    - [ ] https://github.com/minad/marginalia#adding-custom-annotators-or-classifiers
+
 * windmove
 
   #+begin_src emacs-lisp
