@@ -1154,13 +1154,10 @@ function.
 * markdown-mode
 
   #+begin_src emacs-lisp
-    (require 'markdown-mode)
-
-    (defun k20e/markdown-mode-hook ()
-      (prettify-symbols-mode 1)
-      (setq markdown-open-command "open"))
-
-    (add-hook 'markdown-mode-hook 'k20e/markdown-mode-hook)
+    (use-package markdown-mode
+      :ensure t
+      :config (setq markdown-open-command "open")
+      :hook ((markdown-mode . prettify-symbols-mode)))
   #+end_src
 
 * Minibuffer
@@ -1233,6 +1230,15 @@ function.
 
   #+begin_src emacs-lisp
     (setq mc/list-file (expand-file-name ".mc-lists.el" k20e/google-drive-directory))
+  #+end_src
+
+* olivetti
+
+  [[https://github.com/rnkn/olivetti][olivetti]] is a minimal minor mode to provide a more distraction free writing environment.
+
+  #+begin_src emacs-lisp
+    (use-package olivetti
+      :ensure t)
   #+end_src
 
 * Open Source Licenses
