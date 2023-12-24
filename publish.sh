@@ -14,3 +14,4 @@ mv custom.html index.html
 git add index.html
 git commit --message "post-commit hook regeneration."
 git checkout master
+git push origin --all
