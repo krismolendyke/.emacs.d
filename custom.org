@@ -1605,6 +1605,8 @@ function.
 
 ** Superstar
 
+   Successor to =org-bullets=, [[https://github.com/integral-dw/org-superstar-mode][org-superstar-mode]].
+
    #+begin_src emacs-lisp
      (use-package org-superstar
        :ensure t
