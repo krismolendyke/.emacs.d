@@ -1608,6 +1608,8 @@ function.
    #+begin_src emacs-lisp
      (use-package org-superstar
        :ensure t
+       :custom
+       (setq org-superstar-special-todo-items t)
        :hook ((org-mode . org-superstar-mode)))
    #+end_src
 
