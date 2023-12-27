@@ -1303,16 +1303,8 @@ function.
       ((org-mode . auto-fill-mode)
        (org-mode . prettify-symbols-mode)
        (org-mode . variable-pitch-mode)
-       (org-mode . (lambda ()
-                     (visual-line-mode 0)   ; TODO how to do this w/ :hook?
-
-                     ;; Replace '-' w/ fancy dot for bulleted lists
-                     (font-lock-add-keywords
-                      'org-mode
-                      '(("^ *\\([-]\\) "
-                         (0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "•"))))))
-
-                     )))
+       (org-mode . (lambda () (visual-line-mode 0))  ; TODO how to do this w/ :hook?
+                 ))
       :config
       (setq org-default-notes-file (expand-file-name "notes.org" org-directory)
             org-directory (expand-file-name "org" k20e/google-drive-directory)
@@ -1609,10 +1601,17 @@ function.
    #+begin_src emacs-lisp
      (defvar org-clock-idle-time 5)
    #+end_src
+** Superstar
 
-** TODO [/] Other Configuration
+   #+begin_src emacs-lisp
+     (use-package org-superstar
+       :ensure t
+       :hook ((org-mode . org-superstar-mode)))
+   #+end_src
 
-   - [ ]   https://github.com/minad/org-modern
+** TODO [0/1] Other Configuration
+
+   - [ ] https://github.com/minad/org-modern
 
 * paredit-mode
 
