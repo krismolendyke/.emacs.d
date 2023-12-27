@@ -1238,7 +1238,8 @@ function.
 
   #+begin_src emacs-lisp
     (use-package olivetti
-      :ensure t)
+      :ensure t
+      :config (setq olivetti-style 'fancy))
   #+end_src
 
 * Open Source Licenses
