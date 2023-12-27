@@ -1596,11 +1596,13 @@ function.
    #+begin_src emacs-lisp
      (setq org-log-into-drawer t)
    #+end_src
+
 ** Clock
 
    #+begin_src emacs-lisp
      (defvar org-clock-idle-time 5)
    #+end_src
+
 ** Superstar
 
    #+begin_src emacs-lisp
