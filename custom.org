@@ -1611,7 +1611,11 @@ function.
      (use-package org-superstar
        :ensure t
        :custom
-       (setq org-superstar-special-todo-items t)
+       (setq org-superstar-special-todo-items t
+             org-superstar-todo-bullet-alist '(("TODO" . 9744) ; ☐
+                                               ("STARTED" . 9744) ; ☐
+                                               ("DONE" . 9745) ; ☑
+                                               ("CANCELED" . 10008))) ; ✘
        :hook ((org-mode . org-superstar-mode)))
    #+end_src
 
