@@ -1606,7 +1606,7 @@ function.
   #+begin_src emacs-lisp
     (use-package prog-mode
       :config
-      (load (expand-file-name "pragmatapro-prettify-symbols-v0.829.el" k20e/elisp-directory))
+      (load (expand-file-name "pragmatapro-prettify-symbols-v0.830.el" k20e/elisp-directory))
       :hook ((prog-mode . prettify-hook)))
   #+end_src
 
