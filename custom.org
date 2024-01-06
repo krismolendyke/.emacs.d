@@ -918,77 +918,35 @@ function.
   Install commands:
 
   #+begin_src sh
-    pushd "${TMPDIR}" && \
-        go install golang.org/x/tools/gopls@latest; \
-        go install honnef.co/go/tools/cmd/staticcheck@latest; \
-        popd
+    go install golang.org/x/tools/gopls@latest
   #+end_src
 
-  Switched from =staticcheck= to =golangci-lint= but its install
-  doesn't recommend =go get -u=.
-
   #+begin_src emacs-lisp
-    (use-package company
-      :ensure t
-      :bind
-      (:map company-active-map
-            ("C-n" . 'company-select-next)
-            ("C-p" . 'company-select-previous)
-            ("C-h" . 'delete-backward-char))
-      :config
-      (setq company-idle-delay nil
-            company-show-quick-access t
-            company-tooltip-align-annotations t))
-
-    (use-package dash
-      :ensure t)
-
-    (use-package flycheck
-      :ensure t)
-
     (use-package go-mode
       :ensure t
       :bind
-      (:map go-mode-map
-            ("C-c C-t" . 'k20e/toggle-test-buffer)
-            ("C-." . 'company-indent-or-complete-common))
+      (:map go-mode-map ("C-c C-t" . 'k20e/toggle-test-buffer))
       :custom-face (button ((t (:box nil))))
-      :preface
-      (defun k20e/go-mode-hook ()
-        (message "k20e/go-mode-hook"))
-      :hook
-      ((before-save . (lambda () (when (eq major-mode 'go-mode)
-                              (lsp-format-buffer)
-                              (lsp-organize-imports))))
-       (go-mode . lsp-deferred)
-       (go-mode . k20e/go-mode-hook)
-       (go-mode . (lambda ()
-                    (let ((gopath (string-trim (shell-command-to-string (string-join `(,(executable-find "go") "env" "GOPATH") " "))))
-                          (goroot (string-trim (shell-command-to-string (string-join `(,(executable-find "go") "env" "GOROOT") " ")))))
-                      (setenv "GOPATH" gopath)
-                      (setenv "GOROOT" goroot))
-                    (setq-local compile-command "go run main.go"))))
+      :hook ((before-save . (lambda ()
+                              (when (eq major-mode 'go-mode)
+                                (lsp-format-buffer)
+                                (lsp-organize-imports))))
+             (go-mode . lsp-deferred)
+             (go-mode . (lambda ()
+                          (let ((gopath (string-trim (shell-command-to-string (string-join `(,(executable-find "go") "env" "GOPATH") " "))))
+                                (goroot (string-trim (shell-command-to-string (string-join `(,(executable-find "go") "env" "GOROOT") " ")))))
+                            (setenv "GOPATH" gopath)
+                            (setenv "GOROOT" goroot))
+                          (setq-local compile-command "go run main.go"))))
       :config
       (setq-default indent-tabs-mode t
-                    tab-width 4)
-
-      ;; lsp (currently gopls)
-
-      ;; https://github.com/golang/tools/blob/master/gopls/doc/emacs.md#configuring-lsp-mode
-      ;; Officially supported settings get first class vars, experimental
-      ;; settings are "custom" strings set via
-      ;; lsp-register-custom-settings.
-
-      ;; Officially supported settings
-      ;; https://github.com/golang/tools/blob/master/gopls/doc/settings.md#officially-supported
-      (setq-default lsp-go-directory-filters ["-**/testdata"]
+                    tab-width 4
+                    ;; https://github.com/golang/tools/blob/master/gopls/doc/settings.md#officially-supported
+                    lsp-go-directory-filters ["-**/testdata"]
                     lsp-go-link-target "pkg.go.dev"
                     lsp-go-use-placeholders t)
-
-      ;; Experimental settings
+      ;; https://github.com/golang/tools/blob/master/gopls/doc/emacs.md#configuring-lsp-mode
       ;; https://github.com/golang/tools/blob/master/gopls/doc/settings.md
-      ;; anything marked as, "This setting is experimental and may be
-      ;; deleted."
       (lsp-register-custom-settings '(("gopls.staticcheck" t t)
                                       ("go.inlayHints.assignVariableTypes" t t)
                                       ("go.inlayHints.compositeLiteralFields" t t)
