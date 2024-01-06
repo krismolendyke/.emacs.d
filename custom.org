@@ -816,8 +816,8 @@ function.
   #+begin_src emacs-lisp
     (global-prettify-symbols-mode 1)
 
-    (defvar k20e/font-list '(("PragmataPro-Mono-Liga" . 16)
-                             ("PragmataPro-Liga" . 16))
+    (defvar k20e/font-list '(("PragmataPro-Mono-Liga" . 18)
+                             ("PragmataPro-Liga" . 18))
       "Ordered list of preferred fonts and sizes.")
 
     (defun k20e/font--set (font-alist)
@@ -1238,7 +1238,7 @@ function.
     (use-package org
       :custom-face
       (variable-pitch ((t (:family "ETBembo" :height 1.3))))
-      (fixed-pitch ((t (:family "PragmataPro Mono Liga" :height 0.9))))
+      (fixed-pitch ((t (:family "PragmataPro Mono Liga" :height 0.8))))
       (org-block ((t (:inherit fixed-pitch))))
       (org-block-begin-line ((t (:inherit fixed-pitch))))
       (org-block-end-line ((t (:inherit fixed-pitch))))
