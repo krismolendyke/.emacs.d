@@ -1996,6 +1996,23 @@ function.
 
    Will create a detailed log buffer.
 
+* STARTED Tree-sitter
+  :LOGBOOK:
+  - State "STARTED"    from "TODO"       [2024-01-08 Mon 09:20]
+  :END:
+
+  For now I've just committed whatever parsers I've needed at the time into =~/.emacs.d/tree-sitter=.  I need to invest
+  more time into getting this properly setup so I can try out [[*combobulate][combobulate]].
+
+  Check out =system-configuration-features= to make sure that =TREE_SITTER= is present.
+
+  - https://tree-sitter.github.io/tree-sitter/
+  - https://www.masteringemacs.org/article/how-to-get-started-tree-sitter
+
+    #+begin_src emacs-lisp
+      (use-package treesit)
+    #+end_src
+
 * uniquify
 
   Name multiple identical buffer names in a sensible manner.
