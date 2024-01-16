@@ -2067,7 +2067,11 @@ function.
      (use-package consult
        :ensure t
        :demand
-       :bind (("C-s" . consult-line)
+       :config
+       (defun consult-line-symbol-at-point ()
+         (interactive)
+         (consult-line (thing-at-point 'symbol)))
+       :bind (("C-s" . consult-line-symbol-at-point)
               ("C-x b". consult-buffer)
               ("C-x C-a" . consult-ripgrep)
               ("C-x C-g" . consult-git-grep)
