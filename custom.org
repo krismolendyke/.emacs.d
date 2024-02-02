@@ -915,7 +915,9 @@ function.
     (use-package go-mode
       :ensure t
       :bind
-      (:map go-mode-map ("C-c C-t" . 'k20e/toggle-test-buffer))
+      (:map go-mode-map
+            ("C-c C-t" . 'k20e/toggle-test-buffer)
+            ("M-q" . 'lsp-format-buffer))
       :custom-face (button ((t (:box nil))))
       :hook ((before-save . (lambda ()
                               (when (eq major-mode 'go-mode)
