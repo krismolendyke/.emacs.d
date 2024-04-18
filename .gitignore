@@ -1,3 +1,4 @@
+.cache/
 *.html
 .emacs-custom.el
 .emacs.desktop
