@@ -2005,6 +2005,13 @@ function.
       (use-package treesit)
     #+end_src
 
+* TypeScript
+
+  #+begin_src emacs-lisp
+    (use-package typescript-mode
+      :ensure t)
+  #+end_src
+
 * uniquify
 
   Name multiple identical buffer names in a sensible manner.
