@@ -2008,6 +2008,28 @@ function.
       ;; (use-package templ-ts-mode)
     #+end_src
 
+* TypeScript
+
+  There are /two/ grammars for [[*Tree-sitter][Tree-sitter]].  The first is for TypeScript, the second is for TSX and each must be
+  installed separately, e.g., =M-x treesit-install-language-grammar=, then for TypeScript enter =typescript= as the
+  language, and take the defaults until prompted for the =src= directory.  Change this to =typescript/src= and continue
+  with the defaults.  For TSX, do not use =typescript= as the language but rather =tsx=.  It will fail to find the
+  repository so paste in https://github.com/tree-sitter/tree-sitter-typescript.  When prompted for the =src= directory,
+  enter =tsx/src= and continue with the defaults.  There will then be two grammars compiled in the =tree-sitter=
+  directory:
+
+  #+begin_example
+    libtree-sitter-tsx.dylib
+    libtree-sitter-typescript.dylib
+  #+end_example
+
+  Configuration:
+
+  #+begin_src emacs-lisp
+    (use-package typescript-mode
+      :ensure t)
+  #+end_src
+
 * uniquify
 
   Name multiple identical buffer names in a sensible manner.
