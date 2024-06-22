@@ -2004,6 +2004,8 @@ function.
 
     #+begin_src emacs-lisp
       (use-package treesit)
+
+      ;; (use-package templ-ts-mode)
     #+end_src
 
 * uniquify
