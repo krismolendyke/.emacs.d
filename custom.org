@@ -931,10 +931,11 @@ function.
                             (setenv "GOROOT" goroot))
                           (setq-local compile-command "go run main.go"))))
       :config
-      (setq-default indent-tabs-mode t
-                    tab-width 4
-                    ;; https://github.com/golang/tools/blob/master/gopls/doc/settings.md#officially-supported
-                    lsp-go-directory-filters ["-**/testdata"]
+      ;; go-mode buffers only
+      (setq indent-tabs-mode t
+            tab-width 4)
+      ;; https://github.com/golang/tools/blob/master/gopls/doc/settings.md#officially-supported
+      (setq-default lsp-go-directory-filters ["-**/testdata"]
                     lsp-go-link-target "pkg.go.dev"
                     lsp-go-use-placeholders t)
       ;; https://github.com/golang/tools/blob/master/gopls/doc/emacs.md#configuring-lsp-mode
