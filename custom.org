@@ -962,8 +962,17 @@ function.
 
 ** Tree Sitter
 
-   Install is typical for Go, but for =go.mod=, use: =gomod= for "Language" and
-   https://github.com/camdencheek/tree-sitter-go-mod for the repo.
+   Tree sitter for Go is installed with defaults.
+
+*** =go.mod=
+
+    - Language: =gomod=
+    - Repository: https://github.com/camdencheek/tree-sitter-go-mod
+
+*** [[https://templ.guide/][templ]]
+
+    - Language: =templ=
+    - Repository: https://github.com/vrischmann/tree-sitter-templ
 
 ** [0/3] =TODO=
 
@@ -2016,12 +2025,6 @@ function.
 
   - https://tree-sitter.github.io/tree-sitter/
   - https://www.masteringemacs.org/article/how-to-get-started-tree-sitter
-
-    #+begin_src emacs-lisp
-      (use-package treesit)
-
-      ;; (use-package templ-ts-mode)
-    #+end_src
 
 * TypeScript
 
