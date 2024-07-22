@@ -283,6 +283,16 @@ function.
      (setq shell-file-name "/bin/sh")
    #+end_src
 
+** Smooth Scrolling
+
+   What a time to be alive.
+
+   #+begin_src emacs-lisp
+     (use-package emacs
+       :init
+       (pixel-scroll-precision-mode))
+   #+end_src
+
 ** TODO Defaults for Review
 
    This is a bunch of stuff that I just dumped here and need to go through yet.
