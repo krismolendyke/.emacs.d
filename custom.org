@@ -960,6 +960,11 @@ function.
                                       ("go.inlayHints.rangeVariableTypes" t t))))
   #+end_src
 
+** Tree Sitter
+
+   Install is typical for Go, but for =go.mod=, use: =gomod= for "Language" and
+   https://github.com/camdencheek/tree-sitter-go-mod for the repo.
+
 ** [0/3] =TODO=
 
    - [ ] Steal some of these https://github.com/dominikh/yasnippet-go
