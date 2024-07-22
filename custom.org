@@ -939,11 +939,11 @@ function.
                                 (goroot (string-trim (shell-command-to-string (string-join `(,(executable-find "go") "env" "GOROOT") " ")))))
                             (setenv "GOPATH" gopath)
                             (setenv "GOROOT" goroot))
-                          (setq-local compile-command "go run main.go"))))
+                          (setq-local
+                           compile-command "go run main.go"
+                           indent-tabs-mode t
+                           tab-width 4))))
       :config
-      ;; go-mode buffers only
-      (setq indent-tabs-mode t
-            tab-width 4)
       ;; https://github.com/golang/tools/blob/master/gopls/doc/settings.md#officially-supported
       (setq-default lsp-go-directory-filters ["-**/testdata"]
                     lsp-go-link-target "pkg.go.dev"
