@@ -1615,31 +1615,20 @@ function.
 * python
 
   #+begin_src emacs-lisp
-    (use-package blacken :ensure t)
-
     (use-package python
       :ensure t
       :after (flycheck lsp-mode)
-      :config
-      (setq-default
-       lsp-pylsp-plugins-black-enabled t)
       :bind (:map python-mode-map
                   ("M-a" . python-nav-beginning-of-statement)
                   ("M-e" . python-nav-end-of-statement)
                   ("M-n" . python-nav-forward-statement)
                   ("M-p" . python-nav-backward-statement)
-                  ("M-q" . blacken-buffer)
                   ("C-." . completion-at-point)
                   ("C-M-f" . python-nav-forward-sexp)
                   ("C-M-b" . python-nav-backward-sexp)
                   ("C-M-n" . python-nav-forward-block)
                   ("C-M-p" . python-nav-backward-block))
-      :hook ((before-save . (lambda ()
-                              (when (eq major-mode 'python-mode)
-                                (lsp-organize-imports)
-                                (lsp-format-buffer))))
-             (python-mode . blacken-mode)
-             (python-mode . electric-pair-mode)
+      :hook ((python-mode . electric-pair-mode)
              (python-mode . flycheck-mode)
              (python-mode . lsp-deferred)
              (python-mode . prettify-symbols-mode)
