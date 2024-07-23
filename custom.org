@@ -283,6 +283,16 @@ function.
      (setq shell-file-name "/bin/sh")
    #+end_src
 
+** Smooth Scrolling
+
+   What a time to be alive.
+
+   #+begin_src emacs-lisp
+     (use-package emacs
+       :init
+       (pixel-scroll-precision-mode))
+   #+end_src
+
 ** TODO Defaults for Review
 
    This is a bunch of stuff that I just dumped here and need to go through yet.
@@ -930,11 +940,11 @@ function.
                                 (goroot (string-trim (shell-command-to-string (string-join `(,(executable-find "go") "env" "GOROOT") " ")))))
                             (setenv "GOPATH" gopath)
                             (setenv "GOROOT" goroot))
-                          (setq-local compile-command "go run main.go"))))
+                          (setq-local
+                           compile-command "go run main.go"
+                           indent-tabs-mode t
+                           tab-width 4))))
       :config
-      ;; go-mode buffers only
-      (setq indent-tabs-mode t
-            tab-width 4)
       ;; https://github.com/golang/tools/blob/master/gopls/doc/settings.md#officially-supported
       (setq-default lsp-go-directory-filters ["-**/testdata"]
                     lsp-go-link-target "pkg.go.dev"
@@ -950,6 +960,20 @@ function.
                                       ("go.inlayHints.parameterNames" t t)
                                       ("go.inlayHints.rangeVariableTypes" t t))))
   #+end_src
+
+** Tree Sitter
+
+   Tree sitter for Go is installed with defaults.
+
+*** =go.mod=
+
+    - Language: =gomod=
+    - Repository: https://github.com/camdencheek/tree-sitter-go-mod
+
+*** [[https://templ.guide/][templ]]
+
+    - Language: =templ=
+    - Repository: https://github.com/vrischmann/tree-sitter-templ
 
 ** [0/3] =TODO=
 
@@ -1991,12 +2015,6 @@ function.
 
   - https://tree-sitter.github.io/tree-sitter/
   - https://www.masteringemacs.org/article/how-to-get-started-tree-sitter
-
-    #+begin_src emacs-lisp
-      (use-package treesit)
-
-      ;; (use-package templ-ts-mode)
-    #+end_src
 
 * TypeScript
 
