@@ -2017,7 +2017,9 @@ function.
 
   #+begin_src emacs-lisp
     (use-package typescript-mode
-      :ensure t)
+      :ensure t
+      :mode ("\\.ts\\'" . typescript-mode)
+      :hook ((typescript-mode . lsp-deferred)))
   #+end_src
 
 * uniquify
