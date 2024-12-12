@@ -1018,17 +1018,30 @@ function.
     (defalias 'list-buffers 'ibuffer)
 
     (use-package ibuffer
+      :config
+      (setq ibuffer-saved-filter-groups
+            '(("default"
+               ("Modified" (modified))
+               ("Unmodified" (not modified)))))
       :custom
       (ibuffer-formats '((mark " "
                                (modified)
                                " "
                                (name 40 40 :right :elide)
                                " "
-                               (filename-and-process))
+                               (filename-and-process -1 -1 :left :elide))
                          (mark " "
                                (filename-and-process 70 70 :left :elide)
                                " "
-                               name))))
+                               name)
+                         (mark " "
+                               (mode 20 20 :left :elide)
+                               " "
+                               (modified 6 6 :left)
+                               " "
+                               (name 40 40 :left :elide)
+                               " "
+                               (filename-and-process -1 -1 :left :elide)))))
   #+end_src
 
 * IELM
