@@ -817,8 +817,8 @@ function.
   #+begin_src emacs-lisp
     (global-prettify-symbols-mode 1)
 
-    (defvar k20e/font-list '(("PragmataPro-Mono-Liga" . 18)
-                             ("PragmataPro-Liga" . 18))
+    (defvar k20e/font-list '(("PragmataPro-Mono-Liga" . 20)
+                             ("PragmataPro-Liga" . 20))
       "Ordered list of preferred fonts and sizes.")
 
     (defun k20e/font--set (font-alist)
