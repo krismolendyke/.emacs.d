@@ -2290,7 +2290,6 @@ function.
       :hook
       ((before-save . (lambda () (when (eq major-mode 'zig-mode)
                               (lsp-format-buffer))))
-       (zig-mode . company-mode)
        (zig-mode . lsp-deferred))
       :custom (zig-format-on-save nil)
       :config
