@@ -656,7 +656,7 @@ function.
 
 * TODO combobulate
 
-  Along with [[*Tree-sitter][tree-sitter]] this looks interesting.
+  Along with [[Tree-sitter][tree-sitter]] this looks interesting.
 
   - https://www.masteringemacs.org/article/combobulate-structured-movement-editing-treesitter
   - https://github.com/mickeynp/combobulate#how-do-i-install-combobulate
