@@ -31,6 +31,9 @@
 <link href='https://edwardtufte.github.io/tufte-css/tufte.min.css' rel='stylesheet' type='text/css' />"
   "Extra HTML to add to the <head> tag.")
 
+;; Mark broken links instead of raising an error.
+(setq org-export-with-broken-links `mark)
+
 ;; Fontify _SRC blocks in org-mode buffers.
 (setq org-src-fontify-natively t)
 
