@@ -1,6 +1,6 @@
 [submodule "site-lisp/org-mode"]
 	path = site-lisp/org-mode
-	url = https://code.orgmode.org/bzg/org-mode.git
+	url = https://git.savannah.gnu.org/git/emacs/org-mode.git
 [submodule "site-lisp/font-awesome.el"]
 	path = site-lisp/font-awesome.el
 	url = git@github.com:krismolendyke/font-awesome.el.git
