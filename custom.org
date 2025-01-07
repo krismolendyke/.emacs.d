@@ -1018,11 +1018,6 @@ function.
     (defalias 'list-buffers 'ibuffer)
 
     (use-package ibuffer
-      :config
-      (setq ibuffer-saved-filter-groups
-            '(("default"
-               ("Modified" (modified))
-               ("Unmodified" (not modified)))))
       :custom
       (ibuffer-formats '((mark " "
                                (modified)
