@@ -1218,13 +1218,30 @@ function.
 
 * [[https://ocaml.org/][OCaml]]
 
+  Install =opam=, then =opam init= (see https://github.com/krismolendyke/dotfiles).  Then:
+
+  #+begin_src sh
+    opam install ocamlformat ocaml-lsp-server
+  #+end_src
+
+  - [[https://github.com/ocaml/tuareg][tuareg]] is a popular OCaml major mode
+  - [[https://github.com/ocaml-ppx/ocamlformat][ocamlformat]] is the recommended formatter
+  - =ocp-indent= is provided by =ocamlformat= (see =~/.opam/default/share/emacs/site-lisp=) for more, including =dune=
+
   #+begin_src emacs-lisp
     (use-package tuareg
       :ensure t
+      :after (flycheck lsp-mode)
       :bind (:map tuareg-mode-map
-                  ("C-h" . 'delete-backward-char)))
-  #+end_src
+                  ("C-h" . 'delete-backward-char))
+      :hook ((tuareg-mode . lsp-deferred)))
 
+    (use-package ocamlformat
+      :ensure t)
+
+    (use-package ocp-indent
+      :ensure t)
+  #+end_src
 * olivetti
 
   [[https://github.com/rnkn/olivetti][olivetti]] is a minimal minor mode to provide a more distraction free writing environment.
