@@ -1221,6 +1221,15 @@ function.
     (setq mc/list-file (expand-file-name ".mc-lists.el" k20e/google-drive-directory))
   #+end_src
 
+* [[https://ocaml.org/][OCaml]]
+
+  #+begin_src emacs-lisp
+    (use-package tuareg
+      :ensure t
+      :bind (:map tuareg-mode-map
+                  ("C-h" . 'delete-backward-char)))
+  #+end_src
+
 * olivetti
 
   [[https://github.com/rnkn/olivetti][olivetti]] is a minimal minor mode to provide a more distraction free writing environment.
