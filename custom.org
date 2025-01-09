@@ -1231,12 +1231,13 @@ function.
   #+begin_src emacs-lisp
     (use-package tuareg
       :ensure t
-      :after (flycheck lsp-mode)
+      :after (flycheck lsp-mode ocamlformat ocp-indent)
       :bind (:map tuareg-mode-map
                   ("C-h" . 'delete-backward-char))
       :custom
       ((tuareg-opam-insinuate t))
-      :hook ((tuareg-mode . lsp-deferred)))
+      :hook ((before-save . ocamlformat-before-save)
+             (tuareg-mode . lsp-deferred)))
 
     (use-package ocamlformat
       :ensure t
