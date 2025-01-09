@@ -46,10 +46,22 @@ Only turn off the menu bar running in a terminal window."
     :ensure t)
   (setq exec-path-from-shell-variables
         (append exec-path-from-shell-variables
-                '("DYLD_LIBRARY_PATH" ; https://github.com/rust-lang-nursery/rustfmt#tips
+                '(
+                  ;; Rust, see https://github.com/rust-lang-nursery/rustfmt#tips
+                  "DYLD_LIBRARY_PATH"
+
+                  ;; Go
                   "GOPATH"
                   "GOROOT"
-                  "SHELL")))
+
+                  ;; OCaml
+                  "CAML_LD_LIBRARY_PATH"
+                  "OCAML_TOPLEVEL_PATH"
+                  "OPAM_SWITCH_PREFIX"
+
+                  ;; Other
+                  "SHELL"
+                  )))
   (exec-path-from-shell-initialize))
 
 (defun k20e/load-custom-elisp ()
