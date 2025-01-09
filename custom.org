@@ -1234,6 +1234,8 @@ function.
       :after (flycheck lsp-mode)
       :bind (:map tuareg-mode-map
                   ("C-h" . 'delete-backward-char))
+      :custom
+      ((tuareg-opam-insinuate t))
       :hook ((tuareg-mode . lsp-deferred)))
 
     (use-package ocamlformat
