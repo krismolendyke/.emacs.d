@@ -1237,7 +1237,9 @@ function.
       :hook ((tuareg-mode . lsp-deferred)))
 
     (use-package ocamlformat
-      :ensure t)
+      :ensure t
+      :custom
+      (ocamlformat-enable 'enable-outside-detected-project))
 
     (use-package ocp-indent
       :ensure t)
