@@ -884,6 +884,13 @@ function.
 
 * git
 
+  A [[https://melpa.org/#/git-modes][few major modes]] for editing =git= configuration files.
+
+  #+begin_src emacs-lisp
+    (use-package git-modes
+      :ensure t)
+  #+end_src
+
   A simple function to insert starter =.gitignore= file contents from
   the [[https://github.com/github/gitignore][github/gitignore]] repository.
 
