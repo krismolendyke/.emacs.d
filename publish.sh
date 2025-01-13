@@ -12,6 +12,6 @@ emacs --batch \
 git checkout gh-pages
 mv custom.html index.html
 git add index.html
-git commit --message "post-commit hook regeneration."
+git commit --message "Manual publish.sh execution"
 git checkout master
 git push origin --all
