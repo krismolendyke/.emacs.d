@@ -8,6 +8,7 @@
 backup/
 bookmarks
 custom.el
+eln-cache/
 games/
 history
 org-persist/
