@@ -48,7 +48,7 @@ function.
   And then install:
 
   #+begin_src sh
-    brew install emacs-plus@29
+    brew install emacs-plus@30
   #+end_src
 
 ** Emacs Source Directory
