@@ -1348,9 +1348,6 @@ function.
                     org-startup-folded t)
       (setq-local global-hl-line-mode nil)
       :functions
-      company-indent-or-complete-common
-      company-select-next
-      company-select-previous
       lsp-format-buffer
       lsp-organize-imports
       lsp-register-custom-settings)
@@ -2318,7 +2315,6 @@ function.
     (use-package zig-mode
       :ensure t
       :bind
-      (:map zig-mode-map ("C-." . 'company-indent-or-complete-common))
       :functions
       lsp-register-client
       make-lsp-client
