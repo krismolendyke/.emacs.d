@@ -1386,10 +1386,10 @@ function.
      (global-set-key (kbd "C-c l") 'org-store-link)
      (global-set-key (kbd "C-x c") 'org-switchb)
 
-     (define-key org-mode-map (kbd "<return>") 'org-return-indent)
+     (define-key org-mode-map (kbd "<return>") 'org-return-and-maybe-indent)
      (define-key org-mode-map (kbd "M-<return>") 'org-meta-return)
      (define-key org-mode-map (kbd "C-j") 'join-line)
-     (define-key org-mode-map (kbd "C-m") 'org-return-indent)
+     (define-key org-mode-map (kbd "C-m") 'org-return-and-maybe-indent)
      (define-key org-mode-map (kbd "H-<tab>") 'pcomplete)
      (define-key org-mode-map (kbd "M-h") 'backward-kill-word)
    #+end_src
