@@ -2302,7 +2302,7 @@ function.
       (defun k20e/yaml-mode-hook ()
         (flycheck-select-checker 'yaml-yamllint)
         (flycheck-yamllint-setup)
-        (flyspell-mode-off))
+        (flyspell--mode-off))
       :hook ((yaml-mode . k20e/yaml-mode-hook)
              (yaml-mode . flycheck-mode)
              (yaml-mode . highlight-indent-guides-mode)
