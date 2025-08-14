@@ -1926,19 +1926,21 @@ function.
   Set theme automatically on MacOS thanks to
   https://github.com/d12frosted/homebrew-emacs-plus#system-appearance-change.  Just set it to dark on Linux for now.
 
+  Trying out https://github.com/tinted-theming/base16-emacs now:
+
   #+begin_src emacs-lisp
-    (use-package color-theme-sanityinc-tomorrow
+    (use-package base16-theme
       :ensure t
       :config
       (cond ((eq system-type 'darwin)
              (defun k20e/load-theme (mode)
                "Load light or dark theme depending on which mode the system is currently in."
                (pcase mode
-                 ('light (load-theme 'sanityinc-tomorrow-day t))
-                 ('dark (load-theme 'sanityinc-tomorrow-bright t))))
+                 ('light (load-theme 'base16-gruvbox-light-soft t))
+                 ('dark (load-theme 'base16-gruvbox-dark-soft t))))
              (add-hook 'ns-system-appearance-change-functions 'k20e/load-theme))
             ((string-equal system-type "gnu/linux")
-             (load-theme 'sanityinc-tomorrow-bright t))))
+             (load-theme 'base16-gruvbox-dark-soft t))))
   #+end_src
 
 * terraform-mode
