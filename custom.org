@@ -1904,8 +1904,6 @@ function.
        truncate-lines t
        truncate-partial-width-windows nil)
       (fringe-mode))
-
-
   #+end_src
 
   No bell:
