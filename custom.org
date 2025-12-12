@@ -1,4 +1,5 @@
 #+TITLE: Literate =.emacs.d=
+#+PROPERTY: header-args:emacs-lisp :shebang ";;; -*- lexical-binding: t; -*-"
 #+OPTIONS: toc:nil num:nil
 #+HTML: <p class="subtitle">Kris Molendyke</p>
 
@@ -48,7 +49,7 @@ function.
   And then install:
 
   #+begin_src sh
-    brew install emacs-plus@30
+    brew install emacs-plus@31
   #+end_src
 
 ** Emacs Source Directory
@@ -677,23 +678,23 @@ function.
     (defun k20e/compilation-finish-function-delay-delete (buf result)
       "Delete and bury BUF after short delay.
     Do so only if compilation is successful."
-      (if (string= (string-trim result) "finished")
+      (let ((status (string-trim result)))
+        (when (string= status "finished")
           (run-with-timer
            1.0 nil
-           (lambda (buf)
-             (with-current-buffer buf
+           (lambda (buffer)
+             (with-current-buffer buffer
                (delete-window)
                (bury-buffer)))
-           buf)))
+           buf))))
 
-    (defun k20e/compilation-finish-function-select-window (buf result)
+    (defun k20e/compilation-finish-function-select-window (buf _result)
       "Switch to the compilation buffer BUF.
     When compilation completes, regardless of result."
-      (let ((win (get-buffer-window buf)))
-        (select-window (get-buffer-window buf))
-        (goto-char (point-max))
-        (forward-line -1)
-        (hl-line-mode)))
+      (select-window (get-buffer-window buf))
+      (goto-char (point-max))
+      (forward-line -1)
+      (hl-line-mode))
   #+end_src
 
 * dired
@@ -1561,7 +1562,7 @@ function.
 
      (defun k20e/org-agenda-mode-hook ()
        (define-key org-agenda-mode-map (kbd "q")
-         (lambda (x)
+         (lambda (_x)
            (interactive "p")
            (winner-undo)
            (kill-buffer "*Org Agenda*")))

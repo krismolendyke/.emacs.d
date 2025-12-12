@@ -1,3 +1,5 @@
+;; -*- lexical-binding: t; -*-
+
 (setq prettify-symbols-unprettify-at-point 'right-edge)
 
 (defconst pragmatapro-prettify-symbols-alist
@@ -205,7 +207,7 @@
             (">>|"        #XEA26)
             (">!="        #XEA27)
             (">->"        #XEA28)
-            (">=="        #XEA29)            
+            (">=="        #XEA29)
             (">="         #XEA2A)
             (">/="        #XEA2B)
             (">-|"        #XEA2C)

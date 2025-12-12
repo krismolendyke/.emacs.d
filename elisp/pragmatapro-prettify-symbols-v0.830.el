@@ -1,3 +1,5 @@
+;; -*- lexical-binding: t; -*-
+
 (setq prettify-symbols-unprettify-at-point 'right-edge)
 
 (defconst pragmatapro-prettify-symbols-alist

@@ -1,3 +1,4 @@
+;; -*- lexical-binding: t; -*-
 ;;; k20e-org-html-export.el --- Setup HTML export for org-mode.
 
 ;;; Commentary:

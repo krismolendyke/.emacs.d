@@ -1,3 +1,4 @@
+;; -*- lexical-binding: t; -*-
 ;;; init.el --- Bootstrap initialization.
 
 ;;; Commentary:
