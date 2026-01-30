@@ -1944,6 +1944,10 @@ function.
                (pcase mode
                  ('light (load-theme 'base16-gruvbox-light-soft t))
                  ('dark (load-theme 'base16-gruvbox-dark-soft t)))
+               ;; Flatten the modeline and ensure it uses theme colors instead of default gray
+               (let ((bg (face-attribute 'mode-line-inactive :background)))
+                 (set-face-attribute 'mode-line nil :box nil :background bg)
+                 (set-face-attribute 'mode-line-inactive nil :box nil))
                (if (fboundp 'k20e/org-font-setup) (k20e/org-font-setup)))
              (add-hook 'ns-system-appearance-change-functions 'k20e/load-theme))
             ((string-equal system-type "gnu/linux")
