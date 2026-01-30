@@ -106,7 +106,8 @@ Only turn off the menu bar running in a terminal window."
 ;;; Other settings
 (use-package emacs
   :config
-  (setq-default custom-file (expand-file-name ".emacs-custom.el" user-emacs-directory)))
+  (setq-default custom-file (expand-file-name ".emacs-custom.el" user-emacs-directory))
+  (load custom-file 'noerror))
 
 (k20e/no-bars-held)
 (k20e/setup-load-path)
