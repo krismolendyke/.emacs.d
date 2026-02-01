@@ -1,5 +1,4 @@
 .cache/
-*.html
 .emacs-custom.el
 .emacs.desktop
 .last-package-update-day
