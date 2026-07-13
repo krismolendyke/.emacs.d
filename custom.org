@@ -883,6 +883,54 @@ function.
                     geiser-default-implementation 'racket))
   #+end_src
 
+* [[https://dakra.github.io/ghostel/][ghostel]]
+
+  To initialize the native dynamic module on a new machine, download the pre-built binary by running:
+
+  #+begin_example
+    M-x ghostel-download-module
+  #+end_example
+
+  #+begin_src emacs-lisp
+    (eval-and-compile
+      (setq ghostel-module-directory (expand-file-name "ghostel" user-emacs-directory)
+            ghostel-module-auto-install 'download))
+
+    (use-package ghostel
+      :ensure t
+      :defines (ghostel-module-directory
+                ghostel-module-auto-install
+                ghostel-keymap-exceptions)
+      :bind (("<f11>" . k20e/ghostel-toggle)
+             ("C-x m" . ghostel)
+             ("C-x M" . ghostel-project))
+      :config
+
+      ;; Custom toggler function to quickly pop open / hide the terminal
+      (defun k20e/ghostel-toggle ()
+        "Toggle the ghostel terminal buffer.
+If we are in the ghostel buffer, switch to the previous buffer.
+If a ghostel buffer exists but we are not in it, switch to it.
+Otherwise, start a new ghostel terminal."
+        (interactive)
+        (let ((buffer (get-buffer "*ghostel*")))
+          (cond
+           ((eq (current-buffer) buffer)
+            (switch-to-buffer (other-buffer (current-buffer) t)))
+           (buffer
+            (switch-to-buffer buffer))
+           (t
+            (ghostel)))))
+
+      ;; Allow window-management and custom keys to pass through to Emacs in semi-char mode
+      (dolist (key '("M-`" "M-SPC" "M-S-SPC"))
+        (add-to-list 'ghostel-keymap-exceptions key))
+
+      ;; Integrate with project.el switch commands
+      (with-eval-after-load 'project
+        (add-to-list 'project-switch-commands '(ghostel-project "Ghostel") t)))
+  #+end_src
+
 * git
 
   A [[https://melpa.org/#/git-modes][few major modes]] for editing =git= configuration files.

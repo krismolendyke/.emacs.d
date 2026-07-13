@@ -67,3 +67,7 @@ flycheck_*.el
 
 # directory configuration
 .dir-locals.el
+
+# Ghostel native module binaries
+ghostel/
+
