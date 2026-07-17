@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-07-17 Fri 09:02 -->
+<!-- 2026-07-17 Fri 09:05 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Literate =.emacs.d=</title>
@@ -2505,7 +2505,9 @@ M-x ghostel-download-module
                 ghostel-keymap-exceptions)
       <span class="org-builtin">:bind</span> ((<span class="org-string">"&lt;f11&gt;"</span> . k20e/ghostel-toggle)
              (<span class="org-string">"C-x m"</span> . ghostel)
-             (<span class="org-string">"C-x M"</span> . ghostel-project))
+             (<span class="org-string">"C-x M"</span> . ghostel-project)
+             <span class="org-builtin">:map</span> ghostel-semi-char-mode-map
+             (<span class="org-string">"&lt;f11&gt;"</span> . k20e/ghostel-toggle))
       <span class="org-builtin">:config</span>
 
       <span class="org-comment-delimiter">;; </span><span class="org-comment">Custom toggler function to quickly pop open / hide the terminal
@@ -4441,7 +4443,7 @@ Take care of some whitespace issues.
 </div>
 <div id="postamble" class="status">
 <p class="author">Kris Molendyke</p>
-<p class="date">2026-07-17 Fri 09:01</p>
+<p class="date">2026-07-17 Fri 09:04</p>
 <p class="creator"><a href="https://www.gnu.org/software/emacs/">Emacs</a> 31.0.90 (<a href="https://orgmode.org">Org</a> mode 9.7.30)</p>
 </div>
 </body>
