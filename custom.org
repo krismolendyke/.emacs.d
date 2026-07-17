@@ -903,7 +903,9 @@ function.
                 ghostel-keymap-exceptions)
       :bind (("<f11>" . k20e/ghostel-toggle)
              ("C-x m" . ghostel)
-             ("C-x M" . ghostel-project))
+             ("C-x M" . ghostel-project)
+             :map ghostel-semi-char-mode-map
+             ("<f11>" . k20e/ghostel-toggle))
       :config
 
       ;; Custom toggler function to quickly pop open / hide the terminal
