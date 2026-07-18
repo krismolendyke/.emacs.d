@@ -913,6 +913,7 @@ function.
       :defines (ghostel-module-directory
                 ghostel-module-auto-install
                 ghostel-keymap-exceptions)
+      :functions ghostel--rebuild-semi-char-keymap
       :bind (("<f11>" . k20e/ghostel-toggle)
              ("C-x m" . ghostel)
              ("C-x M" . ghostel-project)
@@ -939,6 +940,7 @@ Otherwise, start a new ghostel terminal."
       ;; Allow window-management and custom keys to pass through to Emacs in semi-char mode
       (dolist (key '("M-`" "M-SPC" "M-S-SPC"))
         (add-to-list 'ghostel-keymap-exceptions key))
+      (ghostel--rebuild-semi-char-keymap)
 
       ;; Integrate with project.el switch commands
       (with-eval-after-load 'project
