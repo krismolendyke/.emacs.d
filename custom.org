@@ -1307,7 +1307,7 @@ Otherwise, start a new ghostel terminal."
       :bind (:map tuareg-mode-map
                   ("C-h" . 'delete-backward-char))
       :custom
-      ((tuareg-opam-insinuate t))
+      (tuareg-opam-insinuate t)
       :hook ((before-save . ocamlformat-before-save)
              (tuareg-mode . lsp-deferred)))
 
@@ -1702,11 +1702,11 @@ Otherwise, start a new ghostel terminal."
      (use-package org-superstar
        :ensure t
        :custom
-       (setq org-superstar-special-todo-items t
-             org-superstar-todo-bullet-alist '(("TODO" . 9744) ; ☐
-                                               ("STARTED" . 9744) ; ☐
-                                               ("DONE" . 9745) ; ☑
-                                               ("CANCELED" . 10008))) ; ✘
+       (org-superstar-special-todo-items t)
+       (org-superstar-todo-bullet-alist '(("TODO" . 9744) ; ☐
+                                          ("STARTED" . 9744) ; ☐
+                                          ("DONE" . 9745) ; ☑
+                                          ("CANCELED" . 10008))) ; ✘
        :hook ((org-mode . org-superstar-mode)))
    #+end_src
 
@@ -2259,7 +2259,7 @@ Otherwise, start a new ghostel terminal."
    #+begin_src emacs-lisp
      (use-package corfu
        :ensure t
-       :custom (setq corfu-cycle t)
+       :custom (corfu-cycle t)
        :init (global-corfu-mode))
 
      (use-package emacs
