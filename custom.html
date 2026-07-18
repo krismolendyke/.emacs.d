@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-07-18 Sat 11:19 -->
+<!-- 2026-07-18 Sat 14:12 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Literate =.emacs.d=</title>
@@ -3020,7 +3020,7 @@ Install <code>opam</code>, then <code>opam init</code> (see <a href="https://git
   <span class="org-builtin">:bind</span> (<span class="org-builtin">:map</span> tuareg-mode-map
               (<span class="org-string">"C-h"</span> . 'delete-backward-char))
   <span class="org-builtin">:custom</span>
-  ((tuareg-opam-insinuate t))
+  (tuareg-opam-insinuate t)
   <span class="org-builtin">:hook</span> ((before-save . ocamlformat-before-save)
          (tuareg-mode . lsp-deferred)))
 
@@ -3517,11 +3517,11 @@ Successor to <code>org-bullets</code>, <a href="https://github.com/integral-dw/o
 <pre class="src src-emacs-lisp">(<span class="org-keyword">use-package</span> org-superstar
   <span class="org-builtin">:ensure</span> t
   <span class="org-builtin">:custom</span>
-  (<span class="org-keyword">setq</span> org-superstar-special-todo-items t
-        org-superstar-todo-bullet-alist '((<span class="org-string">"TODO"</span> . 9744) <span class="org-comment-delimiter">; </span><span class="org-comment">&#9744;
-</span>                                          (<span class="org-string">"STARTED"</span> . 9744) <span class="org-comment-delimiter">; </span><span class="org-comment">&#9744;
-</span>                                          (<span class="org-string">"DONE"</span> . 9745) <span class="org-comment-delimiter">; </span><span class="org-comment">&#9745;
-</span>                                          (<span class="org-string">"CANCELED"</span> . 10008))) <span class="org-comment-delimiter">; </span><span class="org-comment">&#10008;
+  (org-superstar-special-todo-items t)
+  (org-superstar-todo-bullet-alist '((<span class="org-string">"TODO"</span> . 9744) <span class="org-comment-delimiter">; </span><span class="org-comment">&#9744;
+</span>                                     (<span class="org-string">"STARTED"</span> . 9744) <span class="org-comment-delimiter">; </span><span class="org-comment">&#9744;
+</span>                                     (<span class="org-string">"DONE"</span> . 9745) <span class="org-comment-delimiter">; </span><span class="org-comment">&#9745;
+</span>                                     (<span class="org-string">"CANCELED"</span> . 10008))) <span class="org-comment-delimiter">; </span><span class="org-comment">&#10008;
 </span>  <span class="org-builtin">:hook</span> ((org-mode . org-superstar-mode)))
 </pre>
 </div>
@@ -4253,7 +4253,7 @@ repo. so do not <code>:ensure t</code> here.
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span class="org-keyword">use-package</span> corfu
   <span class="org-builtin">:ensure</span> t
-  <span class="org-builtin">:custom</span> (<span class="org-keyword">setq</span> corfu-cycle t)
+  <span class="org-builtin">:custom</span> (corfu-cycle t)
   <span class="org-builtin">:init</span> (global-corfu-mode))
 
 (<span class="org-keyword">use-package</span> emacs
@@ -4461,7 +4461,7 @@ Take care of some whitespace issues.
 </div>
 <div id="postamble" class="status">
 <p class="author">Kris Molendyke</p>
-<p class="date">2026-07-18 Sat 11:17</p>
+<p class="date">2026-07-18 Sat 14:10</p>
 <p class="creator"><a href="https://www.gnu.org/software/emacs/">Emacs</a> 31.0.90 (<a href="https://orgmode.org">Org</a> mode 9.7.30)</p>
 </div>
 </body>
