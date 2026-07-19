@@ -921,6 +921,7 @@ Otherwise, start a new ghostel terminal."
       ;; Allow window-management and custom keys to pass through to Emacs in semi-char mode
       (dolist (key '("M-`" "M-SPC" "M-S-SPC"))
         (add-to-list 'ghostel-keymap-exceptions key))
+      (setq ghostel-keymap-exceptions (delete "C-h" ghostel-keymap-exceptions))
       (ghostel--rebuild-semi-char-keymap)
 
       ;; Integrate with project.el switch commands
