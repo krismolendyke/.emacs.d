@@ -60,6 +60,10 @@ Only turn off the menu bar running in a terminal window."
                   "OCAML_TOPLEVEL_PATH"
                   "OPAM_SWITCH_PREFIX"
 
+                  ;; API Keys
+                  "OPENROUTER_API_KEY"
+                  "GEMINI_API_KEY"
+
                   ;; Other
                   "SHELL"
                   )))
