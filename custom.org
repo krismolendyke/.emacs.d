@@ -1205,6 +1205,7 @@ Otherwise, start a new ghostel terminal."
       :ensure t
       :config (setq markdown-open-command "open")
       :hook ((markdown-mode . prettify-symbols-mode)
+             (markdown-mode . visual-line-mode)
              (markdown-mode . k20e/markdown-sentence-setup))
       :init
       (defun k20e/markdown-sentence-setup ()
