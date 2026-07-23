@@ -1204,7 +1204,12 @@ Otherwise, start a new ghostel terminal."
     (use-package markdown-mode
       :ensure t
       :config (setq markdown-open-command "open")
-      :hook ((markdown-mode . prettify-symbols-mode)))
+      :hook ((markdown-mode . prettify-symbols-mode)
+             (markdown-mode . k20e/markdown-sentence-setup))
+      :init
+      (defun k20e/markdown-sentence-setup ()
+          "Use single-space sentence boundaries in markdown-mode."
+        (setq-local sentence-end-double-space nil)))
   #+end_src
 
 * Minibuffer
