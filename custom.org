@@ -1130,6 +1130,15 @@ Otherwise, start a new ghostel terminal."
       :hook ((js-mode . flycheck-mode)))
   #+end_src
 
+* [[https://just.systems][Just]]
+
+  Grammar installation: =(just-ts-mode-install-grammar)=.
+
+  #+begin_src emacs-lisp
+    (use-package just-ts-mode
+      :ensure t)
+  #+end_src
+
 * LaTeX
 
   #+begin_src emacs-lisp
