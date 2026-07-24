@@ -2048,41 +2048,43 @@ Otherwise, start a new ghostel terminal."
   - https://www.masteringemacs.org/article/how-to-get-started-tree-sitter
 
   #+begin_src emacs-lisp
+    (declare-function global-treesit-auto-mode "treesit-auto")
+    (declare-function treesit-auto-install-all "treesit-auto")
+
     (use-package treesit-auto
       :ensure t
       :custom
-      (treesit-auto-install 'prompt)
+      (treesit-auto-install t)
+      (treesit-auto-langs
+       '(dockerfile
+         go
+         gomod
+         javascript
+         jsdoc
+         just
+         templ
+         tsx
+         typescript))
       :config
-      ;; Define source URLs for language grammars
+      ;; Only languages with no built-in treesit-auto recipe need a URL here.
       (setq treesit-language-source-alist
-            '((typescript "https://github.com/tree-sitter/tree-sitter-typescript" "master" "typescript/src")
-              (tsx        "https://github.com/tree-sitter/tree-sitter-typescript" "master" "tsx/src")
-              (go         "https://github.com/tree-sitter/tree-sitter-go")
-              (gomod      "https://github.com/camdencheek/tree-sitter-go-mod")
-              (dockerfile "https://github.com/camdencheek/tree-sitter-dockerfile")
-              (javascript "https://github.com/tree-sitter/tree-sitter-javascript" "master" "src")
-              (templ      "https://github.com/vrischmann/tree-sitter-templ")
-              (just       "https://github.com/IndianBoy42/tree-sitter-just")))
+            '((jsdoc  "https://github.com/tree-sitter/tree-sitter-jsdoc")
+              (just   "https://github.com/casey/tree-sitter-just")
+              (templ  "https://github.com/vrischmann/tree-sitter-templ")))
 
-      ;; Register custom grammar recipes for languages not included in standard treesit-auto receipts
-      (let ((templ-recipe (make-treesit-auto-recipe
-                           :lang 'templ
-                           :ts-mode 'templ-ts-mode
-                           :url "https://github.com/vrischmann/tree-sitter-templ"
-                           :ext "\\.templ\\'"))
-            (gomod-recipe (make-treesit-auto-recipe
-                           :lang 'gomod
-                           :ts-mode 'go-mod-ts-mode
-                           :url "https://github.com/camdencheek/tree-sitter-go-mod"
-                           :ext "go\\.mod\\'"))
-            (just-recipe (make-treesit-auto-recipe
-                          :lang 'just
-                          :ts-mode 'just-ts-mode
-                          :url "https://github.com/IndianBoy42/tree-sitter-just"
-                          :ext "\\(?:[jJ][uU][sS][tT][fF][iI][lL][eE]\\|\\.just\\)\\'")))
-        (add-to-list 'treesit-auto-recipe-list templ-recipe)
-        (add-to-list 'treesit-auto-recipe-list gomod-recipe)
-        (add-to-list 'treesit-auto-recipe-list just-recipe))
+      ;; Only languages with no built-in ts-mode/extension mapping need a recipe.
+      (let ((just-recipe  (make-treesit-auto-recipe
+                            :lang 'just :ts-mode 'just-ts-mode
+                            :url "https://github.com/casey/tree-sitter-just"
+                            :ext "\\(?:[jJ][uU][sS][tT][fF][iI][lL][eE]\\|\\.just\\)\\'"))
+            (templ-recipe (make-treesit-auto-recipe
+                            :lang 'templ :ts-mode 'templ-ts-mode
+                            :url "https://github.com/vrischmann/tree-sitter-templ"
+                            :ext "\\.templ\\'")))
+        (add-to-list 'treesit-auto-recipe-list just-recipe)
+        (add-to-list 'treesit-auto-recipe-list templ-recipe))
+
+      (treesit-auto-install-all)
       (global-treesit-auto-mode))
   #+end_src
 
