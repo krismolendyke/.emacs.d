@@ -638,8 +638,6 @@ function.
 
 * TODO combobulate
 
-  Along with [[Tree-sitter][tree-sitter]] this looks interesting.
-
   - https://www.masteringemacs.org/article/combobulate-structured-movement-editing-treesitter
   - https://github.com/mickeynp/combobulate#how-do-i-install-combobulate
 
@@ -1131,8 +1129,6 @@ Otherwise, start a new ghostel terminal."
   #+end_src
 
 * [[https://just.systems][Just]]
-
-  Grammar installation: =(just-ts-mode-install-grammar)=.
 
   #+begin_src emacs-lisp
     (use-package just-ts-mode
@@ -2038,41 +2034,66 @@ Otherwise, start a new ghostel terminal."
       :mode ("Pipfile\\'" . toml-mode))
   #+end_src
 
-* STARTED Tree-sitter
+* DONE Tree-sitter
   :LOGBOOK:
+  - State "DONE"       from "STARTED"    [2026-07-23 Thu 21:23]
   - State "STARTED"    from "TODO"       [2024-01-08 Mon 09:20]
   :END:
 
-  For now I've just committed whatever parsers I've needed at the time into =~/.emacs.d/tree-sitter=.  I need to invest
-  more time into getting this properly setup so I can try out [[*combobulate][combobulate]].
+  Emacs 31 includes native tree-sitter support (=treesit=). Use =treesit-auto= to automatically manage grammar recipes,
+  auto-install missing grammars on demand, and automatically remap standard major modes to high-performance =-ts-mode=
+  variants.
 
-  Check out =system-configuration-features= to make sure that =TREE_SITTER= is present.
-
-  - https://tree-sitter.github.io/tree-sitter/
+  - https://github.com/renzmann/treesit-auto
   - https://www.masteringemacs.org/article/how-to-get-started-tree-sitter
+
+  #+begin_src emacs-lisp
+    (use-package treesit-auto
+      :ensure t
+      :custom
+      (treesit-auto-install 'prompt)
+      :config
+      ;; Define source URLs for language grammars
+      (setq treesit-language-source-alist
+            '((typescript "https://github.com/tree-sitter/tree-sitter-typescript" "master" "typescript/src")
+              (tsx        "https://github.com/tree-sitter/tree-sitter-typescript" "master" "tsx/src")
+              (go         "https://github.com/tree-sitter/tree-sitter-go")
+              (gomod      "https://github.com/camdencheek/tree-sitter-go-mod")
+              (dockerfile "https://github.com/camdencheek/tree-sitter-dockerfile")
+              (javascript "https://github.com/tree-sitter/tree-sitter-javascript" "master" "src")
+              (templ      "https://github.com/vrischmann/tree-sitter-templ")
+              (just       "https://github.com/IndianBoy42/tree-sitter-just")))
+
+      ;; Register custom grammar recipes for languages not included in standard treesit-auto receipts
+      (let ((templ-recipe (make-treesit-auto-recipe
+                           :lang 'templ
+                           :ts-mode 'templ-ts-mode
+                           :url "https://github.com/vrischmann/tree-sitter-templ"
+                           :ext "\\.templ\\'"))
+            (gomod-recipe (make-treesit-auto-recipe
+                           :lang 'gomod
+                           :ts-mode 'go-mod-ts-mode
+                           :url "https://github.com/camdencheek/tree-sitter-go-mod"
+                           :ext "go\\.mod\\'"))
+            (just-recipe (make-treesit-auto-recipe
+                          :lang 'just
+                          :ts-mode 'just-ts-mode
+                          :url "https://github.com/IndianBoy42/tree-sitter-just"
+                          :ext "\\(?:[jJ][uU][sS][tT][fF][iI][lL][eE]\\|\\.just\\)\\'")))
+        (add-to-list 'treesit-auto-recipe-list templ-recipe)
+        (add-to-list 'treesit-auto-recipe-list gomod-recipe)
+        (add-to-list 'treesit-auto-recipe-list just-recipe))
+      (global-treesit-auto-mode))
+  #+end_src
 
 * TypeScript
 
-  There are /two/ grammars for [[*Tree-sitter][Tree-sitter]].  The first is for TypeScript, the second is for TSX and each must be
-  installed separately, e.g., =M-x treesit-install-language-grammar=, then for TypeScript enter =typescript= as the
-  language, and take the defaults until prompted for the =src= directory.  Change this to =typescript/src= and continue
-  with the defaults.  For TSX, do not use =typescript= as the language but rather =tsx=.  It will fail to find the
-  repository so paste in https://github.com/tree-sitter/tree-sitter-typescript.  When prompted for the =src= directory,
-  enter =tsx/src= and continue with the defaults.  There will then be two grammars compiled in the =tree-sitter=
-  directory:
-
-  #+begin_example
-    libtree-sitter-tsx.dylib
-    libtree-sitter-typescript.dylib
-  #+end_example
-
-  Configuration:
-
   #+begin_src emacs-lisp
-    (use-package typescript-mode
-      :ensure t
-      :mode ("\\.ts\\'" . typescript-mode)
-      :hook ((typescript-mode . lsp-deferred)))
+    (use-package typescript-ts-mode
+      :mode ("\\.ts\\'" . typescript-ts-mode)
+      :mode ("\\.tsx\\'" . tsx-ts-mode)
+      :hook ((typescript-ts-mode . lsp-deferred)
+             (tsx-ts-mode . lsp-deferred)))
   #+end_src
 
 * uniquify

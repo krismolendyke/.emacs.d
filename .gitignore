@@ -71,3 +71,7 @@ flycheck_*.el
 
 # Ghostel native module binaries
 ghostel/
+
+# Tree-sitter compiled dynamic libraries
+/tree-sitter/
+
