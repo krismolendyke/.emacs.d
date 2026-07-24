@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-07-23 Thu 21:42 -->
+<!-- 2026-07-24 Fri 08:44 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Literate =.emacs.d=</title>
@@ -1438,7 +1438,7 @@ following command:
 </div>
 
 <pre class="example">
-/Users/kris/Library/Caches/Homebrew/emacs-plus@31--git
+/Users/kmolendyke2/Library/Caches/Homebrew/emacs-plus@31--git
 </pre>
 
 
@@ -3960,41 +3960,43 @@ variants.
 </ul>
 
 <div class="org-src-container">
-<pre class="src src-emacs-lisp">(<span class="org-keyword">use-package</span> treesit-auto
+<pre class="src src-emacs-lisp">(<span class="org-keyword">declare-function</span> global-treesit-auto-mode <span class="org-string">"treesit-auto"</span>)
+(<span class="org-keyword">declare-function</span> treesit-auto-install-all <span class="org-string">"treesit-auto"</span>)
+
+(<span class="org-keyword">use-package</span> treesit-auto
   <span class="org-builtin">:ensure</span> t
   <span class="org-builtin">:custom</span>
-  (treesit-auto-install 'prompt)
+  (treesit-auto-install t)
+  (treesit-auto-langs
+   '(dockerfile
+     go
+     gomod
+     javascript
+     jsdoc
+     just
+     templ
+     tsx
+     typescript))
   <span class="org-builtin">:config</span>
-  <span class="org-comment-delimiter">;; </span><span class="org-comment">Define source URLs for language grammars
+  <span class="org-comment-delimiter">;; </span><span class="org-comment">Only languages with no built-in treesit-auto recipe need a URL here.
 </span>  (<span class="org-keyword">setq</span> treesit-language-source-alist
-        '((typescript <span class="org-string">"https://github.com/tree-sitter/tree-sitter-typescript"</span> <span class="org-string">"master"</span> <span class="org-string">"typescript/src"</span>)
-          (tsx        <span class="org-string">"https://github.com/tree-sitter/tree-sitter-typescript"</span> <span class="org-string">"master"</span> <span class="org-string">"tsx/src"</span>)
-          (go         <span class="org-string">"https://github.com/tree-sitter/tree-sitter-go"</span>)
-          (gomod      <span class="org-string">"https://github.com/camdencheek/tree-sitter-go-mod"</span>)
-          (dockerfile <span class="org-string">"https://github.com/camdencheek/tree-sitter-dockerfile"</span>)
-          (javascript <span class="org-string">"https://github.com/tree-sitter/tree-sitter-javascript"</span> <span class="org-string">"master"</span> <span class="org-string">"src"</span>)
-          (templ      <span class="org-string">"https://github.com/vrischmann/tree-sitter-templ"</span>)
-          (just       <span class="org-string">"https://github.com/IndianBoy42/tree-sitter-just"</span>)))
+        '((jsdoc  <span class="org-string">"https://github.com/tree-sitter/tree-sitter-jsdoc"</span>)
+          (just   <span class="org-string">"https://github.com/casey/tree-sitter-just"</span>)
+          (templ  <span class="org-string">"https://github.com/vrischmann/tree-sitter-templ"</span>)))
 
-  <span class="org-comment-delimiter">;; </span><span class="org-comment">Register custom grammar recipes for languages not included in standard treesit-auto receipts
-</span>  (<span class="org-keyword">let</span> ((templ-recipe (make-treesit-auto-recipe
-                       <span class="org-builtin">:lang</span> 'templ
-                       <span class="org-builtin">:ts-mode</span> 'templ-ts-mode
-                       <span class="org-builtin">:url</span> <span class="org-string">"https://github.com/vrischmann/tree-sitter-templ"</span>
-                       <span class="org-builtin">:ext</span> <span class="org-string">"\\.templ\\'"</span>))
-        (gomod-recipe (make-treesit-auto-recipe
-                       <span class="org-builtin">:lang</span> 'gomod
-                       <span class="org-builtin">:ts-mode</span> 'go-mod-ts-mode
-                       <span class="org-builtin">:url</span> <span class="org-string">"https://github.com/camdencheek/tree-sitter-go-mod"</span>
-                       <span class="org-builtin">:ext</span> <span class="org-string">"go\\.mod\\'"</span>))
-        (just-recipe (make-treesit-auto-recipe
-                      <span class="org-builtin">:lang</span> 'just
-                      <span class="org-builtin">:ts-mode</span> 'just-ts-mode
-                      <span class="org-builtin">:url</span> <span class="org-string">"https://github.com/IndianBoy42/tree-sitter-just"</span>
-                      <span class="org-builtin">:ext</span> <span class="org-string">"</span><span class="org-string"><span class="org-regexp-grouping-backslash">\\</span></span><span class="org-string"><span class="org-regexp-grouping-construct">(?:</span></span><span class="org-string">[jJ][uU][sS][tT][fF][iI][lL][eE]</span><span class="org-string"><span class="org-regexp-grouping-backslash">\\</span></span><span class="org-string"><span class="org-regexp-grouping-construct">|</span></span><span class="org-string">\\.just</span><span class="org-string"><span class="org-regexp-grouping-backslash">\\</span></span><span class="org-string"><span class="org-regexp-grouping-construct">)</span></span><span class="org-string">\\'"</span>)))
-    (add-to-list 'treesit-auto-recipe-list templ-recipe)
-    (add-to-list 'treesit-auto-recipe-list gomod-recipe)
-    (add-to-list 'treesit-auto-recipe-list just-recipe))
+  <span class="org-comment-delimiter">;; </span><span class="org-comment">Only languages with no built-in ts-mode/extension mapping need a recipe.
+</span>  (<span class="org-keyword">let</span> ((just-recipe  (make-treesit-auto-recipe
+                        <span class="org-builtin">:lang</span> 'just <span class="org-builtin">:ts-mode</span> 'just-ts-mode
+                        <span class="org-builtin">:url</span> <span class="org-string">"https://github.com/casey/tree-sitter-just"</span>
+                        <span class="org-builtin">:ext</span> <span class="org-string">"</span><span class="org-string"><span class="org-regexp-grouping-backslash">\\</span></span><span class="org-string"><span class="org-regexp-grouping-construct">(?:</span></span><span class="org-string">[jJ][uU][sS][tT][fF][iI][lL][eE]</span><span class="org-string"><span class="org-regexp-grouping-backslash">\\</span></span><span class="org-string"><span class="org-regexp-grouping-construct">|</span></span><span class="org-string">\\.just</span><span class="org-string"><span class="org-regexp-grouping-backslash">\\</span></span><span class="org-string"><span class="org-regexp-grouping-construct">)</span></span><span class="org-string">\\'"</span>))
+        (templ-recipe (make-treesit-auto-recipe
+                        <span class="org-builtin">:lang</span> 'templ <span class="org-builtin">:ts-mode</span> 'templ-ts-mode
+                        <span class="org-builtin">:url</span> <span class="org-string">"https://github.com/vrischmann/tree-sitter-templ"</span>
+                        <span class="org-builtin">:ext</span> <span class="org-string">"\\.templ\\'"</span>)))
+    (add-to-list 'treesit-auto-recipe-list just-recipe)
+    (add-to-list 'treesit-auto-recipe-list templ-recipe))
+
+  (treesit-auto-install-all)
   (global-treesit-auto-mode))
 </pre>
 </div>
@@ -4352,8 +4354,8 @@ Take care of some whitespace issues.
 </div>
 <div id="postamble" class="status">
 <p class="author">Kris Molendyke</p>
-<p class="date">2026-07-23 Thu 21:40</p>
-<p class="creator"><a href="https://www.gnu.org/software/emacs/">Emacs</a> 31.0.90 (<a href="https://orgmode.org">Org</a> mode 9.7.30)</p>
+<p class="date">2026-07-24 Fri 08:42</p>
+<p class="creator"><a href="https://www.gnu.org/software/emacs/">Emacs</a> 31.0.90 (<a href="https://orgmode.org">Org</a> mode 9.7.39)</p>
 </div>
 </body>
 </html>
