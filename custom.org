@@ -160,17 +160,15 @@ function.
 ** GC
 
    #+begin_src emacs-lisp
-     (eval-when-compile
-       (let ((mib (expt 2 20)))
-         (setq gc-cons-threshold (* 500 mib))))
+     (let ((mib (expt 2 20)))
+       (setq gc-cons-threshold (* 500 mib)))
    #+end_src
 
 ** Process Output
 
    #+begin_src emacs-lisp
-     (eval-when-compile
-       (let ((mib (expt 2 20)))
-         (setq read-process-output-max (* 1 mib))))
+     (let ((mib (expt 2 20)))
+       (setq read-process-output-max (* 1 mib)))
    #+end_src
 
 * Global GNU Emacs Key Bindings
