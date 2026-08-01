@@ -296,7 +296,6 @@ function.
    is inserted.
 
    #+begin_src emacs-lisp
-     (transient-mark-mode t)
      (delete-selection-mode 1)
    #+end_src
 
