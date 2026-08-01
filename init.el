@@ -96,7 +96,9 @@ Only turn off the menu bar running in a terminal window."
   (desktop-read k20e/google-drive-directory))
 
 (defun k20e/after-init-hook ()
-  "Perform complex post-initialization.")
+  "Perform complex post-initialization."
+  (k20e/load-custom-org)
+  (k20e/restore-desktop))
 
 ;;; MacOS specific configuration.
 (use-package emacs
@@ -119,8 +121,6 @@ Only turn off the menu bar running in a terminal window."
 (k20e/setup-use-package)
 (k20e/setup-exec-path)
 (k20e/load-custom-elisp)
-(k20e/load-custom-org)
-(k20e/restore-desktop)
 (add-hook 'after-init-hook 'k20e/after-init-hook)
 
 ;;; init.el ends here
