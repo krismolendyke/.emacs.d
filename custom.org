@@ -484,8 +484,6 @@ function.
 ** Windows
 
    #+begin_src emacs-lisp
-     (use-package windmove :ensure t)
-
      (use-package emacs
        :init
        (defun k20e/delete-window-balance ()
@@ -1785,7 +1783,6 @@ Otherwise, start a new ghostel terminal."
 * rust
 
   #+begin_src emacs-lisp
-    (use-package flycheck :ensure t)
     (use-package flycheck-rust :ensure t)
     (use-package rust-mode
       :ensure t
@@ -2244,7 +2241,6 @@ Otherwise, start a new ghostel terminal."
       :mode
       ("\\.html?\\'" . web-mode)
       ("\\.jsx?\\'" . web-mode)
-      ("\\.tsx\\'" . web-mode)
       :config
       (defun k20e/web-mode-hook ()
         (set-default 'web-mode-engines-alist '(("django" . "\\.html?\\'")))
@@ -2298,8 +2294,6 @@ Otherwise, start a new ghostel terminal."
       :ensure t
       :after (flycheck))
 
-    (use-package highlight-indent-guides
-      :ensure t)
 
     (use-package yaml-mode
       :ensure t
