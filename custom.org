@@ -1161,7 +1161,9 @@ Otherwise, start a new ghostel terminal."
        lsp-enable-snippet nil
        lsp-signature-doc-lines 20           ; limit lines shown in docs
        lsp-enable-links nil                 ; disable clickable links in files
-       )
+       lsp-log-io nil                       ; disable logging for performance
+       lsp-idle-delay 0.500                 ; debounce LSP requests
+       lsp-headerline-breadcrumb-enable nil)
       (set-face-attribute 'lsp-face-highlight-textual nil :underline t))
   #+end_src
 
