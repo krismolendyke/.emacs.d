@@ -981,10 +981,6 @@ Otherwise, start a new ghostel terminal."
                                 (lsp-organize-imports))))
              (go-mode . lsp-deferred)
              (go-mode . (lambda ()
-                          (let ((gopath (string-trim (shell-command-to-string (string-join `(,(executable-find "go") "env" "GOPATH") " "))))
-                                (goroot (string-trim (shell-command-to-string (string-join `(,(executable-find "go") "env" "GOROOT") " ")))))
-                            (setenv "GOPATH" gopath)
-                            (setenv "GOROOT" goroot))
                           (setq-local
                            compile-command "go run main.go"
                            indent-tabs-mode t
