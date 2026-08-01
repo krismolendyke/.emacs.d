@@ -67,7 +67,8 @@ Only turn off the menu bar running in a terminal window."
                   ;; Other
                   "SHELL"
                   )))
-  (exec-path-from-shell-initialize))
+  (when (memq window-system '(mac ns x))
+    (exec-path-from-shell-initialize)))
 
 (defun k20e/load-custom-elisp ()
   "Load custom Emacs Lisp files in `k20e/elisp-directory'."
