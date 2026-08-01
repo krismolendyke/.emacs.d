@@ -1972,15 +1972,15 @@ Otherwise, start a new ghostel terminal."
   Trying out https://github.com/tinted-theming/base16-emacs now:
 
   #+begin_src emacs-lisp
-    (use-package base16-theme
+    (use-package doom-themes
       :ensure t
       :config
       (cond ((eq system-type 'darwin)
              (defun k20e/load-theme (mode)
                "Load light or dark theme depending on which mode the system is currently in."
                (pcase mode
-                 ('light (load-theme 'base16-gruvbox-light-soft t))
-                 ('dark (load-theme 'base16-gruvbox-dark-soft t)))
+                 ('light (load-theme 'doom-gruvbox-light t))
+                 ('dark (load-theme 'doom-gruvbox t)))
                ;; Flatten the modeline and ensure it uses theme colors instead of default gray
                (let ((bg (face-attribute 'mode-line-inactive :background)))
                  (set-face-attribute 'mode-line nil :box nil :background bg)
@@ -1988,7 +1988,7 @@ Otherwise, start a new ghostel terminal."
                (if (fboundp 'k20e/org-font-setup) (k20e/org-font-setup)))
              (add-hook 'ns-system-appearance-change-functions 'k20e/load-theme))
             ((string-equal system-type "gnu/linux")
-             (load-theme 'base16-gruvbox-dark-soft t))))
+             (load-theme 'doom-gruvbox t))))
   #+end_src
 
 * terraform-mode
