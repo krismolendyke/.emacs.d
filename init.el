@@ -72,7 +72,7 @@ Only turn off the menu bar running in a terminal window."
 
 (defun k20e/load-custom-elisp ()
   "Load custom Emacs Lisp files in `k20e/elisp-directory'."
-  (dolist (file (directory-files k20e/elisp-directory t "\\w+"))
+  (dolist (file (directory-files k20e/elisp-directory t "\\.el$"))
     (when (file-regular-p file)
       (load file))))
 
@@ -83,8 +83,8 @@ Only turn off the menu bar running in a terminal window."
     :pin manual
     :load-path "site-lisp/org-mode/lisp"
     :config
-    (dolist (elt (directory-files user-emacs-directory t "\\.org$" t))
-    (org-babel-load-file elt t))))
+    (dolist (elt (directory-files user-emacs-directory t "^[^.#].*\\.org$" t))
+      (org-babel-load-file elt t))))
 
 (defun k20e/restore-desktop ()
   "Restore the state of buffers from the last session."
