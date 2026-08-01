@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-08-01 Sat 18:43 -->
+<!-- 2026-08-01 Sat 19:05 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Literate =.emacs.d=</title>
@@ -3873,15 +3873,15 @@ Trying out <a href="https://github.com/tinted-theming/base16-emacs">https://gith
 </p>
 
 <div class="org-src-container">
-<pre class="src src-emacs-lisp"><code>(<span class="org-keyword">use-package</span> base16-theme
+<pre class="src src-emacs-lisp"><code>(<span class="org-keyword">use-package</span> doom-themes
   <span class="org-builtin">:ensure</span> t
   <span class="org-builtin">:config</span>
   (<span class="org-keyword">cond</span> ((eq system-type 'darwin)
          (<span class="org-keyword">defun</span> <span class="org-function-name">k20e/load-theme</span> (mode)
            <span class="org-doc">"Load light or dark theme depending on which mode the system is currently in."</span>
            (<span class="org-keyword">pcase</span> mode
-             ('light (load-theme 'base16-gruvbox-light-soft t))
-             ('dark (load-theme 'base16-gruvbox-dark-soft t)))
+             ('light (load-theme 'doom-gruvbox-light t))
+             ('dark (load-theme 'doom-gruvbox t)))
            <span class="org-comment-delimiter">;; </span><span class="org-comment">Flatten the modeline and ensure it uses theme colors instead of default gray
 </span>           (<span class="org-keyword">let</span> ((bg (face-attribute 'mode-line-inactive <span class="org-builtin">:background</span>)))
              (set-face-attribute 'mode-line nil <span class="org-builtin">:box</span> nil <span class="org-builtin">:background</span> bg)
@@ -3889,7 +3889,7 @@ Trying out <a href="https://github.com/tinted-theming/base16-emacs">https://gith
            (<span class="org-keyword">if</span> (fboundp 'k20e/org-font-setup) (k20e/org-font-setup)))
          (add-hook 'ns-system-appearance-change-functions 'k20e/load-theme))
         ((string-equal system-type <span class="org-string">"gnu/linux"</span>)
-         (load-theme 'base16-gruvbox-dark-soft t))))
+         (load-theme 'doom-gruvbox t))))
 </code></pre>
 </div>
 </div>
@@ -4346,7 +4346,7 @@ Take care of some whitespace issues.
 </div>
 <div id="postamble" class="status">
 <p class="author">Kris Molendyke</p>
-<p class="date">2026-08-01 Sat 18:26</p>
+<p class="date">2026-08-01 Sat 19:04</p>
 <p class="creator"><a href="https://www.gnu.org/software/emacs/">Emacs</a> 31.0.91 (<a href="https://orgmode.org">Org</a> mode 9.8.8)</p>
 </div>
 </body>
