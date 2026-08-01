@@ -2262,6 +2262,15 @@ Otherwise, start a new ghostel terminal."
       (winner-mode))
   #+end_src
 
+* which-key
+
+  Display available key bindings in a popup buffer when typing prefix shortcuts.
+
+  #+begin_src emacs-lisp
+    (use-package which-key
+      :init (which-key-mode))
+  #+end_src
+
 * whitespace
 
   Take care of some whitespace issues.
