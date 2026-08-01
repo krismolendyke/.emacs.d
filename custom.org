@@ -638,7 +638,8 @@ function.
 
   #+begin_src emacs-lisp
     (use-package compile
-      :custom-face (compilation-error ((t (:foreground "tomato1")))))
+      :custom-face (compilation-error ((t (:foreground "tomato1"))))
+      :hook ((compilation-finish-functions . k20e/compilation-finish-function-select-window)))
   #+end_src
 
   Functions to execute after compilation has finished:
