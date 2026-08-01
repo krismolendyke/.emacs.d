@@ -463,11 +463,10 @@ function.
         "Get the length of the longest line in the selected window."
         (save-excursion
           (goto-char (point-min))
-          (let ((max-length 0)
-                (last-line (count-lines (point-min) (point-max))))
-            (while (<= (line-number-at-pos) last-line)
+          (let ((max-length 0))
+            (while (not (eobp))
               (setq max-length (max max-length (- (line-end-position) (line-beginning-position))))
-              (forward-line))
+              (forward-line 1))
             (1+ max-length))))
 
       (defun k20e/fit-window-to-buffer-horizontally ()
