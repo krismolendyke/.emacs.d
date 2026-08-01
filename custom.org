@@ -879,6 +879,21 @@ function.
       (setq ghostel-module-directory (expand-file-name "ghostel" user-emacs-directory)
             ghostel-module-auto-install 'download))
 
+    (defun k20e/ghostel-toggle ()
+      "Toggle the ghostel terminal buffer.
+If we are in the ghostel buffer, switch to the previous buffer.
+If a ghostel buffer exists but we are not in it, switch to it.
+Otherwise, start a new ghostel terminal."
+      (interactive)
+      (let ((buffer (get-buffer "*ghostel*")))
+        (cond
+         ((eq (current-buffer) buffer)
+          (switch-to-buffer (other-buffer (current-buffer) t)))
+         (buffer
+          (switch-to-buffer buffer))
+         (t
+          (ghostel)))))
+
     (use-package ghostel
       :ensure t
       :defines (ghostel-module-directory
@@ -891,22 +906,6 @@ function.
              :map ghostel-semi-char-mode-map
              ("<f11>" . k20e/ghostel-toggle))
       :config
-
-      ;; Custom toggler function to quickly pop open / hide the terminal
-      (defun k20e/ghostel-toggle ()
-        "Toggle the ghostel terminal buffer.
-If we are in the ghostel buffer, switch to the previous buffer.
-If a ghostel buffer exists but we are not in it, switch to it.
-Otherwise, start a new ghostel terminal."
-        (interactive)
-        (let ((buffer (get-buffer "*ghostel*")))
-          (cond
-           ((eq (current-buffer) buffer)
-            (switch-to-buffer (other-buffer (current-buffer) t)))
-           (buffer
-            (switch-to-buffer buffer))
-           (t
-            (ghostel)))))
 
       ;; Allow window-management and custom keys to pass through to Emacs in semi-char mode
       (dolist (key '("M-`" "M-SPC" "M-S-SPC"))
