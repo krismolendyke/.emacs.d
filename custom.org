@@ -1,5 +1,6 @@
 #+TITLE: Literate =.emacs.d=
-#+PROPERTY: header-args:emacs-lisp :shebang ";;; -*- lexical-binding: t; -*-"
+#+PROPERTY: header-args :tangle no
+#+PROPERTY: header-args:emacs-lisp :tangle yes :shebang ";;; -*- lexical-binding: t; -*-"
 #+OPTIONS: toc:nil num:nil
 #+HTML: <p class="subtitle">Kris Molendyke</p>
 
