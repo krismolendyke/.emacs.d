@@ -1388,8 +1388,9 @@ Otherwise, start a new ghostel terminal."
       :config
       (k20e/org-font-setup)
 
-      (setq org-default-notes-file (expand-file-name "notes.org" org-directory)
-            org-directory (expand-file-name "org" k20e/google-drive-directory)
+      (setq org-directory (expand-file-name "org" k20e/google-drive-directory)
+            org-agenda-files (list (expand-file-name "work" org-directory))
+            org-default-notes-file (expand-file-name "notes.org" org-directory)
             org-ellipsis "…"
             org-fontify-quote-and-verse-blocks t
             org-fontify-whole-heading-line t
@@ -1631,9 +1632,7 @@ Otherwise, start a new ghostel terminal."
 
 *** Files
 
-   #+begin_src emacs-lisp
-     (setq org-agenda-files (list (expand-file-name "work" org-directory)))
-   #+end_src
+   Defined in ~use-package org~ config to ensure ~org-directory~ is populated.
 
 *** Deadlines
 
