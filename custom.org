@@ -2058,10 +2058,10 @@ Otherwise, start a new ghostel terminal."
          typescript))
       :config
       ;; Only languages with no built-in treesit-auto recipe need a URL here.
-      (setq treesit-language-source-alist
-            '((jsdoc  "https://github.com/tree-sitter/tree-sitter-jsdoc")
-              (just   "https://github.com/casey/tree-sitter-just")
-              (templ  "https://github.com/vrischmann/tree-sitter-templ")))
+      (dolist (recipe '((jsdoc "https://github.com/tree-sitter/tree-sitter-jsdoc")
+                        (just  "https://github.com/casey/tree-sitter-just")
+                        (templ "https://github.com/vrischmann/tree-sitter-templ")))
+        (add-to-list 'treesit-language-source-alist recipe))
 
       ;; Only languages with no built-in ts-mode/extension mapping need a recipe.
       (let ((just-recipe  (make-treesit-auto-recipe
