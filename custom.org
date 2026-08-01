@@ -126,7 +126,6 @@ function.
 
      emacs --batch \
            --directory "${htmlize_dir}" \
-           --directory "$HOME/.emacs.d/site-lisp/org-mode/lisp" \
            --load "$HOME/.emacs.d/elisp/k20e-org-html-export.el" \
            --visit "$HOME/.emacs.d/custom.org" \
            --execute '(org-html-export-to-html)' > /dev/null 2>&1
@@ -1404,20 +1403,16 @@ Otherwise, start a new ghostel terminal."
       lsp-register-custom-settings)
   #+end_src
 
-** UPGRAYEDD
+** Package Upgrades
 
-   #+begin_src sh
-     cd ~/.emacs.d/site-lisp/org-mode
-     g fetch origin --tags
-     g co -b release_9.6.12 release_9.6.12
-     make clean
-     make
-     cd ~/.emacs.d
-     g add site-lisp/org-mode
-     g commit -m "UPGRAYEDD org-mode"
+   Org mode is managed via =use-package= and pinned to GNU ELPA.
+   To update Org mode, use Emacs package management commands:
+
+   #+begin_src emacs-lisp :tangle no
+     (package-upgrade 'org)
    #+end_src
 
-   [[https://list.orgmode.org/87wnzfy60h.fsf@bzg.fr/][=contrib/=]] was split out into a separate repo so that needs to be updated separately.
+   or run =M-x list-packages= and update packages interactively.
 
 ** Inline Images
 

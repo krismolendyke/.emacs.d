@@ -18,8 +18,7 @@
 
 (use-package org
   :ensure t
-  :pin manual
-  :load-path "site-lisp/org-mode/lisp")
+  :pin gnu)
 
 (require 'ox-html)
 
