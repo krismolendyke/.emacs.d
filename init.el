@@ -90,10 +90,11 @@ Only turn off the menu bar running in a terminal window."
   "Restore the state of buffers from the last session."
   (require 'desktop)
   (setq-default dired-use-ls-dired nil)
-  (setq desktop-path (list k20e/google-drive-directory)
-        desktop-load-locked-desktop t)
-  (desktop-save-mode 1)
-  (desktop-read k20e/google-drive-directory))
+  (when (file-directory-p k20e/google-drive-directory)
+    (setq desktop-path (list k20e/google-drive-directory)
+          desktop-load-locked-desktop t)
+    (desktop-save-mode 1)
+    (desktop-read k20e/google-drive-directory)))
 
 (defun k20e/after-init-hook ()
   "Perform complex post-initialization."
