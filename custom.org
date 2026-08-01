@@ -266,7 +266,7 @@ function.
        "Normally disabled commands.")
 
      (defun k20e/enable-commands ()
-       "Enabled normally disabled commands."
+       "Enable normally disabled commands."
        (dolist (command k20e/enabled-commands)
          (put command 'disabled nil)))
 
@@ -789,7 +789,7 @@ function.
    Install =aspell= via Homebrew:
 
    #+begin_src sh
-     brew install aspell --with-lang-en
+     brew install aspell
    #+end_src
 
 * Fonts
@@ -818,7 +818,7 @@ function.
       "Set the font to first available font alist in the given list."
       (if (null l) nil
         (k20e/font--set (car l))
-        (if (string= (replace-regexp-in-string "-" " "(caar l))
+        (if (string= (replace-regexp-in-string "-" " " (caar l))
                      (face-attribute 'default :family (selected-frame)))
             (caar l)
           (k20e/font-set-from-list (cdr l)))))
