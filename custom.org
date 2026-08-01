@@ -681,7 +681,7 @@ function.
         (setq auto-revert-verbose nil))
       (use-package dired-x
         :config
-        (load "dired-x.el"))
+        (require 'dired-x))
       :hook ((dired-mode . auto-revert-mode)))
   #+end_src
 
