@@ -275,11 +275,7 @@ function.
 
 ** Inferior Shell
 
-   Defaulting to =sh= seems to work well.
-
-   #+begin_src emacs-lisp
-     (setq shell-file-name "/bin/sh")
-   #+end_src
+   Configured in ~init.el~ to set ~shell-file-name~ appropriately for macOS/Linux.
 
 ** Smooth Scrolling
 
