@@ -1770,7 +1770,7 @@ Otherwise, start a new ghostel terminal."
       (setq recentf-save-file (expand-file-name ".recentf" k20e/google-drive-directory)
             recentf-max-saved-items 250)
       (recentf-mode 1)
-      :bind (("C-x C-r" . recentf-open)))
+      :bind (("C-x C-r" . consult-recent-file)))
   #+end_src
 
 * rust
