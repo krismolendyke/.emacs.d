@@ -157,11 +157,18 @@ function.
   Mucking with these solely based on output from =lsp-doctor= and its
   recommendations since I use this all day writing Go programs.
 
-** GC
+** GCMH (Garbage Collector Magic Hack)
+
+   Use =gcmh= to dynamically raise GC threshold during active editing and collect garbage when idle.
 
    #+begin_src emacs-lisp
-     (let ((mib (expt 2 20)))
-       (setq gc-cons-threshold (* 500 mib)))
+     (use-package gcmh
+       :ensure t
+       :init
+       (setq gcmh-idle-delay 5
+             gcmh-high-cons-threshold (* 100 1024 1024))
+       :config
+       (gcmh-mode 1))
    #+end_src
 
 ** Process Output
@@ -169,6 +176,12 @@ function.
    #+begin_src emacs-lisp
      (let ((mib (expt 2 20)))
        (setq read-process-output-max (* 1 mib)))
+   #+end_src
+
+** Native Compilation Warnings
+
+   #+begin_src emacs-lisp
+     (setq native-comp-async-report-warnings-errors 'silent)
    #+end_src
 
 * Global GNU Emacs Key Bindings
