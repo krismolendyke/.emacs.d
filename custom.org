@@ -1983,6 +1983,7 @@ Otherwise, start a new ghostel terminal."
       (cond ((eq system-type 'darwin)
              (defun k20e/load-theme (mode)
                "Load light or dark theme depending on which mode the system is currently in."
+               (mapc #'disable-theme custom-enabled-themes)
                (pcase mode
                  ('light (load-theme 'doom-gruvbox-light t))
                  ('dark (load-theme 'doom-gruvbox t)))
