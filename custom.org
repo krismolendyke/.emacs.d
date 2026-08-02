@@ -2213,8 +2213,14 @@ Otherwise, start a new ghostel terminal."
    #+begin_src emacs-lisp
      (use-package corfu
        :ensure t
-       :custom (corfu-cycle t)
-       :init (global-corfu-mode))
+       :custom
+       (corfu-cycle t)
+       (corfu-auto t)
+       (corfu-auto-delay 0.2)
+       (corfu-auto-prefix 2)
+       :init
+       (global-corfu-mode)
+       (corfu-popupinfo-mode 1))
 
      (use-package emacs
        :init (setq tab-always-indent 'complete))
