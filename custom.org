@@ -630,17 +630,6 @@ function.
       :hook ((c-mode . flycheck-mode)))
   #+end_src
 
-* clock-face
-
-  This is a [[https://github.com/krismolendyke/clock-face.el][ridiculous package]] that I wrote to insert a Unicode clock
-  face character for the nearest current half-hour.  🕙
-
-  #+begin_src emacs-lisp
-    (use-package clock-face
-      :ensure nil
-      :load-path "site-lisp/clock-face.el")
-  #+end_src
-
 * TODO combobulate
 
   - https://www.masteringemacs.org/article/combobulate-structured-movement-editing-treesitter
@@ -863,17 +852,6 @@ function.
       (when (member "Symbola" (font-family-list))
         (set-fontset-font t 'unicode "Noto Color Emoji" nil 'prepend))
     #+end_src
-
-* font-awesome
-
-  This is a [[https://github.com/krismolendyke/font-awesome.el][naïve package]] that I wrote to help insert [[http://fortawesome.github.io/Font-Awesome/][Font Awesome]]
-  icons into buffers.
-
-  #+begin_src emacs-lisp
-    (use-package font-awesome
-      :ensure nil
-      :load-path "site-lisp/font-awesome.el")
-  #+end_src
 
 * geiser
 
@@ -1113,17 +1091,6 @@ Otherwise, start a new ghostel terminal."
     (use-package imenu
       :config
       (setq-default imenu-auto-rescan t))
-  #+end_src
-
-* I'm Feeling Lucky
-
-  This is [[https://github.com/krismolendyke/im-feeling-lucky.el][my Google search]] module.
-
-  #+begin_src emacs-lisp
-    (use-package im-feeling-lucky
-      :ensure nil
-      :load-path "site-lisp/im-feeling-lucky.el"
-      :bind (("H-l" . ifl-region-or-query)))
   #+end_src
 
 * js

@@ -1,9 +1,0 @@
-[submodule "site-lisp/font-awesome.el"]
-	path = site-lisp/font-awesome.el
-	url = git@github.com:krismolendyke/font-awesome.el.git
-[submodule "site-lisp/clock-face.el"]
-	path = site-lisp/clock-face.el
-	url = git@github.com:krismolendyke/clock-face.el.git
-[submodule "site-lisp/im-feeling-lucky.el"]
-	path = site-lisp/im-feeling-lucky.el
-	url = https://github.com/krismolendyke/im-feeling-lucky.el.git
