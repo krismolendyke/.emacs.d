@@ -183,8 +183,8 @@ function.
 ** Native Compilation Warnings
 
    #+begin_src emacs-lisp
-     (defvar native-comp-async-report-warnings-errors)
-     (setq native-comp-async-report-warnings-errors 'silent)
+     (with-eval-after-load 'comp
+       (setq native-comp-async-report-warnings-errors 'silent))
    #+end_src
 
 * Global GNU Emacs Key Bindings
