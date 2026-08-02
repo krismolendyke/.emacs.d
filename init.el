@@ -44,31 +44,33 @@ Only turn off the menu bar running in a terminal window."
 (defun k20e/setup-exec-path ()
   "Setup `exec-path'."
   (use-package exec-path-from-shell
-    :ensure t)
-  (setq exec-path-from-shell-variables
-        (append exec-path-from-shell-variables
-                '(
-                  ;; Rust, see https://github.com/rust-lang-nursery/rustfmt#tips
-                  "DYLD_LIBRARY_PATH"
+    :ensure t
+    :init
+    (setq exec-path-from-shell-variables
+          (append (bound-and-true-p exec-path-from-shell-variables)
+                  '(
+                    ;; Rust, see https://github.com/rust-lang-nursery/rustfmt#tips
+                    "DYLD_LIBRARY_PATH"
 
-                  ;; Go
-                  "GOPATH"
-                  "GOROOT"
+                    ;; Go
+                    "GOPATH"
+                    "GOROOT"
 
-                  ;; OCaml
-                  "CAML_LD_LIBRARY_PATH"
-                  "OCAML_TOPLEVEL_PATH"
-                  "OPAM_SWITCH_PREFIX"
+                    ;; OCaml
+                    "CAML_LD_LIBRARY_PATH"
+                    "OCAML_TOPLEVEL_PATH"
+                    "OPAM_SWITCH_PREFIX"
 
-                  ;; API Keys
-                  "OPENROUTER_API_KEY"
-                  "GEMINI_API_KEY"
+                    ;; API Keys
+                    "OPENROUTER_API_KEY"
+                    "GEMINI_API_KEY"
 
-                  ;; Other
-                  "SHELL"
-                  )))
-  (when (memq window-system '(mac ns x))
-    (exec-path-from-shell-initialize)))
+                    ;; Other
+                    "SHELL"
+                    )))
+    :config
+    (when (memq window-system '(mac ns x))
+      (exec-path-from-shell-initialize))))
 
 (defun k20e/load-custom-elisp ()
   "Load custom Emacs Lisp files in `k20e/elisp-directory'."
