@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-08-02 Sun 18:54 -->
+<!-- 2026-08-02 Sun 19:37 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Literate =.emacs.d=</title>
@@ -1374,16 +1374,18 @@ function.
 <li><a href="#org964b83c">orderless</a></li>
 <li><a href="#org70a3ad1">consult</a></li>
 <li><a href="#org81c074c">corfu</a></li>
-<li><a href="#org52569d6">marginalia</a></li>
+<li><a href="#org52569d6">cape</a></li>
+<li><a href="#orgd2ce4f6">which-key</a></li>
+<li><a href="#orgb7be17e">marginalia</a></li>
 </ul>
 </li>
-<li><a href="#orgd2ce4f6">windmove</a></li>
-<li><a href="#orgb7be17e">web-mode</a></li>
-<li><a href="#orgbbba6e1">winner-mode</a></li>
-<li><a href="#org3592cc8">which-key</a></li>
-<li><a href="#orgc7eb2b3">whitespace</a></li>
-<li><a href="#org5622f79">yaml-mode</a></li>
-<li><a href="#orge391aae">zig-mode</a></li>
+<li><a href="#orgbbba6e1">windmove</a></li>
+<li><a href="#org3592cc8">web-mode</a></li>
+<li><a href="#orgc7eb2b3">winner-mode</a></li>
+<li><a href="#org5622f79">which-key</a></li>
+<li><a href="#orge391aae">whitespace</a></li>
+<li><a href="#orgfa95acf">yaml-mode</a></li>
+<li><a href="#org7d8b5ad">zig-mode</a></li>
 </ul>
 </div>
 </div>
@@ -1575,6 +1577,8 @@ Use <code>gcmh</code> to dynamically raise GC threshold during active editing an
 <pre class="src src-emacs-lisp"><code>(<span class="org-keyword">use-package</span> gcmh
   <span class="org-builtin">:ensure</span> t
   <span class="org-builtin">:init</span>
+  (<span class="org-keyword">defvar</span> <span class="org-variable-name">gcmh-idle-delay</span>)
+  (<span class="org-keyword">defvar</span> <span class="org-variable-name">gcmh-high-cons-threshold</span>)
   (<span class="org-keyword">setq</span> gcmh-idle-delay 5
         gcmh-high-cons-threshold (* 100 1024 1024))
   <span class="org-builtin">:config</span>
@@ -1597,7 +1601,9 @@ Use <code>gcmh</code> to dynamically raise GC threshold during active editing an
 <h3 id="org7f6f53b">Native Compilation Warnings</h3>
 <div class="outline-text-3" id="text-org7f6f53b">
 <div class="org-src-container">
-<pre class="src src-emacs-lisp"><code>(<span class="org-keyword">setq</span> native-comp-async-report-warnings-errors 'silent)
+<pre class="src src-emacs-lisp"><code>(<span class="org-keyword">with-eval-after-load</span> 'comp
+  (<span class="org-keyword">defvar</span> <span class="org-variable-name">native-comp-async-report-warnings-errors</span>)
+  (<span class="org-keyword">setq</span> native-comp-async-report-warnings-errors 'silent))
 </code></pre>
 </div>
 </div>
@@ -1910,9 +1916,9 @@ Bind editing functions:
 </code></pre>
 </div>
 </div>
-<div id="outline-container-org18d96bc" class="outline-4">
-<h4 id="org18d96bc">Toggle Source/Test Buffer</h4>
-<div class="outline-text-4" id="text-org18d96bc">
+<div id="outline-container-orgcc66f23" class="outline-4">
+<h4 id="orgcc66f23">Toggle Source/Test Buffer</h4>
+<div class="outline-text-4" id="text-orgcc66f23">
 <p>
 If this gets any smarter it should be refactored into its own
 package.
@@ -1955,9 +1961,9 @@ in major modes where that convention is expected."</span>
 </div>
 </div>
 </div>
-<div id="outline-container-orgcc66f23" class="outline-4">
-<h4 id="orgcc66f23">Widescreen</h4>
-<div class="outline-text-4" id="text-orgcc66f23">
+<div id="outline-container-orge6492eb" class="outline-4">
+<h4 id="orge6492eb">Widescreen</h4>
+<div class="outline-text-4" id="text-orge6492eb">
 <p>
 When working on a widescreen monitor it can be useful to have
 windows arranged a bit differently than they would on smaller
@@ -2241,6 +2247,10 @@ When compilation completes, regardless of result."</span>
 <pre class="src src-emacs-lisp"><code>(<span class="org-keyword">use-package</span> dired
   <span class="org-builtin">:custom-face</span> (dired-flagged ((t (<span class="org-builtin">:foreground</span> <span class="org-string">"tomato1"</span> <span class="org-builtin">:strike-through</span> t))))
   <span class="org-builtin">:config</span>
+  (<span class="org-keyword">setq</span> dired-dwim-target t
+        dired-recursive-copies 'always
+        dired-recursive-deletes 'always
+        dired-kill-when-opening-new-dired-buffer t)
   (<span class="org-keyword">use-package</span> autorevert
     <span class="org-builtin">:config</span>
     (<span class="org-keyword">setq</span> auto-revert-verbose nil))
@@ -2484,7 +2494,7 @@ icons into buffers.
 To initialize the native dynamic module on a new machine, download the pre-built binary by running:
 </p>
 
-<pre class="example" id="orgb671d45">
+<pre class="example" id="orgb04f825">
 M-x ghostel-download-module
 </pre>
 
@@ -2636,18 +2646,18 @@ Install commands:
 Tree sitter for Go is installed with defaults.
 </p>
 </div>
-<div id="outline-container-org66bed1d" class="outline-4">
-<h4 id="org66bed1d"><code>go.mod</code></h4>
-<div class="outline-text-4" id="text-org66bed1d">
+<div id="outline-container-org85ab081" class="outline-4">
+<h4 id="org85ab081"><code>go.mod</code></h4>
+<div class="outline-text-4" id="text-org85ab081">
 <ul class="org-ul">
 <li>Language: <code>gomod</code></li>
 <li>Repository: <a href="https://github.com/camdencheek/tree-sitter-go-mod">https://github.com/camdencheek/tree-sitter-go-mod</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org0970ed4" class="outline-4">
-<h4 id="org0970ed4"><a href="https://templ.guide/">templ</a></h4>
-<div class="outline-text-4" id="text-org0970ed4">
+<div id="outline-container-org225b935" class="outline-4">
+<h4 id="org225b935"><a href="https://templ.guide/">templ</a></h4>
+<div class="outline-text-4" id="text-org225b935">
 <ul class="org-ul">
 <li>Language: <code>templ</code></li>
 <li>Repository: <a href="https://github.com/vrischmann/tree-sitter-templ">https://github.com/vrischmann/tree-sitter-templ</a></li>
@@ -2843,7 +2853,8 @@ do not ever anticipate.
   <span class="org-builtin">:ensure</span> t
   <span class="org-builtin">:config</span>
   (<span class="org-keyword">setq-default</span>
-   lsp-eldoc-render-all nil
+   lsp-completion-provider <span class="org-builtin">:none</span>       <span class="org-comment-delimiter">; </span><span class="org-comment">Corfu handles completion-at-point
+</span>   lsp-eldoc-render-all nil
    lsp-enable-snippet nil
    lsp-signature-doc-lines 20           <span class="org-comment-delimiter">; </span><span class="org-comment">limit lines shown in docs
 </span>   lsp-enable-links nil                 <span class="org-comment-delimiter">; </span><span class="org-comment">disable clickable links in files
@@ -3235,14 +3246,14 @@ Interactive customization can be done here.
 </code></pre>
 </div>
 </div>
-<div id="outline-container-org406fa16" class="outline-4">
-<h4 id="org406fa16">Options</h4>
-<div class="outline-text-4" id="text-org406fa16">
+<div id="outline-container-org581a722" class="outline-4">
+<h4 id="org581a722">Options</h4>
+<div class="outline-text-4" id="text-org581a722">
 <p>
 A message in <code>*Messages*</code> like:
 </p>
 
-<pre class="example" id="org631bfca">
+<pre class="example" id="org406fa16">
 user-error: Unable to resolve link: nil
 </pre>
 
@@ -3262,9 +3273,9 @@ export process undetected.
 </p>
 </div>
 </div>
-<div id="outline-container-orgecaf29b" class="outline-4">
-<h4 id="orgecaf29b">Backends</h4>
-<div class="outline-text-4" id="text-orgecaf29b">
+<div id="outline-container-orgdcdebe5" class="outline-4">
+<h4 id="orgdcdebe5">Backends</h4>
+<div class="outline-text-4" id="text-orgdcdebe5">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp"><code>(<span class="org-keyword">require</span> '<span class="org-constant">ox-md</span>)
 
@@ -3420,17 +3431,17 @@ Custom keywords and faces.
 </code></pre>
 </div>
 </div>
-<div id="outline-container-org1f49030" class="outline-4">
-<h4 id="org1f49030">Files</h4>
-<div class="outline-text-4" id="text-org1f49030">
+<div id="outline-container-orgd604e9a" class="outline-4">
+<h4 id="orgd604e9a">Files</h4>
+<div class="outline-text-4" id="text-orgd604e9a">
 <p>
 Defined in <code>use-package org</code> config to ensure <code>org-directory</code> is populated.
 </p>
 </div>
 </div>
-<div id="outline-container-orgd604e9a" class="outline-4">
-<h4 id="orgd604e9a">Deadlines</h4>
-<div class="outline-text-4" id="text-orgd604e9a">
+<div id="outline-container-org856dc83" class="outline-4">
+<h4 id="org856dc83">Deadlines</h4>
+<div class="outline-text-4" id="text-org856dc83">
 <p>
 Non-nil means skip scheduling line if same entry shows because of deadline.
 </p>
@@ -3452,9 +3463,9 @@ is scheduled today or was scheduled previously is not shown.
 </div>
 </div>
 </div>
-<div id="outline-container-org856dc83" class="outline-4">
-<h4 id="org856dc83">List</h4>
-<div class="outline-text-4" id="text-org856dc83">
+<div id="outline-container-orgb1e7d46" class="outline-4">
+<h4 id="orgb1e7d46">List</h4>
+<div class="outline-text-4" id="text-orgb1e7d46">
 <p>
 Default to showing only today in the agenda list.
 </p>
@@ -3899,7 +3910,7 @@ The following is a stupid hack to work around an error that was appearing during
 from <code>corfu</code>:
 </p>
 
-<pre class="example" id="orgaa67ed1">
+<pre class="example" id="org85cee69">
 Corfu failed to open completion popup frames in the minibuffer with the error:
 
 Corfu detected an error: (error "Face inheritance results in inheritance cycle" gnus-group-news-low)
@@ -4144,9 +4155,9 @@ repo. so do not <code>:ensure t</code> here.
 </code></pre>
 </div>
 </div>
-<div id="outline-container-org31d05bf" class="outline-4">
-<h4 id="org31d05bf"><span class="todo TODO">TODO</span> <code>[0/1]</code> Other Configuration</h4>
-<div class="outline-text-4" id="text-org31d05bf">
+<div id="outline-container-orgac12847" class="outline-4">
+<h4 id="orgac12847"><span class="todo TODO">TODO</span> <code>[0/1]</code> Other Configuration</h4>
+<div class="outline-text-4" id="text-orgac12847">
 <ul class="org-ul">
 <li class="off"><code>[&nbsp;]</code> <a href="https://github.com/minad/consult/wiki#minads-orderless-configuration">https://github.com/minad/consult/wiki#minads-orderless-configuration</a></li>
 </ul>
@@ -4178,9 +4189,9 @@ repo. so do not <code>:ensure t</code> here.
 </code></pre>
 </div>
 </div>
-<div id="outline-container-orgac12847" class="outline-4">
-<h4 id="orgac12847"><span class="todo STARTED">STARTED</span> <code>[1/2]</code> Other Configuration</h4>
-<div class="outline-text-4" id="text-orgac12847">
+<div id="outline-container-org8ac718a" class="outline-4">
+<h4 id="org8ac718a"><span class="todo STARTED">STARTED</span> <code>[1/2]</code> Other Configuration</h4>
+<div class="outline-text-4" id="text-org8ac718a">
 <ul class="org-ul">
 <li class="off"><code>[&nbsp;]</code> <a href="https://github.com/minad/consult/wiki">https://github.com/minad/consult/wiki</a></li>
 <li class="on"><code>[X]</code> <a href="https://github.com/minad/consult#org-mode">https://github.com/minad/consult#org-mode</a></li>
@@ -4212,9 +4223,45 @@ repo. so do not <code>:ensure t</code> here.
 </code></pre>
 </div>
 </div>
-<div id="outline-container-org8ac718a" class="outline-4">
-<h4 id="org8ac718a"><span class="todo TODO">TODO</span> <code>[0/2]</code> Other Configuration</h4>
-<div class="outline-text-4" id="text-org8ac718a">
+</div>
+<div id="outline-container-org52569d6" class="outline-3">
+<h3 id="org52569d6">cape</h3>
+<div class="outline-text-3" id="text-org52569d6">
+<p>
+<a href="https://github.com/minad/cape">cape</a> provides completion-at-point extensions for Corfu.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-emacs-lisp"><code>(<span class="org-keyword">use-package</span> cape
+  <span class="org-builtin">:ensure</span> t
+  <span class="org-builtin">:init</span>
+  (add-to-list 'completion-at-point-functions #'cape-file)
+  (add-to-list 'completion-at-point-functions #'cape-dabbrev)
+  (add-to-list 'completion-at-point-functions #'cape-keyword))
+</code></pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgd2ce4f6" class="outline-3">
+<h3 id="orgd2ce4f6">which-key</h3>
+<div class="outline-text-3" id="text-orgd2ce4f6">
+<p>
+<a href="https://github.com/justbur/emacs-which-key">which-key</a> displays popup keybinding assistance when a prefix key is pressed.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-emacs-lisp"><code>(<span class="org-keyword">use-package</span> which-key
+  <span class="org-builtin">:ensure</span> t
+  <span class="org-builtin">:init</span>
+  (<span class="org-keyword">setq</span> which-key-idle-delay 0.5)
+  <span class="org-builtin">:config</span>
+  (which-key-mode 1))
+</code></pre>
+</div>
+</div>
+<div id="outline-container-orga4f7f59" class="outline-4">
+<h4 id="orga4f7f59"><span class="todo TODO">TODO</span> <code>[0/2]</code> Other Configuration</h4>
+<div class="outline-text-4" id="text-orga4f7f59">
 <ul class="org-ul">
 <li class="off"><code>[&nbsp;]</code> <a href="https://github.com/minad/corfu#orderless-completion">https://github.com/minad/corfu#orderless-completion</a></li>
 <li class="off"><code>[&nbsp;]</code> <a href="https://github.com/minad/corfu#alternatives">https://github.com/minad/corfu#alternatives</a> particularly <code>consult-completion-in-region</code>:
@@ -4223,9 +4270,9 @@ repo. so do not <code>:ensure t</code> here.
 </div>
 </div>
 </div>
-<div id="outline-container-org52569d6" class="outline-3">
-<h3 id="org52569d6">marginalia</h3>
-<div class="outline-text-3" id="text-org52569d6">
+<div id="outline-container-orgb7be17e" class="outline-3">
+<h3 id="orgb7be17e">marginalia</h3>
+<div class="outline-text-3" id="text-orgb7be17e">
 <p>
 <a href="https://github.com/minad/marginalia">marginalia</a> is an extension that adds information as annotations in the minibuffer.
 </p>
@@ -4233,15 +4280,15 @@ repo. so do not <code>:ensure t</code> here.
 <div class="org-src-container">
 <pre class="src src-emacs-lisp"><code>(<span class="org-keyword">use-package</span> marginalia
   <span class="org-builtin">:ensure</span> t
-  <span class="org-builtin">:after</span> vertico
+  <span class="org-builtin">:demand</span> t
   <span class="org-builtin">:bind</span> (<span class="org-builtin">:map</span> minibuffer-local-map (<span class="org-string">"M-A"</span> . marginalia-cycle))
-  <span class="org-builtin">:init</span> (marginalia-mode))
+  <span class="org-builtin">:config</span> (marginalia-mode 1))
 </code></pre>
 </div>
 </div>
-<div id="outline-container-org5a28188" class="outline-4">
-<h4 id="org5a28188"><span class="todo TODO">TODO</span> <code>[0/1]</code> Other Configuration</h4>
-<div class="outline-text-4" id="text-org5a28188">
+<div id="outline-container-orgd1f7e75" class="outline-4">
+<h4 id="orgd1f7e75"><span class="todo TODO">TODO</span> <code>[0/1]</code> Other Configuration</h4>
+<div class="outline-text-4" id="text-orgd1f7e75">
 <ul class="org-ul">
 <li class="off"><code>[&nbsp;]</code> <a href="https://github.com/minad/marginalia#adding-custom-annotators-or-classifiers">https://github.com/minad/marginalia#adding-custom-annotators-or-classifiers</a></li>
 </ul>
@@ -4249,9 +4296,9 @@ repo. so do not <code>:ensure t</code> here.
 </div>
 </div>
 </div>
-<div id="outline-container-orgd2ce4f6" class="outline-2">
-<h2 id="orgd2ce4f6">windmove</h2>
-<div class="outline-text-2" id="text-orgd2ce4f6">
+<div id="outline-container-orgbbba6e1" class="outline-2">
+<h2 id="orgbbba6e1">windmove</h2>
+<div class="outline-text-2" id="text-orgbbba6e1">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp"><code>(<span class="org-keyword">use-package</span> windmove
   <span class="org-builtin">:config</span>
@@ -4263,9 +4310,9 @@ repo. so do not <code>:ensure t</code> here.
 </div>
 </div>
 </div>
-<div id="outline-container-orgb7be17e" class="outline-2">
-<h2 id="orgb7be17e">web-mode</h2>
-<div class="outline-text-2" id="text-orgb7be17e">
+<div id="outline-container-org3592cc8" class="outline-2">
+<h2 id="org3592cc8">web-mode</h2>
+<div class="outline-text-2" id="text-org3592cc8">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp"><code>(<span class="org-keyword">use-package</span> elec-pair
   <span class="org-builtin">:functions</span> electric-pair-default-inhibit)
@@ -4294,9 +4341,9 @@ repo. so do not <code>:ensure t</code> here.
 </div>
 </div>
 </div>
-<div id="outline-container-orgbbba6e1" class="outline-2">
-<h2 id="orgbbba6e1">winner-mode</h2>
-<div class="outline-text-2" id="text-orgbbba6e1">
+<div id="outline-container-orgc7eb2b3" class="outline-2">
+<h2 id="orgc7eb2b3">winner-mode</h2>
+<div class="outline-text-2" id="text-orgc7eb2b3">
 <p>
 Remember window configurations.
 </p>
@@ -4309,9 +4356,9 @@ Remember window configurations.
 </div>
 </div>
 </div>
-<div id="outline-container-org3592cc8" class="outline-2">
-<h2 id="org3592cc8">which-key</h2>
-<div class="outline-text-2" id="text-org3592cc8">
+<div id="outline-container-org5622f79" class="outline-2">
+<h2 id="org5622f79">which-key</h2>
+<div class="outline-text-2" id="text-org5622f79">
 <p>
 Display available key bindings in a popup buffer when typing prefix shortcuts.
 </p>
@@ -4323,9 +4370,9 @@ Display available key bindings in a popup buffer when typing prefix shortcuts.
 </div>
 </div>
 </div>
-<div id="outline-container-orgc7eb2b3" class="outline-2">
-<h2 id="orgc7eb2b3">whitespace</h2>
-<div class="outline-text-2" id="text-orgc7eb2b3">
+<div id="outline-container-orge391aae" class="outline-2">
+<h2 id="orge391aae">whitespace</h2>
+<div class="outline-text-2" id="text-orge391aae">
 <p>
 Take care of some whitespace issues.
 </p>
@@ -4351,9 +4398,9 @@ Take care of some whitespace issues.
 </div>
 </div>
 </div>
-<div id="outline-container-org5622f79" class="outline-2">
-<h2 id="org5622f79">yaml-mode</h2>
-<div class="outline-text-2" id="text-org5622f79">
+<div id="outline-container-orgfa95acf" class="outline-2">
+<h2 id="orgfa95acf">yaml-mode</h2>
+<div class="outline-text-2" id="text-orgfa95acf">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp"><code>(<span class="org-keyword">use-package</span> flycheck-yamllint
   <span class="org-builtin">:ensure</span> t
@@ -4377,9 +4424,9 @@ Take care of some whitespace issues.
 </div>
 </div>
 </div>
-<div id="outline-container-orge391aae" class="outline-2">
-<h2 id="orge391aae">zig-mode</h2>
-<div class="outline-text-2" id="text-orge391aae">
+<div id="outline-container-org7d8b5ad" class="outline-2">
+<h2 id="org7d8b5ad">zig-mode</h2>
+<div class="outline-text-2" id="text-org7d8b5ad">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp"><code>(<span class="org-keyword">use-package</span> zig-mode
   <span class="org-builtin">:ensure</span> t
@@ -4422,7 +4469,7 @@ Take care of some whitespace issues.
 </div>
 <div id="postamble" class="status">
 <p class="author">Kris Molendyke</p>
-<p class="date">2026-08-02 Sun 18:42</p>
+<p class="date">2026-08-02 Sun 19:34</p>
 <p class="creator"><a href="https://www.gnu.org/software/emacs/">Emacs</a> 31.0.91 (<a href="https://orgmode.org">Org</a> mode 9.8.8)</p>
 </div>
 </body>
