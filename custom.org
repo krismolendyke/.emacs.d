@@ -2247,6 +2247,32 @@ Otherwise, start a new ghostel terminal."
        :init (setq tab-always-indent 'complete))
    #+end_src
 
+** cape
+
+   [[https://github.com/minad/cape][cape]] provides completion-at-point extensions for Corfu.
+
+   #+begin_src emacs-lisp
+     (use-package cape
+       :ensure t
+       :init
+       (add-to-list 'completion-at-point-functions #'cape-file)
+       (add-to-list 'completion-at-point-functions #'cape-dabbrev)
+       (add-to-list 'completion-at-point-functions #'cape-keyword))
+   #+end_src
+
+** which-key
+
+   [[https://github.com/justbur/emacs-which-key][which-key]] displays popup keybinding assistance when a prefix key is pressed.
+
+   #+begin_src emacs-lisp
+     (use-package which-key
+       :ensure t
+       :init
+       (setq which-key-idle-delay 0.5)
+       :config
+       (which-key-mode 1))
+   #+end_src
+
 *** TODO [0/2] Other Configuration
 
     - [ ] https://github.com/minad/corfu#orderless-completion
