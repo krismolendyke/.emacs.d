@@ -2260,9 +2260,9 @@ Otherwise, start a new ghostel terminal."
    #+begin_src emacs-lisp
      (use-package marginalia
        :ensure t
-       :after vertico
+       :demand t
        :bind (:map minibuffer-local-map ("M-A" . marginalia-cycle))
-       :init (marginalia-mode))
+       :config (marginalia-mode 1))
    #+end_src
 
 *** TODO [0/1] Other Configuration
