@@ -1974,7 +1974,24 @@ Otherwise, start a new ghostel terminal."
   Set theme automatically on MacOS thanks to
   https://github.com/d12frosted/homebrew-emacs-plus#system-appearance-change.  Just set it to dark on Linux for now.
 
-  Trying out https://github.com/tinted-theming/base16-emacs now:
+  The following is a stupid hack to work around an error that was appearing during tab completion in the minibuffer
+  from =corfu=:
+
+  #+begin_example
+    Corfu failed to open completion popup frames in the minibuffer with the error:
+
+    Corfu detected an error: (error "Face inheritance results in inheritance cycle" gnus-group-news-low)
+
+    This occurred because doom-themes defined gnus-group-news-low-empty to inherit from gnus-group-news-low, while
+    built-in gnus-group.el defined gnus-group-news-low to inherit from gnus-group-news-low-empty. Whenever Corfu spawned a
+    child frame (make-frame), Emacs recalculated all faces in face-list and hit this 2-node cycle.
+  #+end_example
+
+  #+begin_src emacs-lisp
+    (custom-set-faces
+     '(gnus-group-news-low ((t (:inherit nil))))
+     '(gnus-group-news-low-empty ((t (:inherit nil)))))
+  #+end_src
 
   #+begin_src emacs-lisp
     (use-package doom-themes
