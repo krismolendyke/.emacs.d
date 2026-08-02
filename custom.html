@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-08-01 Sat 19:05 -->
+<!-- 2026-08-02 Sun 06:30 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Literate =.emacs.d=</title>
@@ -3062,28 +3062,33 @@ THE SOFTWARE.
 <div class="outline-text-2" id="text-org4a63c07">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp"><code>(<span class="org-keyword">defun</span> <span class="org-function-name">k20e/org-font-setup</span> ()
-  (custom-theme-set-faces
-   'user
-   '(variable-pitch ((t (<span class="org-builtin">:family</span> <span class="org-string">"ETBembo"</span> <span class="org-builtin">:height</span> 1.3))))
-   '(fixed-pitch ((t (<span class="org-builtin">:family</span> <span class="org-string">"PragmataPro Mono Liga"</span> <span class="org-builtin">:height</span> 0.8))))
-   '(org-block ((t (<span class="org-builtin">:inherit</span> fixed-pitch))))
-   '(org-block-begin-line ((t (<span class="org-builtin">:inherit</span> (org-meta-line fixed-pitch)))))
-   '(org-block-end-line ((t (<span class="org-builtin">:inherit</span> (org-meta-line fixed-pitch)))))
-   '(org-code ((t (<span class="org-builtin">:inherit</span> (shadow fixed-pitch)))))
-   '(org-date ((t (<span class="org-builtin">:inherit</span> (shadow fixed-pitch)))))
-   '(org-document-info-keyword ((t (<span class="org-builtin">:inherit</span> (shadow fixed-pitch)))))
-   '(org-done ((t (<span class="org-builtin">:inherit</span> (shadow fixed-pitch)))))
-   '(org-drawer ((t (<span class="org-builtin">:inherit</span> (shadow fixed-pitch)))))
-   '(org-ellipsis ((t (<span class="org-builtin">:inherit</span> (shadow fixed-pitch)))))
-   '(org-indent ((t (<span class="org-builtin">:inherit</span> (org-hide fixed-pitch)))))
-   '(org-meta-line ((t (<span class="org-builtin">:inherit</span> (font-lock-comment-face fixed-pitch)))))
-   '(org-property-value ((t (<span class="org-builtin">:inherit</span> fixed-pitch))))
-   '(org-quote ((t (<span class="org-builtin">:inherit</span> (shadow)))))
-   '(org-special-keyword ((t (<span class="org-builtin">:inherit</span> (font-lock-comment-face fixed-pitch)))))
-   '(org-table ((t (<span class="org-builtin">:inherit</span> fixed-pitch))))
-   '(org-tag ((t (<span class="org-builtin">:inherit</span> (shadow fixed-pitch)))))
-   '(org-todo ((t (<span class="org-builtin">:inherit</span> (shadow fixed-pitch)))))
-   '(org-verbatim ((t (<span class="org-builtin">:inherit</span> (shadow fixed-pitch)))))))
+  (<span class="org-keyword">require</span> '<span class="org-constant">org-faces</span> nil t)
+  (<span class="org-keyword">require</span> '<span class="org-constant">org-indent</span> nil t)
+  (<span class="org-keyword">dolist</span> (spec
+           '((variable-pitch <span class="org-builtin">:family</span> <span class="org-string">"ETBembo"</span> <span class="org-builtin">:height</span> 1.3)
+             (fixed-pitch <span class="org-builtin">:family</span> <span class="org-string">"PragmataPro Mono Liga"</span> <span class="org-builtin">:height</span> 0.8)
+             (org-block <span class="org-builtin">:inherit</span> fixed-pitch)
+             (org-block-begin-line <span class="org-builtin">:inherit</span> (org-meta-line fixed-pitch))
+             (org-block-end-line <span class="org-builtin">:inherit</span> (org-meta-line fixed-pitch))
+             (org-code <span class="org-builtin">:inherit</span> (shadow fixed-pitch))
+             (org-date <span class="org-builtin">:inherit</span> (shadow fixed-pitch))
+             (org-document-info-keyword <span class="org-builtin">:inherit</span> (shadow fixed-pitch))
+             (org-done <span class="org-builtin">:inherit</span> (shadow fixed-pitch))
+             (org-drawer <span class="org-builtin">:inherit</span> (shadow fixed-pitch))
+             (org-ellipsis <span class="org-builtin">:inherit</span> (shadow fixed-pitch))
+             (org-indent <span class="org-builtin">:inherit</span> (org-hide fixed-pitch))
+             (org-meta-line <span class="org-builtin">:inherit</span> (font-lock-comment-face fixed-pitch))
+             (org-property-value <span class="org-builtin">:inherit</span> fixed-pitch)
+             (org-quote <span class="org-builtin">:inherit</span> (shadow))
+             (org-special-keyword <span class="org-builtin">:inherit</span> (font-lock-comment-face fixed-pitch))
+             (org-table <span class="org-builtin">:inherit</span> fixed-pitch)
+             (org-tag <span class="org-builtin">:inherit</span> (shadow fixed-pitch))
+             (org-todo <span class="org-builtin">:inherit</span> (shadow fixed-pitch))
+             (org-verbatim <span class="org-builtin">:inherit</span> (shadow fixed-pitch))))
+    (<span class="org-keyword">let</span> ((face (car spec))
+          (args (cdr spec)))
+      (<span class="org-keyword">when</span> (facep face)
+        (apply #'set-face-attribute face nil args)))))
 
 (<span class="org-keyword">use-package</span> org
   <span class="org-builtin">:hook</span>
@@ -3879,6 +3884,7 @@ Trying out <a href="https://github.com/tinted-theming/base16-emacs">https://gith
   (<span class="org-keyword">cond</span> ((eq system-type 'darwin)
          (<span class="org-keyword">defun</span> <span class="org-function-name">k20e/load-theme</span> (mode)
            <span class="org-doc">"Load light or dark theme depending on which mode the system is currently in."</span>
+           (mapc #'disable-theme custom-enabled-themes)
            (<span class="org-keyword">pcase</span> mode
              ('light (load-theme 'doom-gruvbox-light t))
              ('dark (load-theme 'doom-gruvbox t)))
@@ -4346,7 +4352,7 @@ Take care of some whitespace issues.
 </div>
 <div id="postamble" class="status">
 <p class="author">Kris Molendyke</p>
-<p class="date">2026-08-01 Sat 19:04</p>
+<p class="date">2026-08-02 Sun 06:28</p>
 <p class="creator"><a href="https://www.gnu.org/software/emacs/">Emacs</a> 31.0.91 (<a href="https://orgmode.org">Org</a> mode 9.8.8)</p>
 </div>
 </body>
