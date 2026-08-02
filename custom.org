@@ -184,6 +184,7 @@ function.
 
    #+begin_src emacs-lisp
      (with-eval-after-load 'comp
+       (defvar native-comp-async-report-warnings-errors)
        (setq native-comp-async-report-warnings-errors 'silent))
    #+end_src
 
