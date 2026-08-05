@@ -62,14 +62,18 @@ function.
    /C functions/ via =find-function=.
 
    Finding the source code directory via Homebrew can be done with the
-   following command:
+   following command.  =:eval never-export= keeps the stored result below
+   authoritative: without it the block is re-run during every export, so the
+   published page ends up showing whichever machine last exported it — and a
+   batch export, which has no shell backend loaded, disagrees with an
+   interactive one.  Re-run it with =C-c C-c= when the answer changes.
 
-   #+begin_src sh :exports both
+   #+begin_src sh :exports both :eval never-export
      echo $(brew --cache)/emacs*
    #+end_src
 
    #+RESULTS:
-   : /Library/Caches/Homebrew/emacs--git
+   : /Users/kmolendyke2/Library/Caches/Homebrew/emacs-plus@31--git
 
    /Note/: =source-directory= must be set during Emacs initialization time to
    persist.  See [[https://github.com/krismolendyke/.emacs.d/blob/1241a848cee7dadfa0c719643925fa0a7b86f476/init.el#L84-L86][=init.el=]].
@@ -116,14 +120,17 @@ function.
   file and then instructs Emacs to load that file.  [[https://github.com/krismolendyke/.emacs.d/blob/master/custom.org][=custom.org=]] is
   the biggest of those =org-mode= files and … /this/ is that file!
 
-** HTML Export =post-commit= Hook
+** HTML Export
    :PROPERTIES:
-   :CUSTOM_ID: html-export-post-commit-hook
+   :CUSTOM_ID: html-export
    :END:
 
-   This [[https://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks][git =post-commit= hook]] is located at =.git/hooks/post-commit=
-   and automatically generates the HTML content of this [[https://pages.github.com/][GitHub Pages]]
-   site.
+   This [[https://pages.github.com/][GitHub Pages]] site /is/ =custom.org=, exported to HTML.  =custom.html=
+   is committed to =master=, and a [[https://github.com/krismolendyke/.emacs.d/blob/master/.github/workflows/static.yml][GitHub Actions workflow]] copies it to
+   =index.html= and deploys it on every push.  Nothing regenerates it
+   automatically, so exporting is a deliberate step: =C-c C-e h h= from this
+   buffer, or the same batch invocation the workflow-less days used, which is
+   still the fastest way to do it without leaving the shell:
 
    #+begin_src sh
      #!/bin/bash
@@ -133,18 +140,19 @@ function.
 
      emacs --batch \
            --directory "${htmlize_dir}" \
-           --load "$HOME/.emacs.d/elisp/k20e-org-html-export.el" \
-           --visit "$HOME/.emacs.d/custom.org" \
-           --execute '(org-html-export-to-html)' > /dev/null 2>&1
-     git checkout gh-pages
-     mv custom.html index.html
-     git add index.html
-     git commit --message "post-commit hook regeneration."
-     git checkout master
+           --load "${repo_root}/elisp/k20e-org-html-export.el" \
+           --visit "${repo_root}/custom.org" \
+           --execute '(org-html-export-to-html)'
    #+end_src
 
-   All of the interesting customization of the exported document is
-   performed in [[https://github.com/krismolendyke/.emacs.d/blob/master/elisp/k20e-org-html-export.el][=elisp/k20e-org-html-export.el=]].
+   This is why [[https://github.com/krismolendyke/.emacs.d/blob/master/elisp/k20e-org-html-export.el][=elisp/k20e-org-html-export.el=]] is a plain file rather than a
+   block in this document: a =--batch= Emacs has to be able to load it without
+   loading — or tangling — anything else.  All of the interesting customization
+   of the exported document lives there.
+
+   /Historical note/: this used to run from a =.git/hooks/post-commit= hook that
+   exported the HTML and committed it to a =gh-pages= branch.  The Actions
+   workflow replaced both the hook and that branch.
 
 * use-package
   :PROPERTIES:
@@ -1668,7 +1676,7 @@ Otherwise, start a new ghostel terminal."
 
    Most non-interactive export settings are defined in [[https://github.com/krismolendyke/.emacs.d/blob/master/elisp/k20e-org-html-export.el][=elisp/k20e-org-html-export.el=]],
    which is written so that it can also be loaded by a bare =emacs --batch=
-   process.  That is what makes the [[#how-this-works][batch export]] of /this/ document fast.
+   process.  That is what makes the [[#html-export][batch export]] of /this/ document fast.
 
    It only needs to be loaded once =ox-html= is in play, so wait for that
    rather than paying for =ox-html= and =htmlize= at every startup:
