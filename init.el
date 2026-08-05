@@ -73,11 +73,10 @@ Only turn off the menu bar running in a terminal window."
       (exec-path-from-shell-initialize))))
 
 ;; Nothing in `k20e/elisp-directory' is loaded here on purpose.  Sweeping the
-;; whole directory used to load every file in it, which meant loading *all*
-;; PragmataPro symbol tables even though only one is wanted, and dragging
-;; `org', `ox-html' and `htmlize' into every startup for the sake of export
-;; settings that are only needed once something is actually exported.  Each
-;; file is now required from the section of custom.org that owns it, and
+;; whole directory used to load every file in it, so adding a file made it live
+;; whether or not anything asked for it -- which is how *both* PragmataPro
+;; symbol tables came to be loaded when only one is wanted.  Each file is now
+;; required from the section of custom.org that owns it, and
 ;; `k20e/elisp-directory' being on `load-path' is what makes that work.
 
 (defun k20e/load-custom-org ()

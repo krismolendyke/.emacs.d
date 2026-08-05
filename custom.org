@@ -1678,27 +1678,28 @@ Otherwise, start a new ghostel terminal."
    which is written so that it can also be loaded by a bare =emacs --batch=
    process.  That is what makes the [[#html-export][batch export]] of /this/ document fast.
 
-   It only needs to be loaded once =ox-html= is in play, so wait for that
-   rather than paying for =ox-html= and =htmlize= at every startup:
-
    #+begin_src emacs-lisp
-     (with-eval-after-load 'ox-html
-       (require 'k20e-org-html-export))
+     (require 'k20e-org-html-export)
    #+end_src
 
-   Interactive customization can be done here.  These two settings live in
-   =ox=, so they are applied when the export engine loads:
+   Deferring that =require= behind =ox-html= looks like an easy startup win —
+   =ox-html= and =htmlize= are only wanted at export time — but it does not
+   buy anything.  Byte-compiling the tangled file evaluates the =require= in
+   =ox-tufte='s =use-package= expansion, and =ox-tufte= pulls in =ox=,
+   =ox-html= and =htmlize= regardless.  Measured over three daemon startups
+   each way, deferred and eager came out identical at 6.45s, so the simpler
+   form wins.
+
+   Interactive customization can be done here.  Loading the file above brings
+   =ox= with it, so these are set directly:
 
    #+begin_src emacs-lisp
-     (with-eval-after-load 'ox
-       (defvar org-export-dispatch-use-expert-ui)
-       (defvar org-export-with-broken-links)
-       (setq
-        ;; Enable "expert" export interface.
-        org-export-dispatch-use-expert-ui t
+     (setq
+      ;; Enable "expert" export interface.
+      org-export-dispatch-use-expert-ui t
 
-        ;; Continue export when links are broken, but mark them
-        org-export-with-broken-links `mark))
+      ;; Continue export when links are broken, but mark them
+      org-export-with-broken-links `mark)
    #+end_src
 
 *** Options
@@ -1732,17 +1733,12 @@ Otherwise, start a new ghostel terminal."
     dispatcher; adding to =org-export-backends= after =org= has already loaded
     does nothing, so the =require= is the part that matters.
 
-    Both of these pull in =ox-html= — and =ox-tufte= alone accounts for well
-    over a second of startup time — so hang them off =ox=, which loads the
-    first time something is actually exported:
-
     #+begin_src emacs-lisp
-      (with-eval-after-load 'ox
-        (require 'ox-md))
+      (require 'ox-md)
     #+end_src
 
     #+begin_src emacs-lisp
-      (use-package ox-tufte :ensure t :after ox)
+      (use-package ox-tufte :ensure t)
     #+end_src
 
 ** Publish
@@ -1750,10 +1746,10 @@ Otherwise, start a new ghostel terminal."
    :CUSTOM_ID: publish
    :END:
 
-   This is just data, so set it eagerly and let =ox-publish= pick it up
-   whenever =org-publish= is first invoked — =defcustom= leaves an
-   already-assigned value alone.  The =defvar= only tells the byte-compiler
-   that the variable belongs to a library we have not loaded yet.
+   This is just data, so set it and let =ox-publish= pick it up whenever
+   =org-publish= is first invoked — =defcustom= leaves an already-assigned
+   value alone.  The =defvar= keeps the byte-compiler quiet without having to
+   =require= =ox-publish= here purely to declare one variable.
 
    #+begin_src emacs-lisp
      (defvar org-publish-project-alist)
