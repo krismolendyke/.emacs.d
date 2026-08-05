@@ -40,6 +40,12 @@
 ;; Generate a stylesheet rather than inline CSS.
 (setq org-html-htmlize-output-type 'css)
 
+;; Use `CUSTOM_ID' properties as HTML anchors instead of the random `org1a2b3c4'
+;; references Org generates by default.  Those are regenerated on every export,
+;; which churned hundreds of lines of custom.html per publish and broke every
+;; deep link into the document.
+(setq org-html-prefer-user-labels t)
+
 ;; Customize HTML export styling.
 (setq org-html-head-include-default-style nil
       org-html-postamble-format '(("en" "<p class=\"author\">%a</p>

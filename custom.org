@@ -4,6 +4,7 @@
 #+OPTIONS: toc:nil num:nil
 #+HTML: <p class="subtitle">Kris Molendyke</p>
 
+#+name: knuth-literate-programming
 #+begin_epigraph
 #+caption: Donald Knuth, @@html:<cite>"<a href="https://www-cs-faculty.stanford.edu/~knuth/lp.html">Literate Programming</a>"</cite>@@
 #+begin_quote
@@ -53,6 +54,9 @@ function.
   #+end_src
 
 ** Emacs Source Directory
+   :PROPERTIES:
+   :CUSTOM_ID: emacs-source-directory
+   :END:
 
    =source-directory= is helpful to have set properly when exploring built-in
    /C functions/ via =find-function=.
@@ -113,6 +117,9 @@ function.
   the biggest of those =org-mode= files and … /this/ is that file!
 
 ** HTML Export =post-commit= Hook
+   :PROPERTIES:
+   :CUSTOM_ID: html-export-post-commit-hook
+   :END:
 
    This [[https://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks][git =post-commit= hook]] is located at =.git/hooks/post-commit=
    and automatically generates the HTML content of this [[https://pages.github.com/][GitHub Pages]]
@@ -140,6 +147,9 @@ function.
    performed in [[https://github.com/krismolendyke/.emacs.d/blob/master/elisp/k20e-org-html-export.el][=elisp/k20e-org-html-export.el=]].
 
 * use-package
+  :PROPERTIES:
+  :CUSTOM_ID: use-package
+  :END:
 
   Before =use-package= I had 70 packages installed and
   =emacs-init-time= was ="8.678111 seconds"=.
@@ -153,11 +163,17 @@ function.
   #+end_src
 
 * Performance Tuning
+  :PROPERTIES:
+  :CUSTOM_ID: performance-tuning
+  :END:
 
   Mucking with these solely based on output from =lsp-doctor= and its
   recommendations since I use this all day writing Go programs.
 
 ** GCMH (Garbage Collector Magic Hack)
+   :PROPERTIES:
+   :CUSTOM_ID: gcmh-garbage-collector-magic-hack
+   :END:
 
    Use =gcmh= to dynamically raise GC threshold during active editing and collect garbage when idle.
 
@@ -174,6 +190,9 @@ function.
    #+end_src
 
 ** Process Output
+   :PROPERTIES:
+   :CUSTOM_ID: process-output
+   :END:
 
    #+begin_src emacs-lisp
      (let ((mib (expt 2 20)))
@@ -181,6 +200,9 @@ function.
    #+end_src
 
 ** Native Compilation Warnings
+   :PROPERTIES:
+   :CUSTOM_ID: native-compilation-warnings
+   :END:
 
    #+begin_src emacs-lisp
      (with-eval-after-load 'comp
@@ -189,12 +211,18 @@ function.
    #+end_src
 
 * Global GNU Emacs Key Bindings
+  :PROPERTIES:
+  :CUSTOM_ID: global-gnu-emacs-key-bindings
+  :END:
 
   These global key bindings override /built-in/ functions only.
   Package-specific or custom function defunition key bindings are made in
   their own dedicated sections where other specific settings are made.
 
 ** Unset
+   :PROPERTIES:
+   :CUSTOM_ID: unset
+   :END:
 
    OS X annoyance -- =C-M-d= is a "hot key" bound to dictionary lookup
    and masks the key binding in Emacs.  [[http://apple.stackexchange.com/questions/22785/how-do-i-disable-the-command-control-d-word-definition-keyboard-shortcut-in-os-x/114269#114269][Disabling it]] can currently
@@ -217,6 +245,9 @@ function.
    #+end_src
 
 ** Set
+   :PROPERTIES:
+   :CUSTOM_ID: set
+   :END:
 
    #+begin_src emacs-lisp
      (global-set-key (kbd "<f1> F") 'find-function)
@@ -242,8 +273,14 @@ function.
    #+end_src
 
 * k20e Defaults
+  :PROPERTIES:
+  :CUSTOM_ID: k20e-defaults
+  :END:
 
 ** Apropos
+   :PROPERTIES:
+   :CUSTOM_ID: apropos
+   :END:
 
    Sort by relevancy.
 
@@ -252,6 +289,9 @@ function.
    #+end_src
 
 ** Backup Files
+   :PROPERTIES:
+   :CUSTOM_ID: backup-files
+   :END:
 
    Back up files to a single location.
 
@@ -268,6 +308,9 @@ function.
    #+end_src
 
 ** Enabled Commands
+   :PROPERTIES:
+   :CUSTOM_ID: enabled-commands
+   :END:
 
    Commands disabled by default prompt at first use.  Enabling
    commands disables the prompt.
@@ -291,10 +334,16 @@ function.
    #+end_src
 
 ** Inferior Shell
+   :PROPERTIES:
+   :CUSTOM_ID: inferior-shell
+   :END:
 
    Configured in ~init.el~ to set ~shell-file-name~ appropriately for macOS/Linux.
 
 ** Smooth Scrolling
+   :PROPERTIES:
+   :CUSTOM_ID: smooth-scrolling
+   :END:
 
    What a time to be alive.
 
@@ -305,6 +354,9 @@ function.
    #+end_src
 
 ** TODO Defaults for Review
+   :PROPERTIES:
+   :CUSTOM_ID: defaults-for-review
+   :END:
 
    This is a bunch of stuff that I just dumped here and need to go through yet.
 
@@ -357,10 +409,16 @@ function.
    #+end_src
 
 * k20e Custom Functions
+  :PROPERTIES:
+  :CUSTOM_ID: k20e-custom-functions
+  :END:
 
   I have found these to be useful enough to keep around permanently.
 
 ** Editing
+   :PROPERTIES:
+   :CUSTOM_ID: editing
+   :END:
 
    #+begin_src emacs-lisp
      (defun k20e/mark-current-line (arg)
@@ -413,6 +471,9 @@ function.
    #+end_src
 
 ** Buffers
+   :PROPERTIES:
+   :CUSTOM_ID: buffers
+   :END:
 
    #+begin_src emacs-lisp
      (defun k20e/display-buffer-file-name ()
@@ -422,6 +483,9 @@ function.
    #+end_src
 
 *** Toggle Source/Test Buffer
+    :PROPERTIES:
+    :CUSTOM_ID: toggle-sourcetest-buffer
+    :END:
 
     If this gets any smarter it should be refactored into its own
     package.
@@ -462,6 +526,9 @@ function.
     #+end_src
 
 *** Widescreen
+    :PROPERTIES:
+    :CUSTOM_ID: widescreen
+    :END:
 
     When working on a widescreen monitor it can be useful to have
     windows arranged a bit differently than they would on smaller
@@ -494,6 +561,9 @@ function.
     #+end_src
 
 ** Windows
+   :PROPERTIES:
+   :CUSTOM_ID: windows
+   :END:
 
    #+begin_src emacs-lisp
      (use-package emacs
@@ -520,12 +590,18 @@ function.
    #+end_src
 
 ** Networking
+   :PROPERTIES:
+   :CUSTOM_ID: networking
+   :END:
 
    #+begin_src emacs-lisp
      (use-package net-utils :ensure t)
    #+end_src
 
 ** Lunar 🌙
+   :PROPERTIES:
+   :CUSTOM_ID: lunar
+   :END:
 
    #+begin_src emacs-lisp
      (require 'calendar)
@@ -557,6 +633,9 @@ function.
    #+end_src
 
 * auto-fill
+  :PROPERTIES:
+  :CUSTOM_ID: auto-fill
+  :END:
 
   When to turn on auto-fill and set fill-column to a reasonable value.  This
   would probably be better dealt with by a data structure that maps mode hooks
@@ -569,6 +648,9 @@ function.
   #+end_src
 
 * auto-package-update
+  :PROPERTIES:
+  :CUSTOM_ID: auto-package-update
+  :END:
 
   - https://github.com/rranelli/auto-package-update.el
   - https://github.com/jwiegley/use-package#package-installation
@@ -584,6 +666,9 @@ function.
   #+end_src
 
 * auto-save
+  :PROPERTIES:
+  :CUSTOM_ID: auto-save
+  :END:
 
   Disable =auto-save=.
 
@@ -595,6 +680,9 @@ function.
   #+end_src
 
 * avy
+  :PROPERTIES:
+  :CUSTOM_ID: avy
+  :END:
 
   #+begin_src emacs-lisp
     (use-package avy
@@ -608,6 +696,9 @@ function.
   #+end_src
 
 * buffer-move
+  :PROPERTIES:
+  :CUSTOM_ID: buffer-move
+  :END:
 
   Move the current buffer up/down/left/right easily.
 
@@ -621,6 +712,9 @@ function.
   #+end_src
 
 * C
+  :PROPERTIES:
+  :CUSTOM_ID: c
+  :END:
 
   #+begin_src emacs-lisp
     (use-package cc-mode
@@ -631,11 +725,17 @@ function.
   #+end_src
 
 * TODO combobulate
+  :PROPERTIES:
+  :CUSTOM_ID: combobulate
+  :END:
 
   - https://www.masteringemacs.org/article/combobulate-structured-movement-editing-treesitter
   - https://github.com/mickeynp/combobulate#how-do-i-install-combobulate
 
 * compilation-mode
+  :PROPERTIES:
+  :CUSTOM_ID: compilation-mode
+  :END:
 
   #+begin_src emacs-lisp
     (use-package compile
@@ -673,6 +773,9 @@ function.
   #+end_src
 
 * dired
+  :PROPERTIES:
+  :CUSTOM_ID: dired
+  :END:
 
   #+begin_src emacs-lisp
     (use-package dired
@@ -692,6 +795,9 @@ function.
   #+end_src
 
 * eca
+  :PROPERTIES:
+  :CUSTOM_ID: eca
+  :END:
 
   #+begin_src emacs-lisp
     (use-package eca
@@ -704,6 +810,9 @@ function.
   #+end_src
 
 * electric-pair-mode
+  :PROPERTIES:
+  :CUSTOM_ID: electric-pair-mode
+  :END:
 
   #+begin_src emacs-lisp
     (use-package elec-pair
@@ -711,6 +820,9 @@ function.
   #+end_src
 
 * emacs-lisp-mode
+  :PROPERTIES:
+  :CUSTOM_ID: emacs-lisp-mode
+  :END:
 
   #+begin_src emacs-lisp
     (use-package elisp-mode
@@ -724,6 +836,9 @@ function.
   #+end_src
 
 * expand-region
+  :PROPERTIES:
+  :CUSTOM_ID: expand-region
+  :END:
 
   #+begin_src emacs-lisp
     (use-package expand-region
@@ -732,6 +847,9 @@ function.
   #+end_src
 
 * find-file-in-project
+  :PROPERTIES:
+  :CUSTOM_ID: find-file-in-project
+  :END:
 
   #+begin_src emacs-lisp
     (use-package find-file-in-project
@@ -773,6 +891,9 @@ function.
   #+end_src
 
 * flyspell
+  :PROPERTIES:
+  :CUSTOM_ID: flyspell
+  :END:
 
   Setup =ispell= to use [[#install-aspell][=aspell=]], then setup =flyspell= itself.  It requires =ispell=.
 
@@ -800,6 +921,9 @@ function.
    #+end_src
 
 * Fonts
+  :PROPERTIES:
+  :CUSTOM_ID: fonts
+  :END:
 
   - [[https://protesilaos.com/codelog/2020-09-05-emacs-note-mixed-font-heights/][Setting default, variable & fixed pitch heights]]
   - Fonts
@@ -845,6 +969,9 @@ function.
   #+end_src
 
 ** Unicode
+   :PROPERTIES:
+   :CUSTOM_ID: unicode
+   :END:
 
    [[http://users.teilar.gr/~g1951d/][Symbola]] is a nice font for displaying Unicode characters 🍺👍.
 
@@ -854,6 +981,9 @@ function.
     #+end_src
 
 * geiser
+  :PROPERTIES:
+  :CUSTOM_ID: geiser
+  :END:
 
   #+begin_src emacs-lisp
     (use-package geiser
@@ -864,9 +994,13 @@ function.
   #+end_src
 
 * [[https://dakra.github.io/ghostel/][ghostel]]
+  :PROPERTIES:
+  :CUSTOM_ID: ghostel
+  :END:
 
   To initialize the native dynamic module on a new machine, download the pre-built binary by running:
 
+  #+name: ghostel-download-module
   #+begin_example
     M-x ghostel-download-module
   #+end_example
@@ -916,6 +1050,9 @@ Otherwise, start a new ghostel terminal."
   #+end_src
 
 * git
+  :PROPERTIES:
+  :CUSTOM_ID: git
+  :END:
 
   A [[https://melpa.org/#/git-modes][few major modes]] for editing =git= configuration files.
 
@@ -955,6 +1092,9 @@ Otherwise, start a new ghostel terminal."
   #+end_src
 
 * go-mode
+  :PROPERTIES:
+  :CUSTOM_ID: go-mode
+  :END:
 
   Install commands:
 
@@ -998,26 +1138,41 @@ Otherwise, start a new ghostel terminal."
   #+end_src
 
 ** Tree Sitter
+   :PROPERTIES:
+   :CUSTOM_ID: go-mode-tree-sitter
+   :END:
 
    Tree sitter for Go is installed with defaults.
 
 *** =go.mod=
+    :PROPERTIES:
+    :CUSTOM_ID: go-mod
+    :END:
 
     - Language: =gomod=
     - Repository: https://github.com/camdencheek/tree-sitter-go-mod
 
 *** [[https://templ.guide/][templ]]
+    :PROPERTIES:
+    :CUSTOM_ID: templ
+    :END:
 
     - Language: =templ=
     - Repository: https://github.com/vrischmann/tree-sitter-templ
 
 ** [0/3] =TODO=
+   :PROPERTIES:
+   :CUSTOM_ID: go-mode-todo
+   :END:
 
    - [ ] Steal some of these https://github.com/dominikh/yasnippet-go
    - [ ] https://github.com/nlamirault/gotest.el
    - [ ] https://github.com/alecthomas/gometalinter
 
 * highlight-indent-guides
+  :PROPERTIES:
+  :CUSTOM_ID: highlight-indent-guides
+  :END:
 
   #+begin_src emacs-lisp
     (use-package highlight-indent-guides
@@ -1028,6 +1183,9 @@ Otherwise, start a new ghostel terminal."
   #+end_src
 
 * highlight-parentheses
+  :PROPERTIES:
+  :CUSTOM_ID: highlight-parentheses
+  :END:
 
   #+begin_src emacs-lisp
     (use-package highlight-parentheses
@@ -1037,6 +1195,9 @@ Otherwise, start a new ghostel terminal."
   #+end_src
 
 * htmlize
+  :PROPERTIES:
+  :CUSTOM_ID: htmlize
+  :END:
 
   #+begin_src emacs-lisp
     (use-package htmlize
@@ -1076,6 +1237,9 @@ Otherwise, start a new ghostel terminal."
   #+end_src
 
 * IELM
+  :PROPERTIES:
+  :CUSTOM_ID: ielm
+  :END:
 
   #+begin_src emacs-lisp
     (use-package ielm
@@ -1084,6 +1248,9 @@ Otherwise, start a new ghostel terminal."
   #+end_src
 
 * imenu
+  :PROPERTIES:
+  :CUSTOM_ID: imenu
+  :END:
 
   Re-scan the buffer for new menu items automatically.
 
@@ -1094,6 +1261,9 @@ Otherwise, start a new ghostel terminal."
   #+end_src
 
 * js
+  :PROPERTIES:
+  :CUSTOM_ID: js
+  :END:
 
   #+begin_src emacs-lisp
     (use-package js
@@ -1102,6 +1272,9 @@ Otherwise, start a new ghostel terminal."
   #+end_src
 
 * [[https://just.systems][Just]]
+  :PROPERTIES:
+  :CUSTOM_ID: just
+  :END:
 
   #+begin_src emacs-lisp
     (use-package just-ts-mode
@@ -1109,6 +1282,9 @@ Otherwise, start a new ghostel terminal."
   #+end_src
 
 * LaTeX
+  :PROPERTIES:
+  :CUSTOM_ID: latex
+  :END:
 
   #+begin_src emacs-lisp
     (use-package tex-mode
@@ -1117,6 +1293,9 @@ Otherwise, start a new ghostel terminal."
   #+end_src
 
 * ligature-pragmatapro
+  :PROPERTIES:
+  :CUSTOM_ID: ligature-pragmatapro
+  :END:
 
   #+begin_src emacs-lisp
     (use-package ligature-pragmatapro
@@ -1127,6 +1306,9 @@ Otherwise, start a new ghostel terminal."
   #+end_src
 
 * lockfiles
+  :PROPERTIES:
+  :CUSTOM_ID: lockfiles
+  :END:
 
   [[http://stackoverflow.com/questions/5738170/why-does-emacs-create-temporary-symbolic-links-for-modified-files][Avoid creating temporary symbolic links]] and disturbing working
   directory state at the expense of avoiding editing collisions that I
@@ -1137,6 +1319,9 @@ Otherwise, start a new ghostel terminal."
   #+end_src
 
 * lsp-mode
+  :PROPERTIES:
+  :CUSTOM_ID: lsp-mode
+  :END:
 
   #+begin_src emacs-lisp
     (use-package lsp-mode
@@ -1155,6 +1340,9 @@ Otherwise, start a new ghostel terminal."
   #+end_src
 
 * lua-mode
+  :PROPERTIES:
+  :CUSTOM_ID: lua-mode
+  :END:
 
   #+begin_src emacs-lisp
     (use-package lua-mode
@@ -1162,6 +1350,9 @@ Otherwise, start a new ghostel terminal."
   #+end_src
 
 * man
+  :PROPERTIES:
+  :CUSTOM_ID: man
+  :END:
 
   Setting a width avoids a possibly (likely) poorly chosen automatic
   width.
@@ -1171,6 +1362,9 @@ Otherwise, start a new ghostel terminal."
   #+end_src
 
 * markdown-mode
+  :PROPERTIES:
+  :CUSTOM_ID: markdown-mode
+  :END:
 
   #+begin_src emacs-lisp
     (use-package markdown-mode
@@ -1186,6 +1380,9 @@ Otherwise, start a new ghostel terminal."
   #+end_src
 
 * Minibuffer
+  :PROPERTIES:
+  :CUSTOM_ID: minibuffer
+  :END:
 
   Scale up the minibuffer text size and limit how tall it can get.
 
@@ -1207,6 +1404,9 @@ Otherwise, start a new ghostel terminal."
   #+end_src
 
 ** Eval expression minibuffer
+   :PROPERTIES:
+   :CUSTOM_ID: eval-expression-minibuffer
+   :END:
 
    Enable =eldoc= in the modeline.
 
@@ -1221,6 +1421,9 @@ Otherwise, start a new ghostel terminal."
    #+end_src
 
 * multiple-cursors
+  :PROPERTIES:
+  :CUSTOM_ID: multiple-cursors
+  :END:
 
   #+begin_src emacs-lisp
     (use-package multiple-cursors
@@ -1258,6 +1461,9 @@ Otherwise, start a new ghostel terminal."
   #+end_src
 
 * [[https://ocaml.org/][OCaml]]
+  :PROPERTIES:
+  :CUSTOM_ID: ocaml
+  :END:
 
   Install =opam=, then =opam init= (see https://github.com/krismolendyke/dotfiles).  Then:
 
@@ -1289,6 +1495,9 @@ Otherwise, start a new ghostel terminal."
       :ensure t)
   #+end_src
 * olivetti
+  :PROPERTIES:
+  :CUSTOM_ID: olivetti
+  :END:
 
   [[https://github.com/rnkn/olivetti][olivetti]] is a minimal minor mode to provide a more distraction free writing environment.
 
@@ -1299,6 +1508,9 @@ Otherwise, start a new ghostel terminal."
   #+end_src
 
 * Open Source Licenses
+  :PROPERTIES:
+  :CUSTOM_ID: open-source-licenses
+  :END:
 
   #+begin_src emacs-lisp
     (defun k20e/insert-mit-license ()
@@ -1331,6 +1543,9 @@ Otherwise, start a new ghostel terminal."
   #+end_src
 
 * org-mode
+  :PROPERTIES:
+  :CUSTOM_ID: org-mode
+  :END:
 
   #+begin_src emacs-lisp
     (defun k20e/org-font-setup ()
@@ -1398,6 +1613,9 @@ Otherwise, start a new ghostel terminal."
   #+end_src
 
 ** Package Upgrades
+   :PROPERTIES:
+   :CUSTOM_ID: package-upgrades
+   :END:
 
    Org mode is managed via =use-package= and pinned to GNU ELPA.
    To update Org mode, use Emacs package management commands:
@@ -1409,6 +1627,9 @@ Otherwise, start a new ghostel terminal."
    or run =M-x list-packages= and update packages interactively.
 
 ** Inline Images
+   :PROPERTIES:
+   :CUSTOM_ID: inline-images
+   :END:
 
    Try to get the width of images displayed inline from a =#+ATTR.*=
    keyword, e.g., =#+ATTR_HTML: :width 800px=, fall back to original
@@ -1419,6 +1640,9 @@ Otherwise, start a new ghostel terminal."
    #+end_src
 
 ** Key Bindings
+   :PROPERTIES:
+   :CUSTOM_ID: key-bindings
+   :END:
 
    #+begin_src emacs-lisp
      (global-set-key (kbd "<f12>") 'org-agenda-list)
@@ -1435,6 +1659,9 @@ Otherwise, start a new ghostel terminal."
    #+end_src
 
 ** Export
+   :PROPERTIES:
+   :CUSTOM_ID: export
+   :END:
 
    - https://github.com/Zilong-Li/org-tufte
    - https://github.com/dakrone/ox-tufte
@@ -1462,9 +1689,13 @@ Otherwise, start a new ghostel terminal."
    #+end_src
 
 *** Options
+    :PROPERTIES:
+    :CUSTOM_ID: options
+    :END:
 
     A message in =*Messages*= like:
 
+    #+name: broken-link-message
     #+begin_example
       user-error: Unable to resolve link: nil
     #+end_example
@@ -1480,6 +1711,9 @@ Otherwise, start a new ghostel terminal."
     export process undetected.
 
 *** Backends
+    :PROPERTIES:
+    :CUSTOM_ID: backends
+    :END:
 
     #+begin_src emacs-lisp
       (require 'ox-md)
@@ -1492,6 +1726,9 @@ Otherwise, start a new ghostel terminal."
     #+end_src
 
 ** Publish
+   :PROPERTIES:
+   :CUSTOM_ID: publish
+   :END:
 
    #+begin_src emacs-lisp
      (setq org-publish-project-alist
@@ -1542,6 +1779,9 @@ Otherwise, start a new ghostel terminal."
    #+end_src
 
 ** Babel
+   :PROPERTIES:
+   :CUSTOM_ID: babel
+   :END:
 
    Define [[https://orgmode.org/worg/org-contrib/babel/languages/index.html][which languages]] =org-babel= should support.
 
@@ -1569,6 +1809,9 @@ Otherwise, start a new ghostel terminal."
    #+end_src
 
 ** TODO Items
+   :PROPERTIES:
+   :CUSTOM_ID: org-mode-todo-items
+   :END:
 
    Automatically insert a timestamp when a task is marked =DONE=.
 
@@ -1592,6 +1835,9 @@ Otherwise, start a new ghostel terminal."
    #+end_src
 
 ** Agenda
+   :PROPERTIES:
+   :CUSTOM_ID: agenda
+   :END:
 
    #+begin_src emacs-lisp
      (require 'face-remap)
@@ -1612,10 +1858,16 @@ Otherwise, start a new ghostel terminal."
    #+end_src
 
 *** Files
+    :PROPERTIES:
+    :CUSTOM_ID: files
+    :END:
 
    Defined in ~use-package org~ config to ensure ~org-directory~ is populated.
 
 *** Deadlines
+    :PROPERTIES:
+    :CUSTOM_ID: deadlines
+    :END:
 
    Non-nil means skip scheduling line if same entry shows because of deadline.
 
@@ -1631,6 +1883,9 @@ Otherwise, start a new ghostel terminal."
    #+end_src
 
 *** List
+    :PROPERTIES:
+    :CUSTOM_ID: list
+    :END:
 
    Default to showing only today in the agenda list.
 
@@ -1639,6 +1894,9 @@ Otherwise, start a new ghostel terminal."
    #+end_src
 
 ** Habit
+   :PROPERTIES:
+   :CUSTOM_ID: habit
+   :END:
 
    #+begin_src emacs-lisp
      (require 'org-habit)
@@ -1648,6 +1906,9 @@ Otherwise, start a new ghostel terminal."
    #+end_src
 
 ** Logging & Drawers
+   :PROPERTIES:
+   :CUSTOM_ID: logging-drawers
+   :END:
 
    Insert state change notes and time stamps into a drawer rather than simply
    "loose" after a headline.
@@ -1657,12 +1918,18 @@ Otherwise, start a new ghostel terminal."
    #+end_src
 
 ** Clock
+   :PROPERTIES:
+   :CUSTOM_ID: clock
+   :END:
 
    #+begin_src emacs-lisp
      (defvar org-clock-idle-time 5)
    #+end_src
 
 ** Superstar
+   :PROPERTIES:
+   :CUSTOM_ID: superstar
+   :END:
 
    Successor to =org-bullets=, [[https://github.com/integral-dw/org-superstar-mode][org-superstar-mode]].
 
@@ -1679,10 +1946,16 @@ Otherwise, start a new ghostel terminal."
    #+end_src
 
 ** TODO [0/1] Other Configuration
+   :PROPERTIES:
+   :CUSTOM_ID: other-configuration
+   :END:
 
    - [ ] https://github.com/minad/org-modern
 
 * paredit-mode
+  :PROPERTIES:
+  :CUSTOM_ID: paredit-mode
+  :END:
 
   #+begin_src emacs-lisp
     (use-package paredit
@@ -1700,6 +1973,9 @@ Otherwise, start a new ghostel terminal."
   #+end_src
 
 * prettify-symbols-mode
+  :PROPERTIES:
+  :CUSTOM_ID: prettify-symbols-mode
+  :END:
 
   Specific configuration for [[https://fsd.it/shop/fonts/pragmatapro/][PragmataPro]] from
   https://github.com/fabrizioschiavi/pragmatapro/tree/master/emacs_snippets.
@@ -1720,6 +1996,9 @@ Otherwise, start a new ghostel terminal."
   - https://unix.stackexchange.com/questions/247108/how-to-find-out-which-unicode-codepoints-are-defined-in-a-ttf-file
 
 * python
+  :PROPERTIES:
+  :CUSTOM_ID: python
+  :END:
 
   #+begin_src emacs-lisp
     (use-package python
@@ -1743,6 +2022,9 @@ Otherwise, start a new ghostel terminal."
   #+end_src
 
 * re-builder
+  :PROPERTIES:
+  :CUSTOM_ID: re-builder
+  :END:
 
   #+begin_src emacs-lisp
     (use-package re-builder
@@ -1751,6 +2033,9 @@ Otherwise, start a new ghostel terminal."
   #+end_src
 
 * recentf
+  :PROPERTIES:
+  :CUSTOM_ID: recentf
+  :END:
 
   #+begin_src emacs-lisp
     (require 'recentf)
@@ -1764,6 +2049,9 @@ Otherwise, start a new ghostel terminal."
   #+end_src
 
 * rust
+  :PROPERTIES:
+  :CUSTOM_ID: rust
+  :END:
 
   #+begin_src emacs-lisp
     (use-package flycheck-rust :ensure t)
@@ -1779,6 +2067,9 @@ Otherwise, start a new ghostel terminal."
   #+end_src
 
 * save-place-mode
+  :PROPERTIES:
+  :CUSTOM_ID: save-place-mode
+  :END:
 
   #+begin_src emacs-lisp
     (use-package emacs
@@ -1787,6 +2078,9 @@ Otherwise, start a new ghostel terminal."
   #+end_src
 
 * savehist
+  :PROPERTIES:
+  :CUSTOM_ID: savehist
+  :END:
 
   #+begin_src emacs-lisp
     (use-package savehist
@@ -1797,6 +2091,9 @@ Otherwise, start a new ghostel terminal."
   #+end_src
 
 * =*scratch*=
+  :PROPERTIES:
+  :CUSTOM_ID: scratch
+  :END:
 
   Begin with an empty =*scratch*= file.
 
@@ -1812,6 +2109,9 @@ Otherwise, start a new ghostel terminal."
   #+end_src
 
 ** Quickly create new scratch buffers
+   :PROPERTIES:
+   :CUSTOM_ID: quickly-create-new-scratch-buffers
+   :END:
 
    With a preset list of major modes that I find often need scratch
    pads for.
@@ -1847,6 +2147,9 @@ Otherwise, start a new ghostel terminal."
    #+end_src
 
 * sh-mode
+  :PROPERTIES:
+  :CUSTOM_ID: sh-mode
+  :END:
 
   #+begin_src emacs-lisp
     (use-package sh-script
@@ -1861,6 +2164,9 @@ Otherwise, start a new ghostel terminal."
   #+end_src
 
 * server
+  :PROPERTIES:
+  :CUSTOM_ID: server
+  :END:
 
   Start the Emacs server if it not already running.
 
@@ -1872,6 +2178,9 @@ Otherwise, start a new ghostel terminal."
   #+end_src
 
 * smex
+  :PROPERTIES:
+  :CUSTOM_ID: smex
+  :END:
 
   #+begin_src emacs-lisp
     (use-package smex
@@ -1882,6 +2191,9 @@ Otherwise, start a new ghostel terminal."
   #+end_src
 
 * sql-mode
+  :PROPERTIES:
+  :CUSTOM_ID: sql-mode
+  :END:
 
   #+begin_src emacs-lisp
     (use-package sql
@@ -1891,6 +2203,9 @@ Otherwise, start a new ghostel terminal."
   #+end_src
 
 * Theme
+  :PROPERTIES:
+  :CUSTOM_ID: theme
+  :END:
 
   Always highlight the current line:
 
@@ -1966,6 +2281,7 @@ Otherwise, start a new ghostel terminal."
   The following is a stupid hack to work around an error that was appearing during tab completion in the minibuffer
   from =corfu=:
 
+  #+name: corfu-face-inheritance-cycle
   #+begin_example
     Corfu failed to open completion popup frames in the minibuffer with the error:
 
@@ -2004,6 +2320,9 @@ Otherwise, start a new ghostel terminal."
   #+end_src
 
 * terraform-mode
+  :PROPERTIES:
+  :CUSTOM_ID: terraform-mode
+  :END:
 
   #+begin_src emacs-lisp
     (use-package terraform-mode
@@ -2012,6 +2331,9 @@ Otherwise, start a new ghostel terminal."
   #+end_src
 
 * text-mode
+  :PROPERTIES:
+  :CUSTOM_ID: text-mode
+  :END:
 
   #+begin_src emacs-lisp
     (use-package simple
@@ -2019,6 +2341,9 @@ Otherwise, start a new ghostel terminal."
   #+end_src
 
 * toml-mode
+  :PROPERTIES:
+  :CUSTOM_ID: toml-mode
+  :END:
 
   #+begin_src emacs-lisp
     (use-package toml-mode
@@ -2027,6 +2352,9 @@ Otherwise, start a new ghostel terminal."
   #+end_src
 
 * DONE Tree-sitter
+  :PROPERTIES:
+  :CUSTOM_ID: tree-sitter
+  :END:
   :LOGBOOK:
   - State "DONE"       from "STARTED"    [2026-07-23 Thu 21:23]
   - State "STARTED"    from "TODO"       [2024-01-08 Mon 09:20]
@@ -2081,6 +2409,9 @@ Otherwise, start a new ghostel terminal."
   #+end_src
 
 * TypeScript
+  :PROPERTIES:
+  :CUSTOM_ID: typescript
+  :END:
 
   #+begin_src emacs-lisp
     (use-package typescript-ts-mode
@@ -2091,6 +2422,9 @@ Otherwise, start a new ghostel terminal."
   #+end_src
 
 * uniquify
+  :PROPERTIES:
+  :CUSTOM_ID: uniquify
+  :END:
 
   Name multiple identical buffer names in a sensible manner.
 
@@ -2101,6 +2435,9 @@ Otherwise, start a new ghostel terminal."
   #+end_src
 
 * vertico
+  :PROPERTIES:
+  :CUSTOM_ID: vertico
+  :END:
 
   Since [[https://github.com/minad/vertico][vertico]] is meant to be plug & play, I'm bundling the extension configuration under this section, as well.
 
@@ -2114,6 +2451,9 @@ Otherwise, start a new ghostel terminal."
   #+end_src
 
 ** STARTED [1/3] Other Configuration & Extensions
+   :PROPERTIES:
+   :CUSTOM_ID: other-configuration-extensions
+   :END:
    :LOGBOOK:
    - State "STARTED"    from "TODO"       [2023-12-16 Sat 21:12]
    :END:
@@ -2123,6 +2463,9 @@ Otherwise, start a new ghostel terminal."
    - [X] [[https://github.com/minad/vertico/wiki#make-vertico-and-vertico-directory-behave-more-like-ivyido]]
 
 ** vertico-directory
+   :PROPERTIES:
+   :CUSTOM_ID: vertico-directory
+   :END:
 
    [[https://github.com/minad/vertico/blob/main/extensions/vertico-directory.el][vertico-directory]] is an extension which provides Ido-like directory navigation.  It is vendored in the =vertico=
    repo. so do not =:ensure t= here.
@@ -2139,6 +2482,9 @@ Otherwise, start a new ghostel terminal."
    #+end_src
 
 ** savehist
+   :PROPERTIES:
+   :CUSTOM_ID: vertico-savehist
+   :END:
 
    [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Save-History.html][savehist]] persists minibuffer history across sessions.
 
@@ -2149,6 +2495,9 @@ Otherwise, start a new ghostel terminal."
    #+end_src
 
 ** completion category overrides
+   :PROPERTIES:
+   :CUSTOM_ID: completion-category-overrides
+   :END:
 
    #+begin_src emacs-lisp
      (setq completion-category-defaults nil
@@ -2156,6 +2505,9 @@ Otherwise, start a new ghostel terminal."
    #+end_src
 
 ** orderless
+   :PROPERTIES:
+   :CUSTOM_ID: orderless
+   :END:
 
    [[https://github.com/oantolin/orderless][orderless]] is an alternative completion /style/ extension.
 
@@ -2167,10 +2519,16 @@ Otherwise, start a new ghostel terminal."
    #+end_src
 
 *** TODO [0/1] Other Configuration
+    :PROPERTIES:
+    :CUSTOM_ID: orderless-other-configuration
+    :END:
 
     - [ ] https://github.com/minad/consult/wiki#minads-orderless-configuration
 
 ** consult
+   :PROPERTIES:
+   :CUSTOM_ID: consult
+   :END:
 
    [[https://github.com/minad/consult][consult]] is a =completing-read= extension.
 
@@ -2192,6 +2550,9 @@ Otherwise, start a new ghostel terminal."
    #+end_src
 
 *** STARTED [1/2] Other Configuration
+    :PROPERTIES:
+    :CUSTOM_ID: consult-other-configuration
+    :END:
     :LOGBOOK:
     - State "STARTED"    from "TODO"       [2023-12-08 Fri 17:08]
     :END:
@@ -2200,6 +2561,9 @@ Otherwise, start a new ghostel terminal."
     - [X] https://github.com/minad/consult#org-mode
 
 ** corfu
+   :PROPERTIES:
+   :CUSTOM_ID: corfu
+   :END:
 
    [[https://github.com/minad/corfu][corfu]] is an in-buffer completion popup extension.
 
@@ -2220,6 +2584,9 @@ Otherwise, start a new ghostel terminal."
    #+end_src
 
 ** cape
+   :PROPERTIES:
+   :CUSTOM_ID: cape
+   :END:
 
    [[https://github.com/minad/cape][cape]] provides completion-at-point extensions for Corfu.
 
@@ -2233,6 +2600,9 @@ Otherwise, start a new ghostel terminal."
    #+end_src
 
 ** which-key
+   :PROPERTIES:
+   :CUSTOM_ID: vertico-which-key
+   :END:
 
    [[https://github.com/justbur/emacs-which-key][which-key]] displays popup keybinding assistance when a prefix key is pressed.
 
@@ -2246,12 +2616,18 @@ Otherwise, start a new ghostel terminal."
    #+end_src
 
 *** TODO [0/2] Other Configuration
+    :PROPERTIES:
+    :CUSTOM_ID: which-key-other-configuration
+    :END:
 
     - [ ] https://github.com/minad/corfu#orderless-completion
     - [ ] https://github.com/minad/corfu#alternatives particularly =consult-completion-in-region=:
       [[https://github.com/minad/consult#miscellaneous]] as an alternative to =corfu=
 
 ** marginalia
+   :PROPERTIES:
+   :CUSTOM_ID: marginalia
+   :END:
 
    [[https://github.com/minad/marginalia][marginalia]] is an extension that adds information as annotations in the minibuffer.
 
@@ -2264,10 +2640,16 @@ Otherwise, start a new ghostel terminal."
    #+end_src
 
 *** TODO [0/1] Other Configuration
+    :PROPERTIES:
+    :CUSTOM_ID: marginalia-other-configuration
+    :END:
 
     - [ ] https://github.com/minad/marginalia#adding-custom-annotators-or-classifiers
 
 * windmove
+  :PROPERTIES:
+  :CUSTOM_ID: windmove
+  :END:
 
   #+begin_src emacs-lisp
     (use-package windmove
@@ -2279,6 +2661,9 @@ Otherwise, start a new ghostel terminal."
   #+end_src
 
 * web-mode
+  :PROPERTIES:
+  :CUSTOM_ID: web-mode
+  :END:
 
   #+begin_src emacs-lisp
     (use-package elec-pair
@@ -2307,6 +2692,9 @@ Otherwise, start a new ghostel terminal."
   #+end_src
 
 * winner-mode
+  :PROPERTIES:
+  :CUSTOM_ID: winner-mode
+  :END:
 
   Remember window configurations.
 
@@ -2317,6 +2705,9 @@ Otherwise, start a new ghostel terminal."
   #+end_src
 
 * which-key
+  :PROPERTIES:
+  :CUSTOM_ID: which-key
+  :END:
 
   Display available key bindings in a popup buffer when typing prefix shortcuts.
 
@@ -2326,6 +2717,9 @@ Otherwise, start a new ghostel terminal."
   #+end_src
 
 * whitespace
+  :PROPERTIES:
+  :CUSTOM_ID: whitespace
+  :END:
 
   Take care of some whitespace issues.
 
@@ -2347,6 +2741,9 @@ Otherwise, start a new ghostel terminal."
   #+end_src
 
 * yaml-mode
+  :PROPERTIES:
+  :CUSTOM_ID: yaml-mode
+  :END:
 
   #+begin_src emacs-lisp
     (use-package flycheck-yamllint
@@ -2370,6 +2767,9 @@ Otherwise, start a new ghostel terminal."
   #+end_src
 
 * zig-mode
+  :PROPERTIES:
+  :CUSTOM_ID: zig-mode
+  :END:
 
   #+begin_src emacs-lisp
     (use-package zig-mode
