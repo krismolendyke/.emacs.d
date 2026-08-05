@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-08-05 Wed 16:43 -->
+<!-- 2026-08-05 Wed 17:37 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Literate =.emacs.d=</title>
@@ -3183,32 +3183,33 @@ which is written so that it can also be loaded by a bare <code>emacs --batch</co
 process.  That is what makes the <a href="#html-export">batch export</a> of <i>this</i> document fast.
 </p>
 
-<p>
-It only needs to be loaded once <code>ox-html</code> is in play, so wait for that
-rather than paying for <code>ox-html</code> and <code>htmlize</code> at every startup:
-</p>
-
 <div class="org-src-container">
-<pre class="src src-emacs-lisp"><code>(<span class="org-keyword">with-eval-after-load</span> 'ox-html
-  (<span class="org-keyword">require</span> '<span class="org-constant">k20e-org-html-export</span>))
+<pre class="src src-emacs-lisp"><code>(<span class="org-keyword">require</span> '<span class="org-constant">k20e-org-html-export</span>)
 </code></pre>
 </div>
 
 <p>
-Interactive customization can be done here.  These two settings live in
-<code>ox</code>, so they are applied when the export engine loads:
+Deferring that <code>require</code> behind <code>ox-html</code> looks like an easy startup win —
+<code>ox-html</code> and <code>htmlize</code> are only wanted at export time — but it does not
+buy anything.  Byte-compiling the tangled file evaluates the <code>require</code> in
+<code>ox-tufte</code>'s <code>use-package</code> expansion, and <code>ox-tufte</code> pulls in <code>ox</code>,
+<code>ox-html</code> and <code>htmlize</code> regardless.  Measured over three daemon startups
+each way, deferred and eager came out identical at 6.45s, so the simpler
+form wins.
+</p>
+
+<p>
+Interactive customization can be done here.  Loading the file above brings
+<code>ox</code> with it, so these are set directly:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-emacs-lisp"><code>(<span class="org-keyword">with-eval-after-load</span> 'ox
-  (<span class="org-keyword">defvar</span> <span class="org-variable-name">org-export-dispatch-use-expert-ui</span>)
-  (<span class="org-keyword">defvar</span> <span class="org-variable-name">org-export-with-broken-links</span>)
-  (<span class="org-keyword">setq</span>
-   <span class="org-comment-delimiter">;; </span><span class="org-comment">Enable "expert" export interface.
-</span>   org-export-dispatch-use-expert-ui t
+<pre class="src src-emacs-lisp"><code>(<span class="org-keyword">setq</span>
+ <span class="org-comment-delimiter">;; </span><span class="org-comment">Enable "expert" export interface.
+</span> org-export-dispatch-use-expert-ui t
 
-   <span class="org-comment-delimiter">;; </span><span class="org-comment">Continue export when links are broken, but mark them
-</span>   org-export-with-broken-links `mark))
+ <span class="org-comment-delimiter">;; </span><span class="org-comment">Continue export when links are broken, but mark them
+</span> org-export-with-broken-links `mark)
 </code></pre>
 </div>
 </div>
@@ -3248,20 +3249,13 @@ dispatcher; adding to <code>org-export-backends</code> after <code>org</code> ha
 does nothing, so the <code>require</code> is the part that matters.
 </p>
 
-<p>
-Both of these pull in <code>ox-html</code> — and <code>ox-tufte</code> alone accounts for well
-over a second of startup time — so hang them off <code>ox</code>, which loads the
-first time something is actually exported:
-</p>
-
 <div class="org-src-container">
-<pre class="src src-emacs-lisp"><code>(<span class="org-keyword">with-eval-after-load</span> 'ox
-  (<span class="org-keyword">require</span> '<span class="org-constant">ox-md</span>))
+<pre class="src src-emacs-lisp"><code>(<span class="org-keyword">require</span> '<span class="org-constant">ox-md</span>)
 </code></pre>
 </div>
 
 <div class="org-src-container">
-<pre class="src src-emacs-lisp"><code>(<span class="org-keyword">use-package</span> ox-tufte <span class="org-builtin">:ensure</span> t <span class="org-builtin">:after</span> ox)
+<pre class="src src-emacs-lisp"><code>(<span class="org-keyword">use-package</span> ox-tufte <span class="org-builtin">:ensure</span> t)
 </code></pre>
 </div>
 </div>
@@ -3271,10 +3265,10 @@ first time something is actually exported:
 <h3 id="publish">Publish</h3>
 <div class="outline-text-3" id="text-publish">
 <p>
-This is just data, so set it eagerly and let <code>ox-publish</code> pick it up
-whenever <code>org-publish</code> is first invoked — <code>defcustom</code> leaves an
-already-assigned value alone.  The <code>defvar</code> only tells the byte-compiler
-that the variable belongs to a library we have not loaded yet.
+This is just data, so set it and let <code>ox-publish</code> pick it up whenever
+<code>org-publish</code> is first invoked — <code>defcustom</code> leaves an already-assigned
+value alone.  The <code>defvar</code> keeps the byte-compiler quiet without having to
+<code>require</code> <code>ox-publish</code> here purely to declare one variable.
 </p>
 
 <div class="org-src-container">
@@ -4455,7 +4449,7 @@ Take care of some whitespace issues.
 </div>
 <div id="postamble" class="status">
 <p class="author">Kris Molendyke</p>
-<p class="date">2026-08-05 Wed 16:26</p>
+<p class="date">2026-08-05 Wed 17:35</p>
 <p class="creator"><a href="https://www.gnu.org/software/emacs/">Emacs</a> 31.0.91 (<a href="https://orgmode.org">Org</a> mode 9.8.7)</p>
 </div>
 </body>
