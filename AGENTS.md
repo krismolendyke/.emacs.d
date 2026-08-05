@@ -17,8 +17,9 @@ Understanding this order is required before editing anything:
 1. **`init.el`** (`k20e/…` bootstrap functions, run in sequence at the bottom of
    the file): disables tool/scroll/menu bars, adds `elisp/` to `load-path`, adds
    MELPA, runs `exec-path-from-shell` (which env vars get imported is listed
-   there), then `load`s **every** `.el` file in `elisp/`, then registers
-   `k20e/after-init-hook`.
+   there), then registers `k20e/after-init-hook`. It deliberately does **not**
+   load anything out of `elisp/` — putting the directory on `load-path` is all it
+   does, and each file is required by the `custom.org` section that owns it.
 2. **`after-init-hook`** → `k20e/load-custom-org` calls `org-babel-load-file` with
    `COMPILE` on **every** root-level `*.org` file: tangles all `emacs-lisp`
    blocks into `custom.el`, byte-compiles to `custom.elc`, loads it.
@@ -35,10 +36,14 @@ Consequences that matter:
   variable" on a package's own defcustoms is a bare `(defvar foo)` inside
   `:init` or inside `with-eval-after-load`, before the `setq` (see the `gcmh`
   and native-comp blocks, and commits `925e3ce` / `ebbc1f8`).
-- Everything in `elisp/` loads unconditionally and alphabetically, so both
-  `pragmatapro-prettify-symbols-v0.829.el` and `v0.830.el` are loaded; the
-  *active* one is chosen by an explicit `load` in the `prettify-symbols-mode`
-  block of `custom.org`.
+- Export machinery is loaded lazily and should stay that way. `ox-tufte`, `ox-md`
+  and `ox-html` between them cost well over a second of startup, so they hang off
+  `with-eval-after-load` / `use-package :after ox` in the *Export* and *Backends*
+  sections. Adding a bare `(require 'ox-…)` anywhere reintroduces the whole tax.
+- `elisp/k20e-org-html-export.el` is required from `(with-eval-after-load
+  'ox-html …)`, and `pragmatapro-prettify-symbols-v0.830.el` is `load`ed
+  explicitly by the *prettify-symbols-mode* section. Anything new in `elisp/`
+  needs its own explicit require — dropping a file there does nothing on its own.
 - `.emacs-custom.el` is `custom-file` and is gitignored. Customize-written
   settings land there and are invisible to the published document — prefer
   explicit blocks in `custom.org`.
@@ -62,6 +67,14 @@ Consequences that matter:
 - TODO keywords in headings are real worklist state (`* TODO combobulate`,
   `** STARTED [1/3] …`) and are exported to the site. Don't strip or
   "clean up" them incidentally.
+- **Every heading carries a `:CUSTOM_ID:`, and new headings need one too.** With
+  `org-html-prefer-user-labels`, those become the published page's HTML anchors,
+  so they are permanent URLs: pick a slug from the heading text (lowercased,
+  hyphenated, markup and TODO keywords stripped) and never rename an existing
+  one. Prefix with the parent's slug to break ties, as in
+  `orderless-other-configuration`. Non-heading elements that need an anchor get a
+  `#+name:` instead — the epigraph and the three `#+begin_example` blocks have
+  one so the export stays byte-for-byte stable.
 
 ## Commands
 
@@ -101,10 +114,13 @@ change end to end, restart Emacs (or `emacs --debug-init`) and read `*Warnings*`
   `index.html` and deploys Pages on every push to `master`. Commits that only
   regenerate the HTML are conventionally titled `publish`, separate from the
   content commit that changed `custom.org`.
-- `custom.org` still documents a `.git/hooks/post-commit` hook that exported the
-  HTML and committed it to a `gh-pages` branch. **That hook is not installed and
-  there is no `gh-pages` branch** — the Actions workflow replaced it, and
-  regeneration is now manual. Treat that section as historical.
+- Regeneration is **manual** — no hook, no CI export. Nothing warns you when
+  `custom.html` drifts from `custom.org`, so re-export before publishing.
+- The export is deterministic: two exports of an unchanged `custom.org` differ
+  only in the postamble timestamp. If a publish diff is larger than the content
+  you changed, something has regressed — most likely a heading without a
+  `:CUSTOM_ID:`, or a `:exports both` block missing `:eval never-export` and
+  re-running against the local machine.
 - Export settings live in `elisp/k20e-org-html-export.el`, which must stay
   loadable in a bare batch Emacs (it bootstraps `use-package`/`org`/`htmlize`
   itself and must not depend on `custom.org`).
@@ -115,18 +131,13 @@ change end to end, restart Emacs (or `emacs --debug-init`) and read `*Warnings*`
 
 ## Other layout notes
 
-- `elisp/` — hand-written Lisp, loaded wholesale at init (see caveat above).
-- `snippets/` — tracked yasnippet files, but yasnippet is no longer configured
-  anywhere; vestigial.
-- `site-lisp/` — gone from disk, but the four `site-lisp/*` paths are **still
-  committed on `master` as submodule gitlinks** (mode `160000`); `8697b30`
-  dropped `.gitmodules` and the checkouts without removing the tree entries.
-  `git status` therefore reports them as unstaged deletions forever, while
-  `jj st` looks clean because jj cannot represent submodules and ignores those
-  paths. Nothing loads from there, and the Pages workflow checks out with
-  `submodules: false`, so this is cosmetic — but don't be misled by the
-  disagreement between the two tools, and clearing it needs a real
-  `git rm --cached site-lisp/*` commit.
+- `elisp/` — hand-written Lisp, on `load-path` but never loaded implicitly (see
+  above). Currently the export module and one PragmataPro symbol table.
+- `site-lisp/` and `snippets/` are gone; the old submodules and the unused
+  yasnippet files were removed. If a stray `160000` gitlink ever reappears, note
+  that jj cannot represent submodules — `git status` will report a permanent
+  unstaged deletion while `jj st` looks clean, and `jj file untrack <path>` is
+  what clears it.
 - Runtime/state directories (`elpa/`, `eln-cache/`, `tree-sitter/`, `backup/`,
   `org-persist/`, `eca/`, `transient/`, `auto-save-list/`, `tramp`) are
   gitignored generated state — don't commit or hand-edit them.
