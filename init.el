@@ -72,11 +72,13 @@ Only turn off the menu bar running in a terminal window."
     (when (memq window-system '(mac ns x))
       (exec-path-from-shell-initialize))))
 
-(defun k20e/load-custom-elisp ()
-  "Load custom Emacs Lisp files in `k20e/elisp-directory'."
-  (dolist (file (directory-files k20e/elisp-directory t "\\.el$"))
-    (when (file-regular-p file)
-      (load file))))
+;; Nothing in `k20e/elisp-directory' is loaded here on purpose.  Sweeping the
+;; whole directory used to load every file in it, which meant loading *all*
+;; PragmataPro symbol tables even though only one is wanted, and dragging
+;; `org', `ox-html' and `htmlize' into every startup for the sake of export
+;; settings that are only needed once something is actually exported.  Each
+;; file is now required from the section of custom.org that owns it, and
+;; `k20e/elisp-directory' being on `load-path' is what makes that work.
 
 (defun k20e/load-custom-org ()
   "Load custom Org Mode configuration."
@@ -122,7 +124,6 @@ Only turn off the menu bar running in a terminal window."
 (k20e/setup-load-path)
 (k20e/setup-use-package)
 (k20e/setup-exec-path)
-(k20e/load-custom-elisp)
 (add-hook 'after-init-hook 'k20e/after-init-hook)
 
 ;;; init.el ends here

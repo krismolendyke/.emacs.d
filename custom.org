@@ -1666,26 +1666,31 @@ Otherwise, start a new ghostel terminal."
    - https://github.com/Zilong-Li/org-tufte
    - https://github.com/dakrone/ox-tufte
 
-   Most non-interactive export settings are defined in [[https://github.com/krismolendyke/.emacs.d/blob/master/elisp/k20e-org-html-export.el][a file loaded
-   during initialization]].  Those settings are defined during
-   initialization time to support a fast batch process for exporting
-   /this/ document to HTML in a Git =post-commit= hook.
+   Most non-interactive export settings are defined in [[https://github.com/krismolendyke/.emacs.d/blob/master/elisp/k20e-org-html-export.el][=elisp/k20e-org-html-export.el=]],
+   which is written so that it can also be loaded by a bare =emacs --batch=
+   process.  That is what makes the [[#how-this-works][batch export]] of /this/ document fast.
+
+   It only needs to be loaded once =ox-html= is in play, so wait for that
+   rather than paying for =ox-html= and =htmlize= at every startup:
 
    #+begin_src emacs-lisp
-     (require 'k20e-org-html-export)
+     (with-eval-after-load 'ox-html
+       (require 'k20e-org-html-export))
    #+end_src
 
-   Interactive customization can be done here.
+   Interactive customization can be done here.  These two settings live in
+   =ox=, so they are applied when the export engine loads:
 
    #+begin_src emacs-lisp
-     (require 'ox-publish)
+     (with-eval-after-load 'ox
+       (defvar org-export-dispatch-use-expert-ui)
+       (defvar org-export-with-broken-links)
+       (setq
+        ;; Enable "expert" export interface.
+        org-export-dispatch-use-expert-ui t
 
-     (setq
-      ;; Enable "expert" export interface.
-      org-export-dispatch-use-expert-ui t
-
-      ;; Continue export when links are broken, but mark them
-      org-export-with-broken-links `mark)
+        ;; Continue export when links are broken, but mark them
+        org-export-with-broken-links `mark))
    #+end_src
 
 *** Options
@@ -1715,14 +1720,21 @@ Otherwise, start a new ghostel terminal."
     :CUSTOM_ID: backends
     :END:
 
-    #+begin_src emacs-lisp
-      (require 'ox-md)
+    Extra backends have to be =require='d to register themselves with the export
+    dispatcher; adding to =org-export-backends= after =org= has already loaded
+    does nothing, so the =require= is the part that matters.
 
-      (add-to-list 'org-export-backends 'md)
+    Both of these pull in =ox-html= — and =ox-tufte= alone accounts for well
+    over a second of startup time — so hang them off =ox=, which loads the
+    first time something is actually exported:
+
+    #+begin_src emacs-lisp
+      (with-eval-after-load 'ox
+        (require 'ox-md))
     #+end_src
 
     #+begin_src emacs-lisp
-      (use-package ox-tufte :ensure t)
+      (use-package ox-tufte :ensure t :after ox)
     #+end_src
 
 ** Publish
@@ -1730,7 +1742,14 @@ Otherwise, start a new ghostel terminal."
    :CUSTOM_ID: publish
    :END:
 
+   This is just data, so set it eagerly and let =ox-publish= pick it up
+   whenever =org-publish= is first invoked — =defcustom= leaves an
+   already-assigned value alone.  The =defvar= only tells the byte-compiler
+   that the variable belongs to a library we have not loaded yet.
+
    #+begin_src emacs-lisp
+     (defvar org-publish-project-alist)
+
      (setq org-publish-project-alist
            `(("k20e.com-org-files"
               :base-directory ,(expand-file-name "source" (expand-file-name "k20e.com" k20e/google-drive-directory))
