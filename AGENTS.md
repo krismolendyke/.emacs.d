@@ -40,10 +40,12 @@ Consequences that matter:
   and `ox-html` between them cost well over a second of startup, so they hang off
   `with-eval-after-load` / `use-package :after ox` in the *Export* and *Backends*
   sections. Adding a bare `(require 'ox-…)` anywhere reintroduces the whole tax.
-- `elisp/k20e-org-html-export.el` is required from `(with-eval-after-load
-  'ox-html …)`, and `pragmatapro-prettify-symbols-v0.830.el` is `load`ed
-  explicitly by the *prettify-symbols-mode* section. Anything new in `elisp/`
-  needs its own explicit require — dropping a file there does nothing on its own.
+- `elisp/k20e-org-html-export.el` is required directly by the *Export* section
+  in `custom.org` (benchmarked in commit `423`; deferring behind `ox-html` bought
+  no startup win due to `ox-tufte`), and `pragmatapro-prettify-symbols-v0.830.el`
+  is `load`ed explicitly by the *prettify-symbols-mode* section. Anything new in
+  `elisp/` needs its own explicit require — dropping a file there does nothing on
+  its own.
 - `.emacs-custom.el` is `custom-file` and is gitignored. Customize-written
   settings land there and are invisible to the published document — prefer
   explicit blocks in `custom.org`.
