@@ -2394,6 +2394,10 @@ Otherwise, start a new ghostel terminal."
     (declare-function global-treesit-auto-mode "treesit-auto")
     (declare-function treesit-auto-install-all "treesit-auto")
 
+    (use-package nu-ts-mode
+      :ensure t
+      :mode "\\.nu\\'")
+
     (use-package treesit-auto
       :ensure t
       :custom
@@ -2405,6 +2409,7 @@ Otherwise, start a new ghostel terminal."
          javascript
          jsdoc
          just
+         nu
          templ
          tsx
          typescript))
@@ -2412,6 +2417,7 @@ Otherwise, start a new ghostel terminal."
       ;; Only languages with no built-in treesit-auto recipe need a URL here.
       (dolist (recipe '((jsdoc "https://github.com/tree-sitter/tree-sitter-jsdoc")
                         (just  "https://github.com/casey/tree-sitter-just")
+                        (nu    "https://github.com/nushell/tree-sitter-nu")
                         (templ "https://github.com/vrischmann/tree-sitter-templ")))
         (add-to-list 'treesit-language-source-alist recipe))
 
@@ -2420,11 +2426,16 @@ Otherwise, start a new ghostel terminal."
                             :lang 'just :ts-mode 'just-ts-mode
                             :url "https://github.com/casey/tree-sitter-just"
                             :ext "\\(?:[jJ][uU][sS][tT][fF][iI][lL][eE]\\|\\.just\\)\\'"))
+            (nu-recipe    (make-treesit-auto-recipe
+                            :lang 'nu :ts-mode 'nu-ts-mode
+                            :url "https://github.com/nushell/tree-sitter-nu"
+                            :ext "\\.nu\\'"))
             (templ-recipe (make-treesit-auto-recipe
                             :lang 'templ :ts-mode 'templ-ts-mode
                             :url "https://github.com/vrischmann/tree-sitter-templ"
                             :ext "\\.templ\\'")))
         (add-to-list 'treesit-auto-recipe-list just-recipe)
+        (add-to-list 'treesit-auto-recipe-list nu-recipe)
         (add-to-list 'treesit-auto-recipe-list templ-recipe))
 
       (treesit-auto-install-all)
