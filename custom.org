@@ -2396,7 +2396,10 @@ Otherwise, start a new ghostel terminal."
 
     (use-package nu-ts-mode
       :ensure t
-      :mode "\\.nu\\'")
+      :mode "\\.nu\\'"
+      :config
+      (with-eval-after-load 'org
+        (add-to-list 'org-src-lang-modes '("nu" . nu-ts))))
 
     (use-package treesit-auto
       :ensure t
