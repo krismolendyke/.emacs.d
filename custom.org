@@ -1145,38 +1145,6 @@ Otherwise, start a new ghostel terminal."
                                       ("go.inlayHints.rangeVariableTypes" t t))))
   #+end_src
 
-** Tree Sitter
-   :PROPERTIES:
-   :CUSTOM_ID: go-mode-tree-sitter
-   :END:
-
-   Tree sitter for Go is installed with defaults.
-
-*** =go.mod=
-    :PROPERTIES:
-    :CUSTOM_ID: go-mod
-    :END:
-
-    - Language: =gomod=
-    - Repository: https://github.com/camdencheek/tree-sitter-go-mod
-
-*** [[https://templ.guide/][templ]]
-    :PROPERTIES:
-    :CUSTOM_ID: templ
-    :END:
-
-    - Language: =templ=
-    - Repository: https://github.com/vrischmann/tree-sitter-templ
-
-** [0/3] =TODO=
-   :PROPERTIES:
-   :CUSTOM_ID: go-mode-todo
-   :END:
-
-   - [ ] Steal some of these https://github.com/dominikh/yasnippet-go
-   - [ ] https://github.com/nlamirault/gotest.el
-   - [ ] https://github.com/alecthomas/gometalinter
-
 * highlight-indent-guides
   :PROPERTIES:
   :CUSTOM_ID: highlight-indent-guides
