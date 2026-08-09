@@ -2580,6 +2580,12 @@ Otherwise, start a new ghostel terminal."
        (corfu-auto t)
        (corfu-auto-delay 0.2)
        (corfu-auto-prefix 2)
+       :custom-face
+       ;; `corfu-default' is remapped onto the popup buffer's `default' face, so
+       ;; it controls the popup's font as well as its background.
+       (corfu-default ((t (:inherit default :height 0.9))))
+       (corfu-current ((t (:background "#3a3a3a"))))
+       (corfu-border ((t (:background "#505050"))))
        :init
        (global-corfu-mode)
        (corfu-popupinfo-mode 1))
