@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-08-07 Fri 16:38 -->
+<!-- 2026-08-08 Sat 22:38 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Literate =.emacs.d=</title>
@@ -1291,12 +1291,7 @@ function.
 <li><a href="#geiser">geiser</a></li>
 <li><a href="#ghostel">ghostel</a></li>
 <li><a href="#git">git</a></li>
-<li><a href="#go-mode">go-mode</a>
-<ul>
-<li><a href="#go-mode-tree-sitter">Tree Sitter</a></li>
-<li><a href="#go-mode-todo"><code>[0/3]</code> <code>TODO</code></a></li>
-</ul>
-</li>
+<li><a href="#go-mode">go-mode</a></li>
 <li><a href="#highlight-indent-guides">highlight-indent-guides</a></li>
 <li><a href="#highlight-parentheses">highlight-parentheses</a></li>
 <li><a href="#htmlize">htmlize</a></li>
@@ -2612,42 +2607,6 @@ Install commands:
                                   (<span class="org-string">"go.inlayHints.parameterNames"</span> t t)
                                   (<span class="org-string">"go.inlayHints.rangeVariableTypes"</span> t t))))
 </code></pre>
-</div>
-</div>
-<div id="outline-container-go-mode-tree-sitter" class="outline-3">
-<h3 id="go-mode-tree-sitter">Tree Sitter</h3>
-<div class="outline-text-3" id="text-go-mode-tree-sitter">
-<p>
-Tree sitter for Go is installed with defaults.
-</p>
-</div>
-<div id="outline-container-go-mod" class="outline-4">
-<h4 id="go-mod"><code>go.mod</code></h4>
-<div class="outline-text-4" id="text-go-mod">
-<ul class="org-ul">
-<li>Language: <code>gomod</code></li>
-<li>Repository: <a href="https://github.com/camdencheek/tree-sitter-go-mod">https://github.com/camdencheek/tree-sitter-go-mod</a></li>
-</ul>
-</div>
-</div>
-<div id="outline-container-templ" class="outline-4">
-<h4 id="templ"><a href="https://templ.guide/">templ</a></h4>
-<div class="outline-text-4" id="text-templ">
-<ul class="org-ul">
-<li>Language: <code>templ</code></li>
-<li>Repository: <a href="https://github.com/vrischmann/tree-sitter-templ">https://github.com/vrischmann/tree-sitter-templ</a></li>
-</ul>
-</div>
-</div>
-</div>
-<div id="outline-container-go-mode-todo" class="outline-3">
-<h3 id="go-mode-todo"><code>[0/3]</code> <code>TODO</code></h3>
-<div class="outline-text-3" id="text-go-mode-todo">
-<ul class="org-ul">
-<li class="off"><code>[&nbsp;]</code> Steal some of these <a href="https://github.com/dominikh/yasnippet-go">https://github.com/dominikh/yasnippet-go</a></li>
-<li class="off"><code>[&nbsp;]</code> <a href="https://github.com/nlamirault/gotest.el">https://github.com/nlamirault/gotest.el</a></li>
-<li class="off"><code>[&nbsp;]</code> <a href="https://github.com/alecthomas/gometalinter">https://github.com/alecthomas/gometalinter</a></li>
-</ul>
 </div>
 </div>
 </div>
@@ -4208,6 +4167,12 @@ repo. so do not <code>:ensure t</code> here.
   (corfu-auto t)
   (corfu-auto-delay 0.2)
   (corfu-auto-prefix 2)
+  <span class="org-builtin">:custom-face</span>
+  <span class="org-comment-delimiter">;; </span><span class="org-comment">`</span><span class="org-comment"><span class="org-constant">corfu-default</span></span><span class="org-comment">' is remapped onto the popup buffer's `</span><span class="org-comment"><span class="org-constant">default</span></span><span class="org-comment">' face, so
+</span>  <span class="org-comment-delimiter">;; </span><span class="org-comment">it controls the popup's font as well as its background.
+</span>  (corfu-default ((t (<span class="org-builtin">:inherit</span> default <span class="org-builtin">:height</span> 0.9))))
+  (corfu-current ((t (<span class="org-builtin">:background</span> <span class="org-string">"#3a3a3a"</span>))))
+  (corfu-border ((t (<span class="org-builtin">:background</span> <span class="org-string">"#505050"</span>))))
   <span class="org-builtin">:init</span>
   (global-corfu-mode)
   (corfu-popupinfo-mode 1))
@@ -4463,7 +4428,7 @@ Take care of some whitespace issues.
 </div>
 <div id="postamble" class="status">
 <p class="author">Kris Molendyke</p>
-<p class="date">2026-08-07 Fri 16:34</p>
+<p class="date">2026-08-08 Sat 22:35</p>
 <p class="creator"><a href="https://www.gnu.org/software/emacs/">Emacs</a> 31.0.91 (<a href="https://orgmode.org">Org</a> mode 9.8.8)</p>
 </div>
 </body>
