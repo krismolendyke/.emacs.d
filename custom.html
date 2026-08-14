@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-08-08 Sat 22:38 -->
+<!-- 2026-08-14 Fri 14:50 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Literate =.emacs.d=</title>
@@ -1299,7 +1299,6 @@ function.
 <li><a href="#ielm">IELM</a></li>
 <li><a href="#imenu">imenu</a></li>
 <li><a href="#js">js</a></li>
-<li><a href="#just">Just</a></li>
 <li><a href="#latex">LaTeX</a></li>
 <li><a href="#ligature-pragmatapro">ligature-pragmatapro</a></li>
 <li><a href="#lockfiles">lockfiles</a></li>
@@ -2714,16 +2713,6 @@ Re-scan the buffer for new menu items automatically.
 </div>
 </div>
 </div>
-<div id="outline-container-just" class="outline-2">
-<h2 id="just"><a href="https://just.systems">Just</a></h2>
-<div class="outline-text-2" id="text-just">
-<div class="org-src-container">
-<pre class="src src-emacs-lisp"><code>(<span class="org-keyword">use-package</span> just-ts-mode
-  <span class="org-builtin">:ensure</span> t)
-</code></pre>
-</div>
-</div>
-</div>
 <div id="outline-container-latex" class="outline-2">
 <h2 id="latex">LaTeX</h2>
 <div class="outline-text-2" id="text-latex">
@@ -3939,6 +3928,10 @@ variants.
 <pre class="src src-emacs-lisp"><code>(<span class="org-keyword">declare-function</span> global-treesit-auto-mode <span class="org-string">"treesit-auto"</span>)
 (<span class="org-keyword">declare-function</span> treesit-auto-install-all <span class="org-string">"treesit-auto"</span>)
 
+(<span class="org-keyword">use-package</span> just-ts-mode
+  <span class="org-builtin">:ensure</span> t
+  <span class="org-builtin">:mode</span> <span class="org-string">"</span><span class="org-string"><span class="org-regexp-grouping-backslash">\\</span></span><span class="org-string"><span class="org-regexp-grouping-construct">(?:</span></span><span class="org-string">[jJ][uU][sS][tT][fF][iI][lL][eE]</span><span class="org-string"><span class="org-regexp-grouping-backslash">\\</span></span><span class="org-string"><span class="org-regexp-grouping-construct">|</span></span><span class="org-string">\\.just</span><span class="org-string"><span class="org-regexp-grouping-backslash">\\</span></span><span class="org-string"><span class="org-regexp-grouping-construct">)</span></span><span class="org-string">\\'"</span>)
+
 (<span class="org-keyword">use-package</span> nu-ts-mode
   <span class="org-builtin">:ensure</span> t
   <span class="org-builtin">:mode</span> <span class="org-string">"\\.nu\\'"</span>
@@ -3972,12 +3965,10 @@ variants.
   <span class="org-comment-delimiter">;; </span><span class="org-comment">Only languages with no built-in ts-mode/extension mapping need a recipe.
 </span>  (<span class="org-keyword">let</span> ((just-recipe  (make-treesit-auto-recipe
                         <span class="org-builtin">:lang</span> 'just <span class="org-builtin">:ts-mode</span> 'just-ts-mode
-                        <span class="org-builtin">:url</span> <span class="org-string">"https://github.com/casey/tree-sitter-just"</span>
-                        <span class="org-builtin">:ext</span> <span class="org-string">"</span><span class="org-string"><span class="org-regexp-grouping-backslash">\\</span></span><span class="org-string"><span class="org-regexp-grouping-construct">(?:</span></span><span class="org-string">[jJ][uU][sS][tT][fF][iI][lL][eE]</span><span class="org-string"><span class="org-regexp-grouping-backslash">\\</span></span><span class="org-string"><span class="org-regexp-grouping-construct">|</span></span><span class="org-string">\\.just</span><span class="org-string"><span class="org-regexp-grouping-backslash">\\</span></span><span class="org-string"><span class="org-regexp-grouping-construct">)</span></span><span class="org-string">\\'"</span>))
+                        <span class="org-builtin">:url</span> <span class="org-string">"https://github.com/casey/tree-sitter-just"</span>))
         (nu-recipe    (make-treesit-auto-recipe
                         <span class="org-builtin">:lang</span> 'nu <span class="org-builtin">:ts-mode</span> 'nu-ts-mode
-                        <span class="org-builtin">:url</span> <span class="org-string">"https://github.com/nushell/tree-sitter-nu"</span>
-                        <span class="org-builtin">:ext</span> <span class="org-string">"\\.nu\\'"</span>))
+                        <span class="org-builtin">:url</span> <span class="org-string">"https://github.com/nushell/tree-sitter-nu"</span>))
         (templ-recipe (make-treesit-auto-recipe
                         <span class="org-builtin">:lang</span> 'templ <span class="org-builtin">:ts-mode</span> 'templ-ts-mode
                         <span class="org-builtin">:url</span> <span class="org-string">"https://github.com/vrischmann/tree-sitter-templ"</span>
@@ -4428,8 +4419,8 @@ Take care of some whitespace issues.
 </div>
 <div id="postamble" class="status">
 <p class="author">Kris Molendyke</p>
-<p class="date">2026-08-08 Sat 22:35</p>
-<p class="creator"><a href="https://www.gnu.org/software/emacs/">Emacs</a> 31.0.91 (<a href="https://orgmode.org">Org</a> mode 9.8.8)</p>
+<p class="date">2026-08-14 Fri 14:49</p>
+<p class="creator"><a href="https://www.gnu.org/software/emacs/">Emacs</a> 31.0.91 (<a href="https://orgmode.org">Org</a> mode 9.8.7)</p>
 </div>
 </body>
 </html>
