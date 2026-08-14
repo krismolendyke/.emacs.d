@@ -1247,16 +1247,6 @@ Otherwise, start a new ghostel terminal."
       :hook ((js-mode . flycheck-mode)))
   #+end_src
 
-* [[https://just.systems][Just]]
-  :PROPERTIES:
-  :CUSTOM_ID: just
-  :END:
-
-  #+begin_src emacs-lisp
-    (use-package just-ts-mode
-      :ensure t)
-  #+end_src
-
 * LaTeX
   :PROPERTIES:
   :CUSTOM_ID: latex
@@ -2362,6 +2352,10 @@ Otherwise, start a new ghostel terminal."
     (declare-function global-treesit-auto-mode "treesit-auto")
     (declare-function treesit-auto-install-all "treesit-auto")
 
+    (use-package just-ts-mode
+      :ensure t
+      :mode "\\(?:[jJ][uU][sS][tT][fF][iI][lL][eE]\\|\\.just\\)\\'")
+
     (use-package nu-ts-mode
       :ensure t
       :mode "\\.nu\\'"
@@ -2395,12 +2389,10 @@ Otherwise, start a new ghostel terminal."
       ;; Only languages with no built-in ts-mode/extension mapping need a recipe.
       (let ((just-recipe  (make-treesit-auto-recipe
                             :lang 'just :ts-mode 'just-ts-mode
-                            :url "https://github.com/casey/tree-sitter-just"
-                            :ext "\\(?:[jJ][uU][sS][tT][fF][iI][lL][eE]\\|\\.just\\)\\'"))
+                            :url "https://github.com/casey/tree-sitter-just"))
             (nu-recipe    (make-treesit-auto-recipe
                             :lang 'nu :ts-mode 'nu-ts-mode
-                            :url "https://github.com/nushell/tree-sitter-nu"
-                            :ext "\\.nu\\'"))
+                            :url "https://github.com/nushell/tree-sitter-nu"))
             (templ-recipe (make-treesit-auto-recipe
                             :lang 'templ :ts-mode 'templ-ts-mode
                             :url "https://github.com/vrischmann/tree-sitter-templ"
