@@ -274,7 +274,6 @@ function.
      (global-set-key (kbd "H-t") 'toggle-frame-fullscreen)
      (global-set-key (kbd "M-+") 'text-scale-adjust)
      (global-set-key (kbd "M-.") 'imenu)
-     (global-set-key (kbd "M-/") 'hippie-expand)
      (global-set-key (kbd "M-`") 'other-window)
      (global-set-key (kbd "M-h") 'backward-kill-word)
      (global-set-key (kbd "M-t") 'transpose-words)
@@ -2563,6 +2562,9 @@ Otherwise, start a new ghostel terminal."
    :END:
 
    [[https://github.com/minad/corfu][corfu]] is an in-buffer completion popup extension.
+   Auto-completion is disabled in =text-mode= (and derived modes like =org-mode=)
+   to prevent distracting popups during prose writing; completion can still be
+   triggered explicitly on demand with =M-/= or =C-M-i=.
 
    #+begin_src emacs-lisp
      (use-package corfu
@@ -2572,12 +2574,17 @@ Otherwise, start a new ghostel terminal."
        (corfu-auto t)
        (corfu-auto-delay 0.2)
        (corfu-auto-prefix 2)
+       (corfu-quit-no-match t)
+       (corfu-quit-at-boundary 'separator)
        :custom-face
        ;; `corfu-default' is remapped onto the popup buffer's `default' face, so
        ;; it controls the popup's font as well as its background.
        (corfu-default ((t (:inherit default :height 0.9))))
        (corfu-current ((t (:background "#3a3a3a"))))
        (corfu-border ((t (:background "#505050"))))
+       :hook ((text-mode . (lambda () (setq-local corfu-auto nil))))
+       :bind (:map corfu-map
+                   ("M-SPC" . corfu-insert-separator))
        :init
        (global-corfu-mode)
        (corfu-popupinfo-mode 1))
@@ -2592,14 +2599,25 @@ Otherwise, start a new ghostel terminal."
    :END:
 
    [[https://github.com/minad/cape][cape]] provides completion-at-point extensions for Corfu.
+   Buffer-word (=cape-dabbrev=) and syntax keyword (=cape-keyword=) capfs are
+   scoped to =prog-mode= to keep prose buffers clean, with =cape-dabbrev= bound
+   to =M-/= for on-demand word completion anywhere.
 
    #+begin_src emacs-lisp
      (use-package cape
        :ensure t
+       :bind (("M-/"     . cape-dabbrev)
+              ("C-c p p" . completion-at-point)
+              ("C-c p d" . cape-dabbrev)
+              ("C-c p f" . cape-file)
+              ("C-c p k" . cape-keyword)
+              ("C-c p s" . cape-elisp-symbol))
        :init
        (add-to-list 'completion-at-point-functions #'cape-file)
-       (add-to-list 'completion-at-point-functions #'cape-dabbrev)
-       (add-to-list 'completion-at-point-functions #'cape-keyword))
+       (add-hook 'prog-mode-hook
+                 (lambda ()
+                   (add-to-list 'completion-at-point-functions #'cape-dabbrev 80)
+                   (add-to-list 'completion-at-point-functions #'cape-keyword 90))))
    #+end_src
 
 ** which-key
