@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-08-16 Sun 22:02 -->
+<!-- 2026-08-27 Thu 11:08 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Literate =.emacs.d=</title>
@@ -1358,7 +1358,7 @@ function.
 <li><a href="#uniquify">uniquify</a></li>
 <li><a href="#vertico">vertico</a>
 <ul>
-<li><a href="#other-configuration-extensions"><span class="todo STARTED">STARTED</span> <code>[1/3]</code> Other Configuration &amp; Extensions</a></li>
+<li><a href="#other-configuration-extensions">STARTED <code>[1/3]</code> Other Configuration &amp; Extensions</a></li>
 <li><a href="#vertico-directory">vertico-directory</a></li>
 <li><a href="#vertico-savehist">savehist</a></li>
 <li><a href="#completion-category-overrides">completion category overrides</a></li>
@@ -1667,7 +1667,6 @@ only be done by editing a default <i>and restarting</i>.
 (global-set-key (kbd <span class="org-string">"H-t"</span>) 'toggle-frame-fullscreen)
 (global-set-key (kbd <span class="org-string">"M-+"</span>) 'text-scale-adjust)
 (global-set-key (kbd <span class="org-string">"M-."</span>) 'imenu)
-(global-set-key (kbd <span class="org-string">"M-/"</span>) 'hippie-expand)
 (global-set-key (kbd <span class="org-string">"M-`"</span>) 'other-window)
 (global-set-key (kbd <span class="org-string">"M-h"</span>) 'backward-kill-word)
 (global-set-key (kbd <span class="org-string">"M-t"</span>) 'transpose-words)
@@ -4029,7 +4028,7 @@ Since <a href="https://github.com/minad/vertico">vertico</a> is meant to be plug
 </div>
 </div>
 <div id="outline-container-other-configuration-extensions" class="outline-3">
-<h3 id="other-configuration-extensions"><span class="todo STARTED">STARTED</span> <code>[1/3]</code> Other Configuration &amp; Extensions</h3>
+<h3 id="other-configuration-extensions">STARTED <code>[1/3]</code> Other Configuration &amp; Extensions</h3>
 <div class="outline-text-3" id="text-other-configuration-extensions">
 <ul class="org-ul">
 <li class="off"><code>[&nbsp;]</code> <a href="https://github.com/minad/vertico#extensions">https://github.com/minad/vertico#extensions</a></li>
@@ -4134,7 +4133,7 @@ repo. so do not <code>:ensure t</code> here.
 </div>
 </div>
 <div id="outline-container-consult-other-configuration" class="outline-4">
-<h4 id="consult-other-configuration"><span class="todo STARTED">STARTED</span> <code>[1/2]</code> Other Configuration</h4>
+<h4 id="consult-other-configuration">STARTED <code>[1/2]</code> Other Configuration</h4>
 <div class="outline-text-4" id="text-consult-other-configuration">
 <ul class="org-ul">
 <li class="off"><code>[&nbsp;]</code> <a href="https://github.com/minad/consult/wiki">https://github.com/minad/consult/wiki</a></li>
@@ -4148,6 +4147,9 @@ repo. so do not <code>:ensure t</code> here.
 <div class="outline-text-3" id="text-corfu">
 <p>
 <a href="https://github.com/minad/corfu">corfu</a> is an in-buffer completion popup extension.
+Auto-completion is disabled in <code>text-mode</code> (and derived modes like <code>org-mode</code>)
+to prevent distracting popups during prose writing; completion can still be
+triggered explicitly on demand with <code>M-/</code> or <code>C-M-i</code>.
 </p>
 
 <div class="org-src-container">
@@ -4158,12 +4160,17 @@ repo. so do not <code>:ensure t</code> here.
   (corfu-auto t)
   (corfu-auto-delay 0.2)
   (corfu-auto-prefix 2)
+  (corfu-quit-no-match t)
+  (corfu-quit-at-boundary 'separator)
   <span class="org-builtin">:custom-face</span>
   <span class="org-comment-delimiter">;; </span><span class="org-comment">`</span><span class="org-comment"><span class="org-constant">corfu-default</span></span><span class="org-comment">' is remapped onto the popup buffer's `</span><span class="org-comment"><span class="org-constant">default</span></span><span class="org-comment">' face, so
 </span>  <span class="org-comment-delimiter">;; </span><span class="org-comment">it controls the popup's font as well as its background.
 </span>  (corfu-default ((t (<span class="org-builtin">:inherit</span> default <span class="org-builtin">:height</span> 0.9))))
   (corfu-current ((t (<span class="org-builtin">:background</span> <span class="org-string">"#3a3a3a"</span>))))
   (corfu-border ((t (<span class="org-builtin">:background</span> <span class="org-string">"#505050"</span>))))
+  <span class="org-builtin">:hook</span> ((text-mode . (<span class="org-keyword">lambda</span> () (<span class="org-keyword">setq-local</span> corfu-auto nil))))
+  <span class="org-builtin">:bind</span> (<span class="org-builtin">:map</span> corfu-map
+              (<span class="org-string">"M-SPC"</span> . corfu-insert-separator))
   <span class="org-builtin">:init</span>
   (global-corfu-mode)
   (corfu-popupinfo-mode 1))
@@ -4179,15 +4186,26 @@ repo. so do not <code>:ensure t</code> here.
 <div class="outline-text-3" id="text-cape">
 <p>
 <a href="https://github.com/minad/cape">cape</a> provides completion-at-point extensions for Corfu.
+Buffer-word (<code>cape-dabbrev</code>) and syntax keyword (<code>cape-keyword</code>) capfs are
+scoped to <code>prog-mode</code> to keep prose buffers clean, with <code>cape-dabbrev</code> bound
+to <code>M-/</code> for on-demand word completion anywhere.
 </p>
 
 <div class="org-src-container">
 <pre class="src src-emacs-lisp"><code>(<span class="org-keyword">use-package</span> cape
   <span class="org-builtin">:ensure</span> t
+  <span class="org-builtin">:bind</span> ((<span class="org-string">"M-/"</span>     . cape-dabbrev)
+         (<span class="org-string">"C-c p p"</span> . completion-at-point)
+         (<span class="org-string">"C-c p d"</span> . cape-dabbrev)
+         (<span class="org-string">"C-c p f"</span> . cape-file)
+         (<span class="org-string">"C-c p k"</span> . cape-keyword)
+         (<span class="org-string">"C-c p s"</span> . cape-elisp-symbol))
   <span class="org-builtin">:init</span>
   (add-to-list 'completion-at-point-functions #'cape-file)
-  (add-to-list 'completion-at-point-functions #'cape-dabbrev)
-  (add-to-list 'completion-at-point-functions #'cape-keyword))
+  (add-hook 'prog-mode-hook
+            (<span class="org-keyword">lambda</span> ()
+              (add-to-list 'completion-at-point-functions #'cape-dabbrev 80)
+              (add-to-list 'completion-at-point-functions #'cape-keyword 90))))
 </code></pre>
 </div>
 </div>
@@ -4419,8 +4437,8 @@ Take care of some whitespace issues.
 </div>
 <div id="postamble" class="status">
 <p class="author">Kris Molendyke</p>
-<p class="date">2026-08-16 Sun 22:00</p>
-<p class="creator"><a href="https://www.gnu.org/software/emacs/">Emacs</a> 31.0.91 (<a href="https://orgmode.org">Org</a> mode 9.8.8)</p>
+<p class="date">2026-08-27 Thu 10:00</p>
+<p class="creator"><a href="https://www.gnu.org/software/emacs/">Emacs</a> 31.1 (<a href="https://orgmode.org">Org</a> mode 9.8.7)</p>
 </div>
 </body>
 </html>
