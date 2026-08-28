@@ -822,9 +822,10 @@ function.
       :init (doom-modeline-mode 1)
       :custom
       (doom-modeline-height 26)
-      (doom-modeline-bar-width 4)
-      (doom-modeline-hud t)
-      (doom-modeline-total-line-number t)
+      (doom-modeline-bar-width 0)
+      (doom-modeline-hud nil)
+      (doom-modeline-percent-position nil)
+      (doom-modeline-total-line-number nil)
       (doom-modeline-icon t)
       (doom-modeline-major-mode-icon t)
       (doom-modeline-major-mode-color-icon t)
@@ -832,6 +833,10 @@ function.
       (doom-modeline-buffer-encoding nil)
       (doom-modeline-enable-word-count nil)
       (doom-modeline-vcs-max-length 25)
+      (doom-modeline-env-version t)
+      (doom-modeline-env-enable-go t)
+      (doom-modeline-env-enable-python t)
+      (doom-modeline-env-enable-rust t)
       (doom-modeline-lsp t)
       (doom-modeline-checker-simple-format t)
       :custom-face
@@ -839,7 +844,7 @@ function.
       (mode-line-inactive ((t (:inherit fixed-pitch :family "PragmataPro VF Mono Liga"))))
       :config
       (doom-modeline-def-modeline 'main
-        '(eldoc bar window-state workspace-name modals matches follow buffer-info remote-host buffer-position word-count parrot selection-info)
+        '(eldoc window-state workspace-name modals matches follow buffer-info remote-host buffer-position word-count parrot selection-info)
         '(compilation objed-state misc-info project-name persp-name battery grip irc mu4e gnus github debug repl lsp spell minor-modes input-method indent-info buffer-encoding major-mode process vcs check time)))
   #+end_src
 
