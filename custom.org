@@ -404,14 +404,16 @@ function.
      (setq use-short-answers t)
    #+end_src
 
-   Stuff in review from https://www.masteringemacs.org/article/whats-new-in-emacs-28-1.
+   Stuff in review from https://www.masteringemacs.org/article/whats-new-in-emacs-28-1 and https://www.masteringemacs.org/article/whats-new-in-emacs-311.
 
    #+begin_src emacs-lisp
      (setq-default
       completions-detailed t
       describe-bindings-outline t
       mode-line-compact t
+      mode-line-collapse-minor-modes t
       next-error-message-highlight t
+      split-window-preferred-direction 'longest
       frame-title-format '(multiple-frames "%b" ("%b\t%f")))
    #+end_src
 
@@ -564,7 +566,7 @@ function.
             (window-resize (selected-window) delta t))
           delta))
 
-      (global-set-key (kbd "C-x w") 'k20e/fit-window-to-buffer-horizontally)
+      (keymap-set window-prefix-map "h" #'k20e/fit-window-to-buffer-horizontally)
     #+end_src
 
 ** Windows
@@ -791,6 +793,7 @@ function.
       (setq dired-dwim-target t
             dired-recursive-copies 'always
             dired-recursive-deletes 'always
+            dired-hide-details-hide-absolute-location t
             dired-kill-when-opening-new-dired-buffer t)
       (use-package autorevert
         :config
@@ -831,8 +834,12 @@ function.
   :CUSTOM_ID: emacs-lisp-mode
   :END:
 
+  Emacs 31 introduces AST-aware semantic highlighting for Emacs Lisp via =elisp-fontify-semantically=.
+
   #+begin_src emacs-lisp
     (use-package elisp-mode
+      :custom
+      (elisp-fontify-semantically t)
       :config
       (defun k20e/ert ()
         "Run all the tests in the universe!"
@@ -1109,7 +1116,21 @@ Otherwise, start a new ghostel terminal."
     go install golang.org/x/tools/gopls@latest
   #+end_src
 
+  Configure Go modes. Both =go-mode= and native tree-sitter =go-ts-mode= share hooks for =lsp-mode=,
+  tab formatting, and organize-imports on save. Emacs 31.1 also introduces built-in unit test commands
+  for =go-ts-mode= under ~C-c C-t~ (~C-c C-t t~ for test at point, ~C-c C-t f~ for test file, ~C-c C-t p~ for test package).
+
   #+begin_src emacs-lisp
+    (defun k20e/go-mode-setup ()
+      (setq-local compile-command "go run main.go"
+                  indent-tabs-mode t
+                  tab-width 4))
+
+    (defun k20e/go-before-save ()
+      (when (derived-mode-p 'go-mode 'go-ts-mode)
+        (lsp-format-buffer)
+        (lsp-organize-imports)))
+
     (use-package go-mode
       :ensure t
       :bind
@@ -1117,16 +1138,11 @@ Otherwise, start a new ghostel terminal."
             ("C-c C-t" . k20e/toggle-test-buffer)
             ("M-q" . lsp-format-buffer))
       :custom-face (button ((t (:box nil))))
-      :hook ((before-save . (lambda ()
-                              (when (eq major-mode 'go-mode)
-                                (lsp-format-buffer)
-                                (lsp-organize-imports))))
-             (go-mode . lsp-deferred)
-             (go-mode . (lambda ()
-                          (setq-local
-                           compile-command "go run main.go"
-                           indent-tabs-mode t
-                           tab-width 4))))
+      :hook ((go-mode . lsp-deferred)
+             (go-mode . k20e/go-mode-setup)
+             (go-ts-mode . lsp-deferred)
+             (go-ts-mode . k20e/go-mode-setup)
+             (before-save . k20e/go-before-save))
       :config
       ;; https://github.com/golang/tools/blob/master/gopls/doc/settings.md#officially-supported
       (setq-default lsp-go-directory-filters ["-**/testdata"]
@@ -1216,8 +1232,13 @@ Otherwise, start a new ghostel terminal."
   :CUSTOM_ID: ielm
   :END:
 
+  In Emacs 31, =ielm-dynamic-return= set to ='point= ensures typing ~RET~ inserts a newline
+  when point is inside an unclosed expression, avoiding premature evaluation when paired with =paredit-mode=.
+
   #+begin_src emacs-lisp
     (use-package ielm
+      :custom
+      (ielm-dynamic-return 'point)
       :hook ((ielm-mode . eldoc-mode)
              (ielm-mode . paredit-mode)))
   #+end_src
@@ -2593,6 +2614,15 @@ Otherwise, start a new ghostel terminal."
        :init (setq tab-always-indent 'complete))
    #+end_src
 
+*** TODO [0/2] Other Configuration
+    :PROPERTIES:
+    :CUSTOM_ID: corfu-other-configuration
+    :END:
+
+    - [ ] https://github.com/minad/corfu#orderless-completion
+    - [ ] https://github.com/minad/corfu#alternatives particularly =consult-completion-in-region=:
+      [[https://github.com/minad/consult#miscellaneous]] as an alternative to =corfu=
+
 ** cape
    :PROPERTIES:
    :CUSTOM_ID: cape
@@ -2619,31 +2649,6 @@ Otherwise, start a new ghostel terminal."
                    (add-to-list 'completion-at-point-functions #'cape-dabbrev 80)
                    (add-to-list 'completion-at-point-functions #'cape-keyword 90))))
    #+end_src
-
-** which-key
-   :PROPERTIES:
-   :CUSTOM_ID: vertico-which-key
-   :END:
-
-   [[https://github.com/justbur/emacs-which-key][which-key]] displays popup keybinding assistance when a prefix key is pressed.
-
-   #+begin_src emacs-lisp
-     (use-package which-key
-       :ensure t
-       :init
-       (setq which-key-idle-delay 0.5)
-       :config
-       (which-key-mode 1))
-   #+end_src
-
-*** TODO [0/2] Other Configuration
-    :PROPERTIES:
-    :CUSTOM_ID: which-key-other-configuration
-    :END:
-
-    - [ ] https://github.com/minad/corfu#orderless-completion
-    - [ ] https://github.com/minad/corfu#alternatives particularly =consult-completion-in-region=:
-      [[https://github.com/minad/consult#miscellaneous]] as an alternative to =corfu=
 
 ** marginalia
    :PROPERTIES:
@@ -2731,10 +2736,14 @@ Otherwise, start a new ghostel terminal."
   :END:
 
   Display available key bindings in a popup buffer when typing prefix shortcuts.
+  Since Emacs 30, =which-key= is built directly into GNU Emacs core.
 
   #+begin_src emacs-lisp
     (use-package which-key
-      :init (which-key-mode))
+      :custom
+      (which-key-idle-delay 0.5)
+      :config
+      (which-key-mode 1))
   #+end_src
 
 * whitespace
