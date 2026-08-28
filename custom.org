@@ -832,6 +832,7 @@ function.
       (doom-modeline-buffer-file-name-style 'relative-from-project)
       (doom-modeline-buffer-encoding nil)
       (doom-modeline-enable-word-count nil)
+      (doom-modeline-buffer-size nil)
       (doom-modeline-vcs-max-length 25)
       (doom-modeline-env-version t)
       (doom-modeline-env-enable-go t)
@@ -2363,8 +2364,7 @@ Otherwise, start a new ghostel terminal."
     (use-package simple
       :config
       (line-number-mode 1)
-      (column-number-mode 1)
-      (size-indication-mode 1))
+      (column-number-mode 1))
   #+end_src
 
   Highlight matching parentheses:
