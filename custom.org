@@ -871,24 +871,35 @@ function.
       :bind (("C-x o" . find-file-in-project))
       :config
       (setq-default ffip-limit 8192
-                    ffip-find-options "-type f -not -path '*/node_modules/*' -and -not -path '*/.git/*' -and -not -path '*/dist/*' -and -not -path '*/dist-types/*' -and -not -path '*/.yarn/*'"
+                    ffip-find-options "-type f -not -path '*/node_modules/*' -and -not -path '*/.git/*' -and -not -path '*/.jj/*' -and -not -path '*/.terraform/*' -and -not -path '*/dist/*' -and -not -path '*/dist-types/*' -and -not -path '*/.yarn/*'"
                     ffip-full-paths t
                     ffip-patterns (list "*.el"
                                         "*.html"
                                         "*.js"
                                         "*.json"
                                         "*.go"
+                                        "*.just"
+                                        "*Justfile"
                                         "*.md"
                                         "*.org"
                                         "*.py"
                                         "*.sh"
+                                        "*.tf"
+                                        "*.tfvars"
+                                        "*.tofu"
                                         "*.ts"
                                         "*.txt"
                                         "*.yaml"
                                         "*.yml"
                                         "Dockerfile"
-                                        "Makefile")
-                    ffip-prune-patterns (list ".git" "build" "node_modules")))
+                                        "*Dockerfile"
+                                        "Makefile"
+                                        "*Makefile")
+                    ffip-prune-patterns (list "*/.git"
+                                              "*/.jj"
+                                              "*/.terraform"
+                                              "*/build"
+                                              "*/node_modules")))
   #+end_src
 
 * flycheck
