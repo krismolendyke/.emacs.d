@@ -815,12 +815,45 @@ function.
     (use-package nerd-icons
       :ensure t)
 
+    (require 'cl-lib)
+
+    (defun k20e/doom-modeline-vcs-name ()
+      "Display Jujutsu bookmark and/or description if in a jj repo, else git branch."
+      (let* ((file (or buffer-file-name default-directory))
+             (jj-dir (and file (not (file-remote-p file)) (locate-dominating-file file ".jj"))))
+        (if (and jj-dir (executable-find "jj"))
+            (let ((default-directory jj-dir))
+              (with-temp-buffer
+                (if (zerop (call-process "jj" nil t nil
+                                         "--color" "never" "--no-pager" "log"
+                                         "-r" "latest(ancestors(@) & bookmarks()) | @"
+                                         "--no-graph"
+                                         "-T" "bookmarks.join(\", \") ++ \"\\n\" ++ description.first_line() ++ \"\\n\""))
+                    (let* ((lines (split-string (buffer-string) "\n" t))
+                           (bm (cl-find-if (lambda (s) (not (string-empty-p s)))
+                                           (list (nth 0 lines) (nth 2 lines))))
+                           (desc (cl-find-if (lambda (s) (not (string-empty-p s)))
+                                             (list (nth 1 lines) (nth 3 lines))))
+                           (formatted
+                            (cond
+                             ((and bm desc (not (string-empty-p desc)))
+                              (format "%s: %s" bm desc))
+                             (bm bm)
+                             (desc desc)
+                             (t "jj"))))
+                      formatted)
+                  (doom-modeline-vcs-name))))
+          (doom-modeline-vcs-name))))
+
     (declare-function doom-modeline-def-modeline "doom-modeline-core")
+    (declare-function doom-modeline-vcs-name "doom-modeline-core")
 
     (use-package doom-modeline
       :ensure t
       :init (doom-modeline-mode 1)
       :custom
+      (doom-modeline-vcs-display-function #'k20e/doom-modeline-vcs-name)
+      (doom-modeline-vcs-max-length 30)
       (doom-modeline-height 26)
       (doom-modeline-bar-width 0)
       (doom-modeline-hud nil)
@@ -833,7 +866,6 @@ function.
       (doom-modeline-buffer-encoding nil)
       (doom-modeline-enable-word-count nil)
       (doom-modeline-buffer-size nil)
-      (doom-modeline-vcs-max-length 25)
       (doom-modeline-env-version t)
       (doom-modeline-env-enable-go t)
       (doom-modeline-env-enable-python t)
