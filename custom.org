@@ -2002,7 +2002,7 @@ Otherwise, start a new ghostel terminal."
 
        ;; Source block delimiters and fringe
        (org-modern-block-name '("‣ " . "‣ "))
-       (org-modern-block-fringe 2)
+       (org-modern-block-fringe nil)
 
        ;; Table styling
        (org-modern-table t)
