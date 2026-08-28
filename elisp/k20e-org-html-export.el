@@ -23,7 +23,15 @@
 (require 'ox-html)
 
 (use-package htmlize
-  :ensure t)
+  :ensure t
+  :config
+  ;; Emacs 31 semantic font-lock faces (e.g. `elisp-free-variable') use `:foreground 'reset`
+  ;; to cancel inherited colors. Treat 'reset as nil so htmlize does not fail on non-string color.
+  (advice-add 'htmlize-face-color-internal :filter-return
+              (lambda (color)
+                (if (or (eq color 'reset) (equal color "reset"))
+                    nil
+                  color))))
 
 (defvar k20e/org-html-head-extra
   "<link href='https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css' rel='stylesheet'>

@@ -1192,7 +1192,15 @@ Otherwise, start a new ghostel terminal."
 
   #+begin_src emacs-lisp
     (use-package htmlize
-      :ensure t)
+      :ensure t
+      :config
+      ;; Emacs 31 semantic font-lock faces (e.g. `elisp-free-variable') use `:foreground 'reset`
+      ;; to cancel inherited colors. Treat 'reset as nil so htmlize does not fail on non-string color.
+      (advice-add 'htmlize-face-color-internal :filter-return
+                  (lambda (color)
+                    (if (or (eq color 'reset) (equal color "reset"))
+                        nil
+                      color))))
   #+end_src
 
 * ibuffer
