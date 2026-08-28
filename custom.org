@@ -1950,31 +1950,20 @@ Otherwise, start a new ghostel terminal."
      (defvar org-clock-idle-time 5)
    #+end_src
 
-** Superstar
+** org-modern
    :PROPERTIES:
-   :CUSTOM_ID: superstar
+   :CUSTOM_ID: org-modern
    :END:
 
-   Successor to =org-bullets=, [[https://github.com/integral-dw/org-superstar-mode][org-superstar-mode]].
+   [[https://github.com/minad/org-modern][org-modern]] provides modern, lightweight styling for Org mode headlines,
+   tables, TODO badges, tags, checkboxes, and timestamps using text properties.
 
    #+begin_src emacs-lisp
-     (use-package org-superstar
+     (use-package org-modern
        :ensure t
-       :custom
-       (org-superstar-special-todo-items t)
-       (org-superstar-todo-bullet-alist '(("TODO" . ?☐)
-                                          ("STARTED" . ?☐)
-                                          ("DONE" . ?☑)
-                                          ("CANCELED" . ?✘))) ; ✘
-       :hook ((org-mode . org-superstar-mode)))
+       :hook ((org-mode . org-modern-mode)
+              (org-agenda-finalize . org-modern-agenda)))
    #+end_src
-
-** TODO [0/1] Other Configuration
-   :PROPERTIES:
-   :CUSTOM_ID: other-configuration
-   :END:
-
-   - [ ] https://github.com/minad/org-modern
 
 * paredit-mode
   :PROPERTIES:
