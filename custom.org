@@ -821,7 +821,8 @@ function.
       :custom
       (doom-modeline-height 26)
       (doom-modeline-bar-width 4)
-      (doom-modeline-hud nil)
+      (doom-modeline-hud t)
+      (doom-modeline-total-line-number t)
       (doom-modeline-icon t)
       (doom-modeline-major-mode-icon t)
       (doom-modeline-major-mode-color-icon t)
