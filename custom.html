@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-08-27 Thu 11:08 -->
+<!-- 2026-08-27 Thu 21:29 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Literate =.emacs.d=</title>
@@ -1358,7 +1358,7 @@ function.
 <li><a href="#uniquify">uniquify</a></li>
 <li><a href="#vertico">vertico</a>
 <ul>
-<li><a href="#other-configuration-extensions">STARTED <code>[1/3]</code> Other Configuration &amp; Extensions</a></li>
+<li><a href="#other-configuration-extensions"><span class="todo STARTED">STARTED</span> <code>[1/3]</code> Other Configuration &amp; Extensions</a></li>
 <li><a href="#vertico-directory">vertico-directory</a></li>
 <li><a href="#vertico-savehist">savehist</a></li>
 <li><a href="#completion-category-overrides">completion category overrides</a></li>
@@ -1366,7 +1366,6 @@ function.
 <li><a href="#consult">consult</a></li>
 <li><a href="#corfu">corfu</a></li>
 <li><a href="#cape">cape</a></li>
-<li><a href="#vertico-which-key">which-key</a></li>
 <li><a href="#marginalia">marginalia</a></li>
 </ul>
 </li>
@@ -1550,9 +1549,9 @@ Before <code>use-package</code> I had 70 packages installed and
 </p>
 
 <div class="org-src-container">
-<pre class="src src-emacs-lisp"><code>(<span class="org-keyword">eval-when-compile</span> (<span class="org-keyword">require</span> '<span class="org-constant">use-package</span>))
+<pre class="src src-emacs-lisp"><code>(<span class="org-keyword"><span class="org-elisp-macro">eval-when-compile</span></span> (<span class="org-keyword"><span class="org-elisp-function">require</span></span> '<span class="org-constant"><span class="org-elisp-feature">use-package</span></span>))
 
-(<span class="org-keyword">use-package</span> package
+(<span class="org-keyword"><span class="org-elisp-macro">use-package</span></span> package
   <span class="org-builtin">:config</span>
   (add-to-list 'package-archives '(<span class="org-string">"melpa"</span> . <span class="org-string">"https://melpa.org/packages/"</span>) t))
 </code></pre>
@@ -1575,7 +1574,7 @@ Use <code>gcmh</code> to dynamically raise GC threshold during active editing an
 </p>
 
 <div class="org-src-container">
-<pre class="src src-emacs-lisp"><code>(<span class="org-keyword">use-package</span> gcmh
+<pre class="src src-emacs-lisp"><code>(<span class="org-keyword"><span class="org-elisp-macro">use-package</span></span> gcmh
   <span class="org-builtin">:ensure</span> t
   <span class="org-builtin">:init</span>
   (<span class="org-keyword">defvar</span> <span class="org-variable-name">gcmh-idle-delay</span>)
@@ -1592,8 +1591,8 @@ Use <code>gcmh</code> to dynamically raise GC threshold during active editing an
 <h3 id="process-output">Process Output</h3>
 <div class="outline-text-3" id="text-process-output">
 <div class="org-src-container">
-<pre class="src src-emacs-lisp"><code>(<span class="org-keyword">let</span> ((mib (expt 2 20)))
-  (<span class="org-keyword">setq</span> read-process-output-max (* 1 mib)))
+<pre class="src src-emacs-lisp"><code>(<span class="org-keyword"><span class="org-elisp-special-form">let</span></span> ((<span class="org-elisp-binding-variable">mib</span> (<span class="org-elisp-function">expt</span> 2 20)))
+  (<span class="org-keyword"><span class="org-elisp-special-form">setq</span></span> <span class="org-elisp-free-variable">read-process-output-max</span> (<span class="org-elisp-function">*</span> 1 <span class="org-elisp-bound-variable">mib</span>)))
 </code></pre>
 </div>
 </div>
@@ -1602,7 +1601,7 @@ Use <code>gcmh</code> to dynamically raise GC threshold during active editing an
 <h3 id="native-compilation-warnings">Native Compilation Warnings</h3>
 <div class="outline-text-3" id="text-native-compilation-warnings">
 <div class="org-src-container">
-<pre class="src src-emacs-lisp"><code>(<span class="org-keyword">with-eval-after-load</span> 'comp
+<pre class="src src-emacs-lisp"><code>(<span class="org-keyword"><span class="org-elisp-macro">with-eval-after-load</span></span> 'comp
   (<span class="org-keyword">defvar</span> <span class="org-variable-name">native-comp-async-report-warnings-errors</span>)
   (<span class="org-keyword">setq</span> native-comp-async-report-warnings-errors 'silent))
 </code></pre>
@@ -1635,14 +1634,14 @@ only be done by editing a default <i>and restarting</i>.
 </div>
 
 <div class="org-src-container">
-<pre class="src src-emacs-lisp"><code>(global-unset-key (kbd <span class="org-string">"&lt;f1&gt; h"</span>))
-(global-unset-key (kbd <span class="org-string">"&lt;f11&gt;"</span>))
-(global-unset-key (kbd <span class="org-string">"C-h"</span>))
-(global-unset-key (kbd <span class="org-string">"C-q"</span>))
-(global-unset-key (kbd <span class="org-string">"M-`"</span>))
-(global-unset-key (kbd <span class="org-string">"M-c"</span>))
-(global-unset-key (kbd <span class="org-string">"M-h"</span>))
-(global-unset-key (kbd <span class="org-string">"M-u"</span>))
+<pre class="src src-emacs-lisp"><code>(<span class="org-elisp-function">global-unset-key</span> (<span class="org-elisp-function">kbd</span> <span class="org-string">"&lt;f1&gt; h"</span>))
+(<span class="org-elisp-function">global-unset-key</span> (<span class="org-elisp-function">kbd</span> <span class="org-string">"&lt;f11&gt;"</span>))
+(<span class="org-elisp-function">global-unset-key</span> (<span class="org-elisp-function">kbd</span> <span class="org-string">"C-h"</span>))
+(<span class="org-elisp-function">global-unset-key</span> (<span class="org-elisp-function">kbd</span> <span class="org-string">"C-q"</span>))
+(<span class="org-elisp-function">global-unset-key</span> (<span class="org-elisp-function">kbd</span> <span class="org-string">"M-`"</span>))
+(<span class="org-elisp-function">global-unset-key</span> (<span class="org-elisp-function">kbd</span> <span class="org-string">"M-c"</span>))
+(<span class="org-elisp-function">global-unset-key</span> (<span class="org-elisp-function">kbd</span> <span class="org-string">"M-h"</span>))
+(<span class="org-elisp-function">global-unset-key</span> (<span class="org-elisp-function">kbd</span> <span class="org-string">"M-u"</span>))
 </code></pre>
 </div>
 </div>
@@ -1651,25 +1650,25 @@ only be done by editing a default <i>and restarting</i>.
 <h3 id="set">Set</h3>
 <div class="outline-text-3" id="text-set">
 <div class="org-src-container">
-<pre class="src src-emacs-lisp"><code>(global-set-key (kbd <span class="org-string">"&lt;f1&gt; F"</span>) 'find-function)
-(global-set-key (kbd <span class="org-string">"&lt;f1&gt; V"</span>) 'find-variable)
-(global-set-key (kbd <span class="org-string">"&lt;f6&gt;"</span>) 'k20e/font-toggle-proportional)
-(global-set-key (kbd <span class="org-string">"&lt;f7&gt;"</span>) 'previous-error) <span class="org-comment-delimiter">;; </span><span class="org-comment">&#9664;&#9664;
-</span>(global-set-key (kbd <span class="org-string">"&lt;f9&gt;"</span>) 'next-error) <span class="org-comment-delimiter">;; </span><span class="org-comment">&#9654;&#9654;
-</span>(global-set-key (kbd <span class="org-string">"C-M-;"</span>) 'comment-line)
-(global-set-key (kbd <span class="org-string">"C-S-h"</span>) 'kill-whole-line)
-(global-set-key (kbd <span class="org-string">"C-c DEL"</span>) 'join-line)
-(global-set-key (kbd <span class="org-string">"C-h"</span>) 'delete-backward-char)
-(global-set-key (kbd <span class="org-string">"C-j"</span>) 'join-line)
-(global-set-key (kbd <span class="org-string">"C-x C-t"</span>) 'transpose-lines)
-(global-set-key (kbd <span class="org-string">"H-h H-f"</span>) 'find-function)
-(global-set-key (kbd <span class="org-string">"H-h H-v"</span>) 'find-variable)
-(global-set-key (kbd <span class="org-string">"H-t"</span>) 'toggle-frame-fullscreen)
-(global-set-key (kbd <span class="org-string">"M-+"</span>) 'text-scale-adjust)
-(global-set-key (kbd <span class="org-string">"M-."</span>) 'imenu)
-(global-set-key (kbd <span class="org-string">"M-`"</span>) 'other-window)
-(global-set-key (kbd <span class="org-string">"M-h"</span>) 'backward-kill-word)
-(global-set-key (kbd <span class="org-string">"M-t"</span>) 'transpose-words)
+<pre class="src src-emacs-lisp"><code>(<span class="org-elisp-function">global-set-key</span> (<span class="org-elisp-function">kbd</span> <span class="org-string">"&lt;f1&gt; F"</span>) 'find-function)
+(<span class="org-elisp-function">global-set-key</span> (<span class="org-elisp-function">kbd</span> <span class="org-string">"&lt;f1&gt; V"</span>) 'find-variable)
+(<span class="org-elisp-function">global-set-key</span> (<span class="org-elisp-function">kbd</span> <span class="org-string">"&lt;f6&gt;"</span>) 'k20e/font-toggle-proportional)
+(<span class="org-elisp-function">global-set-key</span> (<span class="org-elisp-function">kbd</span> <span class="org-string">"&lt;f7&gt;"</span>) 'previous-error) <span class="org-comment-delimiter">;; </span><span class="org-comment">&#9664;&#9664;
+</span>(<span class="org-elisp-function">global-set-key</span> (<span class="org-elisp-function">kbd</span> <span class="org-string">"&lt;f9&gt;"</span>) 'next-error) <span class="org-comment-delimiter">;; </span><span class="org-comment">&#9654;&#9654;
+</span>(<span class="org-elisp-function">global-set-key</span> (<span class="org-elisp-function">kbd</span> <span class="org-string">"C-M-;"</span>) 'comment-line)
+(<span class="org-elisp-function">global-set-key</span> (<span class="org-elisp-function">kbd</span> <span class="org-string">"C-S-h"</span>) 'kill-whole-line)
+(<span class="org-elisp-function">global-set-key</span> (<span class="org-elisp-function">kbd</span> <span class="org-string">"C-c DEL"</span>) 'join-line)
+(<span class="org-elisp-function">global-set-key</span> (<span class="org-elisp-function">kbd</span> <span class="org-string">"C-h"</span>) 'delete-backward-char)
+(<span class="org-elisp-function">global-set-key</span> (<span class="org-elisp-function">kbd</span> <span class="org-string">"C-j"</span>) 'join-line)
+(<span class="org-elisp-function">global-set-key</span> (<span class="org-elisp-function">kbd</span> <span class="org-string">"C-x C-t"</span>) 'transpose-lines)
+(<span class="org-elisp-function">global-set-key</span> (<span class="org-elisp-function">kbd</span> <span class="org-string">"H-h H-f"</span>) 'find-function)
+(<span class="org-elisp-function">global-set-key</span> (<span class="org-elisp-function">kbd</span> <span class="org-string">"H-h H-v"</span>) 'find-variable)
+(<span class="org-elisp-function">global-set-key</span> (<span class="org-elisp-function">kbd</span> <span class="org-string">"H-t"</span>) 'toggle-frame-fullscreen)
+(<span class="org-elisp-function">global-set-key</span> (<span class="org-elisp-function">kbd</span> <span class="org-string">"M-+"</span>) 'text-scale-adjust)
+(<span class="org-elisp-function">global-set-key</span> (<span class="org-elisp-function">kbd</span> <span class="org-string">"M-."</span>) 'imenu)
+(<span class="org-elisp-function">global-set-key</span> (<span class="org-elisp-function">kbd</span> <span class="org-string">"M-`"</span>) 'other-window)
+(<span class="org-elisp-function">global-set-key</span> (<span class="org-elisp-function">kbd</span> <span class="org-string">"M-h"</span>) 'backward-kill-word)
+(<span class="org-elisp-function">global-set-key</span> (<span class="org-elisp-function">kbd</span> <span class="org-string">"M-t"</span>) 'transpose-words)
 </code></pre>
 </div>
 </div>
@@ -1687,7 +1686,7 @@ Sort by relevancy.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-emacs-lisp"><code>(<span class="org-keyword">setq-default</span> apropos-sort-by-scores t)
+<pre class="src src-emacs-lisp"><code>(<span class="org-keyword"><span class="org-elisp-macro">setq-default</span></span> <span class="org-elisp-free-variable">apropos-sort-by-scores</span> t)
 </code></pre>
 </div>
 </div>
@@ -1700,15 +1699,15 @@ Back up files to a single location.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-emacs-lisp"><code>(<span class="org-keyword">defvar</span> <span class="org-variable-name">k20e/backup-dir</span> (expand-file-name <span class="org-string">"backup"</span> user-emacs-directory)
+<pre class="src src-emacs-lisp"><code>(<span class="org-keyword"><span class="org-elisp-special-form">defvar</span></span> <span class="org-variable-name"><span class="org-elisp-defvar">k20e/backup-dir</span></span> (<span class="org-elisp-function">expand-file-name</span> <span class="org-string">"backup"</span> <span class="org-elisp-free-variable">user-emacs-directory</span>)
   <span class="org-doc">"A single directory for storing backup files within."</span>)
 
-(<span class="org-keyword">unless</span> (file-exists-p k20e/backup-dir) (make-directory k20e/backup-dir))
+(<span class="org-keyword"><span class="org-elisp-macro">unless</span></span> (<span class="org-elisp-function">file-exists-p</span> <span class="org-elisp-free-variable">k20e/backup-dir</span>) (<span class="org-elisp-function">make-directory</span> <span class="org-elisp-free-variable">k20e/backup-dir</span>))
 
-(<span class="org-keyword">setq</span> backup-by-copying t
-      backup-directory-alist `((<span class="org-string">"."</span> . ,k20e/backup-dir))
-      delete-old-versions t
-      version-control t)
+(<span class="org-keyword"><span class="org-elisp-special-form">setq</span></span> <span class="org-elisp-free-variable">backup-by-copying</span> t
+      <span class="org-elisp-free-variable">backup-directory-alist</span> `((<span class="org-string">"."</span> . ,k20e/backup-dir))
+      <span class="org-elisp-free-variable">delete-old-versions</span> t
+      <span class="org-elisp-free-variable">version-control</span> t)
 </code></pre>
 </div>
 </div>
@@ -1722,7 +1721,7 @@ commands disables the prompt.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-emacs-lisp"><code>(<span class="org-keyword">defvar</span> <span class="org-variable-name">k20e/enabled-commands</span>
+<pre class="src src-emacs-lisp"><code>(<span class="org-keyword"><span class="org-elisp-special-form">defvar</span></span> <span class="org-variable-name"><span class="org-elisp-defvar">k20e/enabled-commands</span></span>
   '(downcase-region
     upcase-region
     narrow-to-region
@@ -1731,12 +1730,12 @@ commands disables the prompt.
     scroll-right)
   <span class="org-doc">"Normally disabled commands."</span>)
 
-(<span class="org-keyword">defun</span> <span class="org-function-name">k20e/enable-commands</span> ()
+(<span class="org-keyword"><span class="org-elisp-macro">defun</span></span> <span class="org-function-name"><span class="org-elisp-defun">k20e/enable-commands</span></span> ()
   <span class="org-doc">"Enable normally disabled commands."</span>
-  (<span class="org-keyword">dolist</span> (command k20e/enabled-commands)
+  (<span class="org-keyword"><span class="org-elisp-macro">dolist</span></span> (command k20e/enabled-commands)
     (put command 'disabled nil)))
 
-(k20e/enable-commands)
+(<span class="org-elisp-function">k20e/enable-commands</span>)
 </code></pre>
 </div>
 </div>
@@ -1757,9 +1756,9 @@ What a time to be alive.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-emacs-lisp"><code>(<span class="org-keyword">use-package</span> emacs
-  <span class="org-builtin">:init</span>
-  (pixel-scroll-precision-mode))
+<pre class="src src-emacs-lisp"><code>(<span class="org-keyword"><span class="org-elisp-macro">use-package</span></span> pixel-scroll
+  <span class="org-builtin">:config</span>
+  (pixel-scroll-precision-mode 1))
 </code></pre>
 </div>
 </div>
@@ -1777,7 +1776,7 @@ is inserted.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-emacs-lisp"><code>(delete-selection-mode 1)
+<pre class="src src-emacs-lisp"><code>(<span class="org-elisp-function">delete-selection-mode</span> 1)
 </code></pre>
 </div>
 
@@ -1786,7 +1785,7 @@ is inserted.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-emacs-lisp"><code>(electric-indent-mode)
+<pre class="src src-emacs-lisp"><code>(<span class="org-elisp-function">electric-indent-mode</span>)
 </code></pre>
 </div>
 
@@ -1795,7 +1794,7 @@ Cycle through the mark ring faster.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-emacs-lisp"><code>(<span class="org-keyword">setq</span> set-mark-command-repeat-pop t)
+<pre class="src src-emacs-lisp"><code>(<span class="org-keyword"><span class="org-elisp-special-form">setq</span></span> <span class="org-elisp-free-variable">set-mark-command-repeat-pop</span> t)
 </code></pre>
 </div>
 
@@ -1805,33 +1804,35 @@ screen monitors I work on.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-emacs-lisp"><code>(<span class="org-keyword">setq</span> split-width-threshold 81)
+<pre class="src src-emacs-lisp"><code>(<span class="org-keyword"><span class="org-elisp-special-form">setq</span></span> <span class="org-elisp-free-variable">split-width-threshold</span> 81)
 </code></pre>
 </div>
 
 <div class="org-src-container">
 <pre class="src src-emacs-lisp"><code><span class="org-comment-delimiter">;; </span><span class="org-comment">What's going on here?
-</span>(<span class="org-keyword">setq</span> echo-keystrokes 0.1)
+</span>(<span class="org-keyword"><span class="org-elisp-special-form">setq</span></span> <span class="org-elisp-free-variable">echo-keystrokes</span> 0.1)
 
 <span class="org-comment-delimiter">;; </span><span class="org-comment">Automatically reload buffers when files change on disk.
-</span>(global-auto-revert-mode 1)
+</span>(<span class="org-elisp-function">global-auto-revert-mode</span> 1)
 
 <span class="org-comment-delimiter">;; </span><span class="org-comment">y is the new yes.  n is the new no.
-</span>(<span class="org-keyword">setq</span> use-short-answers t)
+</span>(<span class="org-keyword"><span class="org-elisp-special-form">setq</span></span> <span class="org-elisp-free-variable">use-short-answers</span> t)
 </code></pre>
 </div>
 
 <p>
-Stuff in review from <a href="https://www.masteringemacs.org/article/whats-new-in-emacs-28-1">https://www.masteringemacs.org/article/whats-new-in-emacs-28-1</a>.
+Stuff in review from <a href="https://www.masteringemacs.org/article/whats-new-in-emacs-28-1">https://www.masteringemacs.org/article/whats-new-in-emacs-28-1</a> and <a href="https://www.masteringemacs.org/article/whats-new-in-emacs-311">https://www.masteringemacs.org/article/whats-new-in-emacs-311</a>.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-emacs-lisp"><code>(<span class="org-keyword">setq-default</span>
- completions-detailed t
- describe-bindings-outline t
- mode-line-compact t
- next-error-message-highlight t
- frame-title-format '(multiple-frames <span class="org-string">"%b"</span> (<span class="org-string">"%b\t%f"</span>)))
+<pre class="src src-emacs-lisp"><code>(<span class="org-keyword"><span class="org-elisp-macro">setq-default</span></span>
+ <span class="org-elisp-free-variable">completions-detailed</span> t
+ <span class="org-elisp-free-variable">describe-bindings-outline</span> t
+ <span class="org-elisp-free-variable">mode-line-compact</span> t
+ <span class="org-elisp-free-variable">mode-line-collapse-minor-modes</span> t
+ <span class="org-elisp-free-variable">next-error-message-highlight</span> t
+ <span class="org-elisp-free-variable">split-window-preferred-direction</span> 'longest
+ <span class="org-elisp-free-variable">frame-title-format</span> '(multiple-frames <span class="org-string">"%b"</span> (<span class="org-string">"%b\t%f"</span>)))
 </code></pre>
 </div>
 </div>
@@ -1848,31 +1849,31 @@ I have found these to be useful enough to keep around permanently.
 <h3 id="editing">Editing</h3>
 <div class="outline-text-3" id="text-editing">
 <div class="org-src-container">
-<pre class="src src-emacs-lisp"><code>(<span class="org-keyword">defun</span> <span class="org-function-name">k20e/mark-current-line</span> (arg)
+<pre class="src src-emacs-lisp"><code>(<span class="org-keyword"><span class="org-elisp-macro">defun</span></span> <span class="org-function-name"><span class="org-elisp-defun">k20e/mark-current-line</span></span> (<span class="org-elisp-binding-variable">arg</span>)
   <span class="org-doc">"Mark the current line.
 If the mark is already set simply move the point forward a single
 line.  If it is not set, set it at the beginning of the current
 line and then move the point forward a single line."</span>
-  (<span class="org-keyword">interactive</span> <span class="org-string">"p"</span>)
-  (<span class="org-keyword">unless</span> mark-active
-    (beginning-of-line)
-    (set-mark (point)))
-  (forward-line arg))
+  (<span class="org-keyword"><span class="org-elisp-special-form">interactive</span></span> <span class="org-string">"p"</span>)
+  (<span class="org-keyword"><span class="org-elisp-macro">unless</span></span> <span class="org-elisp-free-variable">mark-active</span>
+    (<span class="org-elisp-function">beginning-of-line</span>)
+    (<span class="org-elisp-function">set-mark</span> (<span class="org-elisp-function">point</span>)))
+  (<span class="org-elisp-function">forward-line</span> <span class="org-elisp-bound-variable">arg</span>))
 
-(<span class="org-keyword">defun</span> <span class="org-function-name">k20e/open-line-below</span> (arg)
+(<span class="org-keyword"><span class="org-elisp-macro">defun</span></span> <span class="org-function-name"><span class="org-elisp-defun">k20e/open-line-below</span></span> (<span class="org-elisp-binding-variable">arg</span>)
   <span class="org-doc">"Insert a new line below the current line."</span>
-  (<span class="org-keyword">interactive</span> <span class="org-string">"p"</span>)
-  (end-of-line)
-  (newline arg)
-  (indent-for-tab-command))
+  (<span class="org-keyword"><span class="org-elisp-special-form">interactive</span></span> <span class="org-string">"p"</span>)
+  (<span class="org-elisp-function">end-of-line</span>)
+  (<span class="org-elisp-function">newline</span> <span class="org-elisp-bound-variable">arg</span>)
+  (<span class="org-elisp-function">indent-for-tab-command</span>))
 
-(<span class="org-keyword">defun</span> <span class="org-function-name">k20e/open-line-above</span> (arg)
+(<span class="org-keyword"><span class="org-elisp-macro">defun</span></span> <span class="org-function-name"><span class="org-elisp-defun">k20e/open-line-above</span></span> (<span class="org-elisp-binding-variable">arg</span>)
   <span class="org-doc">"Insert a new line above the current line."</span>
-  (<span class="org-keyword">interactive</span> <span class="org-string">"p"</span>)
-  (beginning-of-line)
-  (newline arg)
-  (forward-line (- 0 arg))
-  (indent-for-tab-command))
+  (<span class="org-keyword"><span class="org-elisp-special-form">interactive</span></span> <span class="org-string">"p"</span>)
+  (<span class="org-elisp-function">beginning-of-line</span>)
+  (<span class="org-elisp-function">newline</span> <span class="org-elisp-bound-variable">arg</span>)
+  (<span class="org-elisp-function">forward-line</span> (<span class="org-elisp-function">-</span> 0 <span class="org-elisp-bound-variable">arg</span>))
+  (<span class="org-elisp-function">indent-for-tab-command</span>))
 </code></pre>
 </div>
 
@@ -1881,15 +1882,15 @@ This one is stolen from <a href="https://github.com/magnars/.emacs.d/blob/e56e71
 </p>
 
 <div class="org-src-container">
-<pre class="src src-emacs-lisp"><code>(<span class="org-keyword">defun</span> <span class="org-function-name">k20e/eval-and-replace</span> ()
+<pre class="src src-emacs-lisp"><code>(<span class="org-keyword"><span class="org-elisp-macro">defun</span></span> <span class="org-function-name"><span class="org-elisp-defun">k20e/eval-and-replace</span></span> ()
   <span class="org-doc">"Replace the preceding sexp with its value."</span>
-  (<span class="org-keyword">interactive</span>)
-  (backward-kill-sexp)
-  (<span class="org-keyword">condition-case</span> nil
-      (prin1 (eval (read (current-kill 0)))
-             (current-buffer))
-    (<span class="org-warning">error</span> (message <span class="org-string">"Invalid expression"</span>)
-           (insert (current-kill 0)))))
+  (<span class="org-keyword"><span class="org-elisp-special-form">interactive</span></span>)
+  (<span class="org-elisp-function">backward-kill-sexp</span>)
+  (<span class="org-keyword"><span class="org-elisp-special-form">condition-case</span></span> nil
+      (<span class="org-elisp-function">prin1</span> (<span class="org-elisp-function">eval</span> (<span class="org-elisp-function">read</span> (<span class="org-elisp-function">current-kill</span> 0)))
+             (<span class="org-elisp-function">current-buffer</span>))
+    (<span class="org-warning"><span class="org-elisp-condition">error</span></span> (<span class="org-elisp-function">message</span> <span class="org-string">"Invalid expression"</span>)
+           (<span class="org-elisp-function">insert</span> (<span class="org-elisp-function">current-kill</span> 0)))))
 </code></pre>
 </div>
 
@@ -1898,9 +1899,9 @@ Bind editing functions:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-emacs-lisp"><code>(global-set-key (kbd <span class="org-string">"M-l"</span>) 'k20e/mark-current-line)
-(global-set-key (kbd <span class="org-string">"&lt;M-return&gt;"</span>) 'k20e/open-line-below)
-(global-set-key (kbd <span class="org-string">"&lt;M-S-return&gt;"</span>) 'k20e/open-line-above)
+<pre class="src src-emacs-lisp"><code>(<span class="org-elisp-function">global-set-key</span> (<span class="org-elisp-function">kbd</span> <span class="org-string">"M-l"</span>) 'k20e/mark-current-line)
+(<span class="org-elisp-function">global-set-key</span> (<span class="org-elisp-function">kbd</span> <span class="org-string">"&lt;M-return&gt;"</span>) 'k20e/open-line-below)
+(<span class="org-elisp-function">global-set-key</span> (<span class="org-elisp-function">kbd</span> <span class="org-string">"&lt;M-S-return&gt;"</span>) 'k20e/open-line-above)
 </code></pre>
 </div>
 </div>
@@ -1909,10 +1910,10 @@ Bind editing functions:
 <h3 id="buffers">Buffers</h3>
 <div class="outline-text-3" id="text-buffers">
 <div class="org-src-container">
-<pre class="src src-emacs-lisp"><code>(<span class="org-keyword">defun</span> <span class="org-function-name">k20e/display-buffer-file-name</span> ()
+<pre class="src src-emacs-lisp"><code>(<span class="org-keyword"><span class="org-elisp-macro">defun</span></span> <span class="org-function-name"><span class="org-elisp-defun">k20e/display-buffer-file-name</span></span> ()
   <span class="org-doc">"Message the full path to the currently visited file."</span>
-  (<span class="org-keyword">interactive</span>)
-  (message <span class="org-string">"%s"</span> (buffer-file-name)))
+  (<span class="org-keyword"><span class="org-elisp-special-form">interactive</span></span>)
+  (<span class="org-elisp-function">message</span> <span class="org-string">"%s"</span> (<span class="org-elisp-function">buffer-file-name</span>)))
 </code></pre>
 </div>
 </div>
@@ -1925,38 +1926,38 @@ package.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-emacs-lisp"><code>(<span class="org-keyword">defun</span> <span class="org-function-name">k20e/test-buffer-p</span> ()
+<pre class="src src-emacs-lisp"><code>(<span class="org-keyword"><span class="org-elisp-macro">defun</span></span> <span class="org-function-name"><span class="org-elisp-defun">k20e/test-buffer-p</span></span> ()
   <span class="org-doc">"Is the current buffer a test buffer?
 This function na&#239;vely assumes that the file name suffix '</span><span class="org-doc"><span class="org-constant">_test</span></span><span class="org-doc">'
 is indicative of a test file."</span>
-  (string-suffix-p
+  (<span class="org-elisp-function">string-suffix-p</span>
    <span class="org-string">"_test"</span>
-   (file-name-sans-extension (buffer-file-name))))
+   (<span class="org-elisp-function">file-name-sans-extension</span> (<span class="org-elisp-function">buffer-file-name</span>))))
 
-(<span class="org-keyword">defun</span> <span class="org-function-name">k20e/switch-to-test-buffer</span> ()
+(<span class="org-keyword"><span class="org-elisp-macro">defun</span></span> <span class="org-function-name"><span class="org-elisp-defun">k20e/switch-to-test-buffer</span></span> ()
   <span class="org-doc">"Switch to the test buffer associated with the current source buffer."</span>
-  (<span class="org-keyword">let</span> ((d (file-name-directory (buffer-file-name)))
-        (f (format <span class="org-string">"%s_test.%s"</span>
-                    (file-name-sans-extension (file-name-nondirectory (buffer-file-name)))
-                    (file-name-extension (buffer-file-name)))))
-    (find-file (expand-file-name f d))))
+  (<span class="org-keyword"><span class="org-elisp-special-form">let</span></span> ((<span class="org-elisp-binding-variable">d</span> (<span class="org-elisp-function">file-name-directory</span> (<span class="org-elisp-function">buffer-file-name</span>)))
+        (<span class="org-elisp-binding-variable">f</span> (<span class="org-elisp-function">format</span> <span class="org-string">"%s_test.%s"</span>
+                    (<span class="org-elisp-function">file-name-sans-extension</span> (<span class="org-elisp-function">file-name-nondirectory</span> (<span class="org-elisp-function">buffer-file-name</span>)))
+                    (<span class="org-elisp-function">file-name-extension</span> (<span class="org-elisp-function">buffer-file-name</span>)))))
+    (<span class="org-elisp-function">find-file</span> (<span class="org-elisp-function">expand-file-name</span> <span class="org-elisp-bound-variable">f</span> <span class="org-elisp-bound-variable">d</span>))))
 
-(<span class="org-keyword">defun</span> <span class="org-function-name">k20e/switch-to-source-buffer</span> ()
+(<span class="org-keyword"><span class="org-elisp-macro">defun</span></span> <span class="org-function-name"><span class="org-elisp-defun">k20e/switch-to-source-buffer</span></span> ()
   <span class="org-doc">"Switch to the source buffer associated with the current test buffer."</span>
-  (<span class="org-keyword">let</span> ((e (file-name-extension (buffer-file-name)))
-        (f (car (split-string (file-name-sans-extension (buffer-file-name))
+  (<span class="org-keyword"><span class="org-elisp-special-form">let</span></span> ((<span class="org-elisp-binding-variable">e</span> (<span class="org-elisp-function">file-name-extension</span> (<span class="org-elisp-function">buffer-file-name</span>)))
+        (<span class="org-elisp-binding-variable">f</span> (<span class="org-elisp-function">car</span> (<span class="org-elisp-function">split-string</span> (<span class="org-elisp-function">file-name-sans-extension</span> (<span class="org-elisp-function">buffer-file-name</span>))
                               <span class="org-string">"_test"</span>))))
-    (find-file (format <span class="org-string">"%s.%s"</span> f e))))
+    (<span class="org-elisp-function">find-file</span> (<span class="org-elisp-function">format</span> <span class="org-string">"%s.%s"</span> <span class="org-elisp-bound-variable">f</span> <span class="org-elisp-bound-variable">e</span>))))
 
-(<span class="org-keyword">defun</span> <span class="org-function-name">k20e/toggle-test-buffer</span> ()
+(<span class="org-keyword"><span class="org-elisp-macro">defun</span></span> <span class="org-function-name"><span class="org-elisp-defun">k20e/toggle-test-buffer</span></span> ()
   <span class="org-doc">"Toggle between a source and test buffer.
 This function na&#239;vely assumes that the file name suffix '</span><span class="org-doc"><span class="org-constant">_test</span></span><span class="org-doc">'
 is indicative of a test file.  Therefore it should only be useful
 in major modes where that convention is expected."</span>
-  (<span class="org-keyword">interactive</span>)
-  (<span class="org-keyword">if</span> (k20e/test-buffer-p)
-      (k20e/switch-to-source-buffer)
-    (k20e/switch-to-test-buffer)))
+  (<span class="org-keyword"><span class="org-elisp-special-form">interactive</span></span>)
+  (<span class="org-keyword"><span class="org-elisp-special-form">if</span></span> (<span class="org-elisp-function">k20e/test-buffer-p</span>)
+      (<span class="org-elisp-function">k20e/switch-to-source-buffer</span>)
+    (<span class="org-elisp-function">k20e/switch-to-test-buffer</span>)))
 </code></pre>
 </div>
 </div>
@@ -1972,28 +1973,28 @@ which adjusts the window's width is helpful.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-emacs-lisp"><code>(<span class="org-keyword">defun</span> <span class="org-function-name">k20e/get-longest-line-length</span> ()
+<pre class="src src-emacs-lisp"><code>(<span class="org-keyword"><span class="org-elisp-macro">defun</span></span> <span class="org-function-name"><span class="org-elisp-defun">k20e/get-longest-line-length</span></span> ()
   <span class="org-doc">"Get the length of the longest line in the selected window."</span>
-  (<span class="org-keyword">save-excursion</span>
-    (goto-char (point-min))
-    (<span class="org-keyword">let</span> ((max-length 0))
-      (<span class="org-keyword">while</span> (not (eobp))
-        (<span class="org-keyword">setq</span> max-length (max max-length (- (line-end-position) (line-beginning-position))))
-        (forward-line 1))
-      (1+ max-length))))
+  (<span class="org-keyword"><span class="org-elisp-special-form">save-excursion</span></span>
+    (<span class="org-elisp-function">goto-char</span> (<span class="org-elisp-function">point-min</span>))
+    (<span class="org-keyword"><span class="org-elisp-special-form">let</span></span> ((<span class="org-elisp-binding-variable">max-length</span> 0))
+      (<span class="org-keyword"><span class="org-elisp-special-form">while</span></span> (<span class="org-elisp-function">not</span> (<span class="org-elisp-function">eobp</span>))
+        (<span class="org-keyword"><span class="org-elisp-special-form">setq</span></span> <span class="org-elisp-bound-variable">max-length</span> (<span class="org-elisp-function">max</span> <span class="org-elisp-bound-variable">max-length</span> (<span class="org-elisp-function">-</span> (<span class="org-elisp-function">line-end-position</span>) (<span class="org-elisp-function">line-beginning-position</span>))))
+        (<span class="org-elisp-function">forward-line</span> 1))
+      (<span class="org-elisp-function">1+</span> <span class="org-elisp-bound-variable">max-length</span>))))
 
-(<span class="org-keyword">defun</span> <span class="org-function-name">k20e/fit-window-to-buffer-horizontally</span> ()
+(<span class="org-keyword"><span class="org-elisp-macro">defun</span></span> <span class="org-function-name"><span class="org-elisp-defun">k20e/fit-window-to-buffer-horizontally</span></span> ()
   <span class="org-doc">"Fit the selected window to the width of its longest line.
 Return the window width delta."</span>
-  (<span class="org-keyword">interactive</span>)
-  (<span class="org-keyword">let*</span> ((current-width (window-width))
-         (longest-line (k20e/get-longest-line-length))
-         (delta (* -1 (- current-width longest-line))))
-    (<span class="org-keyword">if</span> (zerop (window-resizable (selected-window) delta t)) nil
-      (window-resize (selected-window) delta t))
-    delta))
+  (<span class="org-keyword"><span class="org-elisp-special-form">interactive</span></span>)
+  (<span class="org-keyword"><span class="org-elisp-special-form">let*</span></span> ((<span class="org-elisp-binding-variable">current-width</span> (<span class="org-elisp-function">window-width</span>))
+         (<span class="org-elisp-binding-variable">longest-line</span> (<span class="org-elisp-function">k20e/get-longest-line-length</span>))
+         (<span class="org-elisp-binding-variable">delta</span> (<span class="org-elisp-function">*</span> -1 (<span class="org-elisp-function">-</span> <span class="org-elisp-bound-variable">current-width</span> <span class="org-elisp-bound-variable">longest-line</span>))))
+    (<span class="org-keyword"><span class="org-elisp-special-form">if</span></span> (<span class="org-elisp-function">zerop</span> (<span class="org-elisp-function">window-resizable</span> (<span class="org-elisp-function">selected-window</span>) <span class="org-elisp-bound-variable">delta</span> t)) nil
+      (<span class="org-elisp-function">window-resize</span> (<span class="org-elisp-function">selected-window</span>) <span class="org-elisp-bound-variable">delta</span> t))
+    <span class="org-elisp-bound-variable">delta</span>))
 
-(global-set-key (kbd <span class="org-string">"C-x w"</span>) 'k20e/fit-window-to-buffer-horizontally)
+(<span class="org-elisp-function">keymap-set</span> <span class="org-elisp-free-variable">window-prefix-map</span> <span class="org-string">"h"</span> #'<span class="org-elisp-function">k20e/fit-window-to-buffer-horizontally</span>)
 </code></pre>
 </div>
 </div>
@@ -2003,7 +2004,7 @@ Return the window width delta."</span>
 <h3 id="windows">Windows</h3>
 <div class="outline-text-3" id="text-windows">
 <div class="org-src-container">
-<pre class="src src-emacs-lisp"><code>(<span class="org-keyword">use-package</span> emacs
+<pre class="src src-emacs-lisp"><code>(<span class="org-keyword"><span class="org-elisp-macro">use-package</span></span> emacs
   <span class="org-builtin">:init</span>
   (<span class="org-keyword">defun</span> <span class="org-function-name">k20e/delete-window-balance</span> ()
     <span class="org-doc">"Balance windows after deleting."</span>
@@ -2032,7 +2033,7 @@ name."</span>
 <h3 id="networking">Networking</h3>
 <div class="outline-text-3" id="text-networking">
 <div class="org-src-container">
-<pre class="src src-emacs-lisp"><code>(<span class="org-keyword">use-package</span> net-utils <span class="org-builtin">:ensure</span> t)
+<pre class="src src-emacs-lisp"><code>(<span class="org-keyword"><span class="org-elisp-macro">use-package</span></span> net-utils <span class="org-builtin">:ensure</span> t)
 </code></pre>
 </div>
 </div>
@@ -2041,31 +2042,31 @@ name."</span>
 <h3 id="lunar">Lunar 🌙</h3>
 <div class="outline-text-3" id="text-lunar">
 <div class="org-src-container">
-<pre class="src src-emacs-lisp"><code>(<span class="org-keyword">require</span> '<span class="org-constant">calendar</span>)
-(<span class="org-keyword">require</span> '<span class="org-constant">lunar</span>)
+<pre class="src src-emacs-lisp"><code>(<span class="org-keyword"><span class="org-elisp-function">require</span></span> '<span class="org-constant"><span class="org-elisp-feature">calendar</span></span>)
+(<span class="org-keyword"><span class="org-elisp-function">require</span></span> '<span class="org-constant"><span class="org-elisp-feature">lunar</span></span>)
 
-(<span class="org-keyword">defun</span> <span class="org-function-name">k20e/full-moons-info</span> ()
+(<span class="org-keyword"><span class="org-elisp-macro">defun</span></span> <span class="org-function-name"><span class="org-elisp-defun">k20e/full-moons-info</span></span> ()
   <span class="org-doc">"Get a list of upcoming full moons info beginning with the current month.
 See `</span><span class="org-doc"><span class="org-constant">lunar-phase-list</span></span><span class="org-doc">' and `</span><span class="org-doc"><span class="org-constant">lunar-phase-name</span></span><span class="org-doc">'."</span>
-  (<span class="org-keyword">let*</span> ((current-date (calendar-current-date))
-         (current-month (car current-date))
-         (current-year (car (last current-date)))
-         (full-moon-phase-index 2)
-         (k20e/full-moons-info '()))
-    (<span class="org-keyword">dolist</span> (phase (lunar-phase-list current-month current-year))
+  (<span class="org-keyword"><span class="org-elisp-special-form">let*</span></span> ((<span class="org-elisp-binding-variable">current-date</span> (<span class="org-elisp-function">calendar-current-date</span>))
+         (<span class="org-elisp-binding-variable">current-month</span> (<span class="org-elisp-function">car</span> <span class="org-elisp-bound-variable">current-date</span>))
+         (<span class="org-elisp-binding-variable">current-year</span> (<span class="org-elisp-function">car</span> (<span class="org-elisp-function">last</span> <span class="org-elisp-bound-variable">current-date</span>)))
+         (<span class="org-elisp-binding-variable">full-moon-phase-index</span> 2)
+         (<span class="org-elisp-binding-variable">k20e/full-moons-info</span> '()))
+    (<span class="org-keyword"><span class="org-elisp-macro">dolist</span></span> (phase (lunar-phase-list current-month current-year))
       (<span class="org-keyword">if</span> (= (car (last phase)) full-moon-phase-index)
           (<span class="org-keyword">setq</span> k20e/full-moons-info (cons phase k20e/full-moons-info))))
-    (reverse k20e/full-moons-info)))
+    (<span class="org-elisp-function">reverse</span> <span class="org-elisp-bound-variable">k20e/full-moons-info</span>)))
 
-(<span class="org-keyword">defun</span> <span class="org-function-name">k20e/full-moons</span> ()
+(<span class="org-keyword"><span class="org-elisp-macro">defun</span></span> <span class="org-function-name"><span class="org-elisp-defun">k20e/full-moons</span></span> ()
   <span class="org-doc">"Display upcoming full moons beginning with the current month."</span>
-  (<span class="org-keyword">interactive</span>)
-  (<span class="org-keyword">with-output-to-temp-buffer</span> <span class="org-string">"*full-moons*"</span>
-    (princ
-     (mapconcat
-      #'(<span class="org-keyword">lambda</span> (x)
-          (format <span class="org-string">"%s %s"</span> (calendar-date-string (car x)) (car (cdr x))))
-      (k20e/full-moons-info)
+  (<span class="org-keyword"><span class="org-elisp-special-form">interactive</span></span>)
+  (<span class="org-keyword"><span class="org-elisp-macro">with-output-to-temp-buffer</span></span> <span class="org-string">"*full-moons*"</span>
+    (<span class="org-elisp-function">princ</span>
+     (<span class="org-elisp-function">mapconcat</span>
+      #'(<span class="org-keyword"><span class="org-elisp-macro">lambda</span></span> (<span class="org-elisp-binding-variable">x</span>)
+          (<span class="org-elisp-function">format</span> <span class="org-string">"%s %s"</span> (<span class="org-elisp-function">calendar-date-string</span> (<span class="org-elisp-function">car</span> <span class="org-elisp-bound-variable">x</span>)) (<span class="org-elisp-function">car</span> (<span class="org-elisp-function">cdr</span> <span class="org-elisp-bound-variable">x</span>))))
+      (<span class="org-elisp-function">k20e/full-moons-info</span>)
       <span class="org-string">"\n"</span>))))
 </code></pre>
 </div>
@@ -2082,9 +2083,9 @@ to fill-column values.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-emacs-lisp"><code>(<span class="org-keyword">use-package</span> emacs
-  <span class="org-builtin">:config</span>
-  (<span class="org-keyword">setq-default</span> fill-column 118))
+<pre class="src src-emacs-lisp"><code>(<span class="org-keyword"><span class="org-elisp-macro">use-package</span></span> simple
+  <span class="org-builtin">:custom</span>
+  (fill-column 118))
 </code></pre>
 </div>
 </div>
@@ -2098,7 +2099,7 @@ to fill-column values.
 </ul>
 
 <div class="org-src-container">
-<pre class="src src-emacs-lisp"><code>(<span class="org-keyword">use-package</span> auto-package-update
+<pre class="src src-emacs-lisp"><code>(<span class="org-keyword"><span class="org-elisp-macro">use-package</span></span> auto-package-update
   <span class="org-builtin">:ensure</span> t
   <span class="org-builtin">:config</span>
   (<span class="org-keyword">setq-default</span> auto-package-update-delete-old-versions t
@@ -2117,10 +2118,10 @@ Disable <code>auto-save</code>.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-emacs-lisp"><code>(<span class="org-keyword">use-package</span> emacs
-  <span class="org-builtin">:config</span>
-  (<span class="org-keyword">setq</span> auto-save-default nil
-        auto-save-timeout 0))
+<pre class="src src-emacs-lisp"><code>(<span class="org-keyword"><span class="org-elisp-macro">use-package</span></span> files
+  <span class="org-builtin">:custom</span>
+  (auto-save-default nil)
+  (auto-save-timeout 0))
 </code></pre>
 </div>
 </div>
@@ -2129,7 +2130,7 @@ Disable <code>auto-save</code>.
 <h2 id="avy">avy</h2>
 <div class="outline-text-2" id="text-avy">
 <div class="org-src-container">
-<pre class="src src-emacs-lisp"><code>(<span class="org-keyword">use-package</span> avy
+<pre class="src src-emacs-lisp"><code>(<span class="org-keyword"><span class="org-elisp-macro">use-package</span></span> avy
   <span class="org-builtin">:ensure</span> t
   <span class="org-builtin">:bind</span> ((<span class="org-string">"s-g"</span> . avy-goto-char-timer))
   <span class="org-builtin">:config</span>
@@ -2149,7 +2150,7 @@ Move the current buffer up/down/left/right easily.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-emacs-lisp"><code>(<span class="org-keyword">use-package</span> buffer-move
+<pre class="src src-emacs-lisp"><code>(<span class="org-keyword"><span class="org-elisp-macro">use-package</span></span> buffer-move
   <span class="org-builtin">:ensure</span> t
   <span class="org-builtin">:bind</span> ((<span class="org-string">"M-S-&lt;up&gt;"</span> . buf-move-up)
      (<span class="org-string">"M-S-&lt;down&gt;"</span> . buf-move-down)
@@ -2163,7 +2164,7 @@ Move the current buffer up/down/left/right easily.
 <h2 id="c">C</h2>
 <div class="outline-text-2" id="text-c">
 <div class="org-src-container">
-<pre class="src src-emacs-lisp"><code>(<span class="org-keyword">use-package</span> cc-mode
+<pre class="src src-emacs-lisp"><code>(<span class="org-keyword"><span class="org-elisp-macro">use-package</span></span> cc-mode
   <span class="org-builtin">:after</span> (flycheck)
   <span class="org-builtin">:custom</span>
   (flycheck-gcc-pedantic-errors t)
@@ -2185,7 +2186,7 @@ Move the current buffer up/down/left/right easily.
 <h2 id="compilation-mode">compilation-mode</h2>
 <div class="outline-text-2" id="text-compilation-mode">
 <div class="org-src-container">
-<pre class="src src-emacs-lisp"><code>(<span class="org-keyword">use-package</span> compile
+<pre class="src src-emacs-lisp"><code>(<span class="org-keyword"><span class="org-elisp-macro">use-package</span></span> compile
   <span class="org-builtin">:custom-face</span> (compilation-error ((t (<span class="org-builtin">:foreground</span> <span class="org-string">"tomato1"</span>))))
   <span class="org-builtin">:config</span>
   (add-hook 'compilation-finish-functions #'k20e/compilation-finish-function-select-window))
@@ -2197,29 +2198,29 @@ Functions to execute after compilation has finished:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-emacs-lisp"><code>(<span class="org-keyword">require</span> '<span class="org-constant">hl-line</span>)
-(<span class="org-keyword">require</span> '<span class="org-constant">subr-x</span>)
+<pre class="src src-emacs-lisp"><code>(<span class="org-keyword"><span class="org-elisp-function">require</span></span> '<span class="org-constant"><span class="org-elisp-feature">hl-line</span></span>)
+(<span class="org-keyword"><span class="org-elisp-function">require</span></span> '<span class="org-constant"><span class="org-elisp-feature">subr-x</span></span>)
 
-(<span class="org-keyword">defun</span> <span class="org-function-name">k20e/compilation-finish-function-delay-delete</span> (buf result)
+(<span class="org-keyword"><span class="org-elisp-macro">defun</span></span> <span class="org-function-name"><span class="org-elisp-defun">k20e/compilation-finish-function-delay-delete</span></span> (<span class="org-elisp-binding-variable">buf</span> <span class="org-elisp-binding-variable">result</span>)
   <span class="org-doc">"Delete and bury BUF after short delay.
 Do so only if compilation is successful."</span>
-  (<span class="org-keyword">let</span> ((status (string-trim result)))
-    (<span class="org-keyword">when</span> (string= status <span class="org-string">"finished"</span>)
-      (run-with-timer
+  (<span class="org-keyword"><span class="org-elisp-special-form">let</span></span> ((<span class="org-elisp-binding-variable">status</span> (<span class="org-elisp-function">string-trim</span> <span class="org-elisp-bound-variable">result</span>)))
+    (<span class="org-keyword"><span class="org-elisp-macro">when</span></span> (<span class="org-elisp-function">string=</span> <span class="org-elisp-bound-variable">status</span> <span class="org-string">"finished"</span>)
+      (<span class="org-elisp-function">run-with-timer</span>
        1.0 nil
-       (<span class="org-keyword">lambda</span> (buffer)
-         (<span class="org-keyword">with-current-buffer</span> buffer
-           (delete-window)
-           (bury-buffer)))
-       buf))))
+       (<span class="org-keyword"><span class="org-elisp-macro">lambda</span></span> (<span class="org-elisp-binding-variable">buffer</span>)
+         (<span class="org-keyword"><span class="org-elisp-macro">with-current-buffer</span></span> <span class="org-elisp-bound-variable">buffer</span>
+           (<span class="org-elisp-function">delete-window</span>)
+           (<span class="org-elisp-function">bury-buffer</span>)))
+       <span class="org-elisp-bound-variable">buf</span>))))
 
-(<span class="org-keyword">defun</span> <span class="org-function-name">k20e/compilation-finish-function-select-window</span> (buf _result)
+(<span class="org-keyword"><span class="org-elisp-macro">defun</span></span> <span class="org-function-name"><span class="org-elisp-defun">k20e/compilation-finish-function-select-window</span></span> (<span class="org-elisp-binding-variable">buf</span> <span class="org-elisp-binding-variable">_result</span>)
   <span class="org-doc">"Switch to the compilation buffer BUF.
 When compilation completes, regardless of result."</span>
-  (select-window (get-buffer-window buf))
-  (goto-char (point-max))
-  (forward-line -1)
-  (hl-line-mode))
+  (<span class="org-elisp-function">select-window</span> (<span class="org-elisp-function">get-buffer-window</span> <span class="org-elisp-bound-variable">buf</span>))
+  (<span class="org-elisp-function">goto-char</span> (<span class="org-elisp-function">point-max</span>))
+  (<span class="org-elisp-function">forward-line</span> -1)
+  (<span class="org-elisp-function">hl-line-mode</span>))
 </code></pre>
 </div>
 </div>
@@ -2228,12 +2229,13 @@ When compilation completes, regardless of result."</span>
 <h2 id="dired">dired</h2>
 <div class="outline-text-2" id="text-dired">
 <div class="org-src-container">
-<pre class="src src-emacs-lisp"><code>(<span class="org-keyword">use-package</span> dired
+<pre class="src src-emacs-lisp"><code>(<span class="org-keyword"><span class="org-elisp-macro">use-package</span></span> dired
   <span class="org-builtin">:custom-face</span> (dired-flagged ((t (<span class="org-builtin">:foreground</span> <span class="org-string">"tomato1"</span> <span class="org-builtin">:strike-through</span> t))))
   <span class="org-builtin">:config</span>
   (<span class="org-keyword">setq</span> dired-dwim-target t
         dired-recursive-copies 'always
         dired-recursive-deletes 'always
+        dired-hide-details-hide-absolute-location t
         dired-kill-when-opening-new-dired-buffer t)
   (<span class="org-keyword">use-package</span> autorevert
     <span class="org-builtin">:config</span>
@@ -2250,7 +2252,7 @@ When compilation completes, regardless of result."</span>
 <h2 id="eca">eca</h2>
 <div class="outline-text-2" id="text-eca">
 <div class="org-src-container">
-<pre class="src src-emacs-lisp"><code>(<span class="org-keyword">use-package</span> eca
+<pre class="src src-emacs-lisp"><code>(<span class="org-keyword"><span class="org-elisp-macro">use-package</span></span> eca
   <span class="org-builtin">:ensure</span> t
   <span class="org-builtin">:bind</span> ((<span class="org-string">"C-c e e"</span> . eca)
          (<span class="org-string">"C-c e c"</span> . eca-chat-toggle-window)
@@ -2265,7 +2267,7 @@ When compilation completes, regardless of result."</span>
 <h2 id="electric-pair-mode">electric-pair-mode</h2>
 <div class="outline-text-2" id="text-electric-pair-mode">
 <div class="org-src-container">
-<pre class="src src-emacs-lisp"><code>(<span class="org-keyword">use-package</span> elec-pair
+<pre class="src src-emacs-lisp"><code>(<span class="org-keyword"><span class="org-elisp-macro">use-package</span></span> elec-pair
   <span class="org-builtin">:hook</span> ((prog-mode . electric-pair-mode)))
 </code></pre>
 </div>
@@ -2274,8 +2276,14 @@ When compilation completes, regardless of result."</span>
 <div id="outline-container-emacs-lisp-mode" class="outline-2">
 <h2 id="emacs-lisp-mode">emacs-lisp-mode</h2>
 <div class="outline-text-2" id="text-emacs-lisp-mode">
+<p>
+Emacs 31 introduces AST-aware semantic highlighting for Emacs Lisp via <code>elisp-fontify-semantically</code>.
+</p>
+
 <div class="org-src-container">
-<pre class="src src-emacs-lisp"><code>(<span class="org-keyword">use-package</span> elisp-mode
+<pre class="src src-emacs-lisp"><code>(<span class="org-keyword"><span class="org-elisp-macro">use-package</span></span> elisp-mode
+  <span class="org-builtin">:custom</span>
+  (elisp-fontify-semantically t)
   <span class="org-builtin">:config</span>
   (<span class="org-keyword">defun</span> <span class="org-function-name">k20e/ert</span> ()
     <span class="org-doc">"Run all the tests in the universe!"</span>
@@ -2291,7 +2299,7 @@ When compilation completes, regardless of result."</span>
 <h2 id="expand-region">expand-region</h2>
 <div class="outline-text-2" id="text-expand-region">
 <div class="org-src-container">
-<pre class="src src-emacs-lisp"><code>(<span class="org-keyword">use-package</span> expand-region
+<pre class="src src-emacs-lisp"><code>(<span class="org-keyword"><span class="org-elisp-macro">use-package</span></span> expand-region
   <span class="org-builtin">:ensure</span> t
   <span class="org-builtin">:bind</span> ((<span class="org-string">"C-M-SPC"</span> . er/expand-region)))
 </code></pre>
@@ -2302,7 +2310,7 @@ When compilation completes, regardless of result."</span>
 <h2 id="find-file-in-project">find-file-in-project</h2>
 <div class="outline-text-2" id="text-find-file-in-project">
 <div class="org-src-container">
-<pre class="src src-emacs-lisp"><code>(<span class="org-keyword">use-package</span> find-file-in-project
+<pre class="src src-emacs-lisp"><code>(<span class="org-keyword"><span class="org-elisp-macro">use-package</span></span> find-file-in-project
   <span class="org-builtin">:ensure</span> t
   <span class="org-builtin">:bind</span> ((<span class="org-string">"C-x o"</span> . find-file-in-project))
   <span class="org-builtin">:config</span>
@@ -2333,7 +2341,7 @@ When compilation completes, regardless of result."</span>
 <h2 id="flycheck">flycheck</h2>
 <div class="outline-text-2" id="text-flycheck">
 <div class="org-src-container">
-<pre class="src src-emacs-lisp"><code>(<span class="org-keyword">use-package</span> flycheck
+<pre class="src src-emacs-lisp"><code>(<span class="org-keyword"><span class="org-elisp-macro">use-package</span></span> flycheck
   <span class="org-builtin">:ensure</span> t
   <span class="org-builtin">:config</span>
   (<span class="org-keyword">setq-default</span> flycheck-pylintrc <span class="org-string">"pylintrc"</span>
@@ -2350,7 +2358,7 @@ Setup <code>ispell</code> to use <a href="#install-aspell"><code>aspell</code></
 </p>
 
 <div class="org-src-container">
-<pre class="src src-emacs-lisp"><code>(<span class="org-keyword">use-package</span> flyspell
+<pre class="src src-emacs-lisp"><code>(<span class="org-keyword"><span class="org-elisp-macro">use-package</span></span> flyspell
   <span class="org-builtin">:ensure</span> t
   <span class="org-builtin">:init</span>
   (<span class="org-keyword">setq-default</span> ispell-program-name <span class="org-string">"aspell"</span>
@@ -2389,41 +2397,41 @@ Install <code>aspell</code> via Homebrew:
 </ul>
 
 <div class="org-src-container">
-<pre class="src src-emacs-lisp"><code>(global-prettify-symbols-mode 1)
+<pre class="src src-emacs-lisp"><code>(<span class="org-elisp-function">global-prettify-symbols-mode</span> 1)
 
-(<span class="org-keyword">defvar</span> <span class="org-variable-name">k20e/font-list</span> '((<span class="org-string">"PragmataPro-VF-Mono-Liga"</span> . 20)
+(<span class="org-keyword"><span class="org-elisp-special-form">defvar</span></span> <span class="org-variable-name"><span class="org-elisp-defvar">k20e/font-list</span></span> '((<span class="org-string">"PragmataPro-VF-Mono-Liga"</span> . 20)
                          (<span class="org-string">"PragmataPro-VF-Liga"</span> . 20))
   <span class="org-doc">"Ordered list of preferred fonts and sizes."</span>)
 
-(<span class="org-keyword">defun</span> <span class="org-function-name">k20e/font--set</span> (font-alist)
+(<span class="org-keyword"><span class="org-elisp-macro">defun</span></span> <span class="org-function-name"><span class="org-elisp-defun">k20e/font--set</span></span> (<span class="org-elisp-binding-variable">font-alist</span>)
   <span class="org-doc">"Set the font family and size to the given font alist of the
 format (family . point)."</span>
-  (<span class="org-keyword">let</span> ((font (replace-regexp-in-string <span class="org-string">"-"</span> <span class="org-string">" "</span> (car font-alist)))
-        (height (* 10 (cdr font-alist))))
-    (set-frame-font font)
-    (set-face-attribute 'default nil <span class="org-builtin">:height</span> height)))
+  (<span class="org-keyword"><span class="org-elisp-special-form">let</span></span> ((<span class="org-elisp-binding-variable">font</span> (<span class="org-elisp-function">replace-regexp-in-string</span> <span class="org-string">"-"</span> <span class="org-string">" "</span> (<span class="org-elisp-function">car</span> <span class="org-elisp-bound-variable">font-alist</span>)))
+        (<span class="org-elisp-binding-variable">height</span> (<span class="org-elisp-function">*</span> 10 (<span class="org-elisp-function">cdr</span> <span class="org-elisp-bound-variable">font-alist</span>))))
+    (<span class="org-elisp-function">set-frame-font</span> <span class="org-elisp-bound-variable">font</span>)
+    (<span class="org-elisp-function">set-face-attribute</span> '<span class="org-elisp">default</span> nil <span class="org-builtin"><span class="org-elisp-constant">:height</span></span> <span class="org-elisp-bound-variable">height</span>)))
 
-(<span class="org-keyword">defun</span> <span class="org-function-name">k20e/font-set-from-list</span> (l)
+(<span class="org-keyword"><span class="org-elisp-macro">defun</span></span> <span class="org-function-name"><span class="org-elisp-defun">k20e/font-set-from-list</span></span> (<span class="org-elisp-binding-variable">l</span>)
   <span class="org-doc">"Set the font to first available font alist in the given list."</span>
-  (<span class="org-keyword">if</span> (null l) nil
-    (k20e/font--set (car l))
-    (<span class="org-keyword">if</span> (string= (replace-regexp-in-string <span class="org-string">"-"</span> <span class="org-string">" "</span> (caar l))
-                 (face-attribute 'default <span class="org-builtin">:family</span> (selected-frame)))
-        (caar l)
-      (k20e/font-set-from-list (cdr l)))))
+  (<span class="org-keyword"><span class="org-elisp-special-form">if</span></span> (<span class="org-elisp-function">null</span> <span class="org-elisp-bound-variable">l</span>) nil
+    (<span class="org-elisp-function">k20e/font--set</span> (<span class="org-elisp-function">car</span> <span class="org-elisp-bound-variable">l</span>))
+    (<span class="org-keyword"><span class="org-elisp-special-form">if</span></span> (<span class="org-elisp-function">string=</span> (<span class="org-elisp-function">replace-regexp-in-string</span> <span class="org-string">"-"</span> <span class="org-string">" "</span> (<span class="org-elisp-function">caar</span> <span class="org-elisp-bound-variable">l</span>))
+                 (<span class="org-elisp-function">face-attribute</span> '<span class="org-elisp">default</span> <span class="org-builtin"><span class="org-elisp-constant">:family</span></span> (<span class="org-elisp-function">selected-frame</span>)))
+        (<span class="org-elisp-function">caar</span> <span class="org-elisp-bound-variable">l</span>)
+      (<span class="org-elisp-function">k20e/font-set-from-list</span> (<span class="org-elisp-function">cdr</span> <span class="org-elisp-bound-variable">l</span>)))))
 
-(<span class="org-keyword">defun</span> <span class="org-function-name">k20e/font-set</span> ()
+(<span class="org-keyword"><span class="org-elisp-macro">defun</span></span> <span class="org-function-name"><span class="org-elisp-defun">k20e/font-set</span></span> ()
   <span class="org-doc">"Set a font from the `</span><span class="org-doc"><span class="org-constant">k20e/font-list</span></span><span class="org-doc">'."</span>
-  (<span class="org-keyword">interactive</span>)
-  (<span class="org-keyword">let</span> ((ignore-case completion-ignore-case))
-    (<span class="org-keyword">unwind-protect</span>
-        (<span class="org-keyword">progn</span>
-          (<span class="org-keyword">setq</span> completion-ignore-case t)
-          (<span class="org-keyword">let</span> ((font (completing-read <span class="org-string">"Font: "</span> k20e/font-list)))
-            (k20e/font--set (assoc font k20e/font-list))))
-      (<span class="org-keyword">setq</span> completion-ignore-case ignore-case))))
+  (<span class="org-keyword"><span class="org-elisp-special-form">interactive</span></span>)
+  (<span class="org-keyword"><span class="org-elisp-special-form">let</span></span> ((<span class="org-elisp-binding-variable">ignore-case</span> <span class="org-elisp-free-variable">completion-ignore-case</span>))
+    (<span class="org-keyword"><span class="org-elisp-special-form">unwind-protect</span></span>
+        (<span class="org-keyword"><span class="org-elisp-special-form">progn</span></span>
+          (<span class="org-keyword"><span class="org-elisp-special-form">setq</span></span> <span class="org-elisp-free-variable">completion-ignore-case</span> t)
+          (<span class="org-keyword"><span class="org-elisp-special-form">let</span></span> ((<span class="org-elisp-binding-variable">font</span> (<span class="org-elisp-function">completing-read</span> <span class="org-string">"Font: "</span> <span class="org-elisp-free-variable">k20e/font-list</span>)))
+            (<span class="org-elisp-function">k20e/font--set</span> (<span class="org-elisp-function">assoc</span> <span class="org-elisp-bound-variable">font</span> <span class="org-elisp-free-variable">k20e/font-list</span>))))
+      (<span class="org-keyword"><span class="org-elisp-special-form">setq</span></span> <span class="org-elisp-free-variable">completion-ignore-case</span> <span class="org-elisp-bound-variable">ignore-case</span>))))
 
-(k20e/font-set-from-list k20e/font-list)
+(<span class="org-elisp-function">k20e/font-set-from-list</span> <span class="org-elisp-free-variable">k20e/font-list</span>)
 </code></pre>
 </div>
 </div>
@@ -2435,8 +2443,8 @@ format (family . point)."</span>
 </p>
 
 <div class="org-src-container">
-<pre class="src src-emacs-lisp"><code>(<span class="org-keyword">when</span> (member <span class="org-string">"Symbola"</span> (font-family-list))
-  (set-fontset-font t 'unicode <span class="org-string">"Noto Color Emoji"</span> nil 'prepend))
+<pre class="src src-emacs-lisp"><code>(<span class="org-keyword"><span class="org-elisp-macro">when</span></span> (<span class="org-elisp-function">member</span> <span class="org-string">"Symbola"</span> (<span class="org-elisp-function">font-family-list</span>))
+  (<span class="org-elisp-function">set-fontset-font</span> t 'unicode <span class="org-string">"Noto Color Emoji"</span> nil 'prepend))
 </code></pre>
 </div>
 </div>
@@ -2446,7 +2454,7 @@ format (family . point)."</span>
 <h2 id="geiser">geiser</h2>
 <div class="outline-text-2" id="text-geiser">
 <div class="org-src-container">
-<pre class="src src-emacs-lisp"><code>(<span class="org-keyword">use-package</span> geiser
+<pre class="src src-emacs-lisp"><code>(<span class="org-keyword"><span class="org-elisp-macro">use-package</span></span> geiser
   <span class="org-builtin">:ensure</span> t
   <span class="org-builtin">:config</span>
   (<span class="org-keyword">setq-default</span> geiser-active-implementations '(racket chicken)
@@ -2467,26 +2475,26 @@ M-x ghostel-download-module
 </pre>
 
 <div class="org-src-container">
-<pre class="src src-emacs-lisp"><code>    (<span class="org-keyword">eval-and-compile</span>
-      (<span class="org-keyword">setq</span> ghostel-module-directory (expand-file-name <span class="org-string">"ghostel"</span> user-emacs-directory)
-            ghostel-module-auto-install 'download))
+<pre class="src src-emacs-lisp"><code>    (<span class="org-keyword"><span class="org-elisp-macro">eval-and-compile</span></span>
+      (<span class="org-keyword"><span class="org-elisp-special-form">setq</span></span> <span class="org-elisp-free-variable">ghostel-module-directory</span> (<span class="org-elisp-function">expand-file-name</span> <span class="org-string">"ghostel"</span> <span class="org-elisp-free-variable">user-emacs-directory</span>)
+            <span class="org-elisp-free-variable">ghostel-module-auto-install</span> 'download))
 
-    (<span class="org-keyword">defun</span> <span class="org-function-name">k20e/ghostel-toggle</span> ()
+    (<span class="org-keyword"><span class="org-elisp-macro">defun</span></span> <span class="org-function-name"><span class="org-elisp-defun">k20e/ghostel-toggle</span></span> ()
       <span class="org-doc">"Toggle the ghostel terminal buffer.
 If we are in the ghostel buffer, switch to the previous buffer.
 If a ghostel buffer exists but we are not in it, switch to it.
 Otherwise, start a new ghostel terminal."</span>
-      (<span class="org-keyword">interactive</span>)
-      (<span class="org-keyword">let</span> ((buffer (get-buffer <span class="org-string">"*ghostel*"</span>)))
-        (<span class="org-keyword">cond</span>
-         ((eq (current-buffer) buffer)
-          (switch-to-buffer (other-buffer (current-buffer) t)))
-         (buffer
-          (switch-to-buffer buffer))
+      (<span class="org-keyword"><span class="org-elisp-special-form">interactive</span></span>)
+      (<span class="org-keyword"><span class="org-elisp-special-form">let</span></span> ((<span class="org-elisp-binding-variable">buffer</span> (<span class="org-elisp-function">get-buffer</span> <span class="org-string">"*ghostel*"</span>)))
+        (<span class="org-keyword"><span class="org-elisp-special-form">cond</span></span>
+         ((<span class="org-elisp-function">eq</span> (<span class="org-elisp-function">current-buffer</span>) <span class="org-elisp-bound-variable">buffer</span>)
+          (<span class="org-elisp-function">switch-to-buffer</span> (<span class="org-elisp-function">other-buffer</span> (<span class="org-elisp-function">current-buffer</span>) t)))
+         (<span class="org-elisp-bound-variable">buffer</span>
+          (<span class="org-elisp-function">switch-to-buffer</span> <span class="org-elisp-bound-variable">buffer</span>))
          (t
-          (ghostel)))))
+          (<span class="org-elisp-function">ghostel</span>)))))
 
-    (<span class="org-keyword">use-package</span> ghostel
+    (<span class="org-keyword"><span class="org-elisp-macro">use-package</span></span> ghostel
       <span class="org-builtin">:ensure</span> t
       <span class="org-builtin">:defines</span> (ghostel-module-directory
                 ghostel-module-auto-install
@@ -2520,7 +2528,7 @@ A <a href="https://melpa.org/#/git-modes">few major modes</a> for editing <code>
 </p>
 
 <div class="org-src-container">
-<pre class="src src-emacs-lisp"><code>(<span class="org-keyword">use-package</span> git-modes
+<pre class="src src-emacs-lisp"><code>(<span class="org-keyword"><span class="org-elisp-macro">use-package</span></span> git-modes
   <span class="org-builtin">:ensure</span> t)
 </code></pre>
 </div>
@@ -2531,30 +2539,30 @@ the <a href="https://github.com/github/gitignore">github/gitignore</a> repositor
 </p>
 
 <div class="org-src-container">
-<pre class="src src-emacs-lisp"><code>(<span class="org-keyword">require</span> '<span class="org-constant">url</span>)
+<pre class="src src-emacs-lisp"><code>(<span class="org-keyword"><span class="org-elisp-function">require</span></span> '<span class="org-constant"><span class="org-elisp-feature">url</span></span>)
 
-(<span class="org-keyword">defun</span> <span class="org-function-name">k20e/gh--gitignore-url</span> (language)
+(<span class="org-keyword"><span class="org-elisp-macro">defun</span></span> <span class="org-function-name"><span class="org-elisp-defun">k20e/gh--gitignore-url</span></span> (<span class="org-elisp-binding-variable">language</span>)
   <span class="org-doc">"Get GitHub .gitignore URL for LANGUAGE."</span>
-  (format <span class="org-string">"https://raw.githubusercontent.com/github/gitignore/master/%s.gitignore"</span>
-          (capitalize language)))
+  (<span class="org-elisp-function">format</span> <span class="org-string">"https://raw.githubusercontent.com/github/gitignore/master/%s.gitignore"</span>
+          (<span class="org-elisp-function">capitalize</span> <span class="org-elisp-bound-variable">language</span>)))
 
-(<span class="org-keyword">defun</span> <span class="org-function-name">k20e/gh--gitignore-get-region</span> (response-buffer)
+(<span class="org-keyword"><span class="org-elisp-macro">defun</span></span> <span class="org-function-name"><span class="org-elisp-defun">k20e/gh--gitignore-get-region</span></span> (<span class="org-elisp-binding-variable">response-buffer</span>)
   <span class="org-doc">"Get GitHub .gitignore response body bounds.
 Argument RESPONSE-BUFFER HTTP GET response."</span>
-  (<span class="org-keyword">with-current-buffer</span> response-buffer
-    (goto-char (point-min))
-    (<span class="org-keyword">let</span> ((start (1+ (search-forward-regexp <span class="org-string">"^$"</span>)))
-          (end (point-max)))
-      (list start end))))
+  (<span class="org-keyword"><span class="org-elisp-macro">with-current-buffer</span></span> <span class="org-elisp-bound-variable">response-buffer</span>
+    (<span class="org-elisp-function">goto-char</span> (<span class="org-elisp-function">point-min</span>))
+    (<span class="org-keyword"><span class="org-elisp-special-form">let</span></span> ((<span class="org-elisp-binding-variable">start</span> (<span class="org-elisp-function">1+</span> (<span class="org-elisp-function">search-forward-regexp</span> <span class="org-string">"^$"</span>)))
+          (<span class="org-elisp-binding-variable">end</span> (<span class="org-elisp-function">point-max</span>)))
+      (<span class="org-elisp-function">list</span> <span class="org-elisp-bound-variable">start</span> <span class="org-elisp-bound-variable">end</span>))))
 
-(<span class="org-keyword">defun</span> <span class="org-function-name">k20e/gh-gitignore-insert</span> (language)
+(<span class="org-keyword"><span class="org-elisp-macro">defun</span></span> <span class="org-function-name"><span class="org-elisp-defun">k20e/gh-gitignore-insert</span></span> (<span class="org-elisp-binding-variable">language</span>)
   <span class="org-doc">"Insert Github .gitignore for LANGUAGE."</span>
-  (<span class="org-keyword">interactive</span> <span class="org-string">"sLanguage: "</span>)
-  (<span class="org-keyword">let*</span> ((response-buffer (url-retrieve-synchronously
-                           (k20e/gh--gitignore-url language) t))
-         (gitignore-region (k20e/gh--gitignore-get-region response-buffer)))
-    (insert-buffer-substring-no-properties
-     response-buffer (car gitignore-region) (cadr gitignore-region))))
+  (<span class="org-keyword"><span class="org-elisp-special-form">interactive</span></span> <span class="org-string">"sLanguage: "</span>)
+  (<span class="org-keyword"><span class="org-elisp-special-form">let*</span></span> ((<span class="org-elisp-binding-variable">response-buffer</span> (<span class="org-elisp-function">url-retrieve-synchronously</span>
+                           (<span class="org-elisp-function">k20e/gh--gitignore-url</span> <span class="org-elisp-bound-variable">language</span>) t))
+         (<span class="org-elisp-binding-variable">gitignore-region</span> (<span class="org-elisp-function">k20e/gh--gitignore-get-region</span> <span class="org-elisp-bound-variable">response-buffer</span>)))
+    (<span class="org-elisp-function">insert-buffer-substring-no-properties</span>
+     <span class="org-elisp-bound-variable">response-buffer</span> (<span class="org-elisp-function">car</span> <span class="org-elisp-bound-variable">gitignore-region</span>) (<span class="org-elisp-function">cadr</span> <span class="org-elisp-bound-variable">gitignore-region</span>))))
 </code></pre>
 </div>
 </div>
@@ -2571,24 +2579,35 @@ Install commands:
 </code></pre>
 </div>
 
+<p>
+Configure Go modes. Both <code>go-mode</code> and native tree-sitter <code>go-ts-mode</code> share hooks for <code>lsp-mode</code>,
+tab formatting, and organize-imports on save. Emacs 31.1 also introduces built-in unit test commands
+for <code>go-ts-mode</code> under <code>C-c C-t</code> (<code>C-c C-t t</code> for test at point, <code>C-c C-t f</code> for test file, <code>C-c C-t p</code> for test package).
+</p>
+
 <div class="org-src-container">
-<pre class="src src-emacs-lisp"><code>(<span class="org-keyword">use-package</span> go-mode
+<pre class="src src-emacs-lisp"><code>(<span class="org-keyword"><span class="org-elisp-macro">defun</span></span> <span class="org-function-name"><span class="org-elisp-defun">k20e/go-mode-setup</span></span> ()
+  (<span class="org-keyword"><span class="org-elisp-macro">setq-local</span></span> <span class="org-elisp-free-variable">compile-command</span> <span class="org-string">"go run main.go"</span>
+              <span class="org-elisp-free-variable">indent-tabs-mode</span> t
+              <span class="org-elisp-free-variable">tab-width</span> 4))
+
+(<span class="org-keyword"><span class="org-elisp-macro">defun</span></span> <span class="org-function-name"><span class="org-elisp-defun">k20e/go-before-save</span></span> ()
+  (<span class="org-keyword"><span class="org-elisp-macro">when</span></span> (<span class="org-elisp-function">derived-mode-p</span> '<span class="org-elisp-major-mode-name">go-mode</span> '<span class="org-elisp-major-mode-name">go-ts-mode</span>)
+    (<span class="org-elisp-function">lsp-format-buffer</span>)
+    (<span class="org-elisp-function">lsp-organize-imports</span>)))
+
+(<span class="org-keyword"><span class="org-elisp-macro">use-package</span></span> go-mode
   <span class="org-builtin">:ensure</span> t
   <span class="org-builtin">:bind</span>
   (<span class="org-builtin">:map</span> go-mode-map
         (<span class="org-string">"C-c C-t"</span> . k20e/toggle-test-buffer)
         (<span class="org-string">"M-q"</span> . lsp-format-buffer))
   <span class="org-builtin">:custom-face</span> (button ((t (<span class="org-builtin">:box</span> nil))))
-  <span class="org-builtin">:hook</span> ((before-save . (<span class="org-keyword">lambda</span> ()
-                          (<span class="org-keyword">when</span> (eq major-mode 'go-mode)
-                            (lsp-format-buffer)
-                            (lsp-organize-imports))))
-         (go-mode . lsp-deferred)
-         (go-mode . (<span class="org-keyword">lambda</span> ()
-                      (<span class="org-keyword">setq-local</span>
-                       compile-command <span class="org-string">"go run main.go"</span>
-                       indent-tabs-mode t
-                       tab-width 4))))
+  <span class="org-builtin">:hook</span> ((go-mode . lsp-deferred)
+         (go-mode . k20e/go-mode-setup)
+         (go-ts-mode . lsp-deferred)
+         (go-ts-mode . k20e/go-mode-setup)
+         (before-save . k20e/go-before-save))
   <span class="org-builtin">:config</span>
   <span class="org-comment-delimiter">;; </span><span class="org-comment">https://github.com/golang/tools/blob/master/gopls/doc/settings.md#officially-supported
 </span>  (<span class="org-keyword">setq-default</span> lsp-go-directory-filters [<span class="org-string">"-**/testdata"</span>]
@@ -2612,7 +2631,7 @@ Install commands:
 <h2 id="highlight-indent-guides">highlight-indent-guides</h2>
 <div class="outline-text-2" id="text-highlight-indent-guides">
 <div class="org-src-container">
-<pre class="src src-emacs-lisp"><code>(<span class="org-keyword">use-package</span> highlight-indent-guides
+<pre class="src src-emacs-lisp"><code>(<span class="org-keyword"><span class="org-elisp-macro">use-package</span></span> highlight-indent-guides
   <span class="org-builtin">:ensure</span> t
   <span class="org-builtin">:config</span>
   (<span class="org-keyword">setq</span> highlight-indent-guides-method 'character
@@ -2625,7 +2644,7 @@ Install commands:
 <h2 id="highlight-parentheses">highlight-parentheses</h2>
 <div class="outline-text-2" id="text-highlight-parentheses">
 <div class="org-src-container">
-<pre class="src src-emacs-lisp"><code>(<span class="org-keyword">use-package</span> highlight-parentheses
+<pre class="src src-emacs-lisp"><code>(<span class="org-keyword"><span class="org-elisp-macro">use-package</span></span> highlight-parentheses
   <span class="org-builtin">:ensure</span> t
   <span class="org-builtin">:hook</span> ((emacs-lisp-mode . highlight-parentheses-mode)
          (lisp-mode-hook . highlight-parentheses-mode)))
@@ -2637,8 +2656,16 @@ Install commands:
 <h2 id="htmlize">htmlize</h2>
 <div class="outline-text-2" id="text-htmlize">
 <div class="org-src-container">
-<pre class="src src-emacs-lisp"><code>(<span class="org-keyword">use-package</span> htmlize
-  <span class="org-builtin">:ensure</span> t)
+<pre class="src src-emacs-lisp"><code>(<span class="org-keyword"><span class="org-elisp-macro">use-package</span></span> htmlize
+  <span class="org-builtin">:ensure</span> t
+  <span class="org-builtin">:config</span>
+  <span class="org-comment-delimiter">;; </span><span class="org-comment">Emacs 31 semantic font-lock faces (e.g. `</span><span class="org-comment"><span class="org-constant">elisp-free-variable</span></span><span class="org-comment">') use `:foreground 'reset`
+</span>  <span class="org-comment-delimiter">;; </span><span class="org-comment">to cancel inherited colors. Treat 'reset as nil so htmlize does not fail on non-string color.
+</span>  (advice-add 'htmlize-face-color-internal <span class="org-builtin">:filter-return</span>
+              (<span class="org-keyword">lambda</span> (color)
+                (<span class="org-keyword">if</span> (<span class="org-keyword">or</span> (eq color 'reset) (equal color <span class="org-string">"reset"</span>))
+                    nil
+                  color))))
 </code></pre>
 </div>
 </div>
@@ -2647,11 +2674,11 @@ Install commands:
 <h2 id="ibuffer">ibuffer</h2>
 <div class="outline-text-2" id="text-ibuffer">
 <div class="org-src-container">
-<pre class="src src-emacs-lisp"><code>(<span class="org-keyword">require</span> '<span class="org-constant">face-remap</span>)
+<pre class="src src-emacs-lisp"><code>(<span class="org-keyword"><span class="org-elisp-function">require</span></span> '<span class="org-constant"><span class="org-elisp-feature">face-remap</span></span>)
 
-(<span class="org-keyword">defalias</span> '<span class="org-function-name">list-buffers</span> 'ibuffer)
+(<span class="org-keyword"><span class="org-elisp-function">defalias</span></span> '<span class="org-function-name"><span class="org-elisp-defun">list-buffers</span></span> '<span class="org-elisp-defun">ibuffer</span>)
 
-(<span class="org-keyword">use-package</span> ibuffer
+(<span class="org-keyword"><span class="org-elisp-macro">use-package</span></span> ibuffer
   <span class="org-builtin">:custom</span>
   (ibuffer-formats '((mark <span class="org-string">" "</span>
                            (modified)
@@ -2678,8 +2705,15 @@ Install commands:
 <div id="outline-container-ielm" class="outline-2">
 <h2 id="ielm">IELM</h2>
 <div class="outline-text-2" id="text-ielm">
+<p>
+In Emacs 31, <code>ielm-dynamic-return</code> set to <code>'point</code> ensures typing <code>RET</code> inserts a newline
+when point is inside an unclosed expression, avoiding premature evaluation when paired with <code>paredit-mode</code>.
+</p>
+
 <div class="org-src-container">
-<pre class="src src-emacs-lisp"><code>(<span class="org-keyword">use-package</span> ielm
+<pre class="src src-emacs-lisp"><code>(<span class="org-keyword"><span class="org-elisp-macro">use-package</span></span> ielm
+  <span class="org-builtin">:custom</span>
+  (ielm-dynamic-return 'point)
   <span class="org-builtin">:hook</span> ((ielm-mode . eldoc-mode)
          (ielm-mode . paredit-mode)))
 </code></pre>
@@ -2694,7 +2728,7 @@ Re-scan the buffer for new menu items automatically.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-emacs-lisp"><code>(<span class="org-keyword">use-package</span> imenu
+<pre class="src src-emacs-lisp"><code>(<span class="org-keyword"><span class="org-elisp-macro">use-package</span></span> imenu
   <span class="org-builtin">:config</span>
   (<span class="org-keyword">setq-default</span> imenu-auto-rescan t))
 </code></pre>
@@ -2705,7 +2739,7 @@ Re-scan the buffer for new menu items automatically.
 <h2 id="js">js</h2>
 <div class="outline-text-2" id="text-js">
 <div class="org-src-container">
-<pre class="src src-emacs-lisp"><code>(<span class="org-keyword">use-package</span> js
+<pre class="src src-emacs-lisp"><code>(<span class="org-keyword"><span class="org-elisp-macro">use-package</span></span> js
   <span class="org-builtin">:mode</span> (<span class="org-string">"\\.json\\'"</span> . js-mode)
   <span class="org-builtin">:hook</span> ((js-mode . flycheck-mode)))
 </code></pre>
@@ -2716,7 +2750,7 @@ Re-scan the buffer for new menu items automatically.
 <h2 id="latex">LaTeX</h2>
 <div class="outline-text-2" id="text-latex">
 <div class="org-src-container">
-<pre class="src src-emacs-lisp"><code>(<span class="org-keyword">use-package</span> tex-mode
+<pre class="src src-emacs-lisp"><code>(<span class="org-keyword"><span class="org-elisp-macro">use-package</span></span> tex-mode
   <span class="org-builtin">:ensure</span> t
   <span class="org-builtin">:bind</span> (<span class="org-builtin">:map</span> latex-mode-map (<span class="org-string">"C-j"</span> . join-line)))
 </code></pre>
@@ -2727,7 +2761,7 @@ Re-scan the buffer for new menu items automatically.
 <h2 id="ligature-pragmatapro">ligature-pragmatapro</h2>
 <div class="outline-text-2" id="text-ligature-pragmatapro">
 <div class="org-src-container">
-<pre class="src src-emacs-lisp"><code>(<span class="org-keyword">use-package</span> ligature-pragmatapro
+<pre class="src src-emacs-lisp"><code>(<span class="org-keyword"><span class="org-elisp-macro">use-package</span></span> ligature-pragmatapro
   <span class="org-builtin">:ensure</span> t
   <span class="org-builtin">:config</span>
   (ligature-pragmatapro-setup)
@@ -2746,7 +2780,7 @@ do not ever anticipate.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-emacs-lisp"><code>(<span class="org-keyword">setq</span> create-lockfiles nil)
+<pre class="src src-emacs-lisp"><code>(<span class="org-keyword"><span class="org-elisp-special-form">setq</span></span> <span class="org-elisp-free-variable">create-lockfiles</span> nil)
 </code></pre>
 </div>
 </div>
@@ -2755,7 +2789,7 @@ do not ever anticipate.
 <h2 id="lsp-mode">lsp-mode</h2>
 <div class="outline-text-2" id="text-lsp-mode">
 <div class="org-src-container">
-<pre class="src src-emacs-lisp"><code>(<span class="org-keyword">use-package</span> lsp-mode
+<pre class="src src-emacs-lisp"><code>(<span class="org-keyword"><span class="org-elisp-macro">use-package</span></span> lsp-mode
   <span class="org-builtin">:ensure</span> t
   <span class="org-builtin">:config</span>
   (<span class="org-keyword">setq-default</span>
@@ -2776,7 +2810,7 @@ do not ever anticipate.
 <h2 id="lua-mode">lua-mode</h2>
 <div class="outline-text-2" id="text-lua-mode">
 <div class="org-src-container">
-<pre class="src src-emacs-lisp"><code>(<span class="org-keyword">use-package</span> lua-mode
+<pre class="src src-emacs-lisp"><code>(<span class="org-keyword"><span class="org-elisp-macro">use-package</span></span> lua-mode
   <span class="org-builtin">:ensure</span> t)
 </code></pre>
 </div>
@@ -2791,7 +2825,7 @@ width.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-emacs-lisp"><code>(<span class="org-keyword">setq-default</span> Man-width 80)
+<pre class="src src-emacs-lisp"><code>(<span class="org-keyword"><span class="org-elisp-macro">setq-default</span></span> <span class="org-elisp-free-variable">Man-width</span> 80)
 </code></pre>
 </div>
 </div>
@@ -2800,7 +2834,7 @@ width.
 <h2 id="markdown-mode">markdown-mode</h2>
 <div class="outline-text-2" id="text-markdown-mode">
 <div class="org-src-container">
-<pre class="src src-emacs-lisp"><code>(<span class="org-keyword">use-package</span> markdown-mode
+<pre class="src src-emacs-lisp"><code>(<span class="org-keyword"><span class="org-elisp-macro">use-package</span></span> markdown-mode
   <span class="org-builtin">:ensure</span> t
   <span class="org-builtin">:config</span> (<span class="org-keyword">setq</span> markdown-open-command <span class="org-string">"open"</span>)
   <span class="org-builtin">:hook</span> ((markdown-mode . prettify-symbols-mode)
@@ -2822,12 +2856,12 @@ Scale up the minibuffer text size and limit how tall it can get.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-emacs-lisp"><code>(<span class="org-keyword">defun</span> <span class="org-function-name">k20e/minibuffer-setup-hook</span> ()
+<pre class="src src-emacs-lisp"><code>(<span class="org-keyword"><span class="org-elisp-macro">defun</span></span> <span class="org-function-name"><span class="org-elisp-defun">k20e/minibuffer-setup-hook</span></span> ()
   <span class="org-doc">"Bump up minibuffer text size and height."</span>
-  (text-scale-set 3)
-  (<span class="org-keyword">setq</span> max-mini-window-height 20))
+  (<span class="org-elisp-function">text-scale-set</span> 3)
+  (<span class="org-keyword"><span class="org-elisp-special-form">setq</span></span> <span class="org-elisp-free-variable">max-mini-window-height</span> 20))
 
-(add-hook 'minibuffer-setup-hook 'k20e/minibuffer-setup-hook)
+(<span class="org-elisp-function">add-hook</span> '<span class="org-elisp-free-variable">minibuffer-setup-hook</span> 'k20e/minibuffer-setup-hook)
 </code></pre>
 </div>
 
@@ -2838,7 +2872,7 @@ in <a href="http://www.masteringemacs.org/articles/2011/10/19/executing-shell-co
 </p>
 
 <div class="org-src-container">
-<pre class="src src-emacs-lisp"><code>(<span class="org-keyword">setq</span> enable-recursive-minibuffers t)
+<pre class="src src-emacs-lisp"><code>(<span class="org-keyword"><span class="org-elisp-special-form">setq</span></span> <span class="org-elisp-free-variable">enable-recursive-minibuffers</span> t)
 </code></pre>
 </div>
 </div>
@@ -2850,12 +2884,12 @@ Enable <code>eldoc</code> in the modeline.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-emacs-lisp"><code>(<span class="org-keyword">require</span> '<span class="org-constant">eldoc</span>)
+<pre class="src src-emacs-lisp"><code>(<span class="org-keyword"><span class="org-elisp-function">require</span></span> '<span class="org-constant"><span class="org-elisp-feature">eldoc</span></span>)
 
-(<span class="org-keyword">defun</span> <span class="org-function-name">k20e/eval-expression-minibuffer-setup-hook</span> ()
-  (eldoc-mode 1))
+(<span class="org-keyword"><span class="org-elisp-macro">defun</span></span> <span class="org-function-name"><span class="org-elisp-defun">k20e/eval-expression-minibuffer-setup-hook</span></span> ()
+  (<span class="org-elisp-function">eldoc-mode</span> 1))
 
-(add-hook 'eval-expression-minibuffer-setup-hook
+(<span class="org-elisp-function">add-hook</span> '<span class="org-elisp-free-variable">eval-expression-minibuffer-setup-hook</span>
           'k20e/eval-expression-minibuffer-setup-hook)
 </code></pre>
 </div>
@@ -2866,7 +2900,7 @@ Enable <code>eldoc</code> in the modeline.
 <h2 id="multiple-cursors">multiple-cursors</h2>
 <div class="outline-text-2" id="text-multiple-cursors">
 <div class="org-src-container">
-<pre class="src src-emacs-lisp"><code>(<span class="org-keyword">use-package</span> multiple-cursors
+<pre class="src src-emacs-lisp"><code>(<span class="org-keyword"><span class="org-elisp-macro">use-package</span></span> multiple-cursors
   <span class="org-builtin">:ensure</span> t
   <span class="org-builtin">:bind</span> ((<span class="org-string">"M-L"</span> . mc/edit-lines)
          (<span class="org-string">"C-M-."</span> . k20e/mark-next)
@@ -2900,7 +2934,7 @@ Keep preferences sync'd across machines.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-emacs-lisp"><code>(<span class="org-keyword">setq</span> mc/list-file (expand-file-name <span class="org-string">".mc-lists.el"</span> k20e/google-drive-directory))
+<pre class="src src-emacs-lisp"><code>(<span class="org-keyword"><span class="org-elisp-special-form">setq</span></span> <span class="org-elisp-free-variable">mc/list-file</span> (<span class="org-elisp-function">expand-file-name</span> <span class="org-string">".mc-lists.el"</span> <span class="org-elisp-free-variable">k20e/google-drive-directory</span>))
 </code></pre>
 </div>
 </div>
@@ -2924,7 +2958,7 @@ Install <code>opam</code>, then <code>opam init</code> (see <a href="https://git
 </ul>
 
 <div class="org-src-container">
-<pre class="src src-emacs-lisp"><code>(<span class="org-keyword">use-package</span> tuareg
+<pre class="src src-emacs-lisp"><code>(<span class="org-keyword"><span class="org-elisp-macro">use-package</span></span> tuareg
   <span class="org-builtin">:ensure</span> t
   <span class="org-builtin">:after</span> (flycheck lsp-mode ocamlformat ocp-indent)
   <span class="org-builtin">:bind</span> (<span class="org-builtin">:map</span> tuareg-mode-map
@@ -2934,12 +2968,12 @@ Install <code>opam</code>, then <code>opam init</code> (see <a href="https://git
   <span class="org-builtin">:hook</span> ((before-save . ocamlformat-before-save)
          (tuareg-mode . lsp-deferred)))
 
-(<span class="org-keyword">use-package</span> ocamlformat
+(<span class="org-keyword"><span class="org-elisp-macro">use-package</span></span> ocamlformat
   <span class="org-builtin">:ensure</span> t
   <span class="org-builtin">:custom</span>
   (ocamlformat-enable 'enable-outside-detected-project))
 
-(<span class="org-keyword">use-package</span> ocp-indent
+(<span class="org-keyword"><span class="org-elisp-macro">use-package</span></span> ocp-indent
   <span class="org-builtin">:ensure</span> t)
 </code></pre>
 </div>
@@ -2953,7 +2987,7 @@ Install <code>opam</code>, then <code>opam init</code> (see <a href="https://git
 </p>
 
 <div class="org-src-container">
-<pre class="src src-emacs-lisp"><code>(<span class="org-keyword">use-package</span> olivetti
+<pre class="src src-emacs-lisp"><code>(<span class="org-keyword"><span class="org-elisp-macro">use-package</span></span> olivetti
   <span class="org-builtin">:ensure</span> t
   <span class="org-builtin">:config</span> (<span class="org-keyword">setq</span> olivetti-style 'fancy))
 </code></pre>
@@ -2964,12 +2998,12 @@ Install <code>opam</code>, then <code>opam init</code> (see <a href="https://git
 <h2 id="open-source-licenses">Open Source Licenses</h2>
 <div class="outline-text-2" id="text-open-source-licenses">
 <div class="org-src-container">
-<pre class="src src-emacs-lisp"><code>(<span class="org-keyword">defun</span> <span class="org-function-name">k20e/insert-mit-license</span> ()
+<pre class="src src-emacs-lisp"><code>(<span class="org-keyword"><span class="org-elisp-macro">defun</span></span> <span class="org-function-name"><span class="org-elisp-defun">k20e/insert-mit-license</span></span> ()
   <span class="org-doc">"Insert MIT license file contents.
 Populate the current year and user name."</span>
-  (<span class="org-keyword">interactive</span>)
-  (<span class="org-keyword">with-current-buffer</span> (get-buffer-create <span class="org-string">"LICENSE.txt"</span>)
-    (insert (format <span class="org-string">"The MIT License (MIT)
+  (<span class="org-keyword"><span class="org-elisp-special-form">interactive</span></span>)
+  (<span class="org-keyword"><span class="org-elisp-macro">with-current-buffer</span></span> (<span class="org-elisp-function">get-buffer-create</span> <span class="org-string">"LICENSE.txt"</span>)
+    (<span class="org-elisp-function">insert</span> (<span class="org-elisp-function">format</span> <span class="org-string">"The MIT License (MIT)
 
 Copyright (c) %s %s
 
@@ -2990,7 +3024,7 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
-"</span> (format-time-string <span class="org-string">"%Y"</span>) (user-full-name)))))
+"</span> (<span class="org-elisp-function">format-time-string</span> <span class="org-string">"%Y"</span>) (<span class="org-elisp-function">user-full-name</span>)))))
 </code></pre>
 </div>
 </div>
@@ -2999,10 +3033,10 @@ THE SOFTWARE.
 <h2 id="org-mode">org-mode</h2>
 <div class="outline-text-2" id="text-org-mode">
 <div class="org-src-container">
-<pre class="src src-emacs-lisp"><code>(<span class="org-keyword">defun</span> <span class="org-function-name">k20e/org-font-setup</span> ()
-  (<span class="org-keyword">require</span> '<span class="org-constant">org-faces</span> nil t)
-  (<span class="org-keyword">require</span> '<span class="org-constant">org-indent</span> nil t)
-  (<span class="org-keyword">dolist</span> (spec
+<pre class="src src-emacs-lisp"><code>(<span class="org-keyword"><span class="org-elisp-macro">defun</span></span> <span class="org-function-name"><span class="org-elisp-defun">k20e/org-font-setup</span></span> ()
+  (<span class="org-keyword"><span class="org-elisp-function">require</span></span> '<span class="org-constant"><span class="org-elisp-feature">org-faces</span></span> nil t)
+  (<span class="org-keyword"><span class="org-elisp-function">require</span></span> '<span class="org-constant"><span class="org-elisp-feature">org-indent</span></span> nil t)
+  (<span class="org-keyword"><span class="org-elisp-macro">dolist</span></span> (spec
            '((variable-pitch <span class="org-builtin">:family</span> <span class="org-string">"ETBembo"</span> <span class="org-builtin">:height</span> 1.3)
              (fixed-pitch <span class="org-builtin">:family</span> <span class="org-string">"PragmataPro Mono Liga"</span> <span class="org-builtin">:height</span> 0.8)
              (org-block <span class="org-builtin">:inherit</span> fixed-pitch)
@@ -3028,7 +3062,7 @@ THE SOFTWARE.
       (<span class="org-keyword">when</span> (facep face)
         (apply #'set-face-attribute face nil args)))))
 
-(<span class="org-keyword">use-package</span> org
+(<span class="org-keyword"><span class="org-elisp-macro">use-package</span></span> org
   <span class="org-builtin">:hook</span>
   ((org-mode . auto-fill-mode)
    (org-mode . prettify-symbols-mode)
@@ -3073,7 +3107,7 @@ To update Org mode, use Emacs package management commands:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-emacs-lisp"><code>(package-upgrade 'org)
+<pre class="src src-emacs-lisp"><code>(<span class="org-elisp-function">package-upgrade</span> 'org)
 </code></pre>
 </div>
 
@@ -3092,7 +3126,7 @@ image width if no attribute keyword is found:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-emacs-lisp"><code>(<span class="org-keyword">setq</span> org-image-actual-width nil)
+<pre class="src src-emacs-lisp"><code>(<span class="org-keyword"><span class="org-elisp-special-form">setq</span></span> <span class="org-elisp-free-variable">org-image-actual-width</span> nil)
 </code></pre>
 </div>
 </div>
@@ -3101,17 +3135,17 @@ image width if no attribute keyword is found:
 <h3 id="key-bindings">Key Bindings</h3>
 <div class="outline-text-3" id="text-key-bindings">
 <div class="org-src-container">
-<pre class="src src-emacs-lisp"><code>(global-set-key (kbd <span class="org-string">"&lt;f12&gt;"</span>) 'org-agenda-list)
-(global-set-key (kbd <span class="org-string">"C-c a"</span>) 'org-agenda)
-(global-set-key (kbd <span class="org-string">"C-c l"</span>) 'org-store-link)
-(global-set-key (kbd <span class="org-string">"C-x c"</span>) 'org-switchb)
+<pre class="src src-emacs-lisp"><code>(<span class="org-elisp-function">global-set-key</span> (<span class="org-elisp-function">kbd</span> <span class="org-string">"&lt;f12&gt;"</span>) 'org-agenda-list)
+(<span class="org-elisp-function">global-set-key</span> (<span class="org-elisp-function">kbd</span> <span class="org-string">"C-c a"</span>) 'org-agenda)
+(<span class="org-elisp-function">global-set-key</span> (<span class="org-elisp-function">kbd</span> <span class="org-string">"C-c l"</span>) 'org-store-link)
+(<span class="org-elisp-function">global-set-key</span> (<span class="org-elisp-function">kbd</span> <span class="org-string">"C-x c"</span>) 'org-switchb)
 
-(define-key org-mode-map (kbd <span class="org-string">"&lt;return&gt;"</span>) 'org-return-and-maybe-indent)
-(define-key org-mode-map (kbd <span class="org-string">"M-&lt;return&gt;"</span>) 'org-meta-return)
-(define-key org-mode-map (kbd <span class="org-string">"C-j"</span>) 'join-line)
-(define-key org-mode-map (kbd <span class="org-string">"C-m"</span>) 'org-return-and-maybe-indent)
-(define-key org-mode-map (kbd <span class="org-string">"H-&lt;tab&gt;"</span>) 'pcomplete)
-(define-key org-mode-map (kbd <span class="org-string">"M-h"</span>) 'backward-kill-word)
+(<span class="org-elisp-function">define-key</span> <span class="org-elisp-free-variable">org-mode-map</span> (<span class="org-elisp-function">kbd</span> <span class="org-string">"&lt;return&gt;"</span>) '<span class="org-elisp-function">org-return-and-maybe-indent</span>)
+(<span class="org-elisp-function">define-key</span> <span class="org-elisp-free-variable">org-mode-map</span> (<span class="org-elisp-function">kbd</span> <span class="org-string">"M-&lt;return&gt;"</span>) '<span class="org-elisp-function">org-meta-return</span>)
+(<span class="org-elisp-function">define-key</span> <span class="org-elisp-free-variable">org-mode-map</span> (<span class="org-elisp-function">kbd</span> <span class="org-string">"C-j"</span>) '<span class="org-elisp-function">join-line</span>)
+(<span class="org-elisp-function">define-key</span> <span class="org-elisp-free-variable">org-mode-map</span> (<span class="org-elisp-function">kbd</span> <span class="org-string">"C-m"</span>) '<span class="org-elisp-function">org-return-and-maybe-indent</span>)
+(<span class="org-elisp-function">define-key</span> <span class="org-elisp-free-variable">org-mode-map</span> (<span class="org-elisp-function">kbd</span> <span class="org-string">"H-&lt;tab&gt;"</span>) '<span class="org-elisp-function">pcomplete</span>)
+(<span class="org-elisp-function">define-key</span> <span class="org-elisp-free-variable">org-mode-map</span> (<span class="org-elisp-function">kbd</span> <span class="org-string">"M-h"</span>) '<span class="org-elisp-function">backward-kill-word</span>)
 </code></pre>
 </div>
 </div>
@@ -3131,7 +3165,7 @@ process.  That is what makes the <a href="#html-export">batch export</a> of <i>t
 </p>
 
 <div class="org-src-container">
-<pre class="src src-emacs-lisp"><code>(<span class="org-keyword">require</span> '<span class="org-constant">k20e-org-html-export</span>)
+<pre class="src src-emacs-lisp"><code>(<span class="org-keyword"><span class="org-elisp-function">require</span></span> '<span class="org-constant"><span class="org-elisp-feature">k20e-org-html-export</span></span>)
 </code></pre>
 </div>
 
@@ -3151,12 +3185,12 @@ Interactive customization can be done here.  Loading the file above brings
 </p>
 
 <div class="org-src-container">
-<pre class="src src-emacs-lisp"><code>(<span class="org-keyword">setq</span>
+<pre class="src src-emacs-lisp"><code>(<span class="org-keyword"><span class="org-elisp-special-form">setq</span></span>
  <span class="org-comment-delimiter">;; </span><span class="org-comment">Enable "expert" export interface.
-</span> org-export-dispatch-use-expert-ui t
+</span> <span class="org-elisp-free-variable">org-export-dispatch-use-expert-ui</span> t
 
  <span class="org-comment-delimiter">;; </span><span class="org-comment">Continue export when links are broken, but mark them
-</span> org-export-with-broken-links `mark)
+</span> <span class="org-elisp-free-variable">org-export-with-broken-links</span> `mark)
 </code></pre>
 </div>
 </div>
@@ -3197,12 +3231,12 @@ does nothing, so the <code>require</code> is the part that matters.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-emacs-lisp"><code>(<span class="org-keyword">require</span> '<span class="org-constant">ox-md</span>)
+<pre class="src src-emacs-lisp"><code>(<span class="org-keyword"><span class="org-elisp-function">require</span></span> '<span class="org-constant"><span class="org-elisp-feature">ox-md</span></span>)
 </code></pre>
 </div>
 
 <div class="org-src-container">
-<pre class="src src-emacs-lisp"><code>(<span class="org-keyword">use-package</span> ox-tufte <span class="org-builtin">:ensure</span> t)
+<pre class="src src-emacs-lisp"><code>(<span class="org-keyword"><span class="org-elisp-macro">use-package</span></span> ox-tufte <span class="org-builtin">:ensure</span> t)
 </code></pre>
 </div>
 </div>
@@ -3219,9 +3253,9 @@ value alone.  The <code>defvar</code> keeps the byte-compiler quiet without havi
 </p>
 
 <div class="org-src-container">
-<pre class="src src-emacs-lisp"><code>(<span class="org-keyword">defvar</span> <span class="org-variable-name">org-publish-project-alist</span>)
+<pre class="src src-emacs-lisp"><code>(<span class="org-keyword"><span class="org-elisp-special-form">defvar</span></span> <span class="org-variable-name"><span class="org-elisp-special-variable-declaration">org-publish-project-alist</span></span>)
 
-(<span class="org-keyword">setq</span> org-publish-project-alist
+(<span class="org-keyword"><span class="org-elisp-special-form">setq</span></span> <span class="org-elisp-free-variable">org-publish-project-alist</span>
       `((<span class="org-string">"k20e.com-org-files"</span>
          <span class="org-builtin">:base-directory</span> ,(expand-file-name <span class="org-string">"source"</span> (expand-file-name <span class="org-string">"k20e.com"</span> k20e/google-drive-directory))
          <span class="org-builtin">:base-extension</span> <span class="org-string">"org"</span>
@@ -3278,7 +3312,7 @@ Define <a href="https://orgmode.org/worg/org-contrib/babel/languages/index.html"
 </p>
 
 <div class="org-src-container">
-<pre class="src src-emacs-lisp"><code>(<span class="org-keyword">defvar</span> <span class="org-variable-name">k20e/org-babel-load-languages</span>
+<pre class="src src-emacs-lisp"><code>(<span class="org-keyword"><span class="org-elisp-special-form">defvar</span></span> <span class="org-variable-name"><span class="org-elisp-defvar">k20e/org-babel-load-languages</span></span>
   '((ditaa . t)
     (emacs-lisp . t)
     (js . t)
@@ -3289,8 +3323,8 @@ Define <a href="https://orgmode.org/worg/org-contrib/babel/languages/index.html"
     (sql . t))
   <span class="org-doc">"Languages to evaluate in `</span><span class="org-doc"><span class="org-constant">org-mode</span></span><span class="org-doc">'."</span>)
 
-(org-babel-do-load-languages 'org-babel-load-languages
-                             k20e/org-babel-load-languages)
+(<span class="org-elisp-function">org-babel-do-load-languages</span> 'org-babel-load-languages
+                             <span class="org-elisp-free-variable">k20e/org-babel-load-languages</span>)
 </code></pre>
 </div>
 
@@ -3300,7 +3334,7 @@ dangerous but I never execute any org files that I didn't author.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-emacs-lisp"><code>(<span class="org-keyword">setq</span> org-confirm-babel-evaluate nil)
+<pre class="src src-emacs-lisp"><code>(<span class="org-keyword"><span class="org-elisp-special-form">setq</span></span> <span class="org-elisp-free-variable">org-confirm-babel-evaluate</span> nil)
 </code></pre>
 </div>
 </div>
@@ -3313,7 +3347,7 @@ Automatically insert a timestamp when a task is marked <code>DONE</code>.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-emacs-lisp"><code>(<span class="org-keyword">setq</span> org-log-done t)
+<pre class="src src-emacs-lisp"><code>(<span class="org-keyword"><span class="org-elisp-special-form">setq</span></span> <span class="org-elisp-free-variable">org-log-done</span> t)
 </code></pre>
 </div>
 
@@ -3322,13 +3356,13 @@ Custom keywords and faces.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-emacs-lisp"><code>(<span class="org-keyword">setq</span> org-todo-keywords '((sequence
+<pre class="src src-emacs-lisp"><code>(<span class="org-keyword"><span class="org-elisp-special-form">setq</span></span> <span class="org-elisp-free-variable">org-todo-keywords</span> '((sequence
                            <span class="org-string">"TODO(t)"</span>
                            <span class="org-string">"STARTED(s!)"</span>
                            <span class="org-string">"|"</span>
                            <span class="org-string">"DONE(d!)"</span>
                            <span class="org-string">"CANCELED(c@)"</span>))
-      org-todo-keyword-faces '((<span class="org-string">"TODO"</span> . org-todo)
+      <span class="org-elisp-free-variable">org-todo-keyword-faces</span> '((<span class="org-string">"TODO"</span> . org-todo)
                                (<span class="org-string">"STARTED"</span> . org-code)
                                (<span class="org-string">"CANCELED"</span> . org-ellipsis)
                                (<span class="org-string">"DONE"</span> . org-done)))
@@ -3340,21 +3374,21 @@ Custom keywords and faces.
 <h3 id="agenda">Agenda</h3>
 <div class="outline-text-3" id="text-agenda">
 <div class="org-src-container">
-<pre class="src src-emacs-lisp"><code>(<span class="org-keyword">require</span> '<span class="org-constant">face-remap</span>)
-(<span class="org-keyword">require</span> '<span class="org-constant">org</span>)
-(<span class="org-keyword">require</span> '<span class="org-constant">org-agenda</span>)
-(<span class="org-keyword">require</span> '<span class="org-constant">winner</span>)
+<pre class="src src-emacs-lisp"><code>(<span class="org-keyword"><span class="org-elisp-function">require</span></span> '<span class="org-constant"><span class="org-elisp-feature">face-remap</span></span>)
+(<span class="org-keyword"><span class="org-elisp-function">require</span></span> '<span class="org-constant"><span class="org-elisp-feature">org</span></span>)
+(<span class="org-keyword"><span class="org-elisp-function">require</span></span> '<span class="org-constant"><span class="org-elisp-feature">org-agenda</span></span>)
+(<span class="org-keyword"><span class="org-elisp-function">require</span></span> '<span class="org-constant"><span class="org-elisp-feature">winner</span></span>)
 
-(<span class="org-keyword">defun</span> <span class="org-function-name">k20e/org-agenda-mode-hook</span> ()
-  (define-key org-agenda-mode-map (kbd <span class="org-string">"q"</span>)
-    (<span class="org-keyword">lambda</span> (_x)
-      (<span class="org-keyword">interactive</span> <span class="org-string">"p"</span>)
-      (winner-undo)
-      (kill-buffer <span class="org-string">"*Org Agenda*"</span>)))
-  (delete-other-windows)
-  (text-scale-set 2))
+(<span class="org-keyword"><span class="org-elisp-macro">defun</span></span> <span class="org-function-name"><span class="org-elisp-defun">k20e/org-agenda-mode-hook</span></span> ()
+  (<span class="org-elisp-function">define-key</span> <span class="org-elisp-free-variable">org-agenda-mode-map</span> (<span class="org-elisp-function">kbd</span> <span class="org-string">"q"</span>)
+    (<span class="org-keyword"><span class="org-elisp-macro">lambda</span></span> (<span class="org-elisp-binding-variable">_x</span>)
+      (<span class="org-keyword"><span class="org-elisp-special-form">interactive</span></span> <span class="org-string">"p"</span>)
+      (<span class="org-elisp-function">winner-undo</span>)
+      (<span class="org-elisp-function">kill-buffer</span> <span class="org-string">"*Org Agenda*"</span>)))
+  (<span class="org-elisp-function">delete-other-windows</span>)
+  (<span class="org-elisp-function">text-scale-set</span> 2))
 
-(add-hook 'org-agenda-mode-hook 'k20e/org-agenda-mode-hook)
+(<span class="org-elisp-function">add-hook</span> '<span class="org-elisp-free-variable">org-agenda-mode-hook</span> 'k20e/org-agenda-mode-hook)
 </code></pre>
 </div>
 </div>
@@ -3385,7 +3419,7 @@ is scheduled today or was scheduled previously is not shown.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-emacs-lisp"><code>(<span class="org-keyword">setq</span> org-agenda-skip-scheduled-if-deadline-is-shown nil)
+<pre class="src src-emacs-lisp"><code>(<span class="org-keyword"><span class="org-elisp-special-form">setq</span></span> <span class="org-elisp-free-variable">org-agenda-skip-scheduled-if-deadline-is-shown</span> nil)
 </code></pre>
 </div>
 </div>
@@ -3398,7 +3432,7 @@ Default to showing only today in the agenda list.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-emacs-lisp"><code>(<span class="org-keyword">setq</span> org-agenda-span 'day)
+<pre class="src src-emacs-lisp"><code>(<span class="org-keyword"><span class="org-elisp-special-form">setq</span></span> <span class="org-elisp-free-variable">org-agenda-span</span> 'day)
 </code></pre>
 </div>
 </div>
@@ -3408,10 +3442,10 @@ Default to showing only today in the agenda list.
 <h3 id="habit">Habit</h3>
 <div class="outline-text-3" id="text-habit">
 <div class="org-src-container">
-<pre class="src src-emacs-lisp"><code>(<span class="org-keyword">require</span> '<span class="org-constant">org-habit</span>)
+<pre class="src src-emacs-lisp"><code>(<span class="org-keyword"><span class="org-elisp-function">require</span></span> '<span class="org-constant"><span class="org-elisp-feature">org-habit</span></span>)
 
-(<span class="org-keyword">setq</span> org-habit-completed-glyph ?&#10003;
-      org-habit-today-glyph ?|)
+(<span class="org-keyword"><span class="org-elisp-special-form">setq</span></span> <span class="org-elisp-free-variable">org-habit-completed-glyph</span> ?&#10003;
+      <span class="org-elisp-free-variable">org-habit-today-glyph</span> ?|)
 </code></pre>
 </div>
 </div>
@@ -3425,7 +3459,7 @@ Insert state change notes and time stamps into a drawer rather than simply
 </p>
 
 <div class="org-src-container">
-<pre class="src src-emacs-lisp"><code>(<span class="org-keyword">setq</span> org-log-into-drawer t)
+<pre class="src src-emacs-lisp"><code>(<span class="org-keyword"><span class="org-elisp-special-form">setq</span></span> <span class="org-elisp-free-variable">org-log-into-drawer</span> t)
 </code></pre>
 </div>
 </div>
@@ -3434,7 +3468,7 @@ Insert state change notes and time stamps into a drawer rather than simply
 <h3 id="clock">Clock</h3>
 <div class="outline-text-3" id="text-clock">
 <div class="org-src-container">
-<pre class="src src-emacs-lisp"><code>(<span class="org-keyword">defvar</span> <span class="org-variable-name">org-clock-idle-time</span> 5)
+<pre class="src src-emacs-lisp"><code>(<span class="org-keyword"><span class="org-elisp-special-form">defvar</span></span> <span class="org-variable-name"><span class="org-elisp-defvar">org-clock-idle-time</span></span> 5)
 </code></pre>
 </div>
 </div>
@@ -3447,7 +3481,7 @@ Successor to <code>org-bullets</code>, <a href="https://github.com/integral-dw/o
 </p>
 
 <div class="org-src-container">
-<pre class="src src-emacs-lisp"><code>(<span class="org-keyword">use-package</span> org-superstar
+<pre class="src src-emacs-lisp"><code>(<span class="org-keyword"><span class="org-elisp-macro">use-package</span></span> org-superstar
   <span class="org-builtin">:ensure</span> t
   <span class="org-builtin">:custom</span>
   (org-superstar-special-todo-items t)
@@ -3473,7 +3507,7 @@ Successor to <code>org-bullets</code>, <a href="https://github.com/integral-dw/o
 <h2 id="paredit-mode">paredit-mode</h2>
 <div class="outline-text-2" id="text-paredit-mode">
 <div class="org-src-container">
-<pre class="src src-emacs-lisp"><code>(<span class="org-keyword">use-package</span> paredit
+<pre class="src src-emacs-lisp"><code>(<span class="org-keyword"><span class="org-elisp-macro">use-package</span></span> paredit
   <span class="org-builtin">:ensure</span> t
   <span class="org-builtin">:bind</span> (<span class="org-builtin">:map</span> paredit-mode-map
               ([?\)] . paredit-close-parenthesis)
@@ -3498,7 +3532,7 @@ Specific configuration for <a href="https://fsd.it/shop/fonts/pragmatapro/">Prag
 </p>
 
 <div class="org-src-container">
-<pre class="src src-emacs-lisp"><code>(<span class="org-keyword">use-package</span> prog-mode
+<pre class="src src-emacs-lisp"><code>(<span class="org-keyword"><span class="org-elisp-macro">use-package</span></span> prog-mode
   <span class="org-builtin">:config</span>
   (load (expand-file-name <span class="org-string">"pragmatapro-prettify-symbols-v0.830.el"</span> k20e/elisp-directory))
   <span class="org-builtin">:hook</span> ((prog-mode . prettify-hook)))
@@ -3520,7 +3554,7 @@ Specific configuration for <a href="https://fsd.it/shop/fonts/pragmatapro/">Prag
 <h2 id="python">python</h2>
 <div class="outline-text-2" id="text-python">
 <div class="org-src-container">
-<pre class="src src-emacs-lisp"><code>(<span class="org-keyword">use-package</span> python
+<pre class="src src-emacs-lisp"><code>(<span class="org-keyword"><span class="org-elisp-macro">use-package</span></span> python
   <span class="org-builtin">:ensure</span> t
   <span class="org-builtin">:after</span> (flycheck lsp-mode)
   <span class="org-builtin">:bind</span> (<span class="org-builtin">:map</span> python-mode-map
@@ -3546,7 +3580,7 @@ Specific configuration for <a href="https://fsd.it/shop/fonts/pragmatapro/">Prag
 <h2 id="re-builder">re-builder</h2>
 <div class="outline-text-2" id="text-re-builder">
 <div class="org-src-container">
-<pre class="src src-emacs-lisp"><code>(<span class="org-keyword">use-package</span> re-builder
+<pre class="src src-emacs-lisp"><code>(<span class="org-keyword"><span class="org-elisp-macro">use-package</span></span> re-builder
   <span class="org-builtin">:config</span>
   (<span class="org-keyword">setq</span> reb-re-syntax 'string))
 </code></pre>
@@ -3557,12 +3591,11 @@ Specific configuration for <a href="https://fsd.it/shop/fonts/pragmatapro/">Prag
 <h2 id="recentf">recentf</h2>
 <div class="outline-text-2" id="text-recentf">
 <div class="org-src-container">
-<pre class="src src-emacs-lisp"><code>(<span class="org-keyword">require</span> '<span class="org-constant">recentf</span>)
-
-(<span class="org-keyword">use-package</span> emacs
+<pre class="src src-emacs-lisp"><code>(<span class="org-keyword"><span class="org-elisp-macro">use-package</span></span> recentf
+  <span class="org-builtin">:custom</span>
+  (recentf-save-file (expand-file-name <span class="org-string">".recentf"</span> k20e/google-drive-directory))
+  (recentf-max-saved-items 250)
   <span class="org-builtin">:config</span>
-  (<span class="org-keyword">setq</span> recentf-save-file (expand-file-name <span class="org-string">".recentf"</span> k20e/google-drive-directory)
-        recentf-max-saved-items 250)
   (recentf-mode 1)
   <span class="org-builtin">:bind</span> ((<span class="org-string">"C-x C-r"</span> . consult-recent-file)))
 </code></pre>
@@ -3573,8 +3606,8 @@ Specific configuration for <a href="https://fsd.it/shop/fonts/pragmatapro/">Prag
 <h2 id="rust">rust</h2>
 <div class="outline-text-2" id="text-rust">
 <div class="org-src-container">
-<pre class="src src-emacs-lisp"><code>(<span class="org-keyword">use-package</span> flycheck-rust <span class="org-builtin">:ensure</span> t)
-(<span class="org-keyword">use-package</span> rust-mode
+<pre class="src src-emacs-lisp"><code>(<span class="org-keyword"><span class="org-elisp-macro">use-package</span></span> flycheck-rust <span class="org-builtin">:ensure</span> t)
+(<span class="org-keyword"><span class="org-elisp-macro">use-package</span></span> rust-mode
   <span class="org-builtin">:ensure</span> t
   <span class="org-builtin">:config</span>
   (<span class="org-keyword">defun</span> <span class="org-function-name">k20e/rust-mode-hook</span> ()
@@ -3591,9 +3624,9 @@ Specific configuration for <a href="https://fsd.it/shop/fonts/pragmatapro/">Prag
 <h2 id="save-place-mode">save-place-mode</h2>
 <div class="outline-text-2" id="text-save-place-mode">
 <div class="org-src-container">
-<pre class="src src-emacs-lisp"><code>(<span class="org-keyword">use-package</span> emacs
-  <span class="org-builtin">:init</span>
-  (save-place-mode t))
+<pre class="src src-emacs-lisp"><code>(<span class="org-keyword"><span class="org-elisp-macro">use-package</span></span> saveplace
+  <span class="org-builtin">:config</span>
+  (save-place-mode 1))
 </code></pre>
 </div>
 </div>
@@ -3602,11 +3635,11 @@ Specific configuration for <a href="https://fsd.it/shop/fonts/pragmatapro/">Prag
 <h2 id="savehist">savehist</h2>
 <div class="outline-text-2" id="text-savehist">
 <div class="org-src-container">
-<pre class="src src-emacs-lisp"><code>(<span class="org-keyword">use-package</span> savehist
+<pre class="src src-emacs-lisp"><code>(<span class="org-keyword"><span class="org-elisp-macro">use-package</span></span> savehist
   <span class="org-builtin">:config</span>
   (<span class="org-keyword">setq</span> savehist-file (expand-file-name <span class="org-string">".savehist"</span> k20e/google-drive-directory)))
 
-(savehist-mode)
+(<span class="org-elisp-function">savehist-mode</span>)
 </code></pre>
 </div>
 </div>
@@ -3619,7 +3652,7 @@ Begin with an empty <code>*scratch*</code> file.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-emacs-lisp"><code>(<span class="org-keyword">setq</span> initial-scratch-message nil)
+<pre class="src src-emacs-lisp"><code>(<span class="org-keyword"><span class="org-elisp-special-form">setq</span></span> <span class="org-elisp-free-variable">initial-scratch-message</span> nil)
 </code></pre>
 </div>
 
@@ -3628,8 +3661,8 @@ Set it to Emacs Lisp mode.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-emacs-lisp"><code>(<span class="org-keyword">with-current-buffer</span> (get-buffer-create <span class="org-string">"*scratch*"</span>)
-  (emacs-lisp-mode))
+<pre class="src src-emacs-lisp"><code>(<span class="org-keyword"><span class="org-elisp-macro">with-current-buffer</span></span> (<span class="org-elisp-function">get-buffer-create</span> <span class="org-string">"*scratch*"</span>)
+  (<span class="org-elisp-function">emacs-lisp-mode</span>))
 </code></pre>
 </div>
 </div>
@@ -3642,7 +3675,7 @@ pads for.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-emacs-lisp"><code>(<span class="org-keyword">defconst</span> <span class="org-variable-name">k20e/scratch-buffer-modes</span>
+<pre class="src src-emacs-lisp"><code>(<span class="org-keyword"><span class="org-elisp-special-form">defconst</span></span> <span class="org-variable-name"><span class="org-elisp-defvar">k20e/scratch-buffer-modes</span></span>
   '(fundamental-mode
     emacs-lisp-mode
     python-mode
@@ -3653,16 +3686,16 @@ pads for.
     yaml-mode)
   <span class="org-doc">"Common major modes to create scratch buffers for."</span>)
 
-(<span class="org-keyword">defun</span> <span class="org-function-name">k20e/scratch-buffer</span> ()
+(<span class="org-keyword"><span class="org-elisp-macro">defun</span></span> <span class="org-function-name"><span class="org-elisp-defun">k20e/scratch-buffer</span></span> ()
   <span class="org-doc">"Generate a new scratch buffer.
 Choose from `</span><span class="org-doc"><span class="org-constant">k20e/scratch-buffer-modes</span></span><span class="org-doc">' list of major modes to
 enable in the newly created scratch buffer and switch to it."</span>
-  (<span class="org-keyword">interactive</span>)
-  (<span class="org-keyword">let</span> ((mode (read (completing-read <span class="org-string">"New *scratch* buffer with mode: "</span>
-                                         (mapcar (<span class="org-keyword">lambda</span> (el) (format <span class="org-string">"%s"</span> el))
-                                                 k20e/scratch-buffer-modes)))))
-    (switch-to-buffer (generate-new-buffer (format <span class="org-string">"*scratch-%s*"</span> mode)))
-    (funcall mode)))
+  (<span class="org-keyword"><span class="org-elisp-special-form">interactive</span></span>)
+  (<span class="org-keyword"><span class="org-elisp-special-form">let</span></span> ((<span class="org-elisp-binding-variable">mode</span> (<span class="org-elisp-function">read</span> (<span class="org-elisp-function">completing-read</span> <span class="org-string">"New *scratch* buffer with mode: "</span>
+                                         (<span class="org-elisp-function">mapcar</span> (<span class="org-keyword"><span class="org-elisp-macro">lambda</span></span> (<span class="org-elisp-binding-variable">el</span>) (<span class="org-elisp-function">format</span> <span class="org-string">"%s"</span> <span class="org-elisp-bound-variable">el</span>))
+                                                 <span class="org-elisp-free-variable">k20e/scratch-buffer-modes</span>)))))
+    (<span class="org-elisp-function">switch-to-buffer</span> (<span class="org-elisp-function">generate-new-buffer</span> (<span class="org-elisp-function">format</span> <span class="org-string">"*scratch-%s*"</span> <span class="org-elisp-bound-variable">mode</span>)))
+    (<span class="org-elisp-function">funcall</span> <span class="org-elisp-bound-variable">mode</span>)))
 </code></pre>
 </div>
 
@@ -3671,7 +3704,7 @@ Bind it globally.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-emacs-lisp"><code>(global-set-key (kbd <span class="org-string">"&lt;f10&gt;"</span>) 'k20e/scratch-buffer)
+<pre class="src src-emacs-lisp"><code>(<span class="org-elisp-function">global-set-key</span> (<span class="org-elisp-function">kbd</span> <span class="org-string">"&lt;f10&gt;"</span>) 'k20e/scratch-buffer)
 </code></pre>
 </div>
 </div>
@@ -3681,7 +3714,7 @@ Bind it globally.
 <h2 id="sh-mode">sh-mode</h2>
 <div class="outline-text-2" id="text-sh-mode">
 <div class="org-src-container">
-<pre class="src src-emacs-lisp"><code>(<span class="org-keyword">use-package</span> sh-script
+<pre class="src src-emacs-lisp"><code>(<span class="org-keyword"><span class="org-elisp-macro">use-package</span></span> sh-script
   <span class="org-builtin">:after</span> (flycheck)
   <span class="org-builtin">:functions</span> flycheck-select-checker
   <span class="org-builtin">:config</span>
@@ -3702,10 +3735,11 @@ Start the Emacs server if it not already running.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-emacs-lisp"><code>(<span class="org-keyword">require</span> '<span class="org-constant">server</span>)
-
-(<span class="org-keyword">unless</span> (server-running-p)
-  (server-start))
+<pre class="src src-emacs-lisp"><code>(<span class="org-keyword"><span class="org-elisp-macro">use-package</span></span> server
+  <span class="org-builtin">:functions</span> (server-running-p server-start)
+  <span class="org-builtin">:config</span>
+  (<span class="org-keyword">unless</span> (server-running-p)
+    (server-start)))
 </code></pre>
 </div>
 </div>
@@ -3714,7 +3748,7 @@ Start the Emacs server if it not already running.
 <h2 id="smex">smex</h2>
 <div class="outline-text-2" id="text-smex">
 <div class="org-src-container">
-<pre class="src src-emacs-lisp"><code>(<span class="org-keyword">use-package</span> smex
+<pre class="src src-emacs-lisp"><code>(<span class="org-keyword"><span class="org-elisp-macro">use-package</span></span> smex
   <span class="org-builtin">:ensure</span> t
   <span class="org-builtin">:config</span>
   (smex-initialize)
@@ -3727,7 +3761,7 @@ Start the Emacs server if it not already running.
 <h2 id="sql-mode">sql-mode</h2>
 <div class="outline-text-2" id="text-sql-mode">
 <div class="org-src-container">
-<pre class="src src-emacs-lisp"><code>(<span class="org-keyword">use-package</span> sql
+<pre class="src src-emacs-lisp"><code>(<span class="org-keyword"><span class="org-elisp-macro">use-package</span></span> sql
   <span class="org-builtin">:config</span>
   (<span class="org-keyword">setq</span> sql-product 'mysql
         tab-width 4))
@@ -3743,10 +3777,9 @@ Always highlight the current line:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-emacs-lisp"><code>(<span class="org-keyword">use-package</span> hl-line)
-(<span class="org-keyword">use-package</span> emacs
+<pre class="src src-emacs-lisp"><code>(<span class="org-keyword"><span class="org-elisp-macro">use-package</span></span> hl-line
   <span class="org-builtin">:config</span>
-  (global-hl-line-mode t))
+  (global-hl-line-mode 1))
 </code></pre>
 </div>
 
@@ -3755,13 +3788,11 @@ Simple stuff:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-emacs-lisp"><code>(<span class="org-keyword">use-package</span> simple)
-(<span class="org-keyword">use-package</span> emacs
+<pre class="src src-emacs-lisp"><code>(<span class="org-keyword"><span class="org-elisp-macro">use-package</span></span> simple
   <span class="org-builtin">:config</span>
-  (line-number-mode)
-  (column-number-mode)
-  (size-indication-mode))
-
+  (line-number-mode 1)
+  (column-number-mode 1)
+  (size-indication-mode 1))
 </code></pre>
 </div>
 
@@ -3770,10 +3801,9 @@ Highlight matching parentheses:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-emacs-lisp"><code>(<span class="org-keyword">use-package</span> paren)
-(<span class="org-keyword">use-package</span> emacs
+<pre class="src src-emacs-lisp"><code>(<span class="org-keyword"><span class="org-elisp-macro">use-package</span></span> paren
   <span class="org-builtin">:config</span>
-  (show-paren-mode))
+  (show-paren-mode 1))
 </code></pre>
 </div>
 
@@ -3782,10 +3812,9 @@ Blink the cursor:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-emacs-lisp"><code>(<span class="org-keyword">use-package</span> frame)
-(<span class="org-keyword">use-package</span> emacs
+<pre class="src src-emacs-lisp"><code>(<span class="org-keyword"><span class="org-elisp-macro">use-package</span></span> frame
   <span class="org-builtin">:config</span>
-  (<span class="org-keyword">setq-default</span> blink-cursor-mode t))
+  (blink-cursor-mode 1))
 </code></pre>
 </div>
 
@@ -3794,13 +3823,12 @@ Truncate lines and enable fringes to indicate truncated lines:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-emacs-lisp"><code>(<span class="org-keyword">use-package</span> fringe)
-(<span class="org-keyword">use-package</span> emacs
+<pre class="src src-emacs-lisp"><code>(<span class="org-keyword"><span class="org-elisp-macro">use-package</span></span> fringe
   <span class="org-builtin">:config</span>
   (<span class="org-keyword">setq-default</span>
    truncate-lines t
    truncate-partial-width-windows nil)
-  (fringe-mode))
+  (fringe-mode 1))
 </code></pre>
 </div>
 
@@ -3809,9 +3837,9 @@ No bell:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-emacs-lisp"><code>(<span class="org-keyword">use-package</span> emacs
-  <span class="org-builtin">:config</span>
-  (<span class="org-keyword">setq-default</span> ring-bell-function 'ignore))
+<pre class="src src-emacs-lisp"><code>(<span class="org-keyword"><span class="org-elisp-macro">use-package</span></span> frame
+  <span class="org-builtin">:custom</span>
+  (ring-bell-function 'ignore))
 </code></pre>
 </div>
 
@@ -3820,10 +3848,9 @@ Make sure syntax highlighting is enabled:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-emacs-lisp"><code>(<span class="org-keyword">use-package</span> font-core)
-(<span class="org-keyword">use-package</span> emacs
+<pre class="src src-emacs-lisp"><code>(<span class="org-keyword"><span class="org-elisp-macro">use-package</span></span> font-core
   <span class="org-builtin">:config</span>
-  (global-font-lock-mode))
+  (global-font-lock-mode 1))
 </code></pre>
 </div>
 
@@ -3848,14 +3875,14 @@ child frame (make-frame), Emacs recalculated all faces in face-list and hit this
 </pre>
 
 <div class="org-src-container">
-<pre class="src src-emacs-lisp"><code>(custom-set-faces
+<pre class="src src-emacs-lisp"><code>(<span class="org-elisp-function">custom-set-faces</span>
  '(gnus-group-news-low ((t (<span class="org-builtin">:inherit</span> nil))))
  '(gnus-group-news-low-empty ((t (<span class="org-builtin">:inherit</span> nil)))))
 </code></pre>
 </div>
 
 <div class="org-src-container">
-<pre class="src src-emacs-lisp"><code>(<span class="org-keyword">use-package</span> doom-themes
+<pre class="src src-emacs-lisp"><code>(<span class="org-keyword"><span class="org-elisp-macro">use-package</span></span> doom-themes
   <span class="org-builtin">:ensure</span> t
   <span class="org-builtin">:config</span>
   (<span class="org-keyword">cond</span> ((eq system-type 'darwin)
@@ -3881,7 +3908,7 @@ child frame (make-frame), Emacs recalculated all faces in face-list and hit this
 <h2 id="terraform-mode">terraform-mode</h2>
 <div class="outline-text-2" id="text-terraform-mode">
 <div class="org-src-container">
-<pre class="src src-emacs-lisp"><code>(<span class="org-keyword">use-package</span> terraform-mode
+<pre class="src src-emacs-lisp"><code>(<span class="org-keyword"><span class="org-elisp-macro">use-package</span></span> terraform-mode
   <span class="org-builtin">:ensure</span> t
   <span class="org-builtin">:hook</span> ((terraform-mode . terraform-format-on-save-mode)))
 </code></pre>
@@ -3892,7 +3919,7 @@ child frame (make-frame), Emacs recalculated all faces in face-list and hit this
 <h2 id="text-mode">text-mode</h2>
 <div class="outline-text-2" id="text-text-mode">
 <div class="org-src-container">
-<pre class="src src-emacs-lisp"><code>(<span class="org-keyword">use-package</span> simple
+<pre class="src src-emacs-lisp"><code>(<span class="org-keyword"><span class="org-elisp-macro">use-package</span></span> simple
   <span class="org-builtin">:hook</span> ((text-mode . auto-fill-mode)))
 </code></pre>
 </div>
@@ -3902,7 +3929,7 @@ child frame (make-frame), Emacs recalculated all faces in face-list and hit this
 <h2 id="toml-mode">toml-mode</h2>
 <div class="outline-text-2" id="text-toml-mode">
 <div class="org-src-container">
-<pre class="src src-emacs-lisp"><code>(<span class="org-keyword">use-package</span> toml-mode
+<pre class="src src-emacs-lisp"><code>(<span class="org-keyword"><span class="org-elisp-macro">use-package</span></span> toml-mode
   <span class="org-builtin">:ensure</span> t
   <span class="org-builtin">:mode</span> (<span class="org-string">"Pipfile\\'"</span> . toml-mode))
 </code></pre>
@@ -3924,21 +3951,21 @@ variants.
 </ul>
 
 <div class="org-src-container">
-<pre class="src src-emacs-lisp"><code>(<span class="org-keyword">declare-function</span> global-treesit-auto-mode <span class="org-string">"treesit-auto"</span>)
-(<span class="org-keyword">declare-function</span> treesit-auto-install-all <span class="org-string">"treesit-auto"</span>)
+<pre class="src src-emacs-lisp"><code>(<span class="org-keyword"><span class="org-elisp-macro">declare-function</span></span> <span class="org-elisp-function">global-treesit-auto-mode</span> <span class="org-string">"treesit-auto"</span>)
+(<span class="org-keyword"><span class="org-elisp-macro">declare-function</span></span> <span class="org-elisp-function">treesit-auto-install-all</span> <span class="org-string">"treesit-auto"</span>)
 
-(<span class="org-keyword">use-package</span> just-ts-mode
+(<span class="org-keyword"><span class="org-elisp-macro">use-package</span></span> just-ts-mode
   <span class="org-builtin">:ensure</span> t
   <span class="org-builtin">:mode</span> <span class="org-string">"</span><span class="org-string"><span class="org-regexp-grouping-backslash">\\</span></span><span class="org-string"><span class="org-regexp-grouping-construct">(?:</span></span><span class="org-string">[jJ][uU][sS][tT][fF][iI][lL][eE]</span><span class="org-string"><span class="org-regexp-grouping-backslash">\\</span></span><span class="org-string"><span class="org-regexp-grouping-construct">|</span></span><span class="org-string">\\.just</span><span class="org-string"><span class="org-regexp-grouping-backslash">\\</span></span><span class="org-string"><span class="org-regexp-grouping-construct">)</span></span><span class="org-string">\\'"</span>)
 
-(<span class="org-keyword">use-package</span> nu-ts-mode
+(<span class="org-keyword"><span class="org-elisp-macro">use-package</span></span> nu-ts-mode
   <span class="org-builtin">:ensure</span> t
   <span class="org-builtin">:mode</span> <span class="org-string">"\\.nu\\'"</span>
   <span class="org-builtin">:config</span>
   (<span class="org-keyword">with-eval-after-load</span> 'org
     (add-to-list 'org-src-lang-modes '(<span class="org-string">"nu"</span> . nu-ts))))
 
-(<span class="org-keyword">use-package</span> treesit-auto
+(<span class="org-keyword"><span class="org-elisp-macro">use-package</span></span> treesit-auto
   <span class="org-builtin">:ensure</span> t
   <span class="org-builtin">:custom</span>
   (treesit-auto-install t)
@@ -3986,7 +4013,7 @@ variants.
 <h2 id="typescript">TypeScript</h2>
 <div class="outline-text-2" id="text-typescript">
 <div class="org-src-container">
-<pre class="src src-emacs-lisp"><code>(<span class="org-keyword">use-package</span> typescript-ts-mode
+<pre class="src src-emacs-lisp"><code>(<span class="org-keyword"><span class="org-elisp-macro">use-package</span></span> typescript-ts-mode
   <span class="org-builtin">:mode</span> (<span class="org-string">"\\.ts\\'"</span> . typescript-ts-mode)
   <span class="org-builtin">:mode</span> (<span class="org-string">"\\.tsx\\'"</span> . tsx-ts-mode)
   <span class="org-builtin">:hook</span> ((typescript-ts-mode . lsp-deferred)
@@ -4003,7 +4030,7 @@ Name multiple identical buffer names in a sensible manner.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-emacs-lisp"><code>(<span class="org-keyword">use-package</span> uniquify
+<pre class="src src-emacs-lisp"><code>(<span class="org-keyword"><span class="org-elisp-macro">use-package</span></span> uniquify
   <span class="org-builtin">:config</span>
   (<span class="org-keyword">setq</span> uniquify-buffer-name-style 'forward))
 </code></pre>
@@ -4018,7 +4045,7 @@ Since <a href="https://github.com/minad/vertico">vertico</a> is meant to be plug
 </p>
 
 <div class="org-src-container">
-<pre class="src src-emacs-lisp"><code>(<span class="org-keyword">use-package</span> vertico
+<pre class="src src-emacs-lisp"><code>(<span class="org-keyword"><span class="org-elisp-macro">use-package</span></span> vertico
   <span class="org-builtin">:ensure</span> t
   <span class="org-builtin">:init</span>
   (vertico-mode)
@@ -4028,7 +4055,7 @@ Since <a href="https://github.com/minad/vertico">vertico</a> is meant to be plug
 </div>
 </div>
 <div id="outline-container-other-configuration-extensions" class="outline-3">
-<h3 id="other-configuration-extensions">STARTED <code>[1/3]</code> Other Configuration &amp; Extensions</h3>
+<h3 id="other-configuration-extensions"><span class="todo STARTED">STARTED</span> <code>[1/3]</code> Other Configuration &amp; Extensions</h3>
 <div class="outline-text-3" id="text-other-configuration-extensions">
 <ul class="org-ul">
 <li class="off"><code>[&nbsp;]</code> <a href="https://github.com/minad/vertico#extensions">https://github.com/minad/vertico#extensions</a></li>
@@ -4046,7 +4073,7 @@ repo. so do not <code>:ensure t</code> here.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-emacs-lisp"><code>(<span class="org-keyword">use-package</span> vertico-directory
+<pre class="src src-emacs-lisp"><code>(<span class="org-keyword"><span class="org-elisp-macro">use-package</span></span> vertico-directory
   <span class="org-builtin">:after</span> vertico
   <span class="org-builtin">:demand</span>
   <span class="org-builtin">:bind</span> (<span class="org-builtin">:map</span> vertico-map
@@ -4066,7 +4093,7 @@ repo. so do not <code>:ensure t</code> here.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-emacs-lisp"><code>(<span class="org-keyword">use-package</span> savehist
+<pre class="src src-emacs-lisp"><code>(<span class="org-keyword"><span class="org-elisp-macro">use-package</span></span> savehist
   <span class="org-builtin">:init</span>
   (savehist-mode 1))
 </code></pre>
@@ -4077,8 +4104,8 @@ repo. so do not <code>:ensure t</code> here.
 <h3 id="completion-category-overrides">completion category overrides</h3>
 <div class="outline-text-3" id="text-completion-category-overrides">
 <div class="org-src-container">
-<pre class="src src-emacs-lisp"><code>(<span class="org-keyword">setq</span> completion-category-defaults nil
-      completion-category-overrides '((file (styles basic partial-completion))))
+<pre class="src src-emacs-lisp"><code>(<span class="org-keyword"><span class="org-elisp-special-form">setq</span></span> <span class="org-elisp-free-variable">completion-category-defaults</span> nil
+      <span class="org-elisp-free-variable">completion-category-overrides</span> '((file (styles basic partial-completion))))
 </code></pre>
 </div>
 </div>
@@ -4091,7 +4118,7 @@ repo. so do not <code>:ensure t</code> here.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-emacs-lisp"><code>(<span class="org-keyword">use-package</span> orderless
+<pre class="src src-emacs-lisp"><code>(<span class="org-keyword"><span class="org-elisp-macro">use-package</span></span> orderless
   <span class="org-builtin">:ensure</span> t
   <span class="org-builtin">:init</span>
   (<span class="org-keyword">setq</span> completion-styles '(orderless basic)))
@@ -4115,7 +4142,7 @@ repo. so do not <code>:ensure t</code> here.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-emacs-lisp"><code>(<span class="org-keyword">use-package</span> consult
+<pre class="src src-emacs-lisp"><code>(<span class="org-keyword"><span class="org-elisp-macro">use-package</span></span> consult
   <span class="org-builtin">:ensure</span> t
   <span class="org-builtin">:demand</span>
   <span class="org-builtin">:config</span>
@@ -4133,7 +4160,7 @@ repo. so do not <code>:ensure t</code> here.
 </div>
 </div>
 <div id="outline-container-consult-other-configuration" class="outline-4">
-<h4 id="consult-other-configuration">STARTED <code>[1/2]</code> Other Configuration</h4>
+<h4 id="consult-other-configuration"><span class="todo STARTED">STARTED</span> <code>[1/2]</code> Other Configuration</h4>
 <div class="outline-text-4" id="text-consult-other-configuration">
 <ul class="org-ul">
 <li class="off"><code>[&nbsp;]</code> <a href="https://github.com/minad/consult/wiki">https://github.com/minad/consult/wiki</a></li>
@@ -4153,7 +4180,7 @@ triggered explicitly on demand with <code>M-/</code> or <code>C-M-i</code>.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-emacs-lisp"><code>(<span class="org-keyword">use-package</span> corfu
+<pre class="src src-emacs-lisp"><code>(<span class="org-keyword"><span class="org-elisp-macro">use-package</span></span> corfu
   <span class="org-builtin">:ensure</span> t
   <span class="org-builtin">:custom</span>
   (corfu-cycle t)
@@ -4162,6 +4189,7 @@ triggered explicitly on demand with <code>M-/</code> or <code>C-M-i</code>.
   (corfu-auto-prefix 2)
   (corfu-quit-no-match t)
   (corfu-quit-at-boundary 'separator)
+  (tab-always-indent 'complete)
   <span class="org-builtin">:custom-face</span>
   <span class="org-comment-delimiter">;; </span><span class="org-comment">`</span><span class="org-comment"><span class="org-constant">corfu-default</span></span><span class="org-comment">' is remapped onto the popup buffer's `</span><span class="org-comment"><span class="org-constant">default</span></span><span class="org-comment">' face, so
 </span>  <span class="org-comment-delimiter">;; </span><span class="org-comment">it controls the popup's font as well as its background.
@@ -4174,10 +4202,17 @@ triggered explicitly on demand with <code>M-/</code> or <code>C-M-i</code>.
   <span class="org-builtin">:init</span>
   (global-corfu-mode)
   (corfu-popupinfo-mode 1))
-
-(<span class="org-keyword">use-package</span> emacs
-  <span class="org-builtin">:init</span> (<span class="org-keyword">setq</span> tab-always-indent 'complete))
 </code></pre>
+</div>
+</div>
+<div id="outline-container-corfu-other-configuration" class="outline-4">
+<h4 id="corfu-other-configuration"><span class="todo TODO">TODO</span> <code>[0/2]</code> Other Configuration</h4>
+<div class="outline-text-4" id="text-corfu-other-configuration">
+<ul class="org-ul">
+<li class="off"><code>[&nbsp;]</code> <a href="https://github.com/minad/corfu#orderless-completion">https://github.com/minad/corfu#orderless-completion</a></li>
+<li class="off"><code>[&nbsp;]</code> <a href="https://github.com/minad/corfu#alternatives">https://github.com/minad/corfu#alternatives</a> particularly <code>consult-completion-in-region</code>:
+<a href="https://github.com/minad/consult#miscellaneous">https://github.com/minad/consult#miscellaneous</a> as an alternative to <code>corfu</code></li>
+</ul>
 </div>
 </div>
 </div>
@@ -4192,7 +4227,7 @@ to <code>M-/</code> for on-demand word completion anywhere.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-emacs-lisp"><code>(<span class="org-keyword">use-package</span> cape
+<pre class="src src-emacs-lisp"><code>(<span class="org-keyword"><span class="org-elisp-macro">use-package</span></span> cape
   <span class="org-builtin">:ensure</span> t
   <span class="org-builtin">:bind</span> ((<span class="org-string">"M-/"</span>     . cape-dabbrev)
          (<span class="org-string">"C-c p p"</span> . completion-at-point)
@@ -4210,34 +4245,6 @@ to <code>M-/</code> for on-demand word completion anywhere.
 </div>
 </div>
 </div>
-<div id="outline-container-vertico-which-key" class="outline-3">
-<h3 id="vertico-which-key">which-key</h3>
-<div class="outline-text-3" id="text-vertico-which-key">
-<p>
-<a href="https://github.com/justbur/emacs-which-key">which-key</a> displays popup keybinding assistance when a prefix key is pressed.
-</p>
-
-<div class="org-src-container">
-<pre class="src src-emacs-lisp"><code>(<span class="org-keyword">use-package</span> which-key
-  <span class="org-builtin">:ensure</span> t
-  <span class="org-builtin">:init</span>
-  (<span class="org-keyword">setq</span> which-key-idle-delay 0.5)
-  <span class="org-builtin">:config</span>
-  (which-key-mode 1))
-</code></pre>
-</div>
-</div>
-<div id="outline-container-which-key-other-configuration" class="outline-4">
-<h4 id="which-key-other-configuration"><span class="todo TODO">TODO</span> <code>[0/2]</code> Other Configuration</h4>
-<div class="outline-text-4" id="text-which-key-other-configuration">
-<ul class="org-ul">
-<li class="off"><code>[&nbsp;]</code> <a href="https://github.com/minad/corfu#orderless-completion">https://github.com/minad/corfu#orderless-completion</a></li>
-<li class="off"><code>[&nbsp;]</code> <a href="https://github.com/minad/corfu#alternatives">https://github.com/minad/corfu#alternatives</a> particularly <code>consult-completion-in-region</code>:
-<a href="https://github.com/minad/consult#miscellaneous">https://github.com/minad/consult#miscellaneous</a> as an alternative to <code>corfu</code></li>
-</ul>
-</div>
-</div>
-</div>
 <div id="outline-container-marginalia" class="outline-3">
 <h3 id="marginalia">marginalia</h3>
 <div class="outline-text-3" id="text-marginalia">
@@ -4246,7 +4253,7 @@ to <code>M-/</code> for on-demand word completion anywhere.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-emacs-lisp"><code>(<span class="org-keyword">use-package</span> marginalia
+<pre class="src src-emacs-lisp"><code>(<span class="org-keyword"><span class="org-elisp-macro">use-package</span></span> marginalia
   <span class="org-builtin">:ensure</span> t
   <span class="org-builtin">:demand</span> t
   <span class="org-builtin">:bind</span> (<span class="org-builtin">:map</span> minibuffer-local-map (<span class="org-string">"M-A"</span> . marginalia-cycle))
@@ -4268,7 +4275,7 @@ to <code>M-/</code> for on-demand word completion anywhere.
 <h2 id="windmove">windmove</h2>
 <div class="outline-text-2" id="text-windmove">
 <div class="org-src-container">
-<pre class="src src-emacs-lisp"><code>(<span class="org-keyword">use-package</span> windmove
+<pre class="src src-emacs-lisp"><code>(<span class="org-keyword"><span class="org-elisp-macro">use-package</span></span> windmove
   <span class="org-builtin">:config</span>
   (windmove-default-keybindings 'super)
   (<span class="org-keyword">setq</span> windmove-wrap-around t)
@@ -4282,10 +4289,10 @@ to <code>M-/</code> for on-demand word completion anywhere.
 <h2 id="web-mode">web-mode</h2>
 <div class="outline-text-2" id="text-web-mode">
 <div class="org-src-container">
-<pre class="src src-emacs-lisp"><code>(<span class="org-keyword">use-package</span> elec-pair
+<pre class="src src-emacs-lisp"><code>(<span class="org-keyword"><span class="org-elisp-macro">use-package</span></span> elec-pair
   <span class="org-builtin">:functions</span> electric-pair-default-inhibit)
 
-(<span class="org-keyword">use-package</span> web-mode
+(<span class="org-keyword"><span class="org-elisp-macro">use-package</span></span> web-mode
   <span class="org-builtin">:ensure</span> t
   <span class="org-builtin">:functions</span> flycheck-add-mode
   <span class="org-builtin">:after</span> (elec-pair flycheck)
@@ -4317,7 +4324,7 @@ Remember window configurations.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-emacs-lisp"><code>(<span class="org-keyword">use-package</span> winner
+<pre class="src src-emacs-lisp"><code>(<span class="org-keyword"><span class="org-elisp-macro">use-package</span></span> winner
   <span class="org-builtin">:config</span>
   (winner-mode))
 </code></pre>
@@ -4329,11 +4336,15 @@ Remember window configurations.
 <div class="outline-text-2" id="text-which-key">
 <p>
 Display available key bindings in a popup buffer when typing prefix shortcuts.
+Since Emacs 30, <code>which-key</code> is built directly into GNU Emacs core.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-emacs-lisp"><code>(<span class="org-keyword">use-package</span> which-key
-  <span class="org-builtin">:init</span> (which-key-mode))
+<pre class="src src-emacs-lisp"><code>(<span class="org-keyword"><span class="org-elisp-macro">use-package</span></span> which-key
+  <span class="org-builtin">:custom</span>
+  (which-key-idle-delay 0.5)
+  <span class="org-builtin">:config</span>
+  (which-key-mode 1))
 </code></pre>
 </div>
 </div>
@@ -4352,7 +4363,7 @@ Take care of some whitespace issues.
 </ul>
 
 <div class="org-src-container">
-<pre class="src src-emacs-lisp"><code>(<span class="org-keyword">use-package</span> whitespace
+<pre class="src src-emacs-lisp"><code>(<span class="org-keyword"><span class="org-elisp-macro">use-package</span></span> whitespace
   <span class="org-builtin">:ensure</span> t
   <span class="org-builtin">:config</span>
   (<span class="org-keyword">setq-default</span> require-final-newline t
@@ -4370,12 +4381,12 @@ Take care of some whitespace issues.
 <h2 id="yaml-mode">yaml-mode</h2>
 <div class="outline-text-2" id="text-yaml-mode">
 <div class="org-src-container">
-<pre class="src src-emacs-lisp"><code>(<span class="org-keyword">use-package</span> flycheck-yamllint
+<pre class="src src-emacs-lisp"><code>(<span class="org-keyword"><span class="org-elisp-macro">use-package</span></span> flycheck-yamllint
   <span class="org-builtin">:ensure</span> t
   <span class="org-builtin">:after</span> (flycheck))
 
 
-(<span class="org-keyword">use-package</span> yaml-mode
+(<span class="org-keyword"><span class="org-elisp-macro">use-package</span></span> yaml-mode
   <span class="org-builtin">:ensure</span> t
   <span class="org-builtin">:after</span> (flycheck-yamllint flyspell highlight-indent-guides)
   <span class="org-builtin">:bind</span> (<span class="org-builtin">:map</span> yaml-mode-map (<span class="org-string">"C-m"</span> . newline-and-indent))
@@ -4396,7 +4407,7 @@ Take care of some whitespace issues.
 <h2 id="zig-mode">zig-mode</h2>
 <div class="outline-text-2" id="text-zig-mode">
 <div class="org-src-container">
-<pre class="src src-emacs-lisp"><code>(<span class="org-keyword">use-package</span> zig-mode
+<pre class="src src-emacs-lisp"><code>(<span class="org-keyword"><span class="org-elisp-macro">use-package</span></span> zig-mode
   <span class="org-builtin">:ensure</span> t
   <span class="org-builtin">:bind</span>
   <span class="org-builtin">:functions</span>
@@ -4437,7 +4448,7 @@ Take care of some whitespace issues.
 </div>
 <div id="postamble" class="status">
 <p class="author">Kris Molendyke</p>
-<p class="date">2026-08-27 Thu 10:00</p>
+<p class="date">2026-08-27 Thu 21:25</p>
 <p class="creator"><a href="https://www.gnu.org/software/emacs/">Emacs</a> 31.1 (<a href="https://orgmode.org">Org</a> mode 9.8.7)</p>
 </div>
 </body>
