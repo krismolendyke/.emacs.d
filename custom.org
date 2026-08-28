@@ -1601,6 +1601,7 @@ Otherwise, start a new ghostel terminal."
             org-agenda-files (list (expand-file-name "work" org-directory))
             org-default-notes-file (expand-file-name "notes.org" org-directory)
             org-ellipsis "…"
+            org-fold-catch-invisible-edits 'show-and-error
             org-fontify-quote-and-verse-blocks t
             org-fontify-whole-heading-line t
             org-hide-emphasis-markers t
@@ -1608,12 +1609,18 @@ Otherwise, start a new ghostel terminal."
             org-log-reschedule 'time
             org-outline-path-complete-in-steps nil
             org-pretty-entities t
+            org-return-follows-link t
             org-special-ctrl-a/e t
+            org-src-content-indentation 0
+            org-src-fontify-natively t
+            org-src-tab-acts-natively t
             org-use-speed-commands t
             truncate-lines nil)
       (setq-default org-adapt-indentation t
                     org-goto-interface 'outline-path-completion
-                    org-startup-folded t))
+                    org-startup-folded t)
+
+      (require 'org-tempo))
   #+end_src
 
 ** Package Upgrades
