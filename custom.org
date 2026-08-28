@@ -815,6 +815,8 @@ function.
     (use-package nerd-icons
       :ensure t)
 
+    (declare-function doom-modeline-def-modeline "doom-modeline-core")
+
     (use-package doom-modeline
       :ensure t
       :init (doom-modeline-mode 1)
@@ -834,7 +836,11 @@ function.
       (doom-modeline-checker-simple-format t)
       :custom-face
       (mode-line ((t (:inherit fixed-pitch :family "PragmataPro VF Mono Liga"))))
-      (mode-line-inactive ((t (:inherit fixed-pitch :family "PragmataPro VF Mono Liga")))))
+      (mode-line-inactive ((t (:inherit fixed-pitch :family "PragmataPro VF Mono Liga"))))
+      :config
+      (doom-modeline-def-modeline 'main
+        '(eldoc bar window-state workspace-name modals matches follow buffer-info remote-host buffer-position word-count parrot selection-info)
+        '(compilation objed-state misc-info project-name persp-name battery grip irc mu4e gnus github debug repl lsp spell minor-modes input-method indent-info buffer-encoding major-mode process vcs check time)))
   #+end_src
 
 * eca
