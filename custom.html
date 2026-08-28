@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-08-28 Fri 00:44 -->
+<!-- 2026-08-28 Fri 14:50 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Literate =.emacs.d=</title>
@@ -1272,6 +1272,7 @@ function.
 <li><a href="#combobulate"><span class="todo TODO">TODO</span> combobulate</a></li>
 <li><a href="#compilation-mode">compilation-mode</a></li>
 <li><a href="#dired">dired</a></li>
+<li><a href="#doom-modeline">doom-modeline</a></li>
 <li><a href="#eca">eca</a></li>
 <li><a href="#electric-pair-mode">electric-pair-mode</a></li>
 <li><a href="#emacs-lisp-mode">emacs-lisp-mode</a></li>
@@ -2245,6 +2246,40 @@ When compilation completes, regardless of result."</span>
     <span class="org-builtin">:config</span>
     (<span class="org-keyword">require</span> '<span class="org-constant">dired-x</span>))
   <span class="org-builtin">:hook</span> ((dired-mode . auto-revert-mode)))
+</code></pre>
+</div>
+</div>
+</div>
+<div id="outline-container-doom-modeline" class="outline-2">
+<h2 id="doom-modeline">doom-modeline</h2>
+<div class="outline-text-2" id="text-doom-modeline">
+<p>
+<a href="https://github.com/seagle0430/doom-modeline">doom-modeline</a> is a modern, fast, and feature-rich mode line.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-emacs-lisp"><code>(<span class="org-keyword"><span class="org-elisp-macro">use-package</span></span> nerd-icons
+  <span class="org-builtin">:ensure</span> t)
+
+(<span class="org-keyword"><span class="org-elisp-macro">use-package</span></span> doom-modeline
+  <span class="org-builtin">:ensure</span> t
+  <span class="org-builtin">:init</span> (doom-modeline-mode 1)
+  <span class="org-builtin">:custom</span>
+  (doom-modeline-height 26)
+  (doom-modeline-bar-width 4)
+  (doom-modeline-hud nil)
+  (doom-modeline-icon t)
+  (doom-modeline-major-mode-icon t)
+  (doom-modeline-major-mode-color-icon t)
+  (doom-modeline-buffer-file-name-style 'relative-from-project)
+  (doom-modeline-buffer-encoding nil)
+  (doom-modeline-enable-word-count nil)
+  (doom-modeline-vcs-max-length 25)
+  (doom-modeline-lsp t)
+  (doom-modeline-checker-simple-format t)
+  <span class="org-builtin">:custom-face</span>
+  (mode-line ((t (<span class="org-builtin">:inherit</span> fixed-pitch <span class="org-builtin">:family</span> <span class="org-string">"PragmataPro VF Mono Liga"</span>))))
+  (mode-line-inactive ((t (<span class="org-builtin">:inherit</span> fixed-pitch <span class="org-builtin">:family</span> <span class="org-string">"PragmataPro VF Mono Liga"</span>)))))
 </code></pre>
 </div>
 </div>
@@ -3543,7 +3578,7 @@ tables, TODO badges, tags, checkboxes, progress bars, and timestamps.
 
   <span class="org-comment-delimiter">;; </span><span class="org-comment">Source block delimiters and fringe
 </span>  (org-modern-block-name '(<span class="org-string">"&#8227; "</span> . <span class="org-string">"&#8227; "</span>))
-  (org-modern-block-fringe 2)
+  (org-modern-block-fringe nil)
 
   <span class="org-comment-delimiter">;; </span><span class="org-comment">Table styling
 </span>  (org-modern-table t)
@@ -4541,7 +4576,7 @@ Take care of some whitespace issues.
 </div>
 <div id="postamble" class="status">
 <p class="author">Kris Molendyke</p>
-<p class="date">2026-08-28 Fri 00:42</p>
+<p class="date">2026-08-28 Fri 14:49</p>
 <p class="creator"><a href="https://www.gnu.org/software/emacs/">Emacs</a> 31.1 (<a href="https://orgmode.org">Org</a> mode 9.8.9)</p>
 </div>
 </body>
