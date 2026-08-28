@@ -62,9 +62,10 @@ Consequences that matter:
   `emacs-lisp` block is live config. Blocks in other languages default to
   `:tangle no` and are documentation only (e.g. the `brew install` and `defaults
   write` snippets).
-- Configure through `use-package` consistently. Built-ins get a bare
-  `(use-package foo)` "require" block followed by a `(use-package emacs :config
-  …)` block that sets the actual values.
+- Configure through `use-package` consistently. Built-in packages are
+  configured directly with `(use-package foo ...)` without `:ensure t`,
+  reserving `(use-package emacs ...)` solely for core/global settings that don't
+  belong to a specific package.
 - Custom functions and variables use the `k20e/` prefix.
 - TODO keywords in headings are real worklist state (`* TODO combobulate`,
   `** STARTED [1/3] …`) and are exported to the site. Don't strip or

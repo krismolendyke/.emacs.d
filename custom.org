@@ -355,9 +355,9 @@ function.
    What a time to be alive.
 
    #+begin_src emacs-lisp
-     (use-package emacs
-       :init
-       (pixel-scroll-precision-mode))
+     (use-package pixel-scroll
+       :config
+       (pixel-scroll-precision-mode 1))
    #+end_src
 
 ** TODO Defaults for Review
@@ -651,9 +651,9 @@ function.
   to fill-column values.
 
   #+begin_src emacs-lisp
-    (use-package emacs
-      :config
-      (setq-default fill-column 118))
+    (use-package simple
+      :custom
+      (fill-column 118))
   #+end_src
 
 * auto-package-update
@@ -682,10 +682,10 @@ function.
   Disable =auto-save=.
 
   #+begin_src emacs-lisp
-    (use-package emacs
-      :config
-      (setq auto-save-default nil
-            auto-save-timeout 0))
+    (use-package files
+      :custom
+      (auto-save-default nil)
+      (auto-save-timeout 0))
   #+end_src
 
 * avy
@@ -2039,12 +2039,11 @@ Otherwise, start a new ghostel terminal."
   :END:
 
   #+begin_src emacs-lisp
-    (require 'recentf)
-
-    (use-package emacs
+    (use-package recentf
+      :custom
+      (recentf-save-file (expand-file-name ".recentf" k20e/google-drive-directory))
+      (recentf-max-saved-items 250)
       :config
-      (setq recentf-save-file (expand-file-name ".recentf" k20e/google-drive-directory)
-            recentf-max-saved-items 250)
       (recentf-mode 1)
       :bind (("C-x C-r" . consult-recent-file)))
   #+end_src
@@ -2073,9 +2072,9 @@ Otherwise, start a new ghostel terminal."
   :END:
 
   #+begin_src emacs-lisp
-    (use-package emacs
-      :init
-      (save-place-mode t))
+    (use-package saveplace
+      :config
+      (save-place-mode 1))
   #+end_src
 
 * savehist
@@ -2172,10 +2171,11 @@ Otherwise, start a new ghostel terminal."
   Start the Emacs server if it not already running.
 
   #+begin_src emacs-lisp
-    (require 'server)
-
-    (unless (server-running-p)
-      (server-start))
+    (use-package server
+      :functions (server-running-p server-start)
+      :config
+      (unless (server-running-p)
+        (server-start)))
   #+end_src
 
 * smex
@@ -2211,69 +2211,62 @@ Otherwise, start a new ghostel terminal."
   Always highlight the current line:
 
   #+begin_src emacs-lisp
-    (use-package hl-line)
-    (use-package emacs
+    (use-package hl-line
       :config
-      (global-hl-line-mode t))
+      (global-hl-line-mode 1))
   #+end_src
 
   Simple stuff:
 
   #+begin_src emacs-lisp
-    (use-package simple)
-    (use-package emacs
+    (use-package simple
       :config
-      (line-number-mode)
-      (column-number-mode)
-      (size-indication-mode))
-
+      (line-number-mode 1)
+      (column-number-mode 1)
+      (size-indication-mode 1))
   #+end_src
 
   Highlight matching parentheses:
 
   #+begin_src emacs-lisp
-    (use-package paren)
-    (use-package emacs
+    (use-package paren
       :config
-      (show-paren-mode))
+      (show-paren-mode 1))
   #+end_src
 
   Blink the cursor:
 
   #+begin_src emacs-lisp
-    (use-package frame)
-    (use-package emacs
+    (use-package frame
       :config
-      (setq-default blink-cursor-mode t))
+      (blink-cursor-mode 1))
   #+end_src
 
   Truncate lines and enable fringes to indicate truncated lines:
 
   #+begin_src emacs-lisp
-    (use-package fringe)
-    (use-package emacs
+    (use-package fringe
       :config
       (setq-default
        truncate-lines t
        truncate-partial-width-windows nil)
-      (fringe-mode))
+      (fringe-mode 1))
   #+end_src
 
   No bell:
 
   #+begin_src emacs-lisp
-    (use-package emacs
-      :config
-      (setq-default ring-bell-function 'ignore))
+    (use-package frame
+      :custom
+      (ring-bell-function 'ignore))
   #+end_src
 
   Make sure syntax highlighting is enabled:
 
   #+begin_src emacs-lisp
-    (use-package font-core)
-    (use-package emacs
+    (use-package font-core
       :config
-      (global-font-lock-mode))
+      (global-font-lock-mode 1))
   #+end_src
 
   Set theme automatically on MacOS thanks to
@@ -2597,6 +2590,7 @@ Otherwise, start a new ghostel terminal."
        (corfu-auto-prefix 2)
        (corfu-quit-no-match t)
        (corfu-quit-at-boundary 'separator)
+       (tab-always-indent 'complete)
        :custom-face
        ;; `corfu-default' is remapped onto the popup buffer's `default' face, so
        ;; it controls the popup's font as well as its background.
@@ -2609,9 +2603,6 @@ Otherwise, start a new ghostel terminal."
        :init
        (global-corfu-mode)
        (corfu-popupinfo-mode 1))
-
-     (use-package emacs
-       :init (setq tab-always-indent 'complete))
    #+end_src
 
 *** TODO [0/2] Other Configuration
