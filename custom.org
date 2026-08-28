@@ -1144,6 +1144,9 @@ Otherwise, start a new ghostel terminal."
 
     (use-package go-mode
       :ensure t
+      :functions (lsp-format-buffer
+                  lsp-organize-imports
+                  lsp-register-custom-settings)
       :bind
       (:map go-mode-map
             ("C-c C-t" . k20e/toggle-test-buffer)
@@ -1589,6 +1592,7 @@ Otherwise, start a new ghostel terminal."
        (org-mode . variable-pitch-mode)
        (org-mode . (lambda ()
                      (setq tab-width 8)     ; Must be 8 in org-mode files for some reason
+                     (setq-local global-hl-line-mode nil)
                      (visual-line-mode -1))))
       :config
       (k20e/org-font-setup)
@@ -1609,12 +1613,7 @@ Otherwise, start a new ghostel terminal."
             truncate-lines nil)
       (setq-default org-adapt-indentation t
                     org-goto-interface 'outline-path-completion
-                    org-startup-folded t)
-      (setq-local global-hl-line-mode nil)
-      :functions
-      lsp-format-buffer
-      lsp-organize-imports
-      lsp-register-custom-settings)
+                    org-startup-folded t))
   #+end_src
 
 ** Package Upgrades
@@ -1860,21 +1859,19 @@ Otherwise, start a new ghostel terminal."
    :END:
 
    #+begin_src emacs-lisp
-     (require 'face-remap)
-     (require 'org)
-     (require 'org-agenda)
-     (require 'winner)
+     (defun k20e/org-agenda-quit ()
+       "Quit the `*Org Agenda*' buffer and restore the previous window configuration."
+       (interactive)
+       (winner-undo)
+       (kill-buffer "*Org Agenda*"))
 
-     (defun k20e/org-agenda-mode-hook ()
-       (define-key org-agenda-mode-map (kbd "q")
-         (lambda (_x)
-           (interactive "p")
-           (winner-undo)
-           (kill-buffer "*Org Agenda*")))
-       (delete-other-windows)
-       (text-scale-set 2))
-
-     (add-hook 'org-agenda-mode-hook 'k20e/org-agenda-mode-hook)
+     (use-package org-agenda
+       :functions (winner-undo)
+       :bind (:map org-agenda-mode-map
+                   ("q" . k20e/org-agenda-quit))
+       :hook ((org-agenda-mode . (lambda ()
+                                   (delete-other-windows)
+                                   (text-scale-set 2)))))
    #+end_src
 
 *** Files
