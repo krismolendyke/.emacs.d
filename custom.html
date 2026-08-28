@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-08-27 Thu 21:54 -->
+<!-- 2026-08-27 Thu 23:18 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Literate =.emacs.d=</title>
@@ -1324,12 +1324,13 @@ function.
 <li><a href="#publish">Publish</a></li>
 <li><a href="#babel">Babel</a></li>
 <li><a href="#org-mode-todo-items"><span class="todo TODO">TODO</span> Items</a></li>
+<li><a href="#capture">Capture</a></li>
 <li><a href="#agenda">Agenda</a></li>
 <li><a href="#habit">Habit</a></li>
 <li><a href="#logging-drawers">Logging &amp; Drawers</a></li>
 <li><a href="#clock">Clock</a></li>
-<li><a href="#superstar">Superstar</a></li>
-<li><a href="#other-configuration"><span class="todo TODO">TODO</span> <code>[0/1]</code> Other Configuration</a></li>
+<li><a href="#org-modern">org-modern</a></li>
+<li><a href="#org-appear">org-appear</a></li>
 </ul>
 </li>
 <li><a href="#paredit-mode">paredit-mode</a></li>
@@ -2609,6 +2610,9 @@ for <code>go-ts-mode</code> under <code>C-c C-t</code> (<code>C-c C-t t</code> f
 
 (<span class="org-keyword"><span class="org-elisp-macro">use-package</span></span> go-mode
   <span class="org-builtin">:ensure</span> t
+  <span class="org-builtin">:functions</span> (lsp-format-buffer
+              lsp-organize-imports
+              lsp-register-custom-settings)
   <span class="org-builtin">:bind</span>
   (<span class="org-builtin">:map</span> go-mode-map
         (<span class="org-string">"C-c C-t"</span> . k20e/toggle-test-buffer)
@@ -3049,7 +3053,7 @@ THE SOFTWARE.
   (<span class="org-keyword"><span class="org-elisp-function">require</span></span> '<span class="org-constant"><span class="org-elisp-feature">org-indent</span></span> nil t)
   (<span class="org-keyword"><span class="org-elisp-macro">dolist</span></span> (spec
            '((variable-pitch <span class="org-builtin">:family</span> <span class="org-string">"ETBembo"</span> <span class="org-builtin">:height</span> 1.3)
-             (fixed-pitch <span class="org-builtin">:family</span> <span class="org-string">"PragmataPro Mono Liga"</span> <span class="org-builtin">:height</span> 0.8)
+             (fixed-pitch <span class="org-builtin">:family</span> <span class="org-string">"PragmataPro VF Mono Liga"</span> <span class="org-builtin">:height</span> 0.8)
              (org-block <span class="org-builtin">:inherit</span> fixed-pitch)
              (org-block-begin-line <span class="org-builtin">:inherit</span> (org-meta-line fixed-pitch))
              (org-block-end-line <span class="org-builtin">:inherit</span> (org-meta-line fixed-pitch))
@@ -3080,7 +3084,8 @@ THE SOFTWARE.
    (org-mode . variable-pitch-mode)
    (org-mode . (<span class="org-keyword">lambda</span> ()
                  (<span class="org-keyword">setq</span> tab-width 8)     <span class="org-comment-delimiter">; </span><span class="org-comment">Must be 8 in org-mode files for some reason
-</span>                 (visual-line-mode -1))))
+</span>                 (<span class="org-keyword">setq-local</span> global-hl-line-mode nil)
+                 (visual-line-mode -1))))
   <span class="org-builtin">:config</span>
   (k20e/org-font-setup)
 
@@ -3088,6 +3093,7 @@ THE SOFTWARE.
         org-agenda-files (list (expand-file-name <span class="org-string">"work"</span> org-directory))
         org-default-notes-file (expand-file-name <span class="org-string">"notes.org"</span> org-directory)
         org-ellipsis <span class="org-string">"&#8230;"</span>
+        org-fold-catch-invisible-edits 'show-and-error
         org-fontify-quote-and-verse-blocks t
         org-fontify-whole-heading-line t
         org-hide-emphasis-markers t
@@ -3095,17 +3101,18 @@ THE SOFTWARE.
         org-log-reschedule 'time
         org-outline-path-complete-in-steps nil
         org-pretty-entities t
+        org-return-follows-link t
         org-special-ctrl-a/e t
+        org-src-content-indentation 0
+        org-src-fontify-natively t
+        org-src-tab-acts-natively t
         org-use-speed-commands t
         truncate-lines nil)
   (<span class="org-keyword">setq-default</span> org-adapt-indentation t
                 org-goto-interface 'outline-path-completion
                 org-startup-folded t)
-  (<span class="org-keyword">setq-local</span> global-hl-line-mode nil)
-  <span class="org-builtin">:functions</span>
-  lsp-format-buffer
-  lsp-organize-imports
-  lsp-register-custom-settings)
+
+  (<span class="org-keyword">require</span> '<span class="org-constant">org-tempo</span>))
 </code></pre>
 </div>
 </div>
@@ -3148,6 +3155,7 @@ image width if no attribute keyword is found:
 <div class="org-src-container">
 <pre class="src src-emacs-lisp"><code>(<span class="org-elisp-function">global-set-key</span> (<span class="org-elisp-function">kbd</span> <span class="org-string">"&lt;f12&gt;"</span>) 'org-agenda-list)
 (<span class="org-elisp-function">global-set-key</span> (<span class="org-elisp-function">kbd</span> <span class="org-string">"C-c a"</span>) 'org-agenda)
+(<span class="org-elisp-function">global-set-key</span> (<span class="org-elisp-function">kbd</span> <span class="org-string">"C-c c"</span>) 'org-capture)
 (<span class="org-elisp-function">global-set-key</span> (<span class="org-elisp-function">kbd</span> <span class="org-string">"C-c l"</span>) 'org-store-link)
 (<span class="org-elisp-function">global-set-key</span> (<span class="org-elisp-function">kbd</span> <span class="org-string">"C-x c"</span>) 'org-switchb)
 
@@ -3221,7 +3229,7 @@ indicates that a link somewhere is malformed.  Adding the option:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-org"><code><span class="org-org-meta-line">#+OPTIONS: broken-links:mark</span>
+<pre class="src src-org"><code><span class="org-org-meta-line">&#9881;  broken-links:mark</span>
 </code></pre>
 </div>
 
@@ -3381,25 +3389,48 @@ Custom keywords and faces.
 </div>
 </div>
 </div>
+<div id="outline-container-capture" class="outline-3">
+<h3 id="capture">Capture</h3>
+<div class="outline-text-3" id="text-capture">
+<p>
+Setup <a href="https://orgmode.org/manual/Capture.html">Org Capture</a> templates for quick task and note logging into <code>notes.org</code>.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-emacs-lisp"><code>(<span class="org-keyword"><span class="org-elisp-special-form">defvar</span></span> <span class="org-variable-name"><span class="org-elisp-special-variable-declaration">org-capture-templates</span></span>)
+
+(<span class="org-keyword"><span class="org-elisp-special-form">setq</span></span> <span class="org-elisp-free-variable">org-capture-templates</span>
+      `((<span class="org-string">"t"</span> <span class="org-string">"Todo"</span> entry (file+headline org-default-notes-file <span class="org-string">"Tasks"</span>)
+         <span class="org-string">"* TODO %?\n  %i\n  %a"</span>)
+        (<span class="org-string">"n"</span> <span class="org-string">"Note"</span> entry (file+headline org-default-notes-file <span class="org-string">"Notes"</span>)
+         <span class="org-string">"* %? :NOTE:\n  %U\n  %i\n  %a"</span>)
+        (<span class="org-string">"m"</span> <span class="org-string">"Meeting"</span> entry (file+headline org-default-notes-file <span class="org-string">"Meetings"</span>)
+         <span class="org-string">"* %? :MEETING:\n  %U\n  Attendees: \n  %i"</span>)))
+</code></pre>
+</div>
+</div>
+</div>
 <div id="outline-container-agenda" class="outline-3">
 <h3 id="agenda">Agenda</h3>
 <div class="outline-text-3" id="text-agenda">
 <div class="org-src-container">
-<pre class="src src-emacs-lisp"><code>(<span class="org-keyword"><span class="org-elisp-function">require</span></span> '<span class="org-constant"><span class="org-elisp-feature">face-remap</span></span>)
-(<span class="org-keyword"><span class="org-elisp-function">require</span></span> '<span class="org-constant"><span class="org-elisp-feature">org</span></span>)
-(<span class="org-keyword"><span class="org-elisp-function">require</span></span> '<span class="org-constant"><span class="org-elisp-feature">org-agenda</span></span>)
-(<span class="org-keyword"><span class="org-elisp-function">require</span></span> '<span class="org-constant"><span class="org-elisp-feature">winner</span></span>)
+<pre class="src src-emacs-lisp"><code>(<span class="org-keyword"><span class="org-elisp-macro">defun</span></span> <span class="org-function-name"><span class="org-elisp-defun">k20e/org-agenda-quit</span></span> ()
+  <span class="org-doc">"Quit the `*Org Agenda*' buffer and restore the previous window configuration."</span>
+  (<span class="org-keyword"><span class="org-elisp-special-form">interactive</span></span>)
+  (<span class="org-elisp-function">winner-undo</span>)
+  (<span class="org-elisp-function">kill-buffer</span> <span class="org-string">"*Org Agenda*"</span>))
 
-(<span class="org-keyword"><span class="org-elisp-macro">defun</span></span> <span class="org-function-name"><span class="org-elisp-defun">k20e/org-agenda-mode-hook</span></span> ()
-  (<span class="org-elisp-function">define-key</span> <span class="org-elisp-free-variable">org-agenda-mode-map</span> (<span class="org-elisp-function">kbd</span> <span class="org-string">"q"</span>)
-    (<span class="org-keyword"><span class="org-elisp-macro">lambda</span></span> (<span class="org-elisp-binding-variable">_x</span>)
-      (<span class="org-keyword"><span class="org-elisp-special-form">interactive</span></span> <span class="org-string">"p"</span>)
-      (<span class="org-elisp-function">winner-undo</span>)
-      (<span class="org-elisp-function">kill-buffer</span> <span class="org-string">"*Org Agenda*"</span>)))
-  (<span class="org-elisp-function">delete-other-windows</span>)
-  (<span class="org-elisp-function">text-scale-set</span> 2))
-
-(<span class="org-elisp-function">add-hook</span> '<span class="org-elisp-free-variable">org-agenda-mode-hook</span> 'k20e/org-agenda-mode-hook)
+(<span class="org-keyword"><span class="org-elisp-macro">use-package</span></span> org-agenda
+  <span class="org-builtin">:functions</span> (winner-undo)
+  <span class="org-builtin">:bind</span> (<span class="org-builtin">:map</span> org-agenda-mode-map
+              (<span class="org-string">"q"</span> . k20e/org-agenda-quit))
+  <span class="org-builtin">:config</span>
+  (<span class="org-keyword">setq</span> org-agenda-restore-windows-after-quit t
+        org-agenda-sticky t
+        org-agenda-window-setup 'only-window)
+  <span class="org-builtin">:hook</span> ((org-agenda-mode . (<span class="org-keyword">lambda</span> ()
+                              (delete-other-windows)
+                              (text-scale-set 2)))))
 </code></pre>
 </div>
 </div>
@@ -3484,33 +3515,85 @@ Insert state change notes and time stamps into a drawer rather than simply
 </div>
 </div>
 </div>
-<div id="outline-container-superstar" class="outline-3">
-<h3 id="superstar">Superstar</h3>
-<div class="outline-text-3" id="text-superstar">
+<div id="outline-container-org-modern" class="outline-3">
+<h3 id="org-modern">org-modern</h3>
+<div class="outline-text-3" id="text-org-modern">
 <p>
-Successor to <code>org-bullets</code>, <a href="https://github.com/integral-dw/org-superstar-mode">org-superstar-mode</a>.
+<a href="https://github.com/minad/org-modern">org-modern</a> provides modern, lightweight styling for Org mode headlines,
+tables, TODO badges, tags, checkboxes, progress bars, and timestamps.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-emacs-lisp"><code>(<span class="org-keyword"><span class="org-elisp-macro">use-package</span></span> org-superstar
+<pre class="src src-emacs-lisp"><code>(<span class="org-keyword"><span class="org-elisp-macro">use-package</span></span> org-modern
   <span class="org-builtin">:ensure</span> t
   <span class="org-builtin">:custom</span>
-  (org-superstar-special-todo-items t)
-  (org-superstar-todo-bullet-alist '((<span class="org-string">"TODO"</span> . ?&#9744;)
-                                     (<span class="org-string">"STARTED"</span> . ?&#9744;)
-                                     (<span class="org-string">"DONE"</span> . ?&#9745;)
-                                     (<span class="org-string">"CANCELED"</span> . ?&#10008;))) <span class="org-comment-delimiter">; </span><span class="org-comment">&#10008;
-</span>  <span class="org-builtin">:hook</span> ((org-mode . org-superstar-mode)))
+  <span class="org-comment-delimiter">;; </span><span class="org-comment">Heading folding indicators
+</span>  (org-modern-star 'fold)
+  (org-modern-fold-stars '((<span class="org-string">"&#9654;"</span> . <span class="org-string">"&#9660;"</span>) (<span class="org-string">"&#9655;"</span> . <span class="org-string">"&#9661;"</span>) (<span class="org-string">"&#9656;"</span> . <span class="org-string">"&#9662;"</span>) (<span class="org-string">"&#9657;"</span> . <span class="org-string">"&#9663;"</span>)))
+  (org-modern-hide-stars 'leading)
+
+  <span class="org-comment-delimiter">;; </span><span class="org-comment">Document keywords (#+title, #+author, etc.)
+</span>  (org-modern-keyword
+   '((<span class="org-string">"title"</span> . <span class="org-string">"&#128214; "</span>)
+     (<span class="org-string">"author"</span> . <span class="org-string">"&#128100; "</span>)
+     (<span class="org-string">"date"</span> . <span class="org-string">"&#128197; "</span>)
+     (<span class="org-string">"options"</span> . <span class="org-string">"&#9881; "</span>)
+     (<span class="org-string">"caption"</span> . <span class="org-string">"&#128172; "</span>)
+     (<span class="org-string">"results"</span> . <span class="org-string">"&#11153; "</span>)
+     (t . t)))
+
+  <span class="org-comment-delimiter">;; </span><span class="org-comment">Source block delimiters and fringe
+</span>  (org-modern-block-name '(<span class="org-string">"&#8227; "</span> . <span class="org-string">"&#8227; "</span>))
+  (org-modern-block-fringe 2)
+
+  <span class="org-comment-delimiter">;; </span><span class="org-comment">Table styling
+</span>  (org-modern-table t)
+  (org-modern-table-vertical 2)
+  (org-modern-table-horizontal 0.1)
+
+  <span class="org-comment-delimiter">;; </span><span class="org-comment">List bullets &amp; checkboxes
+</span>  (org-modern-list '((?+ . <span class="org-string">"&#9702;"</span>) (?- . <span class="org-string">"&#8226;"</span>) (?* . <span class="org-string">"&#9670;"</span>)))
+  (org-modern-checkbox '((?X . <span class="org-string">"&#9745;"</span>) (?- . <span class="org-string">"&#8863;"</span>) (?\s . <span class="org-string">"&#9744;"</span>)))
+
+  <span class="org-comment-delimiter">;; </span><span class="org-comment">Priority badges &amp; Progress bars
+</span>  (org-modern-priority '((?A . <span class="org-string">"&#128293; A"</span>) (?B . <span class="org-string">"&#9889; B"</span>) (?C . <span class="org-string">"&#9749; C"</span>)))
+  (org-modern-progress 12)
+  (org-modern-label-border 0.2)
+  (org-modern-horizontal-rule t)
+
+  <span class="org-comment-delimiter">;; </span><span class="org-comment">Internal and radio links
+</span>  (org-modern-internal-target '(<span class="org-string">" &#8618; "</span> t <span class="org-string">" "</span>))
+  (org-modern-radio-target '(<span class="org-string">" &#9967; "</span> t <span class="org-string">" "</span>))
+
+  <span class="org-builtin">:custom-face</span>
+  (org-modern-symbol ((t (<span class="org-builtin">:inherit</span> fixed-pitch <span class="org-builtin">:family</span> <span class="org-string">"PragmataPro VF Mono Liga"</span>))))
+  (org-modern-label ((t (<span class="org-builtin">:inherit</span> fixed-pitch <span class="org-builtin">:family</span> <span class="org-string">"PragmataPro VF Mono Liga"</span> <span class="org-builtin">:height</span> 0.85))))
+
+  <span class="org-builtin">:hook</span> ((org-mode . org-modern-mode)
+         (org-agenda-finalize . org-modern-agenda)))
 </code></pre>
 </div>
 </div>
 </div>
-<div id="outline-container-other-configuration" class="outline-3">
-<h3 id="other-configuration"><span class="todo TODO">TODO</span> <code>[0/1]</code> Other Configuration</h3>
-<div class="outline-text-3" id="text-other-configuration">
-<ul class="org-ul">
-<li class="off"><code>[&nbsp;]</code> <a href="https://github.com/minad/org-modern">https://github.com/minad/org-modern</a></li>
-</ul>
+<div id="outline-container-org-appear" class="outline-3">
+<h3 id="org-appear">org-appear</h3>
+<div class="outline-text-3" id="text-org-appear">
+<p>
+<a href="https://github.com/awth-r/org-appear">org-appear</a> automatically toggles the visibility of hidden emphasis markers
+(<code>*bold*</code>, <code>/italic/</code>, <code>=code=</code>) when the cursor enters or exits an element.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-emacs-lisp"><code>(<span class="org-keyword"><span class="org-elisp-macro">use-package</span></span> org-appear
+  <span class="org-builtin">:ensure</span> t
+  <span class="org-builtin">:hook</span> (org-mode . org-appear-mode)
+  <span class="org-builtin">:custom</span>
+  (org-appear-autoemphasis t)
+  (org-appear-autolinks t)
+  (org-appear-autosubmarkers t)
+  (org-appear-autoentities t))
+</code></pre>
+</div>
 </div>
 </div>
 </div>
@@ -4459,7 +4542,7 @@ Take care of some whitespace issues.
 </div>
 <div id="postamble" class="status">
 <p class="author">Kris Molendyke</p>
-<p class="date">2026-08-27 Thu 21:49</p>
+<p class="date">2026-08-27 Thu 22:58</p>
 <p class="creator"><a href="https://www.gnu.org/software/emacs/">Emacs</a> 31.1 (<a href="https://orgmode.org">Org</a> mode 9.8.9)</p>
 </div>
 </body>
