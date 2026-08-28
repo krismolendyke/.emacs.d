@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-08-27 Thu 21:29 -->
+<!-- 2026-08-27 Thu 21:54 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Literate =.emacs.d=</title>
@@ -2315,24 +2315,35 @@ Emacs 31 introduces AST-aware semantic highlighting for Emacs Lisp via <code>eli
   <span class="org-builtin">:bind</span> ((<span class="org-string">"C-x o"</span> . find-file-in-project))
   <span class="org-builtin">:config</span>
   (<span class="org-keyword">setq-default</span> ffip-limit 8192
-                ffip-find-options <span class="org-string">"-type f -not -path '</span><span class="org-string"><span class="org-constant">*/node_modules/*</span></span><span class="org-string">' -and -not -path '</span><span class="org-string"><span class="org-constant">*/.git/*</span></span><span class="org-string">' -and -not -path '</span><span class="org-string"><span class="org-constant">*/dist/*</span></span><span class="org-string">' -and -not -path '</span><span class="org-string"><span class="org-constant">*/dist-types/*</span></span><span class="org-string">' -and -not -path '</span><span class="org-string"><span class="org-constant">*/.yarn/*</span></span><span class="org-string">'"</span>
+                ffip-find-options <span class="org-string">"-type f -not -path '</span><span class="org-string"><span class="org-constant">*/node_modules/*</span></span><span class="org-string">' -and -not -path '</span><span class="org-string"><span class="org-constant">*/.git/*</span></span><span class="org-string">' -and -not -path '</span><span class="org-string"><span class="org-constant">*/.jj/*</span></span><span class="org-string">' -and -not -path '</span><span class="org-string"><span class="org-constant">*/.terraform/*</span></span><span class="org-string">' -and -not -path '</span><span class="org-string"><span class="org-constant">*/dist/*</span></span><span class="org-string">' -and -not -path '</span><span class="org-string"><span class="org-constant">*/dist-types/*</span></span><span class="org-string">' -and -not -path '</span><span class="org-string"><span class="org-constant">*/.yarn/*</span></span><span class="org-string">'"</span>
                 ffip-full-paths t
                 ffip-patterns (list <span class="org-string">"*.el"</span>
                                     <span class="org-string">"*.html"</span>
                                     <span class="org-string">"*.js"</span>
                                     <span class="org-string">"*.json"</span>
                                     <span class="org-string">"*.go"</span>
+                                    <span class="org-string">"*.just"</span>
+                                    <span class="org-string">"*Justfile"</span>
                                     <span class="org-string">"*.md"</span>
                                     <span class="org-string">"*.org"</span>
                                     <span class="org-string">"*.py"</span>
                                     <span class="org-string">"*.sh"</span>
+                                    <span class="org-string">"*.tf"</span>
+                                    <span class="org-string">"*.tfvars"</span>
+                                    <span class="org-string">"*.tofu"</span>
                                     <span class="org-string">"*.ts"</span>
                                     <span class="org-string">"*.txt"</span>
                                     <span class="org-string">"*.yaml"</span>
                                     <span class="org-string">"*.yml"</span>
                                     <span class="org-string">"Dockerfile"</span>
-                                    <span class="org-string">"Makefile"</span>)
-                ffip-prune-patterns (list <span class="org-string">".git"</span> <span class="org-string">"build"</span> <span class="org-string">"node_modules"</span>)))
+                                    <span class="org-string">"*Dockerfile"</span>
+                                    <span class="org-string">"Makefile"</span>
+                                    <span class="org-string">"*Makefile"</span>)
+                ffip-prune-patterns (list <span class="org-string">"*/.git"</span>
+                                          <span class="org-string">"*/.jj"</span>
+                                          <span class="org-string">"*/.terraform"</span>
+                                          <span class="org-string">"*/build"</span>
+                                          <span class="org-string">"*/node_modules"</span>)))
 </code></pre>
 </div>
 </div>
@@ -4448,8 +4459,8 @@ Take care of some whitespace issues.
 </div>
 <div id="postamble" class="status">
 <p class="author">Kris Molendyke</p>
-<p class="date">2026-08-27 Thu 21:25</p>
-<p class="creator"><a href="https://www.gnu.org/software/emacs/">Emacs</a> 31.1 (<a href="https://orgmode.org">Org</a> mode 9.8.7)</p>
+<p class="date">2026-08-27 Thu 21:49</p>
+<p class="creator"><a href="https://www.gnu.org/software/emacs/">Emacs</a> 31.1 (<a href="https://orgmode.org">Org</a> mode 9.8.9)</p>
 </div>
 </body>
 </html>
