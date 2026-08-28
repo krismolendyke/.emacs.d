@@ -1658,6 +1658,7 @@ Otherwise, start a new ghostel terminal."
    #+begin_src emacs-lisp
      (global-set-key (kbd "<f12>") 'org-agenda-list)
      (global-set-key (kbd "C-c a") 'org-agenda)
+     (global-set-key (kbd "C-c c") 'org-capture)
      (global-set-key (kbd "C-c l") 'org-store-link)
      (global-set-key (kbd "C-x c") 'org-switchb)
 
@@ -1860,6 +1861,25 @@ Otherwise, start a new ghostel terminal."
                                     ("DONE" . org-done)))
    #+end_src
 
+** Capture
+   :PROPERTIES:
+   :CUSTOM_ID: capture
+   :END:
+
+   Setup [[https://orgmode.org/manual/Capture.html][Org Capture]] templates for quick task and note logging into =notes.org=.
+
+   #+begin_src emacs-lisp
+     (defvar org-capture-templates)
+
+     (setq org-capture-templates
+           `(("t" "Todo" entry (file+headline org-default-notes-file "Tasks")
+              "* TODO %?\n  %i\n  %a")
+             ("n" "Note" entry (file+headline org-default-notes-file "Notes")
+              "* %? :NOTE:\n  %U\n  %i\n  %a")
+             ("m" "Meeting" entry (file+headline org-default-notes-file "Meetings")
+              "* %? :MEETING:\n  %U\n  Attendees: \n  %i")))
+   #+end_src
+
 ** Agenda
    :PROPERTIES:
    :CUSTOM_ID: agenda
@@ -1876,6 +1896,10 @@ Otherwise, start a new ghostel terminal."
        :functions (winner-undo)
        :bind (:map org-agenda-mode-map
                    ("q" . k20e/org-agenda-quit))
+       :config
+       (setq org-agenda-restore-windows-after-quit t
+             org-agenda-sticky t
+             org-agenda-window-setup 'only-window)
        :hook ((org-agenda-mode . (lambda ()
                                    (delete-other-windows)
                                    (text-scale-set 2)))))
