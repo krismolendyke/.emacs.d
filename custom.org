@@ -828,8 +828,12 @@ function.
       (doom-modeline-buffer-file-name-style 'relative-from-project)
       (doom-modeline-buffer-encoding nil)
       (doom-modeline-enable-word-count nil)
+      (doom-modeline-vcs-max-length 25)
       (doom-modeline-lsp t)
-      (doom-modeline-checker-simple-format t))
+      (doom-modeline-checker-simple-format t)
+      :custom-face
+      (mode-line ((t (:inherit fixed-pitch :family "PragmataPro VF Mono Liga"))))
+      (mode-line-inactive ((t (:inherit fixed-pitch :family "PragmataPro VF Mono Liga")))))
   #+end_src
 
 * eca
