@@ -804,6 +804,34 @@ function.
       :hook ((dired-mode . auto-revert-mode)))
   #+end_src
 
+* doom-modeline
+  :PROPERTIES:
+  :CUSTOM_ID: doom-modeline
+  :END:
+
+  [[https://github.com/seagle0430/doom-modeline][doom-modeline]] is a modern, fast, and feature-rich mode line.
+
+  #+begin_src emacs-lisp
+    (use-package nerd-icons
+      :ensure t)
+
+    (use-package doom-modeline
+      :ensure t
+      :hook (after-init . doom-modeline-mode)
+      :custom
+      (doom-modeline-height 26)
+      (doom-modeline-bar-width 4)
+      (doom-modeline-hud nil)
+      (doom-modeline-icon t)
+      (doom-modeline-major-mode-icon t)
+      (doom-modeline-major-mode-color-icon t)
+      (doom-modeline-buffer-file-name-style 'relative-from-project)
+      (doom-modeline-buffer-encoding nil)
+      (doom-modeline-enable-word-count nil)
+      (doom-modeline-lsp t)
+      (doom-modeline-checker-simple-format t))
+  #+end_src
+
 * eca
   :PROPERTIES:
   :CUSTOM_ID: eca
