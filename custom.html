@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-08-28 Fri 14:50 -->
+<!-- 2026-08-28 Fri 21:17 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Literate =.emacs.d=</title>
@@ -2258,28 +2258,103 @@ When compilation completes, regardless of result."</span>
 </p>
 
 <div class="org-src-container">
-<pre class="src src-emacs-lisp"><code>(<span class="org-keyword"><span class="org-elisp-macro">use-package</span></span> nerd-icons
-  <span class="org-builtin">:ensure</span> t)
+<pre class="src src-emacs-lisp"><code>    (<span class="org-keyword"><span class="org-elisp-macro">use-package</span></span> nerd-icons
+      <span class="org-builtin">:ensure</span> t)
 
-(<span class="org-keyword"><span class="org-elisp-macro">use-package</span></span> doom-modeline
-  <span class="org-builtin">:ensure</span> t
-  <span class="org-builtin">:init</span> (doom-modeline-mode 1)
-  <span class="org-builtin">:custom</span>
-  (doom-modeline-height 26)
-  (doom-modeline-bar-width 4)
-  (doom-modeline-hud nil)
-  (doom-modeline-icon t)
-  (doom-modeline-major-mode-icon t)
-  (doom-modeline-major-mode-color-icon t)
-  (doom-modeline-buffer-file-name-style 'relative-from-project)
-  (doom-modeline-buffer-encoding nil)
-  (doom-modeline-enable-word-count nil)
-  (doom-modeline-vcs-max-length 25)
-  (doom-modeline-lsp t)
-  (doom-modeline-checker-simple-format t)
-  <span class="org-builtin">:custom-face</span>
-  (mode-line ((t (<span class="org-builtin">:inherit</span> fixed-pitch <span class="org-builtin">:family</span> <span class="org-string">"PragmataPro VF Mono Liga"</span>))))
-  (mode-line-inactive ((t (<span class="org-builtin">:inherit</span> fixed-pitch <span class="org-builtin">:family</span> <span class="org-string">"PragmataPro VF Mono Liga"</span>)))))
+    (<span class="org-keyword"><span class="org-elisp-function">require</span></span> '<span class="org-constant"><span class="org-elisp-feature">cl-lib</span></span>)
+
+    (<span class="org-keyword"><span class="org-elisp-macro">defcustom</span></span> <span class="org-variable-name">k20e/doom-modeline-jj-bookmark-max-length</span> 16
+      <span class="org-doc">"Maximum character length for the Jujutsu bookmark name in the mode line."</span>
+      <span class="org-builtin">:type</span> 'integer
+      <span class="org-builtin">:group</span> 'k20e)
+
+    (<span class="org-keyword"><span class="org-elisp-macro">defun</span></span> <span class="org-function-name"><span class="org-elisp-defun">k20e/doom-modeline-vcs-name</span></span> ()
+      <span class="org-doc">"Display Jujutsu bookmark and latest change description if in a jj repo.
+Dynamically scales description length with window and frame width.
+Otherwise fallback to default git branch."</span>
+      (<span class="org-keyword"><span class="org-elisp-special-form">let*</span></span> ((<span class="org-elisp-binding-variable">file</span> (<span class="org-keyword"><span class="org-elisp-special-form">or</span></span> <span class="org-elisp-free-variable">buffer-file-name</span> <span class="org-elisp-free-variable">default-directory</span>))
+             (<span class="org-elisp-binding-variable">jj-dir</span> (<span class="org-keyword"><span class="org-elisp-special-form">and</span></span> <span class="org-elisp-bound-variable">file</span> (<span class="org-elisp-function">not</span> (<span class="org-elisp-function">file-remote-p</span> <span class="org-elisp-bound-variable">file</span>)) (<span class="org-elisp-function">locate-dominating-file</span> <span class="org-elisp-bound-variable">file</span> <span class="org-string">".jj"</span>))))
+        (<span class="org-keyword"><span class="org-elisp-special-form">if</span></span> (<span class="org-keyword"><span class="org-elisp-special-form">and</span></span> <span class="org-elisp-bound-variable">jj-dir</span> (<span class="org-elisp-function">executable-find</span> <span class="org-string">"jj"</span>))
+            (<span class="org-keyword"><span class="org-elisp-special-form">let</span></span> ((<span class="org-elisp-shadowing-variable">default-directory</span> <span class="org-elisp-bound-variable">jj-dir</span>))
+              (<span class="org-keyword"><span class="org-elisp-macro">with-temp-buffer</span></span>
+                (<span class="org-keyword"><span class="org-elisp-special-form">if</span></span> (<span class="org-elisp-function">zerop</span> (<span class="org-elisp-function">call-process</span> <span class="org-string">"jj"</span> nil t nil
+                                         <span class="org-string">"--color"</span> <span class="org-string">"never"</span> <span class="org-string">"--no-pager"</span> <span class="org-string">"log"</span>
+                                         <span class="org-string">"-r"</span> <span class="org-string">"latest(ancestors(@) &amp; bookmarks()) | latest(ancestors(@) &amp; ~description(\"\"))"</span>
+                                         <span class="org-string">"--no-graph"</span>
+                                         <span class="org-string">"-T"</span> <span class="org-string">"bookmarks.join(\", \") ++ \"\\t\" ++ description.first_line() ++ \"\\n\""</span>))
+                    (<span class="org-keyword"><span class="org-elisp-special-form">let*</span></span> ((<span class="org-elisp-binding-variable">lines</span> (<span class="org-elisp-function">split-string</span> (<span class="org-elisp-function">buffer-string</span>) <span class="org-string">"\n"</span> t))
+                           (<span class="org-elisp-binding-variable">win</span> (<span class="org-keyword"><span class="org-elisp-special-form">or</span></span> (<span class="org-elisp-function">get-buffer-window</span> (<span class="org-elisp-function">current-buffer</span>)) (<span class="org-elisp-function">selected-window</span>)))
+                           (<span class="org-elisp-binding-variable">win-w</span> (<span class="org-keyword"><span class="org-elisp-special-form">if</span></span> <span class="org-elisp-bound-variable">win</span> (<span class="org-elisp-function">window-body-width</span> <span class="org-elisp-bound-variable">win</span>) (<span class="org-elisp-function">frame-width</span>)))
+                           (<span class="org-elisp-binding-variable">desc-limit</span> (<span class="org-keyword"><span class="org-elisp-special-form">cond</span></span>
+                                        ((<span class="org-elisp-function">&lt;</span> <span class="org-elisp-bound-variable">win-w</span> 65) nil)
+                                        ((<span class="org-elisp-function">&gt;=</span> <span class="org-elisp-bound-variable">win-w</span> 160) 65)
+                                        ((<span class="org-elisp-function">&gt;=</span> <span class="org-elisp-bound-variable">win-w</span> 120) 45)
+                                        ((<span class="org-elisp-function">&gt;=</span> <span class="org-elisp-bound-variable">win-w</span> 90) 30)
+                                        (t (<span class="org-elisp-function">max</span> 15 (<span class="org-elisp-function">/</span> <span class="org-elisp-bound-variable">win-w</span> 4)))))
+                           <span class="org-elisp-binding-variable">bm</span> <span class="org-elisp-binding-variable">desc</span>)
+                      (<span class="org-keyword"><span class="org-elisp-macro">dolist</span></span> (line lines)
+                        (<span class="org-keyword">let</span> ((parts (split-string line <span class="org-string">"\t"</span>)))
+                          (<span class="org-keyword">when</span> (<span class="org-keyword">and</span> (not bm) (&gt; (length (nth 0 parts)) 0))
+                            (<span class="org-keyword">setq</span> bm (nth 0 parts)))
+                          (<span class="org-keyword">when</span> (<span class="org-keyword">and</span> (not desc) (&gt; (length (nth 1 parts)) 0))
+                            (<span class="org-keyword">setq</span> desc (nth 1 parts)))))
+                      (<span class="org-keyword"><span class="org-elisp-macro">when</span></span> (<span class="org-keyword"><span class="org-elisp-special-form">and</span></span> <span class="org-elisp-bound-variable">bm</span> (<span class="org-elisp-function">&gt;</span> (<span class="org-elisp-function">length</span> <span class="org-elisp-bound-variable">bm</span>) <span class="org-elisp-free-variable">k20e/doom-modeline-jj-bookmark-max-length</span>))
+                        (<span class="org-keyword"><span class="org-elisp-special-form">setq</span></span> <span class="org-elisp-bound-variable">bm</span> (<span class="org-elisp-function">concat</span> (<span class="org-elisp-function">substring</span> <span class="org-elisp-bound-variable">bm</span> 0 (<span class="org-elisp-function">-</span> <span class="org-elisp-free-variable">k20e/doom-modeline-jj-bookmark-max-length</span> 1)) <span class="org-string">"&#8230;"</span>)))
+                      (<span class="org-keyword"><span class="org-elisp-macro">when</span></span> (<span class="org-keyword"><span class="org-elisp-special-form">and</span></span> <span class="org-elisp-bound-variable">desc</span> <span class="org-elisp-bound-variable">desc-limit</span> (<span class="org-elisp-function">&gt;</span> (<span class="org-elisp-function">length</span> <span class="org-elisp-bound-variable">desc</span>) <span class="org-elisp-bound-variable">desc-limit</span>))
+                        (<span class="org-keyword"><span class="org-elisp-special-form">setq</span></span> <span class="org-elisp-bound-variable">desc</span> (<span class="org-elisp-function">concat</span> (<span class="org-elisp-function">substring</span> <span class="org-elisp-bound-variable">desc</span> 0 (<span class="org-elisp-function">-</span> <span class="org-elisp-bound-variable">desc-limit</span> 1)) <span class="org-string">"&#8230;"</span>)))
+                      (<span class="org-keyword"><span class="org-elisp-special-form">cond</span></span>
+                       ((<span class="org-keyword"><span class="org-elisp-special-form">and</span></span> <span class="org-elisp-bound-variable">bm</span> <span class="org-elisp-bound-variable">desc</span> <span class="org-elisp-bound-variable">desc-limit</span>) (<span class="org-elisp-function">format</span> <span class="org-string">"%s: %s"</span> <span class="org-elisp-bound-variable">bm</span> <span class="org-elisp-bound-variable">desc</span>))
+                       (<span class="org-elisp-bound-variable">bm</span> <span class="org-elisp-bound-variable">bm</span>)
+                       ((<span class="org-keyword"><span class="org-elisp-special-form">and</span></span> <span class="org-elisp-bound-variable">desc</span> <span class="org-elisp-bound-variable">desc-limit</span>) <span class="org-elisp-bound-variable">desc</span>)
+                       (t <span class="org-string">"jj"</span>)))
+                  (<span class="org-elisp-function">doom-modeline-vcs-name</span>))))
+          (<span class="org-elisp-function">doom-modeline-vcs-name</span>))))
+
+    (<span class="org-keyword"><span class="org-elisp-macro">defun</span></span> <span class="org-function-name"><span class="org-elisp-defun">k20e/doom-modeline-update-vcs-on-resize</span></span> (<span class="org-type"><span class="org-elisp-ampersand">&amp;optional</span></span> <span class="org-elisp-binding-variable">frame</span>)
+      <span class="org-doc">"Update VCS modeline segment on window and frame size changes."</span>
+      (<span class="org-keyword"><span class="org-elisp-macro">dolist</span></span> (w (window-list frame 'never))
+        (<span class="org-keyword">with-current-buffer</span> (window-buffer w)
+          (doom-modeline-update-vcs)))
+      (<span class="org-elisp-function">force-mode-line-update</span> t))
+
+    (<span class="org-elisp-function">add-hook</span> '<span class="org-elisp-free-variable">window-size-change-functions</span> #'<span class="org-elisp-function">k20e/doom-modeline-update-vcs-on-resize</span>)
+    (<span class="org-elisp-function">add-hook</span> '<span class="org-elisp-free-variable">window-configuration-change-hook</span> #'<span class="org-elisp-function">k20e/doom-modeline-update-vcs-on-resize</span>)
+
+    (<span class="org-keyword"><span class="org-elisp-macro">declare-function</span></span> <span class="org-elisp-function">doom-modeline-def-modeline</span> <span class="org-string">"doom-modeline-core"</span>)
+    (<span class="org-keyword"><span class="org-elisp-macro">declare-function</span></span> <span class="org-elisp-function">doom-modeline-vcs-name</span> <span class="org-string">"doom-modeline-core"</span>)
+    (<span class="org-keyword"><span class="org-elisp-macro">declare-function</span></span> <span class="org-elisp-function">doom-modeline-update-vcs</span> <span class="org-string">"doom-modeline-segments"</span>)
+
+    (<span class="org-keyword"><span class="org-elisp-macro">use-package</span></span> doom-modeline
+      <span class="org-builtin">:ensure</span> t
+      <span class="org-builtin">:init</span> (doom-modeline-mode 1)
+      <span class="org-builtin">:custom</span>
+      (doom-modeline-vcs-display-function #'k20e/doom-modeline-vcs-name)
+      (doom-modeline-vcs-max-length 70)
+      (doom-modeline-height 26)
+      (doom-modeline-bar-width 0)
+      (doom-modeline-hud nil)
+      (doom-modeline-percent-position nil)
+      (doom-modeline-total-line-number nil)
+      (doom-modeline-icon t)
+      (doom-modeline-major-mode-icon t)
+      (doom-modeline-major-mode-color-icon t)
+      (doom-modeline-buffer-file-name-style 'relative-from-project)
+      (doom-modeline-buffer-encoding nil)
+      (doom-modeline-enable-word-count nil)
+      (doom-modeline-buffer-size nil)
+      (doom-modeline-env-version t)
+      (doom-modeline-env-enable-go t)
+      (doom-modeline-env-enable-python t)
+      (doom-modeline-env-enable-rust t)
+      (doom-modeline-lsp t)
+      (doom-modeline-checker-simple-format t)
+      <span class="org-builtin">:custom-face</span>
+      (mode-line ((t (<span class="org-builtin">:inherit</span> fixed-pitch <span class="org-builtin">:family</span> <span class="org-string">"PragmataPro VF Mono Liga"</span>))))
+      (mode-line-inactive ((t (<span class="org-builtin">:inherit</span> fixed-pitch <span class="org-builtin">:family</span> <span class="org-string">"PragmataPro VF Mono Liga"</span>))))
+      <span class="org-builtin">:config</span>
+      (<span class="org-keyword">doom-modeline-def-modeline</span> <span class="org-constant">'main</span>
+        '(eldoc window-state workspace-name modals matches follow buffer-info remote-host buffer-position word-count parrot selection-info)
+        '(compilation objed-state misc-info project-name persp-name battery grip irc mu4e gnus github debug repl lsp spell minor-modes input-method indent-info buffer-encoding major-mode process vcs check time)))
 </code></pre>
 </div>
 </div>
@@ -3919,8 +3994,7 @@ Simple stuff:
 <pre class="src src-emacs-lisp"><code>(<span class="org-keyword"><span class="org-elisp-macro">use-package</span></span> simple
   <span class="org-builtin">:config</span>
   (line-number-mode 1)
-  (column-number-mode 1)
-  (size-indication-mode 1))
+  (column-number-mode 1))
 </code></pre>
 </div>
 
@@ -4576,7 +4650,7 @@ Take care of some whitespace issues.
 </div>
 <div id="postamble" class="status">
 <p class="author">Kris Molendyke</p>
-<p class="date">2026-08-28 Fri 14:49</p>
+<p class="date">2026-08-28 Fri 21:15</p>
 <p class="creator"><a href="https://www.gnu.org/software/emacs/">Emacs</a> 31.1 (<a href="https://orgmode.org">Org</a> mode 9.8.9)</p>
 </div>
 </body>
