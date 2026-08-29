@@ -2311,6 +2311,7 @@ Otherwise, start a new ghostel terminal."
   #+begin_src emacs-lisp
     (use-package pulsar
       :ensure t
+      :bind (("<f8>" . pulsar-pulse-line))
       :custom
       (pulsar-pulse t)
       (pulsar-delay 0.055)
