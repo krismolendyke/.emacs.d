@@ -2309,20 +2309,60 @@ Otherwise, start a new ghostel terminal."
   [[https://protesilaos.com/emacs/pulsar][pulsar]] temporarily pulses the cursor line after large jumps (window switching, buffer switching, searches), making it effortless to track the point on large and ultrawide displays.
 
   #+begin_src emacs-lisp
+    (declare-function pulsar-recenter-center "pulsar")
+    (declare-function pulsar-reveal-entry "pulsar")
+
     (use-package pulsar
       :ensure t
-      :bind (("<f8>" . pulsar-pulse-line))
+      :bind (("<f8>"   . pulsar-pulse-line)
+             ("C-c h p" . pulsar-pulse-line)
+             ("C-c h h" . pulsar-highlight-temporarily))
       :custom
-      (pulsar-pulse t)
       (pulsar-delay 0.055)
       (pulsar-iterations 10)
       (pulsar-face 'pulsar-generic)
+      (pulsar-pulse-on-window-change t)
+      (pulsar-pulse-functions
+       '(avy-goto-char
+         avy-goto-char-2
+         avy-goto-line
+         avy-goto-word-1
+         consult-buffer
+         consult-git-grep
+         consult-goto-line
+         consult-line
+         consult-org-heading
+         consult-recent-file
+         consult-ripgrep
+         consult-todo
+         find-file-in-project
+         goto-line
+         imenu
+         next-buffer
+         next-error
+         org-backward-heading-same-level
+         org-forward-heading-same-level
+         org-next-visible-heading
+         org-previous-visible-heading
+         other-window
+         previous-buffer
+         previous-error
+         recenter-top-bottom
+         scroll-down-command
+         scroll-up-command
+         windmove-down
+         windmove-left
+         windmove-right
+         windmove-up))
       :custom-face
       (pulsar-generic
        ((((background light)) :background "#ebdbb2" :extend t)
         (((background dark))  :background "#504945" :extend t)))
       :config
-      (pulsar-global-mode 1))
+      (pulsar-global-mode 1)
+      (with-eval-after-load 'consult
+        (add-hook 'consult-after-jump-hook #'pulsar-recenter-center)
+        (add-hook 'consult-after-jump-hook #'pulsar-reveal-entry)))
   #+end_src
 
 * re-builder
