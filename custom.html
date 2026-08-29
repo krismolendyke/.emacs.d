@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-08-28 Fri 21:25 -->
+<!-- 2026-08-28 Fri 22:32 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Literate =.emacs.d=</title>
@@ -1251,7 +1251,12 @@ function.
 <li><a href="#enabled-commands">Enabled Commands</a></li>
 <li><a href="#inferior-shell">Inferior Shell</a></li>
 <li><a href="#smooth-scrolling">Smooth Scrolling</a></li>
-<li><a href="#defaults-for-review"><span class="todo TODO">TODO</span> Defaults for Review</a></li>
+<li><a href="#auto-revert">Auto Revert</a></li>
+<li><a href="#delete-selection">Delete Selection</a></li>
+<li><a href="#electric-indent">Electric Indent</a></li>
+<li><a href="#mark-ring">Mark Ring</a></li>
+<li><a href="#window-splitting">Window Splitting</a></li>
+<li><a href="#modern-core-defaults">Modern Core Defaults</a></li>
 </ul>
 </li>
 <li><a href="#k20e-custom-functions">k20e Custom Functions</a>
@@ -1269,7 +1274,7 @@ function.
 <li><a href="#avy">avy</a></li>
 <li><a href="#buffer-move">buffer-move</a></li>
 <li><a href="#c">C</a></li>
-<li><a href="#combobulate"><span class="todo TODO">TODO</span> combobulate</a></li>
+<li><a href="#combobulate">combobulate</a></li>
 <li><a href="#compilation-mode">compilation-mode</a></li>
 <li><a href="#dired">dired</a></li>
 <li><a href="#doom-modeline">doom-modeline</a></li>
@@ -1324,7 +1329,7 @@ function.
 <li><a href="#export">Export</a></li>
 <li><a href="#publish">Publish</a></li>
 <li><a href="#babel">Babel</a></li>
-<li><a href="#org-mode-todo-items"><span class="todo TODO">TODO</span> Items</a></li>
+<li><a href="#org-mode-todo-items">Todo Items</a></li>
 <li><a href="#capture">Capture</a></li>
 <li><a href="#agenda">Agenda</a></li>
 <li><a href="#habit">Habit</a></li>
@@ -1355,12 +1360,12 @@ function.
 <li><a href="#terraform-mode">terraform-mode</a></li>
 <li><a href="#text-mode">text-mode</a></li>
 <li><a href="#toml-mode">toml-mode</a></li>
-<li><a href="#tree-sitter"><span class="done DONE">DONE</span> Tree-sitter</a></li>
+<li><a href="#tree-sitter">Tree-sitter</a></li>
 <li><a href="#typescript">TypeScript</a></li>
 <li><a href="#uniquify">uniquify</a></li>
 <li><a href="#vertico">vertico</a>
 <ul>
-<li><a href="#other-configuration-extensions"><span class="todo STARTED">STARTED</span> <code>[1/3]</code> Other Configuration &amp; Extensions</a></li>
+<li><a href="#other-configuration-extensions">Other Configuration &amp; Extensions</a></li>
 <li><a href="#vertico-directory">vertico-directory</a></li>
 <li><a href="#vertico-savehist">savehist</a></li>
 <li><a href="#completion-category-overrides">completion category overrides</a></li>
@@ -1765,75 +1770,100 @@ What a time to be alive.
 </div>
 </div>
 </div>
-<div id="outline-container-defaults-for-review" class="outline-3">
-<h3 id="defaults-for-review"><span class="todo TODO">TODO</span> Defaults for Review</h3>
-<div class="outline-text-3" id="text-defaults-for-review">
+<div id="outline-container-auto-revert" class="outline-3">
+<h3 id="auto-revert">Auto Revert</h3>
+<div class="outline-text-3" id="text-auto-revert">
 <p>
-This is a bunch of stuff that I just dumped here and need to go through yet.
+Automatically reload buffers when files change on disk (e.g. from version control
+operations like <code>jj</code> or background processes).
 </p>
 
+<div class="org-src-container">
+<pre class="src src-emacs-lisp"><code>(<span class="org-elisp-function">global-auto-revert-mode</span> 1)
+</code></pre>
+</div>
+</div>
+</div>
+<div id="outline-container-delete-selection" class="outline-3">
+<h3 id="delete-selection">Delete Selection</h3>
+<div class="outline-text-3" id="text-delete-selection">
 <p>
-Show the active region and delete it when selected if a character
-is inserted.
+Typing over an active selection replaces it, matching standard modern OS editing behavior.
 </p>
 
 <div class="org-src-container">
 <pre class="src src-emacs-lisp"><code>(<span class="org-elisp-function">delete-selection-mode</span> 1)
 </code></pre>
 </div>
-
+</div>
+</div>
+<div id="outline-container-electric-indent" class="outline-3">
+<h3 id="electric-indent">Electric Indent</h3>
+<div class="outline-text-3" id="text-electric-indent">
 <p>
-"Electric" indentation is generally what I consider to be sensible.
+"Electric" indentation automatically indents upon pressing return and typing closing delimiters.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-emacs-lisp"><code>(<span class="org-elisp-function">electric-indent-mode</span>)
+<pre class="src src-emacs-lisp"><code>(<span class="org-elisp-function">electric-indent-mode</span> 1)
 </code></pre>
 </div>
-
+</div>
+</div>
+<div id="outline-container-mark-ring" class="outline-3">
+<h3 id="mark-ring">Mark Ring</h3>
+<div class="outline-text-3" id="text-mark-ring">
 <p>
-Cycle through the mark ring faster.
+Cycle through previous marks faster: after the initial <code>C-u C-SPC</code>, subsequent <code>C-SPC</code>
+keystrokes continue popping the mark ring.
 </p>
 
 <div class="org-src-container">
 <pre class="src src-emacs-lisp"><code>(<span class="org-keyword"><span class="org-elisp-special-form">setq</span></span> <span class="org-elisp-free-variable">set-mark-command-repeat-pop</span> t)
 </code></pre>
 </div>
-
+</div>
+</div>
+<div id="outline-container-window-splitting" class="outline-3">
+<h3 id="window-splitting">Window Splitting</h3>
+<div class="outline-text-3" id="text-window-splitting">
 <p>
-Splitting windows horizontally makes more sense on all of the wide
-screen monitors I work on.
+Prefer horizontal side-by-side splitting on widescreen displays and along the longest window dimension.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-emacs-lisp"><code>(<span class="org-keyword"><span class="org-elisp-special-form">setq</span></span> <span class="org-elisp-free-variable">split-width-threshold</span> 81)
+<pre class="src src-emacs-lisp"><code>(<span class="org-keyword"><span class="org-elisp-special-form">setq</span></span> <span class="org-elisp-free-variable">split-width-threshold</span> 81
+      <span class="org-elisp-free-variable">split-window-preferred-direction</span> 'longest)
 </code></pre>
 </div>
-
-<div class="org-src-container">
-<pre class="src src-emacs-lisp"><code><span class="org-comment-delimiter">;; </span><span class="org-comment">What's going on here?
-</span>(<span class="org-keyword"><span class="org-elisp-special-form">setq</span></span> <span class="org-elisp-free-variable">echo-keystrokes</span> 0.1)
-
-<span class="org-comment-delimiter">;; </span><span class="org-comment">Automatically reload buffers when files change on disk.
-</span>(<span class="org-elisp-function">global-auto-revert-mode</span> 1)
-
-<span class="org-comment-delimiter">;; </span><span class="org-comment">y is the new yes.  n is the new no.
-</span>(<span class="org-keyword"><span class="org-elisp-special-form">setq</span></span> <span class="org-elisp-free-variable">use-short-answers</span> t)
-</code></pre>
 </div>
-
+</div>
+<div id="outline-container-modern-core-defaults" class="outline-3">
+<h3 id="modern-core-defaults">Modern Core Defaults</h3>
+<div class="outline-text-3" id="text-modern-core-defaults">
 <p>
-Stuff in review from <a href="https://www.masteringemacs.org/article/whats-new-in-emacs-28-1">https://www.masteringemacs.org/article/whats-new-in-emacs-28-1</a> and <a href="https://www.masteringemacs.org/article/whats-new-in-emacs-311">https://www.masteringemacs.org/article/whats-new-in-emacs-311</a>.
+Sensible core defaults from <a href="https://www.masteringemacs.org/article/whats-new-in-emacs-28-1">Emacs 28</a>, <a href="https://www.masteringemacs.org/article/whats-new-in-emacs-29-1">Emacs 29</a>, and <a href="https://www.masteringemacs.org/article/whats-new-in-emacs-311">Emacs 31</a>:
 </p>
 
+<ul class="org-ul">
+<li><code>use-short-answers</code>: Accept <code>y~/~n</code> instead of <code>yes~/~no</code> prompts.</li>
+<li><code>echo-keystrokes</code>: Show in-flight prefix keys faster in the minibuffer echo area (0.1s).</li>
+<li><code>completions-detailed</code>: Show rich docstrings and metadata during built-in completions.</li>
+<li><code>describe-bindings-outline</code>: Enable collapsible outline sections in <code>describe-bindings</code> (<code>C-h b</code>).</li>
+<li><code>next-error-message-highlight</code>: Highlight the matching line when jumping through compilation or grep errors.</li>
+<li><code>frame-title-format</code>: Display buffer name and file path in the desktop frame title bar.</li>
+</ul>
+
 <div class="org-src-container">
-<pre class="src src-emacs-lisp"><code>(<span class="org-keyword"><span class="org-elisp-macro">setq-default</span></span>
+<pre class="src src-emacs-lisp"><code>(<span class="org-keyword"><span class="org-elisp-special-form">setq</span></span> <span class="org-elisp-free-variable">echo-keystrokes</span> 0.1
+      <span class="org-elisp-free-variable">use-short-answers</span> t)
+
+(<span class="org-keyword"><span class="org-elisp-macro">setq-default</span></span>
  <span class="org-elisp-free-variable">completions-detailed</span> t
  <span class="org-elisp-free-variable">describe-bindings-outline</span> t
  <span class="org-elisp-free-variable">mode-line-compact</span> t
  <span class="org-elisp-free-variable">mode-line-collapse-minor-modes</span> t
  <span class="org-elisp-free-variable">next-error-message-highlight</span> t
- <span class="org-elisp-free-variable">split-window-preferred-direction</span> 'longest
  <span class="org-elisp-free-variable">frame-title-format</span> '(multiple-frames <span class="org-string">"%b"</span> (<span class="org-string">"%b\t%f"</span>)))
 </code></pre>
 </div>
@@ -2176,7 +2206,7 @@ Move the current buffer up/down/left/right easily.
 </div>
 </div>
 <div id="outline-container-combobulate" class="outline-2">
-<h2 id="combobulate"><span class="todo TODO">TODO</span> combobulate</h2>
+<h2 id="combobulate">combobulate</h2>
 <div class="outline-text-2" id="text-combobulate">
 <ul class="org-ul">
 <li><a href="https://www.masteringemacs.org/article/combobulate-structured-movement-editing-treesitter">https://www.masteringemacs.org/article/combobulate-structured-movement-editing-treesitter</a></li>
@@ -3490,7 +3520,7 @@ dangerous but I never execute any org files that I didn't author.
 </div>
 </div>
 <div id="outline-container-org-mode-todo-items" class="outline-3">
-<h3 id="org-mode-todo-items"><span class="todo TODO">TODO</span> Items</h3>
+<h3 id="org-mode-todo-items">Todo Items</h3>
 <div class="outline-text-3" id="text-org-mode-todo-items">
 <p>
 Automatically insert a timestamp when a task is marked <code>DONE</code>.
@@ -4161,7 +4191,7 @@ child frame (make-frame), Emacs recalculated all faces in face-list and hit this
 </div>
 </div>
 <div id="outline-container-tree-sitter" class="outline-2">
-<h2 id="tree-sitter"><span class="done DONE">DONE</span> Tree-sitter</h2>
+<h2 id="tree-sitter">Tree-sitter</h2>
 <div class="outline-text-2" id="text-tree-sitter">
 <p>
 Emacs 31 includes native tree-sitter support (<code>treesit</code>). Use <code>treesit-auto</code> to automatically manage grammar recipes,
@@ -4279,7 +4309,7 @@ Since <a href="https://github.com/minad/vertico">vertico</a> is meant to be plug
 </div>
 </div>
 <div id="outline-container-other-configuration-extensions" class="outline-3">
-<h3 id="other-configuration-extensions"><span class="todo STARTED">STARTED</span> <code>[1/3]</code> Other Configuration &amp; Extensions</h3>
+<h3 id="other-configuration-extensions">Other Configuration &amp; Extensions</h3>
 <div class="outline-text-3" id="text-other-configuration-extensions">
 <ul class="org-ul">
 <li class="off"><code>[&nbsp;]</code> <a href="https://github.com/minad/vertico#extensions">https://github.com/minad/vertico#extensions</a></li>
@@ -4350,7 +4380,7 @@ repo. so do not <code>:ensure t</code> here.
 </div>
 </div>
 <div id="outline-container-orderless-other-configuration" class="outline-4">
-<h4 id="orderless-other-configuration"><span class="todo TODO">TODO</span> <code>[0/1]</code> Other Configuration</h4>
+<h4 id="orderless-other-configuration">Other Configuration</h4>
 <div class="outline-text-4" id="text-orderless-other-configuration">
 <ul class="org-ul">
 <li class="off"><code>[&nbsp;]</code> <a href="https://github.com/minad/consult/wiki#minads-orderless-configuration">https://github.com/minad/consult/wiki#minads-orderless-configuration</a></li>
@@ -4384,7 +4414,7 @@ repo. so do not <code>:ensure t</code> here.
 </div>
 </div>
 <div id="outline-container-consult-other-configuration" class="outline-4">
-<h4 id="consult-other-configuration"><span class="todo STARTED">STARTED</span> <code>[1/2]</code> Other Configuration</h4>
+<h4 id="consult-other-configuration">Other Configuration</h4>
 <div class="outline-text-4" id="text-consult-other-configuration">
 <ul class="org-ul">
 <li class="off"><code>[&nbsp;]</code> <a href="https://github.com/minad/consult/wiki">https://github.com/minad/consult/wiki</a></li>
@@ -4430,7 +4460,7 @@ triggered explicitly on demand with <code>M-/</code> or <code>C-M-i</code>.
 </div>
 </div>
 <div id="outline-container-corfu-other-configuration" class="outline-4">
-<h4 id="corfu-other-configuration"><span class="todo TODO">TODO</span> <code>[0/2]</code> Other Configuration</h4>
+<h4 id="corfu-other-configuration">Other Configuration</h4>
 <div class="outline-text-4" id="text-corfu-other-configuration">
 <ul class="org-ul">
 <li class="off"><code>[&nbsp;]</code> <a href="https://github.com/minad/corfu#orderless-completion">https://github.com/minad/corfu#orderless-completion</a></li>
@@ -4486,7 +4516,7 @@ to <code>M-/</code> for on-demand word completion anywhere.
 </div>
 </div>
 <div id="outline-container-marginalia-other-configuration" class="outline-4">
-<h4 id="marginalia-other-configuration"><span class="todo TODO">TODO</span> <code>[0/1]</code> Other Configuration</h4>
+<h4 id="marginalia-other-configuration">Other Configuration</h4>
 <div class="outline-text-4" id="text-marginalia-other-configuration">
 <ul class="org-ul">
 <li class="off"><code>[&nbsp;]</code> <a href="https://github.com/minad/marginalia#adding-custom-annotators-or-classifiers">https://github.com/minad/marginalia#adding-custom-annotators-or-classifiers</a></li>
@@ -4672,7 +4702,7 @@ Take care of some whitespace issues.
 </div>
 <div id="postamble" class="status">
 <p class="author">Kris Molendyke</p>
-<p class="date">2026-08-28 Fri 21:21</p>
+<p class="date">2026-08-28 Fri 22:30</p>
 <p class="creator"><a href="https://www.gnu.org/software/emacs/">Emacs</a> 31.1 (<a href="https://orgmode.org">Org</a> mode 9.8.9)</p>
 </div>
 </body>
