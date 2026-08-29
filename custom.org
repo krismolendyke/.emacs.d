@@ -2327,6 +2327,7 @@ Otherwise, start a new ghostel terminal."
          avy-goto-char-2
          avy-goto-line
          avy-goto-word-1
+         beginning-of-buffer
          consult-buffer
          consult-git-grep
          consult-goto-line
@@ -2335,6 +2336,7 @@ Otherwise, start a new ghostel terminal."
          consult-recent-file
          consult-ripgrep
          consult-todo
+         end-of-buffer
          find-file-in-project
          goto-line
          imenu
