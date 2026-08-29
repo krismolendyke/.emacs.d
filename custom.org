@@ -860,8 +860,17 @@ Otherwise fallback to default git branch."
                   (doom-modeline-vcs-name))))
           (doom-modeline-vcs-name))))
 
+    (defun k20e/doom-modeline-update-vcs-on-resize (&optional frame)
+      "Update VCS modeline segment on window size changes."
+      (dolist (w (window-list frame 'never))
+        (with-current-buffer (window-buffer w)
+          (doom-modeline-update-vcs))))
+
+    (add-hook 'window-size-change-functions #'k20e/doom-modeline-update-vcs-on-resize)
+
     (declare-function doom-modeline-def-modeline "doom-modeline-core")
     (declare-function doom-modeline-vcs-name "doom-modeline-core")
+    (declare-function doom-modeline-update-vcs "doom-modeline-segments")
 
     (use-package doom-modeline
       :ensure t
