@@ -817,6 +817,16 @@ function.
 
     (require 'cl-lib)
 
+    (defcustom k20e/doom-modeline-jj-bookmark-max-length 16
+      "Maximum character length for the Jujutsu bookmark name in the mode line."
+      :type 'integer
+      :group 'k20e)
+
+    (defcustom k20e/doom-modeline-jj-description-max-length 32
+      "Maximum character length for the Jujutsu change description in the mode line."
+      :type 'integer
+      :group 'k20e)
+
     (defun k20e/doom-modeline-vcs-name ()
       "Display Jujutsu bookmark and latest change description if in a jj repo.
 Otherwise fallback to default git branch."
@@ -838,6 +848,10 @@ Otherwise fallback to default git branch."
                             (setq bm (nth 0 parts)))
                           (when (and (not desc) (> (length (nth 1 parts)) 0))
                             (setq desc (nth 1 parts)))))
+                      (when (and bm (> (length bm) k20e/doom-modeline-jj-bookmark-max-length))
+                        (setq bm (concat (substring bm 0 (- k20e/doom-modeline-jj-bookmark-max-length 1)) "…")))
+                      (when (and desc (> (length desc) k20e/doom-modeline-jj-description-max-length))
+                        (setq desc (concat (substring desc 0 (- k20e/doom-modeline-jj-description-max-length 1)) "…")))
                       (cond
                        ((and bm desc) (format "%s: %s" bm desc))
                        (bm bm)
@@ -854,7 +868,7 @@ Otherwise fallback to default git branch."
       :init (doom-modeline-mode 1)
       :custom
       (doom-modeline-vcs-display-function #'k20e/doom-modeline-vcs-name)
-      (doom-modeline-vcs-max-length 30)
+      (doom-modeline-vcs-max-length 50)
       (doom-modeline-height 26)
       (doom-modeline-bar-width 0)
       (doom-modeline-hud nil)
