@@ -818,7 +818,8 @@ function.
     (require 'cl-lib)
 
     (defun k20e/doom-modeline-vcs-name ()
-      "Display Jujutsu bookmark and/or description if in a jj repo, else git branch."
+      "Display Jujutsu bookmark and latest change description if in a jj repo.
+Otherwise fallback to default git branch."
       (let* ((file (or buffer-file-name default-directory))
              (jj-dir (and file (not (file-remote-p file)) (locate-dominating-file file ".jj"))))
         (if (and jj-dir (executable-find "jj"))
@@ -826,22 +827,22 @@ function.
               (with-temp-buffer
                 (if (zerop (call-process "jj" nil t nil
                                          "--color" "never" "--no-pager" "log"
-                                         "-r" "latest(ancestors(@) & bookmarks()) | @"
+                                         "-r" "latest(ancestors(@) & bookmarks()) | latest(ancestors(@) & ~description(\"\"))"
                                          "--no-graph"
-                                         "-T" "bookmarks.join(\", \") ++ \"\\n\" ++ description.first_line() ++ \"\\n\""))
+                                         "-T" "bookmarks.join(\", \") ++ \"\\t\" ++ description.first_line() ++ \"\\n\""))
                     (let* ((lines (split-string (buffer-string) "\n" t))
-                           (bm (cl-find-if (lambda (s) (not (string-empty-p s)))
-                                           (list (nth 0 lines) (nth 2 lines))))
-                           (desc (cl-find-if (lambda (s) (not (string-empty-p s)))
-                                             (list (nth 1 lines) (nth 3 lines))))
-                           (formatted
-                            (cond
-                             ((and bm desc (not (string-empty-p desc)))
-                              (format "%s: %s" bm desc))
-                             (bm bm)
-                             (desc desc)
-                             (t "jj"))))
-                      formatted)
+                           bm desc)
+                      (dolist (line lines)
+                        (let ((parts (split-string line "\t")))
+                          (when (and (not bm) (> (length (nth 0 parts)) 0))
+                            (setq bm (nth 0 parts)))
+                          (when (and (not desc) (> (length (nth 1 parts)) 0))
+                            (setq desc (nth 1 parts)))))
+                      (cond
+                       ((and bm desc) (format "%s: %s" bm desc))
+                       (bm bm)
+                       (desc desc)
+                       (t "jj")))
                   (doom-modeline-vcs-name))))
           (doom-modeline-vcs-name))))
 
