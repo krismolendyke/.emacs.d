@@ -822,6 +822,39 @@ function.
       :type 'integer
       :group 'k20e)
 
+    (defvar-local k20e/doom-modeline-jj-cache nil
+      "Buffer-local cache of (bookmark . description) for Jujutsu.")
+    (defvar-local k20e/doom-modeline-jj-cache-time 0.0
+      "Timestamp when `k20e/doom-modeline-jj-cache' was last populated.")
+
+    (defun k20e/doom-modeline-jj-invalidate-cache (&rest _)
+      "Invalidate the Jujutsu modeline cache for the current buffer."
+      (setq k20e/doom-modeline-jj-cache nil
+            k20e/doom-modeline-jj-cache-time 0.0))
+
+    (defun k20e/doom-modeline-jj-query-info (jj-dir)
+      "Retrieve (bookmark . description) from Jujutsu in JJ-DIR with caching."
+      (let ((now (float-time)))
+        (if (and k20e/doom-modeline-jj-cache
+                 (< (- now k20e/doom-modeline-jj-cache-time) 5.0))
+            k20e/doom-modeline-jj-cache
+          (let ((default-directory jj-dir)
+                bm desc)
+            (with-temp-buffer
+              (when (zerop (call-process "jj" nil t nil
+                                         "--color" "never" "--no-pager" "log"
+                                         "-r" "latest(ancestors(@) & bookmarks()) | latest(ancestors(@) & ~description(\"\"))"
+                                         "--no-graph"
+                                         "-T" "bookmarks.join(\", \") ++ \"\\t\" ++ description.first_line() ++ \"\\n\""))
+                (dolist (line (split-string (buffer-string) "\n" t))
+                  (let ((parts (split-string line "\t")))
+                    (when (and (not bm) (> (length (nth 0 parts)) 0))
+                      (setq bm (nth 0 parts)))
+                    (when (and (not desc) (> (length (nth 1 parts)) 0))
+                      (setq desc (nth 1 parts)))))))
+            (setq k20e/doom-modeline-jj-cache-time now
+                  k20e/doom-modeline-jj-cache (cons bm desc))))))
+
     (defun k20e/doom-modeline-vcs-name ()
       "Display Jujutsu bookmark and latest change description if in a jj repo.
 Dynamically scales description length with window and frame width.
@@ -829,39 +862,26 @@ Otherwise fallback to default git branch."
       (let* ((file (or buffer-file-name default-directory))
              (jj-dir (and file (not (file-remote-p file)) (locate-dominating-file file ".jj"))))
         (if (and jj-dir (executable-find "jj"))
-            (let ((default-directory jj-dir))
-              (with-temp-buffer
-                (if (zerop (call-process "jj" nil t nil
-                                         "--color" "never" "--no-pager" "log"
-                                         "-r" "latest(ancestors(@) & bookmarks()) | latest(ancestors(@) & ~description(\"\"))"
-                                         "--no-graph"
-                                         "-T" "bookmarks.join(\", \") ++ \"\\t\" ++ description.first_line() ++ \"\\n\""))
-                    (let* ((lines (split-string (buffer-string) "\n" t))
-                           (win (or (get-buffer-window (current-buffer)) (selected-window)))
-                           (win-w (if win (window-body-width win) (frame-width)))
-                           (desc-limit (cond
-                                        ((< win-w 65) nil)
-                                        ((>= win-w 160) 65)
-                                        ((>= win-w 120) 45)
-                                        ((>= win-w 90) 30)
-                                        (t (max 15 (/ win-w 4)))))
-                           bm desc)
-                      (dolist (line lines)
-                        (let ((parts (split-string line "\t")))
-                          (when (and (not bm) (> (length (nth 0 parts)) 0))
-                            (setq bm (nth 0 parts)))
-                          (when (and (not desc) (> (length (nth 1 parts)) 0))
-                            (setq desc (nth 1 parts)))))
-                      (when (and bm (> (length bm) k20e/doom-modeline-jj-bookmark-max-length))
-                        (setq bm (concat (substring bm 0 (- k20e/doom-modeline-jj-bookmark-max-length 1)) "…")))
-                      (when (and desc desc-limit (> (length desc) desc-limit))
-                        (setq desc (concat (substring desc 0 (- desc-limit 1)) "…")))
-                      (cond
-                       ((and bm desc desc-limit) (format "%s: %s" bm desc))
-                       (bm bm)
-                       ((and desc desc-limit) desc)
-                       (t "jj")))
-                  (doom-modeline-vcs-name))))
+            (let* ((info (k20e/doom-modeline-jj-query-info jj-dir))
+                   (bm (car info))
+                   (desc (cdr info))
+                   (win (or (get-buffer-window (current-buffer)) (selected-window)))
+                   (win-w (if win (window-body-width win) (frame-width)))
+                   (desc-limit (cond
+                                ((< win-w 65) nil)
+                                ((>= win-w 160) 65)
+                                ((>= win-w 120) 45)
+                                ((>= win-w 90) 30)
+                                (t (max 15 (/ win-w 4))))))
+              (when (and bm (> (length bm) k20e/doom-modeline-jj-bookmark-max-length))
+                (setq bm (concat (substring bm 0 (- k20e/doom-modeline-jj-bookmark-max-length 1)) "…")))
+              (when (and desc desc-limit (> (length desc) desc-limit))
+                (setq desc (concat (substring desc 0 (- desc-limit 1)) "…")))
+              (cond
+               ((and bm desc desc-limit) (format "%s: %s" bm desc))
+               (bm bm)
+               ((and desc desc-limit) desc)
+               (t "jj")))
           (doom-modeline-vcs-name))))
 
     (defun k20e/doom-modeline-update-vcs-on-resize (&optional frame)
@@ -873,6 +893,8 @@ Otherwise fallback to default git branch."
 
     (add-hook 'window-size-change-functions #'k20e/doom-modeline-update-vcs-on-resize)
     (add-hook 'window-configuration-change-hook #'k20e/doom-modeline-update-vcs-on-resize)
+    (add-hook 'after-save-hook #'k20e/doom-modeline-jj-invalidate-cache)
+    (add-hook 'after-revert-hook #'k20e/doom-modeline-jj-invalidate-cache)
 
     (declare-function doom-modeline-def-modeline "doom-modeline-core")
     (declare-function doom-modeline-vcs-name "doom-modeline-core")
