@@ -2316,6 +2316,10 @@ Otherwise, start a new ghostel terminal."
       (pulsar-delay 0.055)
       (pulsar-iterations 10)
       (pulsar-face 'pulsar-generic)
+      :custom-face
+      (pulsar-generic
+       ((((background light)) :background "#ebdbb2" :extend t)
+        (((background dark))  :background "#504945" :extend t)))
       :config
       (pulsar-global-mode 1))
   #+end_src
