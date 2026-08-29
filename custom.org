@@ -360,60 +360,88 @@ function.
        (pixel-scroll-precision-mode 1))
    #+end_src
 
-** TODO Defaults for Review
+** Auto Revert
    :PROPERTIES:
-   :CUSTOM_ID: defaults-for-review
+   :CUSTOM_ID: auto-revert
    :END:
 
-   This is a bunch of stuff that I just dumped here and need to go through yet.
+   Automatically reload buffers when files change on disk (e.g. from version control
+   operations like ~jj~ or background processes).
 
-   Show the active region and delete it when selected if a character
-   is inserted.
+   #+begin_src emacs-lisp
+     (global-auto-revert-mode 1)
+   #+end_src
+
+** Delete Selection
+   :PROPERTIES:
+   :CUSTOM_ID: delete-selection
+   :END:
+
+   Typing over an active selection replaces it, matching standard modern OS editing behavior.
 
    #+begin_src emacs-lisp
      (delete-selection-mode 1)
    #+end_src
 
-   "Electric" indentation is generally what I consider to be sensible.
+** Electric Indent
+   :PROPERTIES:
+   :CUSTOM_ID: electric-indent
+   :END:
+
+   "Electric" indentation automatically indents upon pressing return and typing closing delimiters.
 
    #+begin_src emacs-lisp
-     (electric-indent-mode)
+     (electric-indent-mode 1)
    #+end_src
 
-   Cycle through the mark ring faster.
+** Mark Ring
+   :PROPERTIES:
+   :CUSTOM_ID: mark-ring
+   :END:
+
+   Cycle through previous marks faster: after the initial ~C-u C-SPC~, subsequent ~C-SPC~
+   keystrokes continue popping the mark ring.
 
    #+begin_src emacs-lisp
      (setq set-mark-command-repeat-pop t)
    #+end_src
 
-   Splitting windows horizontally makes more sense on all of the wide
-   screen monitors I work on.
+** Window Splitting
+   :PROPERTIES:
+   :CUSTOM_ID: window-splitting
+   :END:
+
+   Prefer horizontal side-by-side splitting on widescreen displays and along the longest window dimension.
 
    #+begin_src emacs-lisp
-     (setq split-width-threshold 81)
+     (setq split-width-threshold 81
+           split-window-preferred-direction 'longest)
    #+end_src
 
+** Modern Core Defaults
+   :PROPERTIES:
+   :CUSTOM_ID: modern-core-defaults
+   :END:
+
+   Sensible core defaults from [[https://www.masteringemacs.org/article/whats-new-in-emacs-28-1][Emacs 28]], [[https://www.masteringemacs.org/article/whats-new-in-emacs-29-1][Emacs 29]], and [[https://www.masteringemacs.org/article/whats-new-in-emacs-311][Emacs 31]]:
+
+   - ~use-short-answers~: Accept ~y~/~n~ instead of ~yes~/~no~ prompts.
+   - ~echo-keystrokes~: Show in-flight prefix keys faster in the minibuffer echo area (0.1s).
+   - ~completions-detailed~: Show rich docstrings and metadata during built-in completions.
+   - ~describe-bindings-outline~: Enable collapsible outline sections in ~describe-bindings~ (~C-h b~).
+   - ~next-error-message-highlight~: Highlight the matching line when jumping through compilation or grep errors.
+   - ~frame-title-format~: Display buffer name and file path in the desktop frame title bar.
+
    #+begin_src emacs-lisp
-     ;; What's going on here?
-     (setq echo-keystrokes 0.1)
+     (setq echo-keystrokes 0.1
+           use-short-answers t)
 
-     ;; Automatically reload buffers when files change on disk.
-     (global-auto-revert-mode 1)
-
-     ;; y is the new yes.  n is the new no.
-     (setq use-short-answers t)
-   #+end_src
-
-   Stuff in review from https://www.masteringemacs.org/article/whats-new-in-emacs-28-1 and https://www.masteringemacs.org/article/whats-new-in-emacs-311.
-
-   #+begin_src emacs-lisp
      (setq-default
       completions-detailed t
       describe-bindings-outline t
       mode-line-compact t
       mode-line-collapse-minor-modes t
       next-error-message-highlight t
-      split-window-preferred-direction 'longest
       frame-title-format '(multiple-frames "%b" ("%b\t%f")))
    #+end_src
 
