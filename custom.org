@@ -824,7 +824,7 @@ function.
 
     (defun k20e/doom-modeline-vcs-name ()
       "Display Jujutsu bookmark and latest change description if in a jj repo.
-Dynamically scales the description length based on the current window width.
+Dynamically scales description length with window and frame width.
 Otherwise fallback to default git branch."
       (let* ((file (or buffer-file-name default-directory))
              (jj-dir (and file (not (file-remote-p file)) (locate-dominating-file file ".jj"))))
@@ -837,10 +837,14 @@ Otherwise fallback to default git branch."
                                          "--no-graph"
                                          "-T" "bookmarks.join(\", \") ++ \"\\t\" ++ description.first_line() ++ \"\\n\""))
                     (let* ((lines (split-string (buffer-string) "\n" t))
-                           (win-w (window-width))
+                           (win (or (get-buffer-window (current-buffer)) (selected-window)))
+                           (win-w (if win (window-body-width win) (frame-width)))
                            (desc-limit (cond
                                         ((< win-w 65) nil)
-                                        (t (min 60 (max 16 (/ win-w 4))))))
+                                        ((>= win-w 160) 65)
+                                        ((>= win-w 120) 45)
+                                        ((>= win-w 90) 30)
+                                        (t (max 15 (/ win-w 4)))))
                            bm desc)
                       (dolist (line lines)
                         (let ((parts (split-string line "\t")))
@@ -861,12 +865,14 @@ Otherwise fallback to default git branch."
           (doom-modeline-vcs-name))))
 
     (defun k20e/doom-modeline-update-vcs-on-resize (&optional frame)
-      "Update VCS modeline segment on window size changes."
+      "Update VCS modeline segment on window and frame size changes."
       (dolist (w (window-list frame 'never))
         (with-current-buffer (window-buffer w)
-          (doom-modeline-update-vcs))))
+          (doom-modeline-update-vcs)))
+      (force-mode-line-update t))
 
     (add-hook 'window-size-change-functions #'k20e/doom-modeline-update-vcs-on-resize)
+    (add-hook 'window-configuration-change-hook #'k20e/doom-modeline-update-vcs-on-resize)
 
     (declare-function doom-modeline-def-modeline "doom-modeline-core")
     (declare-function doom-modeline-vcs-name "doom-modeline-core")
@@ -877,7 +883,7 @@ Otherwise fallback to default git branch."
       :init (doom-modeline-mode 1)
       :custom
       (doom-modeline-vcs-display-function #'k20e/doom-modeline-vcs-name)
-      (doom-modeline-vcs-max-length 50)
+      (doom-modeline-vcs-max-length 70)
       (doom-modeline-height 26)
       (doom-modeline-bar-width 0)
       (doom-modeline-hud nil)
