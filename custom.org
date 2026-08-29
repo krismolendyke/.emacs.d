@@ -761,7 +761,7 @@ function.
       :hook ((c-mode . flycheck-mode)))
   #+end_src
 
-* TODO combobulate
+* combobulate
   :PROPERTIES:
   :CUSTOM_ID: combobulate
   :END:
@@ -1991,7 +1991,7 @@ Otherwise, start a new ghostel terminal."
      (setq org-confirm-babel-evaluate nil)
    #+end_src
 
-** TODO Items
+** Todo Items
    :PROPERTIES:
    :CUSTOM_ID: org-mode-todo-items
    :END:
@@ -2598,13 +2598,9 @@ Otherwise, start a new ghostel terminal."
       :mode ("Pipfile\\'" . toml-mode))
   #+end_src
 
-* DONE Tree-sitter
+* Tree-sitter
   :PROPERTIES:
   :CUSTOM_ID: tree-sitter
-  :END:
-  :LOGBOOK:
-  - State "DONE"       from "STARTED"    [2026-07-23 Thu 21:23]
-  - State "STARTED"    from "TODO"       [2024-01-08 Mon 09:20]
   :END:
 
   Emacs 31 includes native tree-sitter support (=treesit=). Use =treesit-auto= to automatically manage grammar recipes,
@@ -2713,12 +2709,9 @@ Otherwise, start a new ghostel terminal."
             vertico-preselect 'first))
   #+end_src
 
-** STARTED [1/3] Other Configuration & Extensions
+** Other Configuration & Extensions
    :PROPERTIES:
    :CUSTOM_ID: other-configuration-extensions
-   :END:
-   :LOGBOOK:
-   - State "STARTED"    from "TODO"       [2023-12-16 Sat 21:12]
    :END:
 
    - [ ] https://github.com/minad/vertico#extensions
@@ -2781,7 +2774,7 @@ Otherwise, start a new ghostel terminal."
        (setq completion-styles '(orderless basic)))
    #+end_src
 
-*** TODO [0/1] Other Configuration
+*** Other Configuration
     :PROPERTIES:
     :CUSTOM_ID: orderless-other-configuration
     :END:
@@ -2812,12 +2805,9 @@ Otherwise, start a new ghostel terminal."
               ("C-c C-j" . consult-org-heading)))
    #+end_src
 
-*** STARTED [1/2] Other Configuration
+*** Other Configuration
     :PROPERTIES:
     :CUSTOM_ID: consult-other-configuration
-    :END:
-    :LOGBOOK:
-    - State "STARTED"    from "TODO"       [2023-12-08 Fri 17:08]
     :END:
 
     - [ ] https://github.com/minad/consult/wiki
@@ -2858,7 +2848,7 @@ Otherwise, start a new ghostel terminal."
        (corfu-popupinfo-mode 1))
    #+end_src
 
-*** TODO [0/2] Other Configuration
+*** Other Configuration
     :PROPERTIES:
     :CUSTOM_ID: corfu-other-configuration
     :END:
@@ -2909,7 +2899,7 @@ Otherwise, start a new ghostel terminal."
        :config (marginalia-mode 1))
    #+end_src
 
-*** TODO [0/1] Other Configuration
+*** Other Configuration
     :PROPERTIES:
     :CUSTOM_ID: marginalia-other-configuration
     :END:
