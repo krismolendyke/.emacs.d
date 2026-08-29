@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-08-28 Fri 21:17 -->
+<!-- 2026-08-28 Fri 21:25 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Literate =.emacs.d=</title>
@@ -2268,6 +2268,39 @@ When compilation completes, regardless of result."</span>
       <span class="org-builtin">:type</span> 'integer
       <span class="org-builtin">:group</span> 'k20e)
 
+    (<span class="org-keyword"><span class="org-elisp-macro">defvar-local</span></span> <span class="org-variable-name">k20e/doom-modeline-jj-cache</span> nil
+      <span class="org-doc">"Buffer-local cache of (bookmark . description) for Jujutsu."</span>)
+    (<span class="org-keyword"><span class="org-elisp-macro">defvar-local</span></span> <span class="org-variable-name">k20e/doom-modeline-jj-cache-time</span> 0.0
+      <span class="org-doc">"Timestamp when `</span><span class="org-doc"><span class="org-constant">k20e/doom-modeline-jj-cache</span></span><span class="org-doc">' was last populated."</span>)
+
+    (<span class="org-keyword"><span class="org-elisp-macro">defun</span></span> <span class="org-function-name"><span class="org-elisp-defun">k20e/doom-modeline-jj-invalidate-cache</span></span> (<span class="org-type"><span class="org-elisp-ampersand">&amp;rest</span></span> _)
+      <span class="org-doc">"Invalidate the Jujutsu modeline cache for the current buffer."</span>
+      (<span class="org-keyword"><span class="org-elisp-special-form">setq</span></span> <span class="org-elisp-free-variable">k20e/doom-modeline-jj-cache</span> nil
+            <span class="org-elisp-free-variable">k20e/doom-modeline-jj-cache-time</span> 0.0))
+
+    (<span class="org-keyword"><span class="org-elisp-macro">defun</span></span> <span class="org-function-name"><span class="org-elisp-defun">k20e/doom-modeline-jj-query-info</span></span> (<span class="org-elisp-binding-variable">jj-dir</span>)
+      <span class="org-doc">"Retrieve (bookmark . description) from Jujutsu in JJ-DIR with caching."</span>
+      (<span class="org-keyword"><span class="org-elisp-special-form">let</span></span> ((<span class="org-elisp-binding-variable">now</span> (<span class="org-elisp-function">float-time</span>)))
+        (<span class="org-keyword"><span class="org-elisp-special-form">if</span></span> (<span class="org-keyword"><span class="org-elisp-special-form">and</span></span> <span class="org-elisp-free-variable">k20e/doom-modeline-jj-cache</span>
+                 (<span class="org-elisp-function">&lt;</span> (<span class="org-elisp-function">-</span> <span class="org-elisp-bound-variable">now</span> <span class="org-elisp-free-variable">k20e/doom-modeline-jj-cache-time</span>) 5.0))
+            <span class="org-elisp-free-variable">k20e/doom-modeline-jj-cache</span>
+          (<span class="org-keyword"><span class="org-elisp-special-form">let</span></span> ((<span class="org-elisp-shadowing-variable">default-directory</span> <span class="org-elisp-bound-variable">jj-dir</span>)
+                <span class="org-elisp-binding-variable">bm</span> <span class="org-elisp-binding-variable">desc</span>)
+            (<span class="org-keyword"><span class="org-elisp-macro">with-temp-buffer</span></span>
+              (<span class="org-keyword"><span class="org-elisp-macro">when</span></span> (<span class="org-elisp-function">zerop</span> (<span class="org-elisp-function">call-process</span> <span class="org-string">"jj"</span> nil t nil
+                                         <span class="org-string">"--color"</span> <span class="org-string">"never"</span> <span class="org-string">"--no-pager"</span> <span class="org-string">"log"</span>
+                                         <span class="org-string">"-r"</span> <span class="org-string">"latest(ancestors(@) &amp; bookmarks()) | latest(ancestors(@) &amp; ~description(\"\"))"</span>
+                                         <span class="org-string">"--no-graph"</span>
+                                         <span class="org-string">"-T"</span> <span class="org-string">"bookmarks.join(\", \") ++ \"\\t\" ++ description.first_line() ++ \"\\n\""</span>))
+                (<span class="org-keyword"><span class="org-elisp-macro">dolist</span></span> (line (split-string (buffer-string) <span class="org-string">"\n"</span> t))
+                  (<span class="org-keyword">let</span> ((parts (split-string line <span class="org-string">"\t"</span>)))
+                    (<span class="org-keyword">when</span> (<span class="org-keyword">and</span> (not bm) (&gt; (length (nth 0 parts)) 0))
+                      (<span class="org-keyword">setq</span> bm (nth 0 parts)))
+                    (<span class="org-keyword">when</span> (<span class="org-keyword">and</span> (not desc) (&gt; (length (nth 1 parts)) 0))
+                      (<span class="org-keyword">setq</span> desc (nth 1 parts)))))))
+            (<span class="org-keyword"><span class="org-elisp-special-form">setq</span></span> <span class="org-elisp-free-variable">k20e/doom-modeline-jj-cache-time</span> <span class="org-elisp-bound-variable">now</span>
+                  <span class="org-elisp-free-variable">k20e/doom-modeline-jj-cache</span> (<span class="org-elisp-function">cons</span> <span class="org-elisp-bound-variable">bm</span> <span class="org-elisp-bound-variable">desc</span>))))))
+
     (<span class="org-keyword"><span class="org-elisp-macro">defun</span></span> <span class="org-function-name"><span class="org-elisp-defun">k20e/doom-modeline-vcs-name</span></span> ()
       <span class="org-doc">"Display Jujutsu bookmark and latest change description if in a jj repo.
 Dynamically scales description length with window and frame width.
@@ -2275,39 +2308,26 @@ Otherwise fallback to default git branch."</span>
       (<span class="org-keyword"><span class="org-elisp-special-form">let*</span></span> ((<span class="org-elisp-binding-variable">file</span> (<span class="org-keyword"><span class="org-elisp-special-form">or</span></span> <span class="org-elisp-free-variable">buffer-file-name</span> <span class="org-elisp-free-variable">default-directory</span>))
              (<span class="org-elisp-binding-variable">jj-dir</span> (<span class="org-keyword"><span class="org-elisp-special-form">and</span></span> <span class="org-elisp-bound-variable">file</span> (<span class="org-elisp-function">not</span> (<span class="org-elisp-function">file-remote-p</span> <span class="org-elisp-bound-variable">file</span>)) (<span class="org-elisp-function">locate-dominating-file</span> <span class="org-elisp-bound-variable">file</span> <span class="org-string">".jj"</span>))))
         (<span class="org-keyword"><span class="org-elisp-special-form">if</span></span> (<span class="org-keyword"><span class="org-elisp-special-form">and</span></span> <span class="org-elisp-bound-variable">jj-dir</span> (<span class="org-elisp-function">executable-find</span> <span class="org-string">"jj"</span>))
-            (<span class="org-keyword"><span class="org-elisp-special-form">let</span></span> ((<span class="org-elisp-shadowing-variable">default-directory</span> <span class="org-elisp-bound-variable">jj-dir</span>))
-              (<span class="org-keyword"><span class="org-elisp-macro">with-temp-buffer</span></span>
-                (<span class="org-keyword"><span class="org-elisp-special-form">if</span></span> (<span class="org-elisp-function">zerop</span> (<span class="org-elisp-function">call-process</span> <span class="org-string">"jj"</span> nil t nil
-                                         <span class="org-string">"--color"</span> <span class="org-string">"never"</span> <span class="org-string">"--no-pager"</span> <span class="org-string">"log"</span>
-                                         <span class="org-string">"-r"</span> <span class="org-string">"latest(ancestors(@) &amp; bookmarks()) | latest(ancestors(@) &amp; ~description(\"\"))"</span>
-                                         <span class="org-string">"--no-graph"</span>
-                                         <span class="org-string">"-T"</span> <span class="org-string">"bookmarks.join(\", \") ++ \"\\t\" ++ description.first_line() ++ \"\\n\""</span>))
-                    (<span class="org-keyword"><span class="org-elisp-special-form">let*</span></span> ((<span class="org-elisp-binding-variable">lines</span> (<span class="org-elisp-function">split-string</span> (<span class="org-elisp-function">buffer-string</span>) <span class="org-string">"\n"</span> t))
-                           (<span class="org-elisp-binding-variable">win</span> (<span class="org-keyword"><span class="org-elisp-special-form">or</span></span> (<span class="org-elisp-function">get-buffer-window</span> (<span class="org-elisp-function">current-buffer</span>)) (<span class="org-elisp-function">selected-window</span>)))
-                           (<span class="org-elisp-binding-variable">win-w</span> (<span class="org-keyword"><span class="org-elisp-special-form">if</span></span> <span class="org-elisp-bound-variable">win</span> (<span class="org-elisp-function">window-body-width</span> <span class="org-elisp-bound-variable">win</span>) (<span class="org-elisp-function">frame-width</span>)))
-                           (<span class="org-elisp-binding-variable">desc-limit</span> (<span class="org-keyword"><span class="org-elisp-special-form">cond</span></span>
-                                        ((<span class="org-elisp-function">&lt;</span> <span class="org-elisp-bound-variable">win-w</span> 65) nil)
-                                        ((<span class="org-elisp-function">&gt;=</span> <span class="org-elisp-bound-variable">win-w</span> 160) 65)
-                                        ((<span class="org-elisp-function">&gt;=</span> <span class="org-elisp-bound-variable">win-w</span> 120) 45)
-                                        ((<span class="org-elisp-function">&gt;=</span> <span class="org-elisp-bound-variable">win-w</span> 90) 30)
-                                        (t (<span class="org-elisp-function">max</span> 15 (<span class="org-elisp-function">/</span> <span class="org-elisp-bound-variable">win-w</span> 4)))))
-                           <span class="org-elisp-binding-variable">bm</span> <span class="org-elisp-binding-variable">desc</span>)
-                      (<span class="org-keyword"><span class="org-elisp-macro">dolist</span></span> (line lines)
-                        (<span class="org-keyword">let</span> ((parts (split-string line <span class="org-string">"\t"</span>)))
-                          (<span class="org-keyword">when</span> (<span class="org-keyword">and</span> (not bm) (&gt; (length (nth 0 parts)) 0))
-                            (<span class="org-keyword">setq</span> bm (nth 0 parts)))
-                          (<span class="org-keyword">when</span> (<span class="org-keyword">and</span> (not desc) (&gt; (length (nth 1 parts)) 0))
-                            (<span class="org-keyword">setq</span> desc (nth 1 parts)))))
-                      (<span class="org-keyword"><span class="org-elisp-macro">when</span></span> (<span class="org-keyword"><span class="org-elisp-special-form">and</span></span> <span class="org-elisp-bound-variable">bm</span> (<span class="org-elisp-function">&gt;</span> (<span class="org-elisp-function">length</span> <span class="org-elisp-bound-variable">bm</span>) <span class="org-elisp-free-variable">k20e/doom-modeline-jj-bookmark-max-length</span>))
-                        (<span class="org-keyword"><span class="org-elisp-special-form">setq</span></span> <span class="org-elisp-bound-variable">bm</span> (<span class="org-elisp-function">concat</span> (<span class="org-elisp-function">substring</span> <span class="org-elisp-bound-variable">bm</span> 0 (<span class="org-elisp-function">-</span> <span class="org-elisp-free-variable">k20e/doom-modeline-jj-bookmark-max-length</span> 1)) <span class="org-string">"&#8230;"</span>)))
-                      (<span class="org-keyword"><span class="org-elisp-macro">when</span></span> (<span class="org-keyword"><span class="org-elisp-special-form">and</span></span> <span class="org-elisp-bound-variable">desc</span> <span class="org-elisp-bound-variable">desc-limit</span> (<span class="org-elisp-function">&gt;</span> (<span class="org-elisp-function">length</span> <span class="org-elisp-bound-variable">desc</span>) <span class="org-elisp-bound-variable">desc-limit</span>))
-                        (<span class="org-keyword"><span class="org-elisp-special-form">setq</span></span> <span class="org-elisp-bound-variable">desc</span> (<span class="org-elisp-function">concat</span> (<span class="org-elisp-function">substring</span> <span class="org-elisp-bound-variable">desc</span> 0 (<span class="org-elisp-function">-</span> <span class="org-elisp-bound-variable">desc-limit</span> 1)) <span class="org-string">"&#8230;"</span>)))
-                      (<span class="org-keyword"><span class="org-elisp-special-form">cond</span></span>
-                       ((<span class="org-keyword"><span class="org-elisp-special-form">and</span></span> <span class="org-elisp-bound-variable">bm</span> <span class="org-elisp-bound-variable">desc</span> <span class="org-elisp-bound-variable">desc-limit</span>) (<span class="org-elisp-function">format</span> <span class="org-string">"%s: %s"</span> <span class="org-elisp-bound-variable">bm</span> <span class="org-elisp-bound-variable">desc</span>))
-                       (<span class="org-elisp-bound-variable">bm</span> <span class="org-elisp-bound-variable">bm</span>)
-                       ((<span class="org-keyword"><span class="org-elisp-special-form">and</span></span> <span class="org-elisp-bound-variable">desc</span> <span class="org-elisp-bound-variable">desc-limit</span>) <span class="org-elisp-bound-variable">desc</span>)
-                       (t <span class="org-string">"jj"</span>)))
-                  (<span class="org-elisp-function">doom-modeline-vcs-name</span>))))
+            (<span class="org-keyword"><span class="org-elisp-special-form">let*</span></span> ((<span class="org-elisp-binding-variable">info</span> (<span class="org-elisp-function">k20e/doom-modeline-jj-query-info</span> <span class="org-elisp-bound-variable">jj-dir</span>))
+                   (<span class="org-elisp-binding-variable">bm</span> (<span class="org-elisp-function">car</span> <span class="org-elisp-bound-variable">info</span>))
+                   (<span class="org-elisp-binding-variable">desc</span> (<span class="org-elisp-function">cdr</span> <span class="org-elisp-bound-variable">info</span>))
+                   (<span class="org-elisp-binding-variable">win</span> (<span class="org-keyword"><span class="org-elisp-special-form">or</span></span> (<span class="org-elisp-function">get-buffer-window</span> (<span class="org-elisp-function">current-buffer</span>)) (<span class="org-elisp-function">selected-window</span>)))
+                   (<span class="org-elisp-binding-variable">win-w</span> (<span class="org-keyword"><span class="org-elisp-special-form">if</span></span> <span class="org-elisp-bound-variable">win</span> (<span class="org-elisp-function">window-body-width</span> <span class="org-elisp-bound-variable">win</span>) (<span class="org-elisp-function">frame-width</span>)))
+                   (<span class="org-elisp-binding-variable">desc-limit</span> (<span class="org-keyword"><span class="org-elisp-special-form">cond</span></span>
+                                ((<span class="org-elisp-function">&lt;</span> <span class="org-elisp-bound-variable">win-w</span> 65) nil)
+                                ((<span class="org-elisp-function">&gt;=</span> <span class="org-elisp-bound-variable">win-w</span> 160) 65)
+                                ((<span class="org-elisp-function">&gt;=</span> <span class="org-elisp-bound-variable">win-w</span> 120) 45)
+                                ((<span class="org-elisp-function">&gt;=</span> <span class="org-elisp-bound-variable">win-w</span> 90) 30)
+                                (t (<span class="org-elisp-function">max</span> 15 (<span class="org-elisp-function">/</span> <span class="org-elisp-bound-variable">win-w</span> 4))))))
+              (<span class="org-keyword"><span class="org-elisp-macro">when</span></span> (<span class="org-keyword"><span class="org-elisp-special-form">and</span></span> <span class="org-elisp-bound-variable">bm</span> (<span class="org-elisp-function">&gt;</span> (<span class="org-elisp-function">length</span> <span class="org-elisp-bound-variable">bm</span>) <span class="org-elisp-free-variable">k20e/doom-modeline-jj-bookmark-max-length</span>))
+                (<span class="org-keyword"><span class="org-elisp-special-form">setq</span></span> <span class="org-elisp-bound-variable">bm</span> (<span class="org-elisp-function">concat</span> (<span class="org-elisp-function">substring</span> <span class="org-elisp-bound-variable">bm</span> 0 (<span class="org-elisp-function">-</span> <span class="org-elisp-free-variable">k20e/doom-modeline-jj-bookmark-max-length</span> 1)) <span class="org-string">"&#8230;"</span>)))
+              (<span class="org-keyword"><span class="org-elisp-macro">when</span></span> (<span class="org-keyword"><span class="org-elisp-special-form">and</span></span> <span class="org-elisp-bound-variable">desc</span> <span class="org-elisp-bound-variable">desc-limit</span> (<span class="org-elisp-function">&gt;</span> (<span class="org-elisp-function">length</span> <span class="org-elisp-bound-variable">desc</span>) <span class="org-elisp-bound-variable">desc-limit</span>))
+                (<span class="org-keyword"><span class="org-elisp-special-form">setq</span></span> <span class="org-elisp-bound-variable">desc</span> (<span class="org-elisp-function">concat</span> (<span class="org-elisp-function">substring</span> <span class="org-elisp-bound-variable">desc</span> 0 (<span class="org-elisp-function">-</span> <span class="org-elisp-bound-variable">desc-limit</span> 1)) <span class="org-string">"&#8230;"</span>)))
+              (<span class="org-keyword"><span class="org-elisp-special-form">cond</span></span>
+               ((<span class="org-keyword"><span class="org-elisp-special-form">and</span></span> <span class="org-elisp-bound-variable">bm</span> <span class="org-elisp-bound-variable">desc</span> <span class="org-elisp-bound-variable">desc-limit</span>) (<span class="org-elisp-function">format</span> <span class="org-string">"%s: %s"</span> <span class="org-elisp-bound-variable">bm</span> <span class="org-elisp-bound-variable">desc</span>))
+               (<span class="org-elisp-bound-variable">bm</span> <span class="org-elisp-bound-variable">bm</span>)
+               ((<span class="org-keyword"><span class="org-elisp-special-form">and</span></span> <span class="org-elisp-bound-variable">desc</span> <span class="org-elisp-bound-variable">desc-limit</span>) <span class="org-elisp-bound-variable">desc</span>)
+               (t <span class="org-string">"jj"</span>)))
           (<span class="org-elisp-function">doom-modeline-vcs-name</span>))))
 
     (<span class="org-keyword"><span class="org-elisp-macro">defun</span></span> <span class="org-function-name"><span class="org-elisp-defun">k20e/doom-modeline-update-vcs-on-resize</span></span> (<span class="org-type"><span class="org-elisp-ampersand">&amp;optional</span></span> <span class="org-elisp-binding-variable">frame</span>)
@@ -2319,6 +2339,8 @@ Otherwise fallback to default git branch."</span>
 
     (<span class="org-elisp-function">add-hook</span> '<span class="org-elisp-free-variable">window-size-change-functions</span> #'<span class="org-elisp-function">k20e/doom-modeline-update-vcs-on-resize</span>)
     (<span class="org-elisp-function">add-hook</span> '<span class="org-elisp-free-variable">window-configuration-change-hook</span> #'<span class="org-elisp-function">k20e/doom-modeline-update-vcs-on-resize</span>)
+    (<span class="org-elisp-function">add-hook</span> '<span class="org-elisp-free-variable">after-save-hook</span> #'<span class="org-elisp-function">k20e/doom-modeline-jj-invalidate-cache</span>)
+    (<span class="org-elisp-function">add-hook</span> '<span class="org-elisp-free-variable">after-revert-hook</span> #'<span class="org-elisp-function">k20e/doom-modeline-jj-invalidate-cache</span>)
 
     (<span class="org-keyword"><span class="org-elisp-macro">declare-function</span></span> <span class="org-elisp-function">doom-modeline-def-modeline</span> <span class="org-string">"doom-modeline-core"</span>)
     (<span class="org-keyword"><span class="org-elisp-macro">declare-function</span></span> <span class="org-elisp-function">doom-modeline-vcs-name</span> <span class="org-string">"doom-modeline-core"</span>)
@@ -4650,7 +4672,7 @@ Take care of some whitespace issues.
 </div>
 <div id="postamble" class="status">
 <p class="author">Kris Molendyke</p>
-<p class="date">2026-08-28 Fri 21:15</p>
+<p class="date">2026-08-28 Fri 21:21</p>
 <p class="creator"><a href="https://www.gnu.org/software/emacs/">Emacs</a> 31.1 (<a href="https://orgmode.org">Org</a> mode 9.8.9)</p>
 </div>
 </body>
