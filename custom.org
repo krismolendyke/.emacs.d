@@ -830,6 +830,10 @@ function.
         :config
         (require 'dired-x))
       :hook ((dired-mode . auto-revert-mode)))
+
+    (use-package nerd-icons-dired
+      :ensure t
+      :hook (dired-mode . nerd-icons-dired-mode))
   #+end_src
 
 * doom-modeline
@@ -1354,6 +1358,27 @@ Otherwise, start a new ghostel terminal."
       :ensure t
       :hook ((emacs-lisp-mode . highlight-parentheses-mode)
              (lisp-mode-hook . highlight-parentheses-mode)))
+  #+end_src
+
+* hl-todo
+  :PROPERTIES:
+  :CUSTOM_ID: hl-todo
+  :END:
+
+  [[https://github.com/tarsius/hl-todo][hl-todo]] highlights keywords like =TODO=, =FIXME=, =NOTE=, =HACK=, =BUG= in programming comments.
+  Pairs with =consult-todo= for project-wide discovery.
+
+  #+begin_src emacs-lisp
+    (use-package hl-todo
+      :ensure t
+      :hook (prog-mode . hl-todo-mode)
+      :custom
+      (hl-todo-highlight-punctuation ":"))
+
+    (use-package consult-todo
+      :ensure t
+      :after (consult hl-todo)
+      :bind (("C-c t t" . consult-todo)))
   #+end_src
 
 * htmlize
@@ -2276,6 +2301,25 @@ Otherwise, start a new ghostel terminal."
              (python-mode . superword-mode)))
   #+end_src
 
+* pulsar
+  :PROPERTIES:
+  :CUSTOM_ID: pulsar
+  :END:
+
+  [[https://protesilaos.com/emacs/pulsar][pulsar]] temporarily pulses the cursor line after large jumps (window switching, buffer switching, searches), making it effortless to track the point on large and ultrawide displays.
+
+  #+begin_src emacs-lisp
+    (use-package pulsar
+      :ensure t
+      :custom
+      (pulsar-pulse t)
+      (pulsar-delay 0.055)
+      (pulsar-iterations 10)
+      (pulsar-face 'pulsar-generic)
+      :config
+      (pulsar-global-mode 1))
+  #+end_src
+
 * re-builder
   :PROPERTIES:
   :CUSTOM_ID: re-builder
@@ -2295,7 +2339,10 @@ Otherwise, start a new ghostel terminal."
   #+begin_src emacs-lisp
     (use-package recentf
       :custom
-      (recentf-save-file (expand-file-name ".recentf" k20e/google-drive-directory))
+      (recentf-save-file
+       (if (file-directory-p k20e/google-drive-directory)
+           (expand-file-name ".recentf" k20e/google-drive-directory)
+         (expand-file-name "recentf" user-emacs-directory)))
       (recentf-max-saved-items 250)
       :config
       (recentf-mode 1)

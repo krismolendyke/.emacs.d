@@ -123,6 +123,6 @@ Only turn off the menu bar running in a terminal window."
 (k20e/setup-load-path)
 (k20e/setup-use-package)
 (k20e/setup-exec-path)
-(add-hook 'after-init-hook 'k20e/after-init-hook)
+(add-hook 'after-init-hook #'k20e/after-init-hook)
 
 ;;; init.el ends here
